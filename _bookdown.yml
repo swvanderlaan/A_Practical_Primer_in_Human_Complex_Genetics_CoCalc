@@ -1,4 +1,4 @@
-book_filename: "gitbook-demo"
+book_filename: "A primer in Human Cardiovascular Genetics"
 rmd_files: ["index.Rmd",
             "prerequisites.Rmd",
             "get_your_gitbook.Rmd",

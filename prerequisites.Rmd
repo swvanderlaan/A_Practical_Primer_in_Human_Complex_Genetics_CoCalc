@@ -1,53 +1,114 @@
 # Prerequisites
 
-This GitBook is created in Rstudio, using the `bookdown` package. To get your system set up correctly, you have to install several software packages, and register on GitHub. You only have to perform these steps once, and the entire process should take approximately 1 hour if you start from scratch. In case some software is already installed on your system, you can skip related steps. Follow these steps in order:
+## Linux, macOS, and Windows
+Most programs made to execute genetic studies are developed for the Unix environment, _e.g._ Linux and macOS. Therefore, they may not work as intended on window's environment. Fortunately, Windows now allow users to install a linux subsystem within Windows 10 and you can find the detail [guide](https://docs.microsoft.com/en-us/windows/wsl/about){target="_blank"} here.  
+However, we highly recommend to 1) either install a linux subsystem on your Windows computer (_e.g._ [a virtual machine with Ubuntu could work](https://blog.storagecraft.com/the-dead-simple-guide-to-installing-a-linux-virtual-machine-on-windows/){target="_blank"}), or 2) switch to macOS in combination with [homebrew](https://brew.sh){target="_blank"} as this will give you advantage of a powerful computer with a userfriendly interface and all the flexibility to use Unix-based programs for your work.
 
-1. Install R from [cloud.r-project.org](https://cloud.r-project.org/)
-2. Install Rstudio Desktop (Free) from [rstudio.com](https://rstudio.com/products/rstudio/download/#download)
-<!-- ALWAYS RUN AS ADMIN -->
-<!-- install rtools -->
-3. Install Git from [git-scm.com](https://git-scm.com/downloads). Use the default, recommended settings. It is especially important to leave these settings selected:
-    + Git from the command line and also from third party software  
-    + Use the OpenSSL library  
-    <!--*For secure data transfer with GitHub*-->
-    + Checkout Windows-style, commit Unix-style line endings  
-    <!--*This is the preferred setting when collaborating with others on different platforms. Be prepared that, on windows, you will receive harmless notifications about LF to CRLF line endings.  *-->
-    + Enable Git Credential Manager  
-    <!--*For logging in to GitHub*-->
-    + If you run into any trouble, a more comprehensive tutorial on installing Git is available at [happygitwithr.com](https://happygitwithr.com/install-git.html).
-4. Register on GitHub
-    + Go to <https://github.com/> and click "Sign up". Choose an "Individual", "Free" plan.
-    + Request a [free academic upgrade](https://help.github.com/en/articles/applying-for-an-educator-or-researcher-discount). This allows you to create *private repositories*, which are only visible to you and selected collaborators, and can be made public when your work is published.
-5. Connect Rstudio to Git and Github (for more support, see [this Rstudio article](https://support.rstudio.com/hc/en-us/articles/200532077-Version-Control-with-Git-and-SVN), and [this blog post](https://www.r-bloggers.com/rstudio-and-github/))
-    a. Open Rstudio, open the Tools menu, click *Global Options*, and click *Git/SVN*
-    b. Verify that *Enable version control interface for RStudio projects* is selected
-    c. Verify that *Git executable:* shows the location of git.exe. If it is missing, manually fix the location of the file.
-    d. Click *Create RSA Key*. Do not enter a passphrase. Press *Create*. A window with some information will open, which you can close.
-    e. Click *View public key*, and copy the entire text to the clipboard.
-    f. Close Rstudio (it might offer to restart by itself; this is fine)
-    g. Go to <https://github.com>
-    h. Click your user icon, click *Settings*, and then select the *SSH and GPG keys* tab.
-    i. Click *New SSH key*. Give it an arbitrary name (e.g., your computer ID), and paste the public key from your clipboard into the box labeled "*Key*".
-    j. Open Rstudio again (unless it restarted by itself)
-6. Install all required packages by running the following code in the Rstudio console. Be prepared for three contingencies:  
-    + If you receive any error saying *There is no package called XYZ*, then run the code `install.packages("XYZ")`  
-    + If you are prompted to update packages, just press `3: None`. Updating packages this way in an interactive session sometimes leads to errors, if the packages are loaded.  
-    + If you see a pop-up dialog asking *Do you want to install from sources the package which needs compilation?*, click *No*. If this leads to errors, then please follow *Step 3* from [this online guide](https://cjvanlissa.github.io/worcs/articles/setup.html), and run `install.packages("devtools")`. This will take a long time, but will allow you to install packages from source.
+> For this practical we use a Windows laptop with Ubuntu on a VirtualMachine. Therefore every command is intended for Linux/macOS.
 
-Run the following code to install the required packages:
 
-```{r eval=FALSE}
-install.packages("bookdown")
-install.packages("tinytex")
-tinytex::install_tinytex()
-git2r::config(global = TRUE, user.name = "your.name", user.email = "your.email")
+## Programs you need
+
+You need few programs for this practical or for your (future) genetic epidemiology work for that matter.
+
+
+-------------------------------------------------------------
+Program     Link    Description
+----------- ------- ----------------------------------------
+PLINK       [https://www.cog-genomics.org/plink2/](https://www.cog-genomics.org/plink2/){target="_blank"} PLINK is a free, open-source genetic analysis toolset, designed to perform a range of basic data parsing and quality control, as well as basic and large-scale analyses in a computationally efficient manner.
+
+R           [https://cran.r-project.org](https://cran.r-project.org/){target="_blank"} Progam to perform statistical analysis and visualisations.
+
+RStudio     [https://www.rstudio.com](https://www.rstudio.com){target="_blank"} A userfriendly R-wrap-around for code editing, debugging, analyses, and visualisation
+
+-------------------------------------------------------------
+
+Table 1: Programs needed for genetic epidemiology.
+
+All genetic analyses can be done in PLINK, even on your laptop, but with large datasets, e.g. UK-biobank size, it's better to switch to a [high-performance computing cluster](https://wiki.bioinformatics.umcutrecht.nl/bin/view/HPC/WebHome){target="_blank"} like we have at the Uithof.
+
+Nowadays, a lot of people also use programs like [SNPTEST](snptest){target="_blank"}, [BOLT-LMM](https://data.broadinstitute.org/alkesgroup/BOLT-LMM/){target="_blank"}, and [GCTA](http://cnsgenomics.com/software/gcta/#Overview){target="_blank"} as alternatives to run GWAS and downstream analyses, _e.g._ heritability estimation, Fst-calculation, etc.
+
+Mendelian randomisation can be done either with the [SMR](http://cnsgenomics.com/software/smr/#Overview){target="_blank"} or [GSMR](http://cnsgenomics.com/software/gsmr/){target="_blank"} function from GCTA or with R-packages, like `TwoSampleMR`.
+
+## The Terminal
+
+For all the above programs, except RStudio, you will need the `Terminal`. This comes with every major operating system. And you will (start to) make your own scripts. The benefit of using scripts is that each step is clearly layed out and easily replicable, thus allows for greater reproducibility, easier troubleshooting and can be run on high-performance computer clusters.
+
+
+Download the data you need to your Desktop: LINK. 
+
+Now open the terminal, it should be on the left in the toolbar as a little black computer-monitor-like icon. 
+Mac uses can type `command + space` and type `terminal`, a terminal screen should open.
+
+> From now on we will use little code blocks like the example to indicate a code you should type/copy-paste and hit enter. If a code is followed by a comment, it is indicated by a # - you don't need to copy-paste and execute this.
+
+```
+CODE BLOCK
+
+CODE BLOCK # some comment here
+
+
 ```
 
-That's it! Everything should be installed and connected now.
+You can navigate around the computer through the terminal by typing `cd <path>`; `cd` stands for "change directory" and <path> means "some_file_directory_you_want_to_go_to".
 
-```{r include=FALSE}
-# automatically create a bib database for R packages
-knitr::write_bib(c(
-  .packages(), 'bookdown', 'knitr', 'rmarkdown'
-), 'packages.bib')
 ```
+# For Linux/macOS Users
+cd ~ # will bring you to your home directory
+cd ../ # will bring you to the parent directory (up one level) 
+cd XXX # will bring you to the XXX directory
+```
+
+Let's navigate to the folder you just downloaded.
+```
+cd ~/Desktop/practical
+```
+
+Let's check out what is inside the directory, by listing (`ls`) its contents.
+
+```
+ls -lh
+
+# For Linux/macOS Users
+ls -l # shows files as list
+ls -lh # shows files as list with human readable format 
+ls -lt # shows the files as list sorted by time edited
+ls -lS # shows the files as list sorted by size
+```
+Adding the flags `-lh` will get you the contents of a directory in a list (`-l`) and make the size 'human-readable' (`-h`).
+
+You can also count the number of files.
+
+```
+ls | wc -l
+```
+
+## Installing some R packages
+
+I tested this VirtualMachine and everything should be fine, except some libraries weren't there. We need to install them.
+
+
+To be able to install certain `r`-packages, we need to install some Linux (Ubuntu) software. Type the following:
+
+```
+sudo apt-get install libcurl4 libcurl4-openssl-dev -y
+
+sudo apt-get install libssl-dev
+```
+
+Now close the terminal window - really making sure that the terminal-program has quit.
+
+Open a new terminal window and open `r` by simply typing `R`. You should install the following packages, and then you're good to go!
+
+```
+install.packages(c("httr", "usethis", "data.table", "devtools", "qqman", "CMplot", "tibble", "plotly", "dplyr"))
+
+library(c("httr", "usethis", "data.table", "devtools", "qqman", "CMplot", "tibble", "plotly", "dplyr"))
+devtools::install_github("kassambara/ggpubr")
+library("ggpubr")
+
+```
+
+All in all this may take some time, good moment to relax, review your notes, stretch your legs, or take a coffee.
+

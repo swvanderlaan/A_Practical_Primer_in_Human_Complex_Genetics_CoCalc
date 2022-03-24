@@ -36,8 +36,8 @@
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
 \IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
 \hypersetup{
-  pdftitle={A GitBook Example for Teaching},
-  pdfauthor={dr. Caspar J. van Lissa},
+  pdftitle={A primer in Human Cardiovascular Genetics},
+  pdfauthor={dr. Sander W. van der Laan},
   hidelinks,
   pdfcreator={LaTeX via pandoc}}
 \urlstyle{same} % disable monospaced font for URLs
@@ -122,8 +122,8 @@
 \usepackage[]{natbib}
 \bibliographystyle{apalike}
 
-\title{A GitBook Example for Teaching}
-\author{\href{https://www.uu.nl/staff/CJvanLissa}{dr. Caspar J. van Lissa}}
+\title{A primer in Human Cardiovascular Genetics}
+\author{\href{https://swvanderlaan.github.iio}{dr. Sander W. van der Laan}}
 \date{2022-03-24}
 
 \begin{document}
@@ -133,129 +133,203 @@
 \setcounter{tocdepth}{1}
 \tableofcontents
 }
-\hypertarget{about-gitbooks}{%
-\chapter{About GitBooks}\label{about-gitbooks}}
+\hypertarget{about-this-primer}{%
+\chapter{About this primer}\label{about-this-primer}}
 
 \includegraphics{./img/using_gitbook.jpeg}
 
-A \emph{GitBook} is a useful tool for creating (open?) educational resources. It is an online ``book'' format, that can be hosted directly from a GitHub repository. You are currently reading a GitBook designed to help you get started creating your own educational GitBooks for your courses (how meta!). It does this in two ways: By explaining how to create GitBooks, and by serving as a template that you can copy and edit, instead of having to start from scratch. This template GitBook has all the settings that I consider to be useful for educational GitBooks, but you can always customize it.
+Welcome to the course `Genetic Epidemiology', and this practical entitled `A primer in Human Cardiovascular Genetics'. In the next few days we will use this \href{https://cjvanlissa.github.io/gitbook-demo/}{GitBook} to perform quality control (QC), executing a genome-wide association study (GWAS), annotating the GWAS results, and performing further downstream analyses. We will use data from the first release of the \href{https://www.wtccc.org.uk/ccc1/overview.html}{\emph{Welcome Trust Case-Control Consortium (WTCCC)}} and focus on coronary artery disease (CAD).
 
-I will focus specifically on GitBooks that are made in \href{https://rstudio.com}{Rstudio}, using the \href{https://rstudio.com/wp-content/uploads/2016/03/rmarkdown-cheatsheet-2.0.pdf}{\texttt{rmarkdown} markup language}, rendered using the \href{https://bookdown.org/yihui/bookdown/get-started.html}{\texttt{bookdown} package}, and hosted on \href{https://github.com/}{GitHub}. If you want to get started, skip ahead to Chapter \ref{prerequisites}; if you need more convincing, keep reading below.
+We won't have time to perform \href{https://www.nature.com/articles/nrg2796}{imputation}, but we will provide some pointers as to how to do this with minimal coding/scripting experience.
 
-\hypertarget{why-use-a-gitbook-for-teaching}{%
-\section{Why use a GitBook for teaching?}\label{why-use-a-gitbook-for-teaching}}
-
-\textbf{To spead the workload}
-
-My challenge was that I had to translate all tutorial instructions from proprietary software to R, and there was not enough time to complete this task before the course commenced. By making the tutorial instructions available in \href{https://cjvanlissa.github.io/TCSM/}{this GitBook}, I was able to continue translating tutorial instructions \emph{while the semester was ongoing}, and push updates to GitHub in time for each session, which were immediately available to all students. The parallel with the current situation is that some courses are now forced to start teaching in an online format, without having enough time to completely prepare. By using a GitBook, you can spread out the workload of preparing your materials across the semester. \href{https://cjvanlissa.github.io/TCSM/}{This is the finished GitBook}
-
-\textbf{To contribute or use existing Open Educational Resources}
-
-Another key advantage of using a GitBook is, that you can easily make your course materials available for others to use under an open access license, or perhaps you can use an existing GitBook from the internet and adapt it for your own uses. GitBooks can be easily duplicated and adapted, just like any other project hosted on GitHub. Contributing Open Educational Materials can help reduce the workload on teachers around the world, and can improve the quality of the materials used thanks to online collaborating and feedback.
-
-\textbf{To benefit from formatting advantages}
-
-GitBooks also have two formatting advantages over classic PDF or Word files. First, they are Rmarkdown files, and can thus include blocks of R (\href{https://rstudio.github.io/reticulate/articles/r_markdown.html}{or Python}) code that can be evaluated, and whose results are rendered to the file. Second, they are interactive web pages, and as such, can have dynamic features (such as answers to assignments that can be hidden, or boxes where students can fill out an answer to be checked). Additionally, other web pages or interactive apps can be embedded within the page. So whereas a traditional document is static, GitBooks can be interactive.
-
-\textbf{How do GitBooks work?}
-
-GitBooks consist of an Rstudio project, with several Rmarkdown files containing the chapters of the book. Inside Rstudio, users can press a ``Build Book'' button, which renders all of these chapters to a nicely formatted HTML book (and a PDF file for users to download). Users can push the finished book to a GitHub repository, and indicate on GitHub that the book should be hosted on GitHub pages. Voilà!
-
-\textbf{Getting started}
-
-If you are convinced that this tool might benefit your teaching, your first point of action is to prepare your system for creating GitBooks (Chapter \ref{prerequisites}). After that, you can get a copy of this GitBook as a template (Chapter \ref{getgitbook}). Then, you can start tweaking it for your own course!
-
-\hypertarget{prerequisites}{%
-\chapter{Prerequisites}\label{prerequisites}}
-
-This GitBook is created in Rstudio, using the \texttt{bookdown} package. To get your system set up correctly, you have to install several software packages, and register on GitHub. You only have to perform these steps once, and the entire process should take approximately 1 hour if you start from scratch. In case some software is already installed on your system, you can skip related steps. Follow these steps in order:
+Part of this is based on four great Nature Protocols from the \href{https://www.well.ox.ac.uk/research/research-groups/zondervan-group}{Zondervan group} at the Wellcome Center Human Genetics.
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
-  Install R from \href{https://cloud.r-project.org/}{cloud.r-project.org}
+  \href{https://www.ncbi.nlm.nih.gov/pubmed/17947991}{Zondervan KT \emph{et al.} \emph{Designing candidate gene and genome-wide case-control association studies.} Nat Protoc 2007.}
 \item
-  Install Rstudio Desktop (Free) from \href{https://rstudio.com/products/rstudio/download/\#download}{rstudio.com}
+  \href{https://www.ncbi.nlm.nih.gov/pubmed/19390530}{Pettersson FH \emph{et al.} \emph{Marker selection for genetic case-control association studies.} Nat Protoc 2009.}
 \item
-  Install Git from \href{https://git-scm.com/downloads}{git-scm.com}. Use the default, recommended settings. It is especially important to leave these settings selected:
-
-  \begin{itemize}
-  \tightlist
-  \item
-    Git from the command line and also from third party software\\
-  \item
-    Use the OpenSSL library\\
-  \item
-    Checkout Windows-style, commit Unix-style line endings\\
-  \item
-    Enable Git Credential Manager\\
-  \item
-    If you run into any trouble, a more comprehensive tutorial on installing Git is available at \href{https://happygitwithr.com/install-git.html}{happygitwithr.com}.
-  \end{itemize}
+  \href{https://www.ncbi.nlm.nih.gov/pubmed/21085122}{Anderson CA \emph{et al.} \emph{Data QC in genetic case-control association studies.} Nat Protoc 2010.}
 \item
-  Register on GitHub
-
-  \begin{itemize}
-  \tightlist
-  \item
-    Go to \url{https://github.com/} and click ``Sign up''. Choose an ``Individual'', ``Free'' plan.
-  \item
-    Request a \href{https://help.github.com/en/articles/applying-for-an-educator-or-researcher-discount}{free academic upgrade}. This allows you to create \emph{private repositories}, which are only visible to you and selected collaborators, and can be made public when your work is published.
-  \end{itemize}
-\item
-  Connect Rstudio to Git and Github (for more support, see \href{https://support.rstudio.com/hc/en-us/articles/200532077-Version-Control-with-Git-and-SVN}{this Rstudio article}, and \href{https://www.r-bloggers.com/rstudio-and-github/}{this blog post})
-
-  \begin{enumerate}
-  \def\labelenumii{\alph{enumii}.}
-  \tightlist
-  \item
-    Open Rstudio, open the Tools menu, click \emph{Global Options}, and click \emph{Git/SVN}
-  \item
-    Verify that \emph{Enable version control interface for RStudio projects} is selected
-  \item
-    Verify that \emph{Git executable:} shows the location of git.exe. If it is missing, manually fix the location of the file.
-  \item
-    Click \emph{Create RSA Key}. Do not enter a passphrase. Press \emph{Create}. A window with some information will open, which you can close.
-  \item
-    Click \emph{View public key}, and copy the entire text to the clipboard.
-  \item
-    Close Rstudio (it might offer to restart by itself; this is fine)
-  \item
-    Go to \url{https://github.com}
-  \item
-    Click your user icon, click \emph{Settings}, and then select the \emph{SSH and GPG keys} tab.
-  \item
-    Click \emph{New SSH key}. Give it an arbitrary name (e.g., your computer ID), and paste the public key from your clipboard into the box labeled ``\emph{Key}''.
-  \item
-    Open Rstudio again (unless it restarted by itself)
-  \end{enumerate}
-\item
-  Install all required packages by running the following code in the Rstudio console. Be prepared for three contingencies:
-
-  \begin{itemize}
-  \tightlist
-  \item
-    If you receive any error saying \emph{There is no package called XYZ}, then run the code \texttt{install.packages("XYZ")}\\
-  \item
-    If you are prompted to update packages, just press \texttt{3:\ None}. Updating packages this way in an interactive session sometimes leads to errors, if the packages are loaded.\\
-  \item
-    If you see a pop-up dialog asking \emph{Do you want to install from sources the package which needs compilation?}, click \emph{No}. If this leads to errors, then please follow \emph{Step 3} from \href{https://cjvanlissa.github.io/worcs/articles/setup.html}{this online guide}, and run \texttt{install.packages("devtools")}. This will take a long time, but will allow you to install packages from source.
-  \end{itemize}
+  \href{https://www.ncbi.nlm.nih.gov/pubmed/21293453}{Clarke GM \emph{et al.} \emph{Basic statistical analysis in genetic case-control studies.} Nat Protoc 2011.}
 \end{enumerate}
 
-Run the following code to install the required packages:
+An update on the community standards of QC for GWAS can be found here:
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{install.packages}\NormalTok{(}\StringTok{"bookdown"}\NormalTok{)}
-\FunctionTok{install.packages}\NormalTok{(}\StringTok{"tinytex"}\NormalTok{)}
-\NormalTok{tinytex}\SpecialCharTok{::}\FunctionTok{install\_tinytex}\NormalTok{()}
-\NormalTok{git2r}\SpecialCharTok{::}\FunctionTok{config}\NormalTok{(}\AttributeTok{global =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{user.name =} \StringTok{"your.name"}\NormalTok{, }\AttributeTok{user.email =} \StringTok{"your.email"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \href{https://www.ncbi.nlm.nih.gov/pubmed/20718045}{Laurie CC \emph{et al.} \emph{Quality control and quality assurance in genotypic data for genome-wide association studies.} Genet Epidemiol 2010.}
+\end{enumerate}
 
-That's it! Everything should be installed and connected now.
+With respect to imputation you should also get familiar with the following two works:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \href{https://doi.org/10.1038/nrg2796}{Marchini, J. and Howie, B. \emph{Genotype imputation for genome-wide association studies.} Nat Rev Genet 2010}
+\item
+  \href{https://www.ncbi.nlm.nih.gov/pubmed/18852200}{de Bakker PIW \emph{et al.} \emph{Practical aspects of imputation-driven meta-analysis of genome-wide association studies.} Hum Mol Genet 2008.}
+\item
+  \href{https://www.ncbi.nlm.nih.gov/pubmed/24762786}{Winkler TW \emph{et al.} \emph{Quality control and conduct of genome-wide association meta-analyses.} Nat Protoc 2014.}
+\end{enumerate}
+
+Importantly, follow this practical, but also review the questions asked in the presentation (on the screen or in the Dropbox) and try to answer them.
+
+\hypertarget{team}{%
+\section{Team}\label{team}}
+
+We work with a team of enthousiastic lecturers with experience in bioinformatics, GWAS, genetic analyses, Mendelian randomisation, and epidemiology. This year the team consists of:
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 0\tabcolsep) * \real{0.2083}}@{}}
+\toprule
+\endhead
+\includegraphics[width=0.15\textwidth,height=\textheight]{img/_team/charlotte_onland.jpg} Charlotte Onland-Moret \emph{Associate Professor}\href{mailto:N.C.Onland@umcutrecht.nl}{\nolinkurl{N.C.Onland@umcutrecht.nl}} \\
+\includegraphics[width=0.15\textwidth,height=\textheight]{img/_team/sander_vander_laan.jpg} Sander W. van der Laan \emph{Assistant professor}\href{mailto:s.w.vanderlaan-2@umcutrecht.nl}{\nolinkurl{s.w.vanderlaan-2@umcutrecht.nl}} \textbar{} \href{http://www.twitter.com/swvanderlaan}{swvanderlaan} \\
+\includegraphics[width=0.15\textwidth,height=\textheight]{img/_team/arjan_boltjes.jpg} Arjan Boltjes \emph{Postdoctoral researcher}\href{mailto:a.boltjes@umcutrecht.nl}{\nolinkurl{a.boltjes@umcutrecht.nl}} \textbar{} \href{http://www.twitter.com/arjanboltjes}{arjanboltjes} \\
+\includegraphics[width=0.15\textwidth,height=\textheight]{img/_team/joanna_bon_berg.jpg} Joanna von Berg \emph{PhD student}\href{mailto:j.vonberg-24@umcutrecht.nl}{\nolinkurl{j.vonberg-24@umcutrecht.nl}} \textbar{} \href{http://www.twitter.com/JoannavonBerg}{JoannavonBerg}
+\href{img/_team/jessica_van_setten.jpg}{} Jessica van Setten \emph{Assistant professor}\href{mailto:j.vansetten@umcutrecht.nl}{\nolinkurl{j.vansetten@umcutrecht.nl}} \textbar{} \href{http://www.twitter.com/j_vansetten}{j\_vansetten} \\
+\bottomrule
+\end{longtable}
+
+\textbf{Getting started}
+
+Ready to start? Your first point of action is to prepare your system for this course (Chapter \ref{prerequisites}).
+
+\hypertarget{prerequisites}{%
+\chapter{Prerequisites}\label{prerequisites}}
+
+\hypertarget{linux-macos-and-windows}{%
+\section{Linux, macOS, and Windows}\label{linux-macos-and-windows}}
+
+Most programs made to execute genetic studies are developed for the Unix environment, \emph{e.g.} Linux and macOS. Therefore, they may not work as intended on window's environment. Fortunately, Windows now allow users to install a linux subsystem within Windows 10 and you can find the detail \href{https://docs.microsoft.com/en-us/windows/wsl/about}{guide} here.\\
+However, we highly recommend to 1) either install a linux subsystem on your Windows computer (\emph{e.g.} \href{https://blog.storagecraft.com/the-dead-simple-guide-to-installing-a-linux-virtual-machine-on-windows/}{a virtual machine with Ubuntu could work}), or 2) switch to macOS in combination with \href{https://brew.sh}{homebrew} as this will give you advantage of a powerful computer with a userfriendly interface and all the flexibility to use Unix-based programs for your work.
+
+\begin{quote}
+For this practical we use a Windows laptop with Ubuntu on a VirtualMachine. Therefore every command is intended for Linux/macOS.
+\end{quote}
+
+\hypertarget{programs-you-need}{%
+\section{Programs you need}\label{programs-you-need}}
+
+You need few programs for this practical or for your (future) genetic epidemiology work for that matter.
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.1667}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.1111}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.5694}}@{}}
+\toprule
+\begin{minipage}[b]{\linewidth}\raggedright
+Program
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Link
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Description
+\end{minipage} \\
+\midrule
+\endhead
+PLINK & {[}\url{https:/} & /www.cog-genomics.org/plink2/{]}(\url{https://www.cog-genomics.org/plink2/})\{target=``\_blank''\} PLINK is a free, open-source genetic analysis toolset, designed to perform a range of basic data parsing and quality control, as well as basic and large-scale analyses in a computationally efficient manner. \\
+R & {[}\url{https:/} & /cran.r-project.org{]}(\url{https://cran.r-project.org/})\{target=``\_blank''\} Progam to perform statistical analysis and visualisations. \\
+RStudio & {[}\url{https:/} & /www.rstudio.com{]}(\url{https://www.rstudio.com})\{target=``\_blank''\} A userfriendly R-wrap-around for code editing, debugging, analyses, and visualisation \\
+\bottomrule
+\end{longtable}
+
+Table 1: Programs needed for genetic epidemiology.
+
+All genetic analyses can be done in PLINK, even on your laptop, but with large datasets, e.g.~UK-biobank size, it's better to switch to a \href{https://wiki.bioinformatics.umcutrecht.nl/bin/view/HPC/WebHome}{high-performance computing cluster} like we have at the Uithof.
+
+Nowadays, a lot of people also use programs like \href{snptest}{SNPTEST}, \href{https://data.broadinstitute.org/alkesgroup/BOLT-LMM/}{BOLT-LMM}, and \href{http://cnsgenomics.com/software/gcta/\#Overview}{GCTA} as alternatives to run GWAS and downstream analyses, \emph{e.g.} heritability estimation, Fst-calculation, etc.
+
+Mendelian randomisation can be done either with the \href{http://cnsgenomics.com/software/smr/\#Overview}{SMR} or \href{http://cnsgenomics.com/software/gsmr/}{GSMR} function from GCTA or with R-packages, like \texttt{TwoSampleMR}.
+
+\hypertarget{the-terminal}{%
+\section{The Terminal}\label{the-terminal}}
+
+For all the above programs, except RStudio, you will need the \texttt{Terminal}. This comes with every major operating system. And you will (start to) make your own scripts. The benefit of using scripts is that each step is clearly layed out and easily replicable, thus allows for greater reproducibility, easier troubleshooting and can be run on high-performance computer clusters.
+
+Download the data you need to your Desktop: LINK.
+
+Now open the terminal, it should be on the left in the toolbar as a little black computer-monitor-like icon.
+Mac uses can type \texttt{command\ +\ space} and type \texttt{terminal}, a terminal screen should open.
+
+\begin{quote}
+From now on we will use little code blocks like the example to indicate a code you should type/copy-paste and hit enter. If a code is followed by a comment, it is indicated by a \# - you don't need to copy-paste and execute this.
+\end{quote}
+
+\begin{verbatim}
+CODE BLOCK
+
+CODE BLOCK # some comment here
+
+\end{verbatim}
+
+You can navigate around the computer through the terminal by typing \texttt{cd\ \textless{}path\textgreater{}}; \texttt{cd} stands for ``change directory'' and means ``some\_file\_directory\_you\_want\_to\_go\_to''.
+
+\begin{verbatim}
+# For Linux/macOS Users
+cd ~ # will bring you to your home directory
+cd ../ # will bring you to the parent directory (up one level) 
+cd XXX # will bring you to the XXX directory
+\end{verbatim}
+
+Let's navigate to the folder you just downloaded.
+
+\begin{verbatim}
+cd ~/Desktop/practical
+\end{verbatim}
+
+Let's check out what is inside the directory, by listing (\texttt{ls}) its contents.
+
+\begin{verbatim}
+ls -lh
+
+# For Linux/macOS Users
+ls -l # shows files as list
+ls -lh # shows files as list with human readable format 
+ls -lt # shows the files as list sorted by time edited
+ls -lS # shows the files as list sorted by size
+\end{verbatim}
+
+Adding the flags \texttt{-lh} will get you the contents of a directory in a list (\texttt{-l}) and make the size `human-readable' (\texttt{-h}).
+
+You can also count the number of files.
+
+\begin{verbatim}
+ls | wc -l
+\end{verbatim}
+
+\hypertarget{installing-some-r-packages}{%
+\section{Installing some R packages}\label{installing-some-r-packages}}
+
+I tested this VirtualMachine and everything should be fine, except some libraries weren't there. We need to install them.
+
+To be able to install certain \texttt{r}-packages, we need to install some Linux (Ubuntu) software. Type the following:
+
+\begin{verbatim}
+sudo apt-get install libcurl4 libcurl4-openssl-dev -y
+
+sudo apt-get install libssl-dev
+\end{verbatim}
+
+Now close the terminal window - really making sure that the terminal-program has quit.
+
+Open a new terminal window and open \texttt{r} by simply typing \texttt{R}. You should install the following packages, and then you're good to go!
+
+\begin{verbatim}
+install.packages(c("httr", "usethis", "data.table", "devtools", "qqman", "CMplot", "tibble", "plotly", "dplyr"))
+
+library(c("httr", "usethis", "data.table", "devtools", "qqman", "CMplot", "tibble", "plotly", "dplyr"))
+devtools::install_github("kassambara/ggpubr")
+library("ggpubr")
+\end{verbatim}
+
+All in all this may take some time, good moment to relax, review your notes, stretch your legs, or take a coffee.
 
 \hypertarget{getgitbook}{%
 \chapter{Get your GitBook}\label{getgitbook}}
@@ -372,7 +446,7 @@ Figures and tables with captions will be placed in \texttt{figure} and \texttt{t
 
 \begin{figure}
 
-{\centering \includegraphics[width=0.8\linewidth]{gitbook-demo_files/figure-latex/nice-fig-1} 
+{\centering \includegraphics[width=0.8\linewidth]{A-primer-in-Human-Cardiovascular-Genetics_files/figure-latex/nice-fig-1} 
 
 }
 

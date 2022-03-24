@@ -1,12 +1,11 @@
 --- 
-title: "A GitBook Example for Teaching"
-author: "[dr. Caspar J. van Lissa](https://www.uu.nl/staff/CJvanLissa)"
+title: "A primer in Human Cardiovascular Genetics"
+author: "[dr. Sander W. van der Laan](https://swvanderlaan.github.iio)"
 date: "`r Sys.Date()`"
-description: This GitBook is an example of a GitBook for teaching. It can be 
-  adapted for specific courses. The output format for this example
+description: This is a primer in Human Cardiovascular Genetics. The output format for this example
   is bookdown::gitbook.
 documentclass: book
-github-repo: cjvanlissa/gitbook-demo
+github-repo: swvanderlaan/A_primer_in_Human_Cardiovascular_Genetics
 link-citations: yes
 bibliography:
 - book.bib
@@ -16,32 +15,50 @@ biblio-style: apalike
 ---
 
 <!--"Using GitBooks to create Open course materials"-->
-# About GitBooks
+# About this primer
 
 ![](./img/using_gitbook.jpeg)
 
-A *GitBook* is a useful tool for creating (open?) educational resources. It is an online "book" format, that can be hosted directly from a GitHub repository. You are currently reading a GitBook designed to help you get started creating your own educational GitBooks for your courses (how meta!). It does this in two ways: By explaining how to create GitBooks, and by serving as a template that you can copy and edit, instead of having to start from scratch. This template GitBook has all the settings that I consider to be useful for educational GitBooks, but you can always customize it.
+Welcome to the course 'Genetic Epidemiology', and this practical entitled 'A primer in Human Cardiovascular Genetics'. In the next few days we will use this [GitBook](https://cjvanlissa.github.io/gitbook-demo/) to perform quality control (QC), executing a genome-wide association study (GWAS), annotating the GWAS results, and performing further downstream analyses. We will use data from the first release of the [*Welcome Trust Case-Control Consortium (WTCCC)*](https://www.wtccc.org.uk/ccc1/overview.html){target="_blank"} and focus on coronary artery disease (CAD). 
 
-I will focus specifically on GitBooks that are made in [Rstudio](https://rstudio.com), using the [`rmarkdown` markup language](https://rstudio.com/wp-content/uploads/2016/03/rmarkdown-cheatsheet-2.0.pdf), rendered using the [`bookdown` package](https://bookdown.org/yihui/bookdown/get-started.html), and hosted on [GitHub](https://github.com/). If you want to get started, skip ahead to Chapter \@ref(prerequisites); if you need more convincing, keep reading below.
+We won't have time to perform [imputation](https://www.nature.com/articles/nrg2796), but we will provide some pointers as to how to do this with minimal coding/scripting experience.
 
-## Why use a GitBook for teaching?
+Part of this is based on four great Nature Protocols from the [Zondervan group](https://www.well.ox.ac.uk/research/research-groups/zondervan-group){target="_blank"} at the Wellcome Center Human Genetics.
 
-**To spead the workload**
+1. [Zondervan KT _et al._ *Designing candidate gene and genome-wide case-control association studies.* Nat Protoc 2007.](https://www.ncbi.nlm.nih.gov/pubmed/17947991){target="_blank"}
+2. [Pettersson FH _et al._ *Marker selection for genetic case-control association studies.* Nat Protoc 2009.](https://www.ncbi.nlm.nih.gov/pubmed/19390530){target="_blank"}
+3. [Anderson CA _et al._ *Data QC in genetic case-control association studies.* Nat Protoc 2010.](https://www.ncbi.nlm.nih.gov/pubmed/21085122){target="_blank"}
+4. [Clarke GM _et al._ *Basic statistical analysis in genetic case-control studies.* Nat Protoc 2011.](https://www.ncbi.nlm.nih.gov/pubmed/21293453){target="_blank"}
 
-My challenge was that I had to translate all tutorial instructions from proprietary software to R, and there was not enough time to complete this task before the course commenced. By making the tutorial instructions available in [this GitBook](https://cjvanlissa.github.io/TCSM/), I was able to continue translating tutorial instructions *while the semester was ongoing*, and push updates to GitHub in time for each session, which were immediately available to all students. The parallel with the current situation is that some courses are now forced to start teaching in an online format, without having enough time to completely prepare. By using a GitBook, you can spread out the workload of preparing your materials across the semester. [This is the finished GitBook](https://cjvanlissa.github.io/TCSM/)
+An update on the community standards of QC for GWAS can be found here:
 
-**To contribute or use existing Open Educational Resources**
+1. [Laurie CC _et al._ *Quality control and quality assurance in genotypic data for genome-wide association studies.* Genet Epidemiol 2010.](https://www.ncbi.nlm.nih.gov/pubmed/20718045){target="_blank"}
 
-Another key advantage of using a GitBook is, that you can easily make your course materials available for others to use under an open access license, or perhaps you can use an existing GitBook from the internet and adapt it for your own uses. GitBooks can be easily duplicated and adapted, just like any other project hosted on GitHub. Contributing Open Educational Materials can help reduce the workload on teachers around the world, and can improve the quality of the materials used thanks to online collaborating and feedback.
+With respect to imputation you should also get familiar with the following two works:
 
-**To benefit from formatting advantages**
+1. [Marchini, J. and Howie, B. *Genotype imputation for genome-wide association studies.* Nat Rev Genet 2010](https://doi.org/10.1038/nrg2796){target="_blank"}
+2. [de Bakker PIW _et al._ *Practical aspects of imputation-driven meta-analysis of genome-wide association studies.* Hum Mol Genet 2008.](https://www.ncbi.nlm.nih.gov/pubmed/18852200){target="_blank"}
+3. [Winkler TW _et al._ *Quality control and conduct of genome-wide association meta-analyses.* Nat Protoc 2014.](https://www.ncbi.nlm.nih.gov/pubmed/24762786){target="_blank"}
 
-GitBooks also have two formatting advantages over classic PDF or Word files. First, they are Rmarkdown files, and can thus include blocks of R ([or Python](https://rstudio.github.io/reticulate/articles/r_markdown.html)) code that can be evaluated, and whose results are rendered to the file. Second, they are interactive web pages, and as such, can have dynamic features (such as answers to assignments that can be hidden, or boxes where students can fill out an answer to be checked). Additionally, other web pages or interactive apps can be embedded within the page. So whereas a traditional document is static, GitBooks can be interactive.
-
-**How do GitBooks work?**
-
-GitBooks consist of an Rstudio project, with several Rmarkdown files containing the chapters of the book. Inside Rstudio, users can press a "Build Book" button, which renders all of these chapters to a nicely formatted HTML book (and a PDF file for users to download). Users can push the finished book to a GitHub repository, and indicate on GitHub that the book should be hosted on GitHub pages. Voilà!
+Importantly, follow this practical, but also review the questions asked in the presentation (on the screen or in the Dropbox) and try to answer them.
   
+## Team
+
+We work with a team of enthousiastic lecturers with experience in bioinformatics, GWAS, genetic analyses, Mendelian randomisation, and epidemiology. This year the team consists of:
+
+--------------
+![](img/_team/charlotte_onland.jpg){width=15%} Charlotte Onland-Moret </br>_Associate Professor_</br><N.C.Onland@umcutrecht.nl> 
+
+![](img/_team/sander_vander_laan.jpg){width=15%} Sander W. van der Laan </br>_Assistant professor_</br><s.w.vanderlaan-2@umcutrecht.nl> | [swvanderlaan](http://www.twitter.com/swvanderlaan){target="_blank"}
+
+![](img/_team/arjan_boltjes.jpg){width=15%} Arjan Boltjes </br>_Postdoctoral researcher_</br><a.boltjes@umcutrecht.nl> | [arjanboltjes](http://www.twitter.com/arjanboltjes){target="_blank"}
+
+![](img/_team/joanna_bon_berg.jpg){width=15%} Joanna von Berg </br>_PhD student_</br><j.vonberg-24@umcutrecht.nl> | [JoannavonBerg](http://www.twitter.com/JoannavonBerg){target="_blank"}
+[](img/_team/jessica_van_setten.jpg){width=15%} Jessica van Setten </br>_Assistant professor_</br><j.vansetten@umcutrecht.nl> | [j_vansetten](http://www.twitter.com/j_vansetten){target="_blank"}
+
+--------------
+
+
 **Getting started**
   
-If you are convinced that this tool might benefit your teaching, your first point of action is to prepare your system for creating GitBooks (Chapter \@ref(prerequisites)). After that, you can get a copy of this GitBook as a template (Chapter \@ref(getgitbook)). Then, you can start tweaking it for your own course!
+Ready to start? Your first point of action is to prepare your system for this course (Chapter \@ref(prerequisites)). 

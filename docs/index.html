@@ -4,27 +4,26 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>A GitBook Example for Teaching</title>
-  <meta name="description" content="This GitBook is an example of a GitBook for teaching. It can be adapted for specific courses. The output format for this example is bookdown::gitbook." />
-  <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
+  <title>A primer in Human Cardiovascular Genetics</title>
+  <meta name="description" content="This is a primer in Human Cardiovascular Genetics. The output format for this example is bookdown::gitbook." />
+  <meta name="generator" content="bookdown 0.25 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="A GitBook Example for Teaching" />
+  <meta property="og:title" content="A primer in Human Cardiovascular Genetics" />
   <meta property="og:type" content="book" />
   
-  
-  <meta property="og:description" content="This GitBook is an example of a GitBook for teaching. It can be adapted for specific courses. The output format for this example is bookdown::gitbook." />
-  <meta name="github-repo" content="cjvanlissa/gitbook-demo" />
+  <meta property="og:description" content="This is a primer in Human Cardiovascular Genetics. The output format for this example is bookdown::gitbook." />
+  <meta name="github-repo" content="swvanderlaan/A_primer_in_Human_Cardiovascular_Genetics" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="A GitBook Example for Teaching" />
+  <meta name="twitter:title" content="A primer in Human Cardiovascular Genetics" />
   
-  <meta name="twitter:description" content="This GitBook is an example of a GitBook for teaching. It can be adapted for specific courses. The output format for this example is bookdown::gitbook." />
+  <meta name="twitter:description" content="This is a primer in Human Cardiovascular Genetics. The output format for this example is bookdown::gitbook." />
   
 
-<meta name="author" content="dr. Caspar J. van Lissa" />
+<meta name="author" content="dr. Sander W. van der Laan" />
 
 
-<meta name="date" content="2020-04-03" />
+<meta name="date" content="2022-03-24" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +32,8 @@
   
 
 <link rel="next" href="prerequisites.html"/>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -49,29 +49,33 @@
 
 
 
-
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(title);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -80,9 +84,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  }
+  {   }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -115,6 +119,29 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
 
@@ -131,28 +158,38 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">A GitBook for Teaching</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> About GitBooks</a><ul>
-<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#why-use-a-gitbook-for-teaching"><i class="fa fa-check"></i><b>1.1</b> Why use a GitBook for teaching?</a></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> About this primer<span></span></a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#team"><i class="fa fa-check"></i><b>1.1</b> Team<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="prerequisites.html"><a href="prerequisites.html"><i class="fa fa-check"></i><b>2</b> Prerequisites</a></li>
-<li class="chapter" data-level="3" data-path="getgitbook.html"><a href="getgitbook.html"><i class="fa fa-check"></i><b>3</b> Get your GitBook</a></li>
-<li class="chapter" data-level="4" data-path="editing-the-book.html"><a href="editing-the-book.html"><i class="fa fa-check"></i><b>4</b> Editing the book</a><ul>
-<li class="chapter" data-level="4.1" data-path="editing-the-book.html"><a href="editing-the-book.html#creating-new-chapters"><i class="fa fa-check"></i><b>4.1</b> Creating new chapters</a></li>
-<li class="chapter" data-level="4.2" data-path="editing-the-book.html"><a href="editing-the-book.html#linking-across-chapters"><i class="fa fa-check"></i><b>4.2</b> Linking across chapters</a></li>
-<li class="chapter" data-level="4.3" data-path="editing-the-book.html"><a href="editing-the-book.html#advanced-editing"><i class="fa fa-check"></i><b>4.3</b> Advanced editing</a></li>
+<li class="chapter" data-level="2" data-path="prerequisites.html"><a href="prerequisites.html"><i class="fa fa-check"></i><b>2</b> Prerequisites<span></span></a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="prerequisites.html"><a href="prerequisites.html#linux-macos-and-windows"><i class="fa fa-check"></i><b>2.1</b> Linux, macOS, and Windows<span></span></a></li>
+<li class="chapter" data-level="2.2" data-path="prerequisites.html"><a href="prerequisites.html#programs-you-need"><i class="fa fa-check"></i><b>2.2</b> Programs you need<span></span></a></li>
+<li class="chapter" data-level="2.3" data-path="prerequisites.html"><a href="prerequisites.html#the-terminal"><i class="fa fa-check"></i><b>2.3</b> The Terminal<span></span></a></li>
+<li class="chapter" data-level="2.4" data-path="prerequisites.html"><a href="prerequisites.html#installing-some-r-packages"><i class="fa fa-check"></i><b>2.4</b> Installing some R packages<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="figtab.html"><a href="figtab.html"><i class="fa fa-check"></i><b>5</b> Figures and tables</a></li>
-<li class="chapter" data-level="6" data-path="examples.html"><a href="examples.html"><i class="fa fa-check"></i><b>6</b> Examples</a><ul>
-<li class="chapter" data-level="6.1" data-path="examples.html"><a href="examples.html#doing-meta-analysis-in-r"><i class="fa fa-check"></i><b>6.1</b> Doing Meta-Analysis in R</a></li>
-<li class="chapter" data-level="6.2" data-path="examples.html"><a href="examples.html#theory-construction-and-statistical-modeling"><i class="fa fa-check"></i><b>6.2</b> Theory Construction and Statistical Modeling</a></li>
+<li class="chapter" data-level="3" data-path="getgitbook.html"><a href="getgitbook.html"><i class="fa fa-check"></i><b>3</b> Get your GitBook<span></span></a></li>
+<li class="chapter" data-level="4" data-path="editing-the-book.html"><a href="editing-the-book.html"><i class="fa fa-check"></i><b>4</b> Editing the book<span></span></a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="editing-the-book.html"><a href="editing-the-book.html#creating-new-chapters"><i class="fa fa-check"></i><b>4.1</b> Creating new chapters<span></span></a></li>
+<li class="chapter" data-level="4.2" data-path="editing-the-book.html"><a href="editing-the-book.html#linking-across-chapters"><i class="fa fa-check"></i><b>4.2</b> Linking across chapters<span></span></a></li>
+<li class="chapter" data-level="4.3" data-path="editing-the-book.html"><a href="editing-the-book.html#advanced-editing"><i class="fa fa-check"></i><b>4.3</b> Advanced editing<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="open-educational-resources.html"><a href="open-educational-resources.html"><i class="fa fa-check"></i><b>7</b> Open Educational Resources</a></li>
-<li class="chapter" data-level="8" data-path="compatibility-with-existing-systems.html"><a href="compatibility-with-existing-systems.html"><i class="fa fa-check"></i><b>8</b> Compatibility with existing systems</a><ul>
-<li class="chapter" data-level="8.1" data-path="compatibility-with-existing-systems.html"><a href="compatibility-with-existing-systems.html#add-a-hyperlink"><i class="fa fa-check"></i><b>8.1</b> Add a hyperlink</a></li>
-<li class="chapter" data-level="8.2" data-path="compatibility-with-existing-systems.html"><a href="compatibility-with-existing-systems.html#embed-the-whole-book"><i class="fa fa-check"></i><b>8.2</b> Embed the whole book</a></li>
+<li class="chapter" data-level="5" data-path="figtab.html"><a href="figtab.html"><i class="fa fa-check"></i><b>5</b> Figures and tables<span></span></a></li>
+<li class="chapter" data-level="6" data-path="examples.html"><a href="examples.html"><i class="fa fa-check"></i><b>6</b> Examples<span></span></a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="examples.html"><a href="examples.html#doing-meta-analysis-in-r"><i class="fa fa-check"></i><b>6.1</b> Doing Meta-Analysis in R<span></span></a></li>
+<li class="chapter" data-level="6.2" data-path="examples.html"><a href="examples.html#theory-construction-and-statistical-modeling"><i class="fa fa-check"></i><b>6.2</b> Theory Construction and Statistical Modeling<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="license-your-gitbook.html"><a href="license-your-gitbook.html"><i class="fa fa-check"></i><b>9</b> License your GitBook</a></li>
-<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="chapter" data-level="7" data-path="open-educational-resources.html"><a href="open-educational-resources.html"><i class="fa fa-check"></i><b>7</b> Open Educational Resources<span></span></a></li>
+<li class="chapter" data-level="8" data-path="compatibility-with-existing-systems.html"><a href="compatibility-with-existing-systems.html"><i class="fa fa-check"></i><b>8</b> Compatibility with existing systems<span></span></a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="compatibility-with-existing-systems.html"><a href="compatibility-with-existing-systems.html#add-a-hyperlink"><i class="fa fa-check"></i><b>8.1</b> Add a hyperlink<span></span></a></li>
+<li class="chapter" data-level="8.2" data-path="compatibility-with-existing-systems.html"><a href="compatibility-with-existing-systems.html#embed-the-whole-book"><i class="fa fa-check"></i><b>8.2</b> Embed the whole book<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="license-your-gitbook.html"><a href="license-your-gitbook.html"><i class="fa fa-check"></i><b>9</b> License your GitBook<span></span></a></li>
+<li><a href="references.html#references">References<span></span></a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -165,7 +202,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">A GitBook Example for Teaching</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">A primer in Human Cardiovascular Genetics</a>
           </h1>
         </div>
 
@@ -174,27 +211,58 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
             <section class="normal" id="section-">
 <div id="header">
-<h1 class="title">A GitBook Example for Teaching</h1>
-<p class="author"><em><a href="https://www.uu.nl/staff/CJvanLissa">dr. Caspar J. van Lissa</a></em></p>
-<p class="date"><em>2020-04-03</em></p>
+<h1 class="title">A primer in Human Cardiovascular Genetics</h1>
+<p class="author"><em><a href="https://swvanderlaan.github.iio">dr. Sander W. van der Laan</a></em></p>
+<p class="date"><em>2022-03-24</em></p>
 </div>
-<div id="about-gitbooks" class="section level1">
-<h1><span class="header-section-number">Chapter 1</span> About GitBooks</h1>
+<div id="about-this-primer" class="section level1 hasAnchor" number="1">
+<h1><span class="header-section-number">Chapter 1</span> About this primer<a href="index.html#about-this-primer" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p><img src="img/using_gitbook.jpeg" /></p>
-<p>A <em>GitBook</em> is a useful tool for creating (open?) educational resources. It is an online “book” format, that can be hosted directly from a GitHub repository. You are currently reading a GitBook designed to help you get started creating your own educational GitBooks for your courses (how meta!). It does this in two ways: By explaining how to create GitBooks, and by serving as a template that you can copy and edit, instead of having to start from scratch. This template GitBook has all the settings that I consider to be useful for educational GitBooks, but you can always customize it.</p>
-<p>I will focus specifically on GitBooks that are made in <a href="https://rstudio.com">Rstudio</a>, using the <a href="https://rstudio.com/wp-content/uploads/2016/03/rmarkdown-cheatsheet-2.0.pdf"><code>rmarkdown</code> markup language</a>, rendered using the <a href="https://bookdown.org/yihui/bookdown/get-started.html"><code>bookdown</code> package</a>, and hosted on <a href="https://github.com/">GitHub</a>. If you want to get started, skip ahead to Chapter <a href="prerequisites.html#prerequisites">2</a>; if you need more convincing, keep reading below.</p>
-<div id="why-use-a-gitbook-for-teaching" class="section level2">
-<h2><span class="header-section-number">1.1</span> Why use a GitBook for teaching?</h2>
-<p><strong>To spead the workload</strong></p>
-<p>My challenge was that I had to translate all tutorial instructions from proprietary software to R, and there was not enough time to complete this task before the course commenced. By making the tutorial instructions available in <a href="https://cjvanlissa.github.io/TCSM/">this GitBook</a>, I was able to continue translating tutorial instructions <em>while the semester was ongoing</em>, and push updates to GitHub in time for each session, which were immediately available to all students. The parallel with the current situation is that some courses are now forced to start teaching in an online format, without having enough time to completely prepare. By using a GitBook, you can spread out the workload of preparing your materials across the semester. <a href="https://cjvanlissa.github.io/TCSM/">This is the finished GitBook</a></p>
-<p><strong>To contribute or use existing Open Educational Resources</strong></p>
-<p>Another key advantage of using a GitBook is, that you can easily make your course materials available for others to use under an open access license, or perhaps you can use an existing GitBook from the internet and adapt it for your own uses. GitBooks can be easily duplicated and adapted, just like any other project hosted on GitHub. Contributing Open Educational Materials can help reduce the workload on teachers around the world, and can improve the quality of the materials used thanks to online collaborating and feedback.</p>
-<p><strong>To benefit from formatting advantages</strong></p>
-<p>GitBooks also have two formatting advantages over classic PDF or Word files. First, they are Rmarkdown files, and can thus include blocks of R (<a href="https://rstudio.github.io/reticulate/articles/r_markdown.html">or Python</a>) code that can be evaluated, and whose results are rendered to the file. Second, they are interactive web pages, and as such, can have dynamic features (such as answers to assignments that can be hidden, or boxes where students can fill out an answer to be checked). Additionally, other web pages or interactive apps can be embedded within the page. So whereas a traditional document is static, GitBooks can be interactive.</p>
-<p><strong>How do GitBooks work?</strong></p>
-<p>GitBooks consist of an Rstudio project, with several Rmarkdown files containing the chapters of the book. Inside Rstudio, users can press a “Build Book” button, which renders all of these chapters to a nicely formatted HTML book (and a PDF file for users to download). Users can push the finished book to a GitHub repository, and indicate on GitHub that the book should be hosted on GitHub pages. Voilà!</p>
+<p>Welcome to the course ‘Genetic Epidemiology’, and this practical entitled ‘A primer in Human Cardiovascular Genetics’. In the next few days we will use this <a href="https://cjvanlissa.github.io/gitbook-demo/">GitBook</a> to perform quality control (QC), executing a genome-wide association study (GWAS), annotating the GWAS results, and performing further downstream analyses. We will use data from the first release of the <a href="https://www.wtccc.org.uk/ccc1/overview.html" target="_blank"><em>Welcome Trust Case-Control Consortium (WTCCC)</em></a> and focus on coronary artery disease (CAD).</p>
+<p>We won’t have time to perform <a href="https://www.nature.com/articles/nrg2796">imputation</a>, but we will provide some pointers as to how to do this with minimal coding/scripting experience.</p>
+<p>Part of this is based on four great Nature Protocols from the <a href="https://www.well.ox.ac.uk/research/research-groups/zondervan-group" target="_blank">Zondervan group</a> at the Wellcome Center Human Genetics.</p>
+<ol style="list-style-type: decimal">
+<li><a href="https://www.ncbi.nlm.nih.gov/pubmed/17947991" target="_blank">Zondervan KT <em>et al.</em> <em>Designing candidate gene and genome-wide case-control association studies.</em> Nat Protoc 2007.</a></li>
+<li><a href="https://www.ncbi.nlm.nih.gov/pubmed/19390530" target="_blank">Pettersson FH <em>et al.</em> <em>Marker selection for genetic case-control association studies.</em> Nat Protoc 2009.</a></li>
+<li><a href="https://www.ncbi.nlm.nih.gov/pubmed/21085122" target="_blank">Anderson CA <em>et al.</em> <em>Data QC in genetic case-control association studies.</em> Nat Protoc 2010.</a></li>
+<li><a href="https://www.ncbi.nlm.nih.gov/pubmed/21293453" target="_blank">Clarke GM <em>et al.</em> <em>Basic statistical analysis in genetic case-control studies.</em> Nat Protoc 2011.</a></li>
+</ol>
+<p>An update on the community standards of QC for GWAS can be found here:</p>
+<ol style="list-style-type: decimal">
+<li><a href="https://www.ncbi.nlm.nih.gov/pubmed/20718045" target="_blank">Laurie CC <em>et al.</em> <em>Quality control and quality assurance in genotypic data for genome-wide association studies.</em> Genet Epidemiol 2010.</a></li>
+</ol>
+<p>With respect to imputation you should also get familiar with the following two works:</p>
+<ol style="list-style-type: decimal">
+<li><a href="https://doi.org/10.1038/nrg2796" target="_blank">Marchini, J. and Howie, B. <em>Genotype imputation for genome-wide association studies.</em> Nat Rev Genet 2010</a></li>
+<li><a href="https://www.ncbi.nlm.nih.gov/pubmed/18852200" target="_blank">de Bakker PIW <em>et al.</em> <em>Practical aspects of imputation-driven meta-analysis of genome-wide association studies.</em> Hum Mol Genet 2008.</a></li>
+<li><a href="https://www.ncbi.nlm.nih.gov/pubmed/24762786" target="_blank">Winkler TW <em>et al.</em> <em>Quality control and conduct of genome-wide association meta-analyses.</em> Nat Protoc 2014.</a></li>
+</ol>
+<p>Importantly, follow this practical, but also review the questions asked in the presentation (on the screen or in the Dropbox) and try to answer them.</p>
+<div id="team" class="section level2 hasAnchor" number="1.1">
+<h2><span class="header-section-number">1.1</span> Team<a href="index.html#team" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We work with a team of enthousiastic lecturers with experience in bioinformatics, GWAS, genetic analyses, Mendelian randomisation, and epidemiology. This year the team consists of:</p>
+<table style="width:21%;">
+<colgroup>
+<col width="20%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><img src="img/_team/charlotte_onland.jpg" style="width:15.0%" /> Charlotte Onland-Moret </br><em>Associate Professor</em></br><a href="mailto:N.C.Onland@umcutrecht.nl" class="email">N.C.Onland@umcutrecht.nl</a></td>
+</tr>
+<tr class="even">
+<td><img src="img/_team/sander_vander_laan.jpg" style="width:15.0%" /> Sander W. van der Laan </br><em>Assistant professor</em></br><a href="mailto:s.w.vanderlaan-2@umcutrecht.nl" class="email">s.w.vanderlaan-2@umcutrecht.nl</a> | <a href="http://www.twitter.com/swvanderlaan" target="_blank">swvanderlaan</a></td>
+</tr>
+<tr class="odd">
+<td><img src="img/_team/arjan_boltjes.jpg" style="width:15.0%" /> Arjan Boltjes </br><em>Postdoctoral researcher</em></br><a href="mailto:a.boltjes@umcutrecht.nl" class="email">a.boltjes@umcutrecht.nl</a> | <a href="http://www.twitter.com/arjanboltjes" target="_blank">arjanboltjes</a></td>
+</tr>
+<tr class="even">
+<td><img src="img/_team/joanna_bon_berg.jpg" style="width:15.0%" /> Joanna von Berg </br><em>PhD student</em></br><a href="mailto:j.vonberg-24@umcutrecht.nl" class="email">j.vonberg-24@umcutrecht.nl</a> | <a href="http://www.twitter.com/JoannavonBerg" target="_blank">JoannavonBerg</a>
+<a href="img/_team/jessica_van_setten.jpg" width="15%"></a> Jessica van Setten </br><em>Assistant professor</em></br><a href="mailto:j.vansetten@umcutrecht.nl" class="email">j.vansetten@umcutrecht.nl</a> | <a href="http://www.twitter.com/j_vansetten" target="_blank">j_vansetten</a></td>
+</tr>
+</tbody>
+</table>
 <p><strong>Getting started</strong></p>
-<p>If you are convinced that this tool might benefit your teaching, your first point of action is to prepare your system for creating GitBooks (Chapter <a href="prerequisites.html#prerequisites">2</a>). After that, you can get a copy of this GitBook as a template (Chapter <a href="getgitbook.html#getgitbook">3</a>). Then, you can start tweaking it for your own course!</p>
+<p>Ready to start? Your first point of action is to prepare your system for this course (Chapter <a href="prerequisites.html#prerequisites">2</a>).</p>
 
 </div>
 </div>
@@ -208,7 +276,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -227,6 +294,7 @@ gitbook.start({
 "weibo": false,
 "instapaper": false,
 "vk": false,
+"whatsapp": false,
 "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
@@ -246,7 +314,11 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["gitbook-demo.pdf"],
+"download": ["A primer in Human Cardiovascular Genetics.pdf"],
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "subsection"
 }
