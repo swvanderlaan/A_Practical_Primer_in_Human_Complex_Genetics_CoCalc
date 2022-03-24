@@ -12,9 +12,7 @@ bibliography:
 - packages.bib
 site: bookdown::bookdown_site
 biblio-style: apalike
-output: 
-  html_document: 
-    toc: yes
+output: html_document
 ---
 
 <!--"Using GitBooks to create Open course materials"-->
@@ -64,7 +62,6 @@ We work with a team of enthusiastic lecturers with experience in bioinformatics,
 <!-- ![](img/_team/arjan_boltjes.jpg){width=15%} Arjan Boltjes </br>_Postdoctoral researcher_</br><a.boltjes@umcutrecht.nl> | [arjanboltjes](http://www.twitter.com/arjanboltjes){target="_blank"} -->
 
 <!-- ![](img/_team/joanna_bon_berg.jpg){width=15%} Joanna von Berg </br>_PhD student_</br><j.vonberg-24@umcutrecht.nl> | [JoannavonBerg](http://www.twitter.com/JoannavonBerg){target="_blank"} -->
-
 
 --------------
 

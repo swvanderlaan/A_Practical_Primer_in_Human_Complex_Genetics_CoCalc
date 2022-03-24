@@ -41,46 +41,6 @@
   hidelinks,
   pdfcreator={LaTeX via pandoc}}
 \urlstyle{same} % disable monospaced font for URLs
-\usepackage{color}
-\usepackage{fancyvrb}
-\newcommand{\VerbBar}{|}
-\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
-\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
-% Add ',fontsize=\small' for more characters per line
-\usepackage{framed}
-\definecolor{shadecolor}{RGB}{248,248,248}
-\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
-\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
-\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
-\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
-\newcommand{\BuiltInTok}[1]{#1}
-\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
-\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
-\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
-\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
-\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
-\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
-\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
-\newcommand{\ExtensionTok}[1]{#1}
-\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
-\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
-\newcommand{\ImportTok}[1]{#1}
-\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
-\newcommand{\NormalTok}[1]{#1}
-\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
-\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
-\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
-\newcommand{\RegionMarkerTok}[1]{#1}
-\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
-\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
-\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
-\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
-\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
-\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
 \usepackage{longtable,booktabs,array}
 \usepackage{calc} % for calculating minipage widths
 % Correct order of tables after \paragraph or \subparagraph
@@ -337,235 +297,191 @@ library("ggpubr")
 
 All in all this may take some time, good moment to relax, review your notes, stretch your legs, or take a coffee.
 
-\hypertarget{getgitbook}{%
-\chapter{Get your GitBook}\label{getgitbook}}
+\hypertarget{basics-of-a-genome-wide-association-study-gwas}{%
+\chapter{Basics of a Genome-Wide Association Study (GWAS)}\label{basics-of-a-genome-wide-association-study-gwas}}
 
-To get your GitBook, you should follow these steps:
+\hypertarget{section-1}{%
+\section{Section 1}\label{section-1}}
 
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\tightlist
-\item
-  Go to \url{https://github.com/cjvanlissa/gitbook-demo}
-\item
-  In the top right of the page, click \texttt{Fork}.\\
-  This will copy my \texttt{gitbook-demo} repository to your GitHub account.\\
-  \includegraphics{./img/settings.png}
-\item
-  My repository is now copied to your account. It is a template repository, which means that you can create a \emph{new repository} based on this one.
-\item
-  Create a new repository for your own GitBook. Create one for a course you've been wanting to update. In the top-right corner of the GitHub website, click the + icon, and select ``New repository'':\\
-  \includegraphics{./img/new_repo.png}
-\item
-  In the dialog, select the \texttt{gitbook-demo} as ``Repository template'', and give the repository an appropriate name for your course. Then, press \texttt{Create\ repository}:\\
-  \includegraphics{./img/from_template.png}
-\item
-  Now, go back to Rstudio on your computer. In Rstudio, click \texttt{File\ \textgreater{}\ New\ Project}. A dialog will open. If you set up Rstudio with Git correctly, the dialog should have an option to create a new project from Version control. Click it:\\
-  \includegraphics{./img/new_project.png}
-\item
-  In the next dialog window, you should copy the URL of the GitHub repository you created in \emph{Step 5}, like so:\\
-  \includegraphics{./img/new_git_project.png}
-\item
-  Now, in Rstudio, you can open files for editing and create new files (explained in the next Chapter). Open files by clicking them in the Files editor (usually in the bottom right of Rstudio):\\
-  \includegraphics{./img/files_editor.png}
-\item
-  After you make a change, it will show up in the Git tab (usually in the top right of Rstudio). You must Commit the change locally, and then Push the change to GitHub to update your repo. To Commit, select the file and click the Commit button. Write a short message to describe the changes you made, then click the Commit button again. Now, press Push to send your commits to GitHub.\\
-  \includegraphics{./img/commit_push.png}
-\item
-  To render your book as a GitBook, you must ``Build'' it. In the top-right panel of Rstudio, you see a ``Build'' tab. In this tab, simply click the ``Build Book'' button to build your book. You should see a lot of rendering messages, until a window pops up with your brand new GitBook. If you get errors at this stage, you probably made a mistake in preparing your system (see the previous Chapter).\\
-  \includegraphics{./img/build_book.png}
-\item
-  Building the book generated a lot of new files in the \texttt{./docs} directory. This directory contains the website files for your GitBook. Open the Git tab again, verify that the \texttt{./docs} directory is listed, and Commit and Push all of these new files as described in \emph{Step 9}.
-\item
-  There is only one last remaining task: To publish your GitBook on GitHub pages. Once you do this, any change to the \texttt{./docs} folder that you push to GitHub will lead to an immediate update of your GitBook website. Go back to the GitHub page for your Repository. Click on the \texttt{Settings} tab on the top right of the page:\\
-  \includegraphics{./img/settings.png}
-\item
-  On the Settings page, scroll all the way down until you reach a section called \texttt{GitHub\ Pages}. There, under the ``Source'' heading, click the word \texttt{None}, and select \texttt{master\ branch\ /docs\ folder}. When you select it, the page will update, and if you scroll back down to the \texttt{GitHub\ Pages} section, you will see the URL where your GitBook is published. The first time, it will take a few minutes for your GitBook to come online. When you publish updates to the GitBook however (simply by following \emph{Step 11} again), the update will be near-instantaneous. The Pages section should now look like this (and that is hopefully the link where you found this book):\\
-  \includegraphics{./img/pages_published.png}
-\end{enumerate}
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
-\hypertarget{editing-the-book}{%
-\chapter{Editing the book}\label{editing-the-book}}
+\hypertarget{section-2}{%
+\section{Section 2}\label{section-2}}
 
-The contents of the book are written in \textbf{RMarkdown}. You can use any formatting code that Pandoc's Markdown supports, e.g., a math equation \(a^2 + b^2 = c^2\). Moreover, you can include chunks of R-code, like this:
+Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?
 
-The results of these chunks can be rendered to the GitBook:
+\hypertarget{section-3}{%
+\section{Section 3}\label{section-3}}
 
-\begin{verbatim}
-## [1] "This is an R-command!"
-\end{verbatim}
+At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.
 
-To edit the book, you can change the text in the \texttt{.Rmd} files. Each Rmd file should contain \textbf{one and only one} chapter. A chapter is defined by the first-level heading \texttt{\#}, e.g., \texttt{\#\ Editing\ the\ book}.
+\hypertarget{wtccc1-a-gwas-on-coronary-artery-disease-cad}{%
+\chapter{WTCCC1: a GWAS on coronary artery disease (CAD)}\label{wtccc1-a-gwas-on-coronary-artery-disease-cad}}
 
-Any sub-headings within the chapter are indicated with several \texttt{\#} signs, e.g., \texttt{\#\#} (level 2) and \texttt{\#\#\#} (level 3).
+\hypertarget{section-1-1}{%
+\section{Section 1}\label{section-1-1}}
 
-\hypertarget{creating-new-chapters}{%
-\section{Creating new chapters}\label{creating-new-chapters}}
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
-To create a new chapter, you must follow two steps: 1) Create the file, and 2) Include it in the list of chapters.
+\hypertarget{section-2-1}{%
+\section{Section 2}\label{section-2-1}}
 
-First, to create the file for a new chapter in Rstudio, click \texttt{File\ \textgreater{}\ New\ File\ \textgreater{}\ Text\ file}. At the top of the file, write your chapter heading, as explained above. Then, click \texttt{File\ \textgreater{}\ Save}. Save the file as \texttt{.Rmd}, without spaces in the file name, e.g.: \texttt{editing\_the\_book.Rmd}.
+Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?
 
-Second, to include it in the list of chapters, open the file \texttt{\_bookdown.yml} (click it in the Files explorer in the bottom right of Rstudio). This file has a list of \texttt{.Rmd} files to be included in the book. In this example, the list looks like this:
+\hypertarget{section-3-1}{%
+\section{Section 3}\label{section-3-1}}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{tmp }\OtherTok{\textless{}{-}} \FunctionTok{readLines}\NormalTok{(}\StringTok{"\_bookdown.yml"}\NormalTok{)}
-\FunctionTok{cat}\NormalTok{(tmp[}\FunctionTok{grep}\NormalTok{(}\StringTok{"\^{}rmd\_files"}\NormalTok{, tmp)}\SpecialCharTok{:}\FunctionTok{grep}\NormalTok{(}\StringTok{"references}\SpecialCharTok{\textbackslash{}\textbackslash{}}\StringTok{.Rmd"}\NormalTok{, tmp)], }\AttributeTok{sep =} \StringTok{"}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
+At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.
 
-rmd\_files: {[}``index.Rmd'',
-``prerequisites.Rmd'',
-``get\_your\_gitbook.Rmd'',
-``editing\_the\_book.Rmd'',
-``figures\_tables.Rmd'',
-``examples.Rmd'',
-``open\_educational.Rmd'',
-``use\_in\_course.Rmd'',
-``licenses.Rmd'',
-``references.Rmd''{]}
+\hypertarget{post-gwas-analyses}{%
+\chapter{Post-GWAS Analyses}\label{post-gwas-analyses}}
 
-Insert the file name of your new chapter in the desired position in this list.
+\hypertarget{section-1-2}{%
+\section{Section 1}\label{section-1-2}}
 
-\hypertarget{linking-across-chapters}{%
-\section{Linking across chapters}\label{linking-across-chapters}}
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
-You can label chapter and section titles using \texttt{\{\#label\}} after them. The labels can be used as cross-references. For example, we can link to Chapter \ref{figtab}. If you do not manually label chapters, there will be automatic labels anyway, e.g., Chapter \ref{examples}.
+\hypertarget{section-2-2}{%
+\section{Section 2}\label{section-2-2}}
 
-\hypertarget{advanced-editing}{%
-\section{Advanced editing}\label{advanced-editing}}
+Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?
 
-The convenient \href{https://rstudio.com/wp-content/uploads/2016/03/rmarkdown-cheatsheet-2.0.pdf}{Rmarkdown Cheat Sheet} by Rstudio covers most of the knowledge required for advanced Rmarkdown editing. You can print it out and stick it to your wall!
+\hypertarget{section-3-2}{%
+\section{Section 3}\label{section-3-2}}
 
-\hypertarget{figtab}{%
-\chapter{Figures and tables}\label{figtab}}
+At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.
 
-Figures and tables with captions will be placed in \texttt{figure} and \texttt{table} environments, respectively.
+\hypertarget{conditional-analysis}{%
+\chapter{Conditional analysis}\label{conditional-analysis}}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{par}\NormalTok{(}\AttributeTok{mar =} \FunctionTok{c}\NormalTok{(}\DecValTok{4}\NormalTok{, }\DecValTok{4}\NormalTok{, .}\DecValTok{1}\NormalTok{, .}\DecValTok{1}\NormalTok{))}
-\FunctionTok{plot}\NormalTok{(pressure, }\AttributeTok{type =} \StringTok{\textquotesingle{}b\textquotesingle{}}\NormalTok{, }\AttributeTok{pch =} \DecValTok{19}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
+\hypertarget{section-1-3}{%
+\section{Section 1}\label{section-1-3}}
 
-\begin{figure}
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
-{\centering \includegraphics[width=0.8\linewidth]{A-primer-in-Human-Cardiovascular-Genetics_files/figure-latex/nice-fig-1} 
+\hypertarget{section-2-3}{%
+\section{Section 2}\label{section-2-3}}
 
-}
+Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?
 
-\caption{Here is a nice figure!}\label{fig:nice-fig}
-\end{figure}
+\hypertarget{section-3-3}{%
+\section{Section 3}\label{section-3-3}}
 
-Reference a figure by its code chunk label with the \texttt{fig:} prefix, e.g., see Figure \ref{fig:nice-fig}. Similarly, you can reference tables generated from \texttt{knitr::kable()}, e.g., see Table \ref{tab:nice-tab}.
+At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{knitr}\SpecialCharTok{::}\FunctionTok{kable}\NormalTok{(}
-  \FunctionTok{head}\NormalTok{(iris, }\DecValTok{20}\NormalTok{), }\AttributeTok{caption =} \StringTok{\textquotesingle{}Here is a nice table!\textquotesingle{}}\NormalTok{,}
-  \AttributeTok{booktabs =} \ConstantTok{TRUE}
-\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
+\hypertarget{statistical-finemapping}{%
+\chapter{Statistical finemapping}\label{statistical-finemapping}}
 
-\begin{table}
+\hypertarget{section-1-4}{%
+\section{Section 1}\label{section-1-4}}
 
-\caption{\label{tab:nice-tab}Here is a nice table!}
-\centering
-\begin{tabular}[t]{rrrrl}
-\toprule
-Sepal.Length & Sepal.Width & Petal.Length & Petal.Width & Species\\
-\midrule
-5.1 & 3.5 & 1.4 & 0.2 & setosa\\
-4.9 & 3.0 & 1.4 & 0.2 & setosa\\
-4.7 & 3.2 & 1.3 & 0.2 & setosa\\
-4.6 & 3.1 & 1.5 & 0.2 & setosa\\
-5.0 & 3.6 & 1.4 & 0.2 & setosa\\
-\addlinespace
-5.4 & 3.9 & 1.7 & 0.4 & setosa\\
-4.6 & 3.4 & 1.4 & 0.3 & setosa\\
-5.0 & 3.4 & 1.5 & 0.2 & setosa\\
-4.4 & 2.9 & 1.4 & 0.2 & setosa\\
-4.9 & 3.1 & 1.5 & 0.1 & setosa\\
-\addlinespace
-5.4 & 3.7 & 1.5 & 0.2 & setosa\\
-4.8 & 3.4 & 1.6 & 0.2 & setosa\\
-4.8 & 3.0 & 1.4 & 0.1 & setosa\\
-4.3 & 3.0 & 1.1 & 0.1 & setosa\\
-5.8 & 4.0 & 1.2 & 0.2 & setosa\\
-\addlinespace
-5.7 & 4.4 & 1.5 & 0.4 & setosa\\
-5.4 & 3.9 & 1.3 & 0.4 & setosa\\
-5.1 & 3.5 & 1.4 & 0.3 & setosa\\
-5.7 & 3.8 & 1.7 & 0.3 & setosa\\
-5.1 & 3.8 & 1.5 & 0.3 & setosa\\
-\bottomrule
-\end{tabular}
-\end{table}
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
-You can write citations, too. For example, we are using the \textbf{bookdown} package \citep{R-bookdown} in this sample book, which was built on top of R Markdown and \textbf{knitr} \citep{xie2015}.
+\hypertarget{section-2-4}{%
+\section{Section 2}\label{section-2-4}}
 
-\hypertarget{examples}{%
-\chapter{Examples}\label{examples}}
+Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?
 
-Here are some examples of other GitBooks for courses; if you want to have your GitBook added to the list, please send a \href{https://github.com/cjvanlissa/gitbook-demo/pulls}{Pull Request} (here's \href{https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request}{how to send a pull request}).
+\hypertarget{section-3-4}{%
+\section{Section 3}\label{section-3-4}}
 
-\hypertarget{doing-meta-analysis-in-r}{%
-\section{Doing Meta-Analysis in R}\label{doing-meta-analysis-in-r}}
+At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.
 
-\url{http://cjvanlissa.github.io/Doing-Meta-Analysis-in-R}
+\hypertarget{functional-mapping-and-annotation-of-gwas}{%
+\chapter{Functional Mapping and Annotation of GWAS}\label{functional-mapping-and-annotation-of-gwas}}
 
-A GitBook on doing meta-analysis in R, based on the book `Doing Meta-Analysis in R', by Mathias Harrer, Pim Cuijpers, \& David Ebert, and adapted to focus on the \href{https://cran.r-project.org/web/packages/metafor/index.html}{metafor} package, and exploring heterogeneity using \href{https://cran.r-project.org/web/packages/metaforest/index.html}{metaforest}. The original can be found here: \url{https://bookdown.org/MathiasHarrer/Doing_Meta_Analysis_in_R/}
+\hypertarget{section-1-5}{%
+\section{Section 1}\label{section-1-5}}
 
-\hypertarget{theory-construction-and-statistical-modeling}{%
-\section{Theory Construction and Statistical Modeling}\label{theory-construction-and-statistical-modeling}}
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
-\url{http://cjvanlissa.github.io/TCSM}
+\hypertarget{section-2-5}{%
+\section{Section 2}\label{section-2-5}}
 
-A GitBook for the course \emph{``Theory Construction and Statistical Modeling''}, with some interesting code, for example: Blocks of answers to the tutorial questions that can be collapsed and expanded.
+Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?
 
-\hypertarget{open-educational-resources}{%
-\chapter{Open Educational Resources}\label{open-educational-resources}}
+\hypertarget{section-3-5}{%
+\section{Section 3}\label{section-3-5}}
 
-UNESCO defines Open Educational Resources as \href{https://en.unesco.org/themes/building-knowledge-societies/oer}{\emph{teaching, learning and research materials in any medium -- digital or otherwise -- that reside in the public domain or have been released under an open license that permits no-cost access, use, adaptation and redistribution by others with no or limited restrictions.}}
+At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.
 
-Open Educational resources can help lighten the workload on individual teachers, who can collaborate with the development of high-quality open access resources, instead of having to develop their own proprietary materials from scratch. Moreover, Open Educational resources are inclusive, lowering the barrier to knowledge acquisition for learners around the world, and enabling lifelong learning for those outside academia.
+\hypertarget{phenome-wide-association-study-phewas}{%
+\chapter{Phenome-Wide Association Study (PheWAS)}\label{phenome-wide-association-study-phewas}}
 
-Many universities support Open Educational Resources. Here are just a few (feel free to \href{https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request}{send a pull request} with other relevant resources).
+\hypertarget{section-1-6}{%
+\section{Section 1}\label{section-1-6}}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+\hypertarget{section-2-6}{%
+\section{Section 2}\label{section-2-6}}
+
+Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?
+
+\hypertarget{section-3-6}{%
+\section{Section 3}\label{section-3-6}}
+
+At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.
+
+\hypertarget{mendelian-randomization-mr}{%
+\chapter{Mendelian Randomization (MR)}\label{mendelian-randomization-mr}}
+
+\hypertarget{section-1-7}{%
+\section{Section 1}\label{section-1-7}}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+\hypertarget{section-2-7}{%
+\section{Section 2}\label{section-2-7}}
+
+Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?
+
+\hypertarget{section-3-7}{%
+\section{Section 3}\label{section-3-7}}
+
+At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.
+
+\hypertarget{mendelian-randomization-mr-1}{%
+\chapter{Mendelian Randomization (MR)}\label{mendelian-randomization-mr-1}}
+
+\hypertarget{section-1-8}{%
+\section{Section 1}\label{section-1-8}}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+\hypertarget{section-2-8}{%
+\section{Section 2}\label{section-2-8}}
+
+Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?
+
+\hypertarget{section-3-8}{%
+\section{Section 3}\label{section-3-8}}
+
+At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.
+
+\hypertarget{license-your-gitbook}{%
+\chapter{License your GitBook}\label{license-your-gitbook}}
+
+In the spirit of Open Science, it is good to think about making your course materials Open Source. That means that other people can use them. In principle, if you publish materials online without license information, you hold the copyright to those materials. If you want them to be Open Source, you must include a license. It is not always obvious what license to choose.
+
+The Creative Commons licenses are typically suitable for course materials. This GitBook, for example, is licensed under CC-BY 4.0. That means you can use and remix it as you like, but you must credit the original source.
+
+If your project is more focused on software or source code, consider using the \href{https://www.gnu.org/licenses/gpl-3.0.en.html}{GNU GPL v3 license} instead.
+
+You can find \href{https://creativecommons.org/share-your-work/licensing-examples}{more information about the Creative Commons Licenses here}. Specific licenses that might be useful are:
 
 \begin{itemize}
 \tightlist
 \item
-  \href{https://www.oercommons.org/}{\textbf{OER Commons}}: A freely accessible online library of open educational resources.
+  \href{https://creativecommons.org/share-your-work/public-domain/cc0/}{CC0 (``No Rights Reserved'')}, everybody can do what they want with your work.
 \item
-  \href{https://uu.figshare.com/}{\textbf{Utrecht University Figshare}}: Open learning objects from Utrecht University.
-\item
-  \href{https://ocw.jhsph.edu/}{\textbf{Johns Hopkins University OCW}}: Open public health courses and materials.
-\item
-  \href{https://pitt.libguides.com/openeducation/biglist}{\textbf{University of Pittsburgh OER}}: Big List of Open Educational Resources.
-\item
-  \href{https://www.merlot.org/merlot/}{\textbf{MERLOT}}: Online learning and support materials and content creation tools, led by an international community of educators, learners and researchers.
+  \href{https://creativecommons.org/licenses/by/4.0/}{CC-BY 4.0 (``Attribution'')}, everybody can do what they want with your work, but they must credit you. Note that this license may not be suitable for software or source code!
 \end{itemize}
 
-\hypertarget{compatibility-with-existing-systems}{%
-\chapter{Compatibility with existing systems}\label{compatibility-with-existing-systems}}
+For compatibility between CC and GNU licenses, see \href{https://creativecommons.org/faq/\#Can_I_apply_a_Creative_Commons_license_to_software.3F}{this FAQ}.
 
-Many universities offer digital platforms for learning. You might wish to embed your GitBook within these existing systems. Here are two ways in which you might do that. Currently, this section only discusses BlackBoard, but the same principles should apply to other platforms.
-
-\hypertarget{add-a-hyperlink}{%
-\section{Add a hyperlink}\label{add-a-hyperlink}}
-
-You can add a link to your GitBook in the BlackBoard course menu by following \href{https://help.blackboard.com/Learn/Instructor/Course_Content/Create_Content/Create_Course_Materials/Link_to_Websites}{this tutorial}.
-
-\hypertarget{embed-the-whole-book}{%
-\section{Embed the whole book}\label{embed-the-whole-book}}
-
-You can add a Blank Page to your BlackBoard course menu, and fill that page with a full-size ``iframe'' - a web page within the web page. \href{https://mycampus.maine.edu/web/uc-faculty-portal/education-technology/-/asset_publisher/vEKuFJYvDY5K/content/inserting-an-iframe-into-blackboard?inheritRedirect=false}{This tutorial} explains how to do it. It is possible that your university is blocking this feature, however.
-
-\hypertarget{license-your-gitbook}{%
-\chapter{License your GitBook}\label{license-your-gitbook}}
+\hypertarget{license-your-gitbook-1}{%
+\chapter{License your GitBook}\label{license-your-gitbook-1}}
 
 In the spirit of Open Science, it is good to think about making your course materials Open Source. That means that other people can use them. In principle, if you publish materials online without license information, you hold the copyright to those materials. If you want them to be Open Source, you must include a license. It is not always obvious what license to choose.
 
