@@ -14,15 +14,15 @@ However, I highly recommend to 1) either install a linux subsystem on your Windo
 
 <!-- Made this table with https://www.tablesgenerator.com/markdown_tables -->
 
-You need few programs for this practical, or for your (future) genetic epidemiology work for that matter.
+You need few programs for this practical, or for your (future) genetic epidemiology work for that matter (**Table 1**).
 
+| **Program** 	| **Link**                             	| **Description**                                               |
+|-------------	|--------------------------------------	|-------------------------------------------------------------	|
+| _PLINK_     	| https://www.cog-genomics.org/plink2/ 	| PLINK is a free, open-source genetic analysis tool set, designed to perform a range of basic data parsing and quality control, as well as basic and large-scale analyses in a computationally efficient manner. |
+| _R_         	| https://cran.r-project.org/          	| A program to perform statistical analysis and visualizations. |
+| _RStudio_   	| https://www.rstudio.com              	| A user-friendly R-wrap-around for code editing, debugging, analyses, and visualization. |
+| _Homebrew_  	| https://brew.sh                      	| A great extension for Mac-users to install really useful programs that Apple didn't. |
 
-| **Program** 	| **Link**                             	| **Description**                                                                                                                                                                                                 	|
-|-------------	|--------------------------------------	|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------	|
-| _PLINK_     	| https://www.cog-genomics.org/plink2/ 	| PLINK is a free, open-source genetic analysis tool set, designed to perform a range of basic data parsing and quality control, as well as basic and large-scale analyses in a computationally efficient manner. 	|
-| _R_         	| https://cran.r-project.org/          	| A program to perform statistical analysis and visualizations.                                                                                                                                                   	|
-| _RStudio_   	| https://www.rstudio.com              	| A user-friendly R-wrap-around for code editing, debugging, analyses, and visualization.                                                                                                                         	|
-| _Homebrew_  	| https://brew.sh                      	| A great extension for Mac-users to install really useful programs that Apple didn't.                                                                                                                            	|
 **Table 1:** Programs needed for genetic epidemiology.
 
 
@@ -37,12 +37,7 @@ Mendelian randomization can be done either with the [SMR](http://cnsgenomics.com
 
 For all the above programs, except RStudio, you will need the `Terminal`. This comes with every major operating system; on Windows it is called 'PowerShell', but let's not go there. And regardless, you will (have to start to) make your own scripts. The benefit of using scripts is that each step in your workflow is clearly stipulated and annotated, and it allows for greater reproducibility, easier troubleshooting, and scaling up to high-performance computer clusters.
 
-
-### Navigating the Terminal
-
-First, let's download the data you need to your Desktop: [LINK](). 
-
-Now open the terminal, it should be on the left in the toolbar as a little black computer-monitor-like icon. 
+Open the terminal, it should be on the left in the toolbar as a little black computer-monitor-like icon. 
 Mac users can type `command + space` and type `terminal`, a terminal screen should open.
 
 > From now on we will use little code blocks like the example to indicate a code you should type/copy-paste and hit enter. If a code is followed by a comment, it is indicated by a # - you don't need to copy-paste and execute this.
@@ -55,6 +50,23 @@ CODE BLOCK # some comment here
 
 ```
 
+### Download the data
+
+First, let's start by downloading the data you need for this course to your Desktop: [LINK](). 
+
+
+Alternatively, you could do this through this command. This will create a directory on your Desktop with the command `mkdir`. The `-v` flag indicates the program should be _verbose_, meaning it should tell you what it is doing.
+
+```
+mkdir -v ~/Desktop/practical/
+```
+
+```
+wget "https://www.dropbox.com/sh/kumfwm7drt2flhp/AAB5n0OcUvJixI9pNiymx6-La?dl=0" -P ~/Desktop/practical/
+
+```
+
+### Navigating the Terminal
 
 You can navigate around the computer through the terminal by typing `cd <path>`; `cd` stands for "change directory" and <path> means "some_file_directory_you_want_to_go_to".
 
@@ -110,15 +122,26 @@ sudo apt-get install libssl-dev
 
 Now close the terminal window - really making sure that the terminal-program has quit.
 
-Open a new terminal window and open `r` by simply typing `R`. You should install the following packages, and then you're good to go!
+Open a new terminal window and open `r` by simply typing `R` or `r`. You should install the following packages, and then you're good to go!
 
 ```
 install.packages(c("httr", "usethis", "data.table", "devtools", "qqman", "CMplot", "tibble", "plotly", "dplyr"))
-
-library(c("httr", "usethis", "data.table", "devtools", "qqman", "CMplot", "tibble", "plotly", "dplyr"))
 devtools::install_github("kassambara/ggpubr")
-library("ggpubr")
+```
 
+You should load these packages too. 
+
+```
+library("ggpubr")
+library("httr")
+library("usethis")
+library("data.table")
+library("devtools")
+library("qqman")
+library("CMplot")
+library("tibble")
+library("plotly")
+library("dplyr")
 ```
 
 All in all this may take some time, good moment to relax, review your notes, stretch your legs, or take a coffee.

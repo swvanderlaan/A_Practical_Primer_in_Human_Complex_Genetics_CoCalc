@@ -53,6 +53,70 @@
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 
 
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
 
 
 <link rel="stylesheet" href="style.css" type="text/css" />
@@ -84,66 +148,102 @@
 <li class="chapter" data-level="2.2" data-path="prerequisites.html"><a href="prerequisites.html#programs-you-need"><i class="fa fa-check"></i><b>2.2</b> Programs you need<span></span></a></li>
 <li class="chapter" data-level="2.3" data-path="prerequisites.html"><a href="prerequisites.html#the-terminal"><i class="fa fa-check"></i><b>2.3</b> The Terminal<span></span></a>
 <ul>
-<li class="chapter" data-level="2.3.1" data-path="prerequisites.html"><a href="prerequisites.html#navigating-the-terminal"><i class="fa fa-check"></i><b>2.3.1</b> Navigating the Terminal<span></span></a></li>
+<li class="chapter" data-level="2.3.1" data-path="prerequisites.html"><a href="prerequisites.html#download-the-data"><i class="fa fa-check"></i><b>2.3.1</b> Download the data<span></span></a></li>
+<li class="chapter" data-level="2.3.2" data-path="prerequisites.html"><a href="prerequisites.html#navigating-the-terminal"><i class="fa fa-check"></i><b>2.3.2</b> Navigating the Terminal<span></span></a></li>
 </ul></li>
 <li class="chapter" data-level="2.4" data-path="prerequisites.html"><a href="prerequisites.html#installing-some-r-packages"><i class="fa fa-check"></i><b>2.4</b> Installing some R packages<span></span></a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="basics-of-a-genome-wide-association-study-gwas.html"><a href="basics-of-a-genome-wide-association-study-gwas.html"><i class="fa fa-check"></i><b>3</b> Basics of a Genome-Wide Association Study (GWAS)<span></span></a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="basics-of-a-genome-wide-association-study-gwas.html"><a href="basics-of-a-genome-wide-association-study-gwas.html#section-1"><i class="fa fa-check"></i><b>3.1</b> Section 1<span></span></a></li>
-<li class="chapter" data-level="3.2" data-path="basics-of-a-genome-wide-association-study-gwas.html"><a href="basics-of-a-genome-wide-association-study-gwas.html#section-2"><i class="fa fa-check"></i><b>3.2</b> Section 2<span></span></a></li>
-<li class="chapter" data-level="3.3" data-path="basics-of-a-genome-wide-association-study-gwas.html"><a href="basics-of-a-genome-wide-association-study-gwas.html#section-3"><i class="fa fa-check"></i><b>3.3</b> Section 3<span></span></a></li>
+<li class="chapter" data-level="3.1" data-path="basics-of-a-genome-wide-association-study-gwas.html"><a href="basics-of-a-genome-wide-association-study-gwas.html#converting-datasets"><i class="fa fa-check"></i><b>3.1</b> Converting datasets<span></span></a></li>
+<li class="chapter" data-level="3.2" data-path="basics-of-a-genome-wide-association-study-gwas.html"><a href="basics-of-a-genome-wide-association-study-gwas.html#quality-control"><i class="fa fa-check"></i><b>3.2</b> Quality control<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="wtccc1-a-gwas-on-coronary-artery-disease-cad.html"><a href="wtccc1-a-gwas-on-coronary-artery-disease-cad.html"><i class="fa fa-check"></i><b>4</b> WTCCC1: a GWAS on coronary artery disease (CAD)<span></span></a>
+<li class="chapter" data-level="4" data-path="sample-qc.html"><a href="sample-qc.html"><i class="fa fa-check"></i><b>4</b> Sample QC<span></span></a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="wtccc1-a-gwas-on-coronary-artery-disease-cad.html"><a href="wtccc1-a-gwas-on-coronary-artery-disease-cad.html#section-1-1"><i class="fa fa-check"></i><b>4.1</b> Section 1<span></span></a></li>
-<li class="chapter" data-level="4.2" data-path="wtccc1-a-gwas-on-coronary-artery-disease-cad.html"><a href="wtccc1-a-gwas-on-coronary-artery-disease-cad.html#section-2-1"><i class="fa fa-check"></i><b>4.2</b> Section 2<span></span></a></li>
-<li class="chapter" data-level="4.3" data-path="wtccc1-a-gwas-on-coronary-artery-disease-cad.html"><a href="wtccc1-a-gwas-on-coronary-artery-disease-cad.html#section-3-1"><i class="fa fa-check"></i><b>4.3</b> Section 3<span></span></a></li>
-</ul></li>
-<li class="chapter" data-level="5" data-path="post-gwas-analyses.html"><a href="post-gwas-analyses.html"><i class="fa fa-check"></i><b>5</b> Post-GWAS Analyses<span></span></a>
+<li class="chapter" data-level="4.1" data-path="sample-qc.html"><a href="sample-qc.html#sex"><i class="fa fa-check"></i><b>4.1</b> Sex<span></span></a></li>
+<li class="chapter" data-level="4.2" data-path="sample-qc.html"><a href="sample-qc.html#sample-callrates"><i class="fa fa-check"></i><b>4.2</b> Sample Callrates<span></span></a></li>
+<li class="chapter" data-level="4.3" data-path="sample-qc.html"><a href="sample-qc.html#heterozygosity-rate"><i class="fa fa-check"></i><b>4.3</b> Heterozygosity rate<span></span></a></li>
+<li class="chapter" data-level="4.4" data-path="sample-qc.html"><a href="sample-qc.html#relatedness"><i class="fa fa-check"></i><b>4.4</b> Relatedness<span></span></a></li>
+<li class="chapter" data-level="4.5" data-path="sample-qc.html"><a href="sample-qc.html#ancestral-background"><i class="fa fa-check"></i><b>4.5</b> Ancestral background<span></span></a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="post-gwas-analyses.html"><a href="post-gwas-analyses.html#section-1-2"><i class="fa fa-check"></i><b>5.1</b> Section 1<span></span></a></li>
-<li class="chapter" data-level="5.2" data-path="post-gwas-analyses.html"><a href="post-gwas-analyses.html#section-2-2"><i class="fa fa-check"></i><b>5.2</b> Section 2<span></span></a></li>
-<li class="chapter" data-level="5.3" data-path="post-gwas-analyses.html"><a href="post-gwas-analyses.html#section-3-2"><i class="fa fa-check"></i><b>5.3</b> Section 3<span></span></a></li>
+<li class="chapter" data-level="4.5.1" data-path="sample-qc.html"><a href="sample-qc.html#hapmap-3"><i class="fa fa-check"></i><b>4.5.1</b> HapMap 3<span></span></a></li>
+<li class="chapter" data-level="4.5.2" data-path="sample-qc.html"><a href="sample-qc.html#principal-component-analysis"><i class="fa fa-check"></i><b>4.5.2</b> Principal Component Analysis<span></span></a></li>
+<li class="chapter" data-level="4.5.3" data-path="sample-qc.html"><a href="sample-qc.html#g-phase-1"><i class="fa fa-check"></i><b>4.5.3</b> 1000G phase 1<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="conditional-analysis.html"><a href="conditional-analysis.html"><i class="fa fa-check"></i><b>6</b> Conditional analysis<span></span></a>
+<li class="chapter" data-level="4.6" data-path="sample-qc.html"><a href="sample-qc.html#removing-samples"><i class="fa fa-check"></i><b>4.6</b> Removing samples<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="per-snp-qc.html"><a href="per-snp-qc.html"><i class="fa fa-check"></i><b>5</b> Per-SNP QC<span></span></a>
 <ul>
-<li class="chapter" data-level="6.1" data-path="conditional-analysis.html"><a href="conditional-analysis.html#section-1-3"><i class="fa fa-check"></i><b>6.1</b> Section 1<span></span></a></li>
-<li class="chapter" data-level="6.2" data-path="conditional-analysis.html"><a href="conditional-analysis.html#section-2-3"><i class="fa fa-check"></i><b>6.2</b> Section 2<span></span></a></li>
-<li class="chapter" data-level="6.3" data-path="conditional-analysis.html"><a href="conditional-analysis.html#section-3-3"><i class="fa fa-check"></i><b>6.3</b> Section 3<span></span></a></li>
+<li class="chapter" data-level="5.1" data-path="per-snp-qc.html"><a href="per-snp-qc.html#snp-call-rates"><i class="fa fa-check"></i><b>5.1</b> SNP call rates<span></span></a></li>
+<li class="chapter" data-level="5.2" data-path="per-snp-qc.html"><a href="per-snp-qc.html#differential-snp-call-rates"><i class="fa fa-check"></i><b>5.2</b> Differential SNP call rates<span></span></a></li>
+<li class="chapter" data-level="5.3" data-path="per-snp-qc.html"><a href="per-snp-qc.html#allele-frequencies"><i class="fa fa-check"></i><b>5.3</b> Allele frequencies<span></span></a></li>
+<li class="chapter" data-level="5.4" data-path="per-snp-qc.html"><a href="per-snp-qc.html#hardy-weinberg-equilibrium"><i class="fa fa-check"></i><b>5.4</b> Hardy-Weinberg Equilibrium<span></span></a></li>
+<li class="chapter" data-level="5.5" data-path="per-snp-qc.html"><a href="per-snp-qc.html#final-snp-qc"><i class="fa fa-check"></i><b>5.5</b> Final SNP QC<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="statistical-finemapping.html"><a href="statistical-finemapping.html"><i class="fa fa-check"></i><b>7</b> Statistical finemapping<span></span></a>
+<li class="chapter" data-level="6" data-path="genome-wide-association-study.html"><a href="genome-wide-association-study.html"><i class="fa fa-check"></i><b>6</b> Genome-wide association study<span></span></a>
 <ul>
-<li class="chapter" data-level="7.1" data-path="statistical-finemapping.html"><a href="statistical-finemapping.html#section-1-4"><i class="fa fa-check"></i><b>7.1</b> Section 1<span></span></a></li>
-<li class="chapter" data-level="7.2" data-path="statistical-finemapping.html"><a href="statistical-finemapping.html#section-2-4"><i class="fa fa-check"></i><b>7.2</b> Section 2<span></span></a></li>
-<li class="chapter" data-level="7.3" data-path="statistical-finemapping.html"><a href="statistical-finemapping.html#section-3-4"><i class="fa fa-check"></i><b>7.3</b> Section 3<span></span></a></li>
-</ul></li>
-<li class="chapter" data-level="8" data-path="functional-mapping-and-annotation-of-gwas.html"><a href="functional-mapping-and-annotation-of-gwas.html"><i class="fa fa-check"></i><b>8</b> Functional Mapping and Annotation of GWAS<span></span></a>
+<li class="chapter" data-level="6.1" data-path="genome-wide-association-study.html"><a href="genome-wide-association-study.html#exploring-the-data"><i class="fa fa-check"></i><b>6.1</b> Exploring the data<span></span></a></li>
+<li class="chapter" data-level="6.2" data-path="genome-wide-association-study.html"><a href="genome-wide-association-study.html#genetic-models"><i class="fa fa-check"></i><b>6.2</b> Genetic models<span></span></a></li>
+<li class="chapter" data-level="6.3" data-path="genome-wide-association-study.html"><a href="genome-wide-association-study.html#logistic-regression"><i class="fa fa-check"></i><b>6.3</b> Logistic regression<span></span></a></li>
+<li class="chapter" data-level="6.4" data-path="genome-wide-association-study.html"><a href="genome-wide-association-study.html#gwas-visualisation"><i class="fa fa-check"></i><b>6.4</b> GWAS visualisation<span></span></a>
 <ul>
-<li class="chapter" data-level="8.1" data-path="functional-mapping-and-annotation-of-gwas.html"><a href="functional-mapping-and-annotation-of-gwas.html#section-1-5"><i class="fa fa-check"></i><b>8.1</b> Section 1<span></span></a></li>
-<li class="chapter" data-level="8.2" data-path="functional-mapping-and-annotation-of-gwas.html"><a href="functional-mapping-and-annotation-of-gwas.html#section-2-5"><i class="fa fa-check"></i><b>8.2</b> Section 2<span></span></a></li>
-<li class="chapter" data-level="8.3" data-path="functional-mapping-and-annotation-of-gwas.html"><a href="functional-mapping-and-annotation-of-gwas.html#section-3-5"><i class="fa fa-check"></i><b>8.3</b> Section 3<span></span></a></li>
+<li class="chapter" data-level="6.4.1" data-path="genome-wide-association-study.html"><a href="genome-wide-association-study.html#qq-plots"><i class="fa fa-check"></i><b>6.4.1</b> QQ plots<span></span></a></li>
+<li class="chapter" data-level="6.4.2" data-path="genome-wide-association-study.html"><a href="genome-wide-association-study.html#manhattan-plots"><i class="fa fa-check"></i><b>6.4.2</b> Manhattan plots<span></span></a></li>
+<li class="chapter" data-level="6.4.3" data-path="genome-wide-association-study.html"><a href="genome-wide-association-study.html#other-plots"><i class="fa fa-check"></i><b>6.4.3</b> Other plots<span></span></a></li>
+<li class="chapter" data-level="6.4.4" data-path="genome-wide-association-study.html"><a href="genome-wide-association-study.html#interactive-plots"><i class="fa fa-check"></i><b>6.4.4</b> Interactive plots<span></span></a></li>
+<li class="chapter" data-level="6.4.5" data-path="genome-wide-association-study.html"><a href="genome-wide-association-study.html#regional-association-plots"><i class="fa fa-check"></i><b>6.4.5</b> Regional association plots<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="phenome-wide-association-study-phewas.html"><a href="phenome-wide-association-study-phewas.html"><i class="fa fa-check"></i><b>9</b> Phenome-Wide Association Study (PheWAS)<span></span></a>
+</ul></li>
+<li class="chapter" data-level="7" data-path="wtccc1-a-gwas-on-coronary-artery-disease-cad.html"><a href="wtccc1-a-gwas-on-coronary-artery-disease-cad.html"><i class="fa fa-check"></i><b>7</b> WTCCC1: a GWAS on coronary artery disease (CAD)<span></span></a>
 <ul>
-<li class="chapter" data-level="9.1" data-path="phenome-wide-association-study-phewas.html"><a href="phenome-wide-association-study-phewas.html#section-1-6"><i class="fa fa-check"></i><b>9.1</b> Section 1<span></span></a></li>
-<li class="chapter" data-level="9.2" data-path="phenome-wide-association-study-phewas.html"><a href="phenome-wide-association-study-phewas.html#section-2-6"><i class="fa fa-check"></i><b>9.2</b> Section 2<span></span></a></li>
-<li class="chapter" data-level="9.3" data-path="phenome-wide-association-study-phewas.html"><a href="phenome-wide-association-study-phewas.html#section-3-6"><i class="fa fa-check"></i><b>9.3</b> Section 3<span></span></a></li>
+<li class="chapter" data-level="7.1" data-path="wtccc1-a-gwas-on-coronary-artery-disease-cad.html"><a href="wtccc1-a-gwas-on-coronary-artery-disease-cad.html#section-1"><i class="fa fa-check"></i><b>7.1</b> Section 1<span></span></a></li>
+<li class="chapter" data-level="7.2" data-path="wtccc1-a-gwas-on-coronary-artery-disease-cad.html"><a href="wtccc1-a-gwas-on-coronary-artery-disease-cad.html#section-2"><i class="fa fa-check"></i><b>7.2</b> Section 2<span></span></a></li>
+<li class="chapter" data-level="7.3" data-path="wtccc1-a-gwas-on-coronary-artery-disease-cad.html"><a href="wtccc1-a-gwas-on-coronary-artery-disease-cad.html#section-3"><i class="fa fa-check"></i><b>7.3</b> Section 3<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="mendelian-randomization-mr.html"><a href="mendelian-randomization-mr.html"><i class="fa fa-check"></i><b>10</b> Mendelian Randomization (MR)<span></span></a>
+<li class="chapter" data-level="8" data-path="post-gwas-analyses.html"><a href="post-gwas-analyses.html"><i class="fa fa-check"></i><b>8</b> Post-GWAS Analyses<span></span></a>
 <ul>
-<li class="chapter" data-level="10.1" data-path="mendelian-randomization-mr.html"><a href="mendelian-randomization-mr.html#section-1-7"><i class="fa fa-check"></i><b>10.1</b> Section 1<span></span></a></li>
-<li class="chapter" data-level="10.2" data-path="mendelian-randomization-mr.html"><a href="mendelian-randomization-mr.html#section-2-7"><i class="fa fa-check"></i><b>10.2</b> Section 2<span></span></a></li>
-<li class="chapter" data-level="10.3" data-path="mendelian-randomization-mr.html"><a href="mendelian-randomization-mr.html#section-3-7"><i class="fa fa-check"></i><b>10.3</b> Section 3<span></span></a></li>
+<li class="chapter" data-level="8.1" data-path="post-gwas-analyses.html"><a href="post-gwas-analyses.html#section-1-1"><i class="fa fa-check"></i><b>8.1</b> Section 1<span></span></a></li>
+<li class="chapter" data-level="8.2" data-path="post-gwas-analyses.html"><a href="post-gwas-analyses.html#section-2-1"><i class="fa fa-check"></i><b>8.2</b> Section 2<span></span></a></li>
+<li class="chapter" data-level="8.3" data-path="post-gwas-analyses.html"><a href="post-gwas-analyses.html#section-3-1"><i class="fa fa-check"></i><b>8.3</b> Section 3<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="mendelian-randomization-mr-1.html"><a href="mendelian-randomization-mr-1.html"><i class="fa fa-check"></i><b>11</b> Mendelian Randomization (MR)<span></span></a>
+<li class="chapter" data-level="9" data-path="conditional-analysis.html"><a href="conditional-analysis.html"><i class="fa fa-check"></i><b>9</b> Conditional analysis<span></span></a>
 <ul>
-<li class="chapter" data-level="11.1" data-path="mendelian-randomization-mr-1.html"><a href="mendelian-randomization-mr-1.html#section-1-8"><i class="fa fa-check"></i><b>11.1</b> Section 1<span></span></a></li>
-<li class="chapter" data-level="11.2" data-path="mendelian-randomization-mr-1.html"><a href="mendelian-randomization-mr-1.html#section-2-8"><i class="fa fa-check"></i><b>11.2</b> Section 2<span></span></a></li>
-<li class="chapter" data-level="11.3" data-path="mendelian-randomization-mr-1.html"><a href="mendelian-randomization-mr-1.html#section-3-8"><i class="fa fa-check"></i><b>11.3</b> Section 3<span></span></a></li>
+<li class="chapter" data-level="9.1" data-path="conditional-analysis.html"><a href="conditional-analysis.html#section-1-2"><i class="fa fa-check"></i><b>9.1</b> Section 1<span></span></a></li>
+<li class="chapter" data-level="9.2" data-path="conditional-analysis.html"><a href="conditional-analysis.html#section-2-2"><i class="fa fa-check"></i><b>9.2</b> Section 2<span></span></a></li>
+<li class="chapter" data-level="9.3" data-path="conditional-analysis.html"><a href="conditional-analysis.html#section-3-2"><i class="fa fa-check"></i><b>9.3</b> Section 3<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="12" data-path="license-your-gitbook.html"><a href="license-your-gitbook.html"><i class="fa fa-check"></i><b>12</b> License your GitBook<span></span></a></li>
-<li class="chapter" data-level="13" data-path="license-your-gitbook-1.html"><a href="license-your-gitbook-1.html"><i class="fa fa-check"></i><b>13</b> License your GitBook<span></span></a></li>
+<li class="chapter" data-level="10" data-path="statistical-finemapping.html"><a href="statistical-finemapping.html"><i class="fa fa-check"></i><b>10</b> Statistical finemapping<span></span></a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="statistical-finemapping.html"><a href="statistical-finemapping.html#section-1-3"><i class="fa fa-check"></i><b>10.1</b> Section 1<span></span></a></li>
+<li class="chapter" data-level="10.2" data-path="statistical-finemapping.html"><a href="statistical-finemapping.html#section-2-3"><i class="fa fa-check"></i><b>10.2</b> Section 2<span></span></a></li>
+<li class="chapter" data-level="10.3" data-path="statistical-finemapping.html"><a href="statistical-finemapping.html#section-3-3"><i class="fa fa-check"></i><b>10.3</b> Section 3<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="functional-mapping-and-annotation-of-gwas.html"><a href="functional-mapping-and-annotation-of-gwas.html"><i class="fa fa-check"></i><b>11</b> Functional Mapping and Annotation of GWAS<span></span></a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="functional-mapping-and-annotation-of-gwas.html"><a href="functional-mapping-and-annotation-of-gwas.html#section-1-4"><i class="fa fa-check"></i><b>11.1</b> Section 1<span></span></a></li>
+<li class="chapter" data-level="11.2" data-path="functional-mapping-and-annotation-of-gwas.html"><a href="functional-mapping-and-annotation-of-gwas.html#section-2-4"><i class="fa fa-check"></i><b>11.2</b> Section 2<span></span></a></li>
+<li class="chapter" data-level="11.3" data-path="functional-mapping-and-annotation-of-gwas.html"><a href="functional-mapping-and-annotation-of-gwas.html#section-3-4"><i class="fa fa-check"></i><b>11.3</b> Section 3<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="phenome-wide-association-study-phewas.html"><a href="phenome-wide-association-study-phewas.html"><i class="fa fa-check"></i><b>12</b> Phenome-Wide Association Study (PheWAS)<span></span></a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="phenome-wide-association-study-phewas.html"><a href="phenome-wide-association-study-phewas.html#section-1-5"><i class="fa fa-check"></i><b>12.1</b> Section 1<span></span></a></li>
+<li class="chapter" data-level="12.2" data-path="phenome-wide-association-study-phewas.html"><a href="phenome-wide-association-study-phewas.html#section-2-5"><i class="fa fa-check"></i><b>12.2</b> Section 2<span></span></a></li>
+<li class="chapter" data-level="12.3" data-path="phenome-wide-association-study-phewas.html"><a href="phenome-wide-association-study-phewas.html#section-3-5"><i class="fa fa-check"></i><b>12.3</b> Section 3<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="mendelian-randomization-mr.html"><a href="mendelian-randomization-mr.html"><i class="fa fa-check"></i><b>13</b> Mendelian Randomization (MR)<span></span></a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="mendelian-randomization-mr.html"><a href="mendelian-randomization-mr.html#section-1-6"><i class="fa fa-check"></i><b>13.1</b> Section 1<span></span></a></li>
+<li class="chapter" data-level="13.2" data-path="mendelian-randomization-mr.html"><a href="mendelian-randomization-mr.html#section-2-6"><i class="fa fa-check"></i><b>13.2</b> Section 2<span></span></a></li>
+<li class="chapter" data-level="13.3" data-path="mendelian-randomization-mr.html"><a href="mendelian-randomization-mr.html#section-3-6"><i class="fa fa-check"></i><b>13.3</b> Section 3<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="mendelian-randomization-mr-1.html"><a href="mendelian-randomization-mr-1.html"><i class="fa fa-check"></i><b>14</b> Mendelian Randomization (MR)<span></span></a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="mendelian-randomization-mr-1.html"><a href="mendelian-randomization-mr-1.html#section-1-7"><i class="fa fa-check"></i><b>14.1</b> Section 1<span></span></a></li>
+<li class="chapter" data-level="14.2" data-path="mendelian-randomization-mr-1.html"><a href="mendelian-randomization-mr-1.html#section-2-7"><i class="fa fa-check"></i><b>14.2</b> Section 2<span></span></a></li>
+<li class="chapter" data-level="14.3" data-path="mendelian-randomization-mr-1.html"><a href="mendelian-randomization-mr-1.html#section-3-7"><i class="fa fa-check"></i><b>14.3</b> Section 3<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="license-your-gitbook.html"><a href="license-your-gitbook.html"><i class="fa fa-check"></i><b>15</b> License your GitBook<span></span></a></li>
+<li class="chapter" data-level="16" data-path="license-your-gitbook-1.html"><a href="license-your-gitbook-1.html"><i class="fa fa-check"></i><b>16</b> License your GitBook<span></span></a></li>
 <li><a href="references.html#references">References<span></span></a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -179,12 +279,12 @@
 <div id="programs-you-need" class="section level2 hasAnchor" number="2.2">
 <h2><span class="header-section-number">2.2</span> Programs you need<a href="prerequisites.html#programs-you-need" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <!-- Made this table with https://www.tablesgenerator.com/markdown_tables -->
-<p>You need few programs for this practical, or for your (future) genetic epidemiology work for that matter.</p>
+<p>You need few programs for this practical, or for your (future) genetic epidemiology work for that matter (<strong>Table 1</strong>).</p>
 <table>
 <colgroup>
-<col width="5%" />
-<col width="14%" />
-<col width="80%" />
+<col width="11%" />
+<col width="33%" />
+<col width="54%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -224,10 +324,7 @@
 <div id="the-terminal" class="section level2 hasAnchor" number="2.3">
 <h2><span class="header-section-number">2.3</span> The Terminal<a href="prerequisites.html#the-terminal" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>For all the above programs, except RStudio, you will need the <code>Terminal</code>. This comes with every major operating system; on Windows it is called ‘PowerShell’, but let’s not go there. And regardless, you will (have to start to) make your own scripts. The benefit of using scripts is that each step in your workflow is clearly stipulated and annotated, and it allows for greater reproducibility, easier troubleshooting, and scaling up to high-performance computer clusters.</p>
-<div id="navigating-the-terminal" class="section level3 hasAnchor" number="2.3.1">
-<h3><span class="header-section-number">2.3.1</span> Navigating the Terminal<a href="prerequisites.html#navigating-the-terminal" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>First, let’s download the data you need to your Desktop: <a href="">LINK</a>.</p>
-<p>Now open the terminal, it should be on the left in the toolbar as a little black computer-monitor-like icon.
+<p>Open the terminal, it should be on the left in the toolbar as a little black computer-monitor-like icon.
 Mac users can type <code>command + space</code> and type <code>terminal</code>, a terminal screen should open.</p>
 <blockquote>
 <p>From now on we will use little code blocks like the example to indicate a code you should type/copy-paste and hit enter. If a code is followed by a comment, it is indicated by a # - you don’t need to copy-paste and execute this.</p>
@@ -236,6 +333,16 @@ Mac users can type <code>command + space</code> and type <code>terminal</code>, 
 
 CODE BLOCK # some comment here
 </code></pre>
+<div id="download-the-data" class="section level3 hasAnchor" number="2.3.1">
+<h3><span class="header-section-number">2.3.1</span> Download the data<a href="prerequisites.html#download-the-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>First, let’s start by downloading the data you need for this course to your Desktop: <a href="">LINK</a>.</p>
+<p>Alternatively, you could do this through this command. This will create a directory on your Desktop with the command <code>mkdir</code>. The <code>-v</code> flag indicates the program should be <em>verbose</em>, meaning it should tell you what it is doing.</p>
+<pre><code>mkdir -v ~/Desktop/practical/</code></pre>
+<pre><code>wget &quot;https://www.dropbox.com/sh/kumfwm7drt2flhp/AAB5n0OcUvJixI9pNiymx6-La?dl=0&quot; -P ~/Desktop/practical/
+</code></pre>
+</div>
+<div id="navigating-the-terminal" class="section level3 hasAnchor" number="2.3.2">
+<h3><span class="header-section-number">2.3.2</span> Navigating the Terminal<a href="prerequisites.html#navigating-the-terminal" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>You can navigate around the computer through the terminal by typing <code>cd &lt;path&gt;</code>; <code>cd</code> stands for “change directory” and <path> means “some_file_directory_you_want_to_go_to”.</p>
 <pre><code># For Linux/macOS Users
 cd ~ # will bring you to your home directory
@@ -264,13 +371,20 @@ ls -lS # shows the files as list sorted by size</code></pre>
 
 sudo apt-get install libssl-dev</code></pre>
 <p>Now close the terminal window - really making sure that the terminal-program has quit.</p>
-<p>Open a new terminal window and open <code>r</code> by simply typing <code>R</code>. You should install the following packages, and then you’re good to go!</p>
+<p>Open a new terminal window and open <code>r</code> by simply typing <code>R</code> or <code>r</code>. You should install the following packages, and then you’re good to go!</p>
 <pre><code>install.packages(c(&quot;httr&quot;, &quot;usethis&quot;, &quot;data.table&quot;, &quot;devtools&quot;, &quot;qqman&quot;, &quot;CMplot&quot;, &quot;tibble&quot;, &quot;plotly&quot;, &quot;dplyr&quot;))
-
-library(c(&quot;httr&quot;, &quot;usethis&quot;, &quot;data.table&quot;, &quot;devtools&quot;, &quot;qqman&quot;, &quot;CMplot&quot;, &quot;tibble&quot;, &quot;plotly&quot;, &quot;dplyr&quot;))
-devtools::install_github(&quot;kassambara/ggpubr&quot;)
-library(&quot;ggpubr&quot;)
-</code></pre>
+devtools::install_github(&quot;kassambara/ggpubr&quot;)</code></pre>
+<p>You should load these packages too.</p>
+<pre><code>library(&quot;ggpubr&quot;)
+library(&quot;httr&quot;)
+library(&quot;usethis&quot;)
+library(&quot;data.table&quot;)
+library(&quot;devtools&quot;)
+library(&quot;qqman&quot;)
+library(&quot;CMplot&quot;)
+library(&quot;tibble&quot;)
+library(&quot;plotly&quot;)
+library(&quot;dplyr&quot;)</code></pre>
 <p>All in all this may take some time, good moment to relax, review your notes, stretch your legs, or take a coffee.</p>
 
 </div>

@@ -41,6 +41,46 @@
   hidelinks,
   pdfcreator={LaTeX via pandoc}}
 \urlstyle{same} % disable monospaced font for URLs
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
 \usepackage{longtable,booktabs,array}
 \usepackage{calc} % for calculating minipage widths
 % Correct order of tables after \paragraph or \subparagraph
@@ -83,8 +123,8 @@
 \bibliographystyle{apalike}
 
 \title{A primer in Human Cardiovascular Genetics}
-\author{\href{https://swvanderlaan.github.iio}{dr. Sander W. van der Laan} \href{https://www.twitter.com/swvanderlaan}{\includegraphics[width=0.05\textwidth,height=\textheight]{./img/_social_media/Twitter social icons - circle - blue.png}} \href{mailto:s.w.vanderlaan@gmail.com}{\includegraphics[width=0.05\textwidth,height=\textheight]{./img/_social_media/Email_icon.png}}}
-\date{Version 1.0.0 \textbar{} last update: 2022-03-24}
+\author{\href{https://swvanderlaan.github.iio}{dr. Sander W. van der Laan} \href{https://www.twitter.com/swvanderlaan}{\includegraphics[width=0.025\textwidth,height=\textheight]{./img/_social_media/Twitter social icons - circle - blue.png}} \href{mailto:s.w.vanderlaan@gmail.com}{\includegraphics[width=0.025\textwidth,height=\textheight]{./img/_social_media/Email_icon.png}}}
+\date{Version 1.0.0 \textbar{} last update: 2022-03-25}
 
 \begin{document}
 \maketitle
@@ -150,17 +190,15 @@ With respect to imputation you should also get familiar with the following two w
 
 We work with a team of enthusiastic lecturers with experience in bioinformatics, GWAS, genetic analyses, Mendelian randomization, and epidemiology. This year the team consists of:
 
-\begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 0\tabcolsep) * \real{0.2083}}@{}}
-\toprule
-\endhead
-\includegraphics[width=0.15\textwidth,height=\textheight]{./img/_team/sander_vander_laan.jpg} Sander W. van der Laan \emph{Assistant professor}Course coordinator\href{mailto:s.w.vanderlaan-2@umcutrecht.nl}{\nolinkurl{s.w.vanderlaan-2@umcutrecht.nl}} \textbar{} \href{http://www.twitter.com/swvanderlaan}{swvanderlaan} \\
-\includegraphics[width=0.15\textwidth,height=\textheight]{./img/_team/charlotte_onland.jpg} Charlotte Onland-Moret \emph{Associate Professor}\href{mailto:N.C.Onland@umcutrecht.nl}{\nolinkurl{N.C.Onland@umcutrecht.nl}} \textbar{} \href{http://www.twitter.com/nconland}{nconland} \\
-\href{./img/_team/jessica_van_setten.jpg}{} Jessica van Setten \emph{Assistant professor}\href{mailto:j.vansetten@umcutrecht.nl}{\nolinkurl{j.vansetten@umcutrecht.nl}} \textbar{} \href{http://www.twitter.com/j_vansetten}{j\_vansetten} \\
- \\
- \\
-\bottomrule
-\end{longtable}
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\includegraphics[width=0.15\textwidth,height=\textheight]{./img/_team/sander_vander_laan.jpg} Sander W. van der Laan \emph{Assistant professor}Course coordinator\href{mailto:s.w.vanderlaan-2@umcutrecht.nl}{\nolinkurl{s.w.vanderlaan-2@umcutrecht.nl}} \textbar{} \href{http://www.twitter.com/swvanderlaan}{swvanderlaan}
+
+\includegraphics[width=0.15\textwidth,height=\textheight]{./img/_team/charlotte_onland.jpg} Charlotte Onland-Moret \emph{Associate Professor}\href{mailto:N.C.Onland@umcutrecht.nl}{\nolinkurl{N.C.Onland@umcutrecht.nl}} \textbar{} \href{http://www.twitter.com/nconland}{nconland}
+
+\includegraphics[width=0.15\textwidth,height=\textheight]{./img/_team/jessica_van_setten.jpg} Jessica van Setten \emph{Assistant professor}\href{mailto:j.vansetten@umcutrecht.nl}{\nolinkurl{j.vansetten@umcutrecht.nl}} \textbar{} \href{http://www.twitter.com/j_vansetten}{j\_vansetten}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
 \hypertarget{final-thoughts}{%
 \section{Final thoughts}\label{final-thoughts}}
@@ -190,12 +228,12 @@ For this practical we use a Windows laptop with Ubuntu on a VirtualMachine. Ther
 \hypertarget{programs-you-need}{%
 \section{Programs you need}\label{programs-you-need}}
 
-You need few programs for this practical, or for your (future) genetic epidemiology work for that matter.
+You need few programs for this practical, or for your (future) genetic epidemiology work for that matter (\textbf{Table 1}).
 
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.0500}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.1462}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.8038}}@{}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.1161}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3393}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.5446}}@{}}
 \toprule
 \begin{minipage}[b]{\linewidth}\raggedright
 \textbf{Program}
@@ -226,12 +264,7 @@ Mendelian randomization can be done either with the \href{http://cnsgenomics.com
 
 For all the above programs, except RStudio, you will need the \texttt{Terminal}. This comes with every major operating system; on Windows it is called `PowerShell', but let's not go there. And regardless, you will (have to start to) make your own scripts. The benefit of using scripts is that each step in your workflow is clearly stipulated and annotated, and it allows for greater reproducibility, easier troubleshooting, and scaling up to high-performance computer clusters.
 
-\hypertarget{navigating-the-terminal}{%
-\subsection{Navigating the Terminal}\label{navigating-the-terminal}}
-
-First, let's download the data you need to your Desktop: \href{}{LINK}.
-
-Now open the terminal, it should be on the left in the toolbar as a little black computer-monitor-like icon.
+Open the terminal, it should be on the left in the toolbar as a little black computer-monitor-like icon.
 Mac users can type \texttt{command\ +\ space} and type \texttt{terminal}, a terminal screen should open.
 
 \begin{quote}
@@ -243,6 +276,24 @@ CODE BLOCK
 
 CODE BLOCK # some comment here
 \end{verbatim}
+
+\hypertarget{download-the-data}{%
+\subsection{Download the data}\label{download-the-data}}
+
+First, let's start by downloading the data you need for this course to your Desktop: \href{}{LINK}.
+
+Alternatively, you could do this through this command. This will create a directory on your Desktop with the command \texttt{mkdir}. The \texttt{-v} flag indicates the program should be \emph{verbose}, meaning it should tell you what it is doing.
+
+\begin{verbatim}
+mkdir -v ~/Desktop/practical/
+\end{verbatim}
+
+\begin{verbatim}
+wget "https://www.dropbox.com/sh/kumfwm7drt2flhp/AAB5n0OcUvJixI9pNiymx6-La?dl=0" -P ~/Desktop/practical/
+\end{verbatim}
+
+\hypertarget{navigating-the-terminal}{%
+\subsection{Navigating the Terminal}\label{navigating-the-terminal}}
 
 You can navigate around the computer through the terminal by typing \texttt{cd\ \textless{}path\textgreater{}}; \texttt{cd} stands for ``change directory'' and means ``some\_file\_directory\_you\_want\_to\_go\_to''.
 
@@ -294,20 +345,1756 @@ sudo apt-get install libssl-dev
 
 Now close the terminal window - really making sure that the terminal-program has quit.
 
-Open a new terminal window and open \texttt{r} by simply typing \texttt{R}. You should install the following packages, and then you're good to go!
+Open a new terminal window and open \texttt{r} by simply typing \texttt{R} or \texttt{r}. You should install the following packages, and then you're good to go!
 
 \begin{verbatim}
 install.packages(c("httr", "usethis", "data.table", "devtools", "qqman", "CMplot", "tibble", "plotly", "dplyr"))
-
-library(c("httr", "usethis", "data.table", "devtools", "qqman", "CMplot", "tibble", "plotly", "dplyr"))
 devtools::install_github("kassambara/ggpubr")
+\end{verbatim}
+
+You should load these packages too.
+
+\begin{verbatim}
 library("ggpubr")
+library("httr")
+library("usethis")
+library("data.table")
+library("devtools")
+library("qqman")
+library("CMplot")
+library("tibble")
+library("plotly")
+library("dplyr")
 \end{verbatim}
 
 All in all this may take some time, good moment to relax, review your notes, stretch your legs, or take a coffee.
 
 \hypertarget{basics-of-a-genome-wide-association-study-gwas}{%
 \chapter{Basics of a Genome-Wide Association Study (GWAS)}\label{basics-of-a-genome-wide-association-study-gwas}}
+
+Now that you understand a bit of the navigation in Unix-systems, we will continue with the practical. We will make use of a dummy dataset containing cases and controls. We will explain and execute the following steps:
+
+\begin{itemize}
+\tightlist
+\item
+  convert raw data to a more memory-efficient format
+\item
+  apply extensive quality control
+\item
+  perform association testing
+\end{itemize}
+
+\hypertarget{converting-datasets}{%
+\section{Converting datasets}\label{converting-datasets}}
+
+The format in which genotype data are returned to investigators varies among genome-wide SNP platforms and genotyping centers. Usually genotypes have been called by a genotyping center and returned in the standard \texttt{PED} and \texttt{MAP} file formats.
+
+A \texttt{PED} file is a white space (space or tab)-delimited file in which each line represents one individual and the first six columns are mandatory and in the following order:
+
+\begin{itemize}
+\tightlist
+\item
+  `Family ID',
+\item
+  `Individual ID',
+\item
+  `Paternal ID',
+\item
+  `Maternal ID',
+\item
+  `Sex (1=male, 2=female, 0=missing)', and
+\item
+  `Phenotype (1=unaffected, 2=affected, 0=missing)'.
+\end{itemize}
+
+The subsequent columns denote genotypes that can be any character (e.g., 1, 2, 3, 4 or A, C, G, T). Zero denotes a missing genotype. Each SNP must have two alleles (i.e., both alleles are either present or absent).
+The order of SNPs in the PED file is given in the MAP file, in which each line denotes a single marker and the four white-space--separated columns are chromosome (1--22, X, Y or 0 for unplaced), marker name (typically an rs number), genetic distance in Morgans (this can be fixed to 0) and base-pair position (bp units).
+
+Let's start by using \texttt{PLINK} to converting the datasets to a lighter, binary form (a \texttt{BED}-file). BED files save data in a more memory- and time-efficient manner (binary files) to facilitate the analysis of large-scale data \href{mailto:sets@purcell2007}{\nolinkurl{sets@purcell2007}}. PLINK creates a \texttt{.log} file (named \texttt{raw-GWA-data.log}) that details (among other information) the implemented commands, the number of cases and controls in the input files, any excluded data and the genotyping rate in the remaining data. This file is very useful for checking whether the software is successfully completing commands.
+
+Make sure you are in the right directory. Do you remember how to get there?
+
+\begin{verbatim}
+cd ~/Desktop/practical
+\end{verbatim}
+
+\emph{No worries for now: I've done this already for you!}
+
+\begin{verbatim}
+plink --file rawdata/raw-GWA-data --make-bed --out rawdata/rawdata
+\end{verbatim}
+
+\hypertarget{quality-control}{%
+\section{Quality control}\label{quality-control}}
+
+We are ready for some quality control and quality assurance, heavily inspired by Anderson \emph{et al.}@anderson2010 and Laurie \emph{et al.}@laurie2010. In general, we should check out a couple of things regarding the data quality on two levels:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\tightlist
+\item
+  samples
+\item
+  variants
+\end{enumerate}
+
+So, we will investigate the following:
+
+\begin{itemize}
+\tightlist
+\item
+  Are the \emph{sexes} based on genetic data matching the ones given by the phenotype file?
+\item
+  Identify individuals that are outliers in terms of missing data (\emph{call rate}) or heterozygosity rates. This could indicate a genotyping error or sample swap.
+\item
+  Identify duplicated or related individuals.
+\item
+  Identify individuals with divergent ancestry.
+\item
+  What are the allele frequencies?
+\item
+  What is the per-SNP call rate?
+\item
+  In the case of a case-control study (which is the case here), we need to check differential missingness between cases and controls. By the way: you could extent this to for instance `genotyping platform', or `hospital of inclusion', if you think this might influence the genotyping experiment technically.
+\end{itemize}
+
+Right, on to step 1 of the QC in (Chapter @ref(gwas\_basic\_sample\_qc)).
+
+\hypertarget{sample-qc}{%
+\chapter{Sample QC}\label{sample-qc}}
+
+Let's start with the per-sample quality control.
+
+\hypertarget{sex}{%
+\section{Sex}\label{sex}}
+
+We need to identify of individuals with discordant sex information comparing phenotypic and genotypic data. Let's calculate the mean homozygosity rate across X-chromosome markers for each individual in the study.
+
+\begin{verbatim}
+plink --bfile rawdata/rawdata --check-sex --out rawdata/rawdata
+\end{verbatim}
+
+This produces a file with the following columns:
+
+\begin{itemize}
+\tightlist
+\item
+  \emph{FID} Family ID
+\item
+  \emph{IID} Within-family ID
+\item
+  \emph{PEDSEX} Sex code in input file
+\item
+  \emph{SNPSEX} Imputed sex code (1 = male, 2 = female, 0 = unknown)
+\item
+  \emph{STATUS} `OK' if PEDSEX and SNPSEX match and are nonzero, `PROBLEM' otherwise
+\item
+  \emph{F} Inbreeding coefficient, considering only X chromosome. Not present with `y-only'.
+\item
+  \emph{YCOUNT} Number of nonmissing genotype calls on Y chromosome. Requires `ycount'/`y-only'.
+\end{itemize}
+
+We need to get a list of individuals with discordant sex data.
+
+\begin{verbatim}
+cat rawdata/rawdata.sexcheck | awk '$5 =="STATUS" || $5 =="PROBLEM"'  > rawdata/rawdata.sexprobs.txt
+\end{verbatim}
+
+Let's have a look at the results.
+
+\begin{verbatim}
+cat rawdata/rawdata.sexprobs.txt
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{sexissues }\OtherTok{\textless{}{-}}\NormalTok{ data.table}\SpecialCharTok{::}\FunctionTok{fread}\NormalTok{(}\FunctionTok{paste0}\NormalTok{(COURSE\_loc,}\StringTok{"/rawdata/rawdata.sexprobs.txt"}\NormalTok{))}
+\NormalTok{knitr}\SpecialCharTok{::}\FunctionTok{kable}\NormalTok{(sexissues, }\AttributeTok{caption =} \StringTok{"Sex issues"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{table}
+
+\caption{\label{tab:unnamed-chunk-1}Sex issues}
+\centering
+\begin{tabular}[t]{r|r|r|r|l|r}
+\hline
+FID & IID & PEDSEX & SNPSEX & STATUS & F\\
+\hline
+772 & 772 & 2 & 0 & PROBLEM & 0.3084\\
+\hline
+853 & 853 & 2 & 0 & PROBLEM & 0.3666\\
+\hline
+1920 & 1920 & 2 & 0 & PROBLEM & 0.4066\\
+\hline
+\end{tabular}
+\end{table}
+
+When the homozygosity rate (\emph{F}) is more than 0.2, but less than 0.8, the genotype data are inconclusive regarding the sex of an individual and these are marked in column \emph{SNPSEX} with a 0, and the column \emph{STATUS} ``PROBLEM''.
+
+Report the IDs of individuals with discordant sex information to those who conducted sex phenotyping. In situations in which discrepancy cannot be resolved, add the family ID (FID) and individual ID (IID) of the samples to a file named ``fail-sexcheck-qc.txt'' (one individual per line, tab delimited).
+
+\begin{verbatim}
+grep "PROBLEM" rawdata/rawdata.sexcheck | awk '{ print $1, $2}'  > rawdata/fail-sexcheck-qc.txt
+\end{verbatim}
+
+\hypertarget{sample-callrates}{%
+\section{Sample Callrates}\label{sample-callrates}}
+
+Let's get an overview of the missing data per sample and per SNP.
+
+\begin{verbatim}
+plink --bfile rawdata/rawdata --missing --out rawdata/rawdata
+\end{verbatim}
+
+This produces two files, \texttt{rawdata/rawdata.imiss} and \texttt{rawdata/rawdata.lmiss}. In the .imiss file the \emph{N\_MISS} column denotes the number of missing SNPs, and the \emph{F\_MISS} column denotes the proportion of missing SNPs per individual.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{raw\_IMISS }\OtherTok{\textless{}{-}}\NormalTok{ data.table}\SpecialCharTok{::}\FunctionTok{fread}\NormalTok{(}\FunctionTok{paste0}\NormalTok{(COURSE\_loc, }\StringTok{"/rawdata/rawdata.imiss"}\NormalTok{))}
+
+\NormalTok{raw\_IMISS}\SpecialCharTok{$}\NormalTok{callrate }\OtherTok{\textless{}{-}} \DecValTok{1} \SpecialCharTok{{-}}\NormalTok{ raw\_IMISS}\SpecialCharTok{$}\NormalTok{F\_MISS}
+
+\NormalTok{ggpubr}\SpecialCharTok{::}\FunctionTok{gghistogram}\NormalTok{(raw\_IMISS, }\AttributeTok{x =} \StringTok{"callrate"}\NormalTok{,}
+                    \AttributeTok{add =} \StringTok{"mean"}\NormalTok{, }\AttributeTok{add.params =} \FunctionTok{list}\NormalTok{(}\AttributeTok{color =} \StringTok{"\#595A5C"}\NormalTok{, }\AttributeTok{linetype =} \StringTok{"dashed"}\NormalTok{, }\AttributeTok{size =} \DecValTok{1}\NormalTok{),}
+                    \AttributeTok{rug =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{bins =} \DecValTok{50}\NormalTok{,}
+                    \AttributeTok{color =} \StringTok{"\#1290D9"}\NormalTok{, }\AttributeTok{fill =} \StringTok{"\#1290D9"}\NormalTok{,}
+                    \AttributeTok{xlab =} \StringTok{"per sample call rate"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{geom\_vline}\NormalTok{(}\AttributeTok{xintercept =} \FloatTok{0.95}\NormalTok{, }\AttributeTok{linetype =} \StringTok{"dashed"}\NormalTok{,}
+                \AttributeTok{color =} \StringTok{"\#E55738"}\NormalTok{, }\AttributeTok{size =} \DecValTok{1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: geom_vline(): Ignoring `mapping` because `xintercept` was provided.
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: geom_vline(): Ignoring `data` because `xintercept` was provided.
+\end{verbatim}
+
+\includegraphics{A-primer-in-Human-Cardiovascular-Genetics_files/figure-latex/unnamed-chunk-2-1.pdf}
+
+The grey dashed line indicates the mean call rate, while the red dashed line indicates the threshold we had determined above.
+
+\hypertarget{heterozygosity-rate}{%
+\section{Heterozygosity rate}\label{heterozygosity-rate}}
+
+To properly calculate heterozygosity rate and relatedness (identity-by-descent {[}IBD{]}) we need to do four things:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\tightlist
+\item
+  pre-clean the data to get a high-quality set,
+\item
+  of independent SNPs,
+\item
+  exclude long-range linkage disequilibrium (LD) blocks that bias with these calculations, and
+\item
+  exclude A/T and C/G SNPs as these may be ambivalent in interpretation when frequencies between cases and controls are close (MAF ± 0.45),
+\item
+  remove all non-autosomal SNPs.
+\end{enumerate}
+
+We will use the following settings:
+
+\begin{itemize}
+\tightlist
+\item
+  remove A/T and C/G SNPs with the flag \texttt{-\/-exclude\ rawdata/all.atcg.variants.txt},
+\item
+  call rate \textless1\% with the flag \texttt{-\/-geno\ 0.10},
+\item
+  Hardy-Weinberg Equilibrium (HWE) p-value \textgreater{} 1x10-3 with the flag \texttt{-\/-hwe\ 1e-3},
+\item
+  and MAF\textgreater10\% with the flag \texttt{-\/-maf\ 0.10},
+\item
+  prune the data to only select independent SNPs (with low LD r\^{}2) of one pair each with \texttt{r\^{}2\ =\ 0.2} with the flags \texttt{-\/-indep-pairwise\ 100\ 10\ 0.2} and \texttt{-\/-extract\ rawdata/raw-GWA-data.prune.in},
+\item
+  SNPs in long-range LD regions (for example: MHC chr 6 25.8-36Mb, chr 8 inversion 6-16Mb, chr17 40-45Mb, and a few more) with the flag \texttt{-\/-exclude\ range\ rawdata/exclude\_problematic\_range.txt},
+\item
+  remove non-autosomal SNPs with the flag \texttt{-\/-allow-no-sex\ -\/-autosome}.
+\end{itemize}
+
+First, get a list of A/T and C/G SNPs.
+
+\begin{verbatim}
+cat rawdata/rawdata.bim | \
+awk '($5 == "A" && $6 == "T") || ($5 == "T" && $6 == "A") || ($5 == "C" && $6 == "G") || ($5 == "G" && $6 == "C")' | awk '{ print $2, $1, $4, $3, $5, $6 }' \
+> rawdata/all.atcg.variants.txt
+\end{verbatim}
+
+Second, clean the data and get a list of independent SNPs.
+
+\begin{verbatim}
+plink --bfile rawdata/rawdata \
+--allow-no-sex --autosome \
+--maf 0.10 --geno 0.10 --hwe 1e-3 \
+--indep-pairwise 100 10 0.2 \
+--exclude range rawdata/exclude_problematic_range.txt \
+--make-bed --out rawdata/rawdata.clean.temp
+\end{verbatim}
+
+\begin{quote}
+Please note, we have create a dataset without taking into account LD structure. Thus the flag \texttt{-\/-indep-pairwise\ 100\ 10\ 0.2} doesn't actually work. However, with real-data you can use it to prune out unwanted SNPs in high LD.
+\end{quote}
+
+Third, exclude the pruned SNPs. Note, how we include a file to exclude high-LD for the purpose of the practical.
+
+\begin{verbatim}
+plink --bfile rawdata/rawdata.clean.temp \
+--extract rawdata/raw-GWA-data.prune.in \
+--make-bed --out rawdata/rawdata.clean.ultraclean.temp
+\end{verbatim}
+
+Fourth, remove the A/T and C/G SNPs.
+
+\begin{verbatim}
+plink --bfile rawdata/rawdata.clean.ultraclean.temp \
+--exclude rawdata/all.atcg.variants.txt \
+--make-bed --out rawdata/rawdata.clean.ultraclean
+\end{verbatim}
+
+\begin{quote}
+Please note, this dataset doesn't actually include this type of SNP, hence \texttt{rawdata/all.atcg.variants.txt} is empty! Again, you can use this command in real-data to exclude A/T and C/G SNPs.
+\end{quote}
+
+Lastly, remove the temporary files.
+
+\begin{verbatim}
+rm -v rawdata/*.temp*
+\end{verbatim}
+
+Finally, we can calculate the heterozygosity rate.
+
+\begin{verbatim}
+plink --bfile rawdata/rawdata.clean.ultraclean --het --out rawdata/rawdata.clean.ultraclean
+\end{verbatim}
+
+This creates the file \texttt{rawdata/rawdata.clean.ultraclean.het}, in which the third column denotes the observed number of homozygous genotypes, O(Hom), and the fifth column denotes the number of nonmissing genotypes, N(NM), per individual. We can now calculate the observed heterozygosity rate per individual using the formula (N(NM) - O(Hom))/N(NM).
+
+Often there is a correlation between heterozygosity rate and missing data. Thus, we should plot the observed heterozygosity rate per individual on the x-axis and the proportion of missing SNP, that is the `SNP call rate', per individuals on the y-axis.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{raw\_HET }\OtherTok{\textless{}{-}}\NormalTok{ data.table}\SpecialCharTok{::}\FunctionTok{fread}\NormalTok{(}\FunctionTok{paste0}\NormalTok{(COURSE\_loc, }\StringTok{"/rawdata/rawdata.clean.ultraclean.het"}\NormalTok{))}
+
+\NormalTok{raw\_IMISS}\SpecialCharTok{$}\NormalTok{logF\_MISS }\OtherTok{=} \FunctionTok{log10}\NormalTok{(raw\_IMISS}\SpecialCharTok{$}\NormalTok{F\_MISS)}
+\NormalTok{prop\_miss }\OtherTok{=} \SpecialCharTok{{-}}\FloatTok{1.522879}
+
+\NormalTok{raw\_HET}\SpecialCharTok{$}\NormalTok{meanHet }\OtherTok{=}\NormalTok{ (raw\_HET}\SpecialCharTok{$}\StringTok{\textasciigrave{}}\AttributeTok{N(NM)}\StringTok{\textasciigrave{}} \SpecialCharTok{{-}}\NormalTok{ raw\_HET}\SpecialCharTok{$}\StringTok{\textasciigrave{}}\AttributeTok{O(HOM)}\StringTok{\textasciigrave{}}\NormalTok{)}\SpecialCharTok{/}\NormalTok{raw\_HET}\SpecialCharTok{$}\StringTok{\textasciigrave{}}\AttributeTok{N(NM)}\StringTok{\textasciigrave{}}
+\NormalTok{lower\_meanHet }\OtherTok{=} \FunctionTok{mean}\NormalTok{(raw\_HET}\SpecialCharTok{$}\NormalTok{meanHet) }\SpecialCharTok{{-}}\NormalTok{ (}\DecValTok{2}\SpecialCharTok{*}\FunctionTok{sd}\NormalTok{(raw\_HET}\SpecialCharTok{$}\NormalTok{meanHet))}
+\NormalTok{upper\_meanHet }\OtherTok{=} \FunctionTok{mean}\NormalTok{(raw\_HET}\SpecialCharTok{$}\NormalTok{meanHet) }\SpecialCharTok{+}\NormalTok{ (}\DecValTok{2}\SpecialCharTok{*}\FunctionTok{sd}\NormalTok{(raw\_HET}\SpecialCharTok{$}\NormalTok{meanHet))}
+
+\NormalTok{raw\_IMISSHET }\OtherTok{=} \FunctionTok{merge}\NormalTok{(raw\_IMISS, raw\_HET, }\AttributeTok{by =} \StringTok{"IID"}\NormalTok{)}
+\NormalTok{raw\_IMISSHET}\SpecialCharTok{$}\NormalTok{FID.y }\OtherTok{\textless{}{-}} \ConstantTok{NULL}
+\FunctionTok{colnames}\NormalTok{(raw\_IMISSHET)[}\FunctionTok{colnames}\NormalTok{(raw\_IMISSHET)}\SpecialCharTok{==}\StringTok{"FID.x"}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"FID"}
+
+\NormalTok{colors  }\OtherTok{\textless{}{-}} \FunctionTok{densCols}\NormalTok{(raw\_IMISSHET}\SpecialCharTok{$}\NormalTok{logF\_MISS, raw\_IMISSHET}\SpecialCharTok{$}\NormalTok{meanHet)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning in KernSmooth::bkde2D(x, bandwidth = bandwidth, gridsize = nbin, :
+## Binning grid too coarse for current (small) bandwidth: consider increasing
+## 'gridsize'
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ggpubr}\SpecialCharTok{::}\FunctionTok{ggscatter}\NormalTok{(raw\_IMISSHET, }\AttributeTok{x =} \StringTok{"logF\_MISS"}\NormalTok{, }\AttributeTok{y =} \StringTok{"meanHet"}\NormalTok{,}
+                  \AttributeTok{color =}\NormalTok{ colors,}
+                  \AttributeTok{xlab =} \StringTok{"Proportion of missing genotypes"}\NormalTok{, }\AttributeTok{ylab =} \StringTok{"Heterozygosity rate"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{scale\_x\_continuous}\NormalTok{(}\AttributeTok{labels=}\FunctionTok{c}\NormalTok{(}\StringTok{"{-}3"} \OtherTok{=} \StringTok{"0.001"}\NormalTok{, }\StringTok{"{-}2"} \OtherTok{=} \StringTok{"0.01"}\NormalTok{,}
+                              \StringTok{"{-}1"} \OtherTok{=} \StringTok{"0.1"}\NormalTok{, }\StringTok{"0"} \OtherTok{=} \StringTok{"1"}\NormalTok{)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_hline}\NormalTok{(}\AttributeTok{yintercept =}\NormalTok{ lower\_meanHet, }\AttributeTok{linetype =} \StringTok{"dashed"}\NormalTok{,}
+                \AttributeTok{color =} \StringTok{"\#E55738"}\NormalTok{, }\AttributeTok{size =} \DecValTok{1}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{geom\_hline}\NormalTok{(}\AttributeTok{yintercept =}\NormalTok{ upper\_meanHet, }\AttributeTok{linetype =} \StringTok{"dashed"}\NormalTok{,}
+                \AttributeTok{color =} \StringTok{"\#E55738"}\NormalTok{, }\AttributeTok{size =} \DecValTok{1}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{geom\_vline}\NormalTok{(}\AttributeTok{xintercept =}\NormalTok{ prop\_miss, }\AttributeTok{linetype =} \StringTok{"dashed"}\NormalTok{,}
+                \AttributeTok{color =} \StringTok{"\#E55738"}\NormalTok{, }\AttributeTok{size =} \DecValTok{1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning in if (color %in% names(data) & is.null(add.params$color))
+## add.params$color <- color: the condition has length > 1 and only the first
+## element will be used
+\end{verbatim}
+
+\includegraphics{A-primer-in-Human-Cardiovascular-Genetics_files/figure-latex/unnamed-chunk-3-1.pdf}
+
+Examine the plot to decide reasonable thresholds at which to exclude individuals based on elevated missing or extreme heterozygosity. We chose to exclude all individuals with a genotype failure rate \textgreater= 0.03 (vertical dashed line) and/or a heterozygosity rate ± 3 s.d. from the mean (horizontal dashed lines). Add the FID and IID of the samples failing this QC to the file named \texttt{fail-imisshet-qc.txt}.
+
+\begin{quote}
+How would you create this file?
+\end{quote}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{raw\_IMISSHETsub }\OtherTok{=} \FunctionTok{subset}\NormalTok{(raw\_IMISSHET, logF\_MISS }\SpecialCharTok{\textgreater{}}\NormalTok{ prop\_miss }\SpecialCharTok{|}\NormalTok{ (meanHet }\SpecialCharTok{\textless{}}\NormalTok{ lower\_meanHet }\SpecialCharTok{|}\NormalTok{ meanHet }\SpecialCharTok{\textgreater{}}\NormalTok{ upper\_meanHet),}
+                         \AttributeTok{select =} \FunctionTok{c}\NormalTok{(}\StringTok{"FID"}\NormalTok{, }\StringTok{"IID"}\NormalTok{))}
+\NormalTok{data.table}\SpecialCharTok{::}\FunctionTok{fwrite}\NormalTok{(raw\_IMISSHETsub, }\FunctionTok{paste0}\NormalTok{(COURSE\_loc,}\StringTok{"/rawdata/fail{-}raw\_IMISSHETsub.txt"}\NormalTok{), }\AttributeTok{sep =}\StringTok{" "}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{relatedness}{%
+\section{Relatedness}\label{relatedness}}
+
+We calculate Identity-by-Descent (IBS), to identify duplicated and related samples (\textbf{Table 2}). IBS is measured by calculating pi-hat, which is in essence the proportion of the DNA that a pair of samples share. To calculate this, we needed this ultraclean dataset, without low-quality SNPs and without high-LD regions. Now we are ready
+
+\begin{longtable}[]{@{}ll@{}}
+\toprule
+\textbf{Relation} & \textbf{\% DNA sharing} \\
+\midrule
+\endhead
+Monozygotic twins & ±100\% \\
+Parents/child & ±50\% \\
+Sibling & ±50\% \\
+Fraternal twins & ±50\% \\
+Grandparent/grandchild & ±25\% \\
+Aunt/Uncle/Niece/Nephew & ±25\% \\
+Half-sibling & ±25\% \\
+First-cousin & ±12.5\% \\
+Half first-cousin & ±6.25\% \\
+First-cousin once removed & ±6.25\% \\
+Second-cousin & ±3.13\% \\
+Second-cousin once removed & ±1.56\% \\
+\bottomrule
+\end{longtable}
+
+\textbf{Table 2:} Familial relations and \% DNA shared.
+
+\begin{verbatim}
+plink --bfile rawdata/rawdata.clean.ultraclean --genome --out rawdata/rawdata.clean.ultraclean
+\end{verbatim}
+
+We can now identify all pairs of individuals with an IBD \textgreater{} 0.185. The code looks at the individual call rates stored in rawdata.imiss and outputs the IDs of the individual with the lowest call rate to `fail-IBD-QC.txt' for subsequent removal.
+
+\begin{verbatim}
+cd rawdata
+
+perl ../scripts/run-IBD-QC.pl rawdata rawdata.clean.ultraclean
+
+cd ..
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ibdcallissues }\OtherTok{\textless{}{-}}\NormalTok{ data.table}\SpecialCharTok{::}\FunctionTok{fread}\NormalTok{(}\FunctionTok{paste0}\NormalTok{(COURSE\_loc,}\StringTok{"/rawdata/fail{-}IBD{-}QC.txt"}\NormalTok{))}
+\NormalTok{knitr}\SpecialCharTok{::}\FunctionTok{kable}\NormalTok{(ibdcallissues, }\AttributeTok{caption =} \StringTok{"Failed IBD and callrate"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{table}
+
+\caption{\label{tab:unnamed-chunk-5}Failed IBD and callrate}
+\centering
+\begin{tabular}[t]{r|r}
+\hline
+V1 & V2\\
+\hline
+1952 & 1952\\
+\hline
+1953 & 1953\\
+\hline
+1954 & 1954\\
+\hline
+1955 & 1955\\
+\hline
+1957 & 1957\\
+\hline
+1959 & 1959\\
+\hline
+1961 & 1961\\
+\hline
+1963 & 1963\\
+\hline
+1965 & 1965\\
+\hline
+1967 & 1967\\
+\hline
+1969 & 1969\\
+\hline
+1971 & 1971\\
+\hline
+1973 & 1973\\
+\hline
+1975 & 1975\\
+\hline
+\end{tabular}
+\end{table}
+
+\hypertarget{ancestral-background}{%
+\section{Ancestral background}\label{ancestral-background}}
+
+\hypertarget{hapmap-3}{%
+\subsection{HapMap 3}\label{hapmap-3}}
+
+We will project our data to a reference, in this example HapMap Phase II (HapMap3), which includes individuals from four distinct global populations, but it could also be 1000G phase 1. Or any other reference depending on the dataset.
+
+To this end we will merge our data with HapMap3. The alleles at each marker must be aligned to the same DNA strand to allow our data to merge correctly. Because not all SNPs are required for this analysis, A-\textgreater T and C-\textgreater G SNPs, which are more difficult to align, can be omitted.
+
+Let's start by creating a new BED file, excluding from the GWA data those SNPs that do not feature in the genotype data of the four original HapMap3 populations.
+
+\begin{verbatim}
+plink --bfile rawdata/rawdata --extract reference/hapmap3r2_CEU.CHB.JPT.YRI.no-at-cg-snps.txt --make-bed --out rawdata/rawdata.hm3
+\end{verbatim}
+
+Now, let's try to merge \texttt{rawdata/rawdata.hm3} with the HapMap data and extract the pruned SNP set from above.
+
+\begin{verbatim}
+plink --bfile rawdata/rawdata.hm3 --bmerge reference/hapmap3r2_CEU.CHB.JPT.YRI.founders.no-at-cg-snps --extract rawdata/raw-GWA-data.prune.in --make-bed --out rawdata/rawdata.hapmap3r2.pruned
+\end{verbatim}
+
+You probably get an error like below:
+
+\begin{verbatim}
+Error: 59 variants with 3+ alleles present.
+* If you believe this is due to strand inconsistency, try --flip with
+  rawdata/rawdata.hapmap3r2.pruned-merge.missnp.
+  (Warning: if this seems to work, strand errors involving SNPs with A/T or C/G
+  alleles probably remain in your data.  If LD between nearby SNPs is high,
+  --flip-scan should detect them.)
+* If you are dealing with genuine multiallelic variants, we recommend exporting
+  that subset of the data to VCF (via e.g. '--recode vcf'), merging with
+  another tool/script, and then importing the result; PLINK is not yet suited
+  to handling them.
+\end{verbatim}
+
+Because all A-\textgreater T and C-\textgreater G SNPs have been removed before undertaking this analysis, all other SNPs that are discordant for DNA strands between the two data sets are listed in the \texttt{rawdata.hapmap3r2.pruned-merge.missnp} file. To align the strands across the data sets and successfully complete the merge, we can do the following:
+
+\begin{verbatim}
+plink --bfile rawdata/rawdata --extract reference/hapmap3r2_CEU.CHB.JPT.YRI.no-at-cg-snps.txt --flip rawdata/rawdata.hapmap3r2.pruned-merge.missnp --make-bed --out rawdata/rawdata.hm3
+\end{verbatim}
+
+And repeat this:
+
+\begin{verbatim}
+plink --bfile rawdata/rawdata.hm3 --bmerge reference/hapmap3r2_CEU.CHB.JPT.YRI.founders.no-at-cg-snps --extract rawdata/raw-GWA-data.prune.in --make-bed --out rawdata/rawdata.hapmap3r2.pruned
+\end{verbatim}
+
+Let's not be lazy and clean this dataset too.
+
+\begin{verbatim}
+plink --bfile rawdata/rawdata.hapmap3r2.pruned \
+--allow-no-sex --autosome \
+--maf 0.10 --geno 0.10 --hwe 1e-3 \
+--indep-pairwise 100 10 0.2 \
+--exclude range rawdata/exclude_problematic_range.txt \
+--make-bed --out rawdata/rawdata.hapmap3r2.pruned.clean
+\end{verbatim}
+
+\hypertarget{principal-component-analysis}{%
+\subsection{Principal Component Analysis}\label{principal-component-analysis}}
+
+Using a Principal Component Analysis (PCA) we can reduce the dimensions of the data, and project the ``ancestral distances''. In other words, the principal component 1 (the first dimension) and principal component 2 (the second dimension) which will capture most of the variation in the data and represent how much each sample is alike the next.
+
+First, we make a copy of the BIM and FAM-files.
+
+\begin{verbatim}
+cp -v rawdata/rawdata.hapmap3r2.pruned.bim rawdata/rawdata.hapmap3r2.pruned.pedsnp
+cp -v rawdata/rawdata.hapmap3r2.pruned.fam rawdata/rawdata.hapmap3r2.pruned.pedind
+\end{verbatim}
+
+\hypertarget{installing-eigensoft}{%
+\subsubsection{Installing EIGENSOFT}\label{installing-eigensoft}}
+
+Now, we are ready to perform the PCA using \texttt{smartPCA}. For this \texttt{EIGENSOFT} needs to be installed. Unfortunately, this doesn't work on this VirtualMachine you are working on - you need \texttt{gsl}, \texttt{openblas} and \texttt{llvm} to make it work.
+
+\textbf{Installing EIGENSOFT}
+
+I am still sharing the code you'll need - you could try this on your personal MacBook for instance.
+
+\begin{verbatim}
+mkdir -v $HOME/git
+cd $HOME/git
+git clone https://github.com/DReichLab/EIG.git
+cd EIG/src
+make
+make install
+\end{verbatim}
+
+\textbf{Executing smartPCA}
+
+Should you run this on your personal laptop, be aware it will take a few minutes to do so - perfect moment for a cup of coffee or to stretch your legs.
+
+\begin{verbatim}
+perl ~/git/EIG/bin/smartpca.perl \
+-i rawdata/rawdata.hapmap3r2.pruned.bed \
+-a rawdata/rawdata.hapmap3r2.pruned.pedsnp \
+-b rawdata/rawdata.hapmap3r2.pruned.pedind \
+-k 10 \
+-o rawdata/rawdata.hapmap3r2.pruned.pca \
+-p rawdata/rawdata.hapmap3r2.pruned.plot \
+-e rawdata/rawdata.hapmap3r2.pruned.eval \
+-l rawdata/rawdata.hapmap3r2.pruned.log \
+-m 5 \
+-t 10 \
+-s 6.0 \
+-w reference/hapmap3r2_CEU.CHB.JPT.YRI-pca-populations.txt
+\end{verbatim}
+
+See below an explanation of the above commands:
+
+\texttt{../bin/smartpca.perl}
+
+-i example.geno : genotype file in any format (see ../CONVERTF/README)
+-a example.snp : snp file in any format (see ../CONVERTF/README)
+-b example.ind : indiv file in any format (see ../CONVERTF/README)
+-k k : (Default is 10) number of principal components to output
+-o example.pca : output file of principal components. Individuals removed
+as outliers will have all values set to 0.0 in this file.
+-p example.plot : prefix of output plot files of top 2 principal components.
+(labeling individuals according to labels in indiv file)
+-e example.eval : output file of all eigenvalues
+-l example.log : output logfile
+-m maxiter : (Default is 5) maximum number of outlier removal iterations.
+To turn off outlier removal, set -m 0.
+-t topk : (Default is 10) number of principal components along which
+to remove outliers during each outlier removal iteration.
+-s sigma : (Default is 6.0) number of standard deviations which an
+individual must exceed, along one of topk top principal
+components, in order to be removed as an outlier.
+
+OPTIONAL FLAGS:
+-w poplist : compute eigenvectors using populations in poplist only,
+where poplist is an ASCII file with one population per line
+-y plotlist : output plot will include populations in plotlist only,
+where plotlist is an ASCII file with one population per line
+-z badsnpname : list of SNPs which should be excluded from the analysis
+-q YES/NO : If set to YES, assume that there is a single population and
+the population field contains real-valued phenotypes.
+(Corresponds to qtmode parameter in smartpca program.)
+The default value for this parameter is NO.
+
+\begin{quote}
+NOTE: I made sure that in your download the results from this analysis are available for usage. That is:
+
+\begin{itemize}
+\tightlist
+\item
+  rawdata/rawdata.hapmap3r2.pruned.evec
+\item
+  rawdata/rawdata.hapmap3r2.pruned.par
+\end{itemize}
+\end{quote}
+
+\hypertarget{pca-plotting}{%
+\subsubsection{PCA plotting}\label{pca-plotting}}
+
+Now that we have calculated PCs, we can start plotting them. Let's create a scatter diagram of the first two principal components, including all individuals in the file \texttt{rawdata.hapmap3r2.pruned.pca.evec} (the first and second principal components are columns 2 and 3, respectively). Use the data in column 4 to color the points according to sample origin. An R script for creating this plot (\texttt{scripts/plot-pca-results.Rscript}) is provided (although any standard graphing software can be used).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{PCA }\OtherTok{\textless{}{-}}\NormalTok{ data.table}\SpecialCharTok{::}\FunctionTok{fread}\NormalTok{(}\FunctionTok{paste0}\NormalTok{(COURSE\_loc,}\StringTok{"/rawdata/rawdata.hapmap3r2.pruned.pca.evec"}\NormalTok{), }\AttributeTok{header =} \ConstantTok{FALSE}\NormalTok{, }\AttributeTok{skip =} \DecValTok{1}\NormalTok{)}
+
+\CommentTok{\# Case/Control {-}\textgreater{} black, pch = "+"}
+\CommentTok{\# CEU = 3 {-}\textgreater{} red, pch = 20}
+\CommentTok{\# CHB = 4 {-}\textgreater{} pink, pch = 20}
+\CommentTok{\# JPT = 5 {-}\textgreater{} purple, pch = 20}
+\CommentTok{\# YRI = 6 {-}\textgreater{} green, pch = 20}
+\NormalTok{PCA}\SpecialCharTok{$}\NormalTok{V12[PCA}\SpecialCharTok{$}\NormalTok{V12 }\SpecialCharTok{==} \StringTok{"Case"}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"Case"} \CommentTok{\#595A5C}
+\NormalTok{PCA}\SpecialCharTok{$}\NormalTok{V12[PCA}\SpecialCharTok{$}\NormalTok{V12 }\SpecialCharTok{==} \StringTok{"Control"}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"Control"} \CommentTok{\#595A5C}
+\NormalTok{PCA}\SpecialCharTok{$}\NormalTok{V12[PCA}\SpecialCharTok{$}\NormalTok{V12 }\SpecialCharTok{==} \StringTok{"3"}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"CEU"} \CommentTok{\#E55738}
+\NormalTok{PCA}\SpecialCharTok{$}\NormalTok{V12[PCA}\SpecialCharTok{$}\NormalTok{V12 }\SpecialCharTok{==} \StringTok{"4"}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"CHB"} \CommentTok{\#D5267B}
+\NormalTok{PCA}\SpecialCharTok{$}\NormalTok{V12[PCA}\SpecialCharTok{$}\NormalTok{V12 }\SpecialCharTok{==} \StringTok{"5"}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"JPT"} \CommentTok{\#9A3480}
+\NormalTok{PCA}\SpecialCharTok{$}\NormalTok{V12[PCA}\SpecialCharTok{$}\NormalTok{V12 }\SpecialCharTok{==} \StringTok{"6"}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"YRI"} \CommentTok{\#49A01D}
+
+
+
+\NormalTok{PCAplot }\OtherTok{\textless{}{-}}\NormalTok{ ggpubr}\SpecialCharTok{::}\FunctionTok{ggscatter}\NormalTok{(PCA, }\AttributeTok{x =} \StringTok{"V2"}\NormalTok{, }\AttributeTok{y =} \StringTok{"V3"}\NormalTok{,}
+                             \AttributeTok{color =} \StringTok{"V12"}\NormalTok{,}
+                             \AttributeTok{palette =} \FunctionTok{c}\NormalTok{(}\StringTok{"\#595A5C"}\NormalTok{, }\StringTok{"\#595A5C"}\NormalTok{, }\StringTok{"\#E55738"}\NormalTok{, }\StringTok{"\#D5267B"}\NormalTok{, }\StringTok{"\#9A3480"}\NormalTok{, }\StringTok{"\#49A01D"}\NormalTok{),}
+                             \AttributeTok{shape =} \StringTok{"V12"}\NormalTok{,}
+                             \AttributeTok{xlab =} \StringTok{"principal component 1"}\NormalTok{, }\AttributeTok{ylab =} \StringTok{"principal component 2"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{geom\_hline}\NormalTok{(}\AttributeTok{yintercept =} \FloatTok{0.075}\NormalTok{, }\AttributeTok{linetype =} \StringTok{"dashed"}\NormalTok{,}
+                \AttributeTok{color =} \StringTok{"\#A2A3A4"}\NormalTok{, }\AttributeTok{size =} \DecValTok{1}\NormalTok{)}
+
+\NormalTok{  ggpubr}\SpecialCharTok{::}\FunctionTok{ggpar}\NormalTok{(PCAplot,}
+                \AttributeTok{title =} \StringTok{"Principal Component Analysis"}\NormalTok{,}
+                \AttributeTok{subtitle =} \StringTok{"Reference population: HapMap 3"}\NormalTok{,}
+                \AttributeTok{legend.title =} \StringTok{"Populations"}\NormalTok{, }\AttributeTok{legend =} \StringTok{"right"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{A-primer-in-Human-Cardiovascular-Genetics_files/figure-latex/unnamed-chunk-6-1.pdf}
+
+Derive PC1 and PC2 thresholds so that only individuals who match the given ancestral population are included. For populations of European descent, this will be either the CEU or TSI HapMap3 individuals. Here, we chose to exclude all individuals with a second principal component score less than 0.072.
+
+Write the FID and IID of these individuals to a file called \texttt{fail-ancestry-QC.txt}.
+
+\begin{verbatim}
+cat rawdata/rawdata.hapmap3r2.pruned.pca.evec | tail -n +2 | \
+awk '$3 < 0.075' | awk '{ print $1 }' | awk -F":" '{ print $1, $2 }' > rawdata/fail-ancestry-QC.txt
+\end{verbatim}
+
+Choosing which thresholds to apply (and thus which individuals to remove) is not a straightforward process. The key is to remove those individuals with greatly divergent ancestry, as these samples introduce the most bias to the study. Identification of more fine-scale ancestry can be conducted by using less divergent reference samples (\emph{e.g.}, within Europe, stratification could be identified using the CEU, TSI (Italian), GBR (British), FIN (Finnish) and IBS (Iberian) samples from the 1,000 Genomes Project (\url{http://www.1000genomes.org/})). Robust identification of fine-scale population structure often requires the construction of many (2--10) principal components.
+
+\hypertarget{g-phase-1}{%
+\subsection{1000G phase 1}\label{g-phase-1}}
+
+You could do the above again but now with projecting the 1000G phase 1 populations. The all the 1000G phase 1 data is provided as tutorial data (), as well as a subset including \emph{only} the variants in our \texttt{rawdata}. You can try and run the PCA with 1000G and project the results -- let's do that in our spare time and continue for now with the QC based on HM3. But please, do show us the results tomorrow \ldots{} :-) For your convenience there are some codes below which you may need.
+
+Get a list of relevant variants.
+
+\begin{verbatim}
+cat rawdata/rawdata.bim | grep "rs" > rawdata/all.variants.txt
+\end{verbatim}
+
+Extract those from the 1000G phase 1 data.
+
+\begin{verbatim}
+plink --bfile reference/1kg_phase1_all/1kg_phase1_all --extract rawdata/all.variants.txt --make-bed --out reference/1kg_phase1_all/1kg_phase1_raw
+\end{verbatim}
+
+Get a list of A/T and C/G variants from 1000G to exclude.
+
+\begin{verbatim}
+cat reference/1kg_phase1_all/1kg_phase1_raw.bim | \
+awk '($5 == "A" && $6 == "T") || ($5 == "T" && $6 == "A") || ($5 == "C" && $6 == "G") || ($5 == "G" && $6 == "C")' | awk '{ print $2, $1, $4, $3, $5, $6 }' \
+> reference/1kg_phase1_all/all.1kg.atcg.variants.txt
+\end{verbatim}
+
+Exclude those A/T and C/G variants in both datasets.
+
+\begin{verbatim}
+plink --bfile reference/1kg_phase1_all/1kg_phase1_raw --exclude reference/1kg_phase1_all/all.1kg.atcg.variants.txt --make-bed --out reference/1kg_phase1_all/1kg_phase1_raw_no_atcg
+
+plink --bfile rawdata/rawdata --exclude reference/1kg_phase1_all/all.1kg.atcg.variants.txt --make-bed --out rawdata/rawdata_1kg_phase1_raw_no_atcg
+\end{verbatim}
+
+Try and merge the data while extracting the pruned SNP-set.
+
+\begin{verbatim}
+plink --bfile rawdata/rawdata_1kg_phase1_raw_no_atcg --bmerge reference/1kg_phase1_all/1kg_phase1_raw_no_atcg --extract rawdata/raw-GWA-data.prune.in --make-bed --out rawdata/rawdata.1kg_phase1.pruned
+\end{verbatim}
+
+There probably is an error \ldots{}
+
+\begin{verbatim}
+Error: 72 variants with 3+ alleles present.
+* If you believe this is due to strand inconsistency, try --flip with
+  rawdata/rawdata.1kg_phase1.pruned-merge.missnp.
+  (Warning: if this seems to work, strand errors involving SNPs with A/T or C/G
+  alleles probably remain in your data.  If LD between nearby SNPs is high,
+  --flip-scan should detect them.)
+* If you are dealing with genuine multiallelic variants, we recommend exporting
+  that subset of the data to VCF (via e.g. '--recode vcf'), merging with
+  another tool/script, and then importing the result; PLINK is not yet suited
+  to handling them.
+See https://www.cog-genomics.org/plink/1.9/data#merge3 for more discussion.
+\end{verbatim}
+
+So let's flip some variants.
+
+\begin{verbatim}
+plink --bfile rawdata/rawdata --exclude reference/1kg_phase1_all/all.1kg.atcg.variants.txt --flip rawdata/rawdata.1kg_phase1.pruned-merge.missnp --make-bed --out rawdata/rawdata_1kg_phase1_raw_no_atcg
+\end{verbatim}
+
+Let's try and merge the data while extracting the pruned SNP-set.
+
+\begin{verbatim}
+plink --bfile rawdata/rawdata_1kg_phase1_raw_no_atcg --bmerge reference/1kg_phase1_all/1kg_phase1_raw_no_atcg --extract rawdata/raw-GWA-data.prune.in --make-bed --out rawdata/rawdata.1kg_phase1.pruned
+\end{verbatim}
+
+There still is an error -- there are multi-allelic variants present which PLINK can't handle.
+
+\begin{verbatim}
+Error: 14 variants with 3+ alleles present.
+* If you believe this is due to strand inconsistency, try --flip with
+  rawdata/rawdata.1kg_phase1.pruned-merge.missnp.
+  (Warning: if this seems to work, strand errors involving SNPs with A/T or C/G
+  alleles probably remain in your data.  If LD between nearby SNPs is high,
+  --flip-scan should detect them.)
+* If you are dealing with genuine multiallelic variants, we recommend exporting
+  that subset of the data to VCF (via e.g. '--recode vcf'), merging with
+  another tool/script, and then importing the result; PLINK is not yet suited
+  to handling them.
+See https://www.cog-genomics.org/plink/1.9/data#merge3 for more discussion.
+\end{verbatim}
+
+Let's just remove these multi-allelic variants.
+
+\begin{verbatim}
+plink --bfile rawdata/rawdata_1kg_phase1_raw_no_atcg --exclude rawdata/rawdata.1kg_phase1.pruned-merge.missnp --make-bed --out rawdata/rawdata_1kg_phase1_raw_no_atcg_bi
+\end{verbatim}
+
+Now we should be able to merge the data\ldots{}
+
+\begin{verbatim}
+plink --bfile rawdata/rawdata_1kg_phase1_raw_no_atcg_bi --bmerge reference/1kg_phase1_all/1kg_phase1_raw_no_atcg --extract rawdata/raw-GWA-data.prune.in --make-bed --out rawdata/rawdata.1kg_phase1.pruned
+\end{verbatim}
+
+That worked! Let's run a PCA.
+
+\begin{verbatim}
+cp -v rawdata/rawdata.1kg_phase1.pruned.bim rawdata/rawdata.1kg_phase1.pruned.pedsnp
+cp -v rawdata/rawdata.1kg_phase1.pruned.fam rawdata/rawdata.1kg_phase1.pruned.pedind
+\end{verbatim}
+
+\begin{verbatim}
+perl ~/git/EIG/bin/smartpca.perl \
+-i rawdata/rawdata.1kg_phase1.pruned.bed \
+-a rawdata/rawdata.1kg_phase1.pruned.pedsnp \
+-b rawdata/rawdata.1kg_phase1.pruned.pedind \
+-k 10 \
+-o rawdata/rawdata.1kg_phase1.pruned.pca \
+-p rawdata/rawdata.1kg_phase1.pruned.plot \
+-e rawdata/rawdata.1kg_phase1.pruned.eval \
+-l rawdata/rawdata.1kg_phase1.pruned.log \
+-m 5 \
+-t 10 \
+-s 6.0 \
+-w reference/1kg_phase1_all/1kg-pca-populations.txt
+\end{verbatim}
+
+And we can try to plot this result as well.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{PCA\_1kG }\OtherTok{\textless{}{-}}\NormalTok{ data.table}\SpecialCharTok{::}\FunctionTok{fread}\NormalTok{(}\FunctionTok{paste0}\NormalTok{(COURSE\_loc,}\StringTok{"/rawdata/rawdata.1kg\_phase1.pruned.pca.evec"}\NormalTok{), }\AttributeTok{header =} \ConstantTok{FALSE}\NormalTok{, }\AttributeTok{skip =} \DecValTok{1}\NormalTok{)}
+
+\CommentTok{\# Population    Description Super population    Code    Counts}
+\CommentTok{\# ASW   African Ancestry in Southwest US                              AFR   4     \#49A01D}
+\CommentTok{\# CEU   Utah residents with Northern and Western European ancestry  EUR 7     \#E55738}
+\CommentTok{\# CHB   Han Chinese in Bejing, China                                  EAS   8     \#9A3480}
+\CommentTok{\# CHS   Southern Han Chinese, China                                 EAS 9     \#705296}
+\CommentTok{\# CLM   Colombian in Medellin, Colombia                             MR  10  \#8D5B9A}
+\CommentTok{\# FIN   Finnish in Finland                                          EUR 12  \#2F8BC9}
+\CommentTok{\# GBR   British in England and Scotland                             EUR 13  \#1290D9}
+\CommentTok{\# IBS   Iberian populations in Spain                                  EUR   16  \#1396D8}
+\CommentTok{\# JPT   Japanese in Tokyo, Japan                                      EAS   18  \#D5267B}
+\CommentTok{\# LWK   Luhya in Webuye, Kenya                                      AFR 20  \#78B113}
+\CommentTok{\# MXL   Mexican Ancestry in Los Angeles, California                 AMR 22  \#F59D10}
+\CommentTok{\# PUR   Puerto Rican in Puerto Rico                                 AMR 25  \#FBB820}
+\CommentTok{\# TSI   Toscani in Italy                                              EUR   27  \#4C81BF}
+\CommentTok{\# YRI   Yoruba in Ibadan, Nigeria                                     AFR   28  \#C5D220}
+
+\NormalTok{PCA\_1kG}\SpecialCharTok{$}\NormalTok{V12[PCA\_1kG}\SpecialCharTok{$}\NormalTok{V12 }\SpecialCharTok{==} \StringTok{"Case"}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"Case"}
+\NormalTok{PCA\_1kG}\SpecialCharTok{$}\NormalTok{V12[PCA\_1kG}\SpecialCharTok{$}\NormalTok{V12 }\SpecialCharTok{==} \StringTok{"Control"}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"Control"}
+\NormalTok{PCA\_1kG}\SpecialCharTok{$}\NormalTok{V12[PCA\_1kG}\SpecialCharTok{$}\NormalTok{V12 }\SpecialCharTok{==} \StringTok{"4"}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"ASW"}
+\NormalTok{PCA\_1kG}\SpecialCharTok{$}\NormalTok{V12[PCA\_1kG}\SpecialCharTok{$}\NormalTok{V12 }\SpecialCharTok{==} \StringTok{"7"}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"CEU"}
+\NormalTok{PCA\_1kG}\SpecialCharTok{$}\NormalTok{V12[PCA\_1kG}\SpecialCharTok{$}\NormalTok{V12 }\SpecialCharTok{==} \StringTok{"8"}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"CHB"}
+\NormalTok{PCA\_1kG}\SpecialCharTok{$}\NormalTok{V12[PCA\_1kG}\SpecialCharTok{$}\NormalTok{V12 }\SpecialCharTok{==} \StringTok{"9"}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"CHS"}
+\NormalTok{PCA\_1kG}\SpecialCharTok{$}\NormalTok{V12[PCA\_1kG}\SpecialCharTok{$}\NormalTok{V12 }\SpecialCharTok{==} \StringTok{"10"}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"CLM"}
+\NormalTok{PCA\_1kG}\SpecialCharTok{$}\NormalTok{V12[PCA\_1kG}\SpecialCharTok{$}\NormalTok{V12 }\SpecialCharTok{==} \StringTok{"12"}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"FIN"}
+\NormalTok{PCA\_1kG}\SpecialCharTok{$}\NormalTok{V12[PCA\_1kG}\SpecialCharTok{$}\NormalTok{V12 }\SpecialCharTok{==} \StringTok{"13"}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"GBR"}
+\NormalTok{PCA\_1kG}\SpecialCharTok{$}\NormalTok{V12[PCA\_1kG}\SpecialCharTok{$}\NormalTok{V12 }\SpecialCharTok{==} \StringTok{"16"}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"IBS"}
+\NormalTok{PCA\_1kG}\SpecialCharTok{$}\NormalTok{V12[PCA\_1kG}\SpecialCharTok{$}\NormalTok{V12 }\SpecialCharTok{==} \StringTok{"18"}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"JPT"}
+\NormalTok{PCA\_1kG}\SpecialCharTok{$}\NormalTok{V12[PCA\_1kG}\SpecialCharTok{$}\NormalTok{V12 }\SpecialCharTok{==} \StringTok{"20"}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"LWK"}
+\NormalTok{PCA\_1kG}\SpecialCharTok{$}\NormalTok{V12[PCA\_1kG}\SpecialCharTok{$}\NormalTok{V12 }\SpecialCharTok{==} \StringTok{"22"}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"MXL"}
+\NormalTok{PCA\_1kG}\SpecialCharTok{$}\NormalTok{V12[PCA\_1kG}\SpecialCharTok{$}\NormalTok{V12 }\SpecialCharTok{==} \StringTok{"25"}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"PUR"}
+\NormalTok{PCA\_1kG}\SpecialCharTok{$}\NormalTok{V12[PCA\_1kG}\SpecialCharTok{$}\NormalTok{V12 }\SpecialCharTok{==} \StringTok{"27"}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"TSI"}
+\NormalTok{PCA\_1kG}\SpecialCharTok{$}\NormalTok{V12[PCA\_1kG}\SpecialCharTok{$}\NormalTok{V12 }\SpecialCharTok{==} \StringTok{"28"}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"YRI"}
+
+\NormalTok{PCA\_1kGplot }\OtherTok{\textless{}{-}}\NormalTok{ ggpubr}\SpecialCharTok{::}\FunctionTok{ggscatter}\NormalTok{(PCA\_1kG, }\AttributeTok{x =} \StringTok{"V2"}\NormalTok{, }\AttributeTok{y =} \StringTok{"V3"}\NormalTok{,}
+                                 \AttributeTok{color =} \StringTok{"V12"}\NormalTok{,}
+                                 \AttributeTok{palette =} \FunctionTok{c}\NormalTok{(}\StringTok{"\#595A5C"}\NormalTok{, }\StringTok{"\#49A01D"}\NormalTok{, }\StringTok{"\#E55738"}\NormalTok{, }\StringTok{"\#9A3480"}\NormalTok{, }\StringTok{"\#705296"}\NormalTok{, }\StringTok{"\#595A5C"}\NormalTok{, }\StringTok{"\#8D5B9A"}\NormalTok{, }\StringTok{"\#2F8BC9"}\NormalTok{, }\StringTok{"\#1290D9"}\NormalTok{, }\StringTok{"\#1396D8"}\NormalTok{, }\StringTok{"\#D5267B"}\NormalTok{, }\StringTok{"\#78B113"}\NormalTok{, }\StringTok{"\#F59D10"}\NormalTok{, }\StringTok{"\#FBB820"}\NormalTok{, }\StringTok{"\#4C81BF"}\NormalTok{, }\StringTok{"\#C5D220"}\NormalTok{),}
+                                 \AttributeTok{xlab =} \StringTok{"principal component 1"}\NormalTok{, }\AttributeTok{ylab =} \StringTok{"principal component 2"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{geom\_hline}\NormalTok{(}\AttributeTok{yintercept =} \FloatTok{0.023}\NormalTok{, }\AttributeTok{linetype =} \StringTok{"dashed"}\NormalTok{,}
+                \AttributeTok{color =} \StringTok{"\#595A5C"}\NormalTok{, }\AttributeTok{size =} \DecValTok{1}\NormalTok{)}
+
+\NormalTok{  ggpubr}\SpecialCharTok{::}\FunctionTok{ggpar}\NormalTok{(PCA\_1kGplot,}
+                \AttributeTok{title =} \StringTok{"Principal Component Analysis"}\NormalTok{,}
+                \AttributeTok{subtitle =} \StringTok{"Reference population: 1000 G, phase 1"}\NormalTok{,}
+                \AttributeTok{legend.title =} \StringTok{"Populations"}\NormalTok{, }\AttributeTok{legend =} \StringTok{"right"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{A-primer-in-Human-Cardiovascular-Genetics_files/figure-latex/unnamed-chunk-7-1.pdf}
+
+In a similar fashion as in the above with the HapMap3 reference, you could remove the samples below the threshold.
+
+\hypertarget{removing-samples}{%
+\section{Removing samples}\label{removing-samples}}
+
+Finally! We have a list of samples of poor quality or divergent ancestry, and duplicated or related samples. We should remove these. Let's collect all IDs from our \texttt{fail-*}-files into a single file.
+
+\begin{verbatim}
+cat rawdata/fail-* | sort -k1 | uniq > rawdata/fail-qc-inds.txt
+\end{verbatim}
+
+This new file should now contain a list of unique individuals failing the previous QC steps which we want to remove.
+
+\begin{verbatim}
+plink --bfile rawdata/rawdata --remove rawdata/fail-qc-inds.txt --make-bed --out rawdata/clean_inds_data
+\end{verbatim}
+
+\hypertarget{per-snp-qc}{%
+\chapter{Per-SNP QC}\label{per-snp-qc}}
+
+Now that we removed samples, we can focus on low-quality variants.
+
+\hypertarget{snp-call-rates}{%
+\section{SNP call rates}\label{snp-call-rates}}
+
+We start by calculating the missing genotype rate for each SNP, in other words the per-SNP call rate.
+
+\begin{verbatim}
+plink --bfile rawdata/clean_inds_data --missing --out rawdata/clean_inds_data
+\end{verbatim}
+
+Let's visualize the results to identify a threshold for extreme genotype failure rate. We chose a callrate threshold of 3\%, but it's arbitrary and depending on the dataset and the number of samples.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{clean\_LMISS }\OtherTok{\textless{}{-}}\NormalTok{ data.table}\SpecialCharTok{::}\FunctionTok{fread}\NormalTok{(}\FunctionTok{paste0}\NormalTok{(COURSE\_loc, }\StringTok{"/rawdata/clean\_inds\_data.lmiss"}\NormalTok{))}
+
+\NormalTok{clean\_LMISS}\SpecialCharTok{$}\NormalTok{callrate }\OtherTok{\textless{}{-}} \DecValTok{1} \SpecialCharTok{{-}}\NormalTok{ clean\_LMISS}\SpecialCharTok{$}\NormalTok{F\_MISS}
+
+\NormalTok{ggpubr}\SpecialCharTok{::}\FunctionTok{gghistogram}\NormalTok{(clean\_LMISS, }\AttributeTok{x =} \StringTok{"callrate"}\NormalTok{,}
+                    \AttributeTok{add =} \StringTok{"mean"}\NormalTok{, }\AttributeTok{add.params =} \FunctionTok{list}\NormalTok{(}\AttributeTok{color =} \StringTok{"\#595A5C"}\NormalTok{, }\AttributeTok{linetype =} \StringTok{"dashed"}\NormalTok{, }\AttributeTok{size =} \DecValTok{1}\NormalTok{),}
+                    \AttributeTok{rug =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{bins =} \DecValTok{50}\NormalTok{,}
+                    \AttributeTok{color =} \StringTok{"\#1290D9"}\NormalTok{, }\AttributeTok{fill =} \StringTok{"\#1290D9"}\NormalTok{,}
+                    \AttributeTok{xlab =} \StringTok{"per SNP call rate"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{geom\_vline}\NormalTok{(}\AttributeTok{xintercept =} \FloatTok{0.95}\NormalTok{, }\AttributeTok{linetype =} \StringTok{"dashed"}\NormalTok{,}
+                \AttributeTok{color =} \StringTok{"\#E55738"}\NormalTok{, }\AttributeTok{size =} \DecValTok{1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: geom_vline(): Ignoring `mapping` because `xintercept` was provided.
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: geom_vline(): Ignoring `data` because `xintercept` was provided.
+\end{verbatim}
+
+\includegraphics{A-primer-in-Human-Cardiovascular-Genetics_files/figure-latex/unnamed-chunk-8-1.pdf}
+
+\hypertarget{differential-snp-call-rates}{%
+\section{Differential SNP call rates}\label{differential-snp-call-rates}}
+
+There could also be differences in genotype call rates between cases and controls. It is very important to check for this because these differences could lead to spurious associations. We can test all markers for differences in call rate between cases and controls, or based on
+
+\begin{verbatim}
+plink --bfile rawdata/clean_inds_data --test-missing --out rawdata/clean_inds_data
+\end{verbatim}
+
+Let's collect all the SNPs ith a significantly different (P \textless{} 0.00001) missing data rate between cases and controls.
+
+\begin{verbatim}
+cat rawdata/clean_inds_data.missing | awk '$5 < 0.00001' | awk '{ print $2 }' > rawdata/fail-diffmiss-qc.txt
+\end{verbatim}
+
+\hypertarget{allele-frequencies}{%
+\section{Allele frequencies}\label{allele-frequencies}}
+
+We should also get an idea on what the allele frequencies are in our dataset. Low frequent SNPs should probably be excluded, as these are uninformative when monomorphic (allele frequency = 0), or they may lead to spurious associations.
+
+\begin{verbatim}
+plink --bfile rawdata/clean_inds_data --freq --out rawdata/clean_inds_data
+\end{verbatim}
+
+Let's also plot these data. You can view the result below, and type over the code to do it yourself.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{clean\_FREQ }\OtherTok{\textless{}{-}}\NormalTok{ data.table}\SpecialCharTok{::}\FunctionTok{fread}\NormalTok{(}\FunctionTok{paste0}\NormalTok{(COURSE\_loc, }\StringTok{"/rawdata/clean\_inds\_data.frq"}\NormalTok{))}
+\NormalTok{ggpubr}\SpecialCharTok{::}\FunctionTok{gghistogram}\NormalTok{(clean\_FREQ, }\AttributeTok{x =} \StringTok{"MAF"}\NormalTok{,}
+                    \AttributeTok{add =} \StringTok{"mean"}\NormalTok{, }\AttributeTok{add.params =} \FunctionTok{list}\NormalTok{(}\AttributeTok{color =} \StringTok{"\#595A5C"}\NormalTok{, }\AttributeTok{linetype =} \StringTok{"dashed"}\NormalTok{, }\AttributeTok{size =} \DecValTok{1}\NormalTok{),}
+                    \AttributeTok{rug =} \ConstantTok{TRUE}\NormalTok{,}
+                    \AttributeTok{color =} \StringTok{"\#1290D9"}\NormalTok{, }\AttributeTok{fill =} \StringTok{"\#1290D9"}\NormalTok{,}
+                    \AttributeTok{xlab =} \StringTok{"minor allele frequency"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{geom\_vline}\NormalTok{(}\AttributeTok{xintercept =} \FloatTok{0.05}\NormalTok{, }\AttributeTok{linetype =} \StringTok{"dashed"}\NormalTok{,}
+                \AttributeTok{color =} \StringTok{"\#E55738"}\NormalTok{, }\AttributeTok{size =} \DecValTok{1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: Using `bins = 30` by default. Pick better value with the argument
+## `bins`.
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: geom_vline(): Ignoring `mapping` because `xintercept` was provided.
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: geom_vline(): Ignoring `data` because `xintercept` was provided.
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: Removed 3286 rows containing non-finite values (stat_bin).
+\end{verbatim}
+
+\includegraphics{A-primer-in-Human-Cardiovascular-Genetics_files/figure-latex/unnamed-chunk-9-1.pdf}
+\#\#\# A note on allele coding
+
+Oh, one more thing about alleles.
+
+\texttt{PLINK} codes alleles as follows:
+
+A1 = minor allele, the least frequent allele
+A2 = major allele, the most frequent allele
+
+And when you use \texttt{PLINK} the flag \texttt{-\/-freq} or \texttt{-\/-maf} is always relative to the A1-allele, as is the odds ratio (OR) or effect size (beta).
+
+However, \texttt{SNPTEST} makes use of the so-called OXFORD-format, this codes alleles as follows:
+
+A = the `other' allele
+B = the `coded' allele
+
+When you use \texttt{SNPTEST} it will report the allele frequency as \texttt{CAF}, in other words the \emph{coded allele frequency}, and the effect size (beta) is always relative to the B-allele. This means, \texttt{CAF} \emph{could} be the \texttt{MAF}, or \emph{minor allele frequency}, but this is \textbf{not} a given.
+
+In other words, always make sure what the allele-coding of a given program, be it \texttt{PLINK}, \texttt{SNPTEST}, \texttt{GCTA}, et cetera, is! I cannot stress this enough. Ask yourself: `what is the allele frequency refering to?', `the effect size is relative to\ldots?'.
+
+Right, let's continue.
+
+\hypertarget{hardy-weinberg-equilibrium}{%
+\section{Hardy-Weinberg Equilibrium}\label{hardy-weinberg-equilibrium}}
+
+Because we are performing a case-control genome-wide association study, we probably expect some differences in Hardy-Weinberg Equilibrium (HWE), but extreme deviations are probably indicative of genotyping errors.
+
+\begin{verbatim}
+plink --bfile rawdata/clean_inds_data --hardy --out rawdata/clean_inds_data
+\end{verbatim}
+
+Let's also plot these data. You can view the result below, and type over the code to do it yourself.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{clean\_HWE }\OtherTok{\textless{}{-}}\NormalTok{ data.table}\SpecialCharTok{::}\FunctionTok{fread}\NormalTok{(}\FunctionTok{paste0}\NormalTok{(COURSE\_loc, }\StringTok{"/rawdata/clean\_inds\_data.hwe"}\NormalTok{))}
+\NormalTok{clean\_HWE}\SpecialCharTok{$}\NormalTok{logP }\OtherTok{\textless{}{-}} \SpecialCharTok{{-}}\FunctionTok{log10}\NormalTok{(clean\_HWE}\SpecialCharTok{$}\NormalTok{P)}
+
+\NormalTok{ggpubr}\SpecialCharTok{::}\FunctionTok{gghistogram}\NormalTok{(clean\_HWE, }\AttributeTok{x =} \StringTok{"logP"}\NormalTok{,}
+                    \AttributeTok{add =} \StringTok{"mean"}\NormalTok{,}
+                    \AttributeTok{add.params =} \FunctionTok{list}\NormalTok{(}\AttributeTok{color =} \StringTok{"\#595A5C"}\NormalTok{, }\AttributeTok{linetype =} \StringTok{"dashed"}\NormalTok{, }\AttributeTok{size =} \DecValTok{1}\NormalTok{),}
+                    \AttributeTok{rug =} \ConstantTok{TRUE}\NormalTok{,}
+                    \CommentTok{\# color = "\#1290D9", fill = "\#1290D9",}
+                    \AttributeTok{color =} \StringTok{"TEST"}\NormalTok{, }\AttributeTok{fill =} \StringTok{"TEST"}\NormalTok{,}
+                    \AttributeTok{palette =} \StringTok{"lancet"}\NormalTok{,}
+                    \AttributeTok{facet.by =} \StringTok{"TEST"}\NormalTok{,}
+                    \AttributeTok{bins =} \DecValTok{50}\NormalTok{,}
+                    \AttributeTok{xlab =} \StringTok{"HWE {-}log10(P)"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{geom\_vline}\NormalTok{(}\AttributeTok{xintercept =} \DecValTok{5}\NormalTok{, }\AttributeTok{linetype =} \StringTok{"dashed"}\NormalTok{,}
+                \AttributeTok{color =} \StringTok{"\#E55738"}\NormalTok{, }\AttributeTok{size =} \DecValTok{1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{A-primer-in-Human-Cardiovascular-Genetics_files/figure-latex/unnamed-chunk-10-1.pdf}
+
+\hypertarget{final-snp-qc}{%
+\section{Final SNP QC}\label{final-snp-qc}}
+
+We are ready to perform the final QC. After inspectig the graphs we will filter on a MAF \textless{} 0.01, call rate \textless{} 0.05, and HWE \textless{} 0.00001, in addition those SNPs that failed the differential call rate test will be removed.
+
+\begin{verbatim}
+plink --bfile rawdata/clean_inds_data --exclude rawdata/fail-diffmiss-qc.txt --maf 0.01 --geno 0.05 --hwe 0.00001 --make-bed --out rawdata/cleandata
+\end{verbatim}
+
+\hypertarget{genome-wide-association-study}{%
+\chapter{Genome-wide association study}\label{genome-wide-association-study}}
+
+Now that you have learned how to perform QC, you can easily run a GWAS and execute some downstream visualisation and analyses. Let's do this with a dummy dataset.
+
+\hypertarget{exploring-the-data}{%
+\section{Exploring the data}\label{exploring-the-data}}
+
+Even though someone says that the QC was done, it is still wise and good practice to run some of the commands above to get a `feeling' about the data. So let's do this.
+
+\begin{verbatim}
+plink --bfile gwas/gwa --freq --out gwas/gwa
+
+plink --bfile gwas/gwa --missing --out gwas/gwa
+
+plink --bfile gwas/gwa --hardy --out gwas/gwa
+\end{verbatim}
+
+Let's visualise the results.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{gwas\_HWE }\OtherTok{\textless{}{-}}\NormalTok{ data.table}\SpecialCharTok{::}\FunctionTok{fread}\NormalTok{(}\FunctionTok{paste0}\NormalTok{(COURSE\_loc, }\StringTok{"/gwas/gwa.hwe"}\NormalTok{))}
+\NormalTok{gwas\_FRQ }\OtherTok{\textless{}{-}}\NormalTok{ data.table}\SpecialCharTok{::}\FunctionTok{fread}\NormalTok{(}\FunctionTok{paste0}\NormalTok{(COURSE\_loc, }\StringTok{"/gwas/gwa.frq"}\NormalTok{))}
+\NormalTok{gwas\_IMISS }\OtherTok{\textless{}{-}}\NormalTok{ data.table}\SpecialCharTok{::}\FunctionTok{fread}\NormalTok{(}\FunctionTok{paste0}\NormalTok{(COURSE\_loc, }\StringTok{"/gwas/gwa.imiss"}\NormalTok{))}
+\NormalTok{gwas\_LMISS }\OtherTok{\textless{}{-}}\NormalTok{ data.table}\SpecialCharTok{::}\FunctionTok{fread}\NormalTok{(}\FunctionTok{paste0}\NormalTok{(COURSE\_loc, }\StringTok{"/gwas/gwa.lmiss"}\NormalTok{))}
+
+\NormalTok{gwas\_HWE}\SpecialCharTok{$}\NormalTok{logP }\OtherTok{\textless{}{-}} \SpecialCharTok{{-}}\FunctionTok{log10}\NormalTok{(gwas\_HWE}\SpecialCharTok{$}\NormalTok{P)}
+
+\NormalTok{ggpubr}\SpecialCharTok{::}\FunctionTok{gghistogram}\NormalTok{(gwas\_HWE, }\AttributeTok{x =} \StringTok{"logP"}\NormalTok{,}
+                    \AttributeTok{add =} \StringTok{"mean"}\NormalTok{,}
+                    \AttributeTok{add.params =} \FunctionTok{list}\NormalTok{(}\AttributeTok{color =} \StringTok{"\#595A5C"}\NormalTok{, }\AttributeTok{linetype =} \StringTok{"dashed"}\NormalTok{, }\AttributeTok{size =} \DecValTok{1}\NormalTok{),}
+                    \AttributeTok{rug =} \ConstantTok{TRUE}\NormalTok{,}
+                    \CommentTok{\# color = "\#1290D9", fill = "\#1290D9",}
+                    \AttributeTok{color =} \StringTok{"TEST"}\NormalTok{, }\AttributeTok{fill =} \StringTok{"TEST"}\NormalTok{,}
+                    \AttributeTok{palette =} \StringTok{"lancet"}\NormalTok{,}
+                    \AttributeTok{facet.by =} \StringTok{"TEST"}\NormalTok{,}
+                    \AttributeTok{bins =} \DecValTok{50}\NormalTok{,}
+                    \AttributeTok{xlab =} \StringTok{"HWE {-}log10(P)"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{geom\_vline}\NormalTok{(}\AttributeTok{xintercept =} \DecValTok{5}\NormalTok{, }\AttributeTok{linetype =} \StringTok{"dashed"}\NormalTok{,}
+                \AttributeTok{color =} \StringTok{"\#E55738"}\NormalTok{, }\AttributeTok{size =} \DecValTok{1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{A-primer-in-Human-Cardiovascular-Genetics_files/figure-latex/unnamed-chunk-11-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ggpubr}\SpecialCharTok{::}\FunctionTok{gghistogram}\NormalTok{(gwas\_FRQ, }\AttributeTok{x =} \StringTok{"MAF"}\NormalTok{,}
+                    \AttributeTok{add =} \StringTok{"mean"}\NormalTok{, }\AttributeTok{add.params =} \FunctionTok{list}\NormalTok{(}\AttributeTok{color =} \StringTok{"\#595A5C"}\NormalTok{, }\AttributeTok{linetype =} \StringTok{"dashed"}\NormalTok{, }\AttributeTok{size =} \DecValTok{1}\NormalTok{),}
+                    \AttributeTok{rug =} \ConstantTok{TRUE}\NormalTok{,}
+                    \AttributeTok{color =} \StringTok{"\#1290D9"}\NormalTok{, }\AttributeTok{fill =} \StringTok{"\#1290D9"}\NormalTok{,}
+                    \AttributeTok{xlab =} \StringTok{"minor allele frequency"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{geom\_vline}\NormalTok{(}\AttributeTok{xintercept =} \FloatTok{0.05}\NormalTok{, }\AttributeTok{linetype =} \StringTok{"dashed"}\NormalTok{,}
+                \AttributeTok{color =} \StringTok{"\#E55738"}\NormalTok{, }\AttributeTok{size =} \DecValTok{1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: Using `bins = 30` by default. Pick better value with the argument
+## `bins`.
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: geom_vline(): Ignoring `mapping` because `xintercept` was provided.
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: geom_vline(): Ignoring `data` because `xintercept` was provided.
+\end{verbatim}
+
+\includegraphics{A-primer-in-Human-Cardiovascular-Genetics_files/figure-latex/unnamed-chunk-11-2.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{gwas\_IMISS}\SpecialCharTok{$}\NormalTok{callrate }\OtherTok{\textless{}{-}} \DecValTok{1} \SpecialCharTok{{-}}\NormalTok{ gwas\_IMISS}\SpecialCharTok{$}\NormalTok{F\_MISS}
+
+\NormalTok{ggpubr}\SpecialCharTok{::}\FunctionTok{gghistogram}\NormalTok{(gwas\_IMISS, }\AttributeTok{x =} \StringTok{"callrate"}\NormalTok{,}
+                    \AttributeTok{add =} \StringTok{"mean"}\NormalTok{, }\AttributeTok{add.params =} \FunctionTok{list}\NormalTok{(}\AttributeTok{color =} \StringTok{"\#595A5C"}\NormalTok{, }\AttributeTok{linetype =} \StringTok{"dashed"}\NormalTok{, }\AttributeTok{size =} \DecValTok{1}\NormalTok{),}
+                    \AttributeTok{rug =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{bins =} \DecValTok{50}\NormalTok{,}
+                    \AttributeTok{color =} \StringTok{"\#1290D9"}\NormalTok{, }\AttributeTok{fill =} \StringTok{"\#1290D9"}\NormalTok{,}
+                    \AttributeTok{xlab =} \StringTok{"per sample call rate"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{geom\_vline}\NormalTok{(}\AttributeTok{xintercept =} \FloatTok{0.95}\NormalTok{, }\AttributeTok{linetype =} \StringTok{"dashed"}\NormalTok{,}
+                \AttributeTok{color =} \StringTok{"\#E55738"}\NormalTok{, }\AttributeTok{size =} \DecValTok{1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: geom_vline(): Ignoring `mapping` because `xintercept` was provided.
+## geom_vline(): Ignoring `data` because `xintercept` was provided.
+\end{verbatim}
+
+\includegraphics{A-primer-in-Human-Cardiovascular-Genetics_files/figure-latex/unnamed-chunk-11-3.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{gwas\_LMISS}\SpecialCharTok{$}\NormalTok{callrate }\OtherTok{\textless{}{-}} \DecValTok{1} \SpecialCharTok{{-}}\NormalTok{ gwas\_LMISS}\SpecialCharTok{$}\NormalTok{F\_MISS}
+
+\NormalTok{ggpubr}\SpecialCharTok{::}\FunctionTok{gghistogram}\NormalTok{(gwas\_LMISS, }\AttributeTok{x =} \StringTok{"callrate"}\NormalTok{,}
+                    \AttributeTok{add =} \StringTok{"mean"}\NormalTok{, }\AttributeTok{add.params =} \FunctionTok{list}\NormalTok{(}\AttributeTok{color =} \StringTok{"\#595A5C"}\NormalTok{, }\AttributeTok{linetype =} \StringTok{"dashed"}\NormalTok{, }\AttributeTok{size =} \DecValTok{1}\NormalTok{),}
+                    \AttributeTok{rug =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{bins =} \DecValTok{50}\NormalTok{,}
+                    \AttributeTok{color =} \StringTok{"\#1290D9"}\NormalTok{, }\AttributeTok{fill =} \StringTok{"\#1290D9"}\NormalTok{,}
+                    \AttributeTok{xlab =} \StringTok{"per SNP call rate"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{geom\_vline}\NormalTok{(}\AttributeTok{xintercept =} \FloatTok{0.95}\NormalTok{, }\AttributeTok{linetype =} \StringTok{"dashed"}\NormalTok{,}
+                \AttributeTok{color =} \StringTok{"\#E55738"}\NormalTok{, }\AttributeTok{size =} \DecValTok{1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: geom_vline(): Ignoring `mapping` because `xintercept` was provided.
+## geom_vline(): Ignoring `data` because `xintercept` was provided.
+\end{verbatim}
+
+\includegraphics{A-primer-in-Human-Cardiovascular-Genetics_files/figure-latex/unnamed-chunk-11-4.pdf}
+
+\hypertarget{genetic-models}{%
+\section{Genetic models}\label{genetic-models}}
+
+A simple chi-square test of association can be done.
+
+\begin{verbatim}
+plink --bfile gwas/gwa --model --out gwas/data
+\end{verbatim}
+
+\emph{Genotypic}, \emph{dominant} and \emph{recessive} tests will not be conducted if any one of the cells in the table of case-control by genotype counts contains less than five observations. This is because the chi-square approximation may not be eliable when cell counts are small. For SNPs with MAFs \textless{} 5\%, a sample of more than 2,000 cases and controls would be required to meet this threshold and more than 50,000 would be required for SNPs with MAF \textless{} 1\%.
+
+You can change this default behaviour by adding the flag \texttt{-\/-cell}, \emph{e.g.}, we could lower the threshold to 3.
+
+\begin{verbatim}
+plink --bfile gwas/gwa --model --cell 3 --out gwas/data
+\end{verbatim}
+
+Let's review the contents of the results.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{gwas\_model }\OtherTok{\textless{}{-}}\NormalTok{ data.table}\SpecialCharTok{::}\FunctionTok{fread}\NormalTok{(}\FunctionTok{paste0}\NormalTok{(COURSE\_loc, }\StringTok{"/gwas/data.model"}\NormalTok{))}
+
+\FunctionTok{dim}\NormalTok{(gwas\_model)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1530510      10
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{N\_SNPS }\OtherTok{=} \FunctionTok{length}\NormalTok{(gwas\_model}\SpecialCharTok{$}\NormalTok{SNP)}
+
+\NormalTok{gwas\_model[}\DecValTok{1}\SpecialCharTok{:}\DecValTok{10}\NormalTok{, }\DecValTok{1}\SpecialCharTok{:}\DecValTok{10}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##     CHR       SNP A1 A2    TEST         AFF       UNAFF   CHISQ DF      P
+##  1:   1 rs3934834  T  C    GENO 23/348/1582 23/321/1521 0.26070  2 0.8778
+##  2:   1 rs3934834  T  C   TREND    394/3512    367/3363 0.12770  1 0.7209
+##  3:   1 rs3934834  T  C ALLELIC    394/3512    367/3363 0.13070  1 0.7177
+##  4:   1 rs3934834  T  C     DOM    371/1582    344/1521 0.19060  1 0.6625
+##  5:   1 rs3934834  T  C     REC     23/1930     23/1842 0.02475  1 0.8750
+##  6:   1 rs3737728  A  G    GENO 206/950/842 222/891/871 2.93100  2 0.2310
+##  7:   1 rs3737728  A  G   TREND   1362/2634   1335/2633 0.17780  1 0.6733
+##  8:   1 rs3737728  A  G ALLELIC   1362/2634   1335/2633 0.17200  1 0.6783
+##  9:   1 rs3737728  A  G     DOM    1156/842    1113/871 1.25700  1 0.2623
+## 10:   1 rs3737728  A  G     REC    206/1792    222/1762 0.80220  1 0.3704
+\end{verbatim}
+
+It contains 1530510 rows, one for each SNP, and each type of test (\emph{genotypic}, \emph{trend}, \emph{allelic}, \emph{dominant}, and \emph{recessive}) and the following columns:
+
+\begin{itemize}
+\tightlist
+\item
+  chromosome {[}CHR{]},
+\item
+  the SNP identifier {[}SNP{]},
+\item
+  the minor allele {[}A1{]} (PLINK always codes the A1-allele as the minor allele!),
+\item
+  the major allele {[}A2{]},
+\item
+  the test performed {[}TEST{]}:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    GENO (genotypic association);
+  \item
+    TREND (Cochran-Armitage trend);
+  \item
+    ALLELIC (allelic as- sociation);
+  \item
+    DOM (dominant model); and
+  \item
+    REC (recessive model){]},
+  \end{itemize}
+\item
+  the cell frequency counts for cases {[}AFF{]}, and
+\item
+  the cell frequency counts for controls {[}UNAFF{]},
+\item
+  the chi-square test statistic {[}CHISQ{]},
+\item
+  the degrees of freedom for the test {[}DF{]},
+\item
+  and the asymptotic P value {[}P{]} of association.
+\end{itemize}
+
+\hypertarget{logistic-regression}{%
+\section{Logistic regression}\label{logistic-regression}}
+
+We can also perform a test of association using logistic regression. In this case we might want to correct for covariates/confounding factors, for example age, sex, ancestral background, i.e.~principal components, and other study specific covariates (e.g.~hospital of inclusion, genotyping centre etc.). In that case each of these P values is adjusted for the effect of the covariates.
+
+When running a regression analysis, be it linear or logistic, PLINK assumes a multiplicative model. By default, when at least one male and one female is present, sex (male = 1, female = 0) is automatically added as a covariate on X chromosome SNPs, and nowhere else. The \texttt{sex} flag causes it to be added everywhere, while \texttt{no-x-sex} excludes it.
+
+\begin{verbatim}
+plink --bfile gwas/gwa --logistic sex --covar gwas/gwa.covar --out gwas/data
+\end{verbatim}
+
+Let's examine the results
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{gwas\_assoc }\OtherTok{\textless{}{-}}\NormalTok{ data.table}\SpecialCharTok{::}\FunctionTok{fread}\NormalTok{(}\FunctionTok{paste0}\NormalTok{(COURSE\_loc, }\StringTok{"/gwas/data.assoc.logistic"}\NormalTok{))}
+
+\FunctionTok{dim}\NormalTok{(gwas\_assoc)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 918306      9
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{gwas\_assoc[}\DecValTok{1}\SpecialCharTok{:}\DecValTok{9}\NormalTok{, }\DecValTok{1}\SpecialCharTok{:}\DecValTok{9}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    CHR       SNP      BP A1 TEST NMISS     OR     STAT      P
+## 1:   1 rs3934834  995669  T  ADD  3818 1.0290  0.38120 0.7031
+## 2:   1 rs3934834  995669  T  AGE  3818 1.0020  1.11800 0.2635
+## 3:   1 rs3934834  995669  T  SEX  3818 1.0120  0.19090 0.8486
+## 4:   1 rs3737728 1011278  A  ADD  3982 1.0190  0.38670 0.6990
+## 5:   1 rs3737728 1011278  A  AGE  3982 1.0020  1.09800 0.2721
+## 6:   1 rs3737728 1011278  A  SEX  3982 1.0060  0.09898 0.9212
+## 7:   1 rs6687776 1020428  T  ADD  3915 0.9692 -0.33330 0.7389
+## 8:   1 rs6687776 1020428  T  AGE  3915 1.0020  1.04000 0.2984
+## 9:   1 rs6687776 1020428  T  SEX  3915 1.0150  0.23690 0.8127
+\end{verbatim}
+
+If no model option is specified, the first row for each SNP corresponds to results for a multiplicative test of association. The C \textgreater= 0 subsequent rows for each SNP correspond to separate tests of significance for each of the C covariates included in the regression model. We can remove the covariate-specific lines from the main report by adding the \texttt{hide-covar} flag.
+
+The columns in the association results are:
+- the chromosome {[}CHR{]},
+- the SNP identifier {[}SNP{]},
+- the base-pair location {[}BP{]},
+- the minor allele {[}A1{]},
+- the test performed {[}TEST{]}: ADD (multiplicative model or genotypic model testing additivity),
+- GENO\_2DF (genotypic model),
+- DOMDEV (genotypic model testing deviation from additivity),
+- DOM (dominant model), or
+- REC (recessive model){]},
+- the number of missing individuals included {[}NMISS{]},
+- the OR relative to the A1, \emph{i.e.} minor allele,
+- the coefficient z-statistic {[}STAT{]}, and
+- the asymptotic P-value {[}P{]} of association.
+
+We need to calculate the standard error and confidence interval from the z-statistic. We can modify the effect size (OR) to output the beta by adding the \texttt{beta} flag.
+
+\hypertarget{gwas-visualisation}{%
+\section{GWAS visualisation}\label{gwas-visualisation}}
+
+Data visualization is key, not only for presentation but also to inspect the results.
+
+\hypertarget{qq-plots}{%
+\subsection{QQ plots}\label{qq-plots}}
+
+We should create \emph{quantile-quantile (QQ) plots} to compare the observed association test statistics with their expected values under the null hypothesis of no association and so assess the number, magnitude and quality of true associations.
+
+First, we will add the standard error, call rate, A2, and allele frequencies.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{gwas\_assoc\_sub }\OtherTok{\textless{}{-}} \FunctionTok{subset}\NormalTok{(gwas\_assoc, TEST }\SpecialCharTok{==} \StringTok{"ADD"}\NormalTok{)}
+\NormalTok{gwas\_assoc\_sub}\SpecialCharTok{$}\NormalTok{TEST }\OtherTok{\textless{}{-}} \ConstantTok{NULL}
+
+\NormalTok{temp }\OtherTok{\textless{}{-}} \FunctionTok{subset}\NormalTok{(gwas\_FRQ, }\AttributeTok{select =} \FunctionTok{c}\NormalTok{(}\StringTok{"SNP"}\NormalTok{, }\StringTok{"A2"}\NormalTok{, }\StringTok{"MAF"}\NormalTok{, }\StringTok{"NCHROBS"}\NormalTok{))}
+
+\NormalTok{gwas\_assoc\_subfrq }\OtherTok{\textless{}{-}} \FunctionTok{merge}\NormalTok{(gwas\_assoc\_sub, temp, }\AttributeTok{by =} \StringTok{"SNP"}\NormalTok{)}
+
+\NormalTok{temp }\OtherTok{\textless{}{-}} \FunctionTok{subset}\NormalTok{(gwas\_LMISS, }\AttributeTok{select =} \FunctionTok{c}\NormalTok{(}\StringTok{"SNP"}\NormalTok{, }\StringTok{"callrate"}\NormalTok{))}
+
+\NormalTok{gwas\_assoc\_subfrqlmiss }\OtherTok{\textless{}{-}} \FunctionTok{merge}\NormalTok{(gwas\_assoc\_subfrq, temp, }\AttributeTok{by =} \StringTok{"SNP"}\NormalTok{)}
+\FunctionTok{head}\NormalTok{(gwas\_assoc\_subfrqlmiss)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##           SNP CHR        BP A1 NMISS     OR    STAT       P A2    MAF NCHROBS
+## 1: rs10000010   4  21227772  C  3996 1.0420  0.9010 0.36760  T 0.4258    7992
+## 2: rs10000023   4  95952929  T  3957 0.9902 -0.2160 0.82900  G 0.4841    7914
+## 3: rs10000030   4 103593179  A  3991 0.9779 -0.3696 0.71170  G 0.1616    7982
+## 4:  rs1000007   2 237416793  C  4000 1.0180  0.3649 0.71520  T 0.3122    8000
+## 5: rs10000092   4  21504615  C  3963 0.9240 -1.6770 0.09354  T 0.3430    7926
+## 6: rs10000121   4 157793485  G  3919 0.9665 -0.7525 0.45170  A 0.4532    7838
+##    callrate
+## 1:  0.99900
+## 2:  0.98925
+## 3:  0.99775
+## 4:  1.00000
+## 5:  0.99075
+## 6:  0.97975
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Remember:}
+\CommentTok{\# {-} that z = beta/se}
+\CommentTok{\# {-} beta = log(OR), because log is the natural log in r}
+
+\NormalTok{gwas\_assoc\_subfrqlmiss}\SpecialCharTok{$}\NormalTok{BETA }\OtherTok{=} \FunctionTok{log}\NormalTok{(gwas\_assoc\_subfrqlmiss}\SpecialCharTok{$}\NormalTok{OR)}
+\NormalTok{gwas\_assoc\_subfrqlmiss}\SpecialCharTok{$}\NormalTok{SE }\OtherTok{=}\NormalTok{ gwas\_assoc\_subfrqlmiss}\SpecialCharTok{$}\NormalTok{BETA}\SpecialCharTok{/}\NormalTok{gwas\_assoc\_subfrqlmiss}\SpecialCharTok{$}\NormalTok{STAT}
+
+
+\NormalTok{gwas\_assoc\_subfrqlmiss\_tib }\OtherTok{\textless{}{-}}\NormalTok{ dplyr}\SpecialCharTok{::}\FunctionTok{as\_tibble}\NormalTok{(gwas\_assoc\_subfrqlmiss)}
+
+\NormalTok{col\_order }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"SNP"}\NormalTok{, }\StringTok{"CHR"}\NormalTok{, }\StringTok{"BP"}\NormalTok{,}
+               \StringTok{"A1"}\NormalTok{, }\StringTok{"A2"}\NormalTok{, }\StringTok{"MAF"}\NormalTok{, }\StringTok{"callrate"}\NormalTok{, }\StringTok{"NMISS"}\NormalTok{, }\StringTok{"NCHROBS"}\NormalTok{,}
+               \StringTok{"BETA"}\NormalTok{, }\StringTok{"SE"}\NormalTok{, }\StringTok{"OR"}\NormalTok{, }\StringTok{"STAT"}\NormalTok{, }\StringTok{"P"}\NormalTok{)}
+\NormalTok{gwas\_assoc\_compl }\OtherTok{\textless{}{-}}\NormalTok{ gwas\_assoc\_subfrqlmiss\_tib[, col\_order]}
+
+\FunctionTok{dim}\NormalTok{(gwas\_assoc\_compl)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 306102     14
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{head}\NormalTok{(gwas\_assoc\_compl)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 6 x 14
+##   SNP        CHR     BP A1    A2      MAF callrate NMISS NCHROBS     BETA     SE
+##   <chr>    <int>  <int> <chr> <chr> <dbl>    <dbl> <int>   <int>    <dbl>  <dbl>
+## 1 rs10000~     4 2.12e7 C     T     0.426    0.999  3996    7992  0.0411  0.0457
+## 2 rs10000~     4 9.60e7 T     G     0.484    0.989  3957    7914 -0.00985 0.0456
+## 3 rs10000~     4 1.04e8 A     G     0.162    0.998  3991    7982 -0.0223  0.0605
+## 4 rs10000~     2 2.37e8 C     T     0.312    1      4000    8000  0.0178  0.0489
+## 5 rs10000~     4 2.15e7 C     T     0.343    0.991  3963    7926 -0.0790  0.0471
+## 6 rs10000~     4 1.58e8 G     A     0.453    0.980  3919    7838 -0.0341  0.0453
+## # ... with 3 more variables: OR <dbl>, STAT <dbl>, P <dbl>
+\end{verbatim}
+
+Let's list the number of SNPs per chromosome.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Number of SNPs per chromosome}
+\NormalTok{knitr}\SpecialCharTok{::}\FunctionTok{kable}\NormalTok{(}\FunctionTok{table}\NormalTok{(gwas\_assoc\_compl}\SpecialCharTok{$}\NormalTok{CHR))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{tabular}{l|r}
+\hline
+Var1 & Freq\\
+\hline
+1 & 23173\\
+\hline
+2 & 25206\\
+\hline
+3 & 21402\\
+\hline
+4 & 19008\\
+\hline
+5 & 19157\\
+\hline
+6 & 20672\\
+\hline
+7 & 16581\\
+\hline
+8 & 18089\\
+\hline
+9 & 15709\\
+\hline
+10 & 15536\\
+\hline
+11 & 14564\\
+\hline
+12 & 14889\\
+\hline
+13 & 11524\\
+\hline
+14 & 9822\\
+\hline
+15 & 8838\\
+\hline
+16 & 8920\\
+\hline
+17 & 8262\\
+\hline
+18 & 10356\\
+\hline
+19 & 5820\\
+\hline
+20 & 7792\\
+\hline
+21 & 5412\\
+\hline
+22 & 5370\\
+\hline
+\end{tabular}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{gwas\_threshold }\OtherTok{=} \SpecialCharTok{{-}}\FunctionTok{log10}\NormalTok{(}\FloatTok{5e{-}8}\NormalTok{)}
+
+\FunctionTok{qq}\NormalTok{(gwas\_assoc\_compl}\SpecialCharTok{$}\NormalTok{P, }\AttributeTok{main =} \StringTok{"QQ plot of GWAS"}\NormalTok{,}
+   \AttributeTok{xlim =} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{7}\NormalTok{),}
+   \AttributeTok{ylim =} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{12}\NormalTok{),}
+   \AttributeTok{pch =} \DecValTok{20}\NormalTok{, }\AttributeTok{col =}\NormalTok{ uithof\_color[}\DecValTok{16}\NormalTok{], }\AttributeTok{cex =} \FloatTok{1.5}\NormalTok{, }\AttributeTok{las =} \DecValTok{1}\NormalTok{, }\AttributeTok{bty =} \StringTok{"n"}\NormalTok{)}
+\FunctionTok{abline}\NormalTok{(}\AttributeTok{h =}\NormalTok{ gwas\_threshold,}
+       \AttributeTok{col =}\NormalTok{ uithof\_color[}\DecValTok{25}\NormalTok{], }\AttributeTok{lty =} \StringTok{"dashed"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{A-primer-in-Human-Cardiovascular-Genetics_files/figure-latex/unnamed-chunk-16-1.pdf}
+
+\hypertarget{manhattan-plots}{%
+\subsection{Manhattan plots}\label{manhattan-plots}}
+
+We also need to create a \emph{Manhattan plot} to display the association test P-values as a function of chromosomal location and thus provide a visual summary of association test results that draw immediate attention to any regions of significance.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{manhattan}\NormalTok{(gwas\_assoc\_compl, }\AttributeTok{main =} \StringTok{"Manhattan Plot"}\NormalTok{,}
+          \AttributeTok{ylim =} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{12}\NormalTok{),}
+          \AttributeTok{cex =} \FloatTok{0.6}\NormalTok{, }\AttributeTok{cex.axis =} \FloatTok{0.9}\NormalTok{,}
+          \AttributeTok{col =} \FunctionTok{c}\NormalTok{(}\StringTok{"\#1290D9"}\NormalTok{, }\StringTok{"\#49A01D"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{A-primer-in-Human-Cardiovascular-Genetics_files/figure-latex/unnamed-chunk-17-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{gwas\_assoc\_complsub }\OtherTok{\textless{}{-}} \FunctionTok{subset}\NormalTok{(gwas\_assoc\_compl, }\AttributeTok{select =} \FunctionTok{c}\NormalTok{(}\StringTok{"SNP"}\NormalTok{, }\StringTok{"CHR"}\NormalTok{, }\StringTok{"BP"}\NormalTok{, }\StringTok{"P"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{other-plots}{%
+\subsection{Other plots}\label{other-plots}}
+
+It is also informative to plot the density per chromosome. We can use the \texttt{CMplot} for that which you can find \href{https://github.com/YinLiLin/R-CMplot}{here}. For now we just make these graphs `quick-n-dirty', you can further prettify them, but you easily loose track of time, so maybe carry on.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{CMplot}\NormalTok{(gwas\_assoc\_complsub,}
+       \AttributeTok{plot.type =} \StringTok{"d"}\NormalTok{,}
+       \AttributeTok{bin.size =} \FloatTok{1e6}\NormalTok{, }\AttributeTok{col =} \FunctionTok{c}\NormalTok{(}\StringTok{"darkgreen"}\NormalTok{, }\StringTok{"yellow"}\NormalTok{, }\StringTok{"red"}\NormalTok{),}
+       \AttributeTok{file =} \StringTok{"jpg"}\NormalTok{, }\AttributeTok{memo =} \StringTok{""}\NormalTok{, }\AttributeTok{dpi =} \DecValTok{300}\NormalTok{, }\AttributeTok{file.output =} \ConstantTok{FALSE}\NormalTok{, }\AttributeTok{verbose =} \ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  SNP-Density Plotting.
+\end{verbatim}
+
+\includegraphics{A-primer-in-Human-Cardiovascular-Genetics_files/figure-latex/unnamed-chunk-18-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{CMplot}\NormalTok{(gwas\_assoc\_complsub,}
+       \AttributeTok{plot.type =} \StringTok{"m"}\NormalTok{, }\AttributeTok{LOG10 =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{ylim =} \ConstantTok{NULL}\NormalTok{,}
+       \AttributeTok{threshold =} \FunctionTok{c}\NormalTok{(}\FloatTok{1e{-}6}\NormalTok{,}\FloatTok{1e{-}4}\NormalTok{), }\AttributeTok{threshold.lty =} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{), }\AttributeTok{threshold.lwd =} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{), }\AttributeTok{threshold.col =} \FunctionTok{c}\NormalTok{(}\StringTok{"black"}\NormalTok{, }\StringTok{"grey"}\NormalTok{),}
+       \AttributeTok{amplify =} \ConstantTok{TRUE}\NormalTok{,}
+       \AttributeTok{bin.size =} \FloatTok{1e6}\NormalTok{, }\AttributeTok{chr.den.col =} \FunctionTok{c}\NormalTok{(}\StringTok{"darkgreen"}\NormalTok{, }\StringTok{"yellow"}\NormalTok{, }\StringTok{"red"}\NormalTok{),}
+       \AttributeTok{signal.col =} \FunctionTok{c}\NormalTok{(}\StringTok{"red"}\NormalTok{, }\StringTok{"green"}\NormalTok{), }\AttributeTok{signal.cex =} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{), }\AttributeTok{signal.pch =} \FunctionTok{c}\NormalTok{(}\DecValTok{19}\NormalTok{,}\DecValTok{19}\NormalTok{),}
+       \AttributeTok{file =} \StringTok{"jpg"}\NormalTok{, }\AttributeTok{memo =} \StringTok{""}\NormalTok{, }\AttributeTok{dpi =} \DecValTok{300}\NormalTok{, }\AttributeTok{file.output =} \ConstantTok{FALSE}\NormalTok{, }\AttributeTok{verbose =} \ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  Rectangular-Manhattan Plotting P.
+\end{verbatim}
+
+\includegraphics{A-primer-in-Human-Cardiovascular-Genetics_files/figure-latex/unnamed-chunk-18-2.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{CMplot}\NormalTok{(gwas\_assoc\_complsub,}
+       \AttributeTok{plot.type =} \StringTok{"b"}\NormalTok{, }\AttributeTok{LOG10 =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{ylim =} \ConstantTok{NULL}\NormalTok{,}
+       \AttributeTok{threshold =} \FunctionTok{c}\NormalTok{(}\FloatTok{1e{-}6}\NormalTok{,}\FloatTok{1e{-}4}\NormalTok{), }\AttributeTok{threshold.lty =} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{), }\AttributeTok{threshold.lwd =} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{), }\AttributeTok{threshold.col =} \FunctionTok{c}\NormalTok{(}\StringTok{"black"}\NormalTok{, }\StringTok{"grey"}\NormalTok{),}
+       \AttributeTok{amplify =} \ConstantTok{TRUE}\NormalTok{,}
+       \AttributeTok{bin.size =} \FloatTok{1e6}\NormalTok{, }\AttributeTok{chr.den.col =} \FunctionTok{c}\NormalTok{(}\StringTok{"darkgreen"}\NormalTok{, }\StringTok{"yellow"}\NormalTok{, }\StringTok{"red"}\NormalTok{),}
+       \AttributeTok{signal.col =} \FunctionTok{c}\NormalTok{(}\StringTok{"red"}\NormalTok{, }\StringTok{"green"}\NormalTok{), }\AttributeTok{signal.cex =} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{), }\AttributeTok{signal.pch =} \FunctionTok{c}\NormalTok{(}\DecValTok{19}\NormalTok{,}\DecValTok{19}\NormalTok{),}
+       \AttributeTok{file =} \StringTok{"jpg"}\NormalTok{, }\AttributeTok{memo =} \StringTok{""}\NormalTok{, }\AttributeTok{dpi =} \DecValTok{300}\NormalTok{, }\AttributeTok{file.output =} \ConstantTok{FALSE}\NormalTok{, }\AttributeTok{verbose =} \ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  SNP-Density Plotting.
+\end{verbatim}
+
+\includegraphics{A-primer-in-Human-Cardiovascular-Genetics_files/figure-latex/unnamed-chunk-18-3.pdf} \includegraphics{A-primer-in-Human-Cardiovascular-Genetics_files/figure-latex/unnamed-chunk-18-4.pdf}
+
+\begin{verbatim}
+##  Circular-Manhattan Plotting P.
+##  Rectangular-Manhattan Plotting P.
+\end{verbatim}
+
+\includegraphics{A-primer-in-Human-Cardiovascular-Genetics_files/figure-latex/unnamed-chunk-18-5.pdf}
+
+\begin{verbatim}
+##  QQ Plotting P.
+\end{verbatim}
+
+\includegraphics{A-primer-in-Human-Cardiovascular-Genetics_files/figure-latex/unnamed-chunk-18-6.pdf}
+
+\hypertarget{interactive-plots}{%
+\subsection{Interactive plots}\label{interactive-plots}}
+
+You can also make an \href{https://r-graph-gallery.com/101_Manhattan_plot.html}{interactive version} of the Manhattan - just because you can. The code below shows you how.
+
+\begin{verbatim}
+library(plotly)
+library(dplyr)
+
+# Prepare the dataset (as an example we use the data (gwasResults) from the `qqman`-package)
+don <- gwasResults %>%
+
+  # Compute chromosome size
+  group_by(CHR) %>%
+  summarise(chr_len=max(BP)) %>%
+
+  # Calculate cumulative position of each chromosome
+  mutate(tot=cumsum(chr_len)-chr_len) %>%
+  select(-chr_len) %>%
+
+  # Add this info to the initial dataset
+  left_join(gwasResults, ., by=c("CHR"="CHR")) %>%
+
+  # Add a cumulative position of each SNP
+  arrange(CHR, BP) %>%
+  mutate( BPcum=BP+tot) %>%
+
+  # Add highlight and annotation information
+  mutate( is_highlight=ifelse(SNP %in% snpsOfInterest, "yes", "no")) %>%
+
+  # Filter SNP to make the plot lighter
+  filter(-log10(P)>0.5)
+
+# Prepare X axis
+axisdf <- don %>% group_by(CHR) %>% summarize(center=( max(BPcum) + min(BPcum) ) / 2 )
+
+# Prepare text description for each SNP:
+don$text <- paste("SNP: ", don$SNP, "\nPosition: ", don$BP, "\nChromosome: ", don$CHR, "\nLOD score:", -log10(don$P) %>% round(2), "\nWhat else do you wanna know", sep="")
+
+# Make the plot
+p <- ggplot(don, aes(x=BPcum, y=-log10(P), text=text)) +
+
+    # Show all points
+    geom_point( aes(color=as.factor(CHR)), alpha=0.8, size=1.3) +
+    scale_color_manual(values = rep(c("grey", "skyblue"), 22 )) +
+
+    # custom X axis:
+    scale_x_continuous( label = axisdf$CHR, breaks= axisdf$center ) +
+    scale_y_continuous(expand = c(0, 0), ylim = c(0,9) ) +     # remove space between plot area and x axis
+
+    # Add highlighted points
+    geom_point(data=subset(don, is_highlight=="yes"), color="orange", size=2) +
+
+    # Custom the theme:
+    theme_bw() +
+    theme(
+      legend.position="none",
+      panel.border = element_blank(),
+      panel.grid.major.x = element_blank(),
+      panel.grid.minor.x = element_blank()
+    )
+ggplotly(p, tooltip="text")
+\end{verbatim}
+
+It will produce something like this.
+
+\includegraphics{img/_gwas/interactive plot.png}
+
+Again, this is an example with dummy data - you can try to do it for our GWAS, but careful with the time. You can also choose to carry on.
+
+\hypertarget{regional-association-plots}{%
+\subsection{Regional association plots}\label{regional-association-plots}}
+
+We can further visualise regions of interest using a package like \href{http://locuszoom.org}{LocusZoom}. But first we need to find the independent hits by \emph{clumping} the results. We will just use the defaults, but please take a note of all the options here \url{https://www.cog-genomics.org/plink/1.9/postproc\#clump}
+
+\begin{verbatim}
+plink --bfile gwas/gwa --clump gwas/data.assoc.logistic --clump-p1 5e-8 --clump-p2 0.05 --clump-kb 500 --clump-r2 0.05 --clump-verbose --out gwas/data.assoc.logistic
+\end{verbatim}
+
+Now you will have a list of all the \emph{independent} SNPs, \emph{i.e.} the genetic loci, that are associated to the trait.
+
+\begin{verbatim}
+cat gwas/data.assoc.logistic.clumped
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\VariableTok{ROOTDIR}\OperatorTok{=}\StringTok{"/Users/swvanderlaan/Desktop/practical"} \CommentTok{\# change this to your root}
+\FunctionTok{cat} \VariableTok{$ROOTDIR}\NormalTok{/gwas/data.assoc.logistic.clumped}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  CHR    F         SNP         BP          P    TOTAL   NSIG    S05    S01   S001  S0001
+##    3    1   rs6802898   12366207   4.18e-20       50     35      4      2      1      8 
+## 
+##                               KB      RSQ  ALLELES    F            P 
+##   (INDEX)   rs6802898          0    1.000        T    1     4.18e-20 
+## 
+##              rs305500       -400   0.0588    TC/CA    1       0.0476 
+##              rs420014       -394   0.0552    TA/CG    1        0.015 
+##              rs305494       -392   0.0681    TG/CA    1        0.025 
+##              rs438129       -383   0.0721    TT/CC    1       0.0126 
+##             rs7615580       -364    0.309    TC/CT    1     2.05e-08 
+##              rs307560       -298    0.153    TT/CC    1     1.68e-06 
+##            rs11720130       -235   0.0838    TA/CG    1      0.00218 
+##             rs7616006       -124   0.0831    TA/CG    1     5.25e-05 
+##             rs6775191       -119   0.0506    TG/CA    1     0.000182 
+##              rs167466       -110   0.0523    TT/CC    1      0.00222 
+##            rs12635120      -86.6    0.332    TG/CA    1     2.77e-07 
+##             rs6798713      -85.6    0.288    TC/CT    1     2.01e-06 
+##             rs2920500      -67.8    0.102    TA/CG    1     6.59e-05 
+##             rs6768587      -53.1    0.295    TG/CA    1     3.36e-08 
+##             rs2028760      -18.3    0.305    TA/CG    1     3.67e-08 
+## 
+##           RANGE: chr3:11966007..12366207
+##            SPAN: 400kb
+## 
+## ------------------------------------------------------------------
+## 
+## 
+##  CHR    F         SNP         BP          P    TOTAL   NSIG    S05    S01   S001  S0001
+##   10    1   rs7901695  114744078   6.78e-12       32     24      2      1      1      4 
+## 
+##                               KB      RSQ  ALLELES    F            P 
+##   (INDEX)   rs7901695          0    1.000        C    1     6.78e-12 
+## 
+##             rs7917983      -21.2   0.0589    CC/TT    1        0.046 
+##             rs7895307      -10.1   0.0819    CG/TA    1      0.00592 
+##             rs7903146       4.26    0.784    CT/TC    1     3.25e-08 
+##             rs7904519       19.8    0.582    CG/TA    1     2.89e-08 
+##            rs11196192       28.2    0.162    CG/TT    1       0.0268 
+##            rs10885409         54    0.502    CC/TT    1     8.35e-06 
+##            rs12255372       54.8    0.624    CT/TG    1     1.55e-06 
+##             rs4918789       67.7     0.24    CG/TT    1     0.000248 
+## 
+##           RANGE: chr10:114722872..114811797
+##            SPAN: 88kb
+## 
+## ------------------------------------------------------------------
+## 
+## 
+##  CHR    F         SNP         BP          P    TOTAL   NSIG    S05    S01   S001  S0001
+##   16    1   rs8050136   52373776   1.52e-08       23     16      1      3      2      1 
+## 
+##                               KB      RSQ  ALLELES    F            P 
+##   (INDEX)   rs8050136          0    1.000        A    1     1.52e-08 
+## 
+##             rs7205986      -61.1    0.226    AG/CA    1       0.0434 
+##             rs6499640      -46.6    0.258    AA/CG    1      0.00367 
+##             rs1861868      -25.9     0.15    AT/CC    1       0.0063 
+##             rs1075440      -25.4    0.162    AA/CG    1      0.00802 
+##             rs3751812       2.18    0.994    AT/CG    1     1.63e-08 
+##             rs7190492       12.5    0.258    AG/CA    1       0.0007 
+##             rs8044769       22.9    0.524    AC/CT    1     0.000611 
+## 
+##           RANGE: chr16:52312647..52396636
+##            SPAN: 83kb
+## 
+## ------------------------------------------------------------------
+\end{verbatim}
+
+Clumping identifies three loci and now that you know them, you can visualize them using LocusZoom. First, let's get what we need (\texttt{SNP} and \texttt{P}) and gzip the results.
+
+\begin{verbatim}
+echo "SNP P" > gwas/data.assoc.logistic.locuszoom
+cat gwas/data.assoc.logistic | awk '$5=="ADD"' | awk '{ print $2, $9 }' >> gwas/data.assoc.logistic.locuszoom
+gzip -v gwas/data.assoc.logistic.locuszoom
+\end{verbatim}
+
+Now you are ready to upload this \texttt{data.assoc.logistic.locuszoom.gz} file to the site: \url{http://locuszoom.org}. Try to visualize each locus using the information above and by following the instructions. Choose HapMap 2, hg18, CEU as the LD-reference.
+
+You should get something like below.
+
+\includegraphics[width=0.5\textwidth,height=\textheight]{img/_gwas/CEU.rs6802898.400kb.png}
+
+\includegraphics[width=0.5\textwidth,height=\textheight]{img/_gwas/CEU.rs7901695.400kb.png}
+
+\includegraphics[width=0.5\textwidth,height=\textheight]{img/_gwas/CEU.rs8050136.400kb.png}
+
+You will encounter the above three types of visualizations in any high-quality GWAS paper, because each is so critically informative. Usually, analysts of large-scale meta-analyses of GWAS will also stratify the QQ-plots based on the imputation quality (if your GWAS was imputed), call rate, and allele frequency.
+
+\hypertarget{wtccc1-a-gwas-on-coronary-artery-disease-cad}{%
+\chapter{WTCCC1: a GWAS on coronary artery disease (CAD)}\label{wtccc1-a-gwas-on-coronary-artery-disease-cad}}
 
 \hypertarget{section-1}{%
 \section{Section 1}\label{section-1}}
@@ -324,8 +2111,8 @@ Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium dolor
 
 At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.
 
-\hypertarget{wtccc1-a-gwas-on-coronary-artery-disease-cad}{%
-\chapter{WTCCC1: a GWAS on coronary artery disease (CAD)}\label{wtccc1-a-gwas-on-coronary-artery-disease-cad}}
+\hypertarget{post-gwas-analyses}{%
+\chapter{Post-GWAS Analyses}\label{post-gwas-analyses}}
 
 \hypertarget{section-1-1}{%
 \section{Section 1}\label{section-1-1}}
@@ -342,8 +2129,8 @@ Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium dolor
 
 At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.
 
-\hypertarget{post-gwas-analyses}{%
-\chapter{Post-GWAS Analyses}\label{post-gwas-analyses}}
+\hypertarget{conditional-analysis}{%
+\chapter{Conditional analysis}\label{conditional-analysis}}
 
 \hypertarget{section-1-2}{%
 \section{Section 1}\label{section-1-2}}
@@ -360,8 +2147,8 @@ Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium dolor
 
 At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.
 
-\hypertarget{conditional-analysis}{%
-\chapter{Conditional analysis}\label{conditional-analysis}}
+\hypertarget{statistical-finemapping}{%
+\chapter{Statistical finemapping}\label{statistical-finemapping}}
 
 \hypertarget{section-1-3}{%
 \section{Section 1}\label{section-1-3}}
@@ -378,8 +2165,8 @@ Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium dolor
 
 At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.
 
-\hypertarget{statistical-finemapping}{%
-\chapter{Statistical finemapping}\label{statistical-finemapping}}
+\hypertarget{functional-mapping-and-annotation-of-gwas}{%
+\chapter{Functional Mapping and Annotation of GWAS}\label{functional-mapping-and-annotation-of-gwas}}
 
 \hypertarget{section-1-4}{%
 \section{Section 1}\label{section-1-4}}
@@ -396,8 +2183,8 @@ Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium dolor
 
 At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.
 
-\hypertarget{functional-mapping-and-annotation-of-gwas}{%
-\chapter{Functional Mapping and Annotation of GWAS}\label{functional-mapping-and-annotation-of-gwas}}
+\hypertarget{phenome-wide-association-study-phewas}{%
+\chapter{Phenome-Wide Association Study (PheWAS)}\label{phenome-wide-association-study-phewas}}
 
 \hypertarget{section-1-5}{%
 \section{Section 1}\label{section-1-5}}
@@ -414,8 +2201,8 @@ Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium dolor
 
 At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.
 
-\hypertarget{phenome-wide-association-study-phewas}{%
-\chapter{Phenome-Wide Association Study (PheWAS)}\label{phenome-wide-association-study-phewas}}
+\hypertarget{mendelian-randomization-mr}{%
+\chapter{Mendelian Randomization (MR)}\label{mendelian-randomization-mr}}
 
 \hypertarget{section-1-6}{%
 \section{Section 1}\label{section-1-6}}
@@ -432,8 +2219,8 @@ Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium dolor
 
 At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.
 
-\hypertarget{mendelian-randomization-mr}{%
-\chapter{Mendelian Randomization (MR)}\label{mendelian-randomization-mr}}
+\hypertarget{mendelian-randomization-mr-1}{%
+\chapter{Mendelian Randomization (MR)}\label{mendelian-randomization-mr-1}}
 
 \hypertarget{section-1-7}{%
 \section{Section 1}\label{section-1-7}}
@@ -447,24 +2234,6 @@ Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium dolor
 
 \hypertarget{section-3-7}{%
 \section{Section 3}\label{section-3-7}}
-
-At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.
-
-\hypertarget{mendelian-randomization-mr-1}{%
-\chapter{Mendelian Randomization (MR)}\label{mendelian-randomization-mr-1}}
-
-\hypertarget{section-1-8}{%
-\section{Section 1}\label{section-1-8}}
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-
-\hypertarget{section-2-8}{%
-\section{Section 2}\label{section-2-8}}
-
-Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?
-
-\hypertarget{section-3-8}{%
-\section{Section 3}\label{section-3-8}}
 
 At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.
 

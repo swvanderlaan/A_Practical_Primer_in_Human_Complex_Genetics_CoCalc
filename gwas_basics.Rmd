@@ -1,13 +1,63 @@
 # Basics of a Genome-Wide Association Study (GWAS)
 
-## Section 1
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+Now that you understand a bit of the navigation in Unix-systems, we will continue with the practical. We will make use of a dummy dataset containing cases and controls. We will explain and execute the following steps:
+
+- convert raw data to a more memory-efficient format
+- apply extensive quality control
+- perform association testing
 
 
-## Section 2
+## Converting datasets
 
-Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?
+The format in which genotype data are returned to investigators varies among genome-wide SNP platforms and genotyping centers. Usually genotypes have been called by a genotyping center and returned in the standard `PED` and `MAP` file formats. 
 
-## Section 3
+A `PED` file is a white space (space or tab)-delimited file in which each line represents one individual and the first six columns are mandatory and in the following order:
 
-At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.
+- 'Family ID', 
+- 'Individual ID', 
+- 'Paternal ID', 
+- 'Maternal ID', 
+- 'Sex (1=male, 2=female, 0=missing)', and 
+- 'Phenotype (1=unaffected, 2=affected, 0=missing)'. 
+
+The subsequent columns denote genotypes that can be any character (e.g., 1, 2, 3, 4 or A, C, G, T). Zero denotes a missing genotype. Each SNP must have two alleles (i.e., both alleles are either present or absent). 
+The order of SNPs in the PED file is given in the MAP file, in which each line denotes a single marker and the four white-space–separated columns are chromosome (1–22, X, Y or 0 for unplaced), marker name (typically an rs number), genetic distance in Morgans (this can be fixed to 0) and base-pair position (bp units).
+
+Let's start by using `PLINK` to converting the datasets to a lighter, binary form (a `BED`-file). BED files save data in a more memory- and time-efficient manner (binary files) to facilitate the analysis of large-scale data sets@purcell2007. PLINK creates a `.log` file (named `raw-GWA-data.log`) that details (among other information) the implemented commands, the number of cases and controls in the input files, any excluded data and the genotyping rate in the remaining data. This file is very useful for checking whether the software is successfully completing commands.
+
+
+Make sure you are in the right directory. Do you remember how to get there?
+
+
+```
+cd ~/Desktop/practical
+```
+
+
+
+*No worries for now: I've done this already for you!*
+
+
+```
+plink --file rawdata/raw-GWA-data --make-bed --out rawdata/rawdata
+```
+
+## Quality control
+
+We are ready for some quality control and quality assurance, heavily inspired by Anderson _et al._@anderson2010 and Laurie _et al._@laurie2010. In general, we should check out a couple of things regarding the data quality on two levels:
+
+1) samples
+2) variants
+
+So, we will investigate the following:
+
+- Are the *sexes* based on genetic data matching the ones given by the phenotype file?
+- Identify individuals that are outliers in terms of missing data (_call rate_) or heterozygosity rates. This could indicate a genotyping error or sample swap.
+- Identify duplicated or related individuals.
+- Identify individuals with divergent ancestry.
+- What are the allele frequencies?
+- What is the per-SNP call rate?
+- In the case of a case-control study (which is the case here), we need to check differential missingness between cases and controls. By the way: you could extent this to for instance 'genotyping platform', or 'hospital of inclusion', if you think this might influence the genotyping experiment technically.
+
+
+Right, on to step 1 of the QC in  (Chapter \@ref(gwas_basic_sample_qc)). 
