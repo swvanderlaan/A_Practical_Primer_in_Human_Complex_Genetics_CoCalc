@@ -37,7 +37,7 @@
 \IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
 \hypersetup{
   pdftitle={A primer in Human Cardiovascular Genetics},
-  pdfauthor={dr. Sander W. van der Laan},
+  pdfauthor={dr. Sander W. van der Laan \textbar{} swvanderlaan},
   hidelinks,
   pdfcreator={LaTeX via pandoc}}
 \urlstyle{same} % disable monospaced font for URLs
@@ -123,8 +123,8 @@
 \bibliographystyle{apalike}
 
 \title{A primer in Human Cardiovascular Genetics}
-\author{\href{https://swvanderlaan.github.iio}{dr. Sander W. van der Laan}}
-\date{2022-03-24}
+\author{\href{https://swvanderlaan.github.iio}{dr. Sander W. van der Laan} \textbar{} \href{https://www.twitter.com/swvanderlaan}{swvanderlaan}}
+\date{Last update: 2022-03-24}
 
 \begin{document}
 \maketitle
@@ -138,9 +138,15 @@
 
 \includegraphics{./img/using_gitbook.jpeg}
 
-Welcome to the course `Genetic Epidemiology', and this practical entitled `A primer in Human Cardiovascular Genetics'. In the next few days we will use this \href{https://cjvanlissa.github.io/gitbook-demo/}{GitBook} to perform quality control (QC), executing a genome-wide association study (GWAS), annotating the GWAS results, and performing further downstream analyses. We will use data from the first release of the \href{https://www.wtccc.org.uk/ccc1/overview.html}{\emph{Welcome Trust Case-Control Consortium (WTCCC)}} and focus on coronary artery disease (CAD).
+\hypertarget{introduction}{%
+\section{Introduction}\label{introduction}}
 
-We won't have time to perform \href{https://www.nature.com/articles/nrg2796}{imputation}, but we will provide some pointers as to how to do this with minimal coding/scripting experience.
+Welcome to the \emph{A primer in Human Cardiovascular Genetics} as part of the \textbf{Genetic Epidemiology} course. In the next few days we will use this \href{https://cjvanlissa.github.io/gitbook-demo/}{GitBook} to perform quality control (QC), executing a genome-wide association study (GWAS), annotating the GWAS results, and performing further downstream analyses. We will use data from the first release of the \href{https://www.wtccc.org.uk/ccc1/overview.html}{\emph{Welcome Trust Case-Control Consortium (WTCCC)}} and focus on coronary artery disease (CAD).
+
+Unfortunately, during this course there is no time to perform \href{https://www.nature.com/articles/nrg2796}{imputation}, but I will provide some pointers during the course as to how to do this with minimal coding/scripting experience. And I will add a whole chapter on imputation to a future version.
+
+\hypertarget{background-reading}{%
+\section{Background reading}\label{background-reading}}
 
 Part of this is based on four great Nature Protocols from the \href{https://www.well.ox.ac.uk/research/research-groups/zondervan-group}{Zondervan group} at the Wellcome Center Human Genetics.
 
@@ -181,20 +187,20 @@ With respect to imputation you should also get familiar with the following two w
 
 Importantly, follow this practical, but also review the questions asked in the presentation (on the screen or in the Dropbox) and try to answer them.
 
-\hypertarget{team}{%
-\section{Team}\label{team}}
+\hypertarget{meet-the-team}{%
+\section{Meet the Team}\label{meet-the-team}}
 
-We work with a team of enthousiastic lecturers with experience in bioinformatics, GWAS, genetic analyses, Mendelian randomisation, and epidemiology. This year the team consists of:
+We work with a team of enthusiastic lecturers with experience in bioinformatics, GWAS, genetic analyses, Mendelian randomization, and epidemiology. This year the team consists of:
 
 \begin{longtable}[]{@{}
   >{\raggedright\arraybackslash}p{(\columnwidth - 0\tabcolsep) * \real{0.2083}}@{}}
 \toprule
 \endhead
+\includegraphics[width=0.15\textwidth,height=\textheight]{img/_team/sander_vander_laan.jpg} Sander W. van der Laan \emph{Assistant professor}Course coordinator\href{mailto:s.w.vanderlaan-2@umcutrecht.nl}{\nolinkurl{s.w.vanderlaan-2@umcutrecht.nl}} \textbar{} \href{http://www.twitter.com/swvanderlaan}{swvanderlaan} \\
 \includegraphics[width=0.15\textwidth,height=\textheight]{img/_team/charlotte_onland.jpg} Charlotte Onland-Moret \emph{Associate Professor}\href{mailto:N.C.Onland@umcutrecht.nl}{\nolinkurl{N.C.Onland@umcutrecht.nl}} \\
-\includegraphics[width=0.15\textwidth,height=\textheight]{img/_team/sander_vander_laan.jpg} Sander W. van der Laan \emph{Assistant professor}\href{mailto:s.w.vanderlaan-2@umcutrecht.nl}{\nolinkurl{s.w.vanderlaan-2@umcutrecht.nl}} \textbar{} \href{http://www.twitter.com/swvanderlaan}{swvanderlaan} \\
-\includegraphics[width=0.15\textwidth,height=\textheight]{img/_team/arjan_boltjes.jpg} Arjan Boltjes \emph{Postdoctoral researcher}\href{mailto:a.boltjes@umcutrecht.nl}{\nolinkurl{a.boltjes@umcutrecht.nl}} \textbar{} \href{http://www.twitter.com/arjanboltjes}{arjanboltjes} \\
-\includegraphics[width=0.15\textwidth,height=\textheight]{img/_team/joanna_bon_berg.jpg} Joanna von Berg \emph{PhD student}\href{mailto:j.vonberg-24@umcutrecht.nl}{\nolinkurl{j.vonberg-24@umcutrecht.nl}} \textbar{} \href{http://www.twitter.com/JoannavonBerg}{JoannavonBerg}
 \href{img/_team/jessica_van_setten.jpg}{} Jessica van Setten \emph{Assistant professor}\href{mailto:j.vansetten@umcutrecht.nl}{\nolinkurl{j.vansetten@umcutrecht.nl}} \textbar{} \href{http://www.twitter.com/j_vansetten}{j\_vansetten} \\
+ \\
+ \\
 \bottomrule
 \end{longtable}
 

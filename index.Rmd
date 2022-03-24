@@ -1,7 +1,7 @@
 --- 
 title: "A primer in Human Cardiovascular Genetics"
-author: "[dr. Sander W. van der Laan](https://swvanderlaan.github.iio)"
-date: "`r Sys.Date()`"
+author: "[dr. Sander W. van der Laan](https://swvanderlaan.github.iio) | [swvanderlaan](https://www.twitter.com/swvanderlaan)"
+date: "Last update: `r Sys.Date()`"
 description: This is a primer in Human Cardiovascular Genetics. The output format for this example
   is bookdown::gitbook.
 documentclass: book
@@ -12,6 +12,9 @@ bibliography:
 - packages.bib
 site: bookdown::bookdown_site
 biblio-style: apalike
+output: 
+  html_document: 
+    toc: yes
 ---
 
 <!--"Using GitBooks to create Open course materials"-->
@@ -19,9 +22,14 @@ biblio-style: apalike
 
 ![](./img/using_gitbook.jpeg)
 
-Welcome to the course 'Genetic Epidemiology', and this practical entitled 'A primer in Human Cardiovascular Genetics'. In the next few days we will use this [GitBook](https://cjvanlissa.github.io/gitbook-demo/) to perform quality control (QC), executing a genome-wide association study (GWAS), annotating the GWAS results, and performing further downstream analyses. We will use data from the first release of the [*Welcome Trust Case-Control Consortium (WTCCC)*](https://www.wtccc.org.uk/ccc1/overview.html){target="_blank"} and focus on coronary artery disease (CAD). 
+## Introduction
 
-We won't have time to perform [imputation](https://www.nature.com/articles/nrg2796), but we will provide some pointers as to how to do this with minimal coding/scripting experience.
+Welcome to the _A primer in Human Cardiovascular Genetics_ as part of the **Genetic Epidemiology** course. In the next few days we will use this [GitBook](https://cjvanlissa.github.io/gitbook-demo/) to perform quality control (QC), executing a genome-wide association study (GWAS), annotating the GWAS results, and performing further downstream analyses. We will use data from the first release of the [*Welcome Trust Case-Control Consortium (WTCCC)*](https://www.wtccc.org.uk/ccc1/overview.html){target="_blank"} and focus on coronary artery disease (CAD). 
+
+Unfortunately, during this course there is no time to perform [imputation](https://www.nature.com/articles/nrg2796), but I will provide some pointers during the course as to how to do this with minimal coding/scripting experience. And I will add a whole chapter on imputation to a future version. 
+
+
+## Background reading
 
 Part of this is based on four great Nature Protocols from the [Zondervan group](https://www.well.ox.ac.uk/research/research-groups/zondervan-group){target="_blank"} at the Wellcome Center Human Genetics.
 
@@ -42,19 +50,21 @@ With respect to imputation you should also get familiar with the following two w
 
 Importantly, follow this practical, but also review the questions asked in the presentation (on the screen or in the Dropbox) and try to answer them.
   
-## Team
+## Meet the Team
 
-We work with a team of enthousiastic lecturers with experience in bioinformatics, GWAS, genetic analyses, Mendelian randomisation, and epidemiology. This year the team consists of:
+We work with a team of enthusiastic lecturers with experience in bioinformatics, GWAS, genetic analyses, Mendelian randomization, and epidemiology. This year the team consists of:
 
 --------------
+![](img/_team/sander_vander_laan.jpg){width=15%} Sander W. van der Laan </br>_Assistant professor_</br>Course coordinator</br><s.w.vanderlaan-2@umcutrecht.nl> | [swvanderlaan](http://www.twitter.com/swvanderlaan){target="_blank"}
+
 ![](img/_team/charlotte_onland.jpg){width=15%} Charlotte Onland-Moret </br>_Associate Professor_</br><N.C.Onland@umcutrecht.nl> 
 
-![](img/_team/sander_vander_laan.jpg){width=15%} Sander W. van der Laan </br>_Assistant professor_</br><s.w.vanderlaan-2@umcutrecht.nl> | [swvanderlaan](http://www.twitter.com/swvanderlaan){target="_blank"}
-
-![](img/_team/arjan_boltjes.jpg){width=15%} Arjan Boltjes </br>_Postdoctoral researcher_</br><a.boltjes@umcutrecht.nl> | [arjanboltjes](http://www.twitter.com/arjanboltjes){target="_blank"}
-
-![](img/_team/joanna_bon_berg.jpg){width=15%} Joanna von Berg </br>_PhD student_</br><j.vonberg-24@umcutrecht.nl> | [JoannavonBerg](http://www.twitter.com/JoannavonBerg){target="_blank"}
 [](img/_team/jessica_van_setten.jpg){width=15%} Jessica van Setten </br>_Assistant professor_</br><j.vansetten@umcutrecht.nl> | [j_vansetten](http://www.twitter.com/j_vansetten){target="_blank"}
+
+<!-- ![](img/_team/arjan_boltjes.jpg){width=15%} Arjan Boltjes </br>_Postdoctoral researcher_</br><a.boltjes@umcutrecht.nl> | [arjanboltjes](http://www.twitter.com/arjanboltjes){target="_blank"} -->
+
+<!-- ![](img/_team/joanna_bon_berg.jpg){width=15%} Joanna von Berg </br>_PhD student_</br><j.vonberg-24@umcutrecht.nl> | [JoannavonBerg](http://www.twitter.com/JoannavonBerg){target="_blank"} -->
+
 
 --------------
 
