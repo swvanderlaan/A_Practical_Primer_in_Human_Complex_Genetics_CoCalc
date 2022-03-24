@@ -20,7 +20,7 @@
   <meta name="twitter:description" content="This is a primer in Human Cardiovascular Genetics. The output format for this example is bookdown::gitbook." />
   
 
-<meta name="author" content="dr. Sander W. van der Laan | swvanderlaan" />
+<meta name="author" content="dr. Sander W. van der Laan  " />
 
 
 
@@ -82,7 +82,10 @@
 <ul>
 <li class="chapter" data-level="2.1" data-path="prerequisites.html"><a href="prerequisites.html#linux-macos-and-windows"><i class="fa fa-check"></i><b>2.1</b> Linux, macOS, and Windows<span></span></a></li>
 <li class="chapter" data-level="2.2" data-path="prerequisites.html"><a href="prerequisites.html#programs-you-need"><i class="fa fa-check"></i><b>2.2</b> Programs you need<span></span></a></li>
-<li class="chapter" data-level="2.3" data-path="prerequisites.html"><a href="prerequisites.html#the-terminal"><i class="fa fa-check"></i><b>2.3</b> The Terminal<span></span></a></li>
+<li class="chapter" data-level="2.3" data-path="prerequisites.html"><a href="prerequisites.html#the-terminal"><i class="fa fa-check"></i><b>2.3</b> The Terminal<span></span></a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="prerequisites.html"><a href="prerequisites.html#navigating-the-terminal"><i class="fa fa-check"></i><b>2.3.1</b> Navigating the Terminal<span></span></a></li>
+</ul></li>
 <li class="chapter" data-level="2.4" data-path="prerequisites.html"><a href="prerequisites.html#installing-some-r-packages"><i class="fa fa-check"></i><b>2.4</b> Installing some R packages<span></span></a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="basics-of-a-genome-wide-association-study-gwas.html"><a href="basics-of-a-genome-wide-association-study-gwas.html"><i class="fa fa-check"></i><b>3</b> Basics of a Genome-Wide Association Study (GWAS)<span></span></a>
@@ -164,66 +167,61 @@
             <section class="normal" id="section-">
 <div id="prerequisites" class="section level1 hasAnchor" number="2">
 <h1><span class="header-section-number">Chapter 2</span> Prerequisites<a href="prerequisites.html#prerequisites" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p><img src="img/using_gitbook.jpeg" /></p>
 <div id="linux-macos-and-windows" class="section level2 hasAnchor" number="2.1">
 <h2><span class="header-section-number">2.1</span> Linux, macOS, and Windows<a href="prerequisites.html#linux-macos-and-windows" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Most programs made to execute genetic studies are developed for the Unix environment, <em>e.g.</em> Linux and macOS. Therefore, they may not work as intended on window’s environment. Fortunately, Windows now allow users to install a linux subsystem within Windows 10 and you can find the detail <a href="https://docs.microsoft.com/en-us/windows/wsl/about" target="_blank">guide</a> here.<br />
-However, we highly recommend to 1) either install a linux subsystem on your Windows computer (<em>e.g.</em> <a href="https://blog.storagecraft.com/the-dead-simple-guide-to-installing-a-linux-virtual-machine-on-windows/" target="_blank">a virtual machine with Ubuntu could work</a>), or 2) switch to macOS in combination with <a href="https://brew.sh" target="_blank">homebrew</a> as this will give you advantage of a powerful computer with a userfriendly interface and all the flexibility to use Unix-based programs for your work.</p>
+<p>Most programs made to execute genetic epidemiology studies are developed for the Unix environment, for example Linux and macOS. So, they may not work as intended in a Windows environment. Windows does allow users to install a linux subsystem within Windows 10 and you can find the detail <a href="https://docs.microsoft.com/en-us/windows/wsl/about" target="_blank">guide</a> here.</p>
+<p>However, I highly recommend to 1) either install a linux subsystem on your Windows computer (for example <a href="https://blog.storagecraft.com/the-dead-simple-guide-to-installing-a-linux-virtual-machine-on-windows/" target="_blank">a virtual machine with Ubuntu could work</a>), or 2) switch to macOS in combination with <a href="https://brew.sh" target="_blank">homebrew</a>. This will give you all the flexibility to use Unix-based programs for your genetic epidemiology work and at the same time you’ll keep the advantage of a powerful computer with a user-friendly interface (either Windows or macOS).</p>
 <blockquote>
-<p>For this practical we use a Windows laptop with Ubuntu on a VirtualMachine. Therefore every command is intended for Linux/macOS.</p>
+<p>For this practical we use a Windows laptop with Ubuntu on a VirtualMachine. Therefore every command is intended for Linux/macOS, in other words Unix-systems.</p>
 </blockquote>
 </div>
 <div id="programs-you-need" class="section level2 hasAnchor" number="2.2">
 <h2><span class="header-section-number">2.2</span> Programs you need<a href="prerequisites.html#programs-you-need" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>You need few programs for this practical or for your (future) genetic epidemiology work for that matter.</p>
-<table style="width:85%;">
+<p>You need few programs for this practical, or for your (future) genetic epidemiology work for that matter.</p>
+<table style="width:86%;">
 <colgroup>
-<col width="16%" />
-<col width="11%" />
-<col width="56%" />
+<col width="86%" />
 </colgroup>
 <thead>
 <tr class="header">
-<th align="left">Program</th>
-<th align="left">Link</th>
-<th align="left">Description</th>
+<th align="left">Program Link Description</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">PLINK</td>
-<td align="left">[<a href="https:/" class="uri">https:/</a></td>
-<td align="left">/www.cog-genomics.org/plink2/](<a href="https://www.cog-genomics.org/plink2/" class="uri">https://www.cog-genomics.org/plink2/</a>){target=“_blank”} PLINK is a free, open-source genetic analysis toolset, designed to perform a range of basic data parsing and quality control, as well as basic and large-scale analyses in a computationally efficient manner.</td>
+<td align="left">PLINK <a href="https://www.cog-genomics.org/plink2/" target="_blank">https://www.cog-genomics.org/plink2/</a> PLINK is a free, open-source genetic analysis tool set, designed to perform a range of basic data parsing and quality control, as well as basic and large-scale analyses in a computationally efficient manner.</td>
 </tr>
 <tr class="even">
-<td align="left">R</td>
-<td align="left">[<a href="https:/" class="uri">https:/</a></td>
-<td align="left">/cran.r-project.org](<a href="https://cran.r-project.org/" class="uri">https://cran.r-project.org/</a>){target=“_blank”} Progam to perform statistical analysis and visualisations.</td>
+<td align="left">R <a href="https://cran.r-project.org/" target="_blank">https://cran.r-project.org</a> A program to perform statistical analysis and visualizations.</td>
 </tr>
 <tr class="odd">
-<td align="left">RStudio</td>
-<td align="left">[<a href="https:/" class="uri">https:/</a></td>
-<td align="left">/www.rstudio.com](<a href="https://www.rstudio.com" class="uri">https://www.rstudio.com</a>){target=“_blank”} A userfriendly R-wrap-around for code editing, debugging, analyses, and visualisation</td>
+<td align="left">RStudio <a href="https://www.rstudio.com" target="_blank">https://www.rstudio.com</a> A user-friendly R-wrap-around for code editing, debugging, analyses, and visualization.</td>
+</tr>
+<tr class="even">
+<td align="left">Homebrew <a href="https://brew.sh" target="_blank">https://brew.sh</a> A great extension for Mac-users to install really useful programs that Apple didn’t.</td>
 </tr>
 </tbody>
 </table>
 <p>Table 1: Programs needed for genetic epidemiology.</p>
-<p>All genetic analyses can be done in PLINK, even on your laptop, but with large datasets, e.g. UK-biobank size, it’s better to switch to a <a href="https://wiki.bioinformatics.umcutrecht.nl/bin/view/HPC/WebHome" target="_blank">high-performance computing cluster</a> like we have at the Uithof.</p>
-<p>Nowadays, a lot of people also use programs like <a href="snptest" target="_blank">SNPTEST</a>, <a href="https://data.broadinstitute.org/alkesgroup/BOLT-LMM/" target="_blank">BOLT-LMM</a>, and <a href="http://cnsgenomics.com/software/gcta/#Overview" target="_blank">GCTA</a> as alternatives to run GWAS and downstream analyses, <em>e.g.</em> heritability estimation, Fst-calculation, etc.</p>
-<p>Mendelian randomisation can be done either with the <a href="http://cnsgenomics.com/software/smr/#Overview" target="_blank">SMR</a> or <a href="http://cnsgenomics.com/software/gsmr/" target="_blank">GSMR</a> function from GCTA or with R-packages, like <code>TwoSampleMR</code>.</p>
+<p>All genetic analyses can be done in PLINK, even on your laptop, but with large datasets, for example <a href="https://www.ukbiobank.ac.uk">UK Biobank</a> size, it is better to switch to a <a href="https://en.wikipedia.org/wiki/High-performance_computing" target="_blank">high-performance computing cluster</a> like we have available at the <a href="https://wiki.bioinformatics.umcutrecht.nl/bin/view/HPC/WebHome" target="_blank">Utrecht Science Park</a>.</p>
+<p>Nowadays, a lot of people also use programs like <a href="snptest" target="_blank">SNPTEST</a>, <a href="https://data.broadinstitute.org/alkesgroup/BOLT-LMM/" target="_blank">BOLT-LMM</a>, <a href="http://cnsgenomics.com/software/gcta/#Overview" target="_blank">GCTA</a>, or <a href="https://rgcgithub.github.io/regenie/" target="_blank">regenie</a> as alternatives to execute GWAS and downstream analyses, for example heritability estimation, Fst-calculation, and so on.</p>
+<p>Mendelian randomization can be done either with the <a href="http://cnsgenomics.com/software/smr/#Overview" target="_blank">SMR</a> or <a href="http://cnsgenomics.com/software/gsmr/" target="_blank">GSMR</a> function from GCTA, or with R-packages, like <a href="https://mrcieu.github.io/TwoSampleMR/" target="_blank"><code>TwoSampleMR</code></a>.</p>
 </div>
 <div id="the-terminal" class="section level2 hasAnchor" number="2.3">
 <h2><span class="header-section-number">2.3</span> The Terminal<a href="prerequisites.html#the-terminal" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>For all the above programs, except RStudio, you will need the <code>Terminal</code>. This comes with every major operating system. And you will (start to) make your own scripts. The benefit of using scripts is that each step is clearly layed out and easily replicable, thus allows for greater reproducibility, easier troubleshooting and can be run on high-performance computer clusters.</p>
-<p>Download the data you need to your Desktop: LINK.</p>
+<p>For all the above programs, except RStudio, you will need the <code>Terminal</code>. This comes with every major operating system; on Windows it is called ‘PowerShell’, but let’s not go there. And regardless, you will (have to start to) make your own scripts. The benefit of using scripts is that each step in your workflow is clearly stipulated and annotated, and it allows for greater reproducibility, easier troubleshooting, and scaling up to high-performance computer clusters.</p>
+<div id="navigating-the-terminal" class="section level3 hasAnchor" number="2.3.1">
+<h3><span class="header-section-number">2.3.1</span> Navigating the Terminal<a href="prerequisites.html#navigating-the-terminal" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>First, let’s download the data you need to your Desktop: <a href="">LINK</a>.</p>
 <p>Now open the terminal, it should be on the left in the toolbar as a little black computer-monitor-like icon.
-Mac uses can type <code>command + space</code> and type <code>terminal</code>, a terminal screen should open.</p>
+Mac users can type <code>command + space</code> and type <code>terminal</code>, a terminal screen should open.</p>
 <blockquote>
 <p>From now on we will use little code blocks like the example to indicate a code you should type/copy-paste and hit enter. If a code is followed by a comment, it is indicated by a # - you don’t need to copy-paste and execute this.</p>
 </blockquote>
 <pre><code>CODE BLOCK
 
 CODE BLOCK # some comment here
-
 </code></pre>
 <p>You can navigate around the computer through the terminal by typing <code>cd &lt;path&gt;</code>; <code>cd</code> stands for “change directory” and <path> means “some_file_directory_you_want_to_go_to”.</p>
 <pre><code># For Linux/macOS Users
@@ -243,6 +241,7 @@ ls -lS # shows the files as list sorted by size</code></pre>
 <p>Adding the flags <code>-lh</code> will get you the contents of a directory in a list (<code>-l</code>) and make the size ‘human-readable’ (<code>-h</code>).</p>
 <p>You can also count the number of files.</p>
 <pre><code>ls | wc -l</code></pre>
+</div>
 </div>
 <div id="installing-some-r-packages" class="section level2 hasAnchor" number="2.4">
 <h2><span class="header-section-number">2.4</span> Installing some R packages<a href="prerequisites.html#installing-some-r-packages" class="anchor-section" aria-label="Anchor link to header"></a></h2>

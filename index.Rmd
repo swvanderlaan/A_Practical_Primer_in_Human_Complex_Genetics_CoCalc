@@ -1,7 +1,7 @@
 --- 
 title: "A primer in Human Cardiovascular Genetics"
-author: "[dr. Sander W. van der Laan](https://swvanderlaan.github.iio) | [swvanderlaan](https://www.twitter.com/swvanderlaan)"
-date: "Last update: `r Sys.Date()`"
+author: "[dr. Sander W. van der Laan](https://swvanderlaan.github.iio) [![](./img/_social_media/Twitter social icons - circle - blue.png){width=5%}](https://www.twitter.com/swvanderlaan) [![](./img/_social_media/Email_icon.png){width=5%}](mailto:s.w.vanderlaan@gmail.com)"
+date: "Version 1.0.0 | last update: `r Sys.Date()`"
 description: This is a primer in Human Cardiovascular Genetics. The output format for this example
   is bookdown::gitbook.
 documentclass: book
@@ -17,8 +17,7 @@ output: html_document
 
 <!--"Using GitBooks to create Open course materials"-->
 # About this primer
-
-![](./img/using_gitbook.jpeg)
+![](./img/banner_man_standing_dna.png)
 
 ## Introduction
 
@@ -52,15 +51,15 @@ With respect to imputation you should also get familiar with the following two w
 We work with a team of enthusiastic lecturers with experience in bioinformatics, GWAS, genetic analyses, Mendelian randomization, and epidemiology. This year the team consists of:
 
 --------------
-![](img/_team/sander_vander_laan.jpg){width=15%} Sander W. van der Laan </br>_Assistant professor_</br>Course coordinator</br><s.w.vanderlaan-2@umcutrecht.nl> | [swvanderlaan](http://www.twitter.com/swvanderlaan){target="_blank"}
+![](./img/_team/sander_vander_laan.jpg){width=15%} Sander W. van der Laan </br>_Assistant professor_</br>Course coordinator</br><s.w.vanderlaan-2@umcutrecht.nl> | [swvanderlaan](http://www.twitter.com/swvanderlaan){target="_blank"}
 
-![](img/_team/charlotte_onland.jpg){width=15%} Charlotte Onland-Moret </br>_Associate Professor_</br><N.C.Onland@umcutrecht.nl> 
+![](./img/_team/charlotte_onland.jpg){width=15%} Charlotte Onland-Moret </br>_Associate Professor_</br><N.C.Onland@umcutrecht.nl> | [nconland](http://www.twitter.com/nconland){target="_blank"}
 
-[](img/_team/jessica_van_setten.jpg){width=15%} Jessica van Setten </br>_Assistant professor_</br><j.vansetten@umcutrecht.nl> | [j_vansetten](http://www.twitter.com/j_vansetten){target="_blank"}
+[](./img/_team/jessica_van_setten.jpg){width=15%} Jessica van Setten </br>_Assistant professor_</br><j.vansetten@umcutrecht.nl> | [j_vansetten](http://www.twitter.com/j_vansetten){target="_blank"}
 
-<!-- ![](img/_team/arjan_boltjes.jpg){width=15%} Arjan Boltjes </br>_Postdoctoral researcher_</br><a.boltjes@umcutrecht.nl> | [arjanboltjes](http://www.twitter.com/arjanboltjes){target="_blank"} -->
+<!-- ![](./img/_team/arjan_boltjes.jpg){width=15%} Arjan Boltjes </br>_Postdoctoral researcher_</br><a.boltjes@umcutrecht.nl> | [arjanboltjes](http://www.twitter.com/arjanboltjes){target="_blank"} -->
 
-<!-- ![](img/_team/joanna_bon_berg.jpg){width=15%} Joanna von Berg </br>_PhD student_</br><j.vonberg-24@umcutrecht.nl> | [JoannavonBerg](http://www.twitter.com/JoannavonBerg){target="_blank"} -->
+<!-- ![](./img/_team/joanna_bon_berg.jpg){width=15%} Joanna von Berg </br>_PhD student_</br><j.vonberg-24@umcutrecht.nl> | [JoannavonBerg](http://www.twitter.com/JoannavonBerg){target="_blank"} -->
 
 --------------
 
@@ -69,6 +68,6 @@ We work with a team of enthusiastic lecturers with experience in bioinformatics,
 
 I can imagine this seems overwhelming, but trust me, you'll be okay. Just follow this practical, but also work on the questions asked during the lectures and in this practical. You'll learn by doing and at the end of the day, you can execute a GWAS independently.
 
-Ready to start? 
+**Ready to start?**
 
 Your first point of action is to prepare your system for this course (Chapter \@ref(prerequisites)). 

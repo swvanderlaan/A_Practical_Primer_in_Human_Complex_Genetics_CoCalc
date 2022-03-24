@@ -37,7 +37,7 @@
 \IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
 \hypersetup{
   pdftitle={A primer in Human Cardiovascular Genetics},
-  pdfauthor={dr. Sander W. van der Laan \textbar{} swvanderlaan},
+  pdfauthor={dr. Sander W. van der Laan  },
   hidelinks,
   pdfcreator={LaTeX via pandoc}}
 \urlstyle{same} % disable monospaced font for URLs
@@ -83,8 +83,8 @@
 \bibliographystyle{apalike}
 
 \title{A primer in Human Cardiovascular Genetics}
-\author{\href{https://swvanderlaan.github.iio}{dr. Sander W. van der Laan} \textbar{} \href{https://www.twitter.com/swvanderlaan}{swvanderlaan}}
-\date{Last update: 2022-03-24}
+\author{\href{https://swvanderlaan.github.iio}{dr. Sander W. van der Laan} \href{https://www.twitter.com/swvanderlaan}{\includegraphics[width=0.05\textwidth,height=\textheight]{./img/_social_media/Twitter social icons - circle - blue.png}} \href{mailto:s.w.vanderlaan@gmail.com}{\includegraphics[width=0.05\textwidth,height=\textheight]{./img/_social_media/Email_icon.png}}}
+\date{Version 1.0.0 \textbar{} last update: 2022-03-24}
 
 \begin{document}
 \maketitle
@@ -96,7 +96,7 @@
 \hypertarget{about-this-primer}{%
 \chapter{About this primer}\label{about-this-primer}}
 
-\includegraphics{./img/using_gitbook.jpeg}
+\includegraphics{./img/banner_man_standing_dna.png}
 
 \hypertarget{introduction}{%
 \section{Introduction}\label{introduction}}
@@ -154,9 +154,9 @@ We work with a team of enthusiastic lecturers with experience in bioinformatics,
   >{\raggedright\arraybackslash}p{(\columnwidth - 0\tabcolsep) * \real{0.2083}}@{}}
 \toprule
 \endhead
-\includegraphics[width=0.15\textwidth,height=\textheight]{img/_team/sander_vander_laan.jpg} Sander W. van der Laan \emph{Assistant professor}Course coordinator\href{mailto:s.w.vanderlaan-2@umcutrecht.nl}{\nolinkurl{s.w.vanderlaan-2@umcutrecht.nl}} \textbar{} \href{http://www.twitter.com/swvanderlaan}{swvanderlaan} \\
-\includegraphics[width=0.15\textwidth,height=\textheight]{img/_team/charlotte_onland.jpg} Charlotte Onland-Moret \emph{Associate Professor}\href{mailto:N.C.Onland@umcutrecht.nl}{\nolinkurl{N.C.Onland@umcutrecht.nl}} \\
-\href{img/_team/jessica_van_setten.jpg}{} Jessica van Setten \emph{Assistant professor}\href{mailto:j.vansetten@umcutrecht.nl}{\nolinkurl{j.vansetten@umcutrecht.nl}} \textbar{} \href{http://www.twitter.com/j_vansetten}{j\_vansetten} \\
+\includegraphics[width=0.15\textwidth,height=\textheight]{./img/_team/sander_vander_laan.jpg} Sander W. van der Laan \emph{Assistant professor}Course coordinator\href{mailto:s.w.vanderlaan-2@umcutrecht.nl}{\nolinkurl{s.w.vanderlaan-2@umcutrecht.nl}} \textbar{} \href{http://www.twitter.com/swvanderlaan}{swvanderlaan} \\
+\includegraphics[width=0.15\textwidth,height=\textheight]{./img/_team/charlotte_onland.jpg} Charlotte Onland-Moret \emph{Associate Professor}\href{mailto:N.C.Onland@umcutrecht.nl}{\nolinkurl{N.C.Onland@umcutrecht.nl}} \textbar{} \href{http://www.twitter.com/nconland}{nconland} \\
+\href{./img/_team/jessica_van_setten.jpg}{} Jessica van Setten \emph{Assistant professor}\href{mailto:j.vansetten@umcutrecht.nl}{\nolinkurl{j.vansetten@umcutrecht.nl}} \textbar{} \href{http://www.twitter.com/j_vansetten}{j\_vansetten} \\
  \\
  \\
 \bottomrule
@@ -167,65 +167,66 @@ We work with a team of enthusiastic lecturers with experience in bioinformatics,
 
 I can imagine this seems overwhelming, but trust me, you'll be okay. Just follow this practical, but also work on the questions asked during the lectures and in this practical. You'll learn by doing and at the end of the day, you can execute a GWAS independently.
 
-Ready to start?
+\textbf{Ready to start?}
 
 Your first point of action is to prepare your system for this course (Chapter \ref{prerequisites}).
 
 \hypertarget{prerequisites}{%
 \chapter{Prerequisites}\label{prerequisites}}
 
+\includegraphics{./img/using_gitbook.jpeg}
+
 \hypertarget{linux-macos-and-windows}{%
 \section{Linux, macOS, and Windows}\label{linux-macos-and-windows}}
 
-Most programs made to execute genetic studies are developed for the Unix environment, \emph{e.g.} Linux and macOS. Therefore, they may not work as intended on window's environment. Fortunately, Windows now allow users to install a linux subsystem within Windows 10 and you can find the detail \href{https://docs.microsoft.com/en-us/windows/wsl/about}{guide} here.\\
-However, we highly recommend to 1) either install a linux subsystem on your Windows computer (\emph{e.g.} \href{https://blog.storagecraft.com/the-dead-simple-guide-to-installing-a-linux-virtual-machine-on-windows/}{a virtual machine with Ubuntu could work}), or 2) switch to macOS in combination with \href{https://brew.sh}{homebrew} as this will give you advantage of a powerful computer with a userfriendly interface and all the flexibility to use Unix-based programs for your work.
+Most programs made to execute genetic epidemiology studies are developed for the Unix environment, for example Linux and macOS. So, they may not work as intended in a Windows environment. Windows does allow users to install a linux subsystem within Windows 10 and you can find the detail \href{https://docs.microsoft.com/en-us/windows/wsl/about}{guide} here.
+
+However, I highly recommend to 1) either install a linux subsystem on your Windows computer (for example \href{https://blog.storagecraft.com/the-dead-simple-guide-to-installing-a-linux-virtual-machine-on-windows/}{a virtual machine with Ubuntu could work}), or 2) switch to macOS in combination with \href{https://brew.sh}{homebrew}. This will give you all the flexibility to use Unix-based programs for your genetic epidemiology work and at the same time you'll keep the advantage of a powerful computer with a user-friendly interface (either Windows or macOS).
 
 \begin{quote}
-For this practical we use a Windows laptop with Ubuntu on a VirtualMachine. Therefore every command is intended for Linux/macOS.
+For this practical we use a Windows laptop with Ubuntu on a VirtualMachine. Therefore every command is intended for Linux/macOS, in other words Unix-systems.
 \end{quote}
 
 \hypertarget{programs-you-need}{%
 \section{Programs you need}\label{programs-you-need}}
 
-You need few programs for this practical or for your (future) genetic epidemiology work for that matter.
+You need few programs for this practical, or for your (future) genetic epidemiology work for that matter.
 
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.1667}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.1111}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.5694}}@{}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 0\tabcolsep) * \real{0.8611}}@{}}
 \toprule
 \begin{minipage}[b]{\linewidth}\raggedright
-Program
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-Link
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-Description
+Program Link Description
 \end{minipage} \\
 \midrule
 \endhead
-PLINK & {[}\url{https:/} & /www.cog-genomics.org/plink2/{]}(\url{https://www.cog-genomics.org/plink2/})\{target=``\_blank''\} PLINK is a free, open-source genetic analysis toolset, designed to perform a range of basic data parsing and quality control, as well as basic and large-scale analyses in a computationally efficient manner. \\
-R & {[}\url{https:/} & /cran.r-project.org{]}(\url{https://cran.r-project.org/})\{target=``\_blank''\} Progam to perform statistical analysis and visualisations. \\
-RStudio & {[}\url{https:/} & /www.rstudio.com{]}(\url{https://www.rstudio.com})\{target=``\_blank''\} A userfriendly R-wrap-around for code editing, debugging, analyses, and visualisation \\
+PLINK \url{https://www.cog-genomics.org/plink2/} PLINK is a free, open-source genetic analysis tool set, designed to perform a range of basic data parsing and quality control, as well as basic and large-scale analyses in a computationally efficient manner. \\
+R \href{https://cran.r-project.org/}{https://cran.r-project.org} A program to perform statistical analysis and visualizations. \\
+RStudio \url{https://www.rstudio.com} A user-friendly R-wrap-around for code editing, debugging, analyses, and visualization. \\
+Homebrew \url{https://brew.sh} A great extension for Mac-users to install really useful programs that Apple didn't. \\
 \bottomrule
 \end{longtable}
 
 Table 1: Programs needed for genetic epidemiology.
 
-All genetic analyses can be done in PLINK, even on your laptop, but with large datasets, e.g.~UK-biobank size, it's better to switch to a \href{https://wiki.bioinformatics.umcutrecht.nl/bin/view/HPC/WebHome}{high-performance computing cluster} like we have at the Uithof.
+All genetic analyses can be done in PLINK, even on your laptop, but with large datasets, for example \href{https://www.ukbiobank.ac.uk}{UK Biobank} size, it is better to switch to a \href{https://en.wikipedia.org/wiki/High-performance_computing}{high-performance computing cluster} like we have available at the \href{https://wiki.bioinformatics.umcutrecht.nl/bin/view/HPC/WebHome}{Utrecht Science Park}.
 
-Nowadays, a lot of people also use programs like \href{snptest}{SNPTEST}, \href{https://data.broadinstitute.org/alkesgroup/BOLT-LMM/}{BOLT-LMM}, and \href{http://cnsgenomics.com/software/gcta/\#Overview}{GCTA} as alternatives to run GWAS and downstream analyses, \emph{e.g.} heritability estimation, Fst-calculation, etc.
+Nowadays, a lot of people also use programs like \href{snptest}{SNPTEST}, \href{https://data.broadinstitute.org/alkesgroup/BOLT-LMM/}{BOLT-LMM}, \href{http://cnsgenomics.com/software/gcta/\#Overview}{GCTA}, or \href{https://rgcgithub.github.io/regenie/}{regenie} as alternatives to execute GWAS and downstream analyses, for example heritability estimation, Fst-calculation, and so on.
 
-Mendelian randomisation can be done either with the \href{http://cnsgenomics.com/software/smr/\#Overview}{SMR} or \href{http://cnsgenomics.com/software/gsmr/}{GSMR} function from GCTA or with R-packages, like \texttt{TwoSampleMR}.
+Mendelian randomization can be done either with the \href{http://cnsgenomics.com/software/smr/\#Overview}{SMR} or \href{http://cnsgenomics.com/software/gsmr/}{GSMR} function from GCTA, or with R-packages, like \href{https://mrcieu.github.io/TwoSampleMR/}{\texttt{TwoSampleMR}}.
 
 \hypertarget{the-terminal}{%
 \section{The Terminal}\label{the-terminal}}
 
-For all the above programs, except RStudio, you will need the \texttt{Terminal}. This comes with every major operating system. And you will (start to) make your own scripts. The benefit of using scripts is that each step is clearly layed out and easily replicable, thus allows for greater reproducibility, easier troubleshooting and can be run on high-performance computer clusters.
+For all the above programs, except RStudio, you will need the \texttt{Terminal}. This comes with every major operating system; on Windows it is called `PowerShell', but let's not go there. And regardless, you will (have to start to) make your own scripts. The benefit of using scripts is that each step in your workflow is clearly stipulated and annotated, and it allows for greater reproducibility, easier troubleshooting, and scaling up to high-performance computer clusters.
 
-Download the data you need to your Desktop: LINK.
+\hypertarget{navigating-the-terminal}{%
+\subsection{Navigating the Terminal}\label{navigating-the-terminal}}
+
+First, let's download the data you need to your Desktop: \href{}{LINK}.
 
 Now open the terminal, it should be on the left in the toolbar as a little black computer-monitor-like icon.
-Mac uses can type \texttt{command\ +\ space} and type \texttt{terminal}, a terminal screen should open.
+Mac users can type \texttt{command\ +\ space} and type \texttt{terminal}, a terminal screen should open.
 
 \begin{quote}
 From now on we will use little code blocks like the example to indicate a code you should type/copy-paste and hit enter. If a code is followed by a comment, it is indicated by a \# - you don't need to copy-paste and execute this.
@@ -235,7 +236,6 @@ From now on we will use little code blocks like the example to indicate a code y
 CODE BLOCK
 
 CODE BLOCK # some comment here
-
 \end{verbatim}
 
 You can navigate around the computer through the terminal by typing \texttt{cd\ \textless{}path\textgreater{}}; \texttt{cd} stands for ``change directory'' and means ``some\_file\_directory\_you\_want\_to\_go\_to''.

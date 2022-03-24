@@ -1,55 +1,65 @@
 # Prerequisites
+![](./img/using_gitbook.jpeg)
 
 ## Linux, macOS, and Windows
-Most programs made to execute genetic studies are developed for the Unix environment, _e.g._ Linux and macOS. Therefore, they may not work as intended on window's environment. Fortunately, Windows now allow users to install a linux subsystem within Windows 10 and you can find the detail [guide](https://docs.microsoft.com/en-us/windows/wsl/about){target="_blank"} here.  
-However, we highly recommend to 1) either install a linux subsystem on your Windows computer (_e.g._ [a virtual machine with Ubuntu could work](https://blog.storagecraft.com/the-dead-simple-guide-to-installing-a-linux-virtual-machine-on-windows/){target="_blank"}), or 2) switch to macOS in combination with [homebrew](https://brew.sh){target="_blank"} as this will give you advantage of a powerful computer with a userfriendly interface and all the flexibility to use Unix-based programs for your work.
 
-> For this practical we use a Windows laptop with Ubuntu on a VirtualMachine. Therefore every command is intended for Linux/macOS.
+Most programs made to execute genetic epidemiology studies are developed for the Unix environment, for example Linux and macOS. So, they may not work as intended in a Windows environment. Windows does allow users to install a linux subsystem within Windows 10 and you can find the detail [guide](https://docs.microsoft.com/en-us/windows/wsl/about){target="_blank"} here.  
+
+However, I highly recommend to 1) either install a linux subsystem on your Windows computer (for example [a virtual machine with Ubuntu could work](https://blog.storagecraft.com/the-dead-simple-guide-to-installing-a-linux-virtual-machine-on-windows/){target="_blank"}), or 2) switch to macOS in combination with [homebrew](https://brew.sh){target="_blank"}. This will give you all the flexibility to use Unix-based programs for your genetic epidemiology work and at the same time you'll keep the advantage of a powerful computer with a user-friendly interface (either Windows or macOS).
+
+> For this practical we use a Windows laptop with Ubuntu on a VirtualMachine. Therefore every command is intended for Linux/macOS, in other words Unix-systems.
 
 
 ## Programs you need
 
-You need few programs for this practical or for your (future) genetic epidemiology work for that matter.
+You need few programs for this practical, or for your (future) genetic epidemiology work for that matter.
 
 
 -------------------------------------------------------------
 Program     Link    Description
------------ ------- ----------------------------------------
-PLINK       [https://www.cog-genomics.org/plink2/](https://www.cog-genomics.org/plink2/){target="_blank"} PLINK is a free, open-source genetic analysis toolset, designed to perform a range of basic data parsing and quality control, as well as basic and large-scale analyses in a computationally efficient manner.
+-------------------------------------------------------------
+PLINK       [https://www.cog-genomics.org/plink2/](https://www.cog-genomics.org/plink2/){target="_blank"} PLINK is a free, open-source genetic analysis tool set, designed to perform a range of basic data parsing and quality control, as well as basic and large-scale analyses in a computationally efficient manner.
 
-R           [https://cran.r-project.org](https://cran.r-project.org/){target="_blank"} Progam to perform statistical analysis and visualisations.
+R           [https://cran.r-project.org](https://cran.r-project.org/){target="_blank"} A program to perform statistical analysis and visualizations.
 
-RStudio     [https://www.rstudio.com](https://www.rstudio.com){target="_blank"} A userfriendly R-wrap-around for code editing, debugging, analyses, and visualisation
+RStudio     [https://www.rstudio.com](https://www.rstudio.com){target="_blank"} A user-friendly R-wrap-around for code editing, debugging, analyses, and visualization.
+
+Homebrew    [https://brew.sh](https://brew.sh){target="_blank"} A great extension for Mac-users to install really useful programs that Apple didn't.
 
 -------------------------------------------------------------
 
 Table 1: Programs needed for genetic epidemiology.
 
-All genetic analyses can be done in PLINK, even on your laptop, but with large datasets, e.g. UK-biobank size, it's better to switch to a [high-performance computing cluster](https://wiki.bioinformatics.umcutrecht.nl/bin/view/HPC/WebHome){target="_blank"} like we have at the Uithof.
 
-Nowadays, a lot of people also use programs like [SNPTEST](snptest){target="_blank"}, [BOLT-LMM](https://data.broadinstitute.org/alkesgroup/BOLT-LMM/){target="_blank"}, and [GCTA](http://cnsgenomics.com/software/gcta/#Overview){target="_blank"} as alternatives to run GWAS and downstream analyses, _e.g._ heritability estimation, Fst-calculation, etc.
+All genetic analyses can be done in PLINK, even on your laptop, but with large datasets, for example [UK Biobank](https://www.ukbiobank.ac.uk) size, it is better to switch to a [high-performance computing cluster](https://en.wikipedia.org/wiki/High-performance_computing){target="_blank"} like we have available at the [Utrecht Science Park](https://wiki.bioinformatics.umcutrecht.nl/bin/view/HPC/WebHome){target="_blank"}.
 
-Mendelian randomisation can be done either with the [SMR](http://cnsgenomics.com/software/smr/#Overview){target="_blank"} or [GSMR](http://cnsgenomics.com/software/gsmr/){target="_blank"} function from GCTA or with R-packages, like `TwoSampleMR`.
+Nowadays, a lot of people also use programs like [SNPTEST](snptest){target="_blank"}, [BOLT-LMM](https://data.broadinstitute.org/alkesgroup/BOLT-LMM/){target="_blank"},  [GCTA](http://cnsgenomics.com/software/gcta/#Overview){target="_blank"}, or [regenie](https://rgcgithub.github.io/regenie/){target="_blank"} as alternatives to execute GWAS and downstream analyses, for example heritability estimation, Fst-calculation, and so on.
+
+Mendelian randomization can be done either with the [SMR](http://cnsgenomics.com/software/smr/#Overview){target="_blank"} or [GSMR](http://cnsgenomics.com/software/gsmr/){target="_blank"} function from GCTA, or with R-packages, like [`TwoSampleMR`](https://mrcieu.github.io/TwoSampleMR/){target="_blank"}.
+
 
 ## The Terminal
 
-For all the above programs, except RStudio, you will need the `Terminal`. This comes with every major operating system. And you will (start to) make your own scripts. The benefit of using scripts is that each step is clearly layed out and easily replicable, thus allows for greater reproducibility, easier troubleshooting and can be run on high-performance computer clusters.
+For all the above programs, except RStudio, you will need the `Terminal`. This comes with every major operating system; on Windows it is called 'PowerShell', but let's not go there. And regardless, you will (have to start to) make your own scripts. The benefit of using scripts is that each step in your workflow is clearly stipulated and annotated, and it allows for greater reproducibility, easier troubleshooting, and scaling up to high-performance computer clusters.
 
 
-Download the data you need to your Desktop: LINK. 
+### Navigating the Terminal
+
+First, let's download the data you need to your Desktop: [LINK](). 
 
 Now open the terminal, it should be on the left in the toolbar as a little black computer-monitor-like icon. 
-Mac uses can type `command + space` and type `terminal`, a terminal screen should open.
+Mac users can type `command + space` and type `terminal`, a terminal screen should open.
 
 > From now on we will use little code blocks like the example to indicate a code you should type/copy-paste and hit enter. If a code is followed by a comment, it is indicated by a # - you don't need to copy-paste and execute this.
+
 
 ```
 CODE BLOCK
 
 CODE BLOCK # some comment here
 
-
 ```
+
 
 You can navigate around the computer through the terminal by typing `cd <path>`; `cd` stands for "change directory" and <path> means "some_file_directory_you_want_to_go_to".
 
@@ -60,10 +70,13 @@ cd ../ # will bring you to the parent directory (up one level)
 cd XXX # will bring you to the XXX directory
 ```
 
+
 Let's navigate to the folder you just downloaded.
+
 ```
 cd ~/Desktop/practical
 ```
+
 
 Let's check out what is inside the directory, by listing (`ls`) its contents.
 
@@ -76,13 +89,16 @@ ls -lh # shows files as list with human readable format
 ls -lt # shows the files as list sorted by time edited
 ls -lS # shows the files as list sorted by size
 ```
+
 Adding the flags `-lh` will get you the contents of a directory in a list (`-l`) and make the size 'human-readable' (`-h`).
+
 
 You can also count the number of files.
 
 ```
 ls | wc -l
 ```
+
 
 ## Installing some R packages
 
