@@ -12,23 +12,18 @@ However, I highly recommend to 1) either install a linux subsystem on your Windo
 
 ## Programs you need
 
+<!-- Made this table with https://www.tablesgenerator.com/markdown_tables -->
+
 You need few programs for this practical, or for your (future) genetic epidemiology work for that matter.
 
 
--------------------------------------------------------------
-Program     Link    Description
--------------------------------------------------------------
-PLINK       [https://www.cog-genomics.org/plink2/](https://www.cog-genomics.org/plink2/){target="_blank"} PLINK is a free, open-source genetic analysis tool set, designed to perform a range of basic data parsing and quality control, as well as basic and large-scale analyses in a computationally efficient manner.
-
-R           [https://cran.r-project.org](https://cran.r-project.org/){target="_blank"} A program to perform statistical analysis and visualizations.
-
-RStudio     [https://www.rstudio.com](https://www.rstudio.com){target="_blank"} A user-friendly R-wrap-around for code editing, debugging, analyses, and visualization.
-
-Homebrew    [https://brew.sh](https://brew.sh){target="_blank"} A great extension for Mac-users to install really useful programs that Apple didn't.
-
--------------------------------------------------------------
-
-Table 1: Programs needed for genetic epidemiology.
+| **Program** 	| **Link**                             	| **Description**                                                                                                                                                                                                 	|
+|-------------	|--------------------------------------	|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------	|
+| _PLINK_     	| https://www.cog-genomics.org/plink2/ 	| PLINK is a free, open-source genetic analysis tool set, designed to perform a range of basic data parsing and quality control, as well as basic and large-scale analyses in a computationally efficient manner. 	|
+| _R_         	| https://cran.r-project.org/          	| A program to perform statistical analysis and visualizations.                                                                                                                                                   	|
+| _RStudio_   	| https://www.rstudio.com              	| A user-friendly R-wrap-around for code editing, debugging, analyses, and visualization.                                                                                                                         	|
+| _Homebrew_  	| https://brew.sh                      	| A great extension for Mac-users to install really useful programs that Apple didn't.                                                                                                                            	|
+**Table 1:** Programs needed for genetic epidemiology.
 
 
 All genetic analyses can be done in PLINK, even on your laptop, but with large datasets, for example [UK Biobank](https://www.ukbiobank.ac.uk) size, it is better to switch to a [high-performance computing cluster](https://en.wikipedia.org/wiki/High-performance_computing){target="_blank"} like we have available at the [Utrecht Science Park](https://wiki.bioinformatics.umcutrecht.nl/bin/view/HPC/WebHome){target="_blank"}.
