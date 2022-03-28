@@ -7,6 +7,36 @@ Researchers from the VUMC in Amsterdam have created an online tool that aids in 
 We have covered some aspects of post-GWAS analyses, and a lot are covered by FUMA. Let's try and annotate our WTCCC1 results. This assignment will be a bit more _Do It Yourself_.
 
 
+## Conditional analyses
+
+[add text]
+
+## Statistical finemapping
+
+[add text]
+
+## Functional finemapping
+
+[add text]
+
+## FUMA: FUnctional Mapping and Annotation of GWAS
+
+[add text]
+
+## PheWAS
+
+[add text]
+
+## Genetic correlation
+
+[add text]
+
+## Causal inference: Mendelian Randomization
+
+[add text]
+
+
+
 ## Replication! 
 
 You reached an important milestone: you recreated the work by the whole WTCCC1 in just an afternoon. Wow. Back then there wasn't much on analyses _after_ a GWAS, nowadays there are many post-GWAS  analyses methods. We will cover them in the next (Chapter \@ref(conditional_analysis)).

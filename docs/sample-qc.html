@@ -118,6 +118,28 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -163,7 +185,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4" data-path="sample-qc.html"><a href="sample-qc.html"><i class="fa fa-check"></i><b>4</b> Sample QC<span></span></a>
 <ul>
 <li class="chapter" data-level="4.1" data-path="sample-qc.html"><a href="sample-qc.html#sex"><i class="fa fa-check"></i><b>4.1</b> Sex<span></span></a></li>
-<li class="chapter" data-level="4.2" data-path="sample-qc.html"><a href="sample-qc.html#sample-callrates"><i class="fa fa-check"></i><b>4.2</b> Sample Callrates<span></span></a></li>
+<li class="chapter" data-level="4.2" data-path="sample-qc.html"><a href="sample-qc.html#sample-call-rates"><i class="fa fa-check"></i><b>4.2</b> Sample call rates<span></span></a></li>
 <li class="chapter" data-level="4.3" data-path="sample-qc.html"><a href="sample-qc.html#heterozygosity-rate"><i class="fa fa-check"></i><b>4.3</b> Heterozygosity rate<span></span></a></li>
 <li class="chapter" data-level="4.4" data-path="sample-qc.html"><a href="sample-qc.html#relatedness"><i class="fa fa-check"></i><b>4.4</b> Relatedness<span></span></a></li>
 <li class="chapter" data-level="4.5" data-path="sample-qc.html"><a href="sample-qc.html#ancestral-background"><i class="fa fa-check"></i><b>4.5</b> Ancestral background<span></span></a>
@@ -202,71 +224,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="8" data-path="the-welcome-trust-case-control-consortium-wtccc.html"><a href="the-welcome-trust-case-control-consortium-wtccc.html"><i class="fa fa-check"></i><b>8</b> The Welcome Trust Case-Control Consortium (WTCCC)<span></span></a>
 <ul>
-<li class="chapter" data-level="8.1" data-path="the-welcome-trust-case-control-consortium-wtccc.html"><a href="the-welcome-trust-case-control-consortium-wtccc.html#there-you-go"><i class="fa fa-check"></i><b>8.1</b> There you go<span></span></a></li>
+<li class="chapter" data-level="8.1" data-path="the-welcome-trust-case-control-consortium-wtccc.html"><a href="the-welcome-trust-case-control-consortium-wtccc.html#genotyping"><i class="fa fa-check"></i><b>8.1</b> Genotyping<span></span></a></li>
+<li class="chapter" data-level="8.2" data-path="the-welcome-trust-case-control-consortium-wtccc.html"><a href="the-welcome-trust-case-control-consortium-wtccc.html#the-data"><i class="fa fa-check"></i><b>8.2</b> The data<span></span></a></li>
+<li class="chapter" data-level="8.3" data-path="the-welcome-trust-case-control-consortium-wtccc.html"><a href="the-welcome-trust-case-control-consortium-wtccc.html#assignment"><i class="fa fa-check"></i><b>8.3</b> Assignment<span></span></a></li>
+<li class="chapter" data-level="8.4" data-path="the-welcome-trust-case-control-consortium-wtccc.html"><a href="the-welcome-trust-case-control-consortium-wtccc.html#there-you-go"><i class="fa fa-check"></i><b>8.4</b> There you go<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="wtccc1-a-gwas-on-coronary-artery-disease-cad.html"><a href="wtccc1-a-gwas-on-coronary-artery-disease-cad.html"><i class="fa fa-check"></i><b>9</b> WTCCC1: a GWAS on coronary artery disease (CAD)<span></span></a>
+<li class="chapter" data-level="9" data-path="mendelian-randomization-mr.html"><a href="mendelian-randomization-mr.html"><i class="fa fa-check"></i><b>9</b> Mendelian Randomization (MR)<span></span></a>
 <ul>
-<li class="chapter" data-level="9.1" data-path="wtccc1-a-gwas-on-coronary-artery-disease-cad.html"><a href="wtccc1-a-gwas-on-coronary-artery-disease-cad.html#quality-control-1"><i class="fa fa-check"></i><b>9.1</b> Quality control<span></span></a></li>
-<li class="chapter" data-level="9.2" data-path="wtccc1-a-gwas-on-coronary-artery-disease-cad.html"><a href="wtccc1-a-gwas-on-coronary-artery-disease-cad.html#ancestral-background-1"><i class="fa fa-check"></i><b>9.2</b> Ancestral background<span></span></a>
-<ul>
-<li class="chapter" data-level="9.2.1" data-path="wtccc1-a-gwas-on-coronary-artery-disease-cad.html"><a href="wtccc1-a-gwas-on-coronary-artery-disease-cad.html#extreme-cleaning"><i class="fa fa-check"></i><b>9.2.1</b> Extreme cleaning<span></span></a></li>
-<li class="chapter" data-level="9.2.2" data-path="wtccc1-a-gwas-on-coronary-artery-disease-cad.html"><a href="wtccc1-a-gwas-on-coronary-artery-disease-cad.html#removing-samples-1"><i class="fa fa-check"></i><b>9.2.2</b> Removing samples<span></span></a></li>
+<li class="chapter" data-level="9.1" data-path="mendelian-randomization-mr.html"><a href="mendelian-randomization-mr.html#section-1"><i class="fa fa-check"></i><b>9.1</b> Section 1<span></span></a></li>
+<li class="chapter" data-level="9.2" data-path="mendelian-randomization-mr.html"><a href="mendelian-randomization-mr.html#section-2"><i class="fa fa-check"></i><b>9.2</b> Section 2<span></span></a></li>
+<li class="chapter" data-level="9.3" data-path="mendelian-randomization-mr.html"><a href="mendelian-randomization-mr.html#section-3"><i class="fa fa-check"></i><b>9.3</b> Section 3<span></span></a></li>
+<li class="chapter" data-level="9.4" data-path="mendelian-randomization-mr.html"><a href="mendelian-randomization-mr.html#replication"><i class="fa fa-check"></i><b>9.4</b> Replication!<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="9.3" data-path="wtccc1-a-gwas-on-coronary-artery-disease-cad.html"><a href="wtccc1-a-gwas-on-coronary-artery-disease-cad.html#association-testing"><i class="fa fa-check"></i><b>9.3</b> Association testing<span></span></a></li>
-<li class="chapter" data-level="9.4" data-path="wtccc1-a-gwas-on-coronary-artery-disease-cad.html"><a href="wtccc1-a-gwas-on-coronary-artery-disease-cad.html#replication"><i class="fa fa-check"></i><b>9.4</b> Replication!<span></span></a></li>
-</ul></li>
-<li class="chapter" data-level="10" data-path="post-gwas-analyses.html"><a href="post-gwas-analyses.html"><i class="fa fa-check"></i><b>10</b> Post-GWAS Analyses<span></span></a>
-<ul>
-<li class="chapter" data-level="10.1" data-path="post-gwas-analyses.html"><a href="post-gwas-analyses.html#replication-1"><i class="fa fa-check"></i><b>10.1</b> Replication!<span></span></a></li>
-</ul></li>
-<li class="chapter" data-level="11" data-path="conditional-analysis.html"><a href="conditional-analysis.html"><i class="fa fa-check"></i><b>11</b> Conditional analysis<span></span></a>
-<ul>
-<li class="chapter" data-level="11.1" data-path="conditional-analysis.html"><a href="conditional-analysis.html#section-1"><i class="fa fa-check"></i><b>11.1</b> Section 1<span></span></a></li>
-<li class="chapter" data-level="11.2" data-path="conditional-analysis.html"><a href="conditional-analysis.html#section-2"><i class="fa fa-check"></i><b>11.2</b> Section 2<span></span></a></li>
-<li class="chapter" data-level="11.3" data-path="conditional-analysis.html"><a href="conditional-analysis.html#section-3"><i class="fa fa-check"></i><b>11.3</b> Section 3<span></span></a></li>
-<li class="chapter" data-level="11.4" data-path="conditional-analysis.html"><a href="conditional-analysis.html#replication-2"><i class="fa fa-check"></i><b>11.4</b> Replication!<span></span></a></li>
-</ul></li>
-<li class="chapter" data-level="12" data-path="statistical-finemapping.html"><a href="statistical-finemapping.html"><i class="fa fa-check"></i><b>12</b> Statistical finemapping<span></span></a>
-<ul>
-<li class="chapter" data-level="12.1" data-path="statistical-finemapping.html"><a href="statistical-finemapping.html#section-1-1"><i class="fa fa-check"></i><b>12.1</b> Section 1<span></span></a></li>
-<li class="chapter" data-level="12.2" data-path="statistical-finemapping.html"><a href="statistical-finemapping.html#section-2-1"><i class="fa fa-check"></i><b>12.2</b> Section 2<span></span></a></li>
-<li class="chapter" data-level="12.3" data-path="statistical-finemapping.html"><a href="statistical-finemapping.html#section-3-1"><i class="fa fa-check"></i><b>12.3</b> Section 3<span></span></a></li>
-<li class="chapter" data-level="12.4" data-path="statistical-finemapping.html"><a href="statistical-finemapping.html#replication-3"><i class="fa fa-check"></i><b>12.4</b> Replication!<span></span></a></li>
-</ul></li>
-<li class="chapter" data-level="13" data-path="functional-mapping-and-annotation-of-gwas.html"><a href="functional-mapping-and-annotation-of-gwas.html"><i class="fa fa-check"></i><b>13</b> Functional Mapping and Annotation of GWAS<span></span></a>
-<ul>
-<li class="chapter" data-level="13.1" data-path="functional-mapping-and-annotation-of-gwas.html"><a href="functional-mapping-and-annotation-of-gwas.html#assignment"><i class="fa fa-check"></i><b>13.1</b> Assignment<span></span></a>
-<ul>
-<li class="chapter" data-level="13.1.1" data-path="functional-mapping-and-annotation-of-gwas.html"><a href="functional-mapping-and-annotation-of-gwas.html#tutorial"><i class="fa fa-check"></i><b>13.1.1</b> Tutorial<span></span></a></li>
-<li class="chapter" data-level="13.1.2" data-path="functional-mapping-and-annotation-of-gwas.html"><a href="functional-mapping-and-annotation-of-gwas.html#create-the-input"><i class="fa fa-check"></i><b>13.1.2</b> Create the input<span></span></a></li>
-<li class="chapter" data-level="13.1.3" data-path="functional-mapping-and-annotation-of-gwas.html"><a href="functional-mapping-and-annotation-of-gwas.html#run-fuma---snp-to-gene"><i class="fa fa-check"></i><b>13.1.3</b> Run FUMA - SNP to gene<span></span></a></li>
-<li class="chapter" data-level="13.1.4" data-path="functional-mapping-and-annotation-of-gwas.html"><a href="functional-mapping-and-annotation-of-gwas.html#run-fuma---gene-to-function"><i class="fa fa-check"></i><b>13.1.4</b> Run FUMA - Gene to function<span></span></a></li>
-</ul></li>
-<li class="chapter" data-level="13.2" data-path="functional-mapping-and-annotation-of-gwas.html"><a href="functional-mapping-and-annotation-of-gwas.html#some-closing-thoughts"><i class="fa fa-check"></i><b>13.2</b> Some closing thoughts<span></span></a></li>
-</ul></li>
-<li class="chapter" data-level="14" data-path="phenome-wide-association-study-phewas.html"><a href="phenome-wide-association-study-phewas.html"><i class="fa fa-check"></i><b>14</b> Phenome-Wide Association Study (PheWAS)<span></span></a>
-<ul>
-<li class="chapter" data-level="14.1" data-path="phenome-wide-association-study-phewas.html"><a href="phenome-wide-association-study-phewas.html#section-1-2"><i class="fa fa-check"></i><b>14.1</b> Section 1<span></span></a></li>
-<li class="chapter" data-level="14.2" data-path="phenome-wide-association-study-phewas.html"><a href="phenome-wide-association-study-phewas.html#section-2-2"><i class="fa fa-check"></i><b>14.2</b> Section 2<span></span></a></li>
-<li class="chapter" data-level="14.3" data-path="phenome-wide-association-study-phewas.html"><a href="phenome-wide-association-study-phewas.html#section-3-2"><i class="fa fa-check"></i><b>14.3</b> Section 3<span></span></a></li>
-<li class="chapter" data-level="14.4" data-path="phenome-wide-association-study-phewas.html"><a href="phenome-wide-association-study-phewas.html#replication-4"><i class="fa fa-check"></i><b>14.4</b> Replication!<span></span></a></li>
-</ul></li>
-<li class="chapter" data-level="15" data-path="mendelian-randomization-mr.html"><a href="mendelian-randomization-mr.html"><i class="fa fa-check"></i><b>15</b> Mendelian Randomization (MR)<span></span></a>
-<ul>
-<li class="chapter" data-level="15.1" data-path="mendelian-randomization-mr.html"><a href="mendelian-randomization-mr.html#section-1-3"><i class="fa fa-check"></i><b>15.1</b> Section 1<span></span></a></li>
-<li class="chapter" data-level="15.2" data-path="mendelian-randomization-mr.html"><a href="mendelian-randomization-mr.html#section-2-3"><i class="fa fa-check"></i><b>15.2</b> Section 2<span></span></a></li>
-<li class="chapter" data-level="15.3" data-path="mendelian-randomization-mr.html"><a href="mendelian-randomization-mr.html#section-3-3"><i class="fa fa-check"></i><b>15.3</b> Section 3<span></span></a></li>
-<li class="chapter" data-level="15.4" data-path="mendelian-randomization-mr.html"><a href="mendelian-randomization-mr.html#replication-5"><i class="fa fa-check"></i><b>15.4</b> Replication!<span></span></a></li>
-</ul></li>
-<li class="chapter" data-level="16" data-path="mendelian-randomization-mr-1.html"><a href="mendelian-randomization-mr-1.html"><i class="fa fa-check"></i><b>16</b> Mendelian Randomization (MR)<span></span></a>
-<ul>
-<li class="chapter" data-level="16.1" data-path="mendelian-randomization-mr-1.html"><a href="mendelian-randomization-mr-1.html#section-1-4"><i class="fa fa-check"></i><b>16.1</b> Section 1<span></span></a></li>
-<li class="chapter" data-level="16.2" data-path="mendelian-randomization-mr-1.html"><a href="mendelian-randomization-mr-1.html#section-2-4"><i class="fa fa-check"></i><b>16.2</b> Section 2<span></span></a></li>
-<li class="chapter" data-level="16.3" data-path="mendelian-randomization-mr-1.html"><a href="mendelian-randomization-mr-1.html#section-3-4"><i class="fa fa-check"></i><b>16.3</b> Section 3<span></span></a></li>
-<li class="chapter" data-level="16.4" data-path="mendelian-randomization-mr-1.html"><a href="mendelian-randomization-mr-1.html#replication-6"><i class="fa fa-check"></i><b>16.4</b> Replication!<span></span></a></li>
-</ul></li>
-<li class="chapter" data-level="17" data-path="license-your-gitbook.html"><a href="license-your-gitbook.html"><i class="fa fa-check"></i><b>17</b> License your GitBook<span></span></a></li>
-<li class="chapter" data-level="18" data-path="license-your-gitbook-1.html"><a href="license-your-gitbook-1.html"><i class="fa fa-check"></i><b>18</b> License your GitBook<span></span></a></li>
+<li class="chapter" data-level="10" data-path="epilogue.html"><a href="epilogue.html"><i class="fa fa-check"></i><b>10</b> Epilogue<span></span></a></li>
+<li class="chapter" data-level="11" data-path="licenses-and-disclaimers.html"><a href="licenses-and-disclaimers.html"><i class="fa fa-check"></i><b>11</b> Licenses and disclaimers<span></span></a></li>
 <li><a href="references.html#references">References<span></span></a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -290,6 +261,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="sample-qc" class="section level1 hasAnchor" number="4">
 <h1><span class="header-section-number">Chapter 4</span> Sample QC<a href="sample-qc.html#sample-qc" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p><img src="img/gwas_sample_qc.png" style="width:70.0%" /></p>
 <p>Let’s start with the per-sample quality control.</p>
 <div id="sex" class="section level2 hasAnchor" number="4.1">
 <h2><span class="header-section-number">4.1</span> Sex<a href="sample-qc.html#sex" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -310,10 +282,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>cat rawdata/rawdata.sexcheck | awk &#39;$5 ==&quot;STATUS&quot; || $5 ==&quot;PROBLEM&quot;&#39;  &gt; rawdata/rawdata.sexprobs.txt</code></pre>
 <p>Let’s have a look at the results.</p>
 <pre><code>cat rawdata/rawdata.sexprobs.txt</code></pre>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="sample-qc.html#cb16-1" aria-hidden="true" tabindex="-1"></a>sexissues <span class="ot">&lt;-</span> data.table<span class="sc">::</span><span class="fu">fread</span>(<span class="fu">paste0</span>(COURSE_loc,<span class="st">&quot;/rawdata/rawdata.sexprobs.txt&quot;</span>))</span>
-<span id="cb16-2"><a href="sample-qc.html#cb16-2" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(sexissues, <span class="at">caption =</span> <span class="st">&quot;Sex issues&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="sample-qc.html#cb16-1" aria-hidden="true" tabindex="-1"></a>sexissues <span class="ot">&lt;-</span> data.table<span class="sc">::</span><span class="fu">fread</span>(<span class="fu">paste0</span>(COURSE_loc,<span class="st">&quot;/rawdata/rawdata.sexprobs.txt&quot;</span>))</span></code></pre></div>
 <table>
-<caption><span id="tab:unnamed-chunk-1">Table 4.1: </span>Sex issues</caption>
+<caption><span id="tab:sex-issues">Table 4.1: </span>Sex issues</caption>
 <thead>
 <tr class="header">
 <th align="right">FID</th>
@@ -352,31 +323,33 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tbody>
 </table>
 <p>When the homozygosity rate (<em>F</em>) is more than 0.2, but less than 0.8, the genotype data are inconclusive regarding the sex of an individual and these are marked in column <em>SNPSEX</em> with a 0, and the column <em>STATUS</em> “PROBLEM”.</p>
-<p>Report the IDs of individuals with discordant sex information to those who conducted sex phenotyping. In situations in which discrepancy cannot be resolved, add the family ID (FID) and individual ID (IID) of the samples to a file named “fail-sexcheck-qc.txt” (one individual per line, tab delimited).</p>
+<p>Report the IDs of individuals with discordant sex information (Table <a href="sample-qc.html#tab:sex-issues">4.1</a>) to those who conducted sex phenotyping. In situations in which discrepancy cannot be resolved, add the family ID (FID) and individual ID (IID) of the samples to a file named “fail-sexcheck-qc.txt” (one individual per line, tab delimited).</p>
 <pre><code>grep &quot;PROBLEM&quot; rawdata/rawdata.sexcheck | awk &#39;{ print $1, $2}&#39;  &gt; rawdata/fail-sexcheck-qc.txt
 </code></pre>
 </div>
-<div id="sample-callrates" class="section level2 hasAnchor" number="4.2">
-<h2><span class="header-section-number">4.2</span> Sample Callrates<a href="sample-qc.html#sample-callrates" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="sample-call-rates" class="section level2 hasAnchor" number="4.2">
+<h2><span class="header-section-number">4.2</span> Sample call rates<a href="sample-qc.html#sample-call-rates" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Let’s get an overview of the missing data per sample and per SNP.</p>
 <pre><code>plink --bfile rawdata/rawdata --missing --out rawdata/rawdata
 </code></pre>
 <p>This produces two files, <code>rawdata/rawdata.imiss</code> and <code>rawdata/rawdata.lmiss</code>. In the .imiss file the <em>N_MISS</em> column denotes the number of missing SNPs, and the <em>F_MISS</em> column denotes the proportion of missing SNPs per individual.</p>
 <div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="sample-qc.html#cb19-1" aria-hidden="true" tabindex="-1"></a>raw_IMISS <span class="ot">&lt;-</span> data.table<span class="sc">::</span><span class="fu">fread</span>(<span class="fu">paste0</span>(COURSE_loc, <span class="st">&quot;/rawdata/rawdata.imiss&quot;</span>))</span>
 <span id="cb19-2"><a href="sample-qc.html#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-3"><a href="sample-qc.html#cb19-3" aria-hidden="true" tabindex="-1"></a>raw_IMISS<span class="sc">$</span>callrate <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> raw_IMISS<span class="sc">$</span>F_MISS</span>
-<span id="cb19-4"><a href="sample-qc.html#cb19-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-5"><a href="sample-qc.html#cb19-5" aria-hidden="true" tabindex="-1"></a>ggpubr<span class="sc">::</span><span class="fu">gghistogram</span>(raw_IMISS, <span class="at">x =</span> <span class="st">&quot;callrate&quot;</span>,</span>
-<span id="cb19-6"><a href="sample-qc.html#cb19-6" aria-hidden="true" tabindex="-1"></a>                    <span class="at">add =</span> <span class="st">&quot;mean&quot;</span>, <span class="at">add.params =</span> <span class="fu">list</span>(<span class="at">color =</span> <span class="st">&quot;#595A5C&quot;</span>, <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>, <span class="at">size =</span> <span class="dv">1</span>),</span>
-<span id="cb19-7"><a href="sample-qc.html#cb19-7" aria-hidden="true" tabindex="-1"></a>                    <span class="at">rug =</span> <span class="cn">TRUE</span>, <span class="at">bins =</span> <span class="dv">50</span>,</span>
-<span id="cb19-8"><a href="sample-qc.html#cb19-8" aria-hidden="true" tabindex="-1"></a>                    <span class="at">color =</span> <span class="st">&quot;#1290D9&quot;</span>, <span class="at">fill =</span> <span class="st">&quot;#1290D9&quot;</span>,</span>
-<span id="cb19-9"><a href="sample-qc.html#cb19-9" aria-hidden="true" tabindex="-1"></a>                    <span class="at">xlab =</span> <span class="st">&quot;per sample call rate&quot;</span>) <span class="sc">+</span></span>
-<span id="cb19-10"><a href="sample-qc.html#cb19-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fl">0.95</span>, <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>,</span>
-<span id="cb19-11"><a href="sample-qc.html#cb19-11" aria-hidden="true" tabindex="-1"></a>                <span class="at">color =</span> <span class="st">&quot;#E55738&quot;</span>, <span class="at">size =</span> <span class="dv">1</span>)</span></code></pre></div>
-<pre><code>## Warning: geom_vline(): Ignoring `mapping` because `xintercept` was provided.</code></pre>
-<pre><code>## Warning: geom_vline(): Ignoring `data` because `xintercept` was provided.</code></pre>
-<p><img src="A-primer-in-Human-Cardiovascular-Genetics_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
-<p>The grey dashed line indicates the mean call rate, while the red dashed line indicates the threshold we had determined above.</p>
+<span id="cb19-3"><a href="sample-qc.html#cb19-3" aria-hidden="true" tabindex="-1"></a>raw_IMISS<span class="sc">$</span>callrate <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> raw_IMISS<span class="sc">$</span>F_MISS</span></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="sample-qc.html#cb20-1" aria-hidden="true" tabindex="-1"></a>ggpubr<span class="sc">::</span><span class="fu">gghistogram</span>(raw_IMISS, <span class="at">x =</span> <span class="st">&quot;callrate&quot;</span>,</span>
+<span id="cb20-2"><a href="sample-qc.html#cb20-2" aria-hidden="true" tabindex="-1"></a>                    <span class="at">add =</span> <span class="st">&quot;mean&quot;</span>, <span class="at">add.params =</span> <span class="fu">list</span>(<span class="at">color =</span> <span class="st">&quot;#595A5C&quot;</span>, <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>, <span class="at">size =</span> <span class="dv">1</span>),</span>
+<span id="cb20-3"><a href="sample-qc.html#cb20-3" aria-hidden="true" tabindex="-1"></a>                    <span class="at">rug =</span> <span class="cn">TRUE</span>, <span class="at">bins =</span> <span class="dv">50</span>,</span>
+<span id="cb20-4"><a href="sample-qc.html#cb20-4" aria-hidden="true" tabindex="-1"></a>                    <span class="at">color =</span> <span class="st">&quot;#1290D9&quot;</span>, <span class="at">fill =</span> <span class="st">&quot;#1290D9&quot;</span>,</span>
+<span id="cb20-5"><a href="sample-qc.html#cb20-5" aria-hidden="true" tabindex="-1"></a>                    <span class="at">xlab =</span> <span class="st">&quot;per sample call rate&quot;</span>) <span class="sc">+</span></span>
+<span id="cb20-6"><a href="sample-qc.html#cb20-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fl">0.95</span>, <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>,</span>
+<span id="cb20-7"><a href="sample-qc.html#cb20-7" aria-hidden="true" tabindex="-1"></a>                <span class="at">color =</span> <span class="st">&quot;#E55738&quot;</span>, <span class="at">size =</span> <span class="dv">1</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:callrate"></span>
+<img src="A-primer-in-Human-Cardiovascular-Genetics_files/figure-html/callrate-1.png" alt="Call rate" width="80%" />
+<p class="caption">
+Figure 4.1: Call rate
+</p>
+</div>
+<p>The grey dashed line in Figure <a href="sample-qc.html#fig:callrate">4.1</a> indicates the mean call rate, while the red dashed line indicates the threshold we had determined above.</p>
 </div>
 <div id="heterozygosity-rate" class="section level2 hasAnchor" number="4.3">
 <h2><span class="header-section-number">4.3</span> Heterozygosity rate<a href="sample-qc.html#heterozygosity-rate" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -431,122 +404,123 @@ awk &#39;($5 == &quot;A&quot; &amp;&amp; $6 == &quot;T&quot;) || ($5 == &quot;T&
 <p>Finally, we can calculate the heterozygosity rate.</p>
 <pre><code>plink --bfile rawdata/rawdata.clean.ultraclean --het --out rawdata/rawdata.clean.ultraclean</code></pre>
 <p>This creates the file <code>rawdata/rawdata.clean.ultraclean.het</code>, in which the third column denotes the observed number of homozygous genotypes, O(Hom), and the fifth column denotes the number of nonmissing genotypes, N(NM), per individual. We can now calculate the observed heterozygosity rate per individual using the formula (N(NM) - O(Hom))/N(NM).</p>
-<p>Often there is a correlation between heterozygosity rate and missing data. Thus, we should plot the observed heterozygosity rate per individual on the x-axis and the proportion of missing SNP, that is the ‘SNP call rate’, per individuals on the y-axis.</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="sample-qc.html#cb28-1" aria-hidden="true" tabindex="-1"></a>raw_HET <span class="ot">&lt;-</span> data.table<span class="sc">::</span><span class="fu">fread</span>(<span class="fu">paste0</span>(COURSE_loc, <span class="st">&quot;/rawdata/rawdata.clean.ultraclean.het&quot;</span>))</span>
-<span id="cb28-2"><a href="sample-qc.html#cb28-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-3"><a href="sample-qc.html#cb28-3" aria-hidden="true" tabindex="-1"></a>raw_IMISS<span class="sc">$</span>logF_MISS <span class="ot">=</span> <span class="fu">log10</span>(raw_IMISS<span class="sc">$</span>F_MISS)</span>
-<span id="cb28-4"><a href="sample-qc.html#cb28-4" aria-hidden="true" tabindex="-1"></a>prop_miss <span class="ot">=</span> <span class="sc">-</span><span class="fl">1.522879</span></span>
-<span id="cb28-5"><a href="sample-qc.html#cb28-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-6"><a href="sample-qc.html#cb28-6" aria-hidden="true" tabindex="-1"></a>raw_HET<span class="sc">$</span>meanHet <span class="ot">=</span> (raw_HET<span class="sc">$</span><span class="st">`</span><span class="at">N(NM)</span><span class="st">`</span> <span class="sc">-</span> raw_HET<span class="sc">$</span><span class="st">`</span><span class="at">O(HOM)</span><span class="st">`</span>)<span class="sc">/</span>raw_HET<span class="sc">$</span><span class="st">`</span><span class="at">N(NM)</span><span class="st">`</span></span>
-<span id="cb28-7"><a href="sample-qc.html#cb28-7" aria-hidden="true" tabindex="-1"></a>lower_meanHet <span class="ot">=</span> <span class="fu">mean</span>(raw_HET<span class="sc">$</span>meanHet) <span class="sc">-</span> (<span class="dv">2</span><span class="sc">*</span><span class="fu">sd</span>(raw_HET<span class="sc">$</span>meanHet))</span>
-<span id="cb28-8"><a href="sample-qc.html#cb28-8" aria-hidden="true" tabindex="-1"></a>upper_meanHet <span class="ot">=</span> <span class="fu">mean</span>(raw_HET<span class="sc">$</span>meanHet) <span class="sc">+</span> (<span class="dv">2</span><span class="sc">*</span><span class="fu">sd</span>(raw_HET<span class="sc">$</span>meanHet))</span>
-<span id="cb28-9"><a href="sample-qc.html#cb28-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-10"><a href="sample-qc.html#cb28-10" aria-hidden="true" tabindex="-1"></a>raw_IMISSHET <span class="ot">=</span> <span class="fu">merge</span>(raw_IMISS, raw_HET, <span class="at">by =</span> <span class="st">&quot;IID&quot;</span>)</span>
-<span id="cb28-11"><a href="sample-qc.html#cb28-11" aria-hidden="true" tabindex="-1"></a>raw_IMISSHET<span class="sc">$</span>FID.y <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
-<span id="cb28-12"><a href="sample-qc.html#cb28-12" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(raw_IMISSHET)[<span class="fu">colnames</span>(raw_IMISSHET)<span class="sc">==</span><span class="st">&quot;FID.x&quot;</span>] <span class="ot">&lt;-</span> <span class="st">&quot;FID&quot;</span></span>
-<span id="cb28-13"><a href="sample-qc.html#cb28-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-14"><a href="sample-qc.html#cb28-14" aria-hidden="true" tabindex="-1"></a>colors  <span class="ot">&lt;-</span> <span class="fu">densCols</span>(raw_IMISSHET<span class="sc">$</span>logF_MISS, raw_IMISSHET<span class="sc">$</span>meanHet)</span></code></pre></div>
+<p>Often there is a correlation between heterozygosity rate and missing data. Thus, we should plot the observed heterozygosity rate per individual on the x-axis and the proportion of missing SNP, that is the ‘SNP call rate’, per individuals on the y-axis (Figure <a href="sample-qc.html#fig:heterozygosity">4.2</a>).</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="sample-qc.html#cb27-1" aria-hidden="true" tabindex="-1"></a>raw_HET <span class="ot">&lt;-</span> data.table<span class="sc">::</span><span class="fu">fread</span>(<span class="fu">paste0</span>(COURSE_loc, <span class="st">&quot;/rawdata/rawdata.clean.ultraclean.het&quot;</span>))</span>
+<span id="cb27-2"><a href="sample-qc.html#cb27-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-3"><a href="sample-qc.html#cb27-3" aria-hidden="true" tabindex="-1"></a>raw_IMISS<span class="sc">$</span>logF_MISS <span class="ot">=</span> <span class="fu">log10</span>(raw_IMISS<span class="sc">$</span>F_MISS)</span>
+<span id="cb27-4"><a href="sample-qc.html#cb27-4" aria-hidden="true" tabindex="-1"></a>prop_miss <span class="ot">=</span> <span class="sc">-</span><span class="fl">1.522879</span></span>
+<span id="cb27-5"><a href="sample-qc.html#cb27-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-6"><a href="sample-qc.html#cb27-6" aria-hidden="true" tabindex="-1"></a>raw_HET<span class="sc">$</span>meanHet <span class="ot">=</span> (raw_HET<span class="sc">$</span><span class="st">`</span><span class="at">N(NM)</span><span class="st">`</span> <span class="sc">-</span> raw_HET<span class="sc">$</span><span class="st">`</span><span class="at">O(HOM)</span><span class="st">`</span>)<span class="sc">/</span>raw_HET<span class="sc">$</span><span class="st">`</span><span class="at">N(NM)</span><span class="st">`</span></span>
+<span id="cb27-7"><a href="sample-qc.html#cb27-7" aria-hidden="true" tabindex="-1"></a>lower_meanHet <span class="ot">=</span> <span class="fu">mean</span>(raw_HET<span class="sc">$</span>meanHet) <span class="sc">-</span> (<span class="dv">2</span><span class="sc">*</span><span class="fu">sd</span>(raw_HET<span class="sc">$</span>meanHet))</span>
+<span id="cb27-8"><a href="sample-qc.html#cb27-8" aria-hidden="true" tabindex="-1"></a>upper_meanHet <span class="ot">=</span> <span class="fu">mean</span>(raw_HET<span class="sc">$</span>meanHet) <span class="sc">+</span> (<span class="dv">2</span><span class="sc">*</span><span class="fu">sd</span>(raw_HET<span class="sc">$</span>meanHet))</span>
+<span id="cb27-9"><a href="sample-qc.html#cb27-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-10"><a href="sample-qc.html#cb27-10" aria-hidden="true" tabindex="-1"></a>raw_IMISSHET <span class="ot">=</span> <span class="fu">merge</span>(raw_IMISS, raw_HET, <span class="at">by =</span> <span class="st">&quot;IID&quot;</span>)</span>
+<span id="cb27-11"><a href="sample-qc.html#cb27-11" aria-hidden="true" tabindex="-1"></a>raw_IMISSHET<span class="sc">$</span>FID.y <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb27-12"><a href="sample-qc.html#cb27-12" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(raw_IMISSHET)[<span class="fu">colnames</span>(raw_IMISSHET)<span class="sc">==</span><span class="st">&quot;FID.x&quot;</span>] <span class="ot">&lt;-</span> <span class="st">&quot;FID&quot;</span></span>
+<span id="cb27-13"><a href="sample-qc.html#cb27-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-14"><a href="sample-qc.html#cb27-14" aria-hidden="true" tabindex="-1"></a>colors  <span class="ot">&lt;-</span> <span class="fu">densCols</span>(raw_IMISSHET<span class="sc">$</span>logF_MISS, raw_IMISSHET<span class="sc">$</span>meanHet)</span></code></pre></div>
 <pre><code>## Warning in KernSmooth::bkde2D(x, bandwidth = bandwidth, gridsize = nbin, :
 ## Binning grid too coarse for current (small) bandwidth: consider increasing
 ## &#39;gridsize&#39;</code></pre>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="sample-qc.html#cb30-1" aria-hidden="true" tabindex="-1"></a>ggpubr<span class="sc">::</span><span class="fu">ggscatter</span>(raw_IMISSHET, <span class="at">x =</span> <span class="st">&quot;logF_MISS&quot;</span>, <span class="at">y =</span> <span class="st">&quot;meanHet&quot;</span>,</span>
-<span id="cb30-2"><a href="sample-qc.html#cb30-2" aria-hidden="true" tabindex="-1"></a>                  <span class="at">color =</span> colors,</span>
-<span id="cb30-3"><a href="sample-qc.html#cb30-3" aria-hidden="true" tabindex="-1"></a>                  <span class="at">xlab =</span> <span class="st">&quot;Proportion of missing genotypes&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Heterozygosity rate&quot;</span>) <span class="sc">+</span></span>
-<span id="cb30-4"><a href="sample-qc.html#cb30-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">labels=</span><span class="fu">c</span>(<span class="st">&quot;-3&quot;</span> <span class="ot">=</span> <span class="st">&quot;0.001&quot;</span>, <span class="st">&quot;-2&quot;</span> <span class="ot">=</span> <span class="st">&quot;0.01&quot;</span>,</span>
-<span id="cb30-5"><a href="sample-qc.html#cb30-5" aria-hidden="true" tabindex="-1"></a>                              <span class="st">&quot;-1&quot;</span> <span class="ot">=</span> <span class="st">&quot;0.1&quot;</span>, <span class="st">&quot;0&quot;</span> <span class="ot">=</span> <span class="st">&quot;1&quot;</span>)) <span class="sc">+</span></span>
-<span id="cb30-6"><a href="sample-qc.html#cb30-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> lower_meanHet, <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>,</span>
-<span id="cb30-7"><a href="sample-qc.html#cb30-7" aria-hidden="true" tabindex="-1"></a>                <span class="at">color =</span> <span class="st">&quot;#E55738&quot;</span>, <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb30-8"><a href="sample-qc.html#cb30-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> upper_meanHet, <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>,</span>
-<span id="cb30-9"><a href="sample-qc.html#cb30-9" aria-hidden="true" tabindex="-1"></a>                <span class="at">color =</span> <span class="st">&quot;#E55738&quot;</span>, <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb30-10"><a href="sample-qc.html#cb30-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> prop_miss, <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>,</span>
-<span id="cb30-11"><a href="sample-qc.html#cb30-11" aria-hidden="true" tabindex="-1"></a>                <span class="at">color =</span> <span class="st">&quot;#E55738&quot;</span>, <span class="at">size =</span> <span class="dv">1</span>)</span></code></pre></div>
-<pre><code>## Warning in if (color %in% names(data) &amp; is.null(add.params$color))
-## add.params$color &lt;- color: the condition has length &gt; 1 and only the first
-## element will be used</code></pre>
-<p><img src="A-primer-in-Human-Cardiovascular-Genetics_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="sample-qc.html#cb29-1" aria-hidden="true" tabindex="-1"></a>ggpubr<span class="sc">::</span><span class="fu">ggscatter</span>(raw_IMISSHET, <span class="at">x =</span> <span class="st">&quot;logF_MISS&quot;</span>, <span class="at">y =</span> <span class="st">&quot;meanHet&quot;</span>,</span>
+<span id="cb29-2"><a href="sample-qc.html#cb29-2" aria-hidden="true" tabindex="-1"></a>                  <span class="at">color =</span> colors,</span>
+<span id="cb29-3"><a href="sample-qc.html#cb29-3" aria-hidden="true" tabindex="-1"></a>                  <span class="at">xlab =</span> <span class="st">&quot;Proportion of missing genotypes&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Heterozygosity rate&quot;</span>) <span class="sc">+</span></span>
+<span id="cb29-4"><a href="sample-qc.html#cb29-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">labels=</span><span class="fu">c</span>(<span class="st">&quot;-3&quot;</span> <span class="ot">=</span> <span class="st">&quot;0.001&quot;</span>, <span class="st">&quot;-2&quot;</span> <span class="ot">=</span> <span class="st">&quot;0.01&quot;</span>,</span>
+<span id="cb29-5"><a href="sample-qc.html#cb29-5" aria-hidden="true" tabindex="-1"></a>                              <span class="st">&quot;-1&quot;</span> <span class="ot">=</span> <span class="st">&quot;0.1&quot;</span>, <span class="st">&quot;0&quot;</span> <span class="ot">=</span> <span class="st">&quot;1&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb29-6"><a href="sample-qc.html#cb29-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> lower_meanHet, <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>,</span>
+<span id="cb29-7"><a href="sample-qc.html#cb29-7" aria-hidden="true" tabindex="-1"></a>                <span class="at">color =</span> <span class="st">&quot;#E55738&quot;</span>, <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb29-8"><a href="sample-qc.html#cb29-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> upper_meanHet, <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>,</span>
+<span id="cb29-9"><a href="sample-qc.html#cb29-9" aria-hidden="true" tabindex="-1"></a>                <span class="at">color =</span> <span class="st">&quot;#E55738&quot;</span>, <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb29-10"><a href="sample-qc.html#cb29-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> prop_miss, <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>,</span>
+<span id="cb29-11"><a href="sample-qc.html#cb29-11" aria-hidden="true" tabindex="-1"></a>                <span class="at">color =</span> <span class="st">&quot;#E55738&quot;</span>, <span class="at">size =</span> <span class="dv">1</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:heterozygosity"></span>
+<img src="A-primer-in-Human-Cardiovascular-Genetics_files/figure-html/heterozygosity-1.png" alt="Heterozygosity rate as a function of missing genotypes" width="80%" />
+<p class="caption">
+Figure 4.2: Heterozygosity rate as a function of missing genotypes
+</p>
+</div>
 <!-- This is also available as script in the `wtccc_nature_protocols/quality_control` directory. -->
 <p>Examine the plot to decide reasonable thresholds at which to exclude individuals based on elevated missing or extreme heterozygosity. We chose to exclude all individuals with a genotype failure rate &gt;= 0.03 (vertical dashed line) and/or a heterozygosity rate ± 3 s.d. from the mean (horizontal dashed lines). Add the FID and IID of the samples failing this QC to the file named <code>fail-imisshet-qc.txt</code>.</p>
 <blockquote>
 <p>How would you create this file?</p>
 </blockquote>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="sample-qc.html#cb32-1" aria-hidden="true" tabindex="-1"></a>raw_IMISSHETsub <span class="ot">=</span> <span class="fu">subset</span>(raw_IMISSHET, logF_MISS <span class="sc">&gt;</span> prop_miss <span class="sc">|</span> (meanHet <span class="sc">&lt;</span> lower_meanHet <span class="sc">|</span> meanHet <span class="sc">&gt;</span> upper_meanHet),</span>
-<span id="cb32-2"><a href="sample-qc.html#cb32-2" aria-hidden="true" tabindex="-1"></a>                         <span class="at">select =</span> <span class="fu">c</span>(<span class="st">&quot;FID&quot;</span>, <span class="st">&quot;IID&quot;</span>))</span>
-<span id="cb32-3"><a href="sample-qc.html#cb32-3" aria-hidden="true" tabindex="-1"></a>data.table<span class="sc">::</span><span class="fu">fwrite</span>(raw_IMISSHETsub, <span class="fu">paste0</span>(COURSE_loc,<span class="st">&quot;/rawdata/fail-raw_IMISSHETsub.txt&quot;</span>), <span class="at">sep =</span><span class="st">&quot; &quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="sample-qc.html#cb30-1" aria-hidden="true" tabindex="-1"></a>raw_IMISSHETsub <span class="ot">=</span> <span class="fu">subset</span>(raw_IMISSHET, logF_MISS <span class="sc">&gt;</span> prop_miss <span class="sc">|</span> (meanHet <span class="sc">&lt;</span> lower_meanHet <span class="sc">|</span> meanHet <span class="sc">&gt;</span> upper_meanHet),</span>
+<span id="cb30-2"><a href="sample-qc.html#cb30-2" aria-hidden="true" tabindex="-1"></a>                         <span class="at">select =</span> <span class="fu">c</span>(<span class="st">&quot;FID&quot;</span>, <span class="st">&quot;IID&quot;</span>))</span>
+<span id="cb30-3"><a href="sample-qc.html#cb30-3" aria-hidden="true" tabindex="-1"></a>data.table<span class="sc">::</span><span class="fu">fwrite</span>(raw_IMISSHETsub, <span class="fu">paste0</span>(COURSE_loc,<span class="st">&quot;/rawdata/fail-raw_IMISSHETsub.txt&quot;</span>), <span class="at">sep =</span><span class="st">&quot; &quot;</span>)</span></code></pre></div>
 </div>
 <div id="relatedness" class="section level2 hasAnchor" number="4.4">
 <h2><span class="header-section-number">4.4</span> Relatedness<a href="sample-qc.html#relatedness" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>We calculate Identity-by-Descent (IBS), to identify duplicated and related samples (<strong>Table 2</strong>). IBS is measured by calculating pi-hat, which is in essence the proportion of the DNA that a pair of samples share. To calculate this, we needed this ultraclean dataset, without low-quality SNPs and without high-LD regions. Now we are ready</p>
+<p>We calculate Identity-by-Descent (IBS), to identify duplicated and related samples (Table <a href="sample-qc.html#tab:tab-relatedness">4.2</a>). IBS is measured by calculating pi-hat, which is in essence the proportion of the DNA that a pair of samples share. To calculate this, we needed this ultraclean dataset, without low-quality SNPs and without high-LD regions. Now we are ready to calculate the IBS.</p>
 <table>
+<caption><span id="tab:tab-relatedness">Table 4.2: </span>Familial relations and % DNA shared.</caption>
 <thead>
 <tr class="header">
-<th><strong>Relation</strong></th>
-<th><strong>% DNA sharing</strong></th>
+<th align="left">Relatedness</th>
+<th align="left">%.DNA.sharing</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>Monozygotic twins</td>
-<td>±100%</td>
+<td align="left">Monozygotic twins</td>
+<td align="left">±100%</td>
 </tr>
 <tr class="even">
-<td>Parents/child</td>
-<td>±50%</td>
+<td align="left">Parents/child</td>
+<td align="left">±50%</td>
 </tr>
 <tr class="odd">
-<td>Sibling</td>
-<td>±50%</td>
+<td align="left">Sibling</td>
+<td align="left">±50%</td>
 </tr>
 <tr class="even">
-<td>Fraternal twins</td>
-<td>±50%</td>
+<td align="left">Fraternal twins</td>
+<td align="left">±50%</td>
 </tr>
 <tr class="odd">
-<td>Grandparent/grandchild</td>
-<td>±25%</td>
+<td align="left">Grandparent/grandchild</td>
+<td align="left">±25%</td>
 </tr>
 <tr class="even">
-<td>Aunt/Uncle/Niece/Nephew</td>
-<td>±25%</td>
+<td align="left">Aunt/Uncle/Niece/Nephew</td>
+<td align="left">±25%</td>
 </tr>
 <tr class="odd">
-<td>Half-sibling</td>
-<td>±25%</td>
+<td align="left">Half-sibling</td>
+<td align="left">±25%</td>
 </tr>
 <tr class="even">
-<td>First-cousin</td>
-<td>±12.5%</td>
+<td align="left">First-cousin</td>
+<td align="left">±12.5%</td>
 </tr>
 <tr class="odd">
-<td>Half first-cousin</td>
-<td>±6.25%</td>
+<td align="left">Half first-cousin</td>
+<td align="left">±6.25%</td>
 </tr>
 <tr class="even">
-<td>First-cousin once removed</td>
-<td>±6.25%</td>
+<td align="left">First-cousin once removed</td>
+<td align="left">±6.25%</td>
 </tr>
 <tr class="odd">
-<td>Second-cousin</td>
-<td>±3.13%</td>
+<td align="left">Second-cousin</td>
+<td align="left">±3.13%</td>
 </tr>
 <tr class="even">
-<td>Second-cousin once removed</td>
-<td>±1.56%</td>
+<td align="left">Second-cousin once removed</td>
+<td align="left">±1.56%</td>
 </tr>
 </tbody>
 </table>
-<p><strong>Table 2:</strong> Familial relations and % DNA shared.</p>
 <pre><code>plink --bfile rawdata/rawdata.clean.ultraclean --genome --out rawdata/rawdata.clean.ultraclean</code></pre>
-<p>We can now identify all pairs of individuals with an IBD &gt; 0.185. The code looks at the individual call rates stored in rawdata.imiss and outputs the IDs of the individual with the lowest call rate to ‘fail-IBD-QC.txt’ for subsequent removal.</p>
+<p>We can now identify all pairs of individuals with an IBD &gt; 0.185. The code looks at the individual call rates stored in rawdata.imiss and outputs the IDs of the individual with the lowest call rate to ‘fail-IBD-QC.txt’ for subsequent removal (Table <a href="sample-qc.html#tab:ibdcallissues">4.3</a>).</p>
 <pre><code>cd rawdata
 
 perl ../scripts/run-IBD-QC.pl rawdata rawdata.clean.ultraclean
 
 cd ..
 </code></pre>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="sample-qc.html#cb35-1" aria-hidden="true" tabindex="-1"></a>ibdcallissues <span class="ot">&lt;-</span> data.table<span class="sc">::</span><span class="fu">fread</span>(<span class="fu">paste0</span>(COURSE_loc,<span class="st">&quot;/rawdata/fail-IBD-QC.txt&quot;</span>))</span>
-<span id="cb35-2"><a href="sample-qc.html#cb35-2" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(ibdcallissues, <span class="at">caption =</span> <span class="st">&quot;Failed IBD and callrate&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="sample-qc.html#cb33-1" aria-hidden="true" tabindex="-1"></a>ibdcallissues <span class="ot">&lt;-</span> data.table<span class="sc">::</span><span class="fu">fread</span>(<span class="fu">paste0</span>(COURSE_loc,<span class="st">&quot;/rawdata/fail-IBD-QC.txt&quot;</span>))</span></code></pre></div>
 <table>
-<caption><span id="tab:unnamed-chunk-5">Table 4.2: </span>Failed IBD and callrate</caption>
+<caption><span id="tab:ibdcallissues">Table 4.3: </span>Failed IBD and callrate.</caption>
 <thead>
 <tr class="header">
 <th align="right">V1</th>
@@ -680,33 +654,95 @@ make install</code></pre>
 -w reference/hapmap3r2_CEU.CHB.JPT.YRI-pca-populations.txt</code></pre>
 <p>See below an explanation of the above commands:</p>
 <p><code>../bin/smartpca.perl</code></p>
-<p>-i example.geno : genotype file in any format (see ../CONVERTF/README)
--a example.snp : snp file in any format (see ../CONVERTF/README)
--b example.ind : indiv file in any format (see ../CONVERTF/README)
--k k : (Default is 10) number of principal components to output
--o example.pca : output file of principal components. Individuals removed
-as outliers will have all values set to 0.0 in this file.
--p example.plot : prefix of output plot files of top 2 principal components.
-(labeling individuals according to labels in indiv file)
--e example.eval : output file of all eigenvalues
--l example.log : output logfile
--m maxiter : (Default is 5) maximum number of outlier removal iterations.
-To turn off outlier removal, set -m 0.
--t topk : (Default is 10) number of principal components along which
-to remove outliers during each outlier removal iteration.
--s sigma : (Default is 6.0) number of standard deviations which an
-individual must exceed, along one of topk top principal
-components, in order to be removed as an outlier.</p>
-<p>OPTIONAL FLAGS:
--w poplist : compute eigenvectors using populations in poplist only,
-where poplist is an ASCII file with one population per line
--y plotlist : output plot will include populations in plotlist only,
-where plotlist is an ASCII file with one population per line
--z badsnpname : list of SNPs which should be excluded from the analysis
--q YES/NO : If set to YES, assume that there is a single population and
-the population field contains real-valued phenotypes.
-(Corresponds to qtmode parameter in smartpca program.)
-The default value for this parameter is NO.</p>
+<table>
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>-i example.geno</td>
+<td>genotype file in any format (see ../CONVERTF/README)</td>
+</tr>
+<tr class="even">
+<td>-a example.snp</td>
+<td>snp file in any format (see ../CONVERTF/README)</td>
+</tr>
+<tr class="odd">
+<td>-b example.ind</td>
+<td>indiv file in any format (see ../CONVERTF/README)</td>
+</tr>
+<tr class="even">
+<td>-k k</td>
+<td>output file of principal components. Individuals removed</td>
+</tr>
+<tr class="odd">
+<td>-o example.pca</td>
+<td>(Default is 10) number of principal components to output as outliers will have all values set to 0.0 in this file.</td>
+</tr>
+<tr class="even">
+<td>-p example.plot</td>
+<td>prefix of output plot files of top 2 principal components (labeling individuals according to labels in indiv file).</td>
+</tr>
+<tr class="odd">
+<td>-e example.eval</td>
+<td>output file of all eigenvalues</td>
+</tr>
+<tr class="even">
+<td>-l example.log</td>
+<td>output logfile</td>
+</tr>
+<tr class="odd">
+<td>-m maxiter</td>
+<td>(Default is 5) maximum number of outlier removal iterations. To turn off outlier removal, set -m 0.</td>
+</tr>
+<tr class="even">
+<td>-t topk</td>
+<td>(Default is 10) number of principal components along which to remove outliers during each outlier removal</td>
+</tr>
+<tr class="odd">
+<td>-s sigma</td>
+<td>(Default is 6.0) number of standard deviations which an individual must exceed, along one of topk top principal components, in order to be removed as an outlier.</td>
+</tr>
+</tbody>
+</table>
+<p>OPTIONAL FLAGS</p>
+<table>
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>-w poplist</td>
+<td>compute eigenvectors using populations in poplist only, where poplist is an ASCII file with one population per line</td>
+</tr>
+<tr class="even">
+<td>-y plotlist</td>
+<td>output plot will include populations in plotlist only, where plotlist is an ASCII file with one population per line</td>
+</tr>
+<tr class="odd">
+<td>-z badsnpname</td>
+<td>list of SNPs which should be excluded from the analysis</td>
+</tr>
+<tr class="even">
+<td>-q YES/NO</td>
+<td>If set to YES, assume that there is a single population and the population field contains real-valued phenotypes. (Corresponds to qtmode parameter in smartpca program.) The default value for this parameter is NO.</td>
+</tr>
+</tbody>
+</table>
 <blockquote>
 <p>NOTE: I made sure that in your download the results from this analysis are available for usage. That is:</p>
 <ul>
@@ -718,36 +754,38 @@ The default value for this parameter is NO.</p>
 <div id="pca-plotting" class="section level4 hasAnchor" number="4.5.2.2">
 <h4><span class="header-section-number">4.5.2.2</span> PCA plotting<a href="sample-qc.html#pca-plotting" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Now that we have calculated PCs, we can start plotting them. Let’s create a scatter diagram of the first two principal components, including all individuals in the file <code>rawdata.hapmap3r2.pruned.pca.evec</code> (the first and second principal components are columns 2 and 3, respectively). Use the data in column 4 to color the points according to sample origin. An R script for creating this plot (<code>scripts/plot-pca-results.Rscript</code>) is provided (although any standard graphing software can be used).</p>
-<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="sample-qc.html#cb45-1" aria-hidden="true" tabindex="-1"></a>PCA <span class="ot">&lt;-</span> data.table<span class="sc">::</span><span class="fu">fread</span>(<span class="fu">paste0</span>(COURSE_loc,<span class="st">&quot;/rawdata/rawdata.hapmap3r2.pruned.pca.evec&quot;</span>), <span class="at">header =</span> <span class="cn">FALSE</span>, <span class="at">skip =</span> <span class="dv">1</span>)</span>
-<span id="cb45-2"><a href="sample-qc.html#cb45-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-3"><a href="sample-qc.html#cb45-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Case/Control -&gt; black, pch = &quot;+&quot;</span></span>
-<span id="cb45-4"><a href="sample-qc.html#cb45-4" aria-hidden="true" tabindex="-1"></a><span class="co"># CEU = 3 -&gt; red, pch = 20</span></span>
-<span id="cb45-5"><a href="sample-qc.html#cb45-5" aria-hidden="true" tabindex="-1"></a><span class="co"># CHB = 4 -&gt; pink, pch = 20</span></span>
-<span id="cb45-6"><a href="sample-qc.html#cb45-6" aria-hidden="true" tabindex="-1"></a><span class="co"># JPT = 5 -&gt; purple, pch = 20</span></span>
-<span id="cb45-7"><a href="sample-qc.html#cb45-7" aria-hidden="true" tabindex="-1"></a><span class="co"># YRI = 6 -&gt; green, pch = 20</span></span>
-<span id="cb45-8"><a href="sample-qc.html#cb45-8" aria-hidden="true" tabindex="-1"></a>PCA<span class="sc">$</span>V12[PCA<span class="sc">$</span>V12 <span class="sc">==</span> <span class="st">&quot;Case&quot;</span>] <span class="ot">&lt;-</span> <span class="st">&quot;Case&quot;</span> <span class="co">#595A5C</span></span>
-<span id="cb45-9"><a href="sample-qc.html#cb45-9" aria-hidden="true" tabindex="-1"></a>PCA<span class="sc">$</span>V12[PCA<span class="sc">$</span>V12 <span class="sc">==</span> <span class="st">&quot;Control&quot;</span>] <span class="ot">&lt;-</span> <span class="st">&quot;Control&quot;</span> <span class="co">#595A5C</span></span>
-<span id="cb45-10"><a href="sample-qc.html#cb45-10" aria-hidden="true" tabindex="-1"></a>PCA<span class="sc">$</span>V12[PCA<span class="sc">$</span>V12 <span class="sc">==</span> <span class="st">&quot;3&quot;</span>] <span class="ot">&lt;-</span> <span class="st">&quot;CEU&quot;</span> <span class="co">#E55738</span></span>
-<span id="cb45-11"><a href="sample-qc.html#cb45-11" aria-hidden="true" tabindex="-1"></a>PCA<span class="sc">$</span>V12[PCA<span class="sc">$</span>V12 <span class="sc">==</span> <span class="st">&quot;4&quot;</span>] <span class="ot">&lt;-</span> <span class="st">&quot;CHB&quot;</span> <span class="co">#D5267B</span></span>
-<span id="cb45-12"><a href="sample-qc.html#cb45-12" aria-hidden="true" tabindex="-1"></a>PCA<span class="sc">$</span>V12[PCA<span class="sc">$</span>V12 <span class="sc">==</span> <span class="st">&quot;5&quot;</span>] <span class="ot">&lt;-</span> <span class="st">&quot;JPT&quot;</span> <span class="co">#9A3480</span></span>
-<span id="cb45-13"><a href="sample-qc.html#cb45-13" aria-hidden="true" tabindex="-1"></a>PCA<span class="sc">$</span>V12[PCA<span class="sc">$</span>V12 <span class="sc">==</span> <span class="st">&quot;6&quot;</span>] <span class="ot">&lt;-</span> <span class="st">&quot;YRI&quot;</span> <span class="co">#49A01D</span></span>
-<span id="cb45-14"><a href="sample-qc.html#cb45-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-15"><a href="sample-qc.html#cb45-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-16"><a href="sample-qc.html#cb45-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-17"><a href="sample-qc.html#cb45-17" aria-hidden="true" tabindex="-1"></a>PCAplot <span class="ot">&lt;-</span> ggpubr<span class="sc">::</span><span class="fu">ggscatter</span>(PCA, <span class="at">x =</span> <span class="st">&quot;V2&quot;</span>, <span class="at">y =</span> <span class="st">&quot;V3&quot;</span>,</span>
-<span id="cb45-18"><a href="sample-qc.html#cb45-18" aria-hidden="true" tabindex="-1"></a>                             <span class="at">color =</span> <span class="st">&quot;V12&quot;</span>,</span>
-<span id="cb45-19"><a href="sample-qc.html#cb45-19" aria-hidden="true" tabindex="-1"></a>                             <span class="at">palette =</span> <span class="fu">c</span>(<span class="st">&quot;#595A5C&quot;</span>, <span class="st">&quot;#595A5C&quot;</span>, <span class="st">&quot;#E55738&quot;</span>, <span class="st">&quot;#D5267B&quot;</span>, <span class="st">&quot;#9A3480&quot;</span>, <span class="st">&quot;#49A01D&quot;</span>),</span>
-<span id="cb45-20"><a href="sample-qc.html#cb45-20" aria-hidden="true" tabindex="-1"></a>                             <span class="at">shape =</span> <span class="st">&quot;V12&quot;</span>,</span>
-<span id="cb45-21"><a href="sample-qc.html#cb45-21" aria-hidden="true" tabindex="-1"></a>                             <span class="at">xlab =</span> <span class="st">&quot;principal component 1&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;principal component 2&quot;</span>) <span class="sc">+</span></span>
-<span id="cb45-22"><a href="sample-qc.html#cb45-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="fl">0.075</span>, <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>,</span>
-<span id="cb45-23"><a href="sample-qc.html#cb45-23" aria-hidden="true" tabindex="-1"></a>                <span class="at">color =</span> <span class="st">&quot;#A2A3A4&quot;</span>, <span class="at">size =</span> <span class="dv">1</span>)</span>
-<span id="cb45-24"><a href="sample-qc.html#cb45-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-25"><a href="sample-qc.html#cb45-25" aria-hidden="true" tabindex="-1"></a>  ggpubr<span class="sc">::</span><span class="fu">ggpar</span>(PCAplot,</span>
-<span id="cb45-26"><a href="sample-qc.html#cb45-26" aria-hidden="true" tabindex="-1"></a>                <span class="at">title =</span> <span class="st">&quot;Principal Component Analysis&quot;</span>,</span>
-<span id="cb45-27"><a href="sample-qc.html#cb45-27" aria-hidden="true" tabindex="-1"></a>                <span class="at">subtitle =</span> <span class="st">&quot;Reference population: HapMap 3&quot;</span>,</span>
-<span id="cb45-28"><a href="sample-qc.html#cb45-28" aria-hidden="true" tabindex="-1"></a>                <span class="at">legend.title =</span> <span class="st">&quot;Populations&quot;</span>, <span class="at">legend =</span> <span class="st">&quot;right&quot;</span>)</span></code></pre></div>
-<p><img src="A-primer-in-Human-Cardiovascular-Genetics_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
-<p>Derive PC1 and PC2 thresholds so that only individuals who match the given ancestral population are included. For populations of European descent, this will be either the CEU or TSI HapMap3 individuals. Here, we chose to exclude all individuals with a second principal component score less than 0.072.</p>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="sample-qc.html#cb43-1" aria-hidden="true" tabindex="-1"></a>PCA <span class="ot">&lt;-</span> data.table<span class="sc">::</span><span class="fu">fread</span>(<span class="fu">paste0</span>(COURSE_loc,<span class="st">&quot;/rawdata/rawdata.hapmap3r2.pruned.pca.evec&quot;</span>), <span class="at">header =</span> <span class="cn">FALSE</span>, <span class="at">skip =</span> <span class="dv">1</span>)</span>
+<span id="cb43-2"><a href="sample-qc.html#cb43-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-3"><a href="sample-qc.html#cb43-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Case/Control -&gt; black, pch = &quot;+&quot;</span></span>
+<span id="cb43-4"><a href="sample-qc.html#cb43-4" aria-hidden="true" tabindex="-1"></a><span class="co"># CEU = 3 -&gt; red, pch = 20</span></span>
+<span id="cb43-5"><a href="sample-qc.html#cb43-5" aria-hidden="true" tabindex="-1"></a><span class="co"># CHB = 4 -&gt; pink, pch = 20</span></span>
+<span id="cb43-6"><a href="sample-qc.html#cb43-6" aria-hidden="true" tabindex="-1"></a><span class="co"># JPT = 5 -&gt; purple, pch = 20</span></span>
+<span id="cb43-7"><a href="sample-qc.html#cb43-7" aria-hidden="true" tabindex="-1"></a><span class="co"># YRI = 6 -&gt; green, pch = 20</span></span>
+<span id="cb43-8"><a href="sample-qc.html#cb43-8" aria-hidden="true" tabindex="-1"></a>PCA<span class="sc">$</span>V12[PCA<span class="sc">$</span>V12 <span class="sc">==</span> <span class="st">&quot;Case&quot;</span>] <span class="ot">&lt;-</span> <span class="st">&quot;Case&quot;</span> <span class="co">#595A5C</span></span>
+<span id="cb43-9"><a href="sample-qc.html#cb43-9" aria-hidden="true" tabindex="-1"></a>PCA<span class="sc">$</span>V12[PCA<span class="sc">$</span>V12 <span class="sc">==</span> <span class="st">&quot;Control&quot;</span>] <span class="ot">&lt;-</span> <span class="st">&quot;Control&quot;</span> <span class="co">#595A5C</span></span>
+<span id="cb43-10"><a href="sample-qc.html#cb43-10" aria-hidden="true" tabindex="-1"></a>PCA<span class="sc">$</span>V12[PCA<span class="sc">$</span>V12 <span class="sc">==</span> <span class="st">&quot;3&quot;</span>] <span class="ot">&lt;-</span> <span class="st">&quot;CEU&quot;</span> <span class="co">#E55738</span></span>
+<span id="cb43-11"><a href="sample-qc.html#cb43-11" aria-hidden="true" tabindex="-1"></a>PCA<span class="sc">$</span>V12[PCA<span class="sc">$</span>V12 <span class="sc">==</span> <span class="st">&quot;4&quot;</span>] <span class="ot">&lt;-</span> <span class="st">&quot;CHB&quot;</span> <span class="co">#D5267B</span></span>
+<span id="cb43-12"><a href="sample-qc.html#cb43-12" aria-hidden="true" tabindex="-1"></a>PCA<span class="sc">$</span>V12[PCA<span class="sc">$</span>V12 <span class="sc">==</span> <span class="st">&quot;5&quot;</span>] <span class="ot">&lt;-</span> <span class="st">&quot;JPT&quot;</span> <span class="co">#9A3480</span></span>
+<span id="cb43-13"><a href="sample-qc.html#cb43-13" aria-hidden="true" tabindex="-1"></a>PCA<span class="sc">$</span>V12[PCA<span class="sc">$</span>V12 <span class="sc">==</span> <span class="st">&quot;6&quot;</span>] <span class="ot">&lt;-</span> <span class="st">&quot;YRI&quot;</span> <span class="co">#49A01D</span></span></code></pre></div>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="sample-qc.html#cb44-1" aria-hidden="true" tabindex="-1"></a>PCAplot <span class="ot">&lt;-</span> ggpubr<span class="sc">::</span><span class="fu">ggscatter</span>(PCA, <span class="at">x =</span> <span class="st">&quot;V2&quot;</span>, <span class="at">y =</span> <span class="st">&quot;V3&quot;</span>,</span>
+<span id="cb44-2"><a href="sample-qc.html#cb44-2" aria-hidden="true" tabindex="-1"></a>                             <span class="at">color =</span> <span class="st">&quot;V12&quot;</span>,</span>
+<span id="cb44-3"><a href="sample-qc.html#cb44-3" aria-hidden="true" tabindex="-1"></a>                             <span class="at">palette =</span> <span class="fu">c</span>(<span class="st">&quot;#595A5C&quot;</span>, <span class="st">&quot;#595A5C&quot;</span>, <span class="st">&quot;#E55738&quot;</span>, <span class="st">&quot;#D5267B&quot;</span>, <span class="st">&quot;#9A3480&quot;</span>, <span class="st">&quot;#49A01D&quot;</span>),</span>
+<span id="cb44-4"><a href="sample-qc.html#cb44-4" aria-hidden="true" tabindex="-1"></a>                             <span class="at">shape =</span> <span class="st">&quot;V12&quot;</span>,</span>
+<span id="cb44-5"><a href="sample-qc.html#cb44-5" aria-hidden="true" tabindex="-1"></a>                             <span class="at">xlab =</span> <span class="st">&quot;principal component 1&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;principal component 2&quot;</span>) <span class="sc">+</span></span>
+<span id="cb44-6"><a href="sample-qc.html#cb44-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="fl">0.075</span>, <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>,</span>
+<span id="cb44-7"><a href="sample-qc.html#cb44-7" aria-hidden="true" tabindex="-1"></a>                <span class="at">color =</span> <span class="st">&quot;#A2A3A4&quot;</span>, <span class="at">size =</span> <span class="dv">1</span>)</span>
+<span id="cb44-8"><a href="sample-qc.html#cb44-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-9"><a href="sample-qc.html#cb44-9" aria-hidden="true" tabindex="-1"></a>  ggpubr<span class="sc">::</span><span class="fu">ggpar</span>(PCAplot,</span>
+<span id="cb44-10"><a href="sample-qc.html#cb44-10" aria-hidden="true" tabindex="-1"></a>                <span class="at">title =</span> <span class="st">&quot;Principal Component Analysis&quot;</span>,</span>
+<span id="cb44-11"><a href="sample-qc.html#cb44-11" aria-hidden="true" tabindex="-1"></a>                <span class="at">subtitle =</span> <span class="st">&quot;Reference population: HapMap 3&quot;</span>,</span>
+<span id="cb44-12"><a href="sample-qc.html#cb44-12" aria-hidden="true" tabindex="-1"></a>                <span class="at">legend.title =</span> <span class="st">&quot;Populations&quot;</span>, <span class="at">legend =</span> <span class="st">&quot;right&quot;</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:pca-hapmap3"></span>
+<img src="A-primer-in-Human-Cardiovascular-Genetics_files/figure-html/pca-hapmap3-1.png" alt="PCA - Your data vs. HapMap 3" width="80%" />
+<p class="caption">
+Figure 4.3: PCA - Your data vs. HapMap 3
+</p>
+</div>
+<p>Derive PC1 and PC2 thresholds so that only individuals who match the given ancestral population are included. For populations of European descent, this will be either the CEU or TSI HapMap3 individuals (Figure <a href="sample-qc.html#fig:pca-hapmap3">4.3</a>). Here, we chose to exclude all individuals with a second principal component score less than 0.072.</p>
 <p>Write the FID and IID of these individuals to a file called <code>fail-ancestry-QC.txt</code>.</p>
 <pre><code>cat rawdata/rawdata.hapmap3r2.pruned.pca.evec | tail -n +2 | \
 awk &#39;$3 &lt; 0.075&#39; | awk &#39;{ print $1 }&#39; | awk -F&quot;:&quot; &#39;{ print $1, $2 }&#39; &gt; rawdata/fail-ancestry-QC.txt</code></pre>
@@ -826,56 +864,60 @@ cp -v rawdata/rawdata.1kg_phase1.pruned.fam rawdata/rawdata.1kg_phase1.pruned.pe
 <!-- ploteig -i rawdata/rawdata.1kg_phase1.pruned.pca.evec -c 1:2  -p   -x  -y  -o rawdata/rawdata.1kg_phase1.pruned.plot.xtxt -->
 <!-- evec2pca.perl 10 rawdata/rawdata.1kg_phase1.pruned.pca.evec rawdata/rawdata.1kg_phase1.pruned.pedind rawdata/rawdata.1kg_phase1.pruned.pca -->
 <p>And we can try to plot this result as well.</p>
-<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="sample-qc.html#cb60-1" aria-hidden="true" tabindex="-1"></a>PCA_1kG <span class="ot">&lt;-</span> data.table<span class="sc">::</span><span class="fu">fread</span>(<span class="fu">paste0</span>(COURSE_loc,<span class="st">&quot;/rawdata/rawdata.1kg_phase1.pruned.pca.evec&quot;</span>), <span class="at">header =</span> <span class="cn">FALSE</span>, <span class="at">skip =</span> <span class="dv">1</span>)</span>
-<span id="cb60-2"><a href="sample-qc.html#cb60-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb60-3"><a href="sample-qc.html#cb60-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Population    Description Super population    Code    Counts</span></span>
-<span id="cb60-4"><a href="sample-qc.html#cb60-4" aria-hidden="true" tabindex="-1"></a><span class="co"># ASW   African Ancestry in Southwest US                              AFR   4     #49A01D</span></span>
-<span id="cb60-5"><a href="sample-qc.html#cb60-5" aria-hidden="true" tabindex="-1"></a><span class="co"># CEU   Utah residents with Northern and Western European ancestry  EUR 7     #E55738</span></span>
-<span id="cb60-6"><a href="sample-qc.html#cb60-6" aria-hidden="true" tabindex="-1"></a><span class="co"># CHB   Han Chinese in Bejing, China                                  EAS   8     #9A3480</span></span>
-<span id="cb60-7"><a href="sample-qc.html#cb60-7" aria-hidden="true" tabindex="-1"></a><span class="co"># CHS   Southern Han Chinese, China                                 EAS 9     #705296</span></span>
-<span id="cb60-8"><a href="sample-qc.html#cb60-8" aria-hidden="true" tabindex="-1"></a><span class="co"># CLM   Colombian in Medellin, Colombia                             MR  10  #8D5B9A</span></span>
-<span id="cb60-9"><a href="sample-qc.html#cb60-9" aria-hidden="true" tabindex="-1"></a><span class="co"># FIN   Finnish in Finland                                          EUR 12  #2F8BC9</span></span>
-<span id="cb60-10"><a href="sample-qc.html#cb60-10" aria-hidden="true" tabindex="-1"></a><span class="co"># GBR   British in England and Scotland                             EUR 13  #1290D9</span></span>
-<span id="cb60-11"><a href="sample-qc.html#cb60-11" aria-hidden="true" tabindex="-1"></a><span class="co"># IBS   Iberian populations in Spain                                  EUR   16  #1396D8</span></span>
-<span id="cb60-12"><a href="sample-qc.html#cb60-12" aria-hidden="true" tabindex="-1"></a><span class="co"># JPT   Japanese in Tokyo, Japan                                      EAS   18  #D5267B</span></span>
-<span id="cb60-13"><a href="sample-qc.html#cb60-13" aria-hidden="true" tabindex="-1"></a><span class="co"># LWK   Luhya in Webuye, Kenya                                      AFR 20  #78B113</span></span>
-<span id="cb60-14"><a href="sample-qc.html#cb60-14" aria-hidden="true" tabindex="-1"></a><span class="co"># MXL   Mexican Ancestry in Los Angeles, California                 AMR 22  #F59D10</span></span>
-<span id="cb60-15"><a href="sample-qc.html#cb60-15" aria-hidden="true" tabindex="-1"></a><span class="co"># PUR   Puerto Rican in Puerto Rico                                 AMR 25  #FBB820</span></span>
-<span id="cb60-16"><a href="sample-qc.html#cb60-16" aria-hidden="true" tabindex="-1"></a><span class="co"># TSI   Toscani in Italy                                              EUR   27  #4C81BF</span></span>
-<span id="cb60-17"><a href="sample-qc.html#cb60-17" aria-hidden="true" tabindex="-1"></a><span class="co"># YRI   Yoruba in Ibadan, Nigeria                                     AFR   28  #C5D220</span></span>
-<span id="cb60-18"><a href="sample-qc.html#cb60-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb60-19"><a href="sample-qc.html#cb60-19" aria-hidden="true" tabindex="-1"></a>PCA_1kG<span class="sc">$</span>V12[PCA_1kG<span class="sc">$</span>V12 <span class="sc">==</span> <span class="st">&quot;Case&quot;</span>] <span class="ot">&lt;-</span> <span class="st">&quot;Case&quot;</span></span>
-<span id="cb60-20"><a href="sample-qc.html#cb60-20" aria-hidden="true" tabindex="-1"></a>PCA_1kG<span class="sc">$</span>V12[PCA_1kG<span class="sc">$</span>V12 <span class="sc">==</span> <span class="st">&quot;Control&quot;</span>] <span class="ot">&lt;-</span> <span class="st">&quot;Control&quot;</span></span>
-<span id="cb60-21"><a href="sample-qc.html#cb60-21" aria-hidden="true" tabindex="-1"></a>PCA_1kG<span class="sc">$</span>V12[PCA_1kG<span class="sc">$</span>V12 <span class="sc">==</span> <span class="st">&quot;4&quot;</span>] <span class="ot">&lt;-</span> <span class="st">&quot;ASW&quot;</span></span>
-<span id="cb60-22"><a href="sample-qc.html#cb60-22" aria-hidden="true" tabindex="-1"></a>PCA_1kG<span class="sc">$</span>V12[PCA_1kG<span class="sc">$</span>V12 <span class="sc">==</span> <span class="st">&quot;7&quot;</span>] <span class="ot">&lt;-</span> <span class="st">&quot;CEU&quot;</span></span>
-<span id="cb60-23"><a href="sample-qc.html#cb60-23" aria-hidden="true" tabindex="-1"></a>PCA_1kG<span class="sc">$</span>V12[PCA_1kG<span class="sc">$</span>V12 <span class="sc">==</span> <span class="st">&quot;8&quot;</span>] <span class="ot">&lt;-</span> <span class="st">&quot;CHB&quot;</span></span>
-<span id="cb60-24"><a href="sample-qc.html#cb60-24" aria-hidden="true" tabindex="-1"></a>PCA_1kG<span class="sc">$</span>V12[PCA_1kG<span class="sc">$</span>V12 <span class="sc">==</span> <span class="st">&quot;9&quot;</span>] <span class="ot">&lt;-</span> <span class="st">&quot;CHS&quot;</span></span>
-<span id="cb60-25"><a href="sample-qc.html#cb60-25" aria-hidden="true" tabindex="-1"></a>PCA_1kG<span class="sc">$</span>V12[PCA_1kG<span class="sc">$</span>V12 <span class="sc">==</span> <span class="st">&quot;10&quot;</span>] <span class="ot">&lt;-</span> <span class="st">&quot;CLM&quot;</span></span>
-<span id="cb60-26"><a href="sample-qc.html#cb60-26" aria-hidden="true" tabindex="-1"></a>PCA_1kG<span class="sc">$</span>V12[PCA_1kG<span class="sc">$</span>V12 <span class="sc">==</span> <span class="st">&quot;12&quot;</span>] <span class="ot">&lt;-</span> <span class="st">&quot;FIN&quot;</span></span>
-<span id="cb60-27"><a href="sample-qc.html#cb60-27" aria-hidden="true" tabindex="-1"></a>PCA_1kG<span class="sc">$</span>V12[PCA_1kG<span class="sc">$</span>V12 <span class="sc">==</span> <span class="st">&quot;13&quot;</span>] <span class="ot">&lt;-</span> <span class="st">&quot;GBR&quot;</span></span>
-<span id="cb60-28"><a href="sample-qc.html#cb60-28" aria-hidden="true" tabindex="-1"></a>PCA_1kG<span class="sc">$</span>V12[PCA_1kG<span class="sc">$</span>V12 <span class="sc">==</span> <span class="st">&quot;16&quot;</span>] <span class="ot">&lt;-</span> <span class="st">&quot;IBS&quot;</span></span>
-<span id="cb60-29"><a href="sample-qc.html#cb60-29" aria-hidden="true" tabindex="-1"></a>PCA_1kG<span class="sc">$</span>V12[PCA_1kG<span class="sc">$</span>V12 <span class="sc">==</span> <span class="st">&quot;18&quot;</span>] <span class="ot">&lt;-</span> <span class="st">&quot;JPT&quot;</span></span>
-<span id="cb60-30"><a href="sample-qc.html#cb60-30" aria-hidden="true" tabindex="-1"></a>PCA_1kG<span class="sc">$</span>V12[PCA_1kG<span class="sc">$</span>V12 <span class="sc">==</span> <span class="st">&quot;20&quot;</span>] <span class="ot">&lt;-</span> <span class="st">&quot;LWK&quot;</span></span>
-<span id="cb60-31"><a href="sample-qc.html#cb60-31" aria-hidden="true" tabindex="-1"></a>PCA_1kG<span class="sc">$</span>V12[PCA_1kG<span class="sc">$</span>V12 <span class="sc">==</span> <span class="st">&quot;22&quot;</span>] <span class="ot">&lt;-</span> <span class="st">&quot;MXL&quot;</span></span>
-<span id="cb60-32"><a href="sample-qc.html#cb60-32" aria-hidden="true" tabindex="-1"></a>PCA_1kG<span class="sc">$</span>V12[PCA_1kG<span class="sc">$</span>V12 <span class="sc">==</span> <span class="st">&quot;25&quot;</span>] <span class="ot">&lt;-</span> <span class="st">&quot;PUR&quot;</span></span>
-<span id="cb60-33"><a href="sample-qc.html#cb60-33" aria-hidden="true" tabindex="-1"></a>PCA_1kG<span class="sc">$</span>V12[PCA_1kG<span class="sc">$</span>V12 <span class="sc">==</span> <span class="st">&quot;27&quot;</span>] <span class="ot">&lt;-</span> <span class="st">&quot;TSI&quot;</span></span>
-<span id="cb60-34"><a href="sample-qc.html#cb60-34" aria-hidden="true" tabindex="-1"></a>PCA_1kG<span class="sc">$</span>V12[PCA_1kG<span class="sc">$</span>V12 <span class="sc">==</span> <span class="st">&quot;28&quot;</span>] <span class="ot">&lt;-</span> <span class="st">&quot;YRI&quot;</span></span>
-<span id="cb60-35"><a href="sample-qc.html#cb60-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb60-36"><a href="sample-qc.html#cb60-36" aria-hidden="true" tabindex="-1"></a>PCA_1kGplot <span class="ot">&lt;-</span> ggpubr<span class="sc">::</span><span class="fu">ggscatter</span>(PCA_1kG, <span class="at">x =</span> <span class="st">&quot;V2&quot;</span>, <span class="at">y =</span> <span class="st">&quot;V3&quot;</span>,</span>
-<span id="cb60-37"><a href="sample-qc.html#cb60-37" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">color =</span> <span class="st">&quot;V12&quot;</span>,</span>
-<span id="cb60-38"><a href="sample-qc.html#cb60-38" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">palette =</span> <span class="fu">c</span>(<span class="st">&quot;#595A5C&quot;</span>, <span class="st">&quot;#49A01D&quot;</span>, <span class="st">&quot;#E55738&quot;</span>, <span class="st">&quot;#9A3480&quot;</span>, <span class="st">&quot;#705296&quot;</span>, </span>
-<span id="cb60-39"><a href="sample-qc.html#cb60-39" aria-hidden="true" tabindex="-1"></a>                                             <span class="st">&quot;#595A5C&quot;</span>, <span class="st">&quot;#8D5B9A&quot;</span>, <span class="st">&quot;#2F8BC9&quot;</span>, <span class="st">&quot;#1290D9&quot;</span>, <span class="st">&quot;#1396D8&quot;</span>, </span>
-<span id="cb60-40"><a href="sample-qc.html#cb60-40" aria-hidden="true" tabindex="-1"></a>                                             <span class="st">&quot;#D5267B&quot;</span>, <span class="st">&quot;#78B113&quot;</span>, <span class="st">&quot;#F59D10&quot;</span>, <span class="st">&quot;#FBB820&quot;</span>, <span class="st">&quot;#4C81BF&quot;</span>, <span class="st">&quot;#C5D220&quot;</span>),</span>
-<span id="cb60-41"><a href="sample-qc.html#cb60-41" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">xlab =</span> <span class="st">&quot;principal component 1&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;principal component 2&quot;</span>) <span class="sc">+</span></span>
-<span id="cb60-42"><a href="sample-qc.html#cb60-42" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="fl">0.023</span>, <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>,</span>
-<span id="cb60-43"><a href="sample-qc.html#cb60-43" aria-hidden="true" tabindex="-1"></a>                <span class="at">color =</span> <span class="st">&quot;#595A5C&quot;</span>, <span class="at">size =</span> <span class="dv">1</span>)</span>
-<span id="cb60-44"><a href="sample-qc.html#cb60-44" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb60-45"><a href="sample-qc.html#cb60-45" aria-hidden="true" tabindex="-1"></a>  ggpubr<span class="sc">::</span><span class="fu">ggpar</span>(PCA_1kGplot,</span>
-<span id="cb60-46"><a href="sample-qc.html#cb60-46" aria-hidden="true" tabindex="-1"></a>                <span class="at">title =</span> <span class="st">&quot;Principal Component Analysis&quot;</span>,</span>
-<span id="cb60-47"><a href="sample-qc.html#cb60-47" aria-hidden="true" tabindex="-1"></a>                <span class="at">subtitle =</span> <span class="st">&quot;Reference population: 1000 G, phase 1&quot;</span>,</span>
-<span id="cb60-48"><a href="sample-qc.html#cb60-48" aria-hidden="true" tabindex="-1"></a>                <span class="at">legend.title =</span> <span class="st">&quot;Populations&quot;</span>, <span class="at">legend =</span> <span class="st">&quot;right&quot;</span>)</span></code></pre></div>
-<p><img src="A-primer-in-Human-Cardiovascular-Genetics_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
-<p>In a similar fashion as in the above with the HapMap3 reference, you could <strong>remove the samples below the threshold</strong> based on this PCA.</p>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="sample-qc.html#cb59-1" aria-hidden="true" tabindex="-1"></a>PCA_1kG <span class="ot">&lt;-</span> data.table<span class="sc">::</span><span class="fu">fread</span>(<span class="fu">paste0</span>(COURSE_loc,<span class="st">&quot;/rawdata/rawdata.1kg_phase1.pruned.pca.evec&quot;</span>), <span class="at">header =</span> <span class="cn">FALSE</span>, <span class="at">skip =</span> <span class="dv">1</span>)</span>
+<span id="cb59-2"><a href="sample-qc.html#cb59-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-3"><a href="sample-qc.html#cb59-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Population    Description Super population    Code    Counts</span></span>
+<span id="cb59-4"><a href="sample-qc.html#cb59-4" aria-hidden="true" tabindex="-1"></a><span class="co"># ASW   African Ancestry in Southwest US                              AFR   4     #49A01D</span></span>
+<span id="cb59-5"><a href="sample-qc.html#cb59-5" aria-hidden="true" tabindex="-1"></a><span class="co"># CEU   Utah residents with Northern and Western European ancestry  EUR 7     #E55738</span></span>
+<span id="cb59-6"><a href="sample-qc.html#cb59-6" aria-hidden="true" tabindex="-1"></a><span class="co"># CHB   Han Chinese in Bejing, China                                  EAS   8     #9A3480</span></span>
+<span id="cb59-7"><a href="sample-qc.html#cb59-7" aria-hidden="true" tabindex="-1"></a><span class="co"># CHS   Southern Han Chinese, China                                 EAS 9     #705296</span></span>
+<span id="cb59-8"><a href="sample-qc.html#cb59-8" aria-hidden="true" tabindex="-1"></a><span class="co"># CLM   Colombian in Medellin, Colombia                             MR  10  #8D5B9A</span></span>
+<span id="cb59-9"><a href="sample-qc.html#cb59-9" aria-hidden="true" tabindex="-1"></a><span class="co"># FIN   Finnish in Finland                                          EUR 12  #2F8BC9</span></span>
+<span id="cb59-10"><a href="sample-qc.html#cb59-10" aria-hidden="true" tabindex="-1"></a><span class="co"># GBR   British in England and Scotland                             EUR 13  #1290D9</span></span>
+<span id="cb59-11"><a href="sample-qc.html#cb59-11" aria-hidden="true" tabindex="-1"></a><span class="co"># IBS   Iberian populations in Spain                                  EUR   16  #1396D8</span></span>
+<span id="cb59-12"><a href="sample-qc.html#cb59-12" aria-hidden="true" tabindex="-1"></a><span class="co"># JPT   Japanese in Tokyo, Japan                                      EAS   18  #D5267B</span></span>
+<span id="cb59-13"><a href="sample-qc.html#cb59-13" aria-hidden="true" tabindex="-1"></a><span class="co"># LWK   Luhya in Webuye, Kenya                                      AFR 20  #78B113</span></span>
+<span id="cb59-14"><a href="sample-qc.html#cb59-14" aria-hidden="true" tabindex="-1"></a><span class="co"># MXL   Mexican Ancestry in Los Angeles, California                 AMR 22  #F59D10</span></span>
+<span id="cb59-15"><a href="sample-qc.html#cb59-15" aria-hidden="true" tabindex="-1"></a><span class="co"># PUR   Puerto Rican in Puerto Rico                                 AMR 25  #FBB820</span></span>
+<span id="cb59-16"><a href="sample-qc.html#cb59-16" aria-hidden="true" tabindex="-1"></a><span class="co"># TSI   Toscani in Italy                                              EUR   27  #4C81BF</span></span>
+<span id="cb59-17"><a href="sample-qc.html#cb59-17" aria-hidden="true" tabindex="-1"></a><span class="co"># YRI   Yoruba in Ibadan, Nigeria                                     AFR   28  #C5D220</span></span>
+<span id="cb59-18"><a href="sample-qc.html#cb59-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-19"><a href="sample-qc.html#cb59-19" aria-hidden="true" tabindex="-1"></a>PCA_1kG<span class="sc">$</span>V12[PCA_1kG<span class="sc">$</span>V12 <span class="sc">==</span> <span class="st">&quot;Case&quot;</span>] <span class="ot">&lt;-</span> <span class="st">&quot;Case&quot;</span></span>
+<span id="cb59-20"><a href="sample-qc.html#cb59-20" aria-hidden="true" tabindex="-1"></a>PCA_1kG<span class="sc">$</span>V12[PCA_1kG<span class="sc">$</span>V12 <span class="sc">==</span> <span class="st">&quot;Control&quot;</span>] <span class="ot">&lt;-</span> <span class="st">&quot;Control&quot;</span></span>
+<span id="cb59-21"><a href="sample-qc.html#cb59-21" aria-hidden="true" tabindex="-1"></a>PCA_1kG<span class="sc">$</span>V12[PCA_1kG<span class="sc">$</span>V12 <span class="sc">==</span> <span class="st">&quot;4&quot;</span>] <span class="ot">&lt;-</span> <span class="st">&quot;ASW&quot;</span></span>
+<span id="cb59-22"><a href="sample-qc.html#cb59-22" aria-hidden="true" tabindex="-1"></a>PCA_1kG<span class="sc">$</span>V12[PCA_1kG<span class="sc">$</span>V12 <span class="sc">==</span> <span class="st">&quot;7&quot;</span>] <span class="ot">&lt;-</span> <span class="st">&quot;CEU&quot;</span></span>
+<span id="cb59-23"><a href="sample-qc.html#cb59-23" aria-hidden="true" tabindex="-1"></a>PCA_1kG<span class="sc">$</span>V12[PCA_1kG<span class="sc">$</span>V12 <span class="sc">==</span> <span class="st">&quot;8&quot;</span>] <span class="ot">&lt;-</span> <span class="st">&quot;CHB&quot;</span></span>
+<span id="cb59-24"><a href="sample-qc.html#cb59-24" aria-hidden="true" tabindex="-1"></a>PCA_1kG<span class="sc">$</span>V12[PCA_1kG<span class="sc">$</span>V12 <span class="sc">==</span> <span class="st">&quot;9&quot;</span>] <span class="ot">&lt;-</span> <span class="st">&quot;CHS&quot;</span></span>
+<span id="cb59-25"><a href="sample-qc.html#cb59-25" aria-hidden="true" tabindex="-1"></a>PCA_1kG<span class="sc">$</span>V12[PCA_1kG<span class="sc">$</span>V12 <span class="sc">==</span> <span class="st">&quot;10&quot;</span>] <span class="ot">&lt;-</span> <span class="st">&quot;CLM&quot;</span></span>
+<span id="cb59-26"><a href="sample-qc.html#cb59-26" aria-hidden="true" tabindex="-1"></a>PCA_1kG<span class="sc">$</span>V12[PCA_1kG<span class="sc">$</span>V12 <span class="sc">==</span> <span class="st">&quot;12&quot;</span>] <span class="ot">&lt;-</span> <span class="st">&quot;FIN&quot;</span></span>
+<span id="cb59-27"><a href="sample-qc.html#cb59-27" aria-hidden="true" tabindex="-1"></a>PCA_1kG<span class="sc">$</span>V12[PCA_1kG<span class="sc">$</span>V12 <span class="sc">==</span> <span class="st">&quot;13&quot;</span>] <span class="ot">&lt;-</span> <span class="st">&quot;GBR&quot;</span></span>
+<span id="cb59-28"><a href="sample-qc.html#cb59-28" aria-hidden="true" tabindex="-1"></a>PCA_1kG<span class="sc">$</span>V12[PCA_1kG<span class="sc">$</span>V12 <span class="sc">==</span> <span class="st">&quot;16&quot;</span>] <span class="ot">&lt;-</span> <span class="st">&quot;IBS&quot;</span></span>
+<span id="cb59-29"><a href="sample-qc.html#cb59-29" aria-hidden="true" tabindex="-1"></a>PCA_1kG<span class="sc">$</span>V12[PCA_1kG<span class="sc">$</span>V12 <span class="sc">==</span> <span class="st">&quot;18&quot;</span>] <span class="ot">&lt;-</span> <span class="st">&quot;JPT&quot;</span></span>
+<span id="cb59-30"><a href="sample-qc.html#cb59-30" aria-hidden="true" tabindex="-1"></a>PCA_1kG<span class="sc">$</span>V12[PCA_1kG<span class="sc">$</span>V12 <span class="sc">==</span> <span class="st">&quot;20&quot;</span>] <span class="ot">&lt;-</span> <span class="st">&quot;LWK&quot;</span></span>
+<span id="cb59-31"><a href="sample-qc.html#cb59-31" aria-hidden="true" tabindex="-1"></a>PCA_1kG<span class="sc">$</span>V12[PCA_1kG<span class="sc">$</span>V12 <span class="sc">==</span> <span class="st">&quot;22&quot;</span>] <span class="ot">&lt;-</span> <span class="st">&quot;MXL&quot;</span></span>
+<span id="cb59-32"><a href="sample-qc.html#cb59-32" aria-hidden="true" tabindex="-1"></a>PCA_1kG<span class="sc">$</span>V12[PCA_1kG<span class="sc">$</span>V12 <span class="sc">==</span> <span class="st">&quot;25&quot;</span>] <span class="ot">&lt;-</span> <span class="st">&quot;PUR&quot;</span></span>
+<span id="cb59-33"><a href="sample-qc.html#cb59-33" aria-hidden="true" tabindex="-1"></a>PCA_1kG<span class="sc">$</span>V12[PCA_1kG<span class="sc">$</span>V12 <span class="sc">==</span> <span class="st">&quot;27&quot;</span>] <span class="ot">&lt;-</span> <span class="st">&quot;TSI&quot;</span></span>
+<span id="cb59-34"><a href="sample-qc.html#cb59-34" aria-hidden="true" tabindex="-1"></a>PCA_1kG<span class="sc">$</span>V12[PCA_1kG<span class="sc">$</span>V12 <span class="sc">==</span> <span class="st">&quot;28&quot;</span>] <span class="ot">&lt;-</span> <span class="st">&quot;YRI&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="sample-qc.html#cb60-1" aria-hidden="true" tabindex="-1"></a>PCA_1kGplot <span class="ot">&lt;-</span> ggpubr<span class="sc">::</span><span class="fu">ggscatter</span>(PCA_1kG, <span class="at">x =</span> <span class="st">&quot;V2&quot;</span>, <span class="at">y =</span> <span class="st">&quot;V3&quot;</span>,</span>
+<span id="cb60-2"><a href="sample-qc.html#cb60-2" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">color =</span> <span class="st">&quot;V12&quot;</span>,</span>
+<span id="cb60-3"><a href="sample-qc.html#cb60-3" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">palette =</span> <span class="fu">c</span>(<span class="st">&quot;#595A5C&quot;</span>, <span class="st">&quot;#49A01D&quot;</span>, <span class="st">&quot;#E55738&quot;</span>, <span class="st">&quot;#9A3480&quot;</span>, <span class="st">&quot;#705296&quot;</span>, </span>
+<span id="cb60-4"><a href="sample-qc.html#cb60-4" aria-hidden="true" tabindex="-1"></a>                                             <span class="st">&quot;#595A5C&quot;</span>, <span class="st">&quot;#8D5B9A&quot;</span>, <span class="st">&quot;#2F8BC9&quot;</span>, <span class="st">&quot;#1290D9&quot;</span>, <span class="st">&quot;#1396D8&quot;</span>, </span>
+<span id="cb60-5"><a href="sample-qc.html#cb60-5" aria-hidden="true" tabindex="-1"></a>                                             <span class="st">&quot;#D5267B&quot;</span>, <span class="st">&quot;#78B113&quot;</span>, <span class="st">&quot;#F59D10&quot;</span>, <span class="st">&quot;#FBB820&quot;</span>, <span class="st">&quot;#4C81BF&quot;</span>, <span class="st">&quot;#C5D220&quot;</span>),</span>
+<span id="cb60-6"><a href="sample-qc.html#cb60-6" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">xlab =</span> <span class="st">&quot;principal component 1&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;principal component 2&quot;</span>) <span class="sc">+</span></span>
+<span id="cb60-7"><a href="sample-qc.html#cb60-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="fl">0.023</span>, <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>,</span>
+<span id="cb60-8"><a href="sample-qc.html#cb60-8" aria-hidden="true" tabindex="-1"></a>                <span class="at">color =</span> <span class="st">&quot;#595A5C&quot;</span>, <span class="at">size =</span> <span class="dv">1</span>)</span>
+<span id="cb60-9"><a href="sample-qc.html#cb60-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-10"><a href="sample-qc.html#cb60-10" aria-hidden="true" tabindex="-1"></a>  ggpubr<span class="sc">::</span><span class="fu">ggpar</span>(PCA_1kGplot,</span>
+<span id="cb60-11"><a href="sample-qc.html#cb60-11" aria-hidden="true" tabindex="-1"></a>                <span class="at">title =</span> <span class="st">&quot;Principal Component Analysis&quot;</span>,</span>
+<span id="cb60-12"><a href="sample-qc.html#cb60-12" aria-hidden="true" tabindex="-1"></a>                <span class="at">subtitle =</span> <span class="st">&quot;Reference population: 1000 G, phase 1&quot;</span>,</span>
+<span id="cb60-13"><a href="sample-qc.html#cb60-13" aria-hidden="true" tabindex="-1"></a>                <span class="at">legend.title =</span> <span class="st">&quot;Populations&quot;</span>, <span class="at">legend =</span> <span class="st">&quot;right&quot;</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:pca-1000g"></span>
+<img src="A-primer-in-Human-Cardiovascular-Genetics_files/figure-html/pca-1000g-1.png" alt="PCA - Your data vs. 1000G" width="80%" />
+<p class="caption">
+Figure 4.4: PCA - Your data vs. 1000G
+</p>
+</div>
+<p>In a similar fashion as in the above with the HapMap3 reference, you could <strong>remove the samples below the threshold</strong> based on this PCA (Figure <a href="sample-qc.html#fig:pca-1000g">4.4</a>).</p>
 </div>
 </div>
 <div id="removing-samples" class="section level2 hasAnchor" number="4.6">
@@ -887,7 +929,7 @@ cp -v rawdata/rawdata.1kg_phase1.pruned.fam rawdata/rawdata.1kg_phase1.pruned.pe
 </div>
 <div id="the-next-step" class="section level2 hasAnchor" number="4.7">
 <h2><span class="header-section-number">4.7</span> The next step<a href="sample-qc.html#the-next-step" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Now that you filtered samples, we should turn our attention to step 2 of the QC for GWAS: identify SNPs of poor quality in (Chapter @ref(gwas_basics_snp_qc)).</p>
+<p>Now that you filtered samples, we should turn our attention to step 2 of the QC for GWAS: identify SNPs of poor quality in Chapter @ref(gwas_basics_snp_qc).</p>
 
 </div>
 </div>

@@ -1,17 +1,41 @@
 # Phenome-Wide Association Study (PheWAS)
 
-## Section 1
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+```{r phewas, message = FALSE, warning = FALSE, echo = FALSE, eval = TRUE}
+COURSE_loc = "~/Desktop/practical"
+# COURSE_loc = "/Users/swvanderlaan/git/swvanderlaan/A_primer_in_Human_Cardiovascular_Genetics"
+
+source(paste0(COURSE_loc, "/scripts/functions.R"))
+source(paste0(COURSE_loc, "/scripts/colors.R"))
+source(paste0(COURSE_loc, "/scripts/packages.R"))
+
+```
+
+Given the large biobanks available nowadays that have also genotyped the participants and collected a vast-array of information on them, it is possible to perform a phenome-wide association study, a PheWAS.
+
+There are several options in (Table \@ref(tab:tab-phewas)).
+
+```{r, eval = TRUE, echo = FALSE}
+phewas <- openxlsx::read.xlsx("information.xlsx", sheet = "PheWAS")
+```
 
 
-## Section 2
+```{r tab-phewas, tidy = FALSE, eval = TRUE, echo = FALSE}
+knitr::kable(
+  phewas, 
+  caption = 'PheWAS Resources.',
+  # align = ,
+  booktabs = FALSE
+)
+```
 
-Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?
 
-## Section 3
+*Assignment*
 
-At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.
+1. Perform a PheWAS with a few of the resources and your favorite SNP from this tutorial. 
+2. Compare the different websites. What do you notice?
+3. How is a PheWAS informative?
 
-## Replication! 
 
-You reached an important milestone: you recreated the work by the whole WTCCC1 in just an afternoon. Wow. Back then there wasn't much on analyses _after_ a GWAS, nowadays there are many post-GWAS  analyses methods. We will cover them in the next (Chapter \@ref(mendelian_randomization)).
+## What's next?
+
+You now know to what other traits, risk factors and diseases our trait of interest (coronary artery disease) is correlated. An obvious next question would be: is this a causal correlation? We will cover this aspect in the next Chapter \@ref(mendelian_randomization). 

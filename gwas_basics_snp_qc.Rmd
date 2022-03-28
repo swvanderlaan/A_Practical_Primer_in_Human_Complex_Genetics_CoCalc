@@ -1,5 +1,5 @@
 # Per-SNP QC
-
+![](img/gwas_snp_qc.png){width=70%}
 ```{r gwas_basics_snp_qc, message = FALSE, warning = FALSE, echo = FALSE, eval = TRUE}
 COURSE_loc = "~/Desktop/practical"
 # COURSE_loc = "/Users/swvanderlaan/git/swvanderlaan/A_primer_in_Human_Cardiovascular_Genetics"
@@ -135,5 +135,4 @@ plink --bfile rawdata/clean_inds_data --exclude rawdata/fail-diffmiss-qc.txt --m
 
 ## A Milestone
 
-Congratulations. You reached a very important milestone. Now that you filtered samples and SNPs, we can finally start the association analyses in (Chapter \@ref(gwas_basics_association_testing)). 
-
+Congratulations. You reached a very important milestone. Now that you filtered samples and SNPs, we can finally start the association analyses in Chapter \@ref(gwas_basics_association_testing).

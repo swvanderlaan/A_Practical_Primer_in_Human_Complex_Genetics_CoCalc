@@ -14,4 +14,4 @@ At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praese
 
 ## Replication! 
 
-You reached an important milestone: you recreated the work by the whole WTCCC1 in just an afternoon. Wow. Back then there wasn't much on analyses _after_ a GWAS, nowadays there are many post-GWAS  analyses methods. We will cover them in the next (Chapter \@ref(finemapping)).
+You reached an important milestone: you recreated the work by the whole WTCCC1 in just an afternoon. Wow. Back then there wasn't much on analyses _after_ a GWAS, nowadays there are many post-GWAS  analyses methods. We will cover them in the next Chapter \@ref(finemapping).

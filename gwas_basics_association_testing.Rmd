@@ -163,6 +163,4 @@ We need to calculate the standard error and confidence interval from the z-stati
 
 ## Let's get visual
 
-Looking at numbers is important, but it won't give you a perfect overview. We should turn to visualizing our results in (Chapter \@ref(gwas_basics_results_visualization)). 
-
-
+Looking at numbers is important, but it won't give you a perfect overview. We should turn to visualizing our results in Chapter \@ref(gwas_basics_results_visualization).

@@ -118,6 +118,28 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -163,7 +185,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4" data-path="sample-qc.html"><a href="sample-qc.html"><i class="fa fa-check"></i><b>4</b> Sample QC<span></span></a>
 <ul>
 <li class="chapter" data-level="4.1" data-path="sample-qc.html"><a href="sample-qc.html#sex"><i class="fa fa-check"></i><b>4.1</b> Sex<span></span></a></li>
-<li class="chapter" data-level="4.2" data-path="sample-qc.html"><a href="sample-qc.html#sample-callrates"><i class="fa fa-check"></i><b>4.2</b> Sample Callrates<span></span></a></li>
+<li class="chapter" data-level="4.2" data-path="sample-qc.html"><a href="sample-qc.html#sample-call-rates"><i class="fa fa-check"></i><b>4.2</b> Sample call rates<span></span></a></li>
 <li class="chapter" data-level="4.3" data-path="sample-qc.html"><a href="sample-qc.html#heterozygosity-rate"><i class="fa fa-check"></i><b>4.3</b> Heterozygosity rate<span></span></a></li>
 <li class="chapter" data-level="4.4" data-path="sample-qc.html"><a href="sample-qc.html#relatedness"><i class="fa fa-check"></i><b>4.4</b> Relatedness<span></span></a></li>
 <li class="chapter" data-level="4.5" data-path="sample-qc.html"><a href="sample-qc.html#ancestral-background"><i class="fa fa-check"></i><b>4.5</b> Ancestral background<span></span></a>
@@ -202,71 +224,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="8" data-path="the-welcome-trust-case-control-consortium-wtccc.html"><a href="the-welcome-trust-case-control-consortium-wtccc.html"><i class="fa fa-check"></i><b>8</b> The Welcome Trust Case-Control Consortium (WTCCC)<span></span></a>
 <ul>
-<li class="chapter" data-level="8.1" data-path="the-welcome-trust-case-control-consortium-wtccc.html"><a href="the-welcome-trust-case-control-consortium-wtccc.html#there-you-go"><i class="fa fa-check"></i><b>8.1</b> There you go<span></span></a></li>
+<li class="chapter" data-level="8.1" data-path="the-welcome-trust-case-control-consortium-wtccc.html"><a href="the-welcome-trust-case-control-consortium-wtccc.html#genotyping"><i class="fa fa-check"></i><b>8.1</b> Genotyping<span></span></a></li>
+<li class="chapter" data-level="8.2" data-path="the-welcome-trust-case-control-consortium-wtccc.html"><a href="the-welcome-trust-case-control-consortium-wtccc.html#the-data"><i class="fa fa-check"></i><b>8.2</b> The data<span></span></a></li>
+<li class="chapter" data-level="8.3" data-path="the-welcome-trust-case-control-consortium-wtccc.html"><a href="the-welcome-trust-case-control-consortium-wtccc.html#assignment"><i class="fa fa-check"></i><b>8.3</b> Assignment<span></span></a></li>
+<li class="chapter" data-level="8.4" data-path="the-welcome-trust-case-control-consortium-wtccc.html"><a href="the-welcome-trust-case-control-consortium-wtccc.html#there-you-go"><i class="fa fa-check"></i><b>8.4</b> There you go<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="wtccc1-a-gwas-on-coronary-artery-disease-cad.html"><a href="wtccc1-a-gwas-on-coronary-artery-disease-cad.html"><i class="fa fa-check"></i><b>9</b> WTCCC1: a GWAS on coronary artery disease (CAD)<span></span></a>
+<li class="chapter" data-level="9" data-path="mendelian-randomization-mr.html"><a href="mendelian-randomization-mr.html"><i class="fa fa-check"></i><b>9</b> Mendelian Randomization (MR)<span></span></a>
 <ul>
-<li class="chapter" data-level="9.1" data-path="wtccc1-a-gwas-on-coronary-artery-disease-cad.html"><a href="wtccc1-a-gwas-on-coronary-artery-disease-cad.html#quality-control-1"><i class="fa fa-check"></i><b>9.1</b> Quality control<span></span></a></li>
-<li class="chapter" data-level="9.2" data-path="wtccc1-a-gwas-on-coronary-artery-disease-cad.html"><a href="wtccc1-a-gwas-on-coronary-artery-disease-cad.html#ancestral-background-1"><i class="fa fa-check"></i><b>9.2</b> Ancestral background<span></span></a>
-<ul>
-<li class="chapter" data-level="9.2.1" data-path="wtccc1-a-gwas-on-coronary-artery-disease-cad.html"><a href="wtccc1-a-gwas-on-coronary-artery-disease-cad.html#extreme-cleaning"><i class="fa fa-check"></i><b>9.2.1</b> Extreme cleaning<span></span></a></li>
-<li class="chapter" data-level="9.2.2" data-path="wtccc1-a-gwas-on-coronary-artery-disease-cad.html"><a href="wtccc1-a-gwas-on-coronary-artery-disease-cad.html#removing-samples-1"><i class="fa fa-check"></i><b>9.2.2</b> Removing samples<span></span></a></li>
+<li class="chapter" data-level="9.1" data-path="mendelian-randomization-mr.html"><a href="mendelian-randomization-mr.html#section-1"><i class="fa fa-check"></i><b>9.1</b> Section 1<span></span></a></li>
+<li class="chapter" data-level="9.2" data-path="mendelian-randomization-mr.html"><a href="mendelian-randomization-mr.html#section-2"><i class="fa fa-check"></i><b>9.2</b> Section 2<span></span></a></li>
+<li class="chapter" data-level="9.3" data-path="mendelian-randomization-mr.html"><a href="mendelian-randomization-mr.html#section-3"><i class="fa fa-check"></i><b>9.3</b> Section 3<span></span></a></li>
+<li class="chapter" data-level="9.4" data-path="mendelian-randomization-mr.html"><a href="mendelian-randomization-mr.html#replication"><i class="fa fa-check"></i><b>9.4</b> Replication!<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="9.3" data-path="wtccc1-a-gwas-on-coronary-artery-disease-cad.html"><a href="wtccc1-a-gwas-on-coronary-artery-disease-cad.html#association-testing"><i class="fa fa-check"></i><b>9.3</b> Association testing<span></span></a></li>
-<li class="chapter" data-level="9.4" data-path="wtccc1-a-gwas-on-coronary-artery-disease-cad.html"><a href="wtccc1-a-gwas-on-coronary-artery-disease-cad.html#replication"><i class="fa fa-check"></i><b>9.4</b> Replication!<span></span></a></li>
-</ul></li>
-<li class="chapter" data-level="10" data-path="post-gwas-analyses.html"><a href="post-gwas-analyses.html"><i class="fa fa-check"></i><b>10</b> Post-GWAS Analyses<span></span></a>
-<ul>
-<li class="chapter" data-level="10.1" data-path="post-gwas-analyses.html"><a href="post-gwas-analyses.html#replication-1"><i class="fa fa-check"></i><b>10.1</b> Replication!<span></span></a></li>
-</ul></li>
-<li class="chapter" data-level="11" data-path="conditional-analysis.html"><a href="conditional-analysis.html"><i class="fa fa-check"></i><b>11</b> Conditional analysis<span></span></a>
-<ul>
-<li class="chapter" data-level="11.1" data-path="conditional-analysis.html"><a href="conditional-analysis.html#section-1"><i class="fa fa-check"></i><b>11.1</b> Section 1<span></span></a></li>
-<li class="chapter" data-level="11.2" data-path="conditional-analysis.html"><a href="conditional-analysis.html#section-2"><i class="fa fa-check"></i><b>11.2</b> Section 2<span></span></a></li>
-<li class="chapter" data-level="11.3" data-path="conditional-analysis.html"><a href="conditional-analysis.html#section-3"><i class="fa fa-check"></i><b>11.3</b> Section 3<span></span></a></li>
-<li class="chapter" data-level="11.4" data-path="conditional-analysis.html"><a href="conditional-analysis.html#replication-2"><i class="fa fa-check"></i><b>11.4</b> Replication!<span></span></a></li>
-</ul></li>
-<li class="chapter" data-level="12" data-path="statistical-finemapping.html"><a href="statistical-finemapping.html"><i class="fa fa-check"></i><b>12</b> Statistical finemapping<span></span></a>
-<ul>
-<li class="chapter" data-level="12.1" data-path="statistical-finemapping.html"><a href="statistical-finemapping.html#section-1-1"><i class="fa fa-check"></i><b>12.1</b> Section 1<span></span></a></li>
-<li class="chapter" data-level="12.2" data-path="statistical-finemapping.html"><a href="statistical-finemapping.html#section-2-1"><i class="fa fa-check"></i><b>12.2</b> Section 2<span></span></a></li>
-<li class="chapter" data-level="12.3" data-path="statistical-finemapping.html"><a href="statistical-finemapping.html#section-3-1"><i class="fa fa-check"></i><b>12.3</b> Section 3<span></span></a></li>
-<li class="chapter" data-level="12.4" data-path="statistical-finemapping.html"><a href="statistical-finemapping.html#replication-3"><i class="fa fa-check"></i><b>12.4</b> Replication!<span></span></a></li>
-</ul></li>
-<li class="chapter" data-level="13" data-path="functional-mapping-and-annotation-of-gwas.html"><a href="functional-mapping-and-annotation-of-gwas.html"><i class="fa fa-check"></i><b>13</b> Functional Mapping and Annotation of GWAS<span></span></a>
-<ul>
-<li class="chapter" data-level="13.1" data-path="functional-mapping-and-annotation-of-gwas.html"><a href="functional-mapping-and-annotation-of-gwas.html#assignment"><i class="fa fa-check"></i><b>13.1</b> Assignment<span></span></a>
-<ul>
-<li class="chapter" data-level="13.1.1" data-path="functional-mapping-and-annotation-of-gwas.html"><a href="functional-mapping-and-annotation-of-gwas.html#tutorial"><i class="fa fa-check"></i><b>13.1.1</b> Tutorial<span></span></a></li>
-<li class="chapter" data-level="13.1.2" data-path="functional-mapping-and-annotation-of-gwas.html"><a href="functional-mapping-and-annotation-of-gwas.html#create-the-input"><i class="fa fa-check"></i><b>13.1.2</b> Create the input<span></span></a></li>
-<li class="chapter" data-level="13.1.3" data-path="functional-mapping-and-annotation-of-gwas.html"><a href="functional-mapping-and-annotation-of-gwas.html#run-fuma---snp-to-gene"><i class="fa fa-check"></i><b>13.1.3</b> Run FUMA - SNP to gene<span></span></a></li>
-<li class="chapter" data-level="13.1.4" data-path="functional-mapping-and-annotation-of-gwas.html"><a href="functional-mapping-and-annotation-of-gwas.html#run-fuma---gene-to-function"><i class="fa fa-check"></i><b>13.1.4</b> Run FUMA - Gene to function<span></span></a></li>
-</ul></li>
-<li class="chapter" data-level="13.2" data-path="functional-mapping-and-annotation-of-gwas.html"><a href="functional-mapping-and-annotation-of-gwas.html#some-closing-thoughts"><i class="fa fa-check"></i><b>13.2</b> Some closing thoughts<span></span></a></li>
-</ul></li>
-<li class="chapter" data-level="14" data-path="phenome-wide-association-study-phewas.html"><a href="phenome-wide-association-study-phewas.html"><i class="fa fa-check"></i><b>14</b> Phenome-Wide Association Study (PheWAS)<span></span></a>
-<ul>
-<li class="chapter" data-level="14.1" data-path="phenome-wide-association-study-phewas.html"><a href="phenome-wide-association-study-phewas.html#section-1-2"><i class="fa fa-check"></i><b>14.1</b> Section 1<span></span></a></li>
-<li class="chapter" data-level="14.2" data-path="phenome-wide-association-study-phewas.html"><a href="phenome-wide-association-study-phewas.html#section-2-2"><i class="fa fa-check"></i><b>14.2</b> Section 2<span></span></a></li>
-<li class="chapter" data-level="14.3" data-path="phenome-wide-association-study-phewas.html"><a href="phenome-wide-association-study-phewas.html#section-3-2"><i class="fa fa-check"></i><b>14.3</b> Section 3<span></span></a></li>
-<li class="chapter" data-level="14.4" data-path="phenome-wide-association-study-phewas.html"><a href="phenome-wide-association-study-phewas.html#replication-4"><i class="fa fa-check"></i><b>14.4</b> Replication!<span></span></a></li>
-</ul></li>
-<li class="chapter" data-level="15" data-path="mendelian-randomization-mr.html"><a href="mendelian-randomization-mr.html"><i class="fa fa-check"></i><b>15</b> Mendelian Randomization (MR)<span></span></a>
-<ul>
-<li class="chapter" data-level="15.1" data-path="mendelian-randomization-mr.html"><a href="mendelian-randomization-mr.html#section-1-3"><i class="fa fa-check"></i><b>15.1</b> Section 1<span></span></a></li>
-<li class="chapter" data-level="15.2" data-path="mendelian-randomization-mr.html"><a href="mendelian-randomization-mr.html#section-2-3"><i class="fa fa-check"></i><b>15.2</b> Section 2<span></span></a></li>
-<li class="chapter" data-level="15.3" data-path="mendelian-randomization-mr.html"><a href="mendelian-randomization-mr.html#section-3-3"><i class="fa fa-check"></i><b>15.3</b> Section 3<span></span></a></li>
-<li class="chapter" data-level="15.4" data-path="mendelian-randomization-mr.html"><a href="mendelian-randomization-mr.html#replication-5"><i class="fa fa-check"></i><b>15.4</b> Replication!<span></span></a></li>
-</ul></li>
-<li class="chapter" data-level="16" data-path="mendelian-randomization-mr-1.html"><a href="mendelian-randomization-mr-1.html"><i class="fa fa-check"></i><b>16</b> Mendelian Randomization (MR)<span></span></a>
-<ul>
-<li class="chapter" data-level="16.1" data-path="mendelian-randomization-mr-1.html"><a href="mendelian-randomization-mr-1.html#section-1-4"><i class="fa fa-check"></i><b>16.1</b> Section 1<span></span></a></li>
-<li class="chapter" data-level="16.2" data-path="mendelian-randomization-mr-1.html"><a href="mendelian-randomization-mr-1.html#section-2-4"><i class="fa fa-check"></i><b>16.2</b> Section 2<span></span></a></li>
-<li class="chapter" data-level="16.3" data-path="mendelian-randomization-mr-1.html"><a href="mendelian-randomization-mr-1.html#section-3-4"><i class="fa fa-check"></i><b>16.3</b> Section 3<span></span></a></li>
-<li class="chapter" data-level="16.4" data-path="mendelian-randomization-mr-1.html"><a href="mendelian-randomization-mr-1.html#replication-6"><i class="fa fa-check"></i><b>16.4</b> Replication!<span></span></a></li>
-</ul></li>
-<li class="chapter" data-level="17" data-path="license-your-gitbook.html"><a href="license-your-gitbook.html"><i class="fa fa-check"></i><b>17</b> License your GitBook<span></span></a></li>
-<li class="chapter" data-level="18" data-path="license-your-gitbook-1.html"><a href="license-your-gitbook-1.html"><i class="fa fa-check"></i><b>18</b> License your GitBook<span></span></a></li>
+<li class="chapter" data-level="10" data-path="epilogue.html"><a href="epilogue.html"><i class="fa fa-check"></i><b>10</b> Epilogue<span></span></a></li>
+<li class="chapter" data-level="11" data-path="licenses-and-disclaimers.html"><a href="licenses-and-disclaimers.html"><i class="fa fa-check"></i><b>11</b> Licenses and disclaimers<span></span></a></li>
 <li><a href="references.html#references">References<span></span></a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -312,7 +283,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <p>The subsequent columns denote genotypes that can be any character (e.g., 1, 2, 3, 4 or A, C, G, T). Zero denotes a missing genotype. Each SNP must have two alleles (i.e., both alleles are either present or absent).
 The order of SNPs in the PED file is given in the MAP file, in which each line denotes a single marker and the four white-space–separated columns are chromosome (1–22, X, Y or 0 for unplaced), marker name (typically an rs number), genetic distance in Morgans (this can be fixed to 0) and base-pair position (bp units).</p>
-<p>Let’s start by using <code>PLINK</code> to converting the datasets to a lighter, binary form (a <code>BED</code>-file). BED files save data in a more memory- and time-efficient manner (binary files) to facilitate the analysis of large-scale data <a href="mailto:sets@purcell2007" class="email">sets@purcell2007</a>. PLINK creates a <code>.log</code> file (named <code>raw-GWA-data.log</code>) that details (among other information) the implemented commands, the number of cases and controls in the input files, any excluded data and the genotyping rate in the remaining data. This file is very useful for checking whether the software is successfully completing commands.</p>
+<p>Let’s start by using <code>PLINK</code> to converting the datasets to a lighter, binary form (a <code>BED</code>-file). BED files save data in a more memory- and time-efficient manner (binary files) to facilitate the analysis of large-scale data sets <span class="citation">(<a href="#ref-purcell2007" role="doc-biblioref">P. S. et al. 2007</a>)</span> . PLINK creates a <code>.log</code> file (named <code>raw-GWA-data.log</code>) that details (among other information) the implemented commands, the number of cases and controls in the input files, any excluded data and the genotyping rate in the remaining data. This file is very useful for checking whether the software is successfully completing commands.</p>
 <p>Make sure you are in the right directory. Do you remember how to get there?</p>
 <pre><code>cd ~/Desktop/practical</code></pre>
 <p><em>No worries for now: I’ve done this already for you!</em></p>
@@ -320,7 +291,7 @@ The order of SNPs in the PED file is given in the MAP file, in which each line d
 </div>
 <div id="quality-control" class="section level2 hasAnchor" number="3.2">
 <h2><span class="header-section-number">3.2</span> Quality control<a href="basics-of-a-genome-wide-association-study-gwas.html#quality-control" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>We are ready for some quality control and quality assurance, heavily inspired by Anderson <em>et al.</em>@anderson2010 and Laurie <em>et al.</em>@laurie2010. In general, we should check out a couple of things regarding the data quality on two levels:</p>
+<p>We are ready for some quality control and quality assurance, heavily inspired by Anderson <em>et al.</em> <span class="citation">(<a href="#ref-anderson2010" role="doc-biblioref">A. C. et al. 2010</a>)</span> and Laurie <em>et al.</em> <span class="citation">(<a href="#ref-laurie2010" role="doc-biblioref">L. C. et al. 2010</a>)</span> . In general, we should check out a couple of things regarding the data quality on two levels:</p>
 <ol style="list-style-type: decimal">
 <li>samples</li>
 <li>variants</li>
@@ -338,8 +309,20 @@ The order of SNPs in the PED file is given in the MAP file, in which each line d
 </div>
 <div id="lets-get-our-hands-dirty" class="section level2 hasAnchor" number="3.3">
 <h2><span class="header-section-number">3.3</span> Let’s get our hands dirty<a href="basics-of-a-genome-wide-association-study-gwas.html#lets-get-our-hands-dirty" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>All clear? Let’s start the work. On to step 1 of the QC for GWAS: filter samples of poor quality in (Chapter @ref(gwas_basics_sample_qc)).</p>
+<p>All clear? Let’s start the work. On to step 1 of the QC for GWAS: filter samples of poor quality in Chapter @ref(gwas_basics_sample_qc).</p>
 
+</div>
+</div>
+<h3>References<a href="references.html#references" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-anderson2010" class="csl-entry">
+al., Anderson CA et. 2010. <span>“Data QC in Genetic Case-Control Association Studies.”</span> <a href="https://www.ncbi.nlm.nih.gov/pubmed/21085122">https://www.ncbi.nlm.nih.gov/pubmed/21085122</a>.
+</div>
+<div id="ref-laurie2010" class="csl-entry">
+al., Laurie CC et. 2010. <span>“Quality Control and Quality Assurance in Genotypic Data for Genome-Wide Association Studies.”</span> <a href="https://www.ncbi.nlm.nih.gov/pubmed/20718045">https://www.ncbi.nlm.nih.gov/pubmed/20718045</a>.
+</div>
+<div id="ref-purcell2007" class="csl-entry">
+al., Purcell S. et. 2007. <span>“PLINK, a Tool Set for Whole-Genome Association and Population-Based Linkage Analyses.”</span> <a href="https://www.ncbi.nlm.nih.gov/pubmed/17701901">https://www.ncbi.nlm.nih.gov/pubmed/17701901</a>.
 </div>
 </div>
             </section>

@@ -25,7 +25,7 @@ A `PED` file is a white space (space or tab)-delimited file in which each line r
 The subsequent columns denote genotypes that can be any character (e.g., 1, 2, 3, 4 or A, C, G, T). Zero denotes a missing genotype. Each SNP must have two alleles (i.e., both alleles are either present or absent). 
 The order of SNPs in the PED file is given in the MAP file, in which each line denotes a single marker and the four white-space–separated columns are chromosome (1–22, X, Y or 0 for unplaced), marker name (typically an rs number), genetic distance in Morgans (this can be fixed to 0) and base-pair position (bp units).
 
-Let's start by using `PLINK` to converting the datasets to a lighter, binary form (a `BED`-file). BED files save data in a more memory- and time-efficient manner (binary files) to facilitate the analysis of large-scale data sets@purcell2007. PLINK creates a `.log` file (named `raw-GWA-data.log`) that details (among other information) the implemented commands, the number of cases and controls in the input files, any excluded data and the genotyping rate in the remaining data. This file is very useful for checking whether the software is successfully completing commands.
+Let's start by using `PLINK` to converting the datasets to a lighter, binary form (a `BED`-file). BED files save data in a more memory- and time-efficient manner (binary files) to facilitate the analysis of large-scale data sets [@purcell2007] . PLINK creates a `.log` file (named `raw-GWA-data.log`) that details (among other information) the implemented commands, the number of cases and controls in the input files, any excluded data and the genotyping rate in the remaining data. This file is very useful for checking whether the software is successfully completing commands.
 
 
 Make sure you are in the right directory. Do you remember how to get there?
@@ -46,7 +46,7 @@ plink --file rawdata/raw-GWA-data --make-bed --out rawdata/rawdata
 
 ## Quality control
 
-We are ready for some quality control and quality assurance, heavily inspired by Anderson _et al._@anderson2010 and Laurie _et al._@laurie2010. In general, we should check out a couple of things regarding the data quality on two levels:
+We are ready for some quality control and quality assurance, heavily inspired by Anderson _et al._ [@anderson2010] and Laurie _et al._ [@laurie2010] . In general, we should check out a couple of things regarding the data quality on two levels:
 
 1) samples
 2) variants
@@ -64,4 +64,4 @@ So, we will investigate the following:
 
 ## Let's get our hands dirty
 
-All clear? Let's start the work. On to step 1 of the QC for GWAS: filter samples of poor quality in (Chapter \@ref(gwas_basics_sample_qc)). 
+All clear? Let's start the work. On to step 1 of the QC for GWAS: filter samples of poor quality in Chapter \@ref(gwas_basics_sample_qc).

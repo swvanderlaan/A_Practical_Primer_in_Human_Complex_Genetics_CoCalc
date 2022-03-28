@@ -1,4 +1,5 @@
 # Sample QC
+![](img/gwas_sample_qc.png){width=70%}
 
 ```{r gwas_basics_sample_qc, message = FALSE, warning = FALSE, echo = FALSE, eval = TRUE}
 COURSE_loc = "~/Desktop/practical"
@@ -9,6 +10,7 @@ source(paste0(COURSE_loc, "/scripts/colors.R"))
 source(paste0(COURSE_loc, "/scripts/packages.R"))
 
 ```
+
 Let's start with the per-sample quality control.
 
 
@@ -44,19 +46,26 @@ cat rawdata/rawdata.sexprobs.txt
 
 ```{r }
 sexissues <- data.table::fread(paste0(COURSE_loc,"/rawdata/rawdata.sexprobs.txt"))
-knitr::kable(sexissues, caption = "Sex issues")
 ```
+
+```{r sex-issues, tidy = FALSE, echo = FALSE, eval = TRUE}
+knitr::kable(
+  sexissues, caption = 'Sex issues',
+  booktabs = TRUE
+)
+```
+
 
 When the homozygosity rate (_F_) is more than 0.2, but less than 0.8, the genotype data are inconclusive regarding the sex of an individual and these are marked in column _SNPSEX_ with a 0, and the column _STATUS_ "PROBLEM".
 
-Report the IDs of individuals with discordant sex information to those who conducted sex phenotyping. In situations in which discrepancy cannot be resolved, add the family ID (FID) and individual ID (IID) of the samples to a file named "fail-sexcheck-qc.txt" (one individual per line, tab delimited).
+Report the IDs of individuals with discordant sex information (Table \@ref(tab:sex-issues)) to those who conducted sex phenotyping. In situations in which discrepancy cannot be resolved, add the family ID (FID) and individual ID (IID) of the samples to a file named "fail-sexcheck-qc.txt" (one individual per line, tab delimited).
 
 ```
 grep "PROBLEM" rawdata/rawdata.sexcheck | awk '{ print $1, $2}'  > rawdata/fail-sexcheck-qc.txt
 
 ```
 
-## Sample Callrates
+## Sample call rates
 Let's get an overview of the missing data per sample and per SNP.
 
 ```
@@ -71,7 +80,9 @@ This produces two files, `rawdata/rawdata.imiss` and `rawdata/rawdata.lmiss`. In
 raw_IMISS <- data.table::fread(paste0(COURSE_loc, "/rawdata/rawdata.imiss"))
 
 raw_IMISS$callrate <- 1 - raw_IMISS$F_MISS
+```
 
+```{r callrate, message=FALSE, warning=FALSE, out.width='80%', fig.align='center', fig.asp=.75, fig.cap='Call rate'}
 ggpubr::gghistogram(raw_IMISS, x = "callrate",
                     add = "mean", add.params = list(color = "#595A5C", linetype = "dashed", size = 1),
                     rug = TRUE, bins = 50,
@@ -82,7 +93,7 @@ ggpubr::gghistogram(raw_IMISS, x = "callrate",
 
 ```
 
-The grey dashed line indicates the mean call rate, while the red dashed line indicates the threshold we had determined above.
+The grey dashed line in Figure \@ref(fig:callrate) indicates the mean call rate, while the red dashed line indicates the threshold we had determined above.
 
 
 ## Heterozygosity rate
@@ -162,7 +173,7 @@ plink --bfile rawdata/rawdata.clean.ultraclean --het --out rawdata/rawdata.clean
 
 This creates the file `rawdata/rawdata.clean.ultraclean.het`, in which the third column denotes the observed number of homozygous genotypes, O(Hom), and the fifth column denotes the number of nonmissing genotypes, N(NM), per individual. We can now calculate the observed heterozygosity rate per individual using the formula (N(NM) - O(Hom))/N(NM).
 
-Often there is a correlation between heterozygosity rate and missing data. Thus, we should plot the observed heterozygosity rate per individual on the x-axis and the proportion of missing SNP, that is the 'SNP call rate', per individuals on the y-axis.
+Often there is a correlation between heterozygosity rate and missing data. Thus, we should plot the observed heterozygosity rate per individual on the x-axis and the proportion of missing SNP, that is the 'SNP call rate', per individuals on the y-axis (Figure \@ref(fig:heterozygosity)).
 
 ```{r }
 raw_HET <- data.table::fread(paste0(COURSE_loc, "/rawdata/rawdata.clean.ultraclean.het"))
@@ -180,6 +191,9 @@ colnames(raw_IMISSHET)[colnames(raw_IMISSHET)=="FID.x"] <- "FID"
 
 colors  <- densCols(raw_IMISSHET$logF_MISS, raw_IMISSHET$meanHet)
 
+```
+
+```{r heterozygosity, message=FALSE, warning=FALSE, out.width='80%', fig.align='center', fig.asp=.75, fig.cap='Heterozygosity rate as a function of missing genotypes'}
 ggpubr::ggscatter(raw_IMISSHET, x = "logF_MISS", y = "meanHet",
                   color = colors,
                   xlab = "Proportion of missing genotypes", ylab = "Heterozygosity rate") +
@@ -191,8 +205,8 @@ ggpubr::ggscatter(raw_IMISSHET, x = "logF_MISS", y = "meanHet",
                 color = "#E55738", size = 1) +
   geom_vline(xintercept = prop_miss, linetype = "dashed",
                 color = "#E55738", size = 1)
-
 ```
+
 
 <!-- This is also available as script in the `wtccc_nature_protocols/quality_control` directory. -->
 
@@ -212,32 +226,27 @@ data.table::fwrite(raw_IMISSHETsub, paste0(COURSE_loc,"/rawdata/fail-raw_IMISSHE
 
 ## Relatedness
 
-We calculate Identity-by-Descent (IBS), to identify duplicated and related samples (**Table 2**). IBS is measured by calculating pi-hat, which is in essence the proportion of the DNA that a pair of samples share. To calculate this, we needed this ultraclean dataset, without low-quality SNPs and without high-LD regions. Now we are ready
+We calculate Identity-by-Descent (IBS), to identify duplicated and related samples (Table \@ref(tab:tab-relatedness)). IBS is measured by calculating pi-hat, which is in essence the proportion of the DNA that a pair of samples share. To calculate this, we needed this ultraclean dataset, without low-quality SNPs and without high-LD regions. Now we are ready to calculate the IBS.
+
+```{r, eval = TRUE, echo = FALSE}
+relatedness <- openxlsx::read.xlsx("information.xlsx", sheet = "Relatedness")
+```
 
 
-| **Relation**               	| **% DNA sharing** 	|
-|----------------------------	|-------------------	|
-| Monozygotic twins          	| ±100%             	|
-| Parents/child              	| ±50%              	|
-| Sibling                    	| ±50%              	|
-| Fraternal twins            	| ±50%              	|
-| Grandparent/grandchild     	| ±25%              	|
-| Aunt/Uncle/Niece/Nephew    	| ±25%              	|
-| Half-sibling               	| ±25%              	|
-| First-cousin               	| ±12.5%            	|
-| Half first-cousin          	| ±6.25%            	|
-| First-cousin once removed  	| ±6.25%            	|
-| Second-cousin              	| ±3.13%            	|
-| Second-cousin once removed 	| ±1.56%            	|
-
-**Table 2:** Familial relations and % DNA shared.
-
+```{r tab-relatedness, tidy = FALSE, eval = TRUE, echo = FALSE}
+knitr::kable(
+  relatedness, 
+  caption = 'Familial relations and % DNA shared.',
+  # align = ,
+  booktabs = FALSE
+)
+```
 
 ```
 plink --bfile rawdata/rawdata.clean.ultraclean --genome --out rawdata/rawdata.clean.ultraclean
 ```
 
-We can now identify all  pairs of individuals with an IBD > 0.185. The code looks at the individual call rates stored in rawdata.imiss and outputs the IDs of the individual with the lowest call rate to ‘fail-IBD-QC.txt’ for subsequent removal.
+We can now identify all pairs of individuals with an IBD > 0.185. The code looks at the individual call rates stored in rawdata.imiss and outputs the IDs of the individual with the lowest call rate to ‘fail-IBD-QC.txt’ for subsequent removal (Table \@ref(tab:ibdcallissues)).
 
 ```
 cd rawdata
@@ -250,7 +259,15 @@ cd ..
 
 ```{r }
 ibdcallissues <- data.table::fread(paste0(COURSE_loc,"/rawdata/fail-IBD-QC.txt"))
-knitr::kable(ibdcallissues, caption = "Failed IBD and callrate")
+```
+
+```{r ibdcallissues, tidy = FALSE, eval = TRUE, echo = FALSE}
+knitr::kable(
+  ibdcallissues, 
+  caption = 'Failed IBD and callrate.',
+  # align = ,
+  booktabs = FALSE
+)
 ```
 
 ## Ancestral background
@@ -365,34 +382,30 @@ See below an explanation of the above commands:
 
 `../bin/smartpca.perl`
 
--i example.geno  : genotype file in any format (see ../CONVERTF/README)
--a example.snp   : snp file in any format (see ../CONVERTF/README)
--b example.ind   : indiv file in any format (see ../CONVERTF/README)
--k k             : (Default is 10) number of principal components to output
--o example.pca   : output file of principal components.  Individuals removed
-                   as outliers will have all values set to 0.0 in this file.
--p example.plot  : prefix of output plot files of top 2 principal components.
-                   (labeling individuals according to labels in indiv file)
--e example.eval  : output file of all eigenvalues
--l example.log   : output logfile
--m maxiter       : (Default is 5) maximum number of outlier removal iterations.
-                   To turn off outlier removal, set -m 0.
--t topk          : (Default is 10) number of principal components along which
-                   to remove outliers during each outlier removal iteration.
--s sigma         : (Default is 6.0) number of standard deviations which an
-                   individual must exceed, along one of topk top principal
-		               components, in order to be removed as an outlier.
+| Command | Description |
+|---|---|
+| -i example.geno | genotype file in any format (see ../CONVERTF/README) |
+| -a example.snp | snp file in any format (see ../CONVERTF/README) |
+| -b example.ind | indiv file in any format (see ../CONVERTF/README) |
+| -k k | output file of principal components.  Individuals removed |
+| -o example.pca | (Default is 10) number of principal components to output as outliers will have all values set to 0.0 in this file. |
+| -p example.plot | prefix of output plot files of top 2 principal components (labeling individuals according to labels in indiv file). |
+| -e example.eval | output file of all eigenvalues |
+| -l example.log | output logfile |
+| -m maxiter | (Default is 5) maximum number of outlier removal iterations. To turn off outlier removal, set -m 0. |
+| -t topk | (Default is 10) number of principal components along which to remove outliers during each outlier removal |
+| -s sigma | (Default is 6.0) number of standard deviations which an individual must exceed, along one of topk top principal components, in order to be removed as an outlier. |
 
-OPTIONAL FLAGS:
--w poplist       : compute eigenvectors using populations in poplist only,
-                   where poplist is an ASCII file with one population per line
--y plotlist      : output plot will include populations in plotlist only,
-                   where plotlist is an ASCII file with one population per line
--z badsnpname    : list of SNPs which should be excluded from the analysis
--q YES/NO        : If set to YES, assume that there is a single population and
-                   the population field contains real-valued phenotypes.
-                   (Corresponds to qtmode parameter in smartpca program.)
-                   The default value for this parameter is NO.
+
+OPTIONAL FLAGS
+
+| Command | Description |
+|---|---|
+| -w poplist | compute eigenvectors using populations in poplist only, where poplist is an ASCII file with one population per line |
+| -y plotlist | output plot will include populations in plotlist only, where plotlist is an ASCII file with one population per line |
+| -z badsnpname | list of SNPs which should be excluded from the analysis |
+| -q YES/NO | If set to YES, assume that there is a single population and the population field contains real-valued phenotypes. (Corresponds to qtmode parameter in smartpca program.) The default value for this parameter is NO. |
+
 
 > NOTE: I made sure that in your download the results from this analysis are available for usage. That is:  
 > 
@@ -419,7 +432,9 @@ PCA$V12[PCA$V12 == "4"] <- "CHB" #D5267B
 PCA$V12[PCA$V12 == "5"] <- "JPT" #9A3480
 PCA$V12[PCA$V12 == "6"] <- "YRI" #49A01D
 
+```
 
+```{r pca-hapmap3, message=FALSE, warning=FALSE, out.width='80%', fig.align='center', fig.asp=.75, fig.cap='PCA - Your data vs. HapMap 3'}
 
 PCAplot <- ggpubr::ggscatter(PCA, x = "V2", y = "V3",
                              color = "V12",
@@ -437,7 +452,7 @@ PCAplot <- ggpubr::ggscatter(PCA, x = "V2", y = "V3",
 ```
 
 
-Derive PC1 and PC2 thresholds so that only individuals who match the given ancestral population are included. For populations of European descent, this will be either the CEU or TSI HapMap3 individuals. Here, we chose to exclude all individuals with a second principal component score less than 0.072. 
+Derive PC1 and PC2 thresholds so that only individuals who match the given ancestral population are included. For populations of European descent, this will be either the CEU or TSI HapMap3 individuals (Figure \@ref(fig:pca-hapmap3)). Here, we chose to exclude all individuals with a second principal component score less than 0.072. 
 
 Write the FID and IID of these individuals to a file called `fail-ancestry-QC.txt`.
 
@@ -615,6 +630,10 @@ PCA_1kG$V12[PCA_1kG$V12 == "25"] <- "PUR"
 PCA_1kG$V12[PCA_1kG$V12 == "27"] <- "TSI"
 PCA_1kG$V12[PCA_1kG$V12 == "28"] <- "YRI"
 
+```
+
+
+```{r pca-1000g, message=FALSE, warning=FALSE, out.width='80%', fig.align='center', fig.asp=.75, fig.cap='PCA - Your data vs. 1000G'}
 PCA_1kGplot <- ggpubr::ggscatter(PCA_1kG, x = "V2", y = "V3",
                                  color = "V12",
                                  palette = c("#595A5C", "#49A01D", "#E55738", "#9A3480", "#705296", 
@@ -631,7 +650,7 @@ PCA_1kGplot <- ggpubr::ggscatter(PCA_1kG, x = "V2", y = "V3",
 
 ```
 
-In a similar fashion as in the above with the HapMap3 reference, you could **remove the samples below the threshold** based on this PCA.
+In a similar fashion as in the above with the HapMap3 reference, you could **remove the samples below the threshold** based on this PCA (Figure \@ref(fig:pca-1000g)).
 
 ## Removing samples
 
@@ -649,7 +668,5 @@ plink --bfile rawdata/rawdata --remove rawdata/fail-qc-inds.txt --make-bed --out
 
 ## The next step
 
-Now that you filtered samples, we should turn our attention to step 2 of the QC for GWAS: identify SNPs of poor quality in (Chapter \@ref(gwas_basics_snp_qc)). 
-
-
+Now that you filtered samples, we should turn our attention to step 2 of the QC for GWAS: identify SNPs of poor quality in Chapter \@ref(gwas_basics_snp_qc).
 

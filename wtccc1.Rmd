@@ -49,7 +49,7 @@ ggpubr::gghistogram(wtccc1_HWE, x = "logP",
 
 
 
-```{r WTCCC1 FREQ}
+```{r WTCCC1 FREQ, message=FALSE, warning=FALSE}
 ggpubr::gghistogram(wtccc1_FRQ, x = "MAF",
                     add = "mean", add.params = list(color = "#595A5C", linetype = "dashed", size = 1),
                     rug = TRUE,
@@ -211,7 +211,10 @@ PCA_WTCCC1_1kG$V12[PCA_WTCCC1_1kG$V12 == "22"] <- "MXL"
 PCA_WTCCC1_1kG$V12[PCA_WTCCC1_1kG$V12 == "25"] <- "PUR"
 PCA_WTCCC1_1kG$V12[PCA_WTCCC1_1kG$V12 == "27"] <- "TSI"
 PCA_WTCCC1_1kG$V12[PCA_WTCCC1_1kG$V12 == "28"] <- "YRI"
+```
 
+
+```{r pca-1000g-wtccc, message=FALSE, warning=FALSE, out.width='80%', fig.align='center', fig.asp=.75, fig.cap='PCA - WTCCC1 vs. 1000G'}
 PCA_WTCCC1_1kGplot <- ggpubr::ggscatter(PCA_WTCCC1_1kG, x = "V2", y = "V3",
                                         color = "V12",
                                         palette = c("#49A01D", "#595A5C", "#E55738", "#9A3480", "#705296", 
@@ -230,7 +233,7 @@ PCA_WTCCC1_1kGplot <- ggpubr::ggscatter(PCA_WTCCC1_1kG, x = "V2", y = "V3",
 
 ### Removing samples
 
-In a similar fashion as in the example _gwas_ and _rawdata_ datasets, you should consider to **remove the samples below the threshold** based on this PCA. 
+In a similar fashion as in the example _gwas_ and _rawdata_ datasets, you should consider to **remove the samples below the threshold** based on this PCA (Figure \@ref(fig:pca-1000g-wtccc)). 
 
 > Go ahead, try that. 
 
@@ -331,6 +334,4 @@ CMplot(wtccc1_assoc_complsub,
 
 ## Replication! 
 
-You reached an important milestone: you recreated the work by the whole WTCCC1-team that took them years in just one afternoon. Wow. Back then there wasn't much on analyses _after_ a GWAS, nowadays there are many post-GWAS  analyses methods. We will cover them in the next (Chapter \@ref(post_gwas)). 
-
-
+You reached an important milestone. You recreated the work by the whole WTCCC1-team that took them years in just one afternoon. Wow. Back then there wasn't much on analyses _after_ a GWAS, nowadays there are many post-GWAS analyses methods. We will cover them in the next Chapter \@ref(post_gwas).
