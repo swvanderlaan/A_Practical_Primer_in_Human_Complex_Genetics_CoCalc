@@ -123,8 +123,8 @@
 \bibliographystyle{apalike}
 
 \title{A primer in Human Cardiovascular Genetics}
-\author{\href{https://swvanderlaan.github.iio}{dr. Sander W. van der Laan} \href{https://www.twitter.com/swvanderlaan}{\includegraphics[width=0.025\textwidth,height=\textheight]{./img/_social_media/Twitter social icons - circle - blue.png}} \href{mailto:s.w.vanderlaan@gmail.com}{\includegraphics[width=0.025\textwidth,height=\textheight]{./img/_social_media/Email_icon.png}}}
-\date{Version 1.0.0 \textbar{} last update: 2022-03-25}
+\author{\href{https://swvanderlaan.github.iio}{dr. Sander W. van der Laan} \href{https://www.twitter.com/swvanderlaan}{\includegraphics[width=0.025\textwidth,height=\textheight]{img/_social_media/Twitter social icons - circle - blue.png}} \href{mailto:s.w.vanderlaan@gmail.com}{\includegraphics[width=0.025\textwidth,height=\textheight]{img/_social_media/Email_icon.png}}}
+\date{Version 1.0.0 \textbar{} last update: 2022-03-28}
 
 \begin{document}
 \maketitle
@@ -136,7 +136,7 @@
 \hypertarget{about-this-primer}{%
 \chapter{About this primer}\label{about-this-primer}}
 
-\includegraphics{./img/banner_man_standing_dna.png}
+\includegraphics{img/banner_man_standing_dna.png}
 
 \hypertarget{introduction}{%
 \section{Introduction}\label{introduction}}
@@ -192,11 +192,11 @@ We work with a team of enthusiastic lecturers with experience in bioinformatics,
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\includegraphics[width=0.15\textwidth,height=\textheight]{./img/_team/sander_vander_laan.jpg} Sander W. van der Laan \emph{Assistant professor}Course coordinator\href{mailto:s.w.vanderlaan-2@umcutrecht.nl}{\nolinkurl{s.w.vanderlaan-2@umcutrecht.nl}} \textbar{} \href{http://www.twitter.com/swvanderlaan}{swvanderlaan}
+\includegraphics[width=0.15\textwidth,height=\textheight]{img/_team/sander_vander_laan.jpg} Sander W. van der Laan \emph{Assistant professor}Course coordinator\href{mailto:s.w.vanderlaan-2@umcutrecht.nl}{\nolinkurl{s.w.vanderlaan-2@umcutrecht.nl}} \textbar{} \href{http://www.twitter.com/swvanderlaan}{swvanderlaan}
 
-\includegraphics[width=0.15\textwidth,height=\textheight]{./img/_team/charlotte_onland.jpg} Charlotte Onland-Moret \emph{Associate Professor}\href{mailto:N.C.Onland@umcutrecht.nl}{\nolinkurl{N.C.Onland@umcutrecht.nl}} \textbar{} \href{http://www.twitter.com/nconland}{nconland}
+\includegraphics[width=0.15\textwidth,height=\textheight]{img/_team/charlotte_onland.jpg} Charlotte Onland-Moret \emph{Associate Professor}\href{mailto:N.C.Onland@umcutrecht.nl}{\nolinkurl{N.C.Onland@umcutrecht.nl}} \textbar{} \href{http://www.twitter.com/nconland}{nconland}
 
-\includegraphics[width=0.15\textwidth,height=\textheight]{./img/_team/jessica_van_setten.jpg} Jessica van Setten \emph{Assistant professor}\href{mailto:j.vansetten@umcutrecht.nl}{\nolinkurl{j.vansetten@umcutrecht.nl}} \textbar{} \href{http://www.twitter.com/j_vansetten}{j\_vansetten}
+\includegraphics[width=0.15\textwidth,height=\textheight]{img/_team/jessica_van_setten.jpg} Jessica van Setten \emph{Assistant professor}\href{mailto:j.vansetten@umcutrecht.nl}{\nolinkurl{j.vansetten@umcutrecht.nl}} \textbar{} \href{http://www.twitter.com/j_vansetten}{j\_vansetten}
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
@@ -369,20 +369,30 @@ library("dplyr")
 
 All in all this may take some time, good moment to relax, review your notes, stretch your legs, or take a coffee.
 
+\hypertarget{are-you-ready}{%
+\section{Are you ready?}\label{are-you-ready}}
+
+Are you ready? Did you bring coffee and a good dose of energy? Let's start! We first cover some basics in (Chapter @ref(gwas\_basics)).
+
 \hypertarget{basics-of-a-genome-wide-association-study-gwas}{%
 \chapter{Basics of a Genome-Wide Association Study (GWAS)}\label{basics-of-a-genome-wide-association-study-gwas}}
 
 Now that you understand a bit of the navigation in Unix-systems, we will continue with the practical. We will make use of a dummy dataset containing cases and controls. We will explain and execute the following steps:
 
-\begin{itemize}
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
   convert raw data to a more memory-efficient format
 \item
-  apply extensive quality control
+  apply extensive quality control on samples and SNPs
+\item
+  assess the ancestral background of your study population
 \item
   perform association testing
-\end{itemize}
+\item
+  visualize association results
+\end{enumerate}
 
 \hypertarget{converting-datasets}{%
 \section{Converting datasets}\label{converting-datasets}}
@@ -458,7 +468,10 @@ So, we will investigate the following:
   In the case of a case-control study (which is the case here), we need to check differential missingness between cases and controls. By the way: you could extent this to for instance `genotyping platform', or `hospital of inclusion', if you think this might influence the genotyping experiment technically.
 \end{itemize}
 
-Right, on to step 1 of the QC in (Chapter @ref(gwas\_basic\_sample\_qc)).
+\hypertarget{lets-get-our-hands-dirty}{%
+\section{Let's get our hands dirty}\label{lets-get-our-hands-dirty}}
+
+All clear? Let's start the work. On to step 1 of the QC for GWAS: filter samples of poor quality in (Chapter @ref(gwas\_basics\_sample\_qc)).
 
 \hypertarget{sample-qc}{%
 \chapter{Sample QC}\label{sample-qc}}
@@ -1191,7 +1204,9 @@ And we can try to plot this result as well.
 
 \NormalTok{PCA\_1kGplot }\OtherTok{\textless{}{-}}\NormalTok{ ggpubr}\SpecialCharTok{::}\FunctionTok{ggscatter}\NormalTok{(PCA\_1kG, }\AttributeTok{x =} \StringTok{"V2"}\NormalTok{, }\AttributeTok{y =} \StringTok{"V3"}\NormalTok{,}
                                  \AttributeTok{color =} \StringTok{"V12"}\NormalTok{,}
-                                 \AttributeTok{palette =} \FunctionTok{c}\NormalTok{(}\StringTok{"\#595A5C"}\NormalTok{, }\StringTok{"\#49A01D"}\NormalTok{, }\StringTok{"\#E55738"}\NormalTok{, }\StringTok{"\#9A3480"}\NormalTok{, }\StringTok{"\#705296"}\NormalTok{, }\StringTok{"\#595A5C"}\NormalTok{, }\StringTok{"\#8D5B9A"}\NormalTok{, }\StringTok{"\#2F8BC9"}\NormalTok{, }\StringTok{"\#1290D9"}\NormalTok{, }\StringTok{"\#1396D8"}\NormalTok{, }\StringTok{"\#D5267B"}\NormalTok{, }\StringTok{"\#78B113"}\NormalTok{, }\StringTok{"\#F59D10"}\NormalTok{, }\StringTok{"\#FBB820"}\NormalTok{, }\StringTok{"\#4C81BF"}\NormalTok{, }\StringTok{"\#C5D220"}\NormalTok{),}
+                                 \AttributeTok{palette =} \FunctionTok{c}\NormalTok{(}\StringTok{"\#595A5C"}\NormalTok{, }\StringTok{"\#49A01D"}\NormalTok{, }\StringTok{"\#E55738"}\NormalTok{, }\StringTok{"\#9A3480"}\NormalTok{, }\StringTok{"\#705296"}\NormalTok{, }
+                                             \StringTok{"\#595A5C"}\NormalTok{, }\StringTok{"\#8D5B9A"}\NormalTok{, }\StringTok{"\#2F8BC9"}\NormalTok{, }\StringTok{"\#1290D9"}\NormalTok{, }\StringTok{"\#1396D8"}\NormalTok{, }
+                                             \StringTok{"\#D5267B"}\NormalTok{, }\StringTok{"\#78B113"}\NormalTok{, }\StringTok{"\#F59D10"}\NormalTok{, }\StringTok{"\#FBB820"}\NormalTok{, }\StringTok{"\#4C81BF"}\NormalTok{, }\StringTok{"\#C5D220"}\NormalTok{),}
                                  \AttributeTok{xlab =} \StringTok{"principal component 1"}\NormalTok{, }\AttributeTok{ylab =} \StringTok{"principal component 2"}\NormalTok{) }\SpecialCharTok{+}
   \FunctionTok{geom\_hline}\NormalTok{(}\AttributeTok{yintercept =} \FloatTok{0.023}\NormalTok{, }\AttributeTok{linetype =} \StringTok{"dashed"}\NormalTok{,}
                 \AttributeTok{color =} \StringTok{"\#595A5C"}\NormalTok{, }\AttributeTok{size =} \DecValTok{1}\NormalTok{)}
@@ -1205,7 +1220,7 @@ And we can try to plot this result as well.
 
 \includegraphics{A-primer-in-Human-Cardiovascular-Genetics_files/figure-latex/unnamed-chunk-7-1.pdf}
 
-In a similar fashion as in the above with the HapMap3 reference, you could remove the samples below the threshold.
+In a similar fashion as in the above with the HapMap3 reference, you could \textbf{remove the samples below the threshold} based on this PCA.
 
 \hypertarget{removing-samples}{%
 \section{Removing samples}\label{removing-samples}}
@@ -1221,6 +1236,11 @@ This new file should now contain a list of unique individuals failing the previo
 \begin{verbatim}
 plink --bfile rawdata/rawdata --remove rawdata/fail-qc-inds.txt --make-bed --out rawdata/clean_inds_data
 \end{verbatim}
+
+\hypertarget{the-next-step}{%
+\section{The next step}\label{the-next-step}}
+
+Now that you filtered samples, we should turn our attention to step 2 of the QC for GWAS: identify SNPs of poor quality in (Chapter @ref(gwas\_basics\_snp\_qc)).
 
 \hypertarget{per-snp-qc}{%
 \chapter{Per-SNP QC}\label{per-snp-qc}}
@@ -1385,6 +1405,11 @@ We are ready to perform the final QC. After inspectig the graphs we will filter 
 plink --bfile rawdata/clean_inds_data --exclude rawdata/fail-diffmiss-qc.txt --maf 0.01 --geno 0.05 --hwe 0.00001 --make-bed --out rawdata/cleandata
 \end{verbatim}
 
+\hypertarget{a-milestone}{%
+\section{A Milestone}\label{a-milestone}}
+
+Congratulations. You reached a very important milestone. Now that you filtered samples and SNPs, we can finally start the association analyses in (Chapter @ref(gwas\_basics\_association\_testing)).
+
 \hypertarget{genome-wide-association-study}{%
 \chapter{Genome-wide association study}\label{genome-wide-association-study}}
 
@@ -1509,7 +1534,7 @@ A simple chi-square test of association can be done.
 plink --bfile gwas/gwa --model --out gwas/data
 \end{verbatim}
 
-\emph{Genotypic}, \emph{dominant} and \emph{recessive} tests will not be conducted if any one of the cells in the table of case-control by genotype counts contains less than five observations. This is because the chi-square approximation may not be eliable when cell counts are small. For SNPs with MAFs \textless{} 5\%, a sample of more than 2,000 cases and controls would be required to meet this threshold and more than 50,000 would be required for SNPs with MAF \textless{} 1\%.
+\emph{Genotypic}, \emph{dominant} and \emph{recessive} tests will not be conducted if any one of the cells in the table of case-control by genotype counts contains less than five observations. This is because the chi-square approximation may not be reliable when cell counts are small. For SNPs with MAFs \textless{} 5\%, a sample of more than 2,000 cases and controls would be required to meet this threshold and more than 50,000 would be required for SNPs with MAF \textless{} 1\%.
 
 You can change this default behaviour by adding the flag \texttt{-\/-cell}, \emph{e.g.}, we could lower the threshold to 3.
 
@@ -1656,8 +1681,13 @@ The columns in the association results are:
 
 We need to calculate the standard error and confidence interval from the z-statistic. We can modify the effect size (OR) to output the beta by adding the \texttt{beta} flag.
 
+\hypertarget{lets-get-visual}{%
+\section{Let's get visual}\label{lets-get-visual}}
+
+Looking at numbers is important, but it won't give you a perfect overview. We should turn to visualizing our results in (Chapter @ref(gwas\_basics\_results\_visualization)).
+
 \hypertarget{gwas-visualisation}{%
-\section{GWAS visualisation}\label{gwas-visualisation}}
+\chapter{GWAS visualisation}\label{gwas-visualisation}}
 
 Data visualization is key, not only for presentation but also to inspect the results.
 
@@ -1820,7 +1850,7 @@ Var1 & Freq\\
 \includegraphics{A-primer-in-Human-Cardiovascular-Genetics_files/figure-latex/unnamed-chunk-16-1.pdf}
 
 \hypertarget{manhattan-plots}{%
-\subsection{Manhattan plots}\label{manhattan-plots}}
+\section{Manhattan plots}\label{manhattan-plots}}
 
 We also need to create a \emph{Manhattan plot} to display the association test P-values as a function of chromosomal location and thus provide a visual summary of association test results that draw immediate attention to any regions of significance.
 
@@ -1842,7 +1872,7 @@ We also need to create a \emph{Manhattan plot} to display the association test P
 \end{Shaded}
 
 \hypertarget{other-plots}{%
-\subsection{Other plots}\label{other-plots}}
+\section{Other plots}\label{other-plots}}
 
 It is also informative to plot the density per chromosome. We can use the \texttt{CMplot} for that which you can find \href{https://github.com/YinLiLin/R-CMplot}{here}. For now we just make these graphs `quick-n-dirty', you can further prettify them, but you easily loose track of time, so maybe carry on.
 
@@ -1911,7 +1941,7 @@ It is also informative to plot the density per chromosome. We can use the \textt
 \includegraphics{A-primer-in-Human-Cardiovascular-Genetics_files/figure-latex/unnamed-chunk-18-6.pdf}
 
 \hypertarget{interactive-plots}{%
-\subsection{Interactive plots}\label{interactive-plots}}
+\section{Interactive plots}\label{interactive-plots}}
 
 You can also make an \href{https://r-graph-gallery.com/101_Manhattan_plot.html}{interactive version} of the Manhattan - just because you can. The code below shows you how.
 
@@ -1981,7 +2011,7 @@ It will produce something like this.
 Again, this is an example with dummy data - you can try to do it for our GWAS, but careful with the time. You can also choose to carry on.
 
 \hypertarget{regional-association-plots}{%
-\subsection{Regional association plots}\label{regional-association-plots}}
+\section{Regional association plots}\label{regional-association-plots}}
 
 We can further visualise regions of interest using a package like \href{http://locuszoom.org}{LocusZoom}. But first we need to find the independent hits by \emph{clumping} the results. We will just use the defaults, but please take a note of all the options here \url{https://www.cog-genomics.org/plink/1.9/postproc\#clump}
 
@@ -2093,8 +2123,534 @@ You should get something like below.
 
 You will encounter the above three types of visualizations in any high-quality GWAS paper, because each is so critically informative. Usually, analysts of large-scale meta-analyses of GWAS will also stratify the QQ-plots based on the imputation quality (if your GWAS was imputed), call rate, and allele frequency.
 
+\hypertarget{stop-playing-around}{%
+\section{Stop playing around}\label{stop-playing-around}}
+
+Alright. It's time to stop playing around and do a quick recap of what you've learned.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  You learned how to convert datasets.
+\item
+  You learned how to execute sample QC and create diagnostic graphics
+\item
+  You learned how to do the same for SNP QC
+\item
+  You learned how to execute an association study given a dataset, covariates, and different assumptions regarding the genetic model.
+\item
+  You learned how to visualize results and played around with different visuals.
+\end{enumerate}
+
+You should be ready for the real stuff. And if not, the next chapter will help you get ready: (Chapter @ref(wtccc1\_intro)).
+
+\hypertarget{the-welcome-trust-case-control-consortium-wtccc}{%
+\chapter{The Welcome Trust Case-Control Consortium (WTCCC)}\label{the-welcome-trust-case-control-consortium-wtccc}}
+
+Now that you know your way around \texttt{PLINK}, \texttt{bash} and \texttt{r} and have done some basic quality control and association testing, you are ready for the real thing. We have prepared a real dataset: the first release of the \href{https://www.wtccc.org.uk/ccc1/overview.html}{\emph{Welcome Trust Case-Control Consortium (WTCCC)}} on coronary artery disease (CAD) and a control dataset used for that project.
+
+The WTCCC1 data were genotyped using a chip from \href{https://www.thermofisher.com/us/en/home/life-science/microarray-analysis/affymetrix.html?category=34000\&categoryIdClicked=34000\&rootCategoryId=34000\&navMode=34000\&aId=productsNav}{Affymetrix}, nowadays part of ThermoFisher. As a brand Affymetrix still exists, but the chips aren't made anymore. However, you can still find more information about the 500K chip that was used for \href{http://www.affymetrix.com/support/technical/datasheets/500k_datasheet.pdf}{WTCCC1}. It's good practice to read up a bit on what chip was used, and what \href{http://www.affymetrix.com/support/technical/byproduct.affx?product=500k}{support materials are available}. Before quality control the original data included:
+
+\begin{itemize}
+\tightlist
+\item
+  CAD cohort, n ± 2,000
+\item
+  Healthy controls, from the UK 1958 birth control cohort, n ± 1,500 (we won't use this)
+\item
+  Healthy controls, from the UK National Blood Service, n ± 1,500.
+\end{itemize}
+
+Your assignment is to do the following:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\tightlist
+\item
+  Explore the individual datasets by calculating some statistics and visualising these.
+\item
+  Merge the datasets in the folder \texttt{wtccc1}.
+\item
+  Calculate PCs using smartPCA.
+\item
+  Perform an association test using available covariates.
+\item
+  Visualize the results.
+\item
+  Identify independent SNPs.
+\item
+  Make regional association plots.
+\end{enumerate}
+
+\hypertarget{there-you-go}{%
+\section{There you go}\label{there-you-go}}
+
+As I wrote, you are ready for the real stuff in (Chapter \ref{wtccc1}).
+
 \hypertarget{wtccc1-a-gwas-on-coronary-artery-disease-cad}{%
 \chapter{WTCCC1: a GWAS on coronary artery disease (CAD)}\label{wtccc1-a-gwas-on-coronary-artery-disease-cad}}
+
+As usual, we start by exploring the data in hand.
+
+\begin{verbatim}
+plink --bfile wtccc1/CADn1871_500Kb37fwd --bmerge wtccc1/UKBSn1397_500Kb37fwd --make-bed --out wtccc1/wtccc1 && \
+plink --bfile wtccc1/wtccc1 --freq --out wtccc1/wtccc1 && \
+plink --bfile wtccc1/wtccc1 --hardy --out wtccc1/wtccc1 && \
+plink --bfile wtccc1/wtccc1 --missing --out wtccc1/wtccc1 && \
+plink --bfile wtccc1/wtccc1 --test-missing --out wtccc1/wtccc1
+
+cat wtccc1/wtccc1.missing | awk '$5 < 0.00001' | awk '{ print $2 }' > wtccc1/wtccc1-fail-diffmiss-qc.txt
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{wtccc1\_HWE }\OtherTok{\textless{}{-}}\NormalTok{ data.table}\SpecialCharTok{::}\FunctionTok{fread}\NormalTok{(}\FunctionTok{paste0}\NormalTok{(COURSE\_loc, }\StringTok{"/wtccc1/wtccc1.hwe"}\NormalTok{))}
+\NormalTok{wtccc1\_FRQ }\OtherTok{\textless{}{-}}\NormalTok{ data.table}\SpecialCharTok{::}\FunctionTok{fread}\NormalTok{(}\FunctionTok{paste0}\NormalTok{(COURSE\_loc, }\StringTok{"/wtccc1/wtccc1.frq"}\NormalTok{))}
+\NormalTok{wtccc1\_IMISS }\OtherTok{\textless{}{-}}\NormalTok{ data.table}\SpecialCharTok{::}\FunctionTok{fread}\NormalTok{(}\FunctionTok{paste0}\NormalTok{(COURSE\_loc, }\StringTok{"/wtccc1/wtccc1.imiss"}\NormalTok{))}
+\NormalTok{wtccc1\_LMISS }\OtherTok{\textless{}{-}}\NormalTok{ data.table}\SpecialCharTok{::}\FunctionTok{fread}\NormalTok{(}\FunctionTok{paste0}\NormalTok{(COURSE\_loc, }\StringTok{"/wtccc1/wtccc1.lmiss"}\NormalTok{))}
+
+\NormalTok{wtccc1\_HWE}\SpecialCharTok{$}\NormalTok{logP }\OtherTok{\textless{}{-}} \SpecialCharTok{{-}}\FunctionTok{log10}\NormalTok{(wtccc1\_HWE}\SpecialCharTok{$}\NormalTok{P)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ggpubr}\SpecialCharTok{::}\FunctionTok{gghistogram}\NormalTok{(wtccc1\_HWE, }\AttributeTok{x =} \StringTok{"logP"}\NormalTok{,}
+                    \AttributeTok{add =} \StringTok{"mean"}\NormalTok{,}
+                    \AttributeTok{add.params =} \FunctionTok{list}\NormalTok{(}\AttributeTok{color =} \StringTok{"\#595A5C"}\NormalTok{, }\AttributeTok{linetype =} \StringTok{"dashed"}\NormalTok{, }\AttributeTok{size =} \DecValTok{1}\NormalTok{),}
+                    \AttributeTok{rug =} \ConstantTok{TRUE}\NormalTok{,}
+                    \CommentTok{\# color = "\#1290D9", fill = "\#1290D9",}
+                    \AttributeTok{color =} \StringTok{"TEST"}\NormalTok{, }\AttributeTok{fill =} \StringTok{"TEST"}\NormalTok{,}
+                    \AttributeTok{palette =} \StringTok{"lancet"}\NormalTok{,}
+                    \AttributeTok{facet.by =} \StringTok{"TEST"}\NormalTok{,}
+                    \AttributeTok{bins =} \DecValTok{50}\NormalTok{,}
+                    \AttributeTok{xlab =} \StringTok{"HWE {-}log10(P)"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{geom\_vline}\NormalTok{(}\AttributeTok{xintercept =} \DecValTok{5}\NormalTok{, }\AttributeTok{linetype =} \StringTok{"dashed"}\NormalTok{,}
+                \AttributeTok{color =} \StringTok{"\#E55738"}\NormalTok{, }\AttributeTok{size =} \DecValTok{1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{A-primer-in-Human-Cardiovascular-Genetics_files/figure-latex/WTCCC1 HWE-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ggpubr}\SpecialCharTok{::}\FunctionTok{gghistogram}\NormalTok{(wtccc1\_FRQ, }\AttributeTok{x =} \StringTok{"MAF"}\NormalTok{,}
+                    \AttributeTok{add =} \StringTok{"mean"}\NormalTok{, }\AttributeTok{add.params =} \FunctionTok{list}\NormalTok{(}\AttributeTok{color =} \StringTok{"\#595A5C"}\NormalTok{, }\AttributeTok{linetype =} \StringTok{"dashed"}\NormalTok{, }\AttributeTok{size =} \DecValTok{1}\NormalTok{),}
+                    \AttributeTok{rug =} \ConstantTok{TRUE}\NormalTok{,}
+                    \AttributeTok{color =} \StringTok{"\#1290D9"}\NormalTok{, }\AttributeTok{fill =} \StringTok{"\#1290D9"}\NormalTok{,}
+                    \AttributeTok{xlab =} \StringTok{"minor allele frequency"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{geom\_vline}\NormalTok{(}\AttributeTok{xintercept =} \FloatTok{0.05}\NormalTok{, }\AttributeTok{linetype =} \StringTok{"dashed"}\NormalTok{,}
+                \AttributeTok{color =} \StringTok{"\#E55738"}\NormalTok{, }\AttributeTok{size =} \DecValTok{1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: Using `bins = 30` by default. Pick better value with the argument
+## `bins`.
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: geom_vline(): Ignoring `mapping` because `xintercept` was provided.
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: geom_vline(): Ignoring `data` because `xintercept` was provided.
+\end{verbatim}
+
+\includegraphics{A-primer-in-Human-Cardiovascular-Genetics_files/figure-latex/WTCCC1 FREQ-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{wtccc1\_IMISS}\SpecialCharTok{$}\NormalTok{callrate }\OtherTok{\textless{}{-}} \DecValTok{1} \SpecialCharTok{{-}}\NormalTok{ wtccc1\_IMISS}\SpecialCharTok{$}\NormalTok{F\_MISS}
+
+\NormalTok{ggpubr}\SpecialCharTok{::}\FunctionTok{gghistogram}\NormalTok{(wtccc1\_IMISS, }\AttributeTok{x =} \StringTok{"callrate"}\NormalTok{,}
+                    \AttributeTok{add =} \StringTok{"mean"}\NormalTok{, }\AttributeTok{add.params =} \FunctionTok{list}\NormalTok{(}\AttributeTok{color =} \StringTok{"\#595A5C"}\NormalTok{, }\AttributeTok{linetype =} \StringTok{"dashed"}\NormalTok{, }\AttributeTok{size =} \DecValTok{1}\NormalTok{),}
+                    \AttributeTok{rug =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{bins =} \DecValTok{50}\NormalTok{,}
+                    \AttributeTok{color =} \StringTok{"\#1290D9"}\NormalTok{, }\AttributeTok{fill =} \StringTok{"\#1290D9"}\NormalTok{,}
+                    \AttributeTok{xlab =} \StringTok{"per sample call rate"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{geom\_vline}\NormalTok{(}\AttributeTok{xintercept =} \FloatTok{0.95}\NormalTok{, }\AttributeTok{linetype =} \StringTok{"dashed"}\NormalTok{,}
+                \AttributeTok{color =} \StringTok{"\#E55738"}\NormalTok{, }\AttributeTok{size =} \DecValTok{1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: geom_vline(): Ignoring `mapping` because `xintercept` was provided.
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: geom_vline(): Ignoring `data` because `xintercept` was provided.
+\end{verbatim}
+
+\includegraphics{A-primer-in-Human-Cardiovascular-Genetics_files/figure-latex/WTCCC1 callrate samples-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{wtccc1\_LMISS}\SpecialCharTok{$}\NormalTok{callrate }\OtherTok{\textless{}{-}} \DecValTok{1} \SpecialCharTok{{-}}\NormalTok{ wtccc1\_LMISS}\SpecialCharTok{$}\NormalTok{F\_MISS}
+
+\NormalTok{ggpubr}\SpecialCharTok{::}\FunctionTok{gghistogram}\NormalTok{(wtccc1\_LMISS, }\AttributeTok{x =} \StringTok{"callrate"}\NormalTok{,}
+                    \AttributeTok{add =} \StringTok{"mean"}\NormalTok{, }\AttributeTok{add.params =} \FunctionTok{list}\NormalTok{(}\AttributeTok{color =} \StringTok{"\#595A5C"}\NormalTok{, }\AttributeTok{linetype =} \StringTok{"dashed"}\NormalTok{, }\AttributeTok{size =} \DecValTok{1}\NormalTok{),}
+                    \AttributeTok{rug =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{bins =} \DecValTok{50}\NormalTok{,}
+                    \AttributeTok{color =} \StringTok{"\#1290D9"}\NormalTok{, }\AttributeTok{fill =} \StringTok{"\#1290D9"}\NormalTok{,}
+                    \AttributeTok{xlab =} \StringTok{"per SNP call rate"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{geom\_vline}\NormalTok{(}\AttributeTok{xintercept =} \FloatTok{0.95}\NormalTok{, }\AttributeTok{linetype =} \StringTok{"dashed"}\NormalTok{,}
+                \AttributeTok{color =} \StringTok{"\#E55738"}\NormalTok{, }\AttributeTok{size =} \DecValTok{1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: geom_vline(): Ignoring `mapping` because `xintercept` was provided.
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: geom_vline(): Ignoring `data` because `xintercept` was provided.
+\end{verbatim}
+
+\includegraphics{A-primer-in-Human-Cardiovascular-Genetics_files/figure-latex/WTCCC1 callrate SNPs-1.pdf}
+
+\hypertarget{quality-control-1}{%
+\section{Quality control}\label{quality-control-1}}
+
+Now that we have handle on the data, we can filter it.
+
+\begin{quote}
+Do you have any thoughts on that? Do you agree with the filters I set below? How would you do it differently and why?
+\end{quote}
+
+\begin{verbatim}
+plink --bfile wtccc1/wtccc1 --exclude wtccc1/wtccc1-fail-diffmiss-qc.txt --maf 0.01 --geno 0.05 --hwe 0.00001 --make-bed --out wtccc1/wtccc1_clean
+\end{verbatim}
+
+\hypertarget{ancestral-background-1}{%
+\section{Ancestral background}\label{ancestral-background-1}}
+
+If these individuals are all from the United Kingdom, we are certain there will be admixture from other populations given UK's history. Let's project the WTCCC1 data on 1000G phase 1 populations.
+
+\hypertarget{extreme-cleaning}{%
+\subsection{Extreme cleaning}\label{extreme-cleaning}}
+
+For PCA we need to perform extreme clean.
+
+\begin{verbatim}
+plink --bfile wtccc1/wtccc1_clean --maf 0.1 --geno 0.1 --indep-pairwise 100 50 0.2 --exclude rawdata/exclude_problematic_range.txt --make-bed --out wtccc1/wtccc1_temp
+
+plink --bfile wtccc1/wtccc1_temp --exclude wtccc1/wtccc1_temp.prune.out --make-bed --out wtccc1/wtccc1_extrclean
+
+rm -v wtccc1/wtccc1_temp*
+
+cat wtccc1/wtccc1_extrclean.bim | awk '{ print $2 }' > wtccc1/wtccc1_extrclean.variants.txt
+
+cat wtccc1/wtccc1.bim | grep "rs" > wtccc1/all.variants.txt
+
+plink --bfile reference/1kg_phase1_all/1kg_phase1_all --extract wtccc1/all.variants.txt --make-bed --out reference/1kg_phase1_all/1kg_phase1_wtccc1
+
+cat reference/1kg_phase1_all/1kg_phase1_wtccc1.bim | \
+awk '($5 == "A" && $6 == "T") || ($5 == "T" && $6 == "A") || ($5 == "C" && $6 == "G") || ($5 == "G" && $6 == "C")' | awk '{ print $2, $1, $4, $3, $5, $6 }' \
+> reference/1kg_phase1_all/all.1kg_wtccc1.atcg.variants.txt
+
+
+plink --bfile reference/1kg_phase1_all/1kg_phase1_wtccc1 --exclude reference/1kg_phase1_all/all.1kg_wtccc1.atcg.variants.txt --make-bed --out reference/1kg_phase1_all/1kg_phase1_wtccc1_no_atcg
+
+plink --bfile reference/1kg_phase1_all/1kg_phase1_wtccc1_no_atcg --extract wtccc1/wtccc1_extrclean.variants.txt --make-bed --out reference/1kg_phase1_all/1kg_phase1_raw_no_atcg_wtccc1
+
+plink --bfile wtccc1/wtccc1_extrclean --bmerge reference/1kg_phase1_all/1kg_phase1_raw_no_atcg_wtccc1 --maf 0.1 --geno 0.1 --exclude rawdata/exclude_problematic_range.txt --make-bed --out wtccc1/wtccc1_extrclean_1kg
+\end{verbatim}
+
+\begin{verbatim}
+cp -v wtccc1/wtccc1_extrclean_1kg.bim wtccc1/wtccc1_extrclean_1kg.pedsnp
+cp -v wtccc1/wtccc1_extrclean_1kg.fam wtccc1/wtccc1_extrclean_1kg.pedind
+\end{verbatim}
+
+Now that the cleaning is done, we can execute the actual PCA.
+
+\begin{verbatim}
+perl ~/git/EIG/bin/smartpca.perl \
+-i wtccc1/wtccc1_extrclean_1kg.bed \
+-a wtccc1/wtccc1_extrclean_1kg.pedsnp \
+-b wtccc1/wtccc1_extrclean_1kg.pedind \
+-k 10 \
+-o wtccc1/wtccc1_extrclean_1kg.pca \
+-p wtccc1/wtccc1_extrclean_1kg.plot \
+-e wtccc1/wtccc1_extrclean_1kg.eval \
+-l wtccc1/wtccc1_extrclean_1kg.log \
+-m 5 \
+-t 10 \
+-s 6.0 \
+-w reference/1kg_phase1_all/1kg-pca-populations.txt
+\end{verbatim}
+
+And we should visualize the PCA results: are these individuals really all from European (UK) ancestry?
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{PCA\_WTCCC1\_1kG }\OtherTok{\textless{}{-}}\NormalTok{ data.table}\SpecialCharTok{::}\FunctionTok{fread}\NormalTok{(}\FunctionTok{paste0}\NormalTok{(COURSE\_loc,}\StringTok{"/wtccc1/wtccc1\_extrclean\_1kg.pca.evec"}\NormalTok{), }\AttributeTok{header =} \ConstantTok{FALSE}\NormalTok{, }\AttributeTok{skip =} \DecValTok{1}\NormalTok{)}
+\CommentTok{\# Population    Description Super population    Code    Counts}
+\CommentTok{\# ASW   African Ancestry in Southwest US                              AFR   4     \#49A01D}
+\CommentTok{\# CEU   Utah residents with Northern and Western European ancestry  EUR 7     \#E55738}
+\CommentTok{\# CHB   Han Chinese in Bejing, China                                  EAS   8     \#9A3480}
+\CommentTok{\# CHS   Southern Han Chinese, China                                 EAS 9     \#705296}
+\CommentTok{\# CLM   Colombian in Medellin, Colombia                             MR  10    \#8D5B9A}
+\CommentTok{\# FIN   Finnish in Finland                                          EUR 12  \#2F8BC9}
+\CommentTok{\# GBR   British in England and Scotland                             EUR 13  \#1290D9}
+\CommentTok{\# IBS   Iberian populations in Spain                                  EUR   16  \#1396D8}
+\CommentTok{\# JPT   Japanese in Tokyo, Japan                                      EAS   18  \#D5267B}
+\CommentTok{\# LWK   Luhya in Webuye, Kenya                                      AFR 20  \#78B113}
+\CommentTok{\# MXL   Mexican Ancestry in Los Angeles, California                 AMR 22  \#F59D10}
+\CommentTok{\# PUR   Puerto Rican in Puerto Rico                                 AMR 25  \#FBB820}
+\CommentTok{\# TSI   Toscani in Italy                                              EUR   27  \#4C81BF}
+\CommentTok{\# YRI   Yoruba in Ibadan, Nigeria                                     AFR   28  \#C5D220}
+
+\NormalTok{PCA\_WTCCC1\_1kG}\SpecialCharTok{$}\NormalTok{V12[PCA\_WTCCC1\_1kG}\SpecialCharTok{$}\NormalTok{V12 }\SpecialCharTok{==} \StringTok{"2"}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"CAD"}
+\NormalTok{PCA\_WTCCC1\_1kG}\SpecialCharTok{$}\NormalTok{V12[PCA\_WTCCC1\_1kG}\SpecialCharTok{$}\NormalTok{V12 }\SpecialCharTok{==} \StringTok{"1"}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"UKBS"}
+\NormalTok{PCA\_WTCCC1\_1kG}\SpecialCharTok{$}\NormalTok{V12[PCA\_WTCCC1\_1kG}\SpecialCharTok{$}\NormalTok{V12 }\SpecialCharTok{==} \StringTok{"4"}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"ASW"}
+\NormalTok{PCA\_WTCCC1\_1kG}\SpecialCharTok{$}\NormalTok{V12[PCA\_WTCCC1\_1kG}\SpecialCharTok{$}\NormalTok{V12 }\SpecialCharTok{==} \StringTok{"7"}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"CEU"}
+\NormalTok{PCA\_WTCCC1\_1kG}\SpecialCharTok{$}\NormalTok{V12[PCA\_WTCCC1\_1kG}\SpecialCharTok{$}\NormalTok{V12 }\SpecialCharTok{==} \StringTok{"8"}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"CHB"}
+\NormalTok{PCA\_WTCCC1\_1kG}\SpecialCharTok{$}\NormalTok{V12[PCA\_WTCCC1\_1kG}\SpecialCharTok{$}\NormalTok{V12 }\SpecialCharTok{==} \StringTok{"9"}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"CHS"}
+\NormalTok{PCA\_WTCCC1\_1kG}\SpecialCharTok{$}\NormalTok{V12[PCA\_WTCCC1\_1kG}\SpecialCharTok{$}\NormalTok{V12 }\SpecialCharTok{==} \StringTok{"10"}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"CLM"}
+\NormalTok{PCA\_WTCCC1\_1kG}\SpecialCharTok{$}\NormalTok{V12[PCA\_WTCCC1\_1kG}\SpecialCharTok{$}\NormalTok{V12 }\SpecialCharTok{==} \StringTok{"12"}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"FIN"}
+\NormalTok{PCA\_WTCCC1\_1kG}\SpecialCharTok{$}\NormalTok{V12[PCA\_WTCCC1\_1kG}\SpecialCharTok{$}\NormalTok{V12 }\SpecialCharTok{==} \StringTok{"13"}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"GBR"}
+\NormalTok{PCA\_WTCCC1\_1kG}\SpecialCharTok{$}\NormalTok{V12[PCA\_WTCCC1\_1kG}\SpecialCharTok{$}\NormalTok{V12 }\SpecialCharTok{==} \StringTok{"16"}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"IBS"}
+\NormalTok{PCA\_WTCCC1\_1kG}\SpecialCharTok{$}\NormalTok{V12[PCA\_WTCCC1\_1kG}\SpecialCharTok{$}\NormalTok{V12 }\SpecialCharTok{==} \StringTok{"18"}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"JPT"}
+\NormalTok{PCA\_WTCCC1\_1kG}\SpecialCharTok{$}\NormalTok{V12[PCA\_WTCCC1\_1kG}\SpecialCharTok{$}\NormalTok{V12 }\SpecialCharTok{==} \StringTok{"20"}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"LWK"}
+\NormalTok{PCA\_WTCCC1\_1kG}\SpecialCharTok{$}\NormalTok{V12[PCA\_WTCCC1\_1kG}\SpecialCharTok{$}\NormalTok{V12 }\SpecialCharTok{==} \StringTok{"22"}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"MXL"}
+\NormalTok{PCA\_WTCCC1\_1kG}\SpecialCharTok{$}\NormalTok{V12[PCA\_WTCCC1\_1kG}\SpecialCharTok{$}\NormalTok{V12 }\SpecialCharTok{==} \StringTok{"25"}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"PUR"}
+\NormalTok{PCA\_WTCCC1\_1kG}\SpecialCharTok{$}\NormalTok{V12[PCA\_WTCCC1\_1kG}\SpecialCharTok{$}\NormalTok{V12 }\SpecialCharTok{==} \StringTok{"27"}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"TSI"}
+\NormalTok{PCA\_WTCCC1\_1kG}\SpecialCharTok{$}\NormalTok{V12[PCA\_WTCCC1\_1kG}\SpecialCharTok{$}\NormalTok{V12 }\SpecialCharTok{==} \StringTok{"28"}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"YRI"}
+
+\NormalTok{PCA\_WTCCC1\_1kGplot }\OtherTok{\textless{}{-}}\NormalTok{ ggpubr}\SpecialCharTok{::}\FunctionTok{ggscatter}\NormalTok{(PCA\_WTCCC1\_1kG, }\AttributeTok{x =} \StringTok{"V2"}\NormalTok{, }\AttributeTok{y =} \StringTok{"V3"}\NormalTok{,}
+                                        \AttributeTok{color =} \StringTok{"V12"}\NormalTok{,}
+                                        \AttributeTok{palette =} \FunctionTok{c}\NormalTok{(}\StringTok{"\#49A01D"}\NormalTok{, }\StringTok{"\#595A5C"}\NormalTok{, }\StringTok{"\#E55738"}\NormalTok{, }\StringTok{"\#9A3480"}\NormalTok{, }\StringTok{"\#705296"}\NormalTok{, }
+                                                    \StringTok{"\#8D5B9A"}\NormalTok{, }\StringTok{"\#2F8BC9"}\NormalTok{, }\StringTok{"\#1290D9"}\NormalTok{, }\StringTok{"\#1396D8"}\NormalTok{, }\StringTok{"\#D5267B"}\NormalTok{, }
+                                                    \StringTok{"\#78B113"}\NormalTok{, }\StringTok{"\#F59D10"}\NormalTok{, }\StringTok{"\#FBB820"}\NormalTok{, }\StringTok{"\#4C81BF"}\NormalTok{, }\StringTok{"\#595A5C"}\NormalTok{, }\StringTok{"\#C5D220"}\NormalTok{),}
+                                        \AttributeTok{xlab =} \StringTok{"principal component 1"}\NormalTok{, }\AttributeTok{ylab =} \StringTok{"principal component 2"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{geom\_hline}\NormalTok{(}\AttributeTok{yintercept =} \FloatTok{0.023}\NormalTok{, }\AttributeTok{linetype =} \StringTok{"dashed"}\NormalTok{,}
+                \AttributeTok{color =} \StringTok{"\#595A5C"}\NormalTok{, }\AttributeTok{size =} \DecValTok{1}\NormalTok{)}
+
+\NormalTok{  ggpubr}\SpecialCharTok{::}\FunctionTok{ggpar}\NormalTok{(PCA\_WTCCC1\_1kGplot,}
+            \AttributeTok{title =} \StringTok{"Principal Component Analysis"}\NormalTok{,}
+            \AttributeTok{subtitle =} \StringTok{"Reference population: 1000 G, phase 1"}\NormalTok{,}
+            \AttributeTok{legend.title =} \StringTok{"Populations"}\NormalTok{, }\AttributeTok{legend =} \StringTok{"right"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{A-primer-in-Human-Cardiovascular-Genetics_files/figure-latex/PlotPCA_WTCCC1_1kG-1.pdf}
+
+\hypertarget{removing-samples-1}{%
+\subsection{Removing samples}\label{removing-samples-1}}
+
+In a similar fashion as in the example \emph{gwas} and \emph{rawdata} datasets, you should consider to \textbf{remove the samples below the threshold} based on this PCA.
+
+\begin{quote}
+Go ahead, try that.
+\end{quote}
+
+You're code would be something like below:
+
+\begin{verbatim}
+cat wtccc1/wtccc1_extrclean_1kg.pca.evec | tail -n +2 | \
+awk '$3 < 0.023' | awk '{ print $1 }' | awk -F":" '{ print $1, $2 }' > wtccc1/fail-ancestry-QC.txt
+\end{verbatim}
+
+\begin{verbatim}
+plink --bfile wtccc1/wtccc1_clean --exclude wtccc1/fail-ancestry-QC.txt --make-bed --out wtccc1/wtccc1_qc
+\end{verbatim}
+
+\hypertarget{association-testing}{%
+\section{Association testing}\label{association-testing}}
+
+Now that we have explored the data, we are ready for some simple association testing. However, it would be great to have some PCs to correct for. We can use PLINK for that too.
+
+\begin{verbatim}
+plink --bfile wtccc1/wtccc1_extrclean --exclude wtccc1/fail-ancestry-QC.txt --pca --out wtccc1/wtccc1_extrclean
+\end{verbatim}
+
+Let's add those PCs to the covariates-file.
+
+\begin{verbatim}
+echo "IID PC1 PC2 PC3 PC4 PC5 PC6 PC7 PC8 PC9 PC10 PC11 PC12 PC13 PC14 PC15 PC16 PC17 PC18 PC19 PC20" > wtccc1/wtccc1_qc.pca
+
+cat wtccc1/wtccc1_extrclean.eigenvec | awk '{ print $2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17,$18,$19,$20,$21,$22}' >> wtccc1/wtccc1_qc.pca
+
+perl scripts/mergeTables.pl --file1 wtccc1/wtccc1_qc.pca --file2 wtccc1/wtccc1.covar --index IID --format NORM > wtccc1/wtccc1_qc.covar_pca
+\end{verbatim}
+
+Exciting, now we are ready to perform a GWAS on CAD in WTCCC1.
+
+\begin{verbatim}
+plink --bfile wtccc1/wtccc1_qc --logistic sex --covar wtccc1/wtccc1_qc.covar_pca --out wtccc1/wtccc1_qc_log_covar_pca
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{wtccc1\_assoc }\OtherTok{\textless{}{-}}\NormalTok{ data.table}\SpecialCharTok{::}\FunctionTok{fread}\NormalTok{(}\FunctionTok{paste0}\NormalTok{(COURSE\_loc, }\StringTok{"/wtccc1/wtccc1\_qc\_log\_covar\_pca.assoc.logistic"}\NormalTok{))}
+
+\FunctionTok{dim}\NormalTok{(wtccc1\_assoc)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 8726361       9
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{wtccc1\_assoc[}\DecValTok{1}\SpecialCharTok{:}\DecValTok{9}\NormalTok{, }\DecValTok{1}\SpecialCharTok{:}\DecValTok{9}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    CHR       SNP     BP A1            TEST NMISS        OR     STAT          P
+## 1:   1 rs3094315 752566  G             ADD  3256 1.036e+00  0.37270  7.094e-01
+## 2:   1 rs3094315 752566  G age_recruitment  3256 4.351e+00 25.96000 1.471e-148
+## 3:   1 rs3094315 752566  G             PC1  3256 1.909e+01  1.11300  2.657e-01
+## 4:   1 rs3094315 752566  G             PC2  3256 1.009e-01 -0.87060  3.840e-01
+## 5:   1 rs3094315 752566  G             PC3  3256 1.842e-01 -0.62560  5.316e-01
+## 6:   1 rs3094315 752566  G             PC4  3256 7.391e-01 -0.11110  9.116e-01
+## 7:   1 rs3094315 752566  G             PC5  3256 1.817e-01 -0.63400  5.261e-01
+## 8:   1 rs3094315 752566  G             PC6  3256 9.170e-01 -0.03229  9.742e-01
+## 9:   1 rs3094315 752566  G             PC7  3256 1.839e+04  3.61000  3.057e-04
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{wtccc1\_assoc\_sub }\OtherTok{\textless{}{-}} \FunctionTok{subset}\NormalTok{(wtccc1\_assoc, TEST }\SpecialCharTok{==} \StringTok{"ADD"}\NormalTok{)}
+\NormalTok{wtccc1\_assoc\_sub}\SpecialCharTok{$}\NormalTok{TEST }\OtherTok{\textless{}{-}} \ConstantTok{NULL}
+
+\NormalTok{temp }\OtherTok{\textless{}{-}} \FunctionTok{subset}\NormalTok{(wtccc1\_FRQ, }\AttributeTok{select =} \FunctionTok{c}\NormalTok{(}\StringTok{"SNP"}\NormalTok{, }\StringTok{"A2"}\NormalTok{, }\StringTok{"MAF"}\NormalTok{, }\StringTok{"NCHROBS"}\NormalTok{))}
+
+\NormalTok{wtccc1\_assoc\_subfrq }\OtherTok{\textless{}{-}} \FunctionTok{merge}\NormalTok{(wtccc1\_assoc\_sub, temp, }\AttributeTok{by =} \StringTok{"SNP"}\NormalTok{)}
+
+\NormalTok{temp }\OtherTok{\textless{}{-}} \FunctionTok{subset}\NormalTok{(wtccc1\_LMISS, }\AttributeTok{select =} \FunctionTok{c}\NormalTok{(}\StringTok{"SNP"}\NormalTok{, }\StringTok{"callrate"}\NormalTok{))}
+
+\NormalTok{wtccc1\_assoc\_subfrqlmiss }\OtherTok{\textless{}{-}} \FunctionTok{merge}\NormalTok{(wtccc1\_assoc\_subfrq, temp, }\AttributeTok{by =} \StringTok{"SNP"}\NormalTok{)}
+\FunctionTok{head}\NormalTok{(wtccc1\_assoc\_subfrqlmiss)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##           SNP CHR        BP A1 NMISS     OR     STAT      P A2    MAF NCHROBS
+## 1: rs10000012   4   1357325  G  3265 1.0480  0.48180 0.6299  C 0.1345    6530
+## 2:  rs1000002   3 183635768  T  3264 1.1100  1.55000 0.1212  C 0.4827    6528
+## 3:  rs1000003   3  98342907  G  3232 1.0080  0.08926 0.9289  A 0.1454    6464
+## 4: rs10000033   4 139599898  C  3266 1.0070  0.10840 0.9137  T 0.4545    6532
+## 5: rs10000037   4  38924330  A  3267 1.1100  1.35900 0.1741  G 0.2557    6534
+## 6: rs10000062   4   5254744  C  3266 0.8589 -1.59000 0.1119  G 0.1408    6532
+##    callrate
+## 1: 0.999082
+## 2: 0.998776
+## 3: 0.988980
+## 4: 0.999388
+## 5: 0.999694
+## 6: 0.999388
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Remember:}
+\CommentTok{\# {-} that z = beta/se}
+\CommentTok{\# {-} beta = log(OR), because log is the natural log in r}
+
+\NormalTok{wtccc1\_assoc\_subfrqlmiss}\SpecialCharTok{$}\NormalTok{BETA }\OtherTok{=} \FunctionTok{log}\NormalTok{(wtccc1\_assoc\_subfrqlmiss}\SpecialCharTok{$}\NormalTok{OR)}
+\NormalTok{wtccc1\_assoc\_subfrqlmiss}\SpecialCharTok{$}\NormalTok{SE }\OtherTok{=}\NormalTok{ wtccc1\_assoc\_subfrqlmiss}\SpecialCharTok{$}\NormalTok{BETA}\SpecialCharTok{/}\NormalTok{wtccc1\_assoc\_subfrqlmiss}\SpecialCharTok{$}\NormalTok{STAT}
+
+
+\NormalTok{wtccc1\_assoc\_subfrqlmiss\_tib }\OtherTok{\textless{}{-}}\NormalTok{ dplyr}\SpecialCharTok{::}\FunctionTok{as\_tibble}\NormalTok{(wtccc1\_assoc\_subfrqlmiss)}
+
+\NormalTok{col\_order }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"SNP"}\NormalTok{, }\StringTok{"CHR"}\NormalTok{, }\StringTok{"BP"}\NormalTok{,}
+               \StringTok{"A1"}\NormalTok{, }\StringTok{"A2"}\NormalTok{, }\StringTok{"MAF"}\NormalTok{, }\StringTok{"callrate"}\NormalTok{, }\StringTok{"NMISS"}\NormalTok{, }\StringTok{"NCHROBS"}\NormalTok{,}
+               \StringTok{"BETA"}\NormalTok{, }\StringTok{"SE"}\NormalTok{, }\StringTok{"OR"}\NormalTok{, }\StringTok{"STAT"}\NormalTok{, }\StringTok{"P"}\NormalTok{)}
+\NormalTok{wtccc1\_assoc\_compl }\OtherTok{\textless{}{-}}\NormalTok{ wtccc1\_assoc\_subfrqlmiss\_tib[, col\_order]}
+
+\FunctionTok{dim}\NormalTok{(wtccc1\_assoc\_compl)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 379407     14
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{head}\NormalTok{(wtccc1\_assoc\_compl)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 6 x 14
+##   SNP        CHR     BP A1    A2      MAF callrate NMISS NCHROBS     BETA     SE
+##   <chr>    <int>  <int> <chr> <chr> <dbl>    <dbl> <int>   <int>    <dbl>  <dbl>
+## 1 rs10000~     4 1.36e6 G     C     0.134    0.999  3265    6530  0.0469  0.0973
+## 2 rs10000~     3 1.84e8 T     C     0.483    0.999  3264    6528  0.104   0.0673
+## 3 rs10000~     3 9.83e7 G     A     0.145    0.989  3232    6464  0.00797 0.0893
+## 4 rs10000~     4 1.40e8 C     T     0.454    0.999  3266    6532  0.00698 0.0644
+## 5 rs10000~     4 3.89e7 A     G     0.256    1.00   3267    6534  0.104   0.0768
+## 6 rs10000~     4 5.25e6 C     G     0.141    0.999  3266    6532 -0.152   0.0957
+## # ... with 3 more variables: OR <dbl>, STAT <dbl>, P <dbl>
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{wtccc1\_assoc\_complsub }\OtherTok{\textless{}{-}} \FunctionTok{subset}\NormalTok{(wtccc1\_assoc\_compl, }\AttributeTok{select =} \FunctionTok{c}\NormalTok{(}\StringTok{"SNP"}\NormalTok{, }\StringTok{"CHR"}\NormalTok{, }\StringTok{"BP"}\NormalTok{, }\StringTok{"P"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# CMplot(wtccc1\_assoc\_complsub,}
+\CommentTok{\#        plot.type = "d",}
+\CommentTok{\#        bin.size = 1e6, col = c("darkgreen", "yellow", "red"),}
+\CommentTok{\#        file = "jpg", memo = "", dpi = 300, file.output = FALSE, verbose = TRUE)}
+
+\FunctionTok{CMplot}\NormalTok{(wtccc1\_assoc\_complsub,}
+       \AttributeTok{plot.type =} \StringTok{"b"}\NormalTok{, }\AttributeTok{LOG10 =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{ylim =} \ConstantTok{NULL}\NormalTok{,}
+       \AttributeTok{threshold =} \FunctionTok{c}\NormalTok{(}\FloatTok{1e{-}6}\NormalTok{,}\FloatTok{1e{-}4}\NormalTok{), }\AttributeTok{threshold.lty =} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{), }\AttributeTok{threshold.lwd =} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{), }\AttributeTok{threshold.col =} \FunctionTok{c}\NormalTok{(}\StringTok{"black"}\NormalTok{, }\StringTok{"grey"}\NormalTok{),}
+       \AttributeTok{amplify =} \ConstantTok{TRUE}\NormalTok{,}
+       \AttributeTok{bin.size =} \FloatTok{1e6}\NormalTok{, }\AttributeTok{chr.den.col =} \FunctionTok{c}\NormalTok{(}\StringTok{"darkgreen"}\NormalTok{, }\StringTok{"yellow"}\NormalTok{, }\StringTok{"red"}\NormalTok{),}
+       \AttributeTok{signal.col =} \FunctionTok{c}\NormalTok{(}\StringTok{"red"}\NormalTok{, }\StringTok{"green"}\NormalTok{), }\AttributeTok{signal.cex =} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{), }\AttributeTok{signal.pch =} \FunctionTok{c}\NormalTok{(}\DecValTok{19}\NormalTok{,}\DecValTok{19}\NormalTok{),}
+       \AttributeTok{file =} \StringTok{"jpg"}\NormalTok{, }\AttributeTok{memo =} \StringTok{""}\NormalTok{, }\AttributeTok{dpi =} \DecValTok{300}\NormalTok{, }\AttributeTok{file.output =} \ConstantTok{FALSE}\NormalTok{, }\AttributeTok{verbose =} \ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  SNP-Density Plotting.
+\end{verbatim}
+
+\includegraphics{A-primer-in-Human-Cardiovascular-Genetics_files/figure-latex/WTCCC1ResultsManhattan-1.pdf} \includegraphics{A-primer-in-Human-Cardiovascular-Genetics_files/figure-latex/WTCCC1ResultsManhattan-2.pdf}
+
+\begin{verbatim}
+##  Circular-Manhattan Plotting P.
+##  Rectangular-Manhattan Plotting P.
+\end{verbatim}
+
+\includegraphics{A-primer-in-Human-Cardiovascular-Genetics_files/figure-latex/WTCCC1ResultsManhattan-3.pdf}
+
+\begin{verbatim}
+##  QQ Plotting P.
+\end{verbatim}
+
+\includegraphics{A-primer-in-Human-Cardiovascular-Genetics_files/figure-latex/WTCCC1ResultsManhattan-4.pdf}
+
+\hypertarget{replication}{%
+\section{Replication!}\label{replication}}
+
+You reached an important milestone: you recreated the work by the whole WTCCC1-team that took them years in just one afternoon. Wow. Back then there wasn't much on analyses \emph{after} a GWAS, nowadays there are many post-GWAS analyses methods. We will cover them in the next (Chapter @ref(post\_gwas)).
+
+\hypertarget{post-gwas-analyses}{%
+\chapter{Post-GWAS Analyses}\label{post-gwas-analyses}}
+
+A critical step in post-GWAS analysis is probably `mapping SNPs to genes'. It is critical, but it is also the most challenging. \emph{How do you even map SNPs to genes?} What criteria to use? Should we take into account physical position? Or is it of interest that certain SNPs might influence downstream or upstream gene expression? And what of the fact that most loci discovered in GWAS are \_inter\_genic? What is the heritability of our trait? Are there any pleiotropic effects?
+
+Researchers from the VUMC in Amsterdam have created an online tool that aids in mapping genes and function to GWAS: \emph{``Functional Mapping and Annotation of Genome-Wide Association Studies''} a.k.a. \href{https://fuma.ctglab.nl}{FUMA}. This online tool uses a variety of datasets and programs to prioritize genes and map these to associated loci.
+
+We have covered some aspects of post-GWAS analyses, and a lot are covered by FUMA. Let's try and annotate our WTCCC1 results. This assignment will be a bit more \emph{Do It Yourself}.
+
+\hypertarget{replication-1}{%
+\section{Replication!}\label{replication-1}}
+
+You reached an important milestone: you recreated the work by the whole WTCCC1 in just an afternoon. Wow. Back then there wasn't much on analyses \emph{after} a GWAS, nowadays there are many post-GWAS analyses methods. We will cover them in the next (Chapter @ref(conditional\_analysis)).
+
+\hypertarget{conditional-analysis}{%
+\chapter{Conditional analysis}\label{conditional-analysis}}
 
 \hypertarget{section-1}{%
 \section{Section 1}\label{section-1}}
@@ -2111,8 +2667,13 @@ Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium dolor
 
 At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.
 
-\hypertarget{post-gwas-analyses}{%
-\chapter{Post-GWAS Analyses}\label{post-gwas-analyses}}
+\hypertarget{replication-2}{%
+\section{Replication!}\label{replication-2}}
+
+You reached an important milestone: you recreated the work by the whole WTCCC1 in just an afternoon. Wow. Back then there wasn't much on analyses \emph{after} a GWAS, nowadays there are many post-GWAS analyses methods. We will cover them in the next (Chapter \ref{finemapping}).
+
+\hypertarget{statistical-finemapping}{%
+\chapter{Statistical finemapping}\label{statistical-finemapping}}
 
 \hypertarget{section-1-1}{%
 \section{Section 1}\label{section-1-1}}
@@ -2129,8 +2690,88 @@ Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium dolor
 
 At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.
 
-\hypertarget{conditional-analysis}{%
-\chapter{Conditional analysis}\label{conditional-analysis}}
+\hypertarget{replication-3}{%
+\section{Replication!}\label{replication-3}}
+
+You reached an important milestone: you recreated the work by the whole WTCCC1 in just an afternoon. Wow. Back then there wasn't much on analyses \emph{after} a GWAS, nowadays there are many post-GWAS analyses methods. We will cover them in the next (Chapter \ref{fuma}).
+
+\hypertarget{functional-mapping-and-annotation-of-gwas}{%
+\chapter{Functional Mapping and Annotation of GWAS}\label{functional-mapping-and-annotation-of-gwas}}
+
+\hypertarget{assignment}{%
+\section{Assignment}\label{assignment}}
+
+\hypertarget{tutorial}{%
+\subsection{Tutorial}\label{tutorial}}
+
+Go to the \href{https://fuma.ctglab.nl}{FUMA website}, get an account, and study the \href{https://fuma.ctglab.nl/tutorial}{online-tutorial}.
+
+\hypertarget{create-the-input}{%
+\subsection{Create the input}\label{create-the-input}}
+
+You will need to use the \texttt{fwrite} function in \texttt{r} to write the concatenated results of the WTCCC1 study (remember: \texttt{wtccc1\_assoc\_compl}).
+
+\emph{Question: can you figure out the sample size of the WTCCC1 data you used?}
+
+You will need to compress the resulting output, this will make uploading to FUMA go faster. You can use the \texttt{bash}-program \texttt{gzip} for that. If you want to know what the options are for that program, you can use \texttt{gzip\ -h}
+
+\hypertarget{run-fuma---snp-to-gene}{%
+\subsection{Run FUMA - SNP to gene}\label{run-fuma---snp-to-gene}}
+
+Upload via the form on the FUMA-website. Since you've done the tutorial you are familiar with its options. Select \emph{everything} in the tabs \texttt{Gene\ Mapping\ (positional\ mapping)}, \texttt{Gene\ Mapping\ (eQTL\ mapping)} but \emph{not} \texttt{GTEx\ v6}, and \texttt{Gene\ Mapping\ (3D\ Chromatin\ Interaction\ mapping)} and leave the settings at \texttt{Gene\ types} and \texttt{MHC\ region} as-is, and at \texttt{MAGMA\ analysis} set the \emph{MAGMA gene expression analysis} to include all tissues, \emph{but} \texttt{GTEx\ v6}.
+
+Don't forget to give your analysis a name. This will take some time and so it's a good moment to carry on with the rest of the practical or take a break, or study for the exam.
+
+\emph{Questions}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  How many lead SNPs did we find?
+\item
+  What do the results of MAGMA (the gene-based test) look like and how many genes pass the threshold of multiple testing correction?
+\item
+  How many loci were mapped?
+\item
+  How many genes were physically located and how many were mapped to these loci?
+\item
+  Do you think all loci are `correct', \emph{i.e.} do you `believe' all the signals looking at the mapping results? Why?
+\item
+  For what tissues are the signals enriched?
+\item
+  Are there any chromatin interactions discovered?
+\end{enumerate}
+
+\hypertarget{run-fuma---gene-to-function}{%
+\subsection{Run FUMA - Gene to function}\label{run-fuma---gene-to-function}}
+
+Now that you mapped SNPs to genes, it's time to go back to `My Jobs'. Select your job and perform \texttt{GENE2FUNC}.
+
+\emph{Questions}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  What genes show the lowest expression across tissues?
+\item
+  And what genes the highest?
+\item
+  For what pathways are the signals enriched?
+\item
+  What molecular functions are mapped to the signals?
+\end{enumerate}
+
+\hypertarget{some-closing-thoughts}{%
+\section{Some closing thoughts}\label{some-closing-thoughts}}
+
+FUMA is a great tool, but it comes with a caveat. It includes a couple of references of which it is not readily clear which variants are included - the authors do provide the codes used on Git, but still, you don't know which variants precisely are filtered. That is key: perhaps the top variant you discovered is filtered in the reference. This means FUMA will not use it to map SNPs to genes, rather next best variant. This should be in high-LD - but, again, assumptions\ldots{} And of course, the references used might not match your data well enough. So, my advice: use FUMA (why not be lazy rather than work hard?), but aware of such caveats as I described. All in all, I do think FUMA is very complete, intuitive, and it makes your work publication-ready because it creates just the right file-formats for you too (\texttt{.png}, \texttt{.svg}, \texttt{.pdf}, \texttt{.jpeg}).
+
+That said, time to move on to inspect other phenotypes in relation to your findings in the next (Chapter \ref{phewas}).
+
+\hypertarget{phenome-wide-association-study-phewas}{%
+\chapter{Phenome-Wide Association Study (PheWAS)}\label{phenome-wide-association-study-phewas}}
 
 \hypertarget{section-1-2}{%
 \section{Section 1}\label{section-1-2}}
@@ -2147,8 +2788,13 @@ Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium dolor
 
 At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.
 
-\hypertarget{statistical-finemapping}{%
-\chapter{Statistical finemapping}\label{statistical-finemapping}}
+\hypertarget{replication-4}{%
+\section{Replication!}\label{replication-4}}
+
+You reached an important milestone: you recreated the work by the whole WTCCC1 in just an afternoon. Wow. Back then there wasn't much on analyses \emph{after} a GWAS, nowadays there are many post-GWAS analyses methods. We will cover them in the next (Chapter @ref(mendelian\_randomization)).
+
+\hypertarget{mendelian-randomization-mr}{%
+\chapter{Mendelian Randomization (MR)}\label{mendelian-randomization-mr}}
 
 \hypertarget{section-1-3}{%
 \section{Section 1}\label{section-1-3}}
@@ -2165,8 +2811,13 @@ Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium dolor
 
 At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.
 
-\hypertarget{functional-mapping-and-annotation-of-gwas}{%
-\chapter{Functional Mapping and Annotation of GWAS}\label{functional-mapping-and-annotation-of-gwas}}
+\hypertarget{replication-5}{%
+\section{Replication!}\label{replication-5}}
+
+You reached an important milestone: you recreated the work by the whole WTCCC1 in just an afternoon. Wow. Back then there wasn't much on analyses \emph{after} a GWAS, nowadays there are many post-GWAS analyses methods. We will cover them in the next (Chapter \ref{summary}).
+
+\hypertarget{mendelian-randomization-mr-1}{%
+\chapter{Mendelian Randomization (MR)}\label{mendelian-randomization-mr-1}}
 
 \hypertarget{section-1-4}{%
 \section{Section 1}\label{section-1-4}}
@@ -2183,59 +2834,10 @@ Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium dolor
 
 At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.
 
-\hypertarget{phenome-wide-association-study-phewas}{%
-\chapter{Phenome-Wide Association Study (PheWAS)}\label{phenome-wide-association-study-phewas}}
+\hypertarget{replication-6}{%
+\section{Replication!}\label{replication-6}}
 
-\hypertarget{section-1-5}{%
-\section{Section 1}\label{section-1-5}}
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-
-\hypertarget{section-2-5}{%
-\section{Section 2}\label{section-2-5}}
-
-Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?
-
-\hypertarget{section-3-5}{%
-\section{Section 3}\label{section-3-5}}
-
-At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.
-
-\hypertarget{mendelian-randomization-mr}{%
-\chapter{Mendelian Randomization (MR)}\label{mendelian-randomization-mr}}
-
-\hypertarget{section-1-6}{%
-\section{Section 1}\label{section-1-6}}
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-
-\hypertarget{section-2-6}{%
-\section{Section 2}\label{section-2-6}}
-
-Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?
-
-\hypertarget{section-3-6}{%
-\section{Section 3}\label{section-3-6}}
-
-At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.
-
-\hypertarget{mendelian-randomization-mr-1}{%
-\chapter{Mendelian Randomization (MR)}\label{mendelian-randomization-mr-1}}
-
-\hypertarget{section-1-7}{%
-\section{Section 1}\label{section-1-7}}
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-
-\hypertarget{section-2-7}{%
-\section{Section 2}\label{section-2-7}}
-
-Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?
-
-\hypertarget{section-3-7}{%
-\section{Section 3}\label{section-3-7}}
-
-At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.
+You reached an important milestone: you recreated the work by the whole WTCCC1 in just an afternoon. Wow. Back then there wasn't much on analyses \emph{after} a GWAS, nowadays there are many post-GWAS analyses methods. We will cover them in the next (Chapter \ref{epilogue}).
 
 \hypertarget{license-your-gitbook}{%
 \chapter{License your GitBook}\label{license-your-gitbook}}

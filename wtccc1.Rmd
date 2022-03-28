@@ -331,6 +331,6 @@ CMplot(wtccc1_assoc_complsub,
 
 ## Replication! 
 
-You reached an important milestone: you recreated the work by the whole WTCCC1 in just an afternoon. Wow. Back then there wasn't much on analyses _after_ a GWAS, nowadays there are many post-GWAS  analyses methods. We will cover them in the next (Chapter \@ref(post_gwas)). 
+You reached an important milestone: you recreated the work by the whole WTCCC1-team that took them years in just one afternoon. Wow. Back then there wasn't much on analyses _after_ a GWAS, nowadays there are many post-GWAS  analyses methods. We will cover them in the next (Chapter \@ref(post_gwas)). 
 
 
