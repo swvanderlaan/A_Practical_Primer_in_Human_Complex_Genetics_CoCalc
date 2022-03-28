@@ -118,6 +118,28 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -163,7 +185,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4" data-path="sample-qc.html"><a href="sample-qc.html"><i class="fa fa-check"></i><b>4</b> Sample QC<span></span></a>
 <ul>
 <li class="chapter" data-level="4.1" data-path="sample-qc.html"><a href="sample-qc.html#sex"><i class="fa fa-check"></i><b>4.1</b> Sex<span></span></a></li>
-<li class="chapter" data-level="4.2" data-path="sample-qc.html"><a href="sample-qc.html#sample-callrates"><i class="fa fa-check"></i><b>4.2</b> Sample Callrates<span></span></a></li>
+<li class="chapter" data-level="4.2" data-path="sample-qc.html"><a href="sample-qc.html#sample-call-rates"><i class="fa fa-check"></i><b>4.2</b> Sample call rates<span></span></a></li>
 <li class="chapter" data-level="4.3" data-path="sample-qc.html"><a href="sample-qc.html#heterozygosity-rate"><i class="fa fa-check"></i><b>4.3</b> Heterozygosity rate<span></span></a></li>
 <li class="chapter" data-level="4.4" data-path="sample-qc.html"><a href="sample-qc.html#relatedness"><i class="fa fa-check"></i><b>4.4</b> Relatedness<span></span></a></li>
 <li class="chapter" data-level="4.5" data-path="sample-qc.html"><a href="sample-qc.html#ancestral-background"><i class="fa fa-check"></i><b>4.5</b> Ancestral background<span></span></a>
@@ -202,7 +224,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="8" data-path="the-welcome-trust-case-control-consortium-wtccc.html"><a href="the-welcome-trust-case-control-consortium-wtccc.html"><i class="fa fa-check"></i><b>8</b> The Welcome Trust Case-Control Consortium (WTCCC)<span></span></a>
 <ul>
-<li class="chapter" data-level="8.1" data-path="the-welcome-trust-case-control-consortium-wtccc.html"><a href="the-welcome-trust-case-control-consortium-wtccc.html#there-you-go"><i class="fa fa-check"></i><b>8.1</b> There you go<span></span></a></li>
+<li class="chapter" data-level="8.1" data-path="the-welcome-trust-case-control-consortium-wtccc.html"><a href="the-welcome-trust-case-control-consortium-wtccc.html#genotyping"><i class="fa fa-check"></i><b>8.1</b> Genotyping<span></span></a></li>
+<li class="chapter" data-level="8.2" data-path="the-welcome-trust-case-control-consortium-wtccc.html"><a href="the-welcome-trust-case-control-consortium-wtccc.html#the-data"><i class="fa fa-check"></i><b>8.2</b> The data<span></span></a></li>
+<li class="chapter" data-level="8.3" data-path="the-welcome-trust-case-control-consortium-wtccc.html"><a href="the-welcome-trust-case-control-consortium-wtccc.html#assignment"><i class="fa fa-check"></i><b>8.3</b> Assignment<span></span></a></li>
+<li class="chapter" data-level="8.4" data-path="the-welcome-trust-case-control-consortium-wtccc.html"><a href="the-welcome-trust-case-control-consortium-wtccc.html#there-you-go"><i class="fa fa-check"></i><b>8.4</b> There you go<span></span></a></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="wtccc1-a-gwas-on-coronary-artery-disease-cad.html"><a href="wtccc1-a-gwas-on-coronary-artery-disease-cad.html"><i class="fa fa-check"></i><b>9</b> WTCCC1: a GWAS on coronary artery disease (CAD)<span></span></a>
 <ul>
@@ -217,7 +242,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="10" data-path="post-gwas-analyses.html"><a href="post-gwas-analyses.html"><i class="fa fa-check"></i><b>10</b> Post-GWAS Analyses<span></span></a>
 <ul>
-<li class="chapter" data-level="10.1" data-path="post-gwas-analyses.html"><a href="post-gwas-analyses.html#replication-1"><i class="fa fa-check"></i><b>10.1</b> Replication!<span></span></a></li>
+<li class="chapter" data-level="10.1" data-path="post-gwas-analyses.html"><a href="post-gwas-analyses.html#conditional-analyses"><i class="fa fa-check"></i><b>10.1</b> Conditional analyses<span></span></a></li>
+<li class="chapter" data-level="10.2" data-path="post-gwas-analyses.html"><a href="post-gwas-analyses.html#statistical-finemapping"><i class="fa fa-check"></i><b>10.2</b> Statistical finemapping<span></span></a></li>
+<li class="chapter" data-level="10.3" data-path="post-gwas-analyses.html"><a href="post-gwas-analyses.html#functional-finemapping"><i class="fa fa-check"></i><b>10.3</b> Functional finemapping<span></span></a></li>
+<li class="chapter" data-level="10.4" data-path="post-gwas-analyses.html"><a href="post-gwas-analyses.html#fuma-functional-mapping-and-annotation-of-gwas"><i class="fa fa-check"></i><b>10.4</b> FUMA: FUnctional Mapping and Annotation of GWAS<span></span></a></li>
+<li class="chapter" data-level="10.5" data-path="post-gwas-analyses.html"><a href="post-gwas-analyses.html#phewas"><i class="fa fa-check"></i><b>10.5</b> PheWAS<span></span></a></li>
+<li class="chapter" data-level="10.6" data-path="post-gwas-analyses.html"><a href="post-gwas-analyses.html#genetic-correlation"><i class="fa fa-check"></i><b>10.6</b> Genetic correlation<span></span></a></li>
+<li class="chapter" data-level="10.7" data-path="post-gwas-analyses.html"><a href="post-gwas-analyses.html#causal-inference-mendelian-randomization"><i class="fa fa-check"></i><b>10.7</b> Causal inference: Mendelian Randomization<span></span></a></li>
+<li class="chapter" data-level="10.8" data-path="post-gwas-analyses.html"><a href="post-gwas-analyses.html#replication-1"><i class="fa fa-check"></i><b>10.8</b> Replication!<span></span></a></li>
 </ul></li>
 <li class="chapter" data-level="11" data-path="conditional-analysis.html"><a href="conditional-analysis.html"><i class="fa fa-check"></i><b>11</b> Conditional analysis<span></span></a>
 <ul>
@@ -226,16 +258,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="11.3" data-path="conditional-analysis.html"><a href="conditional-analysis.html#section-3"><i class="fa fa-check"></i><b>11.3</b> Section 3<span></span></a></li>
 <li class="chapter" data-level="11.4" data-path="conditional-analysis.html"><a href="conditional-analysis.html#replication-2"><i class="fa fa-check"></i><b>11.4</b> Replication!<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="12" data-path="statistical-finemapping.html"><a href="statistical-finemapping.html"><i class="fa fa-check"></i><b>12</b> Statistical finemapping<span></span></a>
+<li class="chapter" data-level="12" data-path="statistical-finemapping-1.html"><a href="statistical-finemapping-1.html"><i class="fa fa-check"></i><b>12</b> Statistical finemapping<span></span></a>
 <ul>
-<li class="chapter" data-level="12.1" data-path="statistical-finemapping.html"><a href="statistical-finemapping.html#section-1-1"><i class="fa fa-check"></i><b>12.1</b> Section 1<span></span></a></li>
-<li class="chapter" data-level="12.2" data-path="statistical-finemapping.html"><a href="statistical-finemapping.html#section-2-1"><i class="fa fa-check"></i><b>12.2</b> Section 2<span></span></a></li>
-<li class="chapter" data-level="12.3" data-path="statistical-finemapping.html"><a href="statistical-finemapping.html#section-3-1"><i class="fa fa-check"></i><b>12.3</b> Section 3<span></span></a></li>
-<li class="chapter" data-level="12.4" data-path="statistical-finemapping.html"><a href="statistical-finemapping.html#replication-3"><i class="fa fa-check"></i><b>12.4</b> Replication!<span></span></a></li>
+<li class="chapter" data-level="12.1" data-path="statistical-finemapping-1.html"><a href="statistical-finemapping-1.html#section-1-1"><i class="fa fa-check"></i><b>12.1</b> Section 1<span></span></a></li>
+<li class="chapter" data-level="12.2" data-path="statistical-finemapping-1.html"><a href="statistical-finemapping-1.html#section-2-1"><i class="fa fa-check"></i><b>12.2</b> Section 2<span></span></a></li>
+<li class="chapter" data-level="12.3" data-path="statistical-finemapping-1.html"><a href="statistical-finemapping-1.html#section-3-1"><i class="fa fa-check"></i><b>12.3</b> Section 3<span></span></a></li>
+<li class="chapter" data-level="12.4" data-path="statistical-finemapping-1.html"><a href="statistical-finemapping-1.html#replication-3"><i class="fa fa-check"></i><b>12.4</b> Replication!<span></span></a></li>
 </ul></li>
 <li class="chapter" data-level="13" data-path="functional-mapping-and-annotation-of-gwas.html"><a href="functional-mapping-and-annotation-of-gwas.html"><i class="fa fa-check"></i><b>13</b> Functional Mapping and Annotation of GWAS<span></span></a>
 <ul>
-<li class="chapter" data-level="13.1" data-path="functional-mapping-and-annotation-of-gwas.html"><a href="functional-mapping-and-annotation-of-gwas.html#assignment"><i class="fa fa-check"></i><b>13.1</b> Assignment<span></span></a>
+<li class="chapter" data-level="13.1" data-path="functional-mapping-and-annotation-of-gwas.html"><a href="functional-mapping-and-annotation-of-gwas.html#assignment-1"><i class="fa fa-check"></i><b>13.1</b> Assignment<span></span></a>
 <ul>
 <li class="chapter" data-level="13.1.1" data-path="functional-mapping-and-annotation-of-gwas.html"><a href="functional-mapping-and-annotation-of-gwas.html#tutorial"><i class="fa fa-check"></i><b>13.1.1</b> Tutorial<span></span></a></li>
 <li class="chapter" data-level="13.1.2" data-path="functional-mapping-and-annotation-of-gwas.html"><a href="functional-mapping-and-annotation-of-gwas.html#create-the-input"><i class="fa fa-check"></i><b>13.1.2</b> Create the input<span></span></a></li>
@@ -246,27 +278,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="14" data-path="phenome-wide-association-study-phewas.html"><a href="phenome-wide-association-study-phewas.html"><i class="fa fa-check"></i><b>14</b> Phenome-Wide Association Study (PheWAS)<span></span></a>
 <ul>
-<li class="chapter" data-level="14.1" data-path="phenome-wide-association-study-phewas.html"><a href="phenome-wide-association-study-phewas.html#section-1-2"><i class="fa fa-check"></i><b>14.1</b> Section 1<span></span></a></li>
-<li class="chapter" data-level="14.2" data-path="phenome-wide-association-study-phewas.html"><a href="phenome-wide-association-study-phewas.html#section-2-2"><i class="fa fa-check"></i><b>14.2</b> Section 2<span></span></a></li>
-<li class="chapter" data-level="14.3" data-path="phenome-wide-association-study-phewas.html"><a href="phenome-wide-association-study-phewas.html#section-3-2"><i class="fa fa-check"></i><b>14.3</b> Section 3<span></span></a></li>
-<li class="chapter" data-level="14.4" data-path="phenome-wide-association-study-phewas.html"><a href="phenome-wide-association-study-phewas.html#replication-4"><i class="fa fa-check"></i><b>14.4</b> Replication!<span></span></a></li>
+<li class="chapter" data-level="14.1" data-path="phenome-wide-association-study-phewas.html"><a href="phenome-wide-association-study-phewas.html#whats-next"><i class="fa fa-check"></i><b>14.1</b> What’s next?<span></span></a></li>
 </ul></li>
 <li class="chapter" data-level="15" data-path="mendelian-randomization-mr.html"><a href="mendelian-randomization-mr.html"><i class="fa fa-check"></i><b>15</b> Mendelian Randomization (MR)<span></span></a>
 <ul>
-<li class="chapter" data-level="15.1" data-path="mendelian-randomization-mr.html"><a href="mendelian-randomization-mr.html#section-1-3"><i class="fa fa-check"></i><b>15.1</b> Section 1<span></span></a></li>
-<li class="chapter" data-level="15.2" data-path="mendelian-randomization-mr.html"><a href="mendelian-randomization-mr.html#section-2-3"><i class="fa fa-check"></i><b>15.2</b> Section 2<span></span></a></li>
-<li class="chapter" data-level="15.3" data-path="mendelian-randomization-mr.html"><a href="mendelian-randomization-mr.html#section-3-3"><i class="fa fa-check"></i><b>15.3</b> Section 3<span></span></a></li>
-<li class="chapter" data-level="15.4" data-path="mendelian-randomization-mr.html"><a href="mendelian-randomization-mr.html#replication-5"><i class="fa fa-check"></i><b>15.4</b> Replication!<span></span></a></li>
+<li class="chapter" data-level="15.1" data-path="mendelian-randomization-mr.html"><a href="mendelian-randomization-mr.html#section-1-2"><i class="fa fa-check"></i><b>15.1</b> Section 1<span></span></a></li>
+<li class="chapter" data-level="15.2" data-path="mendelian-randomization-mr.html"><a href="mendelian-randomization-mr.html#section-2-2"><i class="fa fa-check"></i><b>15.2</b> Section 2<span></span></a></li>
+<li class="chapter" data-level="15.3" data-path="mendelian-randomization-mr.html"><a href="mendelian-randomization-mr.html#section-3-2"><i class="fa fa-check"></i><b>15.3</b> Section 3<span></span></a></li>
+<li class="chapter" data-level="15.4" data-path="mendelian-randomization-mr.html"><a href="mendelian-randomization-mr.html#replication-4"><i class="fa fa-check"></i><b>15.4</b> Replication!<span></span></a></li>
 </ul></li>
 <li class="chapter" data-level="16" data-path="mendelian-randomization-mr-1.html"><a href="mendelian-randomization-mr-1.html"><i class="fa fa-check"></i><b>16</b> Mendelian Randomization (MR)<span></span></a>
 <ul>
-<li class="chapter" data-level="16.1" data-path="mendelian-randomization-mr-1.html"><a href="mendelian-randomization-mr-1.html#section-1-4"><i class="fa fa-check"></i><b>16.1</b> Section 1<span></span></a></li>
-<li class="chapter" data-level="16.2" data-path="mendelian-randomization-mr-1.html"><a href="mendelian-randomization-mr-1.html#section-2-4"><i class="fa fa-check"></i><b>16.2</b> Section 2<span></span></a></li>
-<li class="chapter" data-level="16.3" data-path="mendelian-randomization-mr-1.html"><a href="mendelian-randomization-mr-1.html#section-3-4"><i class="fa fa-check"></i><b>16.3</b> Section 3<span></span></a></li>
-<li class="chapter" data-level="16.4" data-path="mendelian-randomization-mr-1.html"><a href="mendelian-randomization-mr-1.html#replication-6"><i class="fa fa-check"></i><b>16.4</b> Replication!<span></span></a></li>
+<li class="chapter" data-level="16.1" data-path="mendelian-randomization-mr-1.html"><a href="mendelian-randomization-mr-1.html#section-1-3"><i class="fa fa-check"></i><b>16.1</b> Section 1<span></span></a></li>
+<li class="chapter" data-level="16.2" data-path="mendelian-randomization-mr-1.html"><a href="mendelian-randomization-mr-1.html#section-2-3"><i class="fa fa-check"></i><b>16.2</b> Section 2<span></span></a></li>
+<li class="chapter" data-level="16.3" data-path="mendelian-randomization-mr-1.html"><a href="mendelian-randomization-mr-1.html#section-3-3"><i class="fa fa-check"></i><b>16.3</b> Section 3<span></span></a></li>
+<li class="chapter" data-level="16.4" data-path="mendelian-randomization-mr-1.html"><a href="mendelian-randomization-mr-1.html#replication-5"><i class="fa fa-check"></i><b>16.4</b> Replication!<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="17" data-path="license-your-gitbook.html"><a href="license-your-gitbook.html"><i class="fa fa-check"></i><b>17</b> License your GitBook<span></span></a></li>
-<li class="chapter" data-level="18" data-path="license-your-gitbook-1.html"><a href="license-your-gitbook-1.html"><i class="fa fa-check"></i><b>18</b> License your GitBook<span></span></a></li>
+<li class="chapter" data-level="17" data-path="epilogue.html"><a href="epilogue.html"><i class="fa fa-check"></i><b>17</b> Epilogue<span></span></a></li>
+<li class="chapter" data-level="18" data-path="licenses-and-disclaimers.html"><a href="licenses-and-disclaimers.html"><i class="fa fa-check"></i><b>18</b> Licenses and disclaimers<span></span></a></li>
 <li><a href="references.html#references">References<span></span></a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -293,8 +322,36 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>A critical step in post-GWAS analysis is probably ‘mapping SNPs to genes’. It is critical, but it is also the most challenging. <em>How do you even map SNPs to genes?</em> What criteria to use? Should we take into account physical position? Or is it of interest that certain SNPs might influence downstream or upstream gene expression? And what of the fact that most loci discovered in GWAS are _inter_genic? What is the heritability of our trait? Are there any pleiotropic effects?</p>
 <p>Researchers from the VUMC in Amsterdam have created an online tool that aids in mapping genes and function to GWAS: <em>“Functional Mapping and Annotation of Genome-Wide Association Studies”</em> a.k.a. <a href="https://fuma.ctglab.nl" target="_blank">FUMA</a>. This online tool uses a variety of datasets and programs to prioritize genes and map these to associated loci.</p>
 <p>We have covered some aspects of post-GWAS analyses, and a lot are covered by FUMA. Let’s try and annotate our WTCCC1 results. This assignment will be a bit more <em>Do It Yourself</em>.</p>
-<div id="replication-1" class="section level2 hasAnchor" number="10.1">
-<h2><span class="header-section-number">10.1</span> Replication!<a href="post-gwas-analyses.html#replication-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="conditional-analyses" class="section level2 hasAnchor" number="10.1">
+<h2><span class="header-section-number">10.1</span> Conditional analyses<a href="post-gwas-analyses.html#conditional-analyses" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>[add text]</p>
+</div>
+<div id="statistical-finemapping" class="section level2 hasAnchor" number="10.2">
+<h2><span class="header-section-number">10.2</span> Statistical finemapping<a href="post-gwas-analyses.html#statistical-finemapping" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>[add text]</p>
+</div>
+<div id="functional-finemapping" class="section level2 hasAnchor" number="10.3">
+<h2><span class="header-section-number">10.3</span> Functional finemapping<a href="post-gwas-analyses.html#functional-finemapping" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>[add text]</p>
+</div>
+<div id="fuma-functional-mapping-and-annotation-of-gwas" class="section level2 hasAnchor" number="10.4">
+<h2><span class="header-section-number">10.4</span> FUMA: FUnctional Mapping and Annotation of GWAS<a href="post-gwas-analyses.html#fuma-functional-mapping-and-annotation-of-gwas" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>[add text]</p>
+</div>
+<div id="phewas" class="section level2 hasAnchor" number="10.5">
+<h2><span class="header-section-number">10.5</span> PheWAS<a href="post-gwas-analyses.html#phewas" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>[add text]</p>
+</div>
+<div id="genetic-correlation" class="section level2 hasAnchor" number="10.6">
+<h2><span class="header-section-number">10.6</span> Genetic correlation<a href="post-gwas-analyses.html#genetic-correlation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>[add text]</p>
+</div>
+<div id="causal-inference-mendelian-randomization" class="section level2 hasAnchor" number="10.7">
+<h2><span class="header-section-number">10.7</span> Causal inference: Mendelian Randomization<a href="post-gwas-analyses.html#causal-inference-mendelian-randomization" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>[add text]</p>
+</div>
+<div id="replication-1" class="section level2 hasAnchor" number="10.8">
+<h2><span class="header-section-number">10.8</span> Replication!<a href="post-gwas-analyses.html#replication-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>You reached an important milestone: you recreated the work by the whole WTCCC1 in just an afternoon. Wow. Back then there wasn’t much on analyses <em>after</em> a GWAS, nowadays there are many post-GWAS analyses methods. We will cover them in the next (Chapter @ref(conditional_analysis)).</p>
 
 </div>

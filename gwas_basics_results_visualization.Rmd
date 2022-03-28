@@ -216,11 +216,11 @@ Now you are ready to upload this `data.assoc.logistic.locuszoom.gz` file  to the
 
 You should get something like below.
 
-![](img/_gwas/CEU.rs6802898.400kb.png){width=50%}
+![](./img/_gwas/CEU.rs6802898.400kb.png){width=50%}
 
-![](img/_gwas/CEU.rs7901695.400kb.png){width=50%}
+![](./img/_gwas/CEU.rs7901695.400kb.png){width=50%}
 
-![](img/_gwas/CEU.rs8050136.400kb.png){width=50%}
+![](./img/_gwas/CEU.rs8050136.400kb.png){width=50%}
 
 
 You will encounter the above three types of visualizations in any high-quality GWAS paper, because each is so critically informative. Usually, analysts of large-scale meta-analyses of GWAS will also stratify the QQ-plots based on the imputation quality (if your GWAS was imputed), call rate, and allele frequency.
