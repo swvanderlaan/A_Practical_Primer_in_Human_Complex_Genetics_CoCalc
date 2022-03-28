@@ -1,6 +1,6 @@
 --- 
 title: "A primer in Human Cardiovascular Genetics"
-author: "[dr. Sander W. van der Laan](https://swvanderlaan.github.iio) [![](./img/_social_media/Twitter social icons - circle - blue.png){width=2.5%}](https://www.twitter.com/swvanderlaan) [![](./img/_social_media/Email_icon.png){width=2.5%}](mailto:s.w.vanderlaan@gmail.com)"
+author: "[dr. Sander W. van der Laan](https://swvanderlaan.github.iio) [![](/img/_social_media/Twitter social icons - circle - blue.png){width=2.5%}](https://www.twitter.com/swvanderlaan) [![](/img/_social_media/Email_icon.png){width=2.5%}](mailto:s.w.vanderlaan@gmail.com)"
 date: "Version 1.0.0 | last update: `r Sys.Date()`"
 description: This is a primer in Human Cardiovascular Genetics. The output format for this example
   is bookdown::gitbook.
@@ -19,6 +19,9 @@ output: html_document
 # About this primer
 ![](./img/banner_man_standing_dna.png)
 
+
+
+--- 
 ## Introduction
 
 Welcome to the _A primer in Human Cardiovascular Genetics_ as part of the **Genetic Epidemiology** course. In the next few days we will use this [GitBook](https://cjvanlissa.github.io/gitbook-demo/) to perform quality control (QC), executing a genome-wide association study (GWAS), annotating the GWAS results, and performing further downstream analyses. We will use data from the first release of the [*Welcome Trust Case-Control Consortium (WTCCC)*](https://www.wtccc.org.uk/ccc1/overview.html){target="_blank"} and focus on coronary artery disease (CAD). 
@@ -71,4 +74,4 @@ I can imagine this seems overwhelming, but trust me, you'll be okay. Just follow
 
 **Ready to start?**
 
-Your first point of action is to prepare your system for this course (Chapter \@ref(prerequisites)). 
+Your first point of action is to prepare your system for this course (Chapter \@ref(prerequisites)).
