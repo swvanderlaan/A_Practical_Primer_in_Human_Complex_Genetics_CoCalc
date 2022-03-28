@@ -1,6 +1,6 @@
 # Sample QC
 
-```{r write_book_source, message = FALSE, warning = FALSE, echo = FALSE, eval = TRUE}
+```{r gwas_basics_sample_qc, message = FALSE, warning = FALSE, echo = FALSE, eval = TRUE}
 COURSE_loc = "~/Desktop/practical"
 # COURSE_loc = "/Users/swvanderlaan/git/swvanderlaan/A_primer_in_Human_Cardiovascular_Genetics"
 
@@ -617,7 +617,9 @@ PCA_1kG$V12[PCA_1kG$V12 == "28"] <- "YRI"
 
 PCA_1kGplot <- ggpubr::ggscatter(PCA_1kG, x = "V2", y = "V3",
                                  color = "V12",
-                                 palette = c("#595A5C", "#49A01D", "#E55738", "#9A3480", "#705296", "#595A5C", "#8D5B9A", "#2F8BC9", "#1290D9", "#1396D8", "#D5267B", "#78B113", "#F59D10", "#FBB820", "#4C81BF", "#C5D220"),
+                                 palette = c("#595A5C", "#49A01D", "#E55738", "#9A3480", "#705296", 
+                                             "#595A5C", "#8D5B9A", "#2F8BC9", "#1290D9", "#1396D8", 
+                                             "#D5267B", "#78B113", "#F59D10", "#FBB820", "#4C81BF", "#C5D220"),
                                  xlab = "principal component 1", ylab = "principal component 2") +
   geom_hline(yintercept = 0.023, linetype = "dashed",
                 color = "#595A5C", size = 1)
@@ -629,7 +631,7 @@ PCA_1kGplot <- ggpubr::ggscatter(PCA_1kG, x = "V2", y = "V3",
 
 ```
 
-In a similar fashion as in the above with the HapMap3 reference, you could remove the samples below the threshold.
+In a similar fashion as in the above with the HapMap3 reference, you could **remove the samples below the threshold** based on this PCA.
 
 ## Removing samples
 
@@ -645,6 +647,9 @@ This new file should now contain a list of unique individuals failing the previo
 plink --bfile rawdata/rawdata --remove rawdata/fail-qc-inds.txt --make-bed --out rawdata/clean_inds_data
 ```
 
-<!-- To remove them from the data set, type `plink --bfile raw-GWA-data --remove fail-qc-inds.txt --make-bed - -out clean-inds-GWA-data` at the Unix prompt. -->
+## The next step
+
+Now that you filtered samples, we should turn our attention to step 2 of the QC for GWAS: identify SNPs of poor quality in (Chapter \@ref(gwas_basics_snp_qc)). 
+
 
 

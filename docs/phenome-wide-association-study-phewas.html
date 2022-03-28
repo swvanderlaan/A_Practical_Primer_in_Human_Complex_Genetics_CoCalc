@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 12 Phenome-Wide Association Study (PheWAS) | A primer in Human Cardiovascular Genetics</title>
+  <title>Chapter 14 Phenome-Wide Association Study (PheWAS) | A primer in Human Cardiovascular Genetics</title>
   <meta name="description" content="This is a primer in Human Cardiovascular Genetics. The output format for this example is bookdown::gitbook." />
   <meta name="generator" content="bookdown 0.25 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 12 Phenome-Wide Association Study (PheWAS) | A primer in Human Cardiovascular Genetics" />
+  <meta property="og:title" content="Chapter 14 Phenome-Wide Association Study (PheWAS) | A primer in Human Cardiovascular Genetics" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="This is a primer in Human Cardiovascular Genetics. The output format for this example is bookdown::gitbook." />
   <meta name="github-repo" content="swvanderlaan/A_primer_in_Human_Cardiovascular_Genetics" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 12 Phenome-Wide Association Study (PheWAS) | A primer in Human Cardiovascular Genetics" />
+  <meta name="twitter:title" content="Chapter 14 Phenome-Wide Association Study (PheWAS) | A primer in Human Cardiovascular Genetics" />
   
   <meta name="twitter:description" content="This is a primer in Human Cardiovascular Genetics. The output format for this example is bookdown::gitbook." />
   
@@ -152,11 +152,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.3.2" data-path="prerequisites.html"><a href="prerequisites.html#navigating-the-terminal"><i class="fa fa-check"></i><b>2.3.2</b> Navigating the Terminal<span></span></a></li>
 </ul></li>
 <li class="chapter" data-level="2.4" data-path="prerequisites.html"><a href="prerequisites.html#installing-some-r-packages"><i class="fa fa-check"></i><b>2.4</b> Installing some R packages<span></span></a></li>
+<li class="chapter" data-level="2.5" data-path="prerequisites.html"><a href="prerequisites.html#are-you-ready"><i class="fa fa-check"></i><b>2.5</b> Are you ready?<span></span></a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="basics-of-a-genome-wide-association-study-gwas.html"><a href="basics-of-a-genome-wide-association-study-gwas.html"><i class="fa fa-check"></i><b>3</b> Basics of a Genome-Wide Association Study (GWAS)<span></span></a>
 <ul>
 <li class="chapter" data-level="3.1" data-path="basics-of-a-genome-wide-association-study-gwas.html"><a href="basics-of-a-genome-wide-association-study-gwas.html#converting-datasets"><i class="fa fa-check"></i><b>3.1</b> Converting datasets<span></span></a></li>
 <li class="chapter" data-level="3.2" data-path="basics-of-a-genome-wide-association-study-gwas.html"><a href="basics-of-a-genome-wide-association-study-gwas.html#quality-control"><i class="fa fa-check"></i><b>3.2</b> Quality control<span></span></a></li>
+<li class="chapter" data-level="3.3" data-path="basics-of-a-genome-wide-association-study-gwas.html"><a href="basics-of-a-genome-wide-association-study-gwas.html#lets-get-our-hands-dirty"><i class="fa fa-check"></i><b>3.3</b> Let’s get our hands dirty<span></span></a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="sample-qc.html"><a href="sample-qc.html"><i class="fa fa-check"></i><b>4</b> Sample QC<span></span></a>
 <ul>
@@ -171,6 +173,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.5.3" data-path="sample-qc.html"><a href="sample-qc.html#g-phase-1"><i class="fa fa-check"></i><b>4.5.3</b> 1000G phase 1<span></span></a></li>
 </ul></li>
 <li class="chapter" data-level="4.6" data-path="sample-qc.html"><a href="sample-qc.html#removing-samples"><i class="fa fa-check"></i><b>4.6</b> Removing samples<span></span></a></li>
+<li class="chapter" data-level="4.7" data-path="sample-qc.html"><a href="sample-qc.html#the-next-step"><i class="fa fa-check"></i><b>4.7</b> The next step<span></span></a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="per-snp-qc.html"><a href="per-snp-qc.html"><i class="fa fa-check"></i><b>5</b> Per-SNP QC<span></span></a>
 <ul>
@@ -179,71 +182,85 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.3" data-path="per-snp-qc.html"><a href="per-snp-qc.html#allele-frequencies"><i class="fa fa-check"></i><b>5.3</b> Allele frequencies<span></span></a></li>
 <li class="chapter" data-level="5.4" data-path="per-snp-qc.html"><a href="per-snp-qc.html#hardy-weinberg-equilibrium"><i class="fa fa-check"></i><b>5.4</b> Hardy-Weinberg Equilibrium<span></span></a></li>
 <li class="chapter" data-level="5.5" data-path="per-snp-qc.html"><a href="per-snp-qc.html#final-snp-qc"><i class="fa fa-check"></i><b>5.5</b> Final SNP QC<span></span></a></li>
+<li class="chapter" data-level="5.6" data-path="per-snp-qc.html"><a href="per-snp-qc.html#a-milestone"><i class="fa fa-check"></i><b>5.6</b> A Milestone<span></span></a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="genome-wide-association-study.html"><a href="genome-wide-association-study.html"><i class="fa fa-check"></i><b>6</b> Genome-wide association study<span></span></a>
 <ul>
 <li class="chapter" data-level="6.1" data-path="genome-wide-association-study.html"><a href="genome-wide-association-study.html#exploring-the-data"><i class="fa fa-check"></i><b>6.1</b> Exploring the data<span></span></a></li>
 <li class="chapter" data-level="6.2" data-path="genome-wide-association-study.html"><a href="genome-wide-association-study.html#genetic-models"><i class="fa fa-check"></i><b>6.2</b> Genetic models<span></span></a></li>
 <li class="chapter" data-level="6.3" data-path="genome-wide-association-study.html"><a href="genome-wide-association-study.html#logistic-regression"><i class="fa fa-check"></i><b>6.3</b> Logistic regression<span></span></a></li>
-<li class="chapter" data-level="6.4" data-path="genome-wide-association-study.html"><a href="genome-wide-association-study.html#gwas-visualisation"><i class="fa fa-check"></i><b>6.4</b> GWAS visualisation<span></span></a>
+<li class="chapter" data-level="6.4" data-path="genome-wide-association-study.html"><a href="genome-wide-association-study.html#lets-get-visual"><i class="fa fa-check"></i><b>6.4</b> Let’s get visual<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="gwas-visualisation.html"><a href="gwas-visualisation.html"><i class="fa fa-check"></i><b>7</b> GWAS visualisation<span></span></a>
 <ul>
-<li class="chapter" data-level="6.4.1" data-path="genome-wide-association-study.html"><a href="genome-wide-association-study.html#qq-plots"><i class="fa fa-check"></i><b>6.4.1</b> QQ plots<span></span></a></li>
-<li class="chapter" data-level="6.4.2" data-path="genome-wide-association-study.html"><a href="genome-wide-association-study.html#manhattan-plots"><i class="fa fa-check"></i><b>6.4.2</b> Manhattan plots<span></span></a></li>
-<li class="chapter" data-level="6.4.3" data-path="genome-wide-association-study.html"><a href="genome-wide-association-study.html#other-plots"><i class="fa fa-check"></i><b>6.4.3</b> Other plots<span></span></a></li>
-<li class="chapter" data-level="6.4.4" data-path="genome-wide-association-study.html"><a href="genome-wide-association-study.html#interactive-plots"><i class="fa fa-check"></i><b>6.4.4</b> Interactive plots<span></span></a></li>
-<li class="chapter" data-level="6.4.5" data-path="genome-wide-association-study.html"><a href="genome-wide-association-study.html#regional-association-plots"><i class="fa fa-check"></i><b>6.4.5</b> Regional association plots<span></span></a></li>
+<li class="chapter" data-level="7.0.1" data-path="gwas-visualisation.html"><a href="gwas-visualisation.html#qq-plots"><i class="fa fa-check"></i><b>7.0.1</b> QQ plots<span></span></a></li>
+<li class="chapter" data-level="7.1" data-path="gwas-visualisation.html"><a href="gwas-visualisation.html#manhattan-plots"><i class="fa fa-check"></i><b>7.1</b> Manhattan plots<span></span></a></li>
+<li class="chapter" data-level="7.2" data-path="gwas-visualisation.html"><a href="gwas-visualisation.html#other-plots"><i class="fa fa-check"></i><b>7.2</b> Other plots<span></span></a></li>
+<li class="chapter" data-level="7.3" data-path="gwas-visualisation.html"><a href="gwas-visualisation.html#interactive-plots"><i class="fa fa-check"></i><b>7.3</b> Interactive plots<span></span></a></li>
+<li class="chapter" data-level="7.4" data-path="gwas-visualisation.html"><a href="gwas-visualisation.html#regional-association-plots"><i class="fa fa-check"></i><b>7.4</b> Regional association plots<span></span></a></li>
+<li class="chapter" data-level="7.5" data-path="gwas-visualisation.html"><a href="gwas-visualisation.html#stop-playing-around"><i class="fa fa-check"></i><b>7.5</b> Stop playing around<span></span></a></li>
 </ul></li>
-</ul></li>
-<li class="chapter" data-level="7" data-path="wtccc1-a-gwas-on-coronary-artery-disease-cad.html"><a href="wtccc1-a-gwas-on-coronary-artery-disease-cad.html"><i class="fa fa-check"></i><b>7</b> WTCCC1: a GWAS on coronary artery disease (CAD)<span></span></a>
+<li class="chapter" data-level="8" data-path="the-welcome-trust-case-control-consortium-wtccc.html"><a href="the-welcome-trust-case-control-consortium-wtccc.html"><i class="fa fa-check"></i><b>8</b> The Welcome Trust Case-Control Consortium (WTCCC)<span></span></a>
 <ul>
-<li class="chapter" data-level="7.1" data-path="wtccc1-a-gwas-on-coronary-artery-disease-cad.html"><a href="wtccc1-a-gwas-on-coronary-artery-disease-cad.html#section-1"><i class="fa fa-check"></i><b>7.1</b> Section 1<span></span></a></li>
-<li class="chapter" data-level="7.2" data-path="wtccc1-a-gwas-on-coronary-artery-disease-cad.html"><a href="wtccc1-a-gwas-on-coronary-artery-disease-cad.html#section-2"><i class="fa fa-check"></i><b>7.2</b> Section 2<span></span></a></li>
-<li class="chapter" data-level="7.3" data-path="wtccc1-a-gwas-on-coronary-artery-disease-cad.html"><a href="wtccc1-a-gwas-on-coronary-artery-disease-cad.html#section-3"><i class="fa fa-check"></i><b>7.3</b> Section 3<span></span></a></li>
+<li class="chapter" data-level="8.1" data-path="the-welcome-trust-case-control-consortium-wtccc.html"><a href="the-welcome-trust-case-control-consortium-wtccc.html#there-you-go"><i class="fa fa-check"></i><b>8.1</b> There you go<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="post-gwas-analyses.html"><a href="post-gwas-analyses.html"><i class="fa fa-check"></i><b>8</b> Post-GWAS Analyses<span></span></a>
+<li class="chapter" data-level="9" data-path="wtccc1-a-gwas-on-coronary-artery-disease-cad.html"><a href="wtccc1-a-gwas-on-coronary-artery-disease-cad.html"><i class="fa fa-check"></i><b>9</b> WTCCC1: a GWAS on coronary artery disease (CAD)<span></span></a>
 <ul>
-<li class="chapter" data-level="8.1" data-path="post-gwas-analyses.html"><a href="post-gwas-analyses.html#section-1-1"><i class="fa fa-check"></i><b>8.1</b> Section 1<span></span></a></li>
-<li class="chapter" data-level="8.2" data-path="post-gwas-analyses.html"><a href="post-gwas-analyses.html#section-2-1"><i class="fa fa-check"></i><b>8.2</b> Section 2<span></span></a></li>
-<li class="chapter" data-level="8.3" data-path="post-gwas-analyses.html"><a href="post-gwas-analyses.html#section-3-1"><i class="fa fa-check"></i><b>8.3</b> Section 3<span></span></a></li>
-</ul></li>
-<li class="chapter" data-level="9" data-path="conditional-analysis.html"><a href="conditional-analysis.html"><i class="fa fa-check"></i><b>9</b> Conditional analysis<span></span></a>
+<li class="chapter" data-level="9.1" data-path="wtccc1-a-gwas-on-coronary-artery-disease-cad.html"><a href="wtccc1-a-gwas-on-coronary-artery-disease-cad.html#quality-control-1"><i class="fa fa-check"></i><b>9.1</b> Quality control<span></span></a></li>
+<li class="chapter" data-level="9.2" data-path="wtccc1-a-gwas-on-coronary-artery-disease-cad.html"><a href="wtccc1-a-gwas-on-coronary-artery-disease-cad.html#ancestral-background-1"><i class="fa fa-check"></i><b>9.2</b> Ancestral background<span></span></a>
 <ul>
-<li class="chapter" data-level="9.1" data-path="conditional-analysis.html"><a href="conditional-analysis.html#section-1-2"><i class="fa fa-check"></i><b>9.1</b> Section 1<span></span></a></li>
-<li class="chapter" data-level="9.2" data-path="conditional-analysis.html"><a href="conditional-analysis.html#section-2-2"><i class="fa fa-check"></i><b>9.2</b> Section 2<span></span></a></li>
-<li class="chapter" data-level="9.3" data-path="conditional-analysis.html"><a href="conditional-analysis.html#section-3-2"><i class="fa fa-check"></i><b>9.3</b> Section 3<span></span></a></li>
+<li class="chapter" data-level="9.2.1" data-path="wtccc1-a-gwas-on-coronary-artery-disease-cad.html"><a href="wtccc1-a-gwas-on-coronary-artery-disease-cad.html#extreme-cleaning"><i class="fa fa-check"></i><b>9.2.1</b> Extreme cleaning<span></span></a></li>
+<li class="chapter" data-level="9.2.2" data-path="wtccc1-a-gwas-on-coronary-artery-disease-cad.html"><a href="wtccc1-a-gwas-on-coronary-artery-disease-cad.html#removing-samples-1"><i class="fa fa-check"></i><b>9.2.2</b> Removing samples<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="statistical-finemapping.html"><a href="statistical-finemapping.html"><i class="fa fa-check"></i><b>10</b> Statistical finemapping<span></span></a>
+<li class="chapter" data-level="9.3" data-path="wtccc1-a-gwas-on-coronary-artery-disease-cad.html"><a href="wtccc1-a-gwas-on-coronary-artery-disease-cad.html#association-testing"><i class="fa fa-check"></i><b>9.3</b> Association testing<span></span></a></li>
+<li class="chapter" data-level="9.4" data-path="wtccc1-a-gwas-on-coronary-artery-disease-cad.html"><a href="wtccc1-a-gwas-on-coronary-artery-disease-cad.html#replication"><i class="fa fa-check"></i><b>9.4</b> Replication!<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="post-gwas-analyses.html"><a href="post-gwas-analyses.html"><i class="fa fa-check"></i><b>10</b> Post-GWAS Analyses<span></span></a>
 <ul>
-<li class="chapter" data-level="10.1" data-path="statistical-finemapping.html"><a href="statistical-finemapping.html#section-1-3"><i class="fa fa-check"></i><b>10.1</b> Section 1<span></span></a></li>
-<li class="chapter" data-level="10.2" data-path="statistical-finemapping.html"><a href="statistical-finemapping.html#section-2-3"><i class="fa fa-check"></i><b>10.2</b> Section 2<span></span></a></li>
-<li class="chapter" data-level="10.3" data-path="statistical-finemapping.html"><a href="statistical-finemapping.html#section-3-3"><i class="fa fa-check"></i><b>10.3</b> Section 3<span></span></a></li>
+<li class="chapter" data-level="10.1" data-path="post-gwas-analyses.html"><a href="post-gwas-analyses.html#replication-1"><i class="fa fa-check"></i><b>10.1</b> Replication!<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="functional-mapping-and-annotation-of-gwas.html"><a href="functional-mapping-and-annotation-of-gwas.html"><i class="fa fa-check"></i><b>11</b> Functional Mapping and Annotation of GWAS<span></span></a>
+<li class="chapter" data-level="11" data-path="conditional-analysis.html"><a href="conditional-analysis.html"><i class="fa fa-check"></i><b>11</b> Conditional analysis<span></span></a>
 <ul>
-<li class="chapter" data-level="11.1" data-path="functional-mapping-and-annotation-of-gwas.html"><a href="functional-mapping-and-annotation-of-gwas.html#section-1-4"><i class="fa fa-check"></i><b>11.1</b> Section 1<span></span></a></li>
-<li class="chapter" data-level="11.2" data-path="functional-mapping-and-annotation-of-gwas.html"><a href="functional-mapping-and-annotation-of-gwas.html#section-2-4"><i class="fa fa-check"></i><b>11.2</b> Section 2<span></span></a></li>
-<li class="chapter" data-level="11.3" data-path="functional-mapping-and-annotation-of-gwas.html"><a href="functional-mapping-and-annotation-of-gwas.html#section-3-4"><i class="fa fa-check"></i><b>11.3</b> Section 3<span></span></a></li>
+<li class="chapter" data-level="11.1" data-path="conditional-analysis.html"><a href="conditional-analysis.html#section-1"><i class="fa fa-check"></i><b>11.1</b> Section 1<span></span></a></li>
+<li class="chapter" data-level="11.2" data-path="conditional-analysis.html"><a href="conditional-analysis.html#section-2"><i class="fa fa-check"></i><b>11.2</b> Section 2<span></span></a></li>
+<li class="chapter" data-level="11.3" data-path="conditional-analysis.html"><a href="conditional-analysis.html#section-3"><i class="fa fa-check"></i><b>11.3</b> Section 3<span></span></a></li>
+<li class="chapter" data-level="11.4" data-path="conditional-analysis.html"><a href="conditional-analysis.html#replication-2"><i class="fa fa-check"></i><b>11.4</b> Replication!<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="12" data-path="phenome-wide-association-study-phewas.html"><a href="phenome-wide-association-study-phewas.html"><i class="fa fa-check"></i><b>12</b> Phenome-Wide Association Study (PheWAS)<span></span></a>
+<li class="chapter" data-level="12" data-path="statistical-finemapping.html"><a href="statistical-finemapping.html"><i class="fa fa-check"></i><b>12</b> Statistical finemapping<span></span></a>
 <ul>
-<li class="chapter" data-level="12.1" data-path="phenome-wide-association-study-phewas.html"><a href="phenome-wide-association-study-phewas.html#section-1-5"><i class="fa fa-check"></i><b>12.1</b> Section 1<span></span></a></li>
-<li class="chapter" data-level="12.2" data-path="phenome-wide-association-study-phewas.html"><a href="phenome-wide-association-study-phewas.html#section-2-5"><i class="fa fa-check"></i><b>12.2</b> Section 2<span></span></a></li>
-<li class="chapter" data-level="12.3" data-path="phenome-wide-association-study-phewas.html"><a href="phenome-wide-association-study-phewas.html#section-3-5"><i class="fa fa-check"></i><b>12.3</b> Section 3<span></span></a></li>
+<li class="chapter" data-level="12.1" data-path="statistical-finemapping.html"><a href="statistical-finemapping.html#section-1-1"><i class="fa fa-check"></i><b>12.1</b> Section 1<span></span></a></li>
+<li class="chapter" data-level="12.2" data-path="statistical-finemapping.html"><a href="statistical-finemapping.html#section-2-1"><i class="fa fa-check"></i><b>12.2</b> Section 2<span></span></a></li>
+<li class="chapter" data-level="12.3" data-path="statistical-finemapping.html"><a href="statistical-finemapping.html#section-3-1"><i class="fa fa-check"></i><b>12.3</b> Section 3<span></span></a></li>
+<li class="chapter" data-level="12.4" data-path="statistical-finemapping.html"><a href="statistical-finemapping.html#replication-3"><i class="fa fa-check"></i><b>12.4</b> Replication!<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="13" data-path="mendelian-randomization-mr.html"><a href="mendelian-randomization-mr.html"><i class="fa fa-check"></i><b>13</b> Mendelian Randomization (MR)<span></span></a>
+<li class="chapter" data-level="13" data-path="functional-mapping-and-annotation-of-gwas.html"><a href="functional-mapping-and-annotation-of-gwas.html"><i class="fa fa-check"></i><b>13</b> Functional Mapping and Annotation of GWAS<span></span></a>
 <ul>
-<li class="chapter" data-level="13.1" data-path="mendelian-randomization-mr.html"><a href="mendelian-randomization-mr.html#section-1-6"><i class="fa fa-check"></i><b>13.1</b> Section 1<span></span></a></li>
-<li class="chapter" data-level="13.2" data-path="mendelian-randomization-mr.html"><a href="mendelian-randomization-mr.html#section-2-6"><i class="fa fa-check"></i><b>13.2</b> Section 2<span></span></a></li>
-<li class="chapter" data-level="13.3" data-path="mendelian-randomization-mr.html"><a href="mendelian-randomization-mr.html#section-3-6"><i class="fa fa-check"></i><b>13.3</b> Section 3<span></span></a></li>
+<li class="chapter" data-level="13.1" data-path="functional-mapping-and-annotation-of-gwas.html"><a href="functional-mapping-and-annotation-of-gwas.html#assignment"><i class="fa fa-check"></i><b>13.1</b> Assignment<span></span></a></li>
+<li class="chapter" data-level="13.2" data-path="functional-mapping-and-annotation-of-gwas.html"><a href="functional-mapping-and-annotation-of-gwas.html#replication-4"><i class="fa fa-check"></i><b>13.2</b> Replication!<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="14" data-path="mendelian-randomization-mr-1.html"><a href="mendelian-randomization-mr-1.html"><i class="fa fa-check"></i><b>14</b> Mendelian Randomization (MR)<span></span></a>
+<li class="chapter" data-level="14" data-path="phenome-wide-association-study-phewas.html"><a href="phenome-wide-association-study-phewas.html"><i class="fa fa-check"></i><b>14</b> Phenome-Wide Association Study (PheWAS)<span></span></a>
 <ul>
-<li class="chapter" data-level="14.1" data-path="mendelian-randomization-mr-1.html"><a href="mendelian-randomization-mr-1.html#section-1-7"><i class="fa fa-check"></i><b>14.1</b> Section 1<span></span></a></li>
-<li class="chapter" data-level="14.2" data-path="mendelian-randomization-mr-1.html"><a href="mendelian-randomization-mr-1.html#section-2-7"><i class="fa fa-check"></i><b>14.2</b> Section 2<span></span></a></li>
-<li class="chapter" data-level="14.3" data-path="mendelian-randomization-mr-1.html"><a href="mendelian-randomization-mr-1.html#section-3-7"><i class="fa fa-check"></i><b>14.3</b> Section 3<span></span></a></li>
+<li class="chapter" data-level="14.1" data-path="phenome-wide-association-study-phewas.html"><a href="phenome-wide-association-study-phewas.html#section-1-2"><i class="fa fa-check"></i><b>14.1</b> Section 1<span></span></a></li>
+<li class="chapter" data-level="14.2" data-path="phenome-wide-association-study-phewas.html"><a href="phenome-wide-association-study-phewas.html#section-2-2"><i class="fa fa-check"></i><b>14.2</b> Section 2<span></span></a></li>
+<li class="chapter" data-level="14.3" data-path="phenome-wide-association-study-phewas.html"><a href="phenome-wide-association-study-phewas.html#section-3-2"><i class="fa fa-check"></i><b>14.3</b> Section 3<span></span></a></li>
+<li class="chapter" data-level="14.4" data-path="phenome-wide-association-study-phewas.html"><a href="phenome-wide-association-study-phewas.html#replication-5"><i class="fa fa-check"></i><b>14.4</b> Replication!<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="15" data-path="license-your-gitbook.html"><a href="license-your-gitbook.html"><i class="fa fa-check"></i><b>15</b> License your GitBook<span></span></a></li>
-<li class="chapter" data-level="16" data-path="license-your-gitbook-1.html"><a href="license-your-gitbook-1.html"><i class="fa fa-check"></i><b>16</b> License your GitBook<span></span></a></li>
+<li class="chapter" data-level="15" data-path="mendelian-randomization-mr.html"><a href="mendelian-randomization-mr.html"><i class="fa fa-check"></i><b>15</b> Mendelian Randomization (MR)<span></span></a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="mendelian-randomization-mr.html"><a href="mendelian-randomization-mr.html#section-1-3"><i class="fa fa-check"></i><b>15.1</b> Section 1<span></span></a></li>
+<li class="chapter" data-level="15.2" data-path="mendelian-randomization-mr.html"><a href="mendelian-randomization-mr.html#section-2-3"><i class="fa fa-check"></i><b>15.2</b> Section 2<span></span></a></li>
+<li class="chapter" data-level="15.3" data-path="mendelian-randomization-mr.html"><a href="mendelian-randomization-mr.html#section-3-3"><i class="fa fa-check"></i><b>15.3</b> Section 3<span></span></a></li>
+<li class="chapter" data-level="15.4" data-path="mendelian-randomization-mr.html"><a href="mendelian-randomization-mr.html#replication-6"><i class="fa fa-check"></i><b>15.4</b> Replication!<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="mendelian-randomization-mr-1.html"><a href="mendelian-randomization-mr-1.html"><i class="fa fa-check"></i><b>16</b> Mendelian Randomization (MR)<span></span></a>
+<ul>
+<li class="chapter" data-level="16.1" data-path="mendelian-randomization-mr-1.html"><a href="mendelian-randomization-mr-1.html#section-1-4"><i class="fa fa-check"></i><b>16.1</b> Section 1<span></span></a></li>
+<li class="chapter" data-level="16.2" data-path="mendelian-randomization-mr-1.html"><a href="mendelian-randomization-mr-1.html#section-2-4"><i class="fa fa-check"></i><b>16.2</b> Section 2<span></span></a></li>
+<li class="chapter" data-level="16.3" data-path="mendelian-randomization-mr-1.html"><a href="mendelian-randomization-mr-1.html#section-3-4"><i class="fa fa-check"></i><b>16.3</b> Section 3<span></span></a></li>
+<li class="chapter" data-level="16.4" data-path="mendelian-randomization-mr-1.html"><a href="mendelian-randomization-mr-1.html#replication-7"><i class="fa fa-check"></i><b>16.4</b> Replication!<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="license-your-gitbook.html"><a href="license-your-gitbook.html"><i class="fa fa-check"></i><b>17</b> License your GitBook<span></span></a></li>
+<li class="chapter" data-level="18" data-path="license-your-gitbook-1.html"><a href="license-your-gitbook-1.html"><i class="fa fa-check"></i><b>18</b> License your GitBook<span></span></a></li>
 <li><a href="references.html#references">References<span></span></a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -265,19 +282,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="phenome-wide-association-study-phewas" class="section level1 hasAnchor" number="12">
-<h1><span class="header-section-number">Chapter 12</span> Phenome-Wide Association Study (PheWAS)<a href="phenome-wide-association-study-phewas.html#phenome-wide-association-study-phewas" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<div id="section-1-5" class="section level2 hasAnchor" number="12.1">
-<h2><span class="header-section-number">12.1</span> Section 1<a href="phenome-wide-association-study-phewas.html#section-1-5" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="phenome-wide-association-study-phewas" class="section level1 hasAnchor" number="14">
+<h1><span class="header-section-number">Chapter 14</span> Phenome-Wide Association Study (PheWAS)<a href="phenome-wide-association-study-phewas.html#phenome-wide-association-study-phewas" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="section-1-2" class="section level2 hasAnchor" number="14.1">
+<h2><span class="header-section-number">14.1</span> Section 1<a href="phenome-wide-association-study-phewas.html#section-1-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 </div>
-<div id="section-2-5" class="section level2 hasAnchor" number="12.2">
-<h2><span class="header-section-number">12.2</span> Section 2<a href="phenome-wide-association-study-phewas.html#section-2-5" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="section-2-2" class="section level2 hasAnchor" number="14.2">
+<h2><span class="header-section-number">14.2</span> Section 2<a href="phenome-wide-association-study-phewas.html#section-2-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?</p>
 </div>
-<div id="section-3-5" class="section level2 hasAnchor" number="12.3">
-<h2><span class="header-section-number">12.3</span> Section 3<a href="phenome-wide-association-study-phewas.html#section-3-5" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="section-3-2" class="section level2 hasAnchor" number="14.3">
+<h2><span class="header-section-number">14.3</span> Section 3<a href="phenome-wide-association-study-phewas.html#section-3-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.</p>
+</div>
+<div id="replication-5" class="section level2 hasAnchor" number="14.4">
+<h2><span class="header-section-number">14.4</span> Replication!<a href="phenome-wide-association-study-phewas.html#replication-5" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>You reached an important milestone: you recreated the work by the whole WTCCC1 in just an afternoon. Wow. Back then there wasn’t much on analyses <em>after</em> a GWAS, nowadays there are many post-GWAS analyses methods. We will cover them in the next (Chapter @ref(mendelian_randomization)).</p>
 
 </div>
 </div>

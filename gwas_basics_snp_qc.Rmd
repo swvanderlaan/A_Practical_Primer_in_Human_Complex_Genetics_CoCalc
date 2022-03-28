@@ -1,5 +1,15 @@
 # Per-SNP QC
 
+```{r gwas_basics_snp_qc, message = FALSE, warning = FALSE, echo = FALSE, eval = TRUE}
+COURSE_loc = "~/Desktop/practical"
+# COURSE_loc = "/Users/swvanderlaan/git/swvanderlaan/A_primer_in_Human_Cardiovascular_Genetics"
+
+source(paste0(COURSE_loc, "/scripts/functions.R"))
+source(paste0(COURSE_loc, "/scripts/colors.R"))
+source(paste0(COURSE_loc, "/scripts/packages.R"))
+
+```
+
 Now that we removed samples, we can focus on low-quality variants.
 
 
@@ -122,4 +132,8 @@ We are ready to perform the final QC. After inspectig the graphs we will filter 
 ```
 plink --bfile rawdata/clean_inds_data --exclude rawdata/fail-diffmiss-qc.txt --maf 0.01 --geno 0.05 --hwe 0.00001 --make-bed --out rawdata/cleandata
 ```
+
+## A Milestone
+
+Congratulations. You reached a very important milestone. Now that you filtered samples and SNPs, we can finally start the association analyses in (Chapter \@ref(gwas_basics_association_testing)). 
 
