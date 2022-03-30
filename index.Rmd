@@ -1,21 +1,27 @@
 --- 
-title: "A primer in Human Cardiovascular Genetics"
+title: "A Practical Primer in Human Complex Genetics"
+subtitle: "with a use-case in cardiovascular disease"
 author: "[dr. Sander W. van der Laan](https://swvanderlaan.github.iio) [![](img/twitter_circle_blue.png){width=2.5%}](https://www.twitter.com/swvanderlaan) [![](img/email_circle_blue.png){width=2.5%}](mailto:s.w.vanderlaan@gmail.com)"
-date: "Version 1.0.0 | last update: `r Sys.Date()`"
-description: This is a primer in Human Cardiovascular Genetics. The output format for this example
-  is bookdown::gitbook.
+date: "Version 1.0.0beta | last update: `r Sys.Date()`"
+description: This is a practical primer in human complex genetics with a use-case in cardiovascular disease. The output format for this primer is bookdown::gitbook.
 documentclass: book
-github-repo: swvanderlaan/A_primer_in_Human_Cardiovascular_Genetics
+github-repo: swvanderlaan/A_Practical_Primer_in_Human_Complex_Genetics
 link-citations: yes
 bibliography:
 - book.bib
 - packages.bib
 site: bookdown::bookdown_site
 biblio-style: apalike
-output: html_document
+output:
+  html_document: 
+    number_sections: yes
+    toc: yes
+    theme: paper
+    fig_caption: yes
+  pdf_document:
+    number_sections: true
+always_allow_html: true
 ---
-
-<!--"Using GitBooks to create Open course materials"-->
 
 # About this primer
 
@@ -68,9 +74,15 @@ Jessica van Setten</br>
 _Assistant professor_</br>
 <j.vansetten@umcutrecht.nl> \| [j_vansetten](http://www.twitter.com/j_vansetten){target="_blank"}
 
-<!-- ![](img/_team/arjan_boltjes.jpg){width=15%} Arjan Boltjes </br>_Postdoctoral researcher_</br><a.boltjes@umcutrecht.nl> | [arjanboltjes](http://www.twitter.com/arjanboltjes){target="_blank"} -->
+![](img/marion_van_vugt.jpg){width=15%}</br>
+Marion van Vugt</br>
+_PhD student_</br>
+<M.vanVugt-2@umcutrecht.nl> \| [MarionVugt](http://www.twitter.com/MarionVugt){target="_blank"}
 
-<!-- ![](img/_team/joanna_bon_berg.jpg){width=15%} Joanna von Berg </br>_PhD student_</br><j.vonberg-24@umcutrecht.nl> | [JoannavonBerg](http://www.twitter.com/JoannavonBerg){target="_blank"} -->
+![](img/kristel_van_eijk.jpg){width=15%}</br>
+Kristel van Eijk</br>
+_Bioinformatician_</br>
+<K.vanEijk-2@umcutrecht.nl>
 
 
 ## Final thoughts

@@ -1,4 +1,4 @@
-# Genome-wide association study
+# Genome-Wide Association Study {#gwas-testing}
 
 ```{r gwas_basics_association_testing, message = FALSE, warning = FALSE, echo = FALSE, eval = TRUE}
 COURSE_loc = "~/Desktop/practical"
@@ -11,7 +11,7 @@ source(paste0(COURSE_loc, "/scripts/packages.R"))
 ```
 
 
-Now that you have learned how to perform QC, you can easily run a GWAS and execute some downstream visualisation and analyses. Let's do this with a dummy dataset.
+Now that you have learned how to perform QC, you can easily run a GWAS and execute some downstream visualization and analyses. Let's do this with a dummy dataset.
 
 ## Exploring the data
 
@@ -25,14 +25,17 @@ plink --bfile gwas/gwa --missing --out gwas/gwa
 plink --bfile gwas/gwa --hardy --out gwas/gwa
 ```
 
-Let's visualise the results.
+Let's visualize the results.
 
-```{r }
+```{r load-data-gwas}
 gwas_HWE <- data.table::fread(paste0(COURSE_loc, "/gwas/gwa.hwe"))
 gwas_FRQ <- data.table::fread(paste0(COURSE_loc, "/gwas/gwa.frq"))
 gwas_IMISS <- data.table::fread(paste0(COURSE_loc, "/gwas/gwa.imiss"))
 gwas_LMISS <- data.table::fread(paste0(COURSE_loc, "/gwas/gwa.lmiss"))
+```
 
+
+```{r show-hwe-gwas, message=FALSE, warning=FALSE}
 gwas_HWE$logP <- -log10(gwas_HWE$P)
 
 ggpubr::gghistogram(gwas_HWE, x = "logP",
@@ -47,7 +50,10 @@ ggpubr::gghistogram(gwas_HWE, x = "logP",
                     xlab = "HWE -log10(P)") +
   geom_vline(xintercept = 5, linetype = "dashed",
                 color = "#E55738", size = 1)
+```
 
+
+```{r show-freq-gwas, message=FALSE, warning=FALSE}
 ggpubr::gghistogram(gwas_FRQ, x = "MAF",
                     add = "mean", add.params = list(color = "#595A5C", linetype = "dashed", size = 1),
                     rug = TRUE,
@@ -55,7 +61,10 @@ ggpubr::gghistogram(gwas_FRQ, x = "MAF",
                     xlab = "minor allele frequency") +
   geom_vline(xintercept = 0.05, linetype = "dashed",
                 color = "#E55738", size = 1)
+```
 
+
+```{r show-sample-callrate-gwas, message=FALSE, warning=FALSE}
 gwas_IMISS$callrate <- 1 - gwas_IMISS$F_MISS
 
 ggpubr::gghistogram(gwas_IMISS, x = "callrate",
@@ -65,7 +74,10 @@ ggpubr::gghistogram(gwas_IMISS, x = "callrate",
                     xlab = "per sample call rate") +
   geom_vline(xintercept = 0.95, linetype = "dashed",
                 color = "#E55738", size = 1)
+```
 
+
+```{r show-snp-callrate-gwas, message=FALSE, warning=FALSE}
 gwas_LMISS$callrate <- 1 - gwas_LMISS$F_MISS
 
 ggpubr::gghistogram(gwas_LMISS, x = "callrate",
@@ -95,7 +107,7 @@ plink --bfile gwas/gwa --model --cell 3 --out gwas/data
 
 Let's review the contents of the results.
 
-```{r }
+```{r load-gwas-model}
 gwas_model <- data.table::fread(paste0(COURSE_loc, "/gwas/data.model"))
 
 dim(gwas_model)
@@ -133,7 +145,7 @@ plink --bfile gwas/gwa --logistic sex --covar gwas/gwa.covar --out gwas/data
 ```
 
 Let's examine the results
-```{r }
+```{r load-gwas-assoc}
 gwas_assoc <- data.table::fread(paste0(COURSE_loc, "/gwas/data.assoc.logistic"))
 
 dim(gwas_assoc)
@@ -163,4 +175,4 @@ We need to calculate the standard error and confidence interval from the z-stati
 
 ## Let's get visual
 
-Looking at numbers is important, but it won't give you a perfect overview. We should turn to visualizing our results in Chapter \@ref(gwas_basics_results_visualization).
+Looking at numbers is important, but it won't give you a perfect overview. We should turn to visualizing our results in Chapter \@ref(gwas-visuals).

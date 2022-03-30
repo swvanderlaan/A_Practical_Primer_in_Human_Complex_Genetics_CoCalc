@@ -1,4 +1,4 @@
-# WTCCC1: a GWAS on coronary artery disease (CAD)
+# WTCCC1: a GWAS on coronary artery disease (CAD) {#wtccc1}
 
 ```{r wtccc1, message = FALSE, warning = FALSE, echo = FALSE, eval = TRUE}
 COURSE_loc = "~/Desktop/practical"
@@ -100,13 +100,17 @@ plink --bfile wtccc1/wtccc1 --exclude wtccc1/wtccc1-fail-diffmiss-qc.txt --maf 0
 
 If these individuals are all from the United Kingdom, we are certain there will be admixture from other populations given UK's history. Let's project the WTCCC1 data on 1000G phase 1 populations.
 
+We will face the same issue as before with our dummy dataset with respect to `EIGENSOFT`. So I created the data for you to skip to the [Plotting PCA] section immediately. Regardless, in the [Preparing PCA] and [Running PCA] sections I show you how to get there.
 
-### Extreme cleaning
+
+### Preparing PCA
+
+**Filtering WTCCC1**
 
 For PCA we need to perform extreme clean.
 
 ```
-plink --bfile wtccc1/wtccc1_clean --maf 0.1 --geno 0.1 --indep-pairwise 100 50 0.2 --exclude rawdata/exclude_problematic_range.txt --make-bed --out wtccc1/wtccc1_temp
+plink --bfile wtccc1/wtccc1_clean --maf 0.1 --geno 0.1 --indep-pairwise 100 50 0.2 --exclude support/exclude_problematic_range.txt --make-bed --out wtccc1/wtccc1_temp
 
 plink --bfile wtccc1/wtccc1_temp --exclude wtccc1/wtccc1_temp.prune.out --make-bed --out wtccc1/wtccc1_extrclean
 
@@ -115,20 +119,55 @@ rm -v wtccc1/wtccc1_temp*
 cat wtccc1/wtccc1_extrclean.bim | awk '{ print $2 }' > wtccc1/wtccc1_extrclean.variants.txt
 
 cat wtccc1/wtccc1.bim | grep "rs" > wtccc1/all.variants.txt
-
-plink --bfile reference/1kg_phase1_all/1kg_phase1_all --extract wtccc1/all.variants.txt --make-bed --out reference/1kg_phase1_all/1kg_phase1_wtccc1
-
-cat reference/1kg_phase1_all/1kg_phase1_wtccc1.bim | \
-awk '($5 == "A" && $6 == "T") || ($5 == "T" && $6 == "A") || ($5 == "C" && $6 == "G") || ($5 == "G" && $6 == "C")' | awk '{ print $2, $1, $4, $3, $5, $6 }' \
-> reference/1kg_phase1_all/all.1kg_wtccc1.atcg.variants.txt
-
-
-plink --bfile reference/1kg_phase1_all/1kg_phase1_wtccc1 --exclude reference/1kg_phase1_all/all.1kg_wtccc1.atcg.variants.txt --make-bed --out reference/1kg_phase1_all/1kg_phase1_wtccc1_no_atcg
-
-plink --bfile reference/1kg_phase1_all/1kg_phase1_wtccc1_no_atcg --extract wtccc1/wtccc1_extrclean.variants.txt --make-bed --out reference/1kg_phase1_all/1kg_phase1_raw_no_atcg_wtccc1
-
-plink --bfile wtccc1/wtccc1_extrclean --bmerge reference/1kg_phase1_all/1kg_phase1_raw_no_atcg_wtccc1 --maf 0.1 --geno 0.1 --exclude rawdata/exclude_problematic_range.txt --make-bed --out wtccc1/wtccc1_extrclean_1kg
 ```
+
+**Download 1000G phase 1**
+
+Next, we are going to have to download the 1000G phase 1 data. If you haven't done that already, here's the how.
+
+
+We start by creating the necessary folder to save the data to.
+
+```
+mkdir -v ~/Desktop/practical/ref_1kg_phase1_all
+```
+
+Next, we'll download the reference. 
+
+```
+wget "https://www.dropbox.com/sh/kumfwm7drt2flhp/AAB5n0OcUvJixI9pNiymx6-La?dl=0" -P ~/Desktop/practical/ref_1kg_phase1_all
+
+```
+
+**Merging WTCCC1 with 1000G phase 1**
+
+Now we are ready to extract the WTCCC1 variants from the 1000G phase 1 reference
+
+```
+plink --bfile ref_1kg_phase1_all/1kg_phase1_all/1kg_phase1_all --extract wtccc1/all.variants.txt --make-bed --out ref_1kg_phase1_all/1kg_phase1_all/1kg_phase1_wtccc1
+```
+
+Extracting the A/T and C/G SNPs as well. 
+
+```
+cat ref_1kg_phase1_all/1kg_phase1_all/1kg_phase1_wtccc1.bim | \
+awk '($5 == "A" && $6 == "T") || ($5 == "T" && $6 == "A") || ($5 == "C" && $6 == "G") || ($5 == "G" && $6 == "C")' | awk '{ print $2, $1, $4, $3, $5, $6 }' \
+> ref_1kg_phase1_all/1kg_phase1_all/all.1kg_wtccc1.atcg.variants.txt
+```
+
+```
+plink --bfile ref_1kg_phase1_all/1kg_phase1_all/1kg_phase1_wtccc1 --exclude ref_1kg_phase1_all/1kg_phase1_all/all.1kg_wtccc1.atcg.variants.txt --make-bed --out ref_1kg_phase1_all/1kg_phase1_all/1kg_phase1_wtccc1_no_atcg
+
+plink --bfile ref_1kg_phase1_all/1kg_phase1_all/1kg_phase1_wtccc1_no_atcg --extract wtccc1/wtccc1_extrclean.variants.txt --make-bed --out ref_1kg_phase1_all/1kg_phase1_all/1kg_phase1_raw_no_atcg_wtccc1
+```
+
+Finally we will merge the datasets. 
+
+```
+plink --bfile wtccc1/wtccc1_extrclean --bmerge ref_1kg_phase1_all/1kg_phase1_all/1kg_phase1_raw_no_atcg_wtccc1 --maf 0.1 --geno 0.1 --exclude support/exclude_problematic_range.txt --make-bed --out wtccc1/wtccc1_extrclean_1kg
+```
+
+### Running PCA
 
 ```
 cp -v wtccc1/wtccc1_extrclean_1kg.bim wtccc1/wtccc1_extrclean_1kg.pedsnp
@@ -150,35 +189,23 @@ perl ~/git/EIG/bin/smartpca.perl \
 -m 5 \
 -t 10 \
 -s 6.0 \
--w reference/1kg_phase1_all/1kg-pca-populations.txt
+-w ref_1kg_phase1_all/1kg_phase1_all/1kg-pca-populations.txt
 ```
 
-<!-- I get an error when I run this. No clue why - but it's a segmentation fault.  -->
+### Plotting PCA
 
-<!-- perl /Users/swvanderlaan/git/EIG/bin/smartpca.perl \ -->
-<!-- > -i wtccc1/wtccc1_extrclean_1kg.bed \ -->
-<!-- > -a wtccc1/wtccc1_extrclean_1kg.pedsnp \ -->
-<!-- > -b wtccc1/wtccc1_extrclean_1kg.pedind \ -->
-<!-- > -k 10 \ -->
-<!-- > -o wtccc1/wtccc1_extrclean_1kg.pca \ -->
-<!-- > -p wtccc1/wtccc1_extrclean_1kg.plot \ -->
-<!-- > -e wtccc1/wtccc1_extrclean_1kg.eval \ -->
-<!-- > -l wtccc1/wtccc1_extrclean_1kg.log \ -->
-<!-- > -m 5 \ -->
-<!-- > -t 10 \ -->
-<!-- > -s 6.0 \ -->
-<!-- > -w reference/1kg_phase1_all/1kg-pca-populations.txt -->
-<!-- smartpca -p wtccc1/wtccc1_extrclean_1kg.pca.par >wtccc1/wtccc1_extrclean_1kg.log -->
-<!-- sh: line 1: 57065 Segmentation fault: 11  smartpca -p wtccc1/wtccc1_extrclean_1kg.pca.par > wtccc1/wtccc1_extrclean_1kg.log -->
-<!-- ploteig -i wtccc1/wtccc1_extrclean_1kg.pca.evec -c 1:2  -p   -x  -y  -o wtccc1/wtccc1_extrclean_1kg.plot.xtxt -->
-<!-- evec2pca.perl 10 wtccc1/wtccc1_extrclean_1kg.pca.evec wtccc1/wtccc1_extrclean_1kg.pedind wtccc1/wtccc1_extrclean_1kg.pca -->
+If all is peachy, you were able to run the PCA for the WTCCC1 data against 1000G phase 1. Using `smartpca` (you know, `EIGENSOFT`) we have calculated principal components (PCs) and we can now start plotting them. Let's create a scatter diagram of the first two principal components, including all individuals in the file `wtccc1_extrclean_1kg.pca.evec` (the first and second principal components are columns 2 and 3, respectively). Use the data in column 4 to color the points according to sample origin. 
 
+> Please note! You may have been able to make `EIGENSOFT` to work. So you may have to change "/ref_pca/wtccc1_extrclean_1kg.pca.evec" to "/wtccc1/wtccc1_extrclean_1kg.pca.evec" in the command below. 
 
 And we should visualize the PCA results: are these individuals really all from European (UK) ancestry? 
 
-```{r PlotPCA_WTCCC1_1kG}
+```{r Load-PCA_WTCCC1_1kG}
+PCA_WTCCC1_1kG <- data.table::fread(paste0(COURSE_loc,"/ref_pca/wtccc1_extrclean_1kg.pca.evec"), header = FALSE, skip = 1)
+```
 
-PCA_WTCCC1_1kG <- data.table::fread(paste0(COURSE_loc,"/wtccc1/wtccc1_extrclean_1kg.pca.evec"), header = FALSE, skip = 1)
+
+```{r Prep-PCA_WTCCC1_1kG}
 # Population	Description	Super population	Code	Counts
 # ASW	African Ancestry in Southwest US	                          AFR	4	  #49A01D
 # CEU	Utah residents with Northern and Western European ancestry	EUR	7	  #E55738
@@ -317,10 +344,6 @@ wtccc1_assoc_complsub <- subset(wtccc1_assoc_compl, select = c("SNP", "CHR", "BP
 
 
 ```{r WTCCC1ResultsManhattan}
-# CMplot(wtccc1_assoc_complsub,
-#        plot.type = "d",
-#        bin.size = 1e6, col = c("darkgreen", "yellow", "red"),
-#        file = "jpg", memo = "", dpi = 300, file.output = FALSE, verbose = TRUE)
 
 CMplot(wtccc1_assoc_complsub,
        plot.type = "b", LOG10 = TRUE, ylim = NULL,
@@ -334,4 +357,10 @@ CMplot(wtccc1_assoc_complsub,
 
 ## Replication! 
 
-You reached an important milestone. You recreated the work by the whole WTCCC1-team that took them years in just one afternoon. Wow. Back then there wasn't much on analyses _after_ a GWAS, nowadays there are many post-GWAS analyses methods. We will cover them in the next Chapter \@ref(post_gwas).
+You reached an important milestone. 
+
+**You recreated the work by the whole WTCCC1-team that took them years in just one afternoon.** 
+
+Wow. Take a pause. And realize what you've done. 
+
+Back then there wasn't much on analyses _after_ a GWAS, nowadays there are many post-GWAS analyses methods. We will cover them in the next Chapter \@ref(post-gwas).

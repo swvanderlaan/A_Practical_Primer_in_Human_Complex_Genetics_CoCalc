@@ -1,0 +1,13 @@
+# Things to do {#todo}
+
+I provide a list of things to do, to improve, to alter, to edit or to add. Crazy ideas. Useful tips, tricks, or links. 
+
+Obviously this list is not exhaustive nor intended for practical use for anyone else but me.
+
+## Useful links
+
+https://bookdown.org/yihui/rmarkdown-cookbook/unnumbered-sections.html
+
+https://bookdown.org/yihui/bookdown/cross-references.html
+
+https://pandoc.org/MANUAL.html#extension-header_attributes

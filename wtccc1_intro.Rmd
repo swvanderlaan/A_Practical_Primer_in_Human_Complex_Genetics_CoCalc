@@ -1,4 +1,4 @@
-# The Welcome Trust Case-Control Consortium (WTCCC)
+# The Welcome Trust Case-Control Consortium {#wtccc1-intro}
 
 Now that you know your way around `PLINK`, `bash` and `r` and have done some basic quality control and association testing, you are ready for the real thing. We have prepared a real dataset: the first release of the [*Welcome Trust Case-Control Consortium (WTCCC)*](https://www.wtccc.org.uk/ccc1/overview.html){target="_blank"} on coronary artery disease (CAD) and a control dataset used for that project. 
 

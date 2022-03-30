@@ -1,0 +1,35 @@
+# Regional association plots {#add_chapter_regional_plot}
+
+We can further visualize regions of interest using a package like [LocusZoom](http://locuszoom.org). But first we need to find the independent hits by _clumping_ the results. We will just use the defaults, but please take a note of all the options here [https://www.cog-genomics.org/plink/1.9/postproc#clump](https://www.cog-genomics.org/plink/1.9/postproc#clump){target="_blank"}
+
+```
+plink --bfile gwas/gwa --clump gwas/data.assoc.logistic --clump-p1 5e-8 --clump-p2 0.05 --clump-kb 500 --clump-r2 0.05 --clump-verbose --out gwas/data.assoc.logistic
+```
+Now you will have a list of all the _independent_ SNPs, _i.e._ the genetic loci, that are associated to the trait.
+
+```
+cat gwas/data.assoc.logistic.clumped
+```
+
+```{bash CLUMPS}
+ROOTDIR="/Users/swvanderlaan/Desktop/practical" # change this to your root
+cat $ROOTDIR/gwas/data.assoc.logistic.clumped
+```
+
+Clumping identifies three loci and now that you know them, you can visualize them using LocusZoom. First, let's get what we need (`SNP` and `P`) and gzip the results.
+
+```
+echo "SNP P" > gwas/data.assoc.logistic.locuszoom
+cat gwas/data.assoc.logistic | awk '$5=="ADD"' | awk '{ print $2, $9 }' >> gwas/data.assoc.logistic.locuszoom
+gzip -v gwas/data.assoc.logistic.locuszoom
+```
+
+Now you are ready to upload this `data.assoc.logistic.locuszoom.gz` file  to the site: http://locuszoom.org. Try to visualize each locus using the information above and by following the instructions. Choose HapMap 2, hg18, CEU as the LD-reference.
+
+You should get something like below.
+
+![](./img/_gwas/CEU.rs6802898.400kb.png){width=50%}
+
+![](./img/_gwas/CEU.rs7901695.400kb.png){width=50%}
+
+![](./img/_gwas/CEU.rs8050136.400kb.png){width=50%}

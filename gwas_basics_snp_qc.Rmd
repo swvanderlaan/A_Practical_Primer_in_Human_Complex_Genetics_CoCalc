@@ -1,4 +1,4 @@
-# Per-SNP QC
+# Per-SNP QC {#gwas-basics-snp-qc}
 ![](img/gwas_snp_qc.png){width=70%}
 ```{r gwas_basics_snp_qc, message = FALSE, warning = FALSE, echo = FALSE, eval = TRUE}
 COURSE_loc = "~/Desktop/practical"
@@ -23,11 +23,14 @@ plink --bfile rawdata/clean_inds_data --missing --out rawdata/clean_inds_data
 
 Let's visualize the results to identify a threshold for extreme genotype failure rate. We chose a callrate threshold of 3%, but it's arbitrary and depending on the dataset and the number of samples.
 
-```{r }
+```{r load-snp-callrate}
 clean_LMISS <- data.table::fread(paste0(COURSE_loc, "/rawdata/clean_inds_data.lmiss"))
 
 clean_LMISS$callrate <- 1 - clean_LMISS$F_MISS
+```
 
+
+```{r show-snp-callrate, message=FALSE, warning=FALSE}
 ggpubr::gghistogram(clean_LMISS, x = "callrate",
                     add = "mean", add.params = list(color = "#595A5C", linetype = "dashed", size = 1),
                     rug = TRUE, bins = 50,
@@ -64,8 +67,12 @@ plink --bfile rawdata/clean_inds_data --freq --out rawdata/clean_inds_data
 
 Let's also plot these data. You can view the result below, and type over the code to do it yourself.
 
-```{r }
+```{r load-freq}
 clean_FREQ <- data.table::fread(paste0(COURSE_loc, "/rawdata/clean_inds_data.frq"))
+```
+
+
+```{r show-freq, message=FALSE, warning=FALSE}
 ggpubr::gghistogram(clean_FREQ, x = "MAF",
                     add = "mean", add.params = list(color = "#595A5C", linetype = "dashed", size = 1),
                     rug = TRUE,
@@ -74,6 +81,7 @@ ggpubr::gghistogram(clean_FREQ, x = "MAF",
   geom_vline(xintercept = 0.05, linetype = "dashed",
                 color = "#E55738", size = 1)
 ```
+
 ### A note on allele coding
 
 Oh, one more thing about alleles. 
@@ -92,7 +100,7 @@ B = the 'coded' allele
 
 When you use `SNPTEST` it will report the allele frequency as `CAF`, in other words the _coded allele frequency_, and the effect size (beta) is always relative to the B-allele. This means, `CAF` _could_ be the `MAF`, or _minor allele frequency_, but this is **not** a given.
 
-In other words, always make sure what the allele-coding of a given program, be it `PLINK`, `SNPTEST`, `GCTA`, et cetera, is! I cannot stress this enough. Ask yourself: 'what is the allele frequency refering to?', 'the effect size is relative to...?'.
+In other words, always make sure what the allele-coding of a given program, be it `PLINK`, `SNPTEST`, `GCTA`, et cetera, is! I cannot stress this enough. Ask yourself: 'what is the allele frequency referring to?', 'the effect size is relative to...?'.
 
 Right, let's continue.
 
@@ -106,10 +114,13 @@ plink --bfile rawdata/clean_inds_data --hardy --out rawdata/clean_inds_data
 
 Let's also plot these data. You can view the result below, and type over the code to do it yourself.
 
-```{r }
+```{r load-hwe}
 clean_HWE <- data.table::fread(paste0(COURSE_loc, "/rawdata/clean_inds_data.hwe"))
 clean_HWE$logP <- -log10(clean_HWE$P)
+```
 
+
+```{r show-hwe, message=FALSE, warning=FALSE}
 ggpubr::gghistogram(clean_HWE, x = "logP",
                     add = "mean",
                     add.params = list(color = "#595A5C", linetype = "dashed", size = 1),
@@ -135,4 +146,4 @@ plink --bfile rawdata/clean_inds_data --exclude rawdata/fail-diffmiss-qc.txt --m
 
 ## A Milestone
 
-Congratulations. You reached a very important milestone. Now that you filtered samples and SNPs, we can finally start the association analyses in Chapter \@ref(gwas_basics_association_testing).
+Congratulations. You reached a very important milestone. Now that you filtered samples and SNPs, we can finally start the association analyses in Chapter \@ref(gwas-testing).

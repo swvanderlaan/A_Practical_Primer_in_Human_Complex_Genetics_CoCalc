@@ -1,4 +1,4 @@
-# GWAS visualisation
+# GWAS visualisation {#gwas-visuals}
 
 ```{r gwas_basics_results_visualization, message = FALSE, warning = FALSE, echo = FALSE, eval = TRUE}
 COURSE_loc = "~/Desktop/practical"
@@ -17,7 +17,7 @@ We should create _quantile-quantile (QQ) plots_ to compare the observed associat
 
 First, we will add the standard error, call rate, A2, and allele frequencies.
 
-```{r }
+```{r prep-qq}
 gwas_assoc_sub <- subset(gwas_assoc, TEST == "ADD")
 gwas_assoc_sub$TEST <- NULL
 
@@ -50,14 +50,14 @@ head(gwas_assoc_compl)
 
 ```
 
-Let's list the number of SNPs per chromosome.
-```{r }
+Let's list the number of SNPs per chromosome. This gives a pretty good idea about the per-chromosome coverage. And it's a sanity check: did the whole analysis run properly (we expect 22 chromosomes)?.
+```{r list-chr-qq}
 # Number of SNPs per chromosome
 knitr::kable(table(gwas_assoc_compl$CHR))
 ```
 
 
-```{r }
+```{r show-qq, message=FALSE, warning=FALSE}
 gwas_threshold = -log10(5e-8)
 
 qq(gwas_assoc_compl$P, main = "QQ plot of GWAS",
@@ -75,34 +75,24 @@ abline(h = gwas_threshold,
 We also need to create a _Manhattan plot_ to display the association test P-values as a function of chromosomal location and thus provide a visual summary of association test results that draw immediate attention to any regions of significance.
 
 
-```{r }
+```{r show-manhattan, message=FALSE, warning=FALSE}
 manhattan(gwas_assoc_compl, main = "Manhattan Plot",
           ylim = c(0, 12),
           cex = 0.6, cex.axis = 0.9,
           col = c("#1290D9", "#49A01D"))
 
-gwas_assoc_complsub <- subset(gwas_assoc_compl, select = c("SNP", "CHR", "BP", "P"))
 ```
 
 ## Other plots
 
 It is also informative to plot the density per chromosome. We can use the `CMplot` for that which you can find [here](https://github.com/YinLiLin/R-CMplot){target="_blank"}. For now we just make these graphs 'quick-n-dirty', you can further prettify them, but you easily loose track of time, so maybe carry on.
 
+```{r prep-cmplot, message=FALSE, warning=FALSE}
+gwas_assoc_complsub <- subset(gwas_assoc_compl, select = c("SNP", "CHR", "BP", "P"))
+```
 
-```{r }
-CMplot(gwas_assoc_complsub,
-       plot.type = "d",
-       bin.size = 1e6, col = c("darkgreen", "yellow", "red"),
-       file = "jpg", memo = "", dpi = 300, file.output = FALSE, verbose = TRUE)
 
-CMplot(gwas_assoc_complsub,
-       plot.type = "m", LOG10 = TRUE, ylim = NULL,
-       threshold = c(1e-6,1e-4), threshold.lty = c(1,2), threshold.lwd = c(1,1), threshold.col = c("black", "grey"),
-       amplify = TRUE,
-       bin.size = 1e6, chr.den.col = c("darkgreen", "yellow", "red"),
-       signal.col = c("red", "green"), signal.cex = c(1,1), signal.pch = c(19,19),
-       file = "jpg", memo = "", dpi = 300, file.output = FALSE, verbose = TRUE)
-
+```{r show-cmplot-all, message=FALSE, warning=FALSE}
 CMplot(gwas_assoc_complsub,
        plot.type = "b", LOG10 = TRUE, ylim = NULL,
        threshold = c(1e-6,1e-4), threshold.lty = c(1,2), threshold.lwd = c(1,1), threshold.col = c("black", "grey"),
@@ -111,7 +101,7 @@ CMplot(gwas_assoc_complsub,
        signal.col = c("red", "green"), signal.cex = c(1,1), signal.pch = c(19,19),
        file = "jpg", memo = "", dpi = 300, file.output = FALSE, verbose = TRUE)
 ```
-
+> What is so special about those grey spots on the density plot?
 
 ## Interactive plots
 
@@ -186,44 +176,7 @@ It will produce something like this.
 Again, this is an example with dummy data - you can try to do it for our GWAS, but careful with the time. You can also choose to carry on.
 
 
-## Regional association plots
-
-We can further visualise regions of interest using a package like [LocusZoom](http://locuszoom.org). But first we need to find the independent hits by _clumping_ the results. We will just use the defaults, but please take a note of all the options here [https://www.cog-genomics.org/plink/1.9/postproc#clump](https://www.cog-genomics.org/plink/1.9/postproc#clump){target="_blank"}
-
-```
-plink --bfile gwas/gwa --clump gwas/data.assoc.logistic --clump-p1 5e-8 --clump-p2 0.05 --clump-kb 500 --clump-r2 0.05 --clump-verbose --out gwas/data.assoc.logistic
-```
-Now you will have a list of all the _independent_ SNPs, _i.e._ the genetic loci, that are associated to the trait.
-
-```
-cat gwas/data.assoc.logistic.clumped
-```
-
-```{bash CLUMPS}
-ROOTDIR="/Users/swvanderlaan/Desktop/practical" # change this to your root
-cat $ROOTDIR/gwas/data.assoc.logistic.clumped
-```
-
-Clumping identifies three loci and now that you know them, you can visualize them using LocusZoom. First, let's get what we need (`SNP` and `P`) and gzip the results.
-
-```
-echo "SNP P" > gwas/data.assoc.logistic.locuszoom
-cat gwas/data.assoc.logistic | awk '$5=="ADD"' | awk '{ print $2, $9 }' >> gwas/data.assoc.logistic.locuszoom
-gzip -v gwas/data.assoc.logistic.locuszoom
-```
-
-Now you are ready to upload this `data.assoc.logistic.locuszoom.gz` file  to the site: http://locuszoom.org. Try to visualize each locus using the information above and by following the instructions. Choose HapMap 2, hg18, CEU as the LD-reference.
-
-You should get something like below.
-
-![](./img/_gwas/CEU.rs6802898.400kb.png){width=50%}
-
-![](./img/_gwas/CEU.rs7901695.400kb.png){width=50%}
-
-![](./img/_gwas/CEU.rs8050136.400kb.png){width=50%}
-
-
-You will encounter the above three types of visualizations in any high-quality GWAS paper, because each is so critically informative. Usually, analysts of large-scale meta-analyses of GWAS will also stratify the QQ-plots based on the imputation quality (if your GWAS was imputed), call rate, and allele frequency.
+You will encounter the above types of visualizations in any high-quality GWAS paper, because each is so critically informative. Usually, analysts of large-scale meta-analyses of GWAS will also stratify the QQ-plots based on the imputation quality (if your GWAS was imputed), call rate, and allele frequency (although that is rarely shared in publications, not even in supplemental material).
 
 
 ## Stop playing around
@@ -236,4 +189,4 @@ Alright. It's time to stop playing around and do a quick recap of what you've le
 4. You learned how to execute an association study given a dataset, covariates, and different assumptions regarding the genetic model.
 5. You learned how to visualize results and played around with different visuals. 
 
-You should be ready for the real stuff. And if not, the next chapter will help you get ready: Chapter \@ref(wtccc1_intro).
+You should be ready for the real stuff. And if not, the next chapter will help you get ready: Chapter \@ref(wtccc1-intro).

@@ -1,4 +1,4 @@
-# Phenome-Wide Association Study (PheWAS)
+# Phenome-Wide Association Study (PheWAS) {#phewas}
 
 ```{r phewas, message = FALSE, warning = FALSE, echo = FALSE, eval = TRUE}
 COURSE_loc = "~/Desktop/practical"
@@ -38,4 +38,4 @@ knitr::kable(
 
 ## What's next?
 
-You now know to what other traits, risk factors and diseases our trait of interest (coronary artery disease) is correlated. An obvious next question would be: is this a causal correlation? We will cover this aspect in the next Chapter \@ref(mendelian_randomization). 
+You now know to what other traits, risk factors and diseases our trait of interest (coronary artery disease) is correlated. An obvious next question would be: is this a causal correlation? We will cover this aspect in the next Chapter \@ref(mendelian_randomization) or to return to the previous chapter on post-GWAS analyses \@ref(post-gwas).

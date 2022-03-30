@@ -1,4 +1,4 @@
-book_filename: "A primer in Human Cardiovascular Genetics"
+book_filename: "A Practical Primer in Human Complex Genetics"
 rmd_files: ["index.Rmd",
             "prerequisites.Rmd",
             "gwas_basics.Rmd",
@@ -9,13 +9,17 @@ rmd_files: ["index.Rmd",
             "wtccc1_intro.Rmd",
             "wtccc1.Rmd",
             "post_gwas.Rmd",
-            "conditional_analysis.Rmd",
-            "finemapping.Rmd",
+            # "conditional_analysis.Rmd",
+            # "finemapping.Rmd",
             "fuma.Rmd",
             "phewas.Rmd",
-            "mendelian_randomization.Rmd",
-            "summary.Rmd",
+            "mendelian_randomization_mr_base.Rmd",
+            "mendelian_randomization_twosamplemr.Rmd",
+            # "summary.Rmd",
             "epilogue.Rmd",
+            "add_chapter_regional_plot.Rmd",
+            # "other_things.Rmd",
+            "todo.Rmd",
             "licenses.Rmd",
             "references.Rmd"]
 output_dir: "docs"
