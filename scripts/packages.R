@@ -13,6 +13,11 @@ install.packages.auto("tidyverse")
 install.packages.auto("dplyr")
 install.packages.auto("plotly")
 
+# better tables
+# https://davidgohel.github.io/flextable/
+# https://bookdown.org/yihui/rmarkdown-cookbook/table-other.html
+install.packages.auto("flextable")
+
 install.packages.auto("openxlsx")
 
 # cat("\n* GGplotting packages - for publication ready plotting...\n")

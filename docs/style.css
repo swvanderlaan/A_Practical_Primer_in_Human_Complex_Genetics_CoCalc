@@ -11,4 +11,5 @@ pre {
 }
 pre code {
   white-space: inherit;
+  white-space: pre-wrap;
 }
