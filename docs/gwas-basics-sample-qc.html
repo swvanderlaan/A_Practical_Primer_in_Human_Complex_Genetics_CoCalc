@@ -287,14 +287,10 @@ div.csl-indent {
 <li class="chapter" data-level="16.2" data-path="eigensoft.html"><a href="eigensoft.html#install-missing-packages"><i class="fa fa-check"></i><b>16.2</b> Install missing packages<span></span></a></li>
 <li class="chapter" data-level="16.3" data-path="eigensoft.html"><a href="eigensoft.html#installing-eigensoft"><i class="fa fa-check"></i><b>16.3</b> Installing EIGENSOFT<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="17" data-path="todo.html"><a href="todo.html"><i class="fa fa-check"></i><b>17</b> Things to do<span></span></a>
+<li class="chapter" data-level="17" data-path="license.html"><a href="license.html"><i class="fa fa-check"></i><b>17</b> Licenses and disclaimers<span></span></a>
 <ul>
-<li class="chapter" data-level="17.1" data-path="todo.html"><a href="todo.html#useful-links"><i class="fa fa-check"></i><b>17.1</b> Useful links<span></span></a></li>
-</ul></li>
-<li><a href="licenses-and-disclaimers.html#licenses-and-disclaimers">Licenses and disclaimers<span></span></a>
-<ul>
-<li class="chapter" data-level="17.2" data-path="licenses-and-disclaimers.html"><a href="licenses-and-disclaimers.html"><i class="fa fa-check"></i><b>17.2</b> Copyright<span></span></a></li>
-<li class="chapter" data-level="17.3" data-path="licenses-and-disclaimers.html"><a href="licenses-and-disclaimers.html#disclaimer"><i class="fa fa-check"></i><b>17.3</b> Disclaimer<span></span></a></li>
+<li class="chapter" data-level="17.1" data-path="license.html"><a href="license.html#copyright"><i class="fa fa-check"></i><b>17.1</b> Copyright<span></span></a></li>
+<li class="chapter" data-level="17.2" data-path="license.html"><a href="license.html#disclaimer"><i class="fa fa-check"></i><b>17.2</b> Disclaimer<span></span></a></li>
 </ul></li>
 <li><a href="references.html#references">References<span></span></a></li>
 <li class="divider"></li>
@@ -371,7 +367,13 @@ Let’s start with the per-sample quality control.</p>
 <span id="cb28-7"><a href="gwas-basics-sample-qc.html#cb28-7" aria-hidden="true" tabindex="-1"></a>                    <span class="at">xlab =</span> <span class="st">&quot;per sample call rate&quot;</span>) <span class="sc">+</span></span>
 <span id="cb28-8"><a href="gwas-basics-sample-qc.html#cb28-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fl">0.95</span>, <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>,</span>
 <span id="cb28-9"><a href="gwas-basics-sample-qc.html#cb28-9" aria-hidden="true" tabindex="-1"></a>                <span class="at">color =</span> <span class="st">&quot;#E55738&quot;</span>, <span class="at">size =</span> <span class="dv">1</span>)</span></code></pre></div>
-<p>The grey dashed line in Figure <a href="#fig:sample-callrate"><strong>??</strong></a> indicates the mean call rate, while the red dashed line indicates the threshold we had determined above.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:sample-callrate"></span>
+<img src="A-Practical-Primer-in-Human-Complex-Genetics_files/figure-html/sample-callrate-1.png" alt="Call rate" width="80%" />
+<p class="caption">
+Figure 4.1: Call rate
+</p>
+</div>
+<p>The grey dashed line in Figure <a href="gwas-basics-sample-qc.html#fig:sample-callrate">4.1</a> indicates the mean call rate, while the red dashed line indicates the threshold we had determined above.</p>
 </div>
 <div id="heterozygosity-rate" class="section level2 hasAnchor" number="4.3">
 <h2><span class="header-section-number">4.3</span> Heterozygosity rate<a href="gwas-basics-sample-qc.html#heterozygosity-rate" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -424,7 +426,7 @@ awk &#39;($5 == &quot;A&quot; &amp;&amp; $6 == &quot;T&quot;) || ($5 == &quot;T&
 <p>Finally, we can calculate the heterozygosity rate.</p>
 <pre><code>plink --bfile rawdata/rawdata.clean.ultraclean --het --out rawdata/rawdata.clean.ultraclean</code></pre>
 <p>This creates the file <code>rawdata/rawdata.clean.ultraclean.het</code>, in which the third column denotes the observed number of homozygous genotypes, O(Hom), and the fifth column denotes the number of nonmissing genotypes, N(NM), per individual. We can now calculate the observed heterozygosity rate per individual using the formula (N(NM) - O(Hom))/N(NM).</p>
-<p>Often there is a correlation between heterozygosity rate and missing data. Thus, we should plot the observed heterozygosity rate per individual on the x-axis and the proportion of missing SNP, that is the ‘SNP call rate’, per individuals on the y-axis (Figure <a href="#fig:show-heterozygosity"><strong>??</strong></a>).</p>
+<p>Often there is a correlation between heterozygosity rate and missing data. Thus, we should plot the observed heterozygosity rate per individual on the x-axis and the proportion of missing SNP, that is the ‘SNP call rate’, per individuals on the y-axis (Figure <a href="gwas-basics-sample-qc.html#fig:show-heterozygosity">4.2</a>).</p>
 <div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="gwas-basics-sample-qc.html#cb35-1" aria-hidden="true" tabindex="-1"></a>raw_HET <span class="ot">&lt;-</span> data.table<span class="sc">::</span><span class="fu">fread</span>(<span class="fu">paste0</span>(COURSE_loc, <span class="st">&quot;/rawdata/rawdata.clean.ultraclean.het&quot;</span>))</span>
 <span id="cb35-2"><a href="gwas-basics-sample-qc.html#cb35-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb35-3"><a href="gwas-basics-sample-qc.html#cb35-3" aria-hidden="true" tabindex="-1"></a>raw_IMISS<span class="sc">$</span>logF_MISS <span class="ot">=</span> <span class="fu">log10</span>(raw_IMISS<span class="sc">$</span>F_MISS)</span>
@@ -450,6 +452,12 @@ awk &#39;($5 == &quot;A&quot; &amp;&amp; $6 == &quot;T&quot;) || ($5 == &quot;T&
 <span id="cb36-9"><a href="gwas-basics-sample-qc.html#cb36-9" aria-hidden="true" tabindex="-1"></a>                <span class="at">color =</span> <span class="st">&quot;#E55738&quot;</span>, <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
 <span id="cb36-10"><a href="gwas-basics-sample-qc.html#cb36-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> prop_miss, <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>,</span>
 <span id="cb36-11"><a href="gwas-basics-sample-qc.html#cb36-11" aria-hidden="true" tabindex="-1"></a>                <span class="at">color =</span> <span class="st">&quot;#E55738&quot;</span>, <span class="at">size =</span> <span class="dv">1</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:show-heterozygosity"></span>
+<img src="A-Practical-Primer-in-Human-Complex-Genetics_files/figure-html/show-heterozygosity-1.png" alt="Heterozygosity rate as a function of missing genotypes" width="80%" />
+<p class="caption">
+Figure 4.2: Heterozygosity rate as a function of missing genotypes
+</p>
+</div>
 <p>Examine the plot to decide reasonable thresholds at which to exclude individuals based on elevated missing or extreme heterozygosity. We chose to exclude all individuals with a genotype failure rate &gt;= 0.03 (vertical dashed line) and/or a heterozygosity rate ± 3 s.d. from the mean (horizontal dashed lines). Add the FID and IID of the samples failing this QC to the file named <code>fail-imisshet-qc.txt</code>.</p>
 <blockquote>
 <p>How would you create this file?</p>
@@ -813,7 +821,13 @@ cp -v rawdata/rawdata.1kg_phase1.pruned.fam rawdata/rawdata.1kg_phase1.pruned.pe
 <span id="cb70-10"><a href="gwas-basics-sample-qc.html#cb70-10" aria-hidden="true" tabindex="-1"></a>                <span class="at">title =</span> <span class="st">&quot;Principal Component Analysis&quot;</span>,</span>
 <span id="cb70-11"><a href="gwas-basics-sample-qc.html#cb70-11" aria-hidden="true" tabindex="-1"></a>                <span class="at">subtitle =</span> <span class="st">&quot;Reference population: HapMap 3&quot;</span>,</span>
 <span id="cb70-12"><a href="gwas-basics-sample-qc.html#cb70-12" aria-hidden="true" tabindex="-1"></a>                <span class="at">legend.title =</span> <span class="st">&quot;Populations&quot;</span>, <span class="at">legend =</span> <span class="st">&quot;right&quot;</span>)</span></code></pre></div>
-<p>Derive PC1 and PC2 thresholds so that only individuals who match the given ancestral population are included. For populations of European descent, this will be either the CEU or TSI HapMap3 individuals (Figure <a href="#fig:pca-hapmap3"><strong>??</strong></a>). Here, we chose to exclude all individuals with a second principal component score less than 0.075.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:pca-hapmap3"></span>
+<img src="A-Practical-Primer-in-Human-Complex-Genetics_files/figure-html/pca-hapmap3-1.png" alt="PCA - Your data vs. HapMap 3" width="80%" />
+<p class="caption">
+Figure 4.3: PCA - Your data vs. HapMap 3
+</p>
+</div>
+<p>Derive PC1 and PC2 thresholds so that only individuals who match the given ancestral population are included. For populations of European descent, this will be either the CEU or TSI HapMap3 individuals (Figure <a href="gwas-basics-sample-qc.html#fig:pca-hapmap3">4.3</a>). Here, we chose to exclude all individuals with a second principal component score less than 0.075.</p>
 <p>Write the FID and IID of these individuals to a file called <code>fail-ancestry-QC.txt</code>.</p>
 <pre><code>cat rawdata/rawdata.hapmap3r2.pruned.pca.evec | tail -n +2 | \
 awk &#39;$3 &lt; 0.075&#39; | awk &#39;{ print $1 }&#39; | awk -F&quot;:&quot; &#39;{ print $1, $2 }&#39; &gt; rawdata/fail-ancestry-QC.txt</code></pre>
@@ -871,7 +885,13 @@ awk &#39;$3 &lt; 0.075&#39; | awk &#39;{ print $1 }&#39; | awk -F&quot;:&quot; &
 <span id="cb74-11"><a href="gwas-basics-sample-qc.html#cb74-11" aria-hidden="true" tabindex="-1"></a>                <span class="at">title =</span> <span class="st">&quot;Principal Component Analysis&quot;</span>,</span>
 <span id="cb74-12"><a href="gwas-basics-sample-qc.html#cb74-12" aria-hidden="true" tabindex="-1"></a>                <span class="at">subtitle =</span> <span class="st">&quot;Reference population: 1000 G, phase 1&quot;</span>,</span>
 <span id="cb74-13"><a href="gwas-basics-sample-qc.html#cb74-13" aria-hidden="true" tabindex="-1"></a>                <span class="at">legend.title =</span> <span class="st">&quot;Populations&quot;</span>, <span class="at">legend =</span> <span class="st">&quot;right&quot;</span>)</span></code></pre></div>
-<p>In a similar fashion as in the above with the HapMap3 reference, you could <strong>remove the samples below the threshold</strong> based on this PCA (Figure <a href="#fig:pca-1000g"><strong>??</strong></a>).</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:pca-1000g"></span>
+<img src="A-Practical-Primer-in-Human-Complex-Genetics_files/figure-html/pca-1000g-1.png" alt="PCA - Your data vs. 1000G" width="80%" />
+<p class="caption">
+Figure 4.4: PCA - Your data vs. 1000G
+</p>
+</div>
+<p>In a similar fashion as in the above with the HapMap3 reference, you could <strong>remove the samples below the threshold</strong> based on this PCA (Figure <a href="gwas-basics-sample-qc.html#fig:pca-1000g">4.4</a>).</p>
 </div>
 </div>
 </div>
@@ -936,7 +956,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["A Practical Primer in Human Complex Genetics.pdf", "A Practical Primer in Human Complex Genetics.epub"],
+"download": [["A-Practical-Primer-in-Human-Complex-Genetics.pdf", "PDF"], ["A-Practical-Primer-in-Human-Complex-Genetics.epub", "EPUB"]],
 "search": {
 "engine": "fuse",
 "options": null

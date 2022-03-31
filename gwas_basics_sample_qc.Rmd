@@ -32,7 +32,7 @@ Let's have a look at the results.
 cat rawdata/rawdata.sexprobs.txt
 ```
 
-```{r load-sex-issues, eval=FALSE}
+```{r load-sex-issues}
 library("data.table")
 
 COURSE_loc = "~/Desktop/practical" # getwd()
@@ -69,13 +69,13 @@ plink --bfile rawdata/rawdata --missing --out rawdata/rawdata
 This produces two files, `rawdata/rawdata.imiss` and `rawdata/rawdata.lmiss`. In the .imiss file the _N_MISS_ column denotes the number of missing SNPs, and the _F_MISS_ column denotes the proportion of missing SNPs per individual.
 
 
-```{r load-sample-callrate, eval=FALSE}
+```{r load-sample-callrate}
 raw_IMISS <- data.table::fread(paste0(COURSE_loc, "/rawdata/rawdata.imiss"))
 
 raw_IMISS$callrate <- 1 - raw_IMISS$F_MISS
 ```
 
-```{r sample-callrate, message=FALSE, warning=FALSE, out.width='80%', fig.align='center', fig.asp=.75, fig.cap='Call rate', eval=FALSE}
+```{r sample-callrate, message=FALSE, warning=FALSE, out.width='80%', fig.align='center', fig.asp=.75, fig.cap='Call rate'}
 library("ggpubr")
 
 ggpubr::gghistogram(raw_IMISS, x = "callrate",
@@ -168,7 +168,7 @@ This creates the file `rawdata/rawdata.clean.ultraclean.het`, in which the third
 
 Often there is a correlation between heterozygosity rate and missing data. Thus, we should plot the observed heterozygosity rate per individual on the x-axis and the proportion of missing SNP, that is the 'SNP call rate', per individuals on the y-axis (Figure \@ref(fig:show-heterozygosity)).
 
-```{r load-heterozygosity, eval=FALSE, message=FALSE, warning=FALSE}
+```{r load-heterozygosity, message=FALSE, warning=FALSE}
 raw_HET <- data.table::fread(paste0(COURSE_loc, "/rawdata/rawdata.clean.ultraclean.het"))
 
 raw_IMISS$logF_MISS = log10(raw_IMISS$F_MISS)
@@ -186,7 +186,7 @@ colors  <- densCols(raw_IMISSHET$logF_MISS, raw_IMISSHET$meanHet)
 
 ```
 
-```{r show-heterozygosity, message=FALSE, warning=FALSE, out.width='80%', fig.align='center', fig.asp=.75, fig.cap='Heterozygosity rate as a function of missing genotypes', eval=FALSE}
+```{r show-heterozygosity, message=FALSE, warning=FALSE, out.width='80%', fig.align='center', fig.asp=.75, fig.cap='Heterozygosity rate as a function of missing genotypes'}
 ggpubr::ggscatter(raw_IMISSHET, x = "logF_MISS", y = "meanHet",
                   color = colors,
                   xlab = "Proportion of missing genotypes", ylab = "Heterozygosity rate") +
@@ -206,7 +206,7 @@ Examine the plot to decide reasonable thresholds at which to exclude individuals
 > How would you create this file?
 
 
-```{r create-fail-imisshet-qc, eval=FALSE}
+```{r create-fail-imisshet-qc}
 
 raw_IMISSHETsub = subset(raw_IMISSHET, logF_MISS > prop_miss | (meanHet < lower_meanHet | meanHet > upper_meanHet),
                          select = c("FID", "IID"))
@@ -251,7 +251,7 @@ perl ../scripts/run-IBD-QC.pl rawdata rawdata.clean.ultraclean
 cd ..
 ```
 
-```{r load-ibdcallissues, eval=FALSE}
+```{r load-ibdcallissues}
 ibdcallissues <- data.table::fread(paste0(COURSE_loc,"/rawdata/fail-IBD-QC.txt"))
 ```
 
@@ -558,13 +558,13 @@ A R script for creating this plot (`scripts/plot-pca-results.Rscript`) is also p
 
 We could plot our data against HapMap 3. 
 
-```{r load-pca-hm3, eval=FALSE}
+```{r load-pca-hm3}
 PCA <- data.table::fread(paste0(COURSE_loc,"/ref_pca/rawdata.hapmap3r2.pruned.pca.evec"), header = FALSE, skip = 1)
 
 ```
 
 
-```{r prep-pca-hm3, eval=FALSE}
+```{r prep-pca-hm3}
 
 # Case/Control -> black, pch = "+"
 # CEU = 3 -> red, pch = 20
@@ -580,7 +580,7 @@ PCA$V12[PCA$V12 == "6"] <- "YRI" #49A01D
 
 ```
 
-```{r pca-hapmap3, message=FALSE, warning=FALSE, out.width='80%', fig.align='center', fig.asp=.75, fig.cap='PCA - Your data vs. HapMap 3', eval=FALSE}
+```{r pca-hapmap3, message=FALSE, warning=FALSE, out.width='80%', fig.align='center', fig.asp=.75, fig.cap='PCA - Your data vs. HapMap 3'}
 
 PCAplot <- ggpubr::ggscatter(PCA, x = "V2", y = "V3",
                              color = "V12",
@@ -616,12 +616,12 @@ We could plot our data against 1000G phase 1.
 > Please note! You may have been able to make `EIGENSOFT` (Chapter \@ref(eigensoft)) to work. So you may have to change "/ref_pca/rawdata.1kg_phase1.pruned.pca.evec" to "/rawdata/rawdata.1kg_phase1.pruned.pca.evec" in the command below. 
 
 
-```{r load-pca-1000g, eval=FALSE}
+```{r load-pca-1000g}
 PCA_1kG <- data.table::fread(paste0(COURSE_loc,"/ref_pca/rawdata.1kg_phase1.pruned.pca.evec"), header = FALSE, skip = 1)
 ```
 
 
-```{r prep-pca-1000g, eval=FALSE}
+```{r prep-pca-1000g}
 # Population	Description	Super population	Code	Counts
 # ASW	African Ancestry in Southwest US	                          AFR	4	  #49A01D
 # CEU	Utah residents with Northern and Western European ancestry	EUR	7	  #E55738
@@ -658,7 +658,7 @@ PCA_1kG$V12[PCA_1kG$V12 == "28"] <- "YRI"
 ```
 
 
-```{r pca-1000g, message=FALSE, warning=FALSE, out.width='80%', fig.align='center', fig.asp=.75, fig.cap='PCA - Your data vs. 1000G', eval=FALSE}
+```{r pca-1000g, message=FALSE, warning=FALSE, out.width='80%', fig.align='center', fig.asp=.75, fig.cap='PCA - Your data vs. 1000G'}
 PCA_1kGplot <- ggpubr::ggscatter(PCA_1kG, x = "V2", y = "V3",
                                  color = "V12",
                                  palette = c("#595A5C", "#49A01D", "#E55738", "#9A3480", "#705296", 

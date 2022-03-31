@@ -14,7 +14,7 @@ plink --bfile rawdata/clean_inds_data --missing --out rawdata/clean_inds_data
 
 Let's visualize the results to identify a threshold for extreme genotype failure rate. We chose a callrate threshold of 3%, but it's arbitrary and depending on the dataset and the number of samples.
 
-```{r load-snp-callrate, eval=FALSE}
+```{r load-snp-callrate}
 library("data.table")
 
 COURSE_loc = "~/Desktop/practical" # getwd()
@@ -25,7 +25,7 @@ clean_LMISS$callrate <- 1 - clean_LMISS$F_MISS
 ```
 
 
-```{r show-snp-callrate, message=FALSE, warning=FALSE, eval=FALSE}
+```{r show-snp-callrate, message=FALSE, warning=FALSE}
 library("ggpubr")
 
 ggpubr::gghistogram(clean_LMISS, x = "callrate",
@@ -64,12 +64,12 @@ plink --bfile rawdata/clean_inds_data --freq --out rawdata/clean_inds_data
 
 Let's also plot these data. You can view the result below, and type over the code to do it yourself.
 
-```{r load-freq, eval=FALSE}
+```{r load-freq}
 clean_FREQ <- data.table::fread(paste0(COURSE_loc, "/rawdata/clean_inds_data.frq"))
 ```
 
 
-```{r show-freq, message=FALSE, warning=FALSE, eval=FALSE}
+```{r show-freq, message=FALSE, warning=FALSE}
 ggpubr::gghistogram(clean_FREQ, x = "MAF",
                     add = "mean", add.params = list(color = "#595A5C", linetype = "dashed", size = 1),
                     rug = TRUE,
@@ -111,13 +111,13 @@ plink --bfile rawdata/clean_inds_data --hardy --out rawdata/clean_inds_data
 
 Let's also plot these data. You can view the result below, and type over the code to do it yourself.
 
-```{r load-hwe, eval=FALSE}
+```{r load-hwe}
 clean_HWE <- data.table::fread(paste0(COURSE_loc, "/rawdata/clean_inds_data.hwe"))
 clean_HWE$logP <- -log10(clean_HWE$P)
 ```
 
 
-```{r show-hwe, message=FALSE, warning=FALSE, eval=FALSE}
+```{r show-hwe, message=FALSE, warning=FALSE}
 ggpubr::gghistogram(clean_HWE, x = "logP",
                     add = "mean",
                     add.params = list(color = "#595A5C", linetype = "dashed", size = 1),

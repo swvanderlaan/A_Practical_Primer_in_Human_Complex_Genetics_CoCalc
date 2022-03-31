@@ -7,7 +7,7 @@ We should create _quantile-quantile (QQ) plots_ to compare the observed associat
 
 First, we will add the standard error, call rate, A2, and allele frequencies.
 
-```{r prep-qq, eval=FALSE}
+```{r prep-qq}
 library("data.table")
 
 COURSE_loc = "~/Desktop/practical" # getwd()
@@ -45,7 +45,7 @@ head(gwas_assoc_compl)
 ```
 
 Let's list the number of SNPs per chromosome. This gives a pretty good idea about the per-chromosome coverage. And it's a sanity check: did the whole analysis run properly (we expect 22 chromosomes)?.
-```{r list-chr-qq, eval=FALSE}
+```{r list-chr-qq}
 library("knitr")
 
 # Number of SNPs per chromosome
@@ -53,7 +53,7 @@ knitr::kable(table(gwas_assoc_compl$CHR))
 ```
 
 
-```{r show-qq, message=FALSE, warning=FALSE, eval=FALSE}
+```{r show-qq, message=FALSE, warning=FALSE}
 library("qqman")
 
 gwas_threshold = -log10(5e-8)
@@ -73,7 +73,7 @@ abline(h = gwas_threshold,
 We also need to create a _Manhattan plot_ to display the association test P-values as a function of chromosomal location and thus provide a visual summary of association test results that draw immediate attention to any regions of significance.
 
 
-```{r show-manhattan, message=FALSE, warning=FALSE, eval=FALSE}
+```{r show-manhattan, message=FALSE, warning=FALSE}
 manhattan(gwas_assoc_compl, main = "Manhattan Plot",
           ylim = c(0, 12),
           cex = 0.6, cex.axis = 0.9,
@@ -85,12 +85,12 @@ manhattan(gwas_assoc_compl, main = "Manhattan Plot",
 
 It is also informative to plot the density per chromosome. We can use the `CMplot` for that which you can find [here](https://github.com/YinLiLin/R-CMplot){target="_blank"}. For now we just make these graphs 'quick-n-dirty', you can further prettify them, but you easily loose track of time, so maybe carry on.
 
-```{r prep-cmplot, message=FALSE, warning=FALSE, eval=FALSE}
+```{r prep-cmplot, message=FALSE, warning=FALSE}
 gwas_assoc_complsub <- subset(gwas_assoc_compl, select = c("SNP", "CHR", "BP", "P"))
 ```
 
 
-```{r show-cmplot-all, message=FALSE, warning=FALSE, eval=FALSE}
+```{r show-cmplot-all, message=FALSE, warning=FALSE}
 library("CMplot")
 
 CMplot(gwas_assoc_complsub,
