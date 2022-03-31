@@ -22,8 +22,8 @@ List of to-do's according to MoSCoW: _must have_, _should have_, _could have_, _
 
 ## Book fixes
 
-- [] `M` overall rendering too slow, paste in images as figure instead of on the fly generating
-- [] `S` PDF is too large
+- [x] `M` overall rendering too slow, paste in images as figure instead of on the fly generating
+- [x] `M` PDF is too large
 - [] `S` PDF is not formatted properly (text runs over)
 - [] `C` Different font type in PDF
 - [] `S` EPUB is not formatted properly (text runs over)
