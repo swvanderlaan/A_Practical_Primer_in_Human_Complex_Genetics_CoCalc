@@ -41,46 +41,10 @@
   hidelinks,
   pdfcreator={LaTeX via pandoc}}
 \urlstyle{same} % disable monospaced font for URLs
-\usepackage{color}
-\usepackage{fancyvrb}
-\newcommand{\VerbBar}{|}
-\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
-\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
-% Add ',fontsize=\small' for more characters per line
-\usepackage{framed}
-\definecolor{shadecolor}{RGB}{248,248,248}
-\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
-\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
-\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
-\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
-\newcommand{\BuiltInTok}[1]{#1}
-\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
-\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
-\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
-\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
-\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
-\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
-\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
-\newcommand{\ExtensionTok}[1]{#1}
-\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
-\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
-\newcommand{\ImportTok}[1]{#1}
-\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
-\newcommand{\NormalTok}[1]{#1}
-\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
-\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
-\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
-\newcommand{\RegionMarkerTok}[1]{#1}
-\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
-\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
-\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
-\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
-\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
-\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{listings}
+\newcommand{\passthrough}[1]{#1}
+\lstset{defaultdialect=[5.3]Lua}
+\lstset{defaultdialect=[x86masm]Assembler}
 \usepackage{longtable,booktabs,array}
 \usepackage{calc} % for calculating minipage widths
 % Correct order of tables after \paragraph or \subparagraph
@@ -110,6 +74,8 @@
 \setcounter{secnumdepth}{5}
 \usepackage{booktabs}
 \usepackage{amsthm}
+\usepackage{fontspec}
+\setmainfont{Helvetica}
 \makeatletter
 \def\thm@space@setup{%
   \thm@preskip=8pt plus 2pt minus 4pt
@@ -277,119 +243,119 @@ All genetic analyses can be done in PLINK, even on your laptop, but with large d
 
 Nowadays, a lot of people also use programs like \href{snptest}{SNPTEST}, \href{https://data.broadinstitute.org/alkesgroup/BOLT-LMM/}{BOLT-LMM}, \href{http://cnsgenomics.com/software/gcta/\#Overview}{GCTA}, or \href{https://rgcgithub.github.io/regenie/}{regenie} as alternatives to execute GWAS and downstream analyses, for example heritability estimation, Fst-calculation, and so on.
 
-Mendelian randomization can be done either with the \href{http://cnsgenomics.com/software/smr/\#Overview}{SMR} or \href{http://cnsgenomics.com/software/gsmr/}{GSMR} function from GCTA, or with R-packages, like \href{https://mrcieu.github.io/TwoSampleMR/}{\texttt{TwoSampleMR}}.
+Mendelian randomization can be done either with the \href{http://cnsgenomics.com/software/smr/\#Overview}{SMR} or \href{http://cnsgenomics.com/software/gsmr/}{GSMR} function from GCTA, or with R-packages, like \href{https://mrcieu.github.io/TwoSampleMR/}{\passthrough{\lstinline!TwoSampleMR!}}.
 
 \hypertarget{the-terminal}{%
 \section{The Terminal}\label{the-terminal}}
 
-For all the above programs, except RStudio, you will need the \texttt{Terminal}. This comes with every major operating system; on Windows it is called `PowerShell', but let's not go there. And regardless, you will (have to start to) make your own scripts. The benefit of using scripts is that each step in your workflow is clearly stipulated and annotated, and it allows for greater reproducibility, easier troubleshooting, and scaling up to high-performance computer clusters.
+For all the above programs, except RStudio, you will need the \passthrough{\lstinline!Terminal!}. This comes with every major operating system; on Windows it is called `PowerShell', but let's not go there. And regardless, you will (have to start to) make your own scripts. The benefit of using scripts is that each step in your workflow is clearly stipulated and annotated, and it allows for greater reproducibility, easier troubleshooting, and scaling up to high-performance computer clusters.
 
 Open the terminal, it should be on the left in the toolbar as a little black computer-monitor-like icon.
-Mac users can type \texttt{command\ +\ space} and type \texttt{terminal}, a terminal screen should open.
+Mac users can type \passthrough{\lstinline!command + space!} and type \passthrough{\lstinline!terminal!}, a terminal screen should open.
 
 \begin{quote}
 From now on we will use little code blocks like the example to indicate a code you should type/copy-paste and hit enter. If a code is followed by a comment, it is indicated by a \# - you don't need to copy-paste and execute this.
 \end{quote}
 
-\begin{verbatim}
+\begin{lstlisting}
 CODE BLOCK
 
 CODE BLOCK # some comment here
-\end{verbatim}
+\end{lstlisting}
 
 \hypertarget{download-the-data}{%
 \subsection{Download the data}\label{download-the-data}}
 
 First, let's start by downloading the data you need for this course to your Desktop.
 
-Alternatively, you could do this through this command. This will create a directory on your Desktop with the command \texttt{mkdir}. The \texttt{-v} flag indicates the program should be \emph{verbose}, meaning it should tell you what it is doing.
+Alternatively, you could do this through this command. This will create a directory on your Desktop with the command \passthrough{\lstinline!mkdir!}. The \passthrough{\lstinline!-v!} flag indicates the program should be \emph{verbose}, meaning it should tell you what it is doing.
 
-\begin{verbatim}
+\begin{lstlisting}
 mkdir -v ~/Desktop/practical/
-\end{verbatim}
+\end{lstlisting}
 
-\begin{verbatim}
+\begin{lstlisting}
 wget "https://www.dropbox.com/sh/kumfwm7drt2flhp/AAB5n0OcUvJixI9pNiymx6-La?dl=0" -P ~/Desktop/practical/
-\end{verbatim}
+\end{lstlisting}
 
 This will take a minute or two depending on your internet connection. Time to stretch your legs or grab a coffee (data scientists don't drink tea).
 
 \hypertarget{navigating-the-terminal}{%
 \subsection{Navigating the Terminal}\label{navigating-the-terminal}}
 
-You can navigate around the computer through the terminal by typing \texttt{cd\ \textless{}path\textgreater{}}; \texttt{cd} stands for ``change directory'' and means ``some\_file\_directory\_you\_want\_to\_go\_to''.
+You can navigate around the computer through the terminal by typing \passthrough{\lstinline!cd <path>!}; \passthrough{\lstinline!cd!} stands for ``change directory'' and means ``some\_file\_directory\_you\_want\_to\_go\_to''.
 
 \textbf{For Linux/macOS Users}
 
 \emph{will bring you to your home directory}
 
-\begin{verbatim}
+\begin{lstlisting}
 cd ~ 
-\end{verbatim}
+\end{lstlisting}
 
 \emph{will bring you to the parent directory (up one level) }
 
-\begin{verbatim}
+\begin{lstlisting}
 cd ../ 
-\end{verbatim}
+\end{lstlisting}
 
 \emph{will bring you to the XXX directory}
 
-\begin{verbatim}
+\begin{lstlisting}
 cd XXX 
-\end{verbatim}
+\end{lstlisting}
 
 Let's navigate to the folder you just downloaded.
 
-\begin{verbatim}
+\begin{lstlisting}
 cd ~/Desktop/practical
-\end{verbatim}
+\end{lstlisting}
 
-Let's check out what is inside the directory, by listing (\texttt{ls}) its contents.
+Let's check out what is inside the directory, by listing (\passthrough{\lstinline!ls!}) its contents.
 
-\begin{verbatim}
+\begin{lstlisting}
 ls -lh
-\end{verbatim}
+\end{lstlisting}
 
 \textbf{For Linux/macOS Users}
 
 \emph{shows files as list}
 
-\begin{verbatim}
+\begin{lstlisting}
 ls -l 
-\end{verbatim}
+\end{lstlisting}
 
 \emph{shows files as list with human readable format }
 
-\begin{verbatim}
+\begin{lstlisting}
 ls -lh 
-\end{verbatim}
+\end{lstlisting}
 
 \emph{shows the files as list sorted by time edited}
 
-\begin{verbatim}
+\begin{lstlisting}
 ls -lt 
-\end{verbatim}
+\end{lstlisting}
 
 \emph{shows the files as list sorted by size}
 
-\begin{verbatim}
+\begin{lstlisting}
 ls -lS 
-\end{verbatim}
+\end{lstlisting}
 
-Adding the flags \texttt{-lh} will get you the contents of a directory in a list (\texttt{-l}) and make the size `human-readable' (\texttt{-h}).
+Adding the flags \passthrough{\lstinline!-lh!} will get you the contents of a directory in a list (\passthrough{\lstinline!-l!}) and make the size `human-readable' (\passthrough{\lstinline!-h!}).
 
 You can also count the number of files.
 
-\begin{verbatim}
+\begin{lstlisting}
 ls | wc -l
-\end{verbatim}
+\end{lstlisting}
 
 And if you want to know all the function of a program simply type the following.
 
-\begin{verbatim}
+\begin{lstlisting}
 man ls
-\end{verbatim}
+\end{lstlisting}
 
 This will take you to a manual of the program with an extensive description of each flag (Figure \ref{fig:ls-manual}).
 
@@ -407,44 +373,40 @@ This will take you to a manual of the program with an extensive description of e
 
 I tested this VirtualMachine and everything should be fine, except some libraries weren't there. We need to install them.
 
-To be able to install certain \texttt{r}-packages, we need to install some Linux (Ubuntu) software. Type the following:
+To be able to install certain \passthrough{\lstinline!r!}-packages, we need to install some Linux (Ubuntu) software. Type the following:
 
-\begin{verbatim}
+\begin{lstlisting}
 sudo apt-get install libcurl4 libcurl4-openssl-dev -y
 
 sudo apt-get install libssl-dev
-\end{verbatim}
+\end{lstlisting}
 
 Now close the terminal window - really making sure that the terminal-program has quit.
 
-Open a new terminal window and open \texttt{r} by simply typing \texttt{R} or \texttt{r}. You should install the following packages, and then you're good to go!
+Open a new terminal window and open \passthrough{\lstinline!r!} by simply typing \passthrough{\lstinline!R!} or \passthrough{\lstinline!r!}. You should install the following packages, and then you're good to go!
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{install.packages}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\StringTok{"httr"}\NormalTok{, }\StringTok{"usethis"}\NormalTok{, }\StringTok{"data.table"}\NormalTok{, }\StringTok{"devtools"}\NormalTok{, }
-                   \StringTok{"qqman"}\NormalTok{, }\StringTok{"CMplot"}\NormalTok{, }\StringTok{"plotly"}\NormalTok{, }
-                   \StringTok{"dplyr"}\NormalTok{, }\StringTok{"tibble"}\NormalTok{, }\StringTok{"openxlsx"}\NormalTok{))}
-\NormalTok{devtools}\SpecialCharTok{::}\FunctionTok{install\_github}\NormalTok{(}\StringTok{"kassambara/ggpubr"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
+\begin{lstlisting}[language=R]
+install.packages(c("httr", "usethis", "data.table", "devtools", 
+                   "qqman", "CMplot", "plotly", 
+                   "dplyr", "tibble", "openxlsx"))
+devtools::install_github("kassambara/ggpubr")
+\end{lstlisting}
 
 You should load these packages too.
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{library}\NormalTok{(}\StringTok{"ggpubr"}\NormalTok{)}
-\FunctionTok{library}\NormalTok{(}\StringTok{"httr"}\NormalTok{)}
-\FunctionTok{library}\NormalTok{(}\StringTok{"usethis"}\NormalTok{)}
-\FunctionTok{library}\NormalTok{(}\StringTok{"data.table"}\NormalTok{)}
-\FunctionTok{library}\NormalTok{(}\StringTok{"devtools"}\NormalTok{)}
-\FunctionTok{library}\NormalTok{(}\StringTok{"qqman"}\NormalTok{)}
-\FunctionTok{library}\NormalTok{(}\StringTok{"CMplot"}\NormalTok{)}
-\FunctionTok{library}\NormalTok{(}\StringTok{"tibble"}\NormalTok{)}
-\FunctionTok{library}\NormalTok{(}\StringTok{"plotly"}\NormalTok{)}
-\FunctionTok{library}\NormalTok{(}\StringTok{"dplyr"}\NormalTok{)}
-\FunctionTok{library}\NormalTok{(}\StringTok{"openxlsx"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
+\begin{lstlisting}[language=R]
+library("ggpubr")
+library("httr")
+library("usethis")
+library("data.table")
+library("devtools")
+library("qqman")
+library("CMplot")
+library("tibble")
+library("plotly")
+library("dplyr")
+library("openxlsx")
+\end{lstlisting}
 
 All in all this may take some time, good moment to relax, review your notes, stretch your legs, or take a coffee.
 
@@ -476,9 +438,9 @@ Now that you understand a bit of the navigation in Unix-systems, we will continu
 \hypertarget{converting-datasets}{%
 \section{Converting datasets}\label{converting-datasets}}
 
-The format in which genotype data are returned to investigators varies among genome-wide SNP platforms and genotyping centers. Usually genotypes have been called by a genotyping center and returned in the standard \texttt{PED} and \texttt{MAP} file formats.
+The format in which genotype data are returned to investigators varies among genome-wide SNP platforms and genotyping centers. Usually genotypes have been called by a genotyping center and returned in the standard \passthrough{\lstinline!PED!} and \passthrough{\lstinline!MAP!} file formats.
 
-A \texttt{PED} file is a white space (space or tab)-delimited file in which each line represents one individual and the first six columns are mandatory and in the following order:
+A \passthrough{\lstinline!PED!} file is a white space (space or tab)-delimited file in which each line represents one individual and the first six columns are mandatory and in the following order:
 
 \begin{itemize}
 \tightlist
@@ -499,19 +461,19 @@ A \texttt{PED} file is a white space (space or tab)-delimited file in which each
 The subsequent columns denote genotypes that can be any character (e.g., 1, 2, 3, 4 or A, C, G, T). Zero denotes a missing genotype. Each SNP must have two alleles (i.e., both alleles are either present or absent).
 The order of SNPs in the PED file is given in the MAP file, in which each line denotes a single marker and the four white-space--separated columns are chromosome (1--22, X, Y or 0 for unplaced), marker name (typically an rs number), genetic distance in Morgans (this can be fixed to 0) and base-pair position (bp units).
 
-Let's start by using \texttt{PLINK} to converting the datasets to a lighter, binary form (a \texttt{BED}-file). BED files save data in a more memory- and time-efficient manner (binary files) to facilitate the analysis of large-scale data sets \citep{purcell2007}. PLINK creates a \texttt{.log} file (named \texttt{raw-GWA-data.log}) that details (among other information) the implemented commands, the number of cases and controls in the input files, any excluded data and the genotyping rate in the remaining data. This file is very useful for checking whether the software is successfully completing commands.
+Let's start by using \passthrough{\lstinline!PLINK!} to converting the datasets to a lighter, binary form (a \passthrough{\lstinline!BED!}-file). BED files save data in a more memory- and time-efficient manner (binary files) to facilitate the analysis of large-scale data sets \citep{purcell2007}. PLINK creates a \passthrough{\lstinline!.log!} file (named \passthrough{\lstinline!raw-GWA-data.log!}) that details (among other information) the implemented commands, the number of cases and controls in the input files, any excluded data and the genotyping rate in the remaining data. This file is very useful for checking whether the software is successfully completing commands.
 
 Make sure you are in the right directory. Do you remember how to get there?
 
-\begin{verbatim}
+\begin{lstlisting}
 cd ~/Desktop/practical
-\end{verbatim}
+\end{lstlisting}
 
 \emph{No worries for now: I've done this already for you!}
 
-\begin{verbatim}
+\begin{lstlisting}
 plink --file rawdata/raw-GWA-data --make-bed --out rawdata/rawdata
-\end{verbatim}
+\end{lstlisting}
 
 \hypertarget{quality-control}{%
 \section{Quality control}\label{quality-control}}
@@ -563,9 +525,9 @@ Let's start with the per-sample quality control.
 
 We need to identify of individuals with discordant sex information comparing phenotypic and genotypic data. Let's calculate the mean homozygosity rate across X-chromosome markers for each individual in the study.
 
-\begin{verbatim}
+\begin{lstlisting}
 plink --bfile rawdata/rawdata --check-sex --out rawdata/rawdata
-\end{verbatim}
+\end{lstlisting}
 
 This produces a file with the following columns:
 
@@ -589,76 +551,68 @@ This produces a file with the following columns:
 
 We need to get a list of individuals with discordant sex data.
 
-\begin{verbatim}
+\begin{lstlisting}
 cat rawdata/rawdata.sexcheck | awk '$5 =="STATUS" || $5 =="PROBLEM"'  > rawdata/rawdata.sexprobs.txt
-\end{verbatim}
+\end{lstlisting}
 
 Let's have a look at the results.
 
-\begin{verbatim}
+\begin{lstlisting}
 cat rawdata/rawdata.sexprobs.txt
-\end{verbatim}
+\end{lstlisting}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{library}\NormalTok{(}\StringTok{"data.table"}\NormalTok{)}
+\begin{lstlisting}[language=R]
+library("data.table")
 
-\NormalTok{COURSE\_loc }\OtherTok{=} \StringTok{"\textasciitilde{}/Desktop/practical"} \CommentTok{\# getwd()}
+COURSE_loc = "~/Desktop/practical" # getwd()
 
-\NormalTok{sexissues }\OtherTok{\textless{}{-}}\NormalTok{ data.table}\SpecialCharTok{::}\FunctionTok{fread}\NormalTok{(}\FunctionTok{paste0}\NormalTok{(COURSE\_loc,}\StringTok{"/rawdata/rawdata.sexprobs.txt"}\NormalTok{))}
-\end{Highlighting}
-\end{Shaded}
+sexissues <- data.table::fread(paste0(COURSE_loc,"/rawdata/rawdata.sexprobs.txt"))
+\end{lstlisting}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{library}\NormalTok{(}\StringTok{"knitr"}\NormalTok{)}
-\NormalTok{knitr}\SpecialCharTok{::}\FunctionTok{kable}\NormalTok{(}
-\NormalTok{  sexissues, }\AttributeTok{caption =} \StringTok{\textquotesingle{}Sex issues\textquotesingle{}}\NormalTok{,}
-  \AttributeTok{booktabs =} \ConstantTok{TRUE}
-\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
+\begin{lstlisting}[language=R]
+library("knitr")
+knitr::kable(
+  sexissues, caption = 'Sex issues',
+  booktabs = TRUE
+)
+\end{lstlisting}
 
 When the homozygosity rate (\emph{F}) is more than 0.2, but less than 0.8, the genotype data are inconclusive regarding the sex of an individual and these are marked in column \emph{SNPSEX} with a 0, and the column \emph{STATUS} ``PROBLEM''.
 
-Report the IDs of individuals with discordant sex information (Table \ref{tab:sex-issues}) to those who conducted sex phenotyping. In situations in which discrepancy cannot be resolved, add the family ID (FID) and individual ID (IID) of the samples to a file named \texttt{fail-sexcheck-qc.txt} (one individual per line, tab delimited).
+Report the IDs of individuals with discordant sex information (Table \ref{tab:sex-issues}) to those who conducted sex phenotyping. In situations in which discrepancy cannot be resolved, add the family ID (FID) and individual ID (IID) of the samples to a file named \passthrough{\lstinline!fail-sexcheck-qc.txt!} (one individual per line, tab delimited).
 
-\begin{verbatim}
+\begin{lstlisting}
 grep "PROBLEM" rawdata/rawdata.sexcheck | awk '{ print $1, $2}'  > rawdata/fail-sexcheck-qc.txt
-\end{verbatim}
+\end{lstlisting}
 
 \hypertarget{sample-call-rates}{%
 \section{Sample call rates}\label{sample-call-rates}}
 
 Let's get an overview of the missing data per sample and per SNP.
 
-\begin{verbatim}
+\begin{lstlisting}
 plink --bfile rawdata/rawdata --missing --out rawdata/rawdata
-\end{verbatim}
+\end{lstlisting}
 
-This produces two files, \texttt{rawdata/rawdata.imiss} and \texttt{rawdata/rawdata.lmiss}. In the .imiss file the \emph{N\_MISS} column denotes the number of missing SNPs, and the \emph{F\_MISS} column denotes the proportion of missing SNPs per individual.
+This produces two files, \passthrough{\lstinline!rawdata/rawdata.imiss!} and \passthrough{\lstinline!rawdata/rawdata.lmiss!}. In the .imiss file the \emph{N\_MISS} column denotes the number of missing SNPs, and the \emph{F\_MISS} column denotes the proportion of missing SNPs per individual.
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{raw\_IMISS }\OtherTok{\textless{}{-}}\NormalTok{ data.table}\SpecialCharTok{::}\FunctionTok{fread}\NormalTok{(}\FunctionTok{paste0}\NormalTok{(COURSE\_loc, }\StringTok{"/rawdata/rawdata.imiss"}\NormalTok{))}
+\begin{lstlisting}[language=R]
+raw_IMISS <- data.table::fread(paste0(COURSE_loc, "/rawdata/rawdata.imiss"))
 
-\NormalTok{raw\_IMISS}\SpecialCharTok{$}\NormalTok{callrate }\OtherTok{\textless{}{-}} \DecValTok{1} \SpecialCharTok{{-}}\NormalTok{ raw\_IMISS}\SpecialCharTok{$}\NormalTok{F\_MISS}
-\end{Highlighting}
-\end{Shaded}
+raw_IMISS$callrate <- 1 - raw_IMISS$F_MISS
+\end{lstlisting}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{library}\NormalTok{(}\StringTok{"ggpubr"}\NormalTok{)}
+\begin{lstlisting}[language=R]
+library("ggpubr")
 
-\NormalTok{ggpubr}\SpecialCharTok{::}\FunctionTok{gghistogram}\NormalTok{(raw\_IMISS, }\AttributeTok{x =} \StringTok{"callrate"}\NormalTok{,}
-                    \AttributeTok{add =} \StringTok{"mean"}\NormalTok{, }\AttributeTok{add.params =} \FunctionTok{list}\NormalTok{(}\AttributeTok{color =} \StringTok{"\#595A5C"}\NormalTok{, }\AttributeTok{linetype =} \StringTok{"dashed"}\NormalTok{, }\AttributeTok{size =} \DecValTok{1}\NormalTok{),}
-                    \AttributeTok{rug =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{bins =} \DecValTok{50}\NormalTok{,}
-                    \AttributeTok{color =} \StringTok{"\#1290D9"}\NormalTok{, }\AttributeTok{fill =} \StringTok{"\#1290D9"}\NormalTok{,}
-                    \AttributeTok{xlab =} \StringTok{"per sample call rate"}\NormalTok{) }\SpecialCharTok{+}
-  \FunctionTok{geom\_vline}\NormalTok{(}\AttributeTok{xintercept =} \FloatTok{0.95}\NormalTok{, }\AttributeTok{linetype =} \StringTok{"dashed"}\NormalTok{,}
-                \AttributeTok{color =} \StringTok{"\#E55738"}\NormalTok{, }\AttributeTok{size =} \DecValTok{1}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
+ggpubr::gghistogram(raw_IMISS, x = "callrate",
+                    add = "mean", add.params = list(color = "#595A5C", linetype = "dashed", size = 1),
+                    rug = TRUE, bins = 50,
+                    color = "#1290D9", fill = "#1290D9",
+                    xlab = "per sample call rate") +
+  geom_vline(xintercept = 0.95, linetype = "dashed",
+                color = "#E55738", size = 1)
+\end{lstlisting}
 
 The grey dashed line in Figure \ref{fig:show-sample-callrate} indicates the mean call rate, while the red dashed line indicates the threshold we had determined above.
 
@@ -696,114 +650,110 @@ We will use the following settings:
 \begin{itemize}
 \tightlist
 \item
-  remove A/T and C/G SNPs with the flag \texttt{-\/-exclude\ rawdata/all.atcg.variants.txt},
+  remove A/T and C/G SNPs with the flag \passthrough{\lstinline!--exclude rawdata/all.atcg.variants.txt!},
 \item
-  call rate \textless1\% with the flag \texttt{-\/-geno\ 0.10},
+  call rate \textless1\% with the flag \passthrough{\lstinline!--geno 0.10!},
 \item
-  Hardy-Weinberg Equilibrium (HWE) p-value \textgreater{} 1x10-3 with the flag \texttt{-\/-hwe\ 1e-3},
+  Hardy-Weinberg Equilibrium (HWE) p-value \textgreater{} 1x10-3 with the flag \passthrough{\lstinline!--hwe 1e-3!},
 \item
-  and MAF\textgreater10\% with the flag \texttt{-\/-maf\ 0.10},
+  and MAF\textgreater10\% with the flag \passthrough{\lstinline!--maf 0.10!},
 \item
-  prune the data to only select independent SNPs (with low LD r\^{}2) of one pair each with \texttt{r\^{}2\ =\ 0.2} with the flags \texttt{-\/-indep-pairwise\ 100\ 10\ 0.2} and \texttt{-\/-extract\ rawdata/raw-GWA-data.prune.in},
+  prune the data to only select independent SNPs (with low LD r\^{}2) of one pair each with \passthrough{\lstinline!r\^2 = 0.2!} with the flags \passthrough{\lstinline!--indep-pairwise 100 10 0.2!} and \passthrough{\lstinline!--extract rawdata/raw-GWA-data.prune.in!},
 \item
-  SNPs in long-range LD regions (for example: MHC chr 6 25.8-36Mb, chr 8 inversion 6-16Mb, chr17 40-45Mb, and a few more) with the flag \texttt{-\/-exclude\ range\ support/exclude\_problematic\_range.txt},
+  SNPs in long-range LD regions (for example: MHC chr 6 25.8-36Mb, chr 8 inversion 6-16Mb, chr17 40-45Mb, and a few more) with the flag \passthrough{\lstinline!--exclude range support/exclude\_problematic\_range.txt!},
 \item
-  remove non-autosomal SNPs with the flag \texttt{-\/-allow-no-sex\ -\/-autosome}.
+  remove non-autosomal SNPs with the flag \passthrough{\lstinline!--allow-no-sex --autosome!}.
 \end{itemize}
 
 First, get a list of A/T and C/G SNPs.
 
-\begin{verbatim}
+\begin{lstlisting}
 cat rawdata/rawdata.bim | \
 awk '($5 == "A" && $6 == "T") || ($5 == "T" && $6 == "A") || ($5 == "C" && $6 == "G") || ($5 == "G" && $6 == "C")' | awk '{ print $2, $1, $4, $3, $5, $6 }' \
 > rawdata/all.atcg.variants.txt
-\end{verbatim}
+\end{lstlisting}
 
 Second, clean the data and get a list of independent SNPs.
 
-\begin{verbatim}
+\begin{lstlisting}
 plink --bfile rawdata/rawdata \
 --allow-no-sex --autosome \
 --maf 0.10 --geno 0.10 --hwe 1e-3 \
 --indep-pairwise 100 10 0.2 \
 --exclude range support/exclude_problematic_range.txt \
 --make-bed --out rawdata/rawdata.clean.temp
-\end{verbatim}
+\end{lstlisting}
 
 \begin{quote}
-Please note, we have create a dataset without taking into account LD structure. Hence, the message `Pruned 0 variants from chromosome 1, leaving 19420.' etc. In a dataset without any LD structure this flag \texttt{-\/-indep-pairwise\ 100\ 10\ 0.2} doesn't actually work. However, with real-data you can use it to prune out unwanted SNPs in high LD.
+Please note, we have create a dataset without taking into account LD structure. Hence, the message `Pruned 0 variants from chromosome 1, leaving 19420.' etc. In a dataset without any LD structure this flag \passthrough{\lstinline!--indep-pairwise 100 10 0.2!} doesn't actually work. However, with real-data you can use it to prune out unwanted SNPs in high LD.
 \end{quote}
 
 Third, exclude the pruned SNPs. Note, how we include a file to exclude high-LD for the purpose of the practical.
 
-\begin{verbatim}
+\begin{lstlisting}
 plink --bfile rawdata/rawdata.clean.temp \
 --extract rawdata/raw-GWA-data.prune.in \
 --make-bed --out rawdata/rawdata.clean.ultraclean.temp
-\end{verbatim}
+\end{lstlisting}
 
 Fourth, remove the A/T and C/G SNPs.
 
-\begin{verbatim}
+\begin{lstlisting}
 plink --bfile rawdata/rawdata.clean.ultraclean.temp \
 --exclude rawdata/all.atcg.variants.txt \
 --make-bed --out rawdata/rawdata.clean.ultraclean
-\end{verbatim}
+\end{lstlisting}
 
 \begin{quote}
-Please note, this dataset doesn't actually include this type of SNP, hence \texttt{rawdata/all.atcg.variants.txt} is empty! Again, you can use this command in real-data to exclude A/T and C/G SNPs.
+Please note, this dataset doesn't actually include this type of SNP, hence \passthrough{\lstinline!rawdata/all.atcg.variants.txt!} is empty! Again, you can use this command in real-data to exclude A/T and C/G SNPs.
 \end{quote}
 
 Lastly, remove the temporary files.
 
-\begin{verbatim}
+\begin{lstlisting}
 rm -v rawdata/*.temp*
-\end{verbatim}
+\end{lstlisting}
 
 Finally, we can calculate the heterozygosity rate.
 
-\begin{verbatim}
+\begin{lstlisting}
 plink --bfile rawdata/rawdata.clean.ultraclean --het --out rawdata/rawdata.clean.ultraclean
-\end{verbatim}
+\end{lstlisting}
 
-This creates the file \texttt{rawdata/rawdata.clean.ultraclean.het}, in which the third column denotes the observed number of homozygous genotypes, O(Hom), and the fifth column denotes the number of nonmissing genotypes, N(NM), per individual. We can now calculate the observed heterozygosity rate per individual using the formula (N(NM) - O(Hom))/N(NM).
+This creates the file \passthrough{\lstinline!rawdata/rawdata.clean.ultraclean.het!}, in which the third column denotes the observed number of homozygous genotypes, O(Hom), and the fifth column denotes the number of nonmissing genotypes, N(NM), per individual. We can now calculate the observed heterozygosity rate per individual using the formula (N(NM) - O(Hom))/N(NM).
 
 Often there is a correlation between heterozygosity rate and missing data. Thus, we should plot the observed heterozygosity rate per individual on the x-axis and the proportion of missing SNP, that is the `SNP call rate', per individuals on the y-axis (Figure \ref{fig:show-heterozygosity}).
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{raw\_HET }\OtherTok{\textless{}{-}}\NormalTok{ data.table}\SpecialCharTok{::}\FunctionTok{fread}\NormalTok{(}\FunctionTok{paste0}\NormalTok{(COURSE\_loc, }\StringTok{"/rawdata/rawdata.clean.ultraclean.het"}\NormalTok{))}
+\begin{lstlisting}[language=R]
+raw_HET <- data.table::fread(paste0(COURSE_loc, "/rawdata/rawdata.clean.ultraclean.het"))
 
-\NormalTok{raw\_IMISS}\SpecialCharTok{$}\NormalTok{logF\_MISS }\OtherTok{=} \FunctionTok{log10}\NormalTok{(raw\_IMISS}\SpecialCharTok{$}\NormalTok{F\_MISS)}
-\NormalTok{prop\_miss }\OtherTok{=} \SpecialCharTok{{-}}\FloatTok{1.522879}
+raw_IMISS$logF_MISS = log10(raw_IMISS$F_MISS)
+prop_miss = -1.522879
 
-\NormalTok{raw\_HET}\SpecialCharTok{$}\NormalTok{meanHet }\OtherTok{=}\NormalTok{ (raw\_HET}\SpecialCharTok{$}\StringTok{\textasciigrave{}}\AttributeTok{N(NM)}\StringTok{\textasciigrave{}} \SpecialCharTok{{-}}\NormalTok{ raw\_HET}\SpecialCharTok{$}\StringTok{\textasciigrave{}}\AttributeTok{O(HOM)}\StringTok{\textasciigrave{}}\NormalTok{)}\SpecialCharTok{/}\NormalTok{raw\_HET}\SpecialCharTok{$}\StringTok{\textasciigrave{}}\AttributeTok{N(NM)}\StringTok{\textasciigrave{}}
-\NormalTok{lower\_meanHet }\OtherTok{=} \FunctionTok{mean}\NormalTok{(raw\_HET}\SpecialCharTok{$}\NormalTok{meanHet) }\SpecialCharTok{{-}}\NormalTok{ (}\DecValTok{2}\SpecialCharTok{*}\FunctionTok{sd}\NormalTok{(raw\_HET}\SpecialCharTok{$}\NormalTok{meanHet))}
-\NormalTok{upper\_meanHet }\OtherTok{=} \FunctionTok{mean}\NormalTok{(raw\_HET}\SpecialCharTok{$}\NormalTok{meanHet) }\SpecialCharTok{+}\NormalTok{ (}\DecValTok{2}\SpecialCharTok{*}\FunctionTok{sd}\NormalTok{(raw\_HET}\SpecialCharTok{$}\NormalTok{meanHet))}
+raw_HET$meanHet = (raw_HET$`N(NM)` - raw_HET$`O(HOM)`)/raw_HET$`N(NM)`
+lower_meanHet = mean(raw_HET$meanHet) - (2*sd(raw_HET$meanHet))
+upper_meanHet = mean(raw_HET$meanHet) + (2*sd(raw_HET$meanHet))
 
-\NormalTok{raw\_IMISSHET }\OtherTok{=} \FunctionTok{merge}\NormalTok{(raw\_IMISS, raw\_HET, }\AttributeTok{by =} \StringTok{"IID"}\NormalTok{)}
-\NormalTok{raw\_IMISSHET}\SpecialCharTok{$}\NormalTok{FID.y }\OtherTok{\textless{}{-}} \ConstantTok{NULL}
-\FunctionTok{colnames}\NormalTok{(raw\_IMISSHET)[}\FunctionTok{colnames}\NormalTok{(raw\_IMISSHET)}\SpecialCharTok{==}\StringTok{"FID.x"}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"FID"}
+raw_IMISSHET = merge(raw_IMISS, raw_HET, by = "IID")
+raw_IMISSHET$FID.y <- NULL
+colnames(raw_IMISSHET)[colnames(raw_IMISSHET)=="FID.x"] <- "FID"
 
-\NormalTok{colors  }\OtherTok{\textless{}{-}} \FunctionTok{densCols}\NormalTok{(raw\_IMISSHET}\SpecialCharTok{$}\NormalTok{logF\_MISS, raw\_IMISSHET}\SpecialCharTok{$}\NormalTok{meanHet)}
-\end{Highlighting}
-\end{Shaded}
+colors  <- densCols(raw_IMISSHET$logF_MISS, raw_IMISSHET$meanHet)
+\end{lstlisting}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{ggpubr}\SpecialCharTok{::}\FunctionTok{ggscatter}\NormalTok{(raw\_IMISSHET, }\AttributeTok{x =} \StringTok{"logF\_MISS"}\NormalTok{, }\AttributeTok{y =} \StringTok{"meanHet"}\NormalTok{,}
-                  \AttributeTok{color =}\NormalTok{ colors,}
-                  \AttributeTok{xlab =} \StringTok{"Proportion of missing genotypes"}\NormalTok{, }\AttributeTok{ylab =} \StringTok{"Heterozygosity rate"}\NormalTok{) }\SpecialCharTok{+}
-  \FunctionTok{scale\_x\_continuous}\NormalTok{(}\AttributeTok{labels=}\FunctionTok{c}\NormalTok{(}\StringTok{"{-}3"} \OtherTok{=} \StringTok{"0.001"}\NormalTok{, }\StringTok{"{-}2"} \OtherTok{=} \StringTok{"0.01"}\NormalTok{,}
-                              \StringTok{"{-}1"} \OtherTok{=} \StringTok{"0.1"}\NormalTok{, }\StringTok{"0"} \OtherTok{=} \StringTok{"1"}\NormalTok{)) }\SpecialCharTok{+}
-  \FunctionTok{geom\_hline}\NormalTok{(}\AttributeTok{yintercept =}\NormalTok{ lower\_meanHet, }\AttributeTok{linetype =} \StringTok{"dashed"}\NormalTok{,}
-                \AttributeTok{color =} \StringTok{"\#E55738"}\NormalTok{, }\AttributeTok{size =} \DecValTok{1}\NormalTok{) }\SpecialCharTok{+}
-  \FunctionTok{geom\_hline}\NormalTok{(}\AttributeTok{yintercept =}\NormalTok{ upper\_meanHet, }\AttributeTok{linetype =} \StringTok{"dashed"}\NormalTok{,}
-                \AttributeTok{color =} \StringTok{"\#E55738"}\NormalTok{, }\AttributeTok{size =} \DecValTok{1}\NormalTok{) }\SpecialCharTok{+}
-  \FunctionTok{geom\_vline}\NormalTok{(}\AttributeTok{xintercept =}\NormalTok{ prop\_miss, }\AttributeTok{linetype =} \StringTok{"dashed"}\NormalTok{,}
-                \AttributeTok{color =} \StringTok{"\#E55738"}\NormalTok{, }\AttributeTok{size =} \DecValTok{1}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
+\begin{lstlisting}[language=R]
+ggpubr::ggscatter(raw_IMISSHET, x = "logF_MISS", y = "meanHet",
+                  color = colors,
+                  xlab = "Proportion of missing genotypes", ylab = "Heterozygosity rate") +
+  scale_x_continuous(labels=c("-3" = "0.001", "-2" = "0.01",
+                              "-1" = "0.1", "0" = "1")) +
+  geom_hline(yintercept = lower_meanHet, linetype = "dashed",
+                color = "#E55738", size = 1) +
+  geom_hline(yintercept = upper_meanHet, linetype = "dashed",
+                color = "#E55738", size = 1) +
+  geom_vline(xintercept = prop_miss, linetype = "dashed",
+                color = "#E55738", size = 1)
+\end{lstlisting}
 
 \begin{figure}
 
@@ -814,31 +764,27 @@ Often there is a correlation between heterozygosity rate and missing data. Thus,
 \caption{Heterozygosity as a function of SNP call rate.}\label{fig:show-heterozygosity}
 \end{figure}
 
-Examine the plot (Figure \ref{fig:show-heterozygosity}) to decide reasonable thresholds at which to exclude individuals based on elevated missing or extreme heterozygosity. We chose to exclude all individuals with a genotype failure rate \textgreater= 0.03 (vertical dashed line) and/or a heterozygosity rate ± 3 s.d. from the mean (horizontal dashed lines). Add the FID and IID of the samples failing this QC to the file named \texttt{fail-imisshet-qc.txt}.
+Examine the plot (Figure \ref{fig:show-heterozygosity}) to decide reasonable thresholds at which to exclude individuals based on elevated missing or extreme heterozygosity. We chose to exclude all individuals with a genotype failure rate \textgreater= 0.03 (vertical dashed line) and/or a heterozygosity rate ± 3 s.d. from the mean (horizontal dashed lines). Add the FID and IID of the samples failing this QC to the file named \passthrough{\lstinline!fail-imisshet-qc.txt!}.
 
 \begin{quote}
 How would you create this file?
 \end{quote}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{raw\_IMISSHETsub }\OtherTok{=} \FunctionTok{subset}\NormalTok{(raw\_IMISSHET, logF\_MISS }\SpecialCharTok{\textgreater{}}\NormalTok{ prop\_miss }\SpecialCharTok{|}\NormalTok{ (meanHet }\SpecialCharTok{\textless{}}\NormalTok{ lower\_meanHet }\SpecialCharTok{|}\NormalTok{ meanHet }\SpecialCharTok{\textgreater{}}\NormalTok{ upper\_meanHet),}
-                         \AttributeTok{select =} \FunctionTok{c}\NormalTok{(}\StringTok{"FID"}\NormalTok{, }\StringTok{"IID"}\NormalTok{))}
-\NormalTok{data.table}\SpecialCharTok{::}\FunctionTok{fwrite}\NormalTok{(raw\_IMISSHETsub, }\FunctionTok{paste0}\NormalTok{(COURSE\_loc,}\StringTok{"/rawdata/fail{-}raw\_IMISSHETsub.txt"}\NormalTok{), }\AttributeTok{sep =}\StringTok{" "}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
+\begin{lstlisting}[language=R]
+raw_IMISSHETsub = subset(raw_IMISSHET, logF_MISS > prop_miss | (meanHet < lower_meanHet | meanHet > upper_meanHet),
+                         select = c("FID", "IID"))
+data.table::fwrite(raw_IMISSHETsub, paste0(COURSE_loc,"/rawdata/fail-raw_IMISSHETsub.txt"), sep =" ")
+\end{lstlisting}
 
 If all is right, you'd have something like Table \ref{tab:failed-callrate-het}.
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{library}\NormalTok{(}\StringTok{"knitr"}\NormalTok{)}
-\NormalTok{knitr}\SpecialCharTok{::}\FunctionTok{kable}\NormalTok{(}
-\NormalTok{  failraw\_IMISSHETsub, }\AttributeTok{caption =} \StringTok{\textquotesingle{}Failed samples due to sample call rates and heterozygosity rate\textquotesingle{}}\NormalTok{,}
-  \AttributeTok{booktabs =} \ConstantTok{TRUE}
-\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
+\begin{lstlisting}[language=R]
+library("knitr")
+knitr::kable(
+  failraw_IMISSHETsub, caption = 'Failed samples due to sample call rates and heterozygosity rate',
+  booktabs = TRUE
+)
+\end{lstlisting}
 
 \hypertarget{relatedness}{%
 \section{Relatedness}\label{relatedness}}
@@ -882,40 +828,36 @@ Second-cousin once removed & ±1.56\%\\
 
 \textbackslash end\{table\}
 
-\begin{verbatim}
+\begin{lstlisting}
 plink --bfile rawdata/rawdata.clean.ultraclean --genome --out rawdata/rawdata.clean.ultraclean
-\end{verbatim}
+\end{lstlisting}
 
 We can now identify all pairs of individuals with an IBD \textgreater{} 0.185. The code looks at the individual call rates stored in rawdata.imiss and outputs the IDs of the individual with the lowest call rate to `fail-IBD-QC.txt' for subsequent removal (Table \ref{tab:show-ibdcallissues}).
 
-\begin{verbatim}
+\begin{lstlisting}
 cd rawdata
-\end{verbatim}
+\end{lstlisting}
 
-\begin{verbatim}
+\begin{lstlisting}
 perl ../scripts/run-IBD-QC.pl rawdata rawdata.clean.ultraclean
-\end{verbatim}
+\end{lstlisting}
 
-\begin{verbatim}
+\begin{lstlisting}
 cd ..
-\end{verbatim}
+\end{lstlisting}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{ibdcallissues }\OtherTok{\textless{}{-}}\NormalTok{ data.table}\SpecialCharTok{::}\FunctionTok{fread}\NormalTok{(}\FunctionTok{paste0}\NormalTok{(COURSE\_loc,}\StringTok{"/rawdata/fail{-}IBD{-}QC.txt"}\NormalTok{))}
-\end{Highlighting}
-\end{Shaded}
+\begin{lstlisting}[language=R]
+ibdcallissues <- data.table::fread(paste0(COURSE_loc,"/rawdata/fail-IBD-QC.txt"))
+\end{lstlisting}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{knitr}\SpecialCharTok{::}\FunctionTok{kable}\NormalTok{(}
-\NormalTok{  ibdcallissues, }
-  \AttributeTok{caption =} \StringTok{\textquotesingle{}Failed IBD and callrate.\textquotesingle{}}\NormalTok{,}
-  \CommentTok{\# align = ,}
-  \AttributeTok{booktabs =} \ConstantTok{FALSE}
-\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
+\begin{lstlisting}[language=R]
+knitr::kable(
+  ibdcallissues, 
+  caption = 'Failed IBD and callrate.',
+  # align = ,
+  booktabs = FALSE
+)
+\end{lstlisting}
 
 \hypertarget{ancestral-background}{%
 \section{Ancestral background}\label{ancestral-background}}
@@ -923,7 +865,7 @@ cd ..
 Using a \textbf{Principal Component Analysis (PCA)} we can reduce the dimensions of the data, and project the ``ancestral distances''. In other words, the principal component 1 (the first dimension) and principal component 2 (the second dimension) which will capture most of the variation in the data and represent how much each sample is alike the next. And when compared to a reference, you can deduce the ancestral background of each sample in your dataset. Of course this is relative: we will only know that a given sample is very much a like samples from a given population that exists today.
 
 Nowadays we run such PCA against a large and diverse dataset containing many different populations. Old-school GWAS would compare a dataset against HapMap 3, nowadays we prefer at a minimum the 1000G populations. The thing is, the preferred software to run a PCA is tricky to install (see Chapter \ref{eigensoft}).
-However, for you convenience I ran the PCA for mapping of this dummy dataset against HapMap 3 and 1000G already and shared the files in the \texttt{ref\_pca}-folder. This means you can skip the \protect\hyperlink{hapmap-3}{HapMap 3} and \protect\hyperlink{g-phase-1}{1000G phase 1} sections and jump straight to \protect\hyperlink{pca-plotting}{PCA plotting}.
+However, for you convenience I ran the PCA for mapping of this dummy dataset against HapMap 3 and 1000G already and shared the files in the \passthrough{\lstinline!ref\_pca!}-folder. This means you can skip the \protect\hyperlink{hapmap-3}{HapMap 3} and \protect\hyperlink{g-phase-1}{1000G phase 1} sections and jump straight to \protect\hyperlink{pca-plotting}{PCA plotting}.
 
 \hypertarget{hapmap-3}{%
 \subsection{HapMap 3}\label{hapmap-3}}
@@ -937,22 +879,22 @@ To this end we will merge our data with HapMap3. The alleles at each marker must
 
 Let's start by creating a new BED file, excluding from the GWA data those SNPs that do not feature in the genotype data of the four original HapMap3 populations.
 
-\begin{verbatim}
+\begin{lstlisting}
 plink --bfile rawdata/rawdata --extract ref_hapmap3/hapmap3r2_CEU.CHB.JPT.YRI.no-at-cg-snps.txt --make-bed --out rawdata/rawdata.hm3
-\end{verbatim}
+\end{lstlisting}
 
 \hypertarget{merging-datasets}{%
 \subsubsection{Merging datasets}\label{merging-datasets}}
 
-Now, let's try to merge \texttt{rawdata/rawdata.hm3} with the HapMap data and extract the pruned SNP set from above.
+Now, let's try to merge \passthrough{\lstinline!rawdata/rawdata.hm3!} with the HapMap data and extract the pruned SNP set from above.
 
-\begin{verbatim}
+\begin{lstlisting}
 plink --bfile rawdata/rawdata.hm3 --bmerge ref_hapmap3/hapmap3r2_CEU.CHB.JPT.YRI.founders.no-at-cg-snps --extract rawdata/raw-GWA-data.prune.in --make-bed --out rawdata/rawdata.hapmap3r2.pruned
-\end{verbatim}
+\end{lstlisting}
 
 You probably get an error like below:
 
-\begin{verbatim}
+\begin{lstlisting}
 Error: 59 variants with 3+ alleles present.
 * If you believe this is due to strand inconsistency, try --flip with
   rawdata/rawdata.hapmap3r2.pruned-merge.missnp.
@@ -963,30 +905,30 @@ Error: 59 variants with 3+ alleles present.
   that subset of the data to VCF (via e.g. '--recode vcf'), merging with
   another tool/script, and then importing the result; PLINK is not yet suited
   to handling them.
-\end{verbatim}
+\end{lstlisting}
 
-Because all A-\textgreater T and C-\textgreater G SNPs have been removed before undertaking this analysis, all other SNPs that are discordant for DNA strands between the two data sets are listed in the \texttt{rawdata.hapmap3r2.pruned-merge.missnp} file. To align the strands across the data sets and successfully complete the merge, we can do the following:
+Because all A-\textgreater T and C-\textgreater G SNPs have been removed before undertaking this analysis, all other SNPs that are discordant for DNA strands between the two data sets are listed in the \passthrough{\lstinline!rawdata.hapmap3r2.pruned-merge.missnp!} file. To align the strands across the data sets and successfully complete the merge, we can do the following:
 
-\begin{verbatim}
+\begin{lstlisting}
 plink --bfile rawdata/rawdata --extract ref_hapmap3/hapmap3r2_CEU.CHB.JPT.YRI.no-at-cg-snps.txt --flip rawdata/rawdata.hapmap3r2.pruned-merge.missnp --make-bed --out rawdata/rawdata.hm3
-\end{verbatim}
+\end{lstlisting}
 
 And repeat this:
 
-\begin{verbatim}
+\begin{lstlisting}
 plink --bfile rawdata/rawdata.hm3 --bmerge ref_hapmap3/hapmap3r2_CEU.CHB.JPT.YRI.founders.no-at-cg-snps --extract rawdata/raw-GWA-data.prune.in --make-bed --out rawdata/rawdata.hapmap3r2.pruned
-\end{verbatim}
+\end{lstlisting}
 
 Let's not be lazy and clean this dataset too.
 
-\begin{verbatim}
+\begin{lstlisting}
 plink --bfile rawdata/rawdata.hapmap3r2.pruned \
 --allow-no-sex --autosome \
 --maf 0.10 --geno 0.10 --hwe 1e-3 \
 --indep-pairwise 100 10 0.2 \
 --exclude range support/exclude_problematic_range.txt \
 --make-bed --out rawdata/rawdata.hapmap3r2.pruned.clean
-\end{verbatim}
+\end{lstlisting}
 
 Now we have prepared our dataset to include high-quality SNPs with few missing data, high-frequent SNPs, excluding problematic ranges, and merged to the HapMap 3 reference dataset.
 
@@ -1000,62 +942,62 @@ You could also merge your data and project it against the 1000G phase 1 populati
 
 We start by creating the necessary folder to save the data to.
 
-\begin{verbatim}
+\begin{lstlisting}
 mkdir -v ~/Desktop/practical/ref_1kg_phase1_all
-\end{verbatim}
+\end{lstlisting}
 
 Next, we'll download the reference.
 
-\begin{verbatim}
+\begin{lstlisting}
 wget "https://www.dropbox.com/sh/kumfwm7drt2flhp/AAB5n0OcUvJixI9pNiymx6-La?dl=0" -P ~/Desktop/practical/ref_1kg_phase1_all
-\end{verbatim}
+\end{lstlisting}
 
 \hypertarget{filter-the-1000g-data}{%
 \subsubsection{Filter the 1000G data}\label{filter-the-1000g-data}}
 
-First, we should get a list of relevant variants from our \texttt{rawdata}-dataset. We don't need the other variants present in the 1000G dataset, right?
+First, we should get a list of relevant variants from our \passthrough{\lstinline!rawdata!}-dataset. We don't need the other variants present in the 1000G dataset, right?
 
-\begin{verbatim}
+\begin{lstlisting}
 cat rawdata/rawdata.bim | grep "rs" > rawdata/all.variants.txt
-\end{verbatim}
+\end{lstlisting}
 
 Extract those from the 1000G phase 1 data.
 
-\begin{verbatim}
+\begin{lstlisting}
 plink --bfile ref_1kg_phase1_all/1kg_phase1_all --extract rawdata/all.variants.txt --make-bed --out ref_1kg_phase1_all/1kg_phase1_raw
-\end{verbatim}
+\end{lstlisting}
 
 \hypertarget{filter-at-cg-snps}{%
 \subsubsection{Filter A/T \& C/G SNPs}\label{filter-at-cg-snps}}
 
 As explained, the A/T and C/G SNPs are problematic, we want to exclude these too. So let's get a list of A/T and C/G variants from 1000G to exclude.
 
-\begin{verbatim}
+\begin{lstlisting}
 cat ref_1kg_phase1_all/1kg_phase1_raw.bim | \
 awk '($5 == "A" && $6 == "T") || ($5 == "T" && $6 == "A") || ($5 == "C" && $6 == "G") || ($5 == "G" && $6 == "C")' | awk '{ print $2, $1, $4, $3, $5, $6 }' \
 > ref_1kg_phase1_all/all.1kg.atcg.variants.txt
-\end{verbatim}
+\end{lstlisting}
 
 Exclude those A/T and C/G variants in both datasets.
 
-\begin{verbatim}
+\begin{lstlisting}
 plink --bfile ref_1kg_phase1_all/1kg_phase1_raw --exclude ref_1kg_phase1_all/all.1kg.atcg.variants.txt --make-bed --out ref_1kg_phase1_all/1kg_phase1_raw_no_atcg
 
 plink --bfile rawdata/rawdata --exclude ref_1kg_phase1_all/all.1kg.atcg.variants.txt --make-bed --out rawdata/rawdata_1kg_phase1_raw_no_atcg
-\end{verbatim}
+\end{lstlisting}
 
 \hypertarget{merging-datasets-1}{%
 \subsubsection{Merging datasets}\label{merging-datasets-1}}
 
 Try and merge the data while extracting the pruned SNP-set.
 
-\begin{verbatim}
+\begin{lstlisting}
 plink --bfile rawdata/rawdata_1kg_phase1_raw_no_atcg --bmerge ref_1kg_phase1_all/1kg_phase1_raw_no_atcg --extract rawdata/raw-GWA-data.prune.in --make-bed --out rawdata/rawdata.1kg_phase1.pruned
-\end{verbatim}
+\end{lstlisting}
 
 There probably is an error \ldots{}
 
-\begin{verbatim}
+\begin{lstlisting}
 Error: 72 variants with 3+ alleles present.
 * If you believe this is due to strand inconsistency, try --flip with
   rawdata/rawdata.1kg_phase1.pruned-merge.missnp.
@@ -1067,23 +1009,23 @@ Error: 72 variants with 3+ alleles present.
   another tool/script, and then importing the result; PLINK is not yet suited
   to handling them.
 See https://www.cog-genomics.org/plink/1.9/data#merge3 for more discussion.
-\end{verbatim}
+\end{lstlisting}
 
 So let's flip some variants.
 
-\begin{verbatim}
+\begin{lstlisting}
 plink --bfile rawdata/rawdata --exclude ref_1kg_phase1_all/all.1kg.atcg.variants.txt --flip rawdata/rawdata.1kg_phase1.pruned-merge.missnp --make-bed --out rawdata/rawdata_1kg_phase1_raw_no_atcg
-\end{verbatim}
+\end{lstlisting}
 
 Let's try and merge the data while extracting the pruned SNP-set.
 
-\begin{verbatim}
+\begin{lstlisting}
 plink --bfile rawdata/rawdata_1kg_phase1_raw_no_atcg --bmerge ref_1kg_phase1_all/1kg_phase1_raw_no_atcg --extract rawdata/raw-GWA-data.prune.in --make-bed --out rawdata/rawdata.1kg_phase1.pruned
-\end{verbatim}
+\end{lstlisting}
 
 There still is an error -- there are multi-allelic variants present which PLINK can't handle.
 
-\begin{verbatim}
+\begin{lstlisting}
 Error: 14 variants with 3+ alleles present.
 * If you believe this is due to strand inconsistency, try --flip with
   rawdata/rawdata.1kg_phase1.pruned-merge.missnp.
@@ -1095,32 +1037,32 @@ Error: 14 variants with 3+ alleles present.
   another tool/script, and then importing the result; PLINK is not yet suited
   to handling them.
 See https://www.cog-genomics.org/plink/1.9/data#merge3 for more discussion.
-\end{verbatim}
+\end{lstlisting}
 
 Let's just remove these multi-allelic variants.
 
-\begin{verbatim}
+\begin{lstlisting}
 plink --bfile rawdata/rawdata_1kg_phase1_raw_no_atcg --exclude rawdata/rawdata.1kg_phase1.pruned-merge.missnp --make-bed --out rawdata/rawdata_1kg_phase1_raw_no_atcg_bi
-\end{verbatim}
+\end{lstlisting}
 
 Now we should be able to merge the data\ldots{}
 
-\begin{verbatim}
+\begin{lstlisting}
 plink --bfile rawdata/rawdata_1kg_phase1_raw_no_atcg_bi --bmerge ref_1kg_phase1_all/1kg_phase1_raw_no_atcg --extract rawdata/raw-GWA-data.prune.in --make-bed --out rawdata/rawdata.1kg_phase1.pruned
-\end{verbatim}
+\end{lstlisting}
 
 Now we have prepared our dataset to include high-quality SNPs with few missing data, high-frequent SNPs, excluding problematic ranges, and merged to the 1000G phase 1 reference dataset.
 
 \hypertarget{running-pca}{%
 \subsection{Running PCA}\label{running-pca}}
 
-Now you either prepared a dataset to project against HapMap 3 or 1000G phase 1. In the next two section I show you how to run \texttt{EIGENSOFT} to calculate principal components. It's a bit funny (and confusing perhaps), but to run \texttt{EIGENSOFT} you execute a \texttt{perl}-script:
+Now you either prepared a dataset to project against HapMap 3 or 1000G phase 1. In the next two section I show you how to run \passthrough{\lstinline!EIGENSOFT!} to calculate principal components. It's a bit funny (and confusing perhaps), but to run \passthrough{\lstinline!EIGENSOFT!} you execute a \passthrough{\lstinline!perl!}-script:
 
-\begin{verbatim}
+\begin{lstlisting}
 perl ~/git/EIG/bin/smartpca.perl
-\end{verbatim}
+\end{lstlisting}
 
-Well now, that isn't named \texttt{EIGENSOFT} but rather \texttt{smartpca}. And that's right: this \texttt{perl}-script is actually `calling' a program named \texttt{smartpca}. It needs a couple of `flags' whhich are explained below.
+Well now, that isn't named \passthrough{\lstinline!EIGENSOFT!} but rather \passthrough{\lstinline!smartpca!}. And that's right: this \passthrough{\lstinline!perl!}-script is actually `calling' a program named \passthrough{\lstinline!smartpca!}. It needs a couple of `flags' whhich are explained below.
 
 \begin{longtable}[]{@{}
   >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.5000}}
@@ -1133,17 +1075,17 @@ Description
 \end{minipage} \\
 \midrule
 \endhead
-\texttt{-i\ example.geno} & genotype file in any format (see also ../CONVERTF/README) \\
-\texttt{-a\ example.snp} & snp file in any format (see also ../CONVERTF/README) \\
-\texttt{-b\ example.ind} & indiv file in any format (see also ../CONVERTF/README) \\
-\texttt{-k\ k} & output file of principal components. Individuals removed \\
-\texttt{-o\ example.pca} & (Default is 10) number of principal components to output as outliers will have all values set to 0.0 in this file. \\
-\texttt{-p\ example.plot} & prefix of output plot files of top 2 principal components (labeling individuals according to labels in indiv file). \\
-\texttt{-e\ example.eval} & output file of all eigenvalues \\
-\texttt{-l\ example.log} & output logfile \\
-\texttt{-m\ maxiter} & (Default is 5) maximum number of outlier removal iterations. To turn off outlier removal, set -m 0. \\
-\texttt{-t\ topk} & (Default is 10) number of principal components along which to remove outliers during each outlier removal \\
-\texttt{-s\ sigma} & (Default is 6.0) number of standard deviations which an individual must exceed, along one of topk top principal components, in order to be removed as an outlier. \\
+\passthrough{\lstinline!-i example.geno!} & genotype file in any format (see also ../CONVERTF/README) \\
+\passthrough{\lstinline!-a example.snp!} & snp file in any format (see also ../CONVERTF/README) \\
+\passthrough{\lstinline!-b example.ind!} & indiv file in any format (see also ../CONVERTF/README) \\
+\passthrough{\lstinline!-k k!} & output file of principal components. Individuals removed \\
+\passthrough{\lstinline!-o example.pca!} & (Default is 10) number of principal components to output as outliers will have all values set to 0.0 in this file. \\
+\passthrough{\lstinline!-p example.plot!} & prefix of output plot files of top 2 principal components (labeling individuals according to labels in indiv file). \\
+\passthrough{\lstinline!-e example.eval!} & output file of all eigenvalues \\
+\passthrough{\lstinline!-l example.log!} & output logfile \\
+\passthrough{\lstinline!-m maxiter!} & (Default is 5) maximum number of outlier removal iterations. To turn off outlier removal, set -m 0. \\
+\passthrough{\lstinline!-t topk!} & (Default is 10) number of principal components along which to remove outliers during each outlier removal \\
+\passthrough{\lstinline!-s sigma!} & (Default is 6.0) number of standard deviations which an individual must exceed, along one of topk top principal components, in order to be removed as an outlier. \\
 \bottomrule
 \end{longtable}
 
@@ -1160,28 +1102,28 @@ Description
 \end{minipage} \\
 \midrule
 \endhead
-\texttt{-w\ poplist} & compute eigenvectors using populations in poplist only, where poplist is an ASCII file with one population per line \\
-\texttt{-y\ plotlist} & output plot will include populations in plotlist only, where plotlist is an ASCII file with one population per line \\
-\texttt{-z\ badsnpname} & list of SNPs which should be excluded from the analysis \\
-\texttt{-q\ YES/NO} & If set to YES, assume that there is a single population and the population field contains real-valued phenotypes. (Corresponds to qtmode parameter in smartpca program.) The default value for this parameter is NO. \\
+\passthrough{\lstinline!-w poplist!} & compute eigenvectors using populations in poplist only, where poplist is an ASCII file with one population per line \\
+\passthrough{\lstinline!-y plotlist!} & output plot will include populations in plotlist only, where plotlist is an ASCII file with one population per line \\
+\passthrough{\lstinline!-z badsnpname!} & list of SNPs which should be excluded from the analysis \\
+\passthrough{\lstinline!-q YES/NO!} & If set to YES, assume that there is a single population and the population field contains real-valued phenotypes. (Corresponds to qtmode parameter in smartpca program.) The default value for this parameter is NO. \\
 \bottomrule
 \end{longtable}
 
-As I mentioned before, you might not have been able to make \texttt{EIGENSOFT} work, no worries. You can skip right ahead to \protect\hyperlink{pca-plotting}{PCA Plotting}.
+As I mentioned before, you might not have been able to make \passthrough{\lstinline!EIGENSOFT!} work, no worries. You can skip right ahead to \protect\hyperlink{pca-plotting}{PCA Plotting}.
 
 \hypertarget{hapmap-3-vs-data}{%
 \subsubsection{HapMap 3 vs data}\label{hapmap-3-vs-data}}
 
 To run the PCA against HapMap 3, we first need to make a copy of the BIM and FAM-files.
 
-\begin{verbatim}
+\begin{lstlisting}
 cp -v rawdata/rawdata.hapmap3r2.pruned.bim rawdata/rawdata.hapmap3r2.pruned.pedsnp
 cp -v rawdata/rawdata.hapmap3r2.pruned.fam rawdata/rawdata.hapmap3r2.pruned.pedind
-\end{verbatim}
+\end{lstlisting}
 
 Should you run this on your personal laptop, be aware it will take a few minutes to do so - perfect moment for a cup of coffee or to stretch your legs.
 
-\begin{verbatim}
+\begin{lstlisting}
 perl ~/git/EIG/bin/smartpca.perl \
 -i rawdata/rawdata.hapmap3r2.pruned.bed \
 -a rawdata/rawdata.hapmap3r2.pruned.pedsnp \
@@ -1195,19 +1137,19 @@ perl ~/git/EIG/bin/smartpca.perl \
 -t 10 \
 -s 6.0 \
 -w ref_hapmap3/hapmap3r2_CEU.CHB.JPT.YRI-pca-populations.txt
-\end{verbatim}
+\end{lstlisting}
 
 \hypertarget{g-phase-1-vs-data}{%
 \subsubsection{1000G phase 1 vs data}\label{g-phase-1-vs-data}}
 
 To run the PCA against 1000G phase 1, we first need to make a copy of the BIM and FAM-files.
 
-\begin{verbatim}
+\begin{lstlisting}
 cp -v rawdata/rawdata.1kg_phase1.pruned.bim rawdata/rawdata.1kg_phase1.pruned.pedsnp
 cp -v rawdata/rawdata.1kg_phase1.pruned.fam rawdata/rawdata.1kg_phase1.pruned.pedind
-\end{verbatim}
+\end{lstlisting}
 
-\begin{verbatim}
+\begin{lstlisting}
 perl ~/git/EIG/bin/smartpca.perl \
 -i rawdata/rawdata.1kg_phase1.pruned.bed \
 -a rawdata/rawdata.1kg_phase1.pruned.pedsnp \
@@ -1221,17 +1163,17 @@ perl ~/git/EIG/bin/smartpca.perl \
 -t 10 \
 -s 6.0 \
 -w ref_1kg_phase1_all/1kg-pca-populations.txt
-\end{verbatim}
+\end{lstlisting}
 
 \hypertarget{pca-plotting}{%
 \subsection{PCA plotting}\label{pca-plotting}}
 
-If all is peachy, you ran PCA against either HapMap 3 or 1000G phase 1. Using \texttt{smartpca} (you know, \texttt{EIGENSOFT}) we have calculated principal components (PCs) and we can now start plotting them. Let's create a scatter diagram of the first two principal components, including all individuals in the file \texttt{rawdata.hapmap3r2.pruned.pca.evec} (the first and second principal components are columns 2 and 3, respectively). Use the data in column 4 to color the points according to sample origin.
+If all is peachy, you ran PCA against either HapMap 3 or 1000G phase 1. Using \passthrough{\lstinline!smartpca!} (you know, \passthrough{\lstinline!EIGENSOFT!}) we have calculated principal components (PCs) and we can now start plotting them. Let's create a scatter diagram of the first two principal components, including all individuals in the file \passthrough{\lstinline!rawdata.hapmap3r2.pruned.pca.evec!} (the first and second principal components are columns 2 and 3, respectively). Use the data in column 4 to color the points according to sample origin.
 
-A R script for creating this plot (\texttt{scripts/plot-pca-results.Rscript}) is also provided (although any standard graphing software can be used), but below you'll find some fancy codes too.
+A R script for creating this plot (\passthrough{\lstinline!scripts/plot-pca-results.Rscript!}) is also provided (although any standard graphing software can be used), but below you'll find some fancy codes too.
 
 \begin{quote}
-Please note! You may have been able to make \texttt{EIGENSOFT} (Chapter \ref{eigensoft}) to work. So you may have to change ``/ref\_pca/rawdata.hapmap3r2.pruned.pca.evec'' to ``/rawdata/rawdata.hapmap3r2.pruned.pca.evec'' in the command below.
+Please note! You may have been able to make \passthrough{\lstinline!EIGENSOFT!} (Chapter \ref{eigensoft}) to work. So you may have to change ``/ref\_pca/rawdata.hapmap3r2.pruned.pca.evec'' to ``/rawdata/rawdata.hapmap3r2.pruned.pca.evec'' in the command below.
 \end{quote}
 
 \hypertarget{hapmap-3-vs-data-1}{%
@@ -1239,44 +1181,38 @@ Please note! You may have been able to make \texttt{EIGENSOFT} (Chapter \ref{eig
 
 We could plot our data against HapMap 3.
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{PCA }\OtherTok{\textless{}{-}}\NormalTok{ data.table}\SpecialCharTok{::}\FunctionTok{fread}\NormalTok{(}\FunctionTok{paste0}\NormalTok{(COURSE\_loc,}\StringTok{"/ref\_pca/rawdata.hapmap3r2.pruned.pca.evec"}\NormalTok{), }\AttributeTok{header =} \ConstantTok{FALSE}\NormalTok{, }\AttributeTok{skip =} \DecValTok{1}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
+\begin{lstlisting}[language=R]
+PCA <- data.table::fread(paste0(COURSE_loc,"/ref_pca/rawdata.hapmap3r2.pruned.pca.evec"), header = FALSE, skip = 1)
+\end{lstlisting}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# Case/Control {-}\textgreater{} black, pch = "+"}
-\CommentTok{\# CEU = 3 {-}\textgreater{} red, pch = 20}
-\CommentTok{\# CHB = 4 {-}\textgreater{} pink, pch = 20}
-\CommentTok{\# JPT = 5 {-}\textgreater{} purple, pch = 20}
-\CommentTok{\# YRI = 6 {-}\textgreater{} green, pch = 20}
-\NormalTok{PCA}\SpecialCharTok{$}\NormalTok{V12[PCA}\SpecialCharTok{$}\NormalTok{V12 }\SpecialCharTok{==} \StringTok{"Case"}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"Case"} \CommentTok{\#595A5C}
-\NormalTok{PCA}\SpecialCharTok{$}\NormalTok{V12[PCA}\SpecialCharTok{$}\NormalTok{V12 }\SpecialCharTok{==} \StringTok{"Control"}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"Control"} \CommentTok{\#595A5C}
-\NormalTok{PCA}\SpecialCharTok{$}\NormalTok{V12[PCA}\SpecialCharTok{$}\NormalTok{V12 }\SpecialCharTok{==} \StringTok{"3"}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"CEU"} \CommentTok{\#E55738}
-\NormalTok{PCA}\SpecialCharTok{$}\NormalTok{V12[PCA}\SpecialCharTok{$}\NormalTok{V12 }\SpecialCharTok{==} \StringTok{"4"}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"CHB"} \CommentTok{\#D5267B}
-\NormalTok{PCA}\SpecialCharTok{$}\NormalTok{V12[PCA}\SpecialCharTok{$}\NormalTok{V12 }\SpecialCharTok{==} \StringTok{"5"}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"JPT"} \CommentTok{\#9A3480}
-\NormalTok{PCA}\SpecialCharTok{$}\NormalTok{V12[PCA}\SpecialCharTok{$}\NormalTok{V12 }\SpecialCharTok{==} \StringTok{"6"}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"YRI"} \CommentTok{\#49A01D}
-\end{Highlighting}
-\end{Shaded}
+\begin{lstlisting}[language=R]
+# Case/Control -> black, pch = "+"
+# CEU = 3 -> red, pch = 20
+# CHB = 4 -> pink, pch = 20
+# JPT = 5 -> purple, pch = 20
+# YRI = 6 -> green, pch = 20
+PCA$V12[PCA$V12 == "Case"] <- "Case" #595A5C
+PCA$V12[PCA$V12 == "Control"] <- "Control" #595A5C
+PCA$V12[PCA$V12 == "3"] <- "CEU" #E55738
+PCA$V12[PCA$V12 == "4"] <- "CHB" #D5267B
+PCA$V12[PCA$V12 == "5"] <- "JPT" #9A3480
+PCA$V12[PCA$V12 == "6"] <- "YRI" #49A01D
+\end{lstlisting}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{PCAplot }\OtherTok{\textless{}{-}}\NormalTok{ ggpubr}\SpecialCharTok{::}\FunctionTok{ggscatter}\NormalTok{(PCA, }\AttributeTok{x =} \StringTok{"V2"}\NormalTok{, }\AttributeTok{y =} \StringTok{"V3"}\NormalTok{,}
-                             \AttributeTok{color =} \StringTok{"V12"}\NormalTok{,}
-                             \AttributeTok{palette =} \FunctionTok{c}\NormalTok{(}\StringTok{"\#595A5C"}\NormalTok{, }\StringTok{"\#595A5C"}\NormalTok{, }\StringTok{"\#E55738"}\NormalTok{, }\StringTok{"\#D5267B"}\NormalTok{, }\StringTok{"\#9A3480"}\NormalTok{, }\StringTok{"\#49A01D"}\NormalTok{),}
-                             \AttributeTok{shape =} \StringTok{"V12"}\NormalTok{,}
-                             \AttributeTok{xlab =} \StringTok{"principal component 1"}\NormalTok{, }\AttributeTok{ylab =} \StringTok{"principal component 2"}\NormalTok{) }\SpecialCharTok{+}
-  \FunctionTok{geom\_hline}\NormalTok{(}\AttributeTok{yintercept =} \FloatTok{0.075}\NormalTok{, }\AttributeTok{linetype =} \StringTok{"dashed"}\NormalTok{,}
-                \AttributeTok{color =} \StringTok{"\#A2A3A4"}\NormalTok{, }\AttributeTok{size =} \DecValTok{1}\NormalTok{)}
+\begin{lstlisting}[language=R]
+PCAplot <- ggpubr::ggscatter(PCA, x = "V2", y = "V3",
+                             color = "V12",
+                             palette = c("#595A5C", "#595A5C", "#E55738", "#D5267B", "#9A3480", "#49A01D"),
+                             shape = "V12",
+                             xlab = "principal component 1", ylab = "principal component 2") +
+  geom_hline(yintercept = 0.075, linetype = "dashed",
+                color = "#A2A3A4", size = 1)
 
-\NormalTok{  ggpubr}\SpecialCharTok{::}\FunctionTok{ggpar}\NormalTok{(PCAplot,}
-                \AttributeTok{title =} \StringTok{"Principal Component Analysis"}\NormalTok{,}
-                \AttributeTok{subtitle =} \StringTok{"Reference population: HapMap 3"}\NormalTok{,}
-                \AttributeTok{legend.title =} \StringTok{"Populations"}\NormalTok{, }\AttributeTok{legend =} \StringTok{"right"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
+  ggpubr::ggpar(PCAplot,
+                title = "Principal Component Analysis",
+                subtitle = "Reference population: HapMap 3",
+                legend.title = "Populations", legend = "right")
+\end{lstlisting}
 
 \begin{figure}
 
@@ -1289,12 +1225,12 @@ We could plot our data against HapMap 3.
 
 Derive PC1 and PC2 thresholds so that only individuals who match the given ancestral population are included. For populations of European descent, this will be either the CEU or TSI HapMap3 individuals (Figure \ref{fig:show-pca-hapmap3}). Here, we chose to exclude all individuals with a second principal component score less than 0.075.
 
-Write the FID and IID of these individuals to a file called \texttt{fail-ancestry-QC.txt}.
+Write the FID and IID of these individuals to a file called \passthrough{\lstinline!fail-ancestry-QC.txt!}.
 
-\begin{verbatim}
+\begin{lstlisting}
 cat rawdata/rawdata.hapmap3r2.pruned.pca.evec | tail -n +2 | \
 awk '$3 < 0.075' | awk '{ print $1 }' | awk -F":" '{ print $1, $2 }' > rawdata/fail-ancestry-QC.txt
-\end{verbatim}
+\end{lstlisting}
 
 Choosing which thresholds to apply (and thus which individuals to remove) is not a straightforward process. The key is to remove those individuals with greatly divergent ancestry, as these samples introduce the most bias to the study. Identification of more fine-scale ancestry can be conducted by using less divergent reference samples (\emph{e.g.}, within Europe, stratification could be identified using the CEU, TSI (Italian), GBR (British), FIN (Finnish) and IBS (Iberian) samples from the 1,000 Genomes Project (\url{http://www.1000genomes.org/})). Robust identification of fine-scale population structure often requires the construction of many (2--10) principal components.
 
@@ -1304,69 +1240,63 @@ Choosing which thresholds to apply (and thus which individuals to remove) is not
 We could plot our data against 1000G phase 1.
 
 \begin{quote}
-Please note! You may have been able to make \texttt{EIGENSOFT} (Chapter \ref{eigensoft}) to work. So you may have to change ``/ref\_pca/rawdata.1kg\_phase1.pruned.pca.evec'' to ``/rawdata/rawdata.1kg\_phase1.pruned.pca.evec'' in the command below.
+Please note! You may have been able to make \passthrough{\lstinline!EIGENSOFT!} (Chapter \ref{eigensoft}) to work. So you may have to change ``/ref\_pca/rawdata.1kg\_phase1.pruned.pca.evec'' to ``/rawdata/rawdata.1kg\_phase1.pruned.pca.evec'' in the command below.
 \end{quote}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{PCA\_1kG }\OtherTok{\textless{}{-}}\NormalTok{ data.table}\SpecialCharTok{::}\FunctionTok{fread}\NormalTok{(}\FunctionTok{paste0}\NormalTok{(COURSE\_loc,}\StringTok{"/ref\_pca/rawdata.1kg\_phase1.pruned.pca.evec"}\NormalTok{), }\AttributeTok{header =} \ConstantTok{FALSE}\NormalTok{, }\AttributeTok{skip =} \DecValTok{1}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
+\begin{lstlisting}[language=R]
+PCA_1kG <- data.table::fread(paste0(COURSE_loc,"/ref_pca/rawdata.1kg_phase1.pruned.pca.evec"), header = FALSE, skip = 1)
+\end{lstlisting}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# Population    Description Super population    Code    Counts}
-\CommentTok{\# ASW   African Ancestry in Southwest US                              AFR   4     \#49A01D}
-\CommentTok{\# CEU   Utah residents with Northern and Western European ancestry  EUR 7     \#E55738}
-\CommentTok{\# CHB   Han Chinese in Bejing, China                                  EAS   8     \#9A3480}
-\CommentTok{\# CHS   Southern Han Chinese, China                                 EAS 9     \#705296}
-\CommentTok{\# CLM   Colombian in Medellin, Colombia                             MR  10  \#8D5B9A}
-\CommentTok{\# FIN   Finnish in Finland                                          EUR 12  \#2F8BC9}
-\CommentTok{\# GBR   British in England and Scotland                             EUR 13  \#1290D9}
-\CommentTok{\# IBS   Iberian populations in Spain                                  EUR   16  \#1396D8}
-\CommentTok{\# JPT   Japanese in Tokyo, Japan                                      EAS   18  \#D5267B}
-\CommentTok{\# LWK   Luhya in Webuye, Kenya                                      AFR 20  \#78B113}
-\CommentTok{\# MXL   Mexican Ancestry in Los Angeles, California                 AMR 22  \#F59D10}
-\CommentTok{\# PUR   Puerto Rican in Puerto Rico                                 AMR 25  \#FBB820}
-\CommentTok{\# TSI   Toscani in Italy                                              EUR   27  \#4C81BF}
-\CommentTok{\# YRI   Yoruba in Ibadan, Nigeria                                     AFR   28  \#C5D220}
+\begin{lstlisting}[language=R]
+# Population    Description Super population    Code    Counts
+# ASW   African Ancestry in Southwest US                              AFR   4     #49A01D
+# CEU   Utah residents with Northern and Western European ancestry  EUR 7     #E55738
+# CHB   Han Chinese in Bejing, China                                  EAS   8     #9A3480
+# CHS   Southern Han Chinese, China                                 EAS 9     #705296
+# CLM   Colombian in Medellin, Colombia                             MR  10  #8D5B9A
+# FIN   Finnish in Finland                                          EUR 12  #2F8BC9
+# GBR   British in England and Scotland                             EUR 13  #1290D9
+# IBS   Iberian populations in Spain                                  EUR   16  #1396D8
+# JPT   Japanese in Tokyo, Japan                                      EAS   18  #D5267B
+# LWK   Luhya in Webuye, Kenya                                      AFR 20  #78B113
+# MXL   Mexican Ancestry in Los Angeles, California                 AMR 22  #F59D10
+# PUR   Puerto Rican in Puerto Rico                                 AMR 25  #FBB820
+# TSI   Toscani in Italy                                              EUR   27  #4C81BF
+# YRI   Yoruba in Ibadan, Nigeria                                     AFR   28  #C5D220
 
-\NormalTok{PCA\_1kG}\SpecialCharTok{$}\NormalTok{V12[PCA\_1kG}\SpecialCharTok{$}\NormalTok{V12 }\SpecialCharTok{==} \StringTok{"Case"}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"Case"}
-\NormalTok{PCA\_1kG}\SpecialCharTok{$}\NormalTok{V12[PCA\_1kG}\SpecialCharTok{$}\NormalTok{V12 }\SpecialCharTok{==} \StringTok{"Control"}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"Control"}
-\NormalTok{PCA\_1kG}\SpecialCharTok{$}\NormalTok{V12[PCA\_1kG}\SpecialCharTok{$}\NormalTok{V12 }\SpecialCharTok{==} \StringTok{"4"}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"ASW"}
-\NormalTok{PCA\_1kG}\SpecialCharTok{$}\NormalTok{V12[PCA\_1kG}\SpecialCharTok{$}\NormalTok{V12 }\SpecialCharTok{==} \StringTok{"7"}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"CEU"}
-\NormalTok{PCA\_1kG}\SpecialCharTok{$}\NormalTok{V12[PCA\_1kG}\SpecialCharTok{$}\NormalTok{V12 }\SpecialCharTok{==} \StringTok{"8"}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"CHB"}
-\NormalTok{PCA\_1kG}\SpecialCharTok{$}\NormalTok{V12[PCA\_1kG}\SpecialCharTok{$}\NormalTok{V12 }\SpecialCharTok{==} \StringTok{"9"}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"CHS"}
-\NormalTok{PCA\_1kG}\SpecialCharTok{$}\NormalTok{V12[PCA\_1kG}\SpecialCharTok{$}\NormalTok{V12 }\SpecialCharTok{==} \StringTok{"10"}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"CLM"}
-\NormalTok{PCA\_1kG}\SpecialCharTok{$}\NormalTok{V12[PCA\_1kG}\SpecialCharTok{$}\NormalTok{V12 }\SpecialCharTok{==} \StringTok{"12"}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"FIN"}
-\NormalTok{PCA\_1kG}\SpecialCharTok{$}\NormalTok{V12[PCA\_1kG}\SpecialCharTok{$}\NormalTok{V12 }\SpecialCharTok{==} \StringTok{"13"}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"GBR"}
-\NormalTok{PCA\_1kG}\SpecialCharTok{$}\NormalTok{V12[PCA\_1kG}\SpecialCharTok{$}\NormalTok{V12 }\SpecialCharTok{==} \StringTok{"16"}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"IBS"}
-\NormalTok{PCA\_1kG}\SpecialCharTok{$}\NormalTok{V12[PCA\_1kG}\SpecialCharTok{$}\NormalTok{V12 }\SpecialCharTok{==} \StringTok{"18"}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"JPT"}
-\NormalTok{PCA\_1kG}\SpecialCharTok{$}\NormalTok{V12[PCA\_1kG}\SpecialCharTok{$}\NormalTok{V12 }\SpecialCharTok{==} \StringTok{"20"}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"LWK"}
-\NormalTok{PCA\_1kG}\SpecialCharTok{$}\NormalTok{V12[PCA\_1kG}\SpecialCharTok{$}\NormalTok{V12 }\SpecialCharTok{==} \StringTok{"22"}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"MXL"}
-\NormalTok{PCA\_1kG}\SpecialCharTok{$}\NormalTok{V12[PCA\_1kG}\SpecialCharTok{$}\NormalTok{V12 }\SpecialCharTok{==} \StringTok{"25"}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"PUR"}
-\NormalTok{PCA\_1kG}\SpecialCharTok{$}\NormalTok{V12[PCA\_1kG}\SpecialCharTok{$}\NormalTok{V12 }\SpecialCharTok{==} \StringTok{"27"}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"TSI"}
-\NormalTok{PCA\_1kG}\SpecialCharTok{$}\NormalTok{V12[PCA\_1kG}\SpecialCharTok{$}\NormalTok{V12 }\SpecialCharTok{==} \StringTok{"28"}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"YRI"}
-\end{Highlighting}
-\end{Shaded}
+PCA_1kG$V12[PCA_1kG$V12 == "Case"] <- "Case"
+PCA_1kG$V12[PCA_1kG$V12 == "Control"] <- "Control"
+PCA_1kG$V12[PCA_1kG$V12 == "4"] <- "ASW"
+PCA_1kG$V12[PCA_1kG$V12 == "7"] <- "CEU"
+PCA_1kG$V12[PCA_1kG$V12 == "8"] <- "CHB"
+PCA_1kG$V12[PCA_1kG$V12 == "9"] <- "CHS"
+PCA_1kG$V12[PCA_1kG$V12 == "10"] <- "CLM"
+PCA_1kG$V12[PCA_1kG$V12 == "12"] <- "FIN"
+PCA_1kG$V12[PCA_1kG$V12 == "13"] <- "GBR"
+PCA_1kG$V12[PCA_1kG$V12 == "16"] <- "IBS"
+PCA_1kG$V12[PCA_1kG$V12 == "18"] <- "JPT"
+PCA_1kG$V12[PCA_1kG$V12 == "20"] <- "LWK"
+PCA_1kG$V12[PCA_1kG$V12 == "22"] <- "MXL"
+PCA_1kG$V12[PCA_1kG$V12 == "25"] <- "PUR"
+PCA_1kG$V12[PCA_1kG$V12 == "27"] <- "TSI"
+PCA_1kG$V12[PCA_1kG$V12 == "28"] <- "YRI"
+\end{lstlisting}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{PCA\_1kGplot }\OtherTok{\textless{}{-}}\NormalTok{ ggpubr}\SpecialCharTok{::}\FunctionTok{ggscatter}\NormalTok{(PCA\_1kG, }\AttributeTok{x =} \StringTok{"V2"}\NormalTok{, }\AttributeTok{y =} \StringTok{"V3"}\NormalTok{,}
-                                 \AttributeTok{color =} \StringTok{"V12"}\NormalTok{,}
-                                 \AttributeTok{palette =} \FunctionTok{c}\NormalTok{(}\StringTok{"\#595A5C"}\NormalTok{, }\StringTok{"\#49A01D"}\NormalTok{, }\StringTok{"\#E55738"}\NormalTok{, }\StringTok{"\#9A3480"}\NormalTok{, }\StringTok{"\#705296"}\NormalTok{, }
-                                             \StringTok{"\#595A5C"}\NormalTok{, }\StringTok{"\#8D5B9A"}\NormalTok{, }\StringTok{"\#2F8BC9"}\NormalTok{, }\StringTok{"\#1290D9"}\NormalTok{, }\StringTok{"\#1396D8"}\NormalTok{, }
-                                             \StringTok{"\#D5267B"}\NormalTok{, }\StringTok{"\#78B113"}\NormalTok{, }\StringTok{"\#F59D10"}\NormalTok{, }\StringTok{"\#FBB820"}\NormalTok{, }\StringTok{"\#4C81BF"}\NormalTok{, }\StringTok{"\#C5D220"}\NormalTok{),}
-                                 \AttributeTok{xlab =} \StringTok{"principal component 1"}\NormalTok{, }\AttributeTok{ylab =} \StringTok{"principal component 2"}\NormalTok{) }\SpecialCharTok{+}
-  \FunctionTok{geom\_hline}\NormalTok{(}\AttributeTok{yintercept =} \FloatTok{0.023}\NormalTok{, }\AttributeTok{linetype =} \StringTok{"dashed"}\NormalTok{,}
-                \AttributeTok{color =} \StringTok{"\#595A5C"}\NormalTok{, }\AttributeTok{size =} \DecValTok{1}\NormalTok{)}
+\begin{lstlisting}[language=R]
+PCA_1kGplot <- ggpubr::ggscatter(PCA_1kG, x = "V2", y = "V3",
+                                 color = "V12",
+                                 palette = c("#595A5C", "#49A01D", "#E55738", "#9A3480", "#705296", 
+                                             "#595A5C", "#8D5B9A", "#2F8BC9", "#1290D9", "#1396D8", 
+                                             "#D5267B", "#78B113", "#F59D10", "#FBB820", "#4C81BF", "#C5D220"),
+                                 xlab = "principal component 1", ylab = "principal component 2") +
+  geom_hline(yintercept = 0.023, linetype = "dashed",
+                color = "#595A5C", size = 1)
 
-\NormalTok{  ggpubr}\SpecialCharTok{::}\FunctionTok{ggpar}\NormalTok{(PCA\_1kGplot,}
-                \AttributeTok{title =} \StringTok{"Principal Component Analysis"}\NormalTok{,}
-                \AttributeTok{subtitle =} \StringTok{"Reference population: 1000 G, phase 1"}\NormalTok{,}
-                \AttributeTok{legend.title =} \StringTok{"Populations"}\NormalTok{, }\AttributeTok{legend =} \StringTok{"right"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
+  ggpubr::ggpar(PCA_1kGplot,
+                title = "Principal Component Analysis",
+                subtitle = "Reference population: 1000 G, phase 1",
+                legend.title = "Populations", legend = "right")
+\end{lstlisting}
 
 In a similar fashion as in the above with the HapMap3 reference, you could \textbf{remove the samples below the threshold} based on this PCA (Figure \ref{fig:show-pca-1000g}).
 
@@ -1382,17 +1312,17 @@ In a similar fashion as in the above with the HapMap3 reference, you could \text
 \hypertarget{removing-samples}{%
 \section{Removing samples}\label{removing-samples}}
 
-Finally! We have a list of samples of poor quality or divergent ancestry, and duplicated or related samples. We should remove these. Let's collect all IDs from our \texttt{fail-*}-files into a single file.
+Finally! We have a list of samples of poor quality or divergent ancestry, and duplicated or related samples. We should remove these. Let's collect all IDs from our \passthrough{\lstinline!fail-*!}-files into a single file.
 
-\begin{verbatim}
+\begin{lstlisting}
 cat rawdata/fail-* | sort -k1 | uniq > rawdata/fail-qc-inds.txt
-\end{verbatim}
+\end{lstlisting}
 
 This new file should now contain a list of unique individuals failing the previous QC steps which we want to remove.
 
-\begin{verbatim}
+\begin{lstlisting}
 plink --bfile rawdata/rawdata --remove rawdata/fail-qc-inds.txt --make-bed --out rawdata/clean_inds_data
-\end{verbatim}
+\end{lstlisting}
 
 \hypertarget{the-next-step}{%
 \section{The next step}\label{the-next-step}}
@@ -1411,37 +1341,33 @@ Now that we removed samples, we can focus on low-quality variants.
 
 We start by calculating the missing genotype rate for each SNP, in other words the per-SNP call rate.
 
-\begin{verbatim}
+\begin{lstlisting}
 plink --bfile rawdata/clean_inds_data --missing --out rawdata/clean_inds_data
-\end{verbatim}
+\end{lstlisting}
 
 Let's visualize the results to identify a threshold for extreme genotype failure rate. We chose a callrate threshold of 3\%, but it's arbitrary and depending on the dataset and the number of samples (Figure \ref{fig:show-snp-callrate}).
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{library}\NormalTok{(}\StringTok{"data.table"}\NormalTok{)}
+\begin{lstlisting}[language=R]
+library("data.table")
 
-\NormalTok{COURSE\_loc }\OtherTok{=} \StringTok{"\textasciitilde{}/Desktop/practical"} \CommentTok{\# getwd()}
+COURSE_loc = "~/Desktop/practical" # getwd()
 
-\NormalTok{clean\_LMISS }\OtherTok{\textless{}{-}}\NormalTok{ data.table}\SpecialCharTok{::}\FunctionTok{fread}\NormalTok{(}\FunctionTok{paste0}\NormalTok{(COURSE\_loc, }\StringTok{"/rawdata/clean\_inds\_data.lmiss"}\NormalTok{))}
+clean_LMISS <- data.table::fread(paste0(COURSE_loc, "/rawdata/clean_inds_data.lmiss"))
 
-\NormalTok{clean\_LMISS}\SpecialCharTok{$}\NormalTok{callrate }\OtherTok{\textless{}{-}} \DecValTok{1} \SpecialCharTok{{-}}\NormalTok{ clean\_LMISS}\SpecialCharTok{$}\NormalTok{F\_MISS}
-\end{Highlighting}
-\end{Shaded}
+clean_LMISS$callrate <- 1 - clean_LMISS$F_MISS
+\end{lstlisting}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{library}\NormalTok{(}\StringTok{"ggpubr"}\NormalTok{)}
+\begin{lstlisting}[language=R]
+library("ggpubr")
 
-\NormalTok{ggpubr}\SpecialCharTok{::}\FunctionTok{gghistogram}\NormalTok{(clean\_LMISS, }\AttributeTok{x =} \StringTok{"callrate"}\NormalTok{,}
-                    \AttributeTok{add =} \StringTok{"mean"}\NormalTok{, }\AttributeTok{add.params =} \FunctionTok{list}\NormalTok{(}\AttributeTok{color =} \StringTok{"\#595A5C"}\NormalTok{, }\AttributeTok{linetype =} \StringTok{"dashed"}\NormalTok{, }\AttributeTok{size =} \DecValTok{1}\NormalTok{),}
-                    \AttributeTok{rug =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{bins =} \DecValTok{50}\NormalTok{,}
-                    \AttributeTok{color =} \StringTok{"\#1290D9"}\NormalTok{, }\AttributeTok{fill =} \StringTok{"\#1290D9"}\NormalTok{,}
-                    \AttributeTok{xlab =} \StringTok{"per SNP call rate"}\NormalTok{) }\SpecialCharTok{+}
-  \FunctionTok{geom\_vline}\NormalTok{(}\AttributeTok{xintercept =} \FloatTok{0.95}\NormalTok{, }\AttributeTok{linetype =} \StringTok{"dashed"}\NormalTok{,}
-                \AttributeTok{color =} \StringTok{"\#E55738"}\NormalTok{, }\AttributeTok{size =} \DecValTok{1}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
+ggpubr::gghistogram(clean_LMISS, x = "callrate",
+                    add = "mean", add.params = list(color = "#595A5C", linetype = "dashed", size = 1),
+                    rug = TRUE, bins = 50,
+                    color = "#1290D9", fill = "#1290D9",
+                    xlab = "per SNP call rate") +
+  geom_vline(xintercept = 0.95, linetype = "dashed",
+                color = "#E55738", size = 1)
+\end{lstlisting}
 
 \begin{figure}
 
@@ -1457,44 +1383,40 @@ Let's visualize the results to identify a threshold for extreme genotype failure
 
 There could also be differences in genotype call rates between cases and controls. It is very important to check for this because these differences could lead to spurious associations. We can test all markers for differences in call rate between cases and controls, or based on
 
-\begin{verbatim}
+\begin{lstlisting}
 plink --bfile rawdata/clean_inds_data --test-missing --out rawdata/clean_inds_data
-\end{verbatim}
+\end{lstlisting}
 
 Let's collect all the SNPs ith a significantly different (P \textless{} 0.00001) missing data rate between cases and controls.
 
-\begin{verbatim}
+\begin{lstlisting}
 cat rawdata/clean_inds_data.missing | awk '$5 < 0.00001' | awk '{ print $2 }' > rawdata/fail-diffmiss-qc.txt
-\end{verbatim}
+\end{lstlisting}
 
 \hypertarget{allele-frequencies}{%
 \section{Allele frequencies}\label{allele-frequencies}}
 
 We should also get an idea on what the allele frequencies are in our dataset. Low frequent SNPs should probably be excluded, as these are uninformative when monomorphic (allele frequency = 0), or they may lead to spurious associations.
 
-\begin{verbatim}
+\begin{lstlisting}
 plink --bfile rawdata/clean_inds_data --freq --out rawdata/clean_inds_data
-\end{verbatim}
+\end{lstlisting}
 
 Let's also plot these data. You can view the result below, and try it yourself (Figure \ref{fig:show-freq}).
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{clean\_FREQ }\OtherTok{\textless{}{-}}\NormalTok{ data.table}\SpecialCharTok{::}\FunctionTok{fread}\NormalTok{(}\FunctionTok{paste0}\NormalTok{(COURSE\_loc, }\StringTok{"/rawdata/clean\_inds\_data.frq"}\NormalTok{))}
-\end{Highlighting}
-\end{Shaded}
+\begin{lstlisting}[language=R]
+clean_FREQ <- data.table::fread(paste0(COURSE_loc, "/rawdata/clean_inds_data.frq"))
+\end{lstlisting}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{ggpubr}\SpecialCharTok{::}\FunctionTok{gghistogram}\NormalTok{(clean\_FREQ, }\AttributeTok{x =} \StringTok{"MAF"}\NormalTok{,}
-                    \AttributeTok{add =} \StringTok{"mean"}\NormalTok{, }\AttributeTok{add.params =} \FunctionTok{list}\NormalTok{(}\AttributeTok{color =} \StringTok{"\#595A5C"}\NormalTok{, }\AttributeTok{linetype =} \StringTok{"dashed"}\NormalTok{, }\AttributeTok{size =} \DecValTok{1}\NormalTok{),}
-                    \AttributeTok{rug =} \ConstantTok{TRUE}\NormalTok{,}
-                    \AttributeTok{color =} \StringTok{"\#1290D9"}\NormalTok{, }\AttributeTok{fill =} \StringTok{"\#1290D9"}\NormalTok{,}
-                    \AttributeTok{xlab =} \StringTok{"minor allele frequency"}\NormalTok{) }\SpecialCharTok{+}
-  \FunctionTok{geom\_vline}\NormalTok{(}\AttributeTok{xintercept =} \FloatTok{0.05}\NormalTok{, }\AttributeTok{linetype =} \StringTok{"dashed"}\NormalTok{,}
-                \AttributeTok{color =} \StringTok{"\#E55738"}\NormalTok{, }\AttributeTok{size =} \DecValTok{1}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
+\begin{lstlisting}[language=R]
+ggpubr::gghistogram(clean_FREQ, x = "MAF",
+                    add = "mean", add.params = list(color = "#595A5C", linetype = "dashed", size = 1),
+                    rug = TRUE,
+                    color = "#1290D9", fill = "#1290D9",
+                    xlab = "minor allele frequency") +
+  geom_vline(xintercept = 0.05, linetype = "dashed",
+                color = "#E55738", size = 1)
+\end{lstlisting}
 
 \begin{figure}
 
@@ -1510,21 +1432,21 @@ Let's also plot these data. You can view the result below, and try it yourself (
 
 Oh, one more thing about alleles.
 
-\texttt{PLINK} codes alleles as follows:
+\passthrough{\lstinline!PLINK!} codes alleles as follows:
 
 A1 = minor allele, the least frequent allele
 A2 = major allele, the most frequent allele
 
-And when you use \texttt{PLINK} the flag \texttt{-\/-freq} or \texttt{-\/-maf} is always relative to the A1-allele, as is the odds ratio (OR) or effect size (beta).
+And when you use \passthrough{\lstinline!PLINK!} the flag \passthrough{\lstinline!--freq!} or \passthrough{\lstinline!--maf!} is always relative to the A1-allele, as is the odds ratio (OR) or effect size (beta).
 
-However, \texttt{SNPTEST} makes use of the so-called OXFORD-format, this codes alleles as follows:
+However, \passthrough{\lstinline!SNPTEST!} makes use of the so-called OXFORD-format, this codes alleles as follows:
 
 A = the `other' allele
 B = the `coded' allele
 
-When you use \texttt{SNPTEST} it will report the allele frequency as \texttt{CAF}, in other words the \emph{coded allele frequency}, and the effect size (beta) is always relative to the B-allele. This means, \texttt{CAF} \emph{could} be the \texttt{MAF}, or \emph{minor allele frequency}, but this is \textbf{not} a given.
+When you use \passthrough{\lstinline!SNPTEST!} it will report the allele frequency as \passthrough{\lstinline!CAF!}, in other words the \emph{coded allele frequency}, and the effect size (beta) is always relative to the B-allele. This means, \passthrough{\lstinline!CAF!} \emph{could} be the \passthrough{\lstinline!MAF!}, or \emph{minor allele frequency}, but this is \textbf{not} a given.
 
-In other words, always make sure what the allele-coding of a given program, be it \texttt{PLINK}, \texttt{SNPTEST}, \texttt{GCTA}, et cetera, is! I cannot stress this enough. Ask yourself: `what is the allele frequency referring to?', `the effect size is relative to\ldots?'.
+In other words, always make sure what the allele-coding of a given program, be it \passthrough{\lstinline!PLINK!}, \passthrough{\lstinline!SNPTEST!}, \passthrough{\lstinline!GCTA!}, et cetera, is! I cannot stress this enough. Ask yourself: `what is the allele frequency referring to?', `the effect size is relative to\ldots?'.
 
 Right, let's continue.
 
@@ -1533,35 +1455,31 @@ Right, let's continue.
 
 Because we are performing a case-control genome-wide association study, we probably expect some differences in Hardy-Weinberg Equilibrium (HWE), but extreme deviations are probably indicative of genotyping errors.
 
-\begin{verbatim}
+\begin{lstlisting}
 plink --bfile rawdata/clean_inds_data --hardy --out rawdata/clean_inds_data
-\end{verbatim}
+\end{lstlisting}
 
 Let's also plot these data. You can view the result below, and type over the code to do it yourself.
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{clean\_HWE }\OtherTok{\textless{}{-}}\NormalTok{ data.table}\SpecialCharTok{::}\FunctionTok{fread}\NormalTok{(}\FunctionTok{paste0}\NormalTok{(COURSE\_loc, }\StringTok{"/rawdata/clean\_inds\_data.hwe"}\NormalTok{))}
-\NormalTok{clean\_HWE}\SpecialCharTok{$}\NormalTok{logP }\OtherTok{\textless{}{-}} \SpecialCharTok{{-}}\FunctionTok{log10}\NormalTok{(clean\_HWE}\SpecialCharTok{$}\NormalTok{P)}
-\end{Highlighting}
-\end{Shaded}
+\begin{lstlisting}[language=R]
+clean_HWE <- data.table::fread(paste0(COURSE_loc, "/rawdata/clean_inds_data.hwe"))
+clean_HWE$logP <- -log10(clean_HWE$P)
+\end{lstlisting}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{ggpubr}\SpecialCharTok{::}\FunctionTok{gghistogram}\NormalTok{(clean\_HWE, }\AttributeTok{x =} \StringTok{"logP"}\NormalTok{,}
-                    \AttributeTok{add =} \StringTok{"mean"}\NormalTok{,}
-                    \AttributeTok{add.params =} \FunctionTok{list}\NormalTok{(}\AttributeTok{color =} \StringTok{"\#595A5C"}\NormalTok{, }\AttributeTok{linetype =} \StringTok{"dashed"}\NormalTok{, }\AttributeTok{size =} \DecValTok{1}\NormalTok{),}
-                    \AttributeTok{rug =} \ConstantTok{TRUE}\NormalTok{,}
-                    \CommentTok{\# color = "\#1290D9", fill = "\#1290D9",}
-                    \AttributeTok{color =} \StringTok{"TEST"}\NormalTok{, }\AttributeTok{fill =} \StringTok{"TEST"}\NormalTok{,}
-                    \AttributeTok{palette =} \StringTok{"lancet"}\NormalTok{,}
-                    \AttributeTok{facet.by =} \StringTok{"TEST"}\NormalTok{,}
-                    \AttributeTok{bins =} \DecValTok{50}\NormalTok{,}
-                    \AttributeTok{xlab =} \StringTok{"HWE {-}log10(P)"}\NormalTok{) }\SpecialCharTok{+}
-  \FunctionTok{geom\_vline}\NormalTok{(}\AttributeTok{xintercept =} \DecValTok{5}\NormalTok{, }\AttributeTok{linetype =} \StringTok{"dashed"}\NormalTok{,}
-                \AttributeTok{color =} \StringTok{"\#E55738"}\NormalTok{, }\AttributeTok{size =} \DecValTok{1}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
+\begin{lstlisting}[language=R]
+ggpubr::gghistogram(clean_HWE, x = "logP",
+                    add = "mean",
+                    add.params = list(color = "#595A5C", linetype = "dashed", size = 1),
+                    rug = TRUE,
+                    # color = "#1290D9", fill = "#1290D9",
+                    color = "TEST", fill = "TEST",
+                    palette = "lancet",
+                    facet.by = "TEST",
+                    bins = 50,
+                    xlab = "HWE -log10(P)") +
+  geom_vline(xintercept = 5, linetype = "dashed",
+                color = "#E55738", size = 1)
+\end{lstlisting}
 
 \begin{figure}
 
@@ -1577,9 +1495,9 @@ Let's also plot these data. You can view the result below, and type over the cod
 
 We are ready to perform the final QC. After inspectig the graphs we will filter on a MAF \textless{} 0.01, call rate \textless{} 0.05, and HWE \textless{} 0.00001, in addition those SNPs that failed the differential call rate test will be removed.
 
-\begin{verbatim}
+\begin{lstlisting}
 plink --bfile rawdata/clean_inds_data --exclude rawdata/fail-diffmiss-qc.txt --maf 0.01 --geno 0.05 --hwe 0.00001 --make-bed --out rawdata/cleandata
-\end{verbatim}
+\end{lstlisting}
 
 \hypertarget{a-milestone}{%
 \section{A Milestone}\label{a-milestone}}
@@ -1588,9 +1506,9 @@ Congratulations. You reached a very important milestone. Now that you filtered s
 
 Before we move on, you could clean up our mess a bit.
 
-\begin{verbatim}
+\begin{lstlisting}
 rm -v rawdata/rawdata.* rawdata/rawdata_1kg_phase1_raw_no_atcg*
-\end{verbatim}
+\end{lstlisting}
 
 \hypertarget{gwas-testing}{%
 \chapter{Genome-Wide Association Study}\label{gwas-testing}}
@@ -1602,55 +1520,51 @@ Now that you have learned how to perform QC, you can easily run a GWAS and execu
 
 Even though someone says that the QC was done, it is still wise and good practice to run some of the commands above to get a `feeling' about the data. So let's do this.
 
-\begin{verbatim}
+\begin{lstlisting}
 plink --bfile gwas/gwa --freq --out gwas/gwa
-\end{verbatim}
+\end{lstlisting}
 
-\begin{verbatim}
+\begin{lstlisting}
 plink --bfile gwas/gwa --missing --out gwas/gwa
-\end{verbatim}
+\end{lstlisting}
 
-\begin{verbatim}
+\begin{lstlisting}
 plink --bfile gwas/gwa --hardy --out gwas/gwa
-\end{verbatim}
+\end{lstlisting}
 
 Let's visualize the results. First we should load in all the results.
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{library}\NormalTok{(}\StringTok{"data.table"}\NormalTok{)}
+\begin{lstlisting}[language=R]
+library("data.table")
 
-\NormalTok{COURSE\_loc }\OtherTok{=} \StringTok{"\textasciitilde{}/Desktop/practical"} \CommentTok{\# getwd()}
+COURSE_loc = "~/Desktop/practical" # getwd()
 
-\NormalTok{gwas\_HWE }\OtherTok{\textless{}{-}}\NormalTok{ data.table}\SpecialCharTok{::}\FunctionTok{fread}\NormalTok{(}\FunctionTok{paste0}\NormalTok{(COURSE\_loc, }\StringTok{"/gwas/gwa.hwe"}\NormalTok{))}
-\NormalTok{gwas\_FRQ }\OtherTok{\textless{}{-}}\NormalTok{ data.table}\SpecialCharTok{::}\FunctionTok{fread}\NormalTok{(}\FunctionTok{paste0}\NormalTok{(COURSE\_loc, }\StringTok{"/gwas/gwa.frq"}\NormalTok{))}
-\NormalTok{gwas\_IMISS }\OtherTok{\textless{}{-}}\NormalTok{ data.table}\SpecialCharTok{::}\FunctionTok{fread}\NormalTok{(}\FunctionTok{paste0}\NormalTok{(COURSE\_loc, }\StringTok{"/gwas/gwa.imiss"}\NormalTok{))}
-\NormalTok{gwas\_LMISS }\OtherTok{\textless{}{-}}\NormalTok{ data.table}\SpecialCharTok{::}\FunctionTok{fread}\NormalTok{(}\FunctionTok{paste0}\NormalTok{(COURSE\_loc, }\StringTok{"/gwas/gwa.lmiss"}\NormalTok{))}
-\end{Highlighting}
-\end{Shaded}
+gwas_HWE <- data.table::fread(paste0(COURSE_loc, "/gwas/gwa.hwe"))
+gwas_FRQ <- data.table::fread(paste0(COURSE_loc, "/gwas/gwa.frq"))
+gwas_IMISS <- data.table::fread(paste0(COURSE_loc, "/gwas/gwa.imiss"))
+gwas_LMISS <- data.table::fread(paste0(COURSE_loc, "/gwas/gwa.lmiss"))
+\end{lstlisting}
 
 We can plot the per-stratum HWE p-values.
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{library}\NormalTok{(}\StringTok{"ggpubr"}\NormalTok{)}
+\begin{lstlisting}[language=R]
+library("ggpubr")
 
-\NormalTok{gwas\_HWE}\SpecialCharTok{$}\NormalTok{logP }\OtherTok{\textless{}{-}} \SpecialCharTok{{-}}\FunctionTok{log10}\NormalTok{(gwas\_HWE}\SpecialCharTok{$}\NormalTok{P)}
+gwas_HWE$logP <- -log10(gwas_HWE$P)
 
-\NormalTok{ggpubr}\SpecialCharTok{::}\FunctionTok{gghistogram}\NormalTok{(gwas\_HWE, }\AttributeTok{x =} \StringTok{"logP"}\NormalTok{,}
-                    \AttributeTok{add =} \StringTok{"mean"}\NormalTok{,}
-                    \AttributeTok{add.params =} \FunctionTok{list}\NormalTok{(}\AttributeTok{color =} \StringTok{"\#595A5C"}\NormalTok{, }\AttributeTok{linetype =} \StringTok{"dashed"}\NormalTok{, }\AttributeTok{size =} \DecValTok{1}\NormalTok{),}
-                    \AttributeTok{rug =} \ConstantTok{TRUE}\NormalTok{,}
-                    \CommentTok{\# color = "\#1290D9", fill = "\#1290D9",}
-                    \AttributeTok{color =} \StringTok{"TEST"}\NormalTok{, }\AttributeTok{fill =} \StringTok{"TEST"}\NormalTok{,}
-                    \AttributeTok{palette =} \StringTok{"lancet"}\NormalTok{,}
-                    \AttributeTok{facet.by =} \StringTok{"TEST"}\NormalTok{,}
-                    \AttributeTok{bins =} \DecValTok{50}\NormalTok{,}
-                    \AttributeTok{xlab =} \StringTok{"HWE {-}log10(P)"}\NormalTok{) }\SpecialCharTok{+}
-  \FunctionTok{geom\_vline}\NormalTok{(}\AttributeTok{xintercept =} \DecValTok{5}\NormalTok{, }\AttributeTok{linetype =} \StringTok{"dashed"}\NormalTok{,}
-                \AttributeTok{color =} \StringTok{"\#E55738"}\NormalTok{, }\AttributeTok{size =} \DecValTok{1}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
+ggpubr::gghistogram(gwas_HWE, x = "logP",
+                    add = "mean",
+                    add.params = list(color = "#595A5C", linetype = "dashed", size = 1),
+                    rug = TRUE,
+                    # color = "#1290D9", fill = "#1290D9",
+                    color = "TEST", fill = "TEST",
+                    palette = "lancet",
+                    facet.by = "TEST",
+                    bins = 50,
+                    xlab = "HWE -log10(P)") +
+  geom_vline(xintercept = 5, linetype = "dashed",
+                color = "#E55738", size = 1)
+\end{lstlisting}
 
 \begin{figure}
 
@@ -1663,17 +1577,15 @@ We can plot the per-stratum HWE p-values.
 
 We will want to see what the distribution of allele frequencies looks like.
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{ggpubr}\SpecialCharTok{::}\FunctionTok{gghistogram}\NormalTok{(gwas\_FRQ, }\AttributeTok{x =} \StringTok{"MAF"}\NormalTok{,}
-                    \AttributeTok{add =} \StringTok{"mean"}\NormalTok{, }\AttributeTok{add.params =} \FunctionTok{list}\NormalTok{(}\AttributeTok{color =} \StringTok{"\#595A5C"}\NormalTok{, }\AttributeTok{linetype =} \StringTok{"dashed"}\NormalTok{, }\AttributeTok{size =} \DecValTok{1}\NormalTok{),}
-                    \AttributeTok{rug =} \ConstantTok{TRUE}\NormalTok{,}
-                    \AttributeTok{color =} \StringTok{"\#1290D9"}\NormalTok{, }\AttributeTok{fill =} \StringTok{"\#1290D9"}\NormalTok{,}
-                    \AttributeTok{xlab =} \StringTok{"minor allele frequency"}\NormalTok{) }\SpecialCharTok{+}
-  \FunctionTok{geom\_vline}\NormalTok{(}\AttributeTok{xintercept =} \FloatTok{0.05}\NormalTok{, }\AttributeTok{linetype =} \StringTok{"dashed"}\NormalTok{,}
-                \AttributeTok{color =} \StringTok{"\#E55738"}\NormalTok{, }\AttributeTok{size =} \DecValTok{1}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
+\begin{lstlisting}[language=R]
+ggpubr::gghistogram(gwas_FRQ, x = "MAF",
+                    add = "mean", add.params = list(color = "#595A5C", linetype = "dashed", size = 1),
+                    rug = TRUE,
+                    color = "#1290D9", fill = "#1290D9",
+                    xlab = "minor allele frequency") +
+  geom_vline(xintercept = 0.05, linetype = "dashed",
+                color = "#E55738", size = 1)
+\end{lstlisting}
 
 \begin{figure}
 
@@ -1686,19 +1598,17 @@ We will want to see what the distribution of allele frequencies looks like.
 
 We will want to identify samples that have poor call rates.
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{gwas\_IMISS}\SpecialCharTok{$}\NormalTok{callrate }\OtherTok{\textless{}{-}} \DecValTok{1} \SpecialCharTok{{-}}\NormalTok{ gwas\_IMISS}\SpecialCharTok{$}\NormalTok{F\_MISS}
+\begin{lstlisting}[language=R]
+gwas_IMISS$callrate <- 1 - gwas_IMISS$F_MISS
 
-\NormalTok{ggpubr}\SpecialCharTok{::}\FunctionTok{gghistogram}\NormalTok{(gwas\_IMISS, }\AttributeTok{x =} \StringTok{"callrate"}\NormalTok{,}
-                    \AttributeTok{add =} \StringTok{"mean"}\NormalTok{, }\AttributeTok{add.params =} \FunctionTok{list}\NormalTok{(}\AttributeTok{color =} \StringTok{"\#595A5C"}\NormalTok{, }\AttributeTok{linetype =} \StringTok{"dashed"}\NormalTok{, }\AttributeTok{size =} \DecValTok{1}\NormalTok{),}
-                    \AttributeTok{rug =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{bins =} \DecValTok{50}\NormalTok{,}
-                    \AttributeTok{color =} \StringTok{"\#1290D9"}\NormalTok{, }\AttributeTok{fill =} \StringTok{"\#1290D9"}\NormalTok{,}
-                    \AttributeTok{xlab =} \StringTok{"per sample call rate"}\NormalTok{) }\SpecialCharTok{+}
-  \FunctionTok{geom\_vline}\NormalTok{(}\AttributeTok{xintercept =} \FloatTok{0.95}\NormalTok{, }\AttributeTok{linetype =} \StringTok{"dashed"}\NormalTok{,}
-                \AttributeTok{color =} \StringTok{"\#E55738"}\NormalTok{, }\AttributeTok{size =} \DecValTok{1}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
+ggpubr::gghistogram(gwas_IMISS, x = "callrate",
+                    add = "mean", add.params = list(color = "#595A5C", linetype = "dashed", size = 1),
+                    rug = TRUE, bins = 50,
+                    color = "#1290D9", fill = "#1290D9",
+                    xlab = "per sample call rate") +
+  geom_vline(xintercept = 0.95, linetype = "dashed",
+                color = "#E55738", size = 1)
+\end{lstlisting}
 
 \begin{figure}
 
@@ -1711,19 +1621,17 @@ We will want to identify samples that have poor call rates.
 
 We also need to know what the per SNP call rates are.
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{gwas\_LMISS}\SpecialCharTok{$}\NormalTok{callrate }\OtherTok{\textless{}{-}} \DecValTok{1} \SpecialCharTok{{-}}\NormalTok{ gwas\_LMISS}\SpecialCharTok{$}\NormalTok{F\_MISS}
+\begin{lstlisting}[language=R]
+gwas_LMISS$callrate <- 1 - gwas_LMISS$F_MISS
 
-\NormalTok{ggpubr}\SpecialCharTok{::}\FunctionTok{gghistogram}\NormalTok{(gwas\_LMISS, }\AttributeTok{x =} \StringTok{"callrate"}\NormalTok{,}
-                    \AttributeTok{add =} \StringTok{"mean"}\NormalTok{, }\AttributeTok{add.params =} \FunctionTok{list}\NormalTok{(}\AttributeTok{color =} \StringTok{"\#595A5C"}\NormalTok{, }\AttributeTok{linetype =} \StringTok{"dashed"}\NormalTok{, }\AttributeTok{size =} \DecValTok{1}\NormalTok{),}
-                    \AttributeTok{rug =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{bins =} \DecValTok{50}\NormalTok{,}
-                    \AttributeTok{color =} \StringTok{"\#1290D9"}\NormalTok{, }\AttributeTok{fill =} \StringTok{"\#1290D9"}\NormalTok{,}
-                    \AttributeTok{xlab =} \StringTok{"per SNP call rate"}\NormalTok{) }\SpecialCharTok{+}
-  \FunctionTok{geom\_vline}\NormalTok{(}\AttributeTok{xintercept =} \FloatTok{0.95}\NormalTok{, }\AttributeTok{linetype =} \StringTok{"dashed"}\NormalTok{,}
-                \AttributeTok{color =} \StringTok{"\#E55738"}\NormalTok{, }\AttributeTok{size =} \DecValTok{1}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
+ggpubr::gghistogram(gwas_LMISS, x = "callrate",
+                    add = "mean", add.params = list(color = "#595A5C", linetype = "dashed", size = 1),
+                    rug = TRUE, bins = 50,
+                    color = "#1290D9", fill = "#1290D9",
+                    xlab = "per SNP call rate") +
+  geom_vline(xintercept = 0.95, linetype = "dashed",
+                color = "#E55738", size = 1)
+\end{lstlisting}
 
 \begin{figure}
 
@@ -1739,31 +1647,29 @@ We also need to know what the per SNP call rates are.
 
 A simple chi-square test of association can be done.
 
-\begin{verbatim}
+\begin{lstlisting}
 plink --bfile gwas/gwa --model --out gwas/data
-\end{verbatim}
+\end{lstlisting}
 
 \emph{Genotypic}, \emph{dominant} and \emph{recessive} tests will not be conducted if any one of the cells in the table of case-control by genotype counts contains less than five observations. This is because the chi-square approximation may not be reliable when cell counts are small. For SNPs with MAFs \textless{} 5\%, a sample of more than 2,000 cases and controls would be required to meet this threshold and more than 50,000 would be required for SNPs with MAF \textless{} 1\%.
 
-You can change this default behaviour by adding the flag \texttt{-\/-cell}, \emph{e.g.}, we could lower the threshold to 3.
+You can change this default behaviour by adding the flag \passthrough{\lstinline!--cell!}, \emph{e.g.}, we could lower the threshold to 3.
 
-\begin{verbatim}
+\begin{lstlisting}
 plink --bfile gwas/gwa --model --cell 3 --out gwas/data
-\end{verbatim}
+\end{lstlisting}
 
 Let's review the contents of the results.
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{gwas\_model }\OtherTok{\textless{}{-}}\NormalTok{ data.table}\SpecialCharTok{::}\FunctionTok{fread}\NormalTok{(}\FunctionTok{paste0}\NormalTok{(COURSE\_loc, }\StringTok{"/gwas/data.model"}\NormalTok{))}
+\begin{lstlisting}[language=R]
+gwas_model <- data.table::fread(paste0(COURSE_loc, "/gwas/data.model"))
 
-\FunctionTok{dim}\NormalTok{(gwas\_model)}
+dim(gwas_model)
 
-\NormalTok{N\_SNPS }\OtherTok{=} \FunctionTok{length}\NormalTok{(gwas\_model}\SpecialCharTok{$}\NormalTok{SNP)}
+N_SNPS = length(gwas_model$SNP)
 
-\NormalTok{gwas\_model[}\DecValTok{1}\SpecialCharTok{:}\DecValTok{10}\NormalTok{, }\DecValTok{1}\SpecialCharTok{:}\DecValTok{10}\NormalTok{]}
-\end{Highlighting}
-\end{Shaded}
+gwas_model[1:10, 1:10]
+\end{lstlisting}
 
 It contains 1,530,510 rows, one for each SNP, and each type of test (\emph{genotypic}, \emph{trend}, \emph{allelic}, \emph{dominant}, and \emph{recessive}) and the following columns:
 
@@ -1810,25 +1716,23 @@ It contains 1,530,510 rows, one for each SNP, and each type of test (\emph{genot
 
 We can also perform a test of association using logistic regression. In this case we might want to correct for covariates/confounding factors, for example age, sex, ancestral background, i.e.~principal components, and other study specific covariates (e.g.~hospital of inclusion, genotyping centre etc.). In that case each of these P values is adjusted for the effect of the covariates.
 
-When running a regression analysis, be it linear or logistic, PLINK assumes a multiplicative model. By default, when at least one male and one female is present, sex (male = 1, female = 0) is automatically added as a covariate on X chromosome SNPs, and nowhere else. The \texttt{sex} flag causes it to be added everywhere, while \texttt{no-x-sex} excludes it.
+When running a regression analysis, be it linear or logistic, PLINK assumes a multiplicative model. By default, when at least one male and one female is present, sex (male = 1, female = 0) is automatically added as a covariate on X chromosome SNPs, and nowhere else. The \passthrough{\lstinline!sex!} flag causes it to be added everywhere, while \passthrough{\lstinline!no-x-sex!} excludes it.
 
-\begin{verbatim}
+\begin{lstlisting}
 plink --bfile gwas/gwa --logistic sex --covar gwas/gwa.covar --out gwas/data
-\end{verbatim}
+\end{lstlisting}
 
 Let's examine the results
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{gwas\_assoc }\OtherTok{\textless{}{-}}\NormalTok{ data.table}\SpecialCharTok{::}\FunctionTok{fread}\NormalTok{(}\FunctionTok{paste0}\NormalTok{(COURSE\_loc, }\StringTok{"/gwas/data.assoc.logistic"}\NormalTok{))}
+\begin{lstlisting}[language=R]
+gwas_assoc <- data.table::fread(paste0(COURSE_loc, "/gwas/data.assoc.logistic"))
 
-\FunctionTok{dim}\NormalTok{(gwas\_assoc)}
+dim(gwas_assoc)
 
-\NormalTok{gwas\_assoc[}\DecValTok{1}\SpecialCharTok{:}\DecValTok{9}\NormalTok{, }\DecValTok{1}\SpecialCharTok{:}\DecValTok{9}\NormalTok{]}
-\end{Highlighting}
-\end{Shaded}
+gwas_assoc[1:9, 1:9]
+\end{lstlisting}
 
-If no model option is specified, the first row for each SNP corresponds to results for a multiplicative test of association. The C \textgreater= 0 subsequent rows for each SNP correspond to separate tests of significance for each of the C covariates included in the regression model. We can remove the covariate-specific lines from the main report by adding the \texttt{hide-covar} flag.
+If no model option is specified, the first row for each SNP corresponds to results for a multiplicative test of association. The C \textgreater= 0 subsequent rows for each SNP correspond to separate tests of significance for each of the C covariates included in the regression model. We can remove the covariate-specific lines from the main report by adding the \passthrough{\lstinline!hide-covar!} flag.
 
 The columns in the association results are:
 - the chromosome {[}CHR{]},
@@ -1845,7 +1749,7 @@ The columns in the association results are:
 - the coefficient z-statistic {[}STAT{]}, and
 - the asymptotic P-value {[}P{]} of association.
 
-We need to calculate the standard error and confidence interval from the z-statistic. We can modify the effect size (OR) to output the beta by adding the \texttt{beta} flag.
+We need to calculate the standard error and confidence interval from the z-statistic. We can modify the effect size (OR) to output the beta by adding the \passthrough{\lstinline!beta!} flag.
 
 \hypertarget{lets-get-visual}{%
 \section{Let's get visual}\label{lets-get-visual}}
@@ -1864,71 +1768,65 @@ We should create \emph{quantile-quantile (QQ) plots} to compare the observed ass
 
 First, we will add the standard error, call rate, A2, and allele frequencies.
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{library}\NormalTok{(}\StringTok{"data.table"}\NormalTok{)}
+\begin{lstlisting}[language=R]
+library("data.table")
 
-\NormalTok{COURSE\_loc }\OtherTok{=} \StringTok{"\textasciitilde{}/Desktop/practical"} \CommentTok{\# getwd()}
+COURSE_loc = "~/Desktop/practical" # getwd()
 
-\NormalTok{gwas\_assoc\_sub }\OtherTok{\textless{}{-}} \FunctionTok{subset}\NormalTok{(gwas\_assoc, TEST }\SpecialCharTok{==} \StringTok{"ADD"}\NormalTok{)}
-\NormalTok{gwas\_assoc\_sub}\SpecialCharTok{$}\NormalTok{TEST }\OtherTok{\textless{}{-}} \ConstantTok{NULL}
+gwas_assoc_sub <- subset(gwas_assoc, TEST == "ADD")
+gwas_assoc_sub$TEST <- NULL
 
-\NormalTok{temp }\OtherTok{\textless{}{-}} \FunctionTok{subset}\NormalTok{(gwas\_FRQ, }\AttributeTok{select =} \FunctionTok{c}\NormalTok{(}\StringTok{"SNP"}\NormalTok{, }\StringTok{"A2"}\NormalTok{, }\StringTok{"MAF"}\NormalTok{, }\StringTok{"NCHROBS"}\NormalTok{))}
+temp <- subset(gwas_FRQ, select = c("SNP", "A2", "MAF", "NCHROBS"))
 
-\NormalTok{gwas\_assoc\_subfrq }\OtherTok{\textless{}{-}} \FunctionTok{merge}\NormalTok{(gwas\_assoc\_sub, temp, }\AttributeTok{by =} \StringTok{"SNP"}\NormalTok{)}
+gwas_assoc_subfrq <- merge(gwas_assoc_sub, temp, by = "SNP")
 
-\NormalTok{temp }\OtherTok{\textless{}{-}} \FunctionTok{subset}\NormalTok{(gwas\_LMISS, }\AttributeTok{select =} \FunctionTok{c}\NormalTok{(}\StringTok{"SNP"}\NormalTok{, }\StringTok{"callrate"}\NormalTok{))}
+temp <- subset(gwas_LMISS, select = c("SNP", "callrate"))
 
-\NormalTok{gwas\_assoc\_subfrqlmiss }\OtherTok{\textless{}{-}} \FunctionTok{merge}\NormalTok{(gwas\_assoc\_subfrq, temp, }\AttributeTok{by =} \StringTok{"SNP"}\NormalTok{)}
-\FunctionTok{head}\NormalTok{(gwas\_assoc\_subfrqlmiss)}
-\CommentTok{\# Remember:}
-\CommentTok{\# {-} that z = beta/se}
-\CommentTok{\# {-} beta = log(OR), because log is the natural log in r}
+gwas_assoc_subfrqlmiss <- merge(gwas_assoc_subfrq, temp, by = "SNP")
+head(gwas_assoc_subfrqlmiss)
+# Remember:
+# - that z = beta/se
+# - beta = log(OR), because log is the natural log in r
 
-\NormalTok{gwas\_assoc\_subfrqlmiss}\SpecialCharTok{$}\NormalTok{BETA }\OtherTok{=} \FunctionTok{log}\NormalTok{(gwas\_assoc\_subfrqlmiss}\SpecialCharTok{$}\NormalTok{OR)}
-\NormalTok{gwas\_assoc\_subfrqlmiss}\SpecialCharTok{$}\NormalTok{SE }\OtherTok{=}\NormalTok{ gwas\_assoc\_subfrqlmiss}\SpecialCharTok{$}\NormalTok{BETA}\SpecialCharTok{/}\NormalTok{gwas\_assoc\_subfrqlmiss}\SpecialCharTok{$}\NormalTok{STAT}
+gwas_assoc_subfrqlmiss$BETA = log(gwas_assoc_subfrqlmiss$OR)
+gwas_assoc_subfrqlmiss$SE = gwas_assoc_subfrqlmiss$BETA/gwas_assoc_subfrqlmiss$STAT
 
 
-\NormalTok{gwas\_assoc\_subfrqlmiss\_tib }\OtherTok{\textless{}{-}}\NormalTok{ dplyr}\SpecialCharTok{::}\FunctionTok{as\_tibble}\NormalTok{(gwas\_assoc\_subfrqlmiss)}
+gwas_assoc_subfrqlmiss_tib <- dplyr::as_tibble(gwas_assoc_subfrqlmiss)
 
-\NormalTok{col\_order }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"SNP"}\NormalTok{, }\StringTok{"CHR"}\NormalTok{, }\StringTok{"BP"}\NormalTok{,}
-               \StringTok{"A1"}\NormalTok{, }\StringTok{"A2"}\NormalTok{, }\StringTok{"MAF"}\NormalTok{, }\StringTok{"callrate"}\NormalTok{, }\StringTok{"NMISS"}\NormalTok{, }\StringTok{"NCHROBS"}\NormalTok{,}
-               \StringTok{"BETA"}\NormalTok{, }\StringTok{"SE"}\NormalTok{, }\StringTok{"OR"}\NormalTok{, }\StringTok{"STAT"}\NormalTok{, }\StringTok{"P"}\NormalTok{)}
-\NormalTok{gwas\_assoc\_compl }\OtherTok{\textless{}{-}}\NormalTok{ gwas\_assoc\_subfrqlmiss\_tib[, col\_order]}
+col_order <- c("SNP", "CHR", "BP",
+               "A1", "A2", "MAF", "callrate", "NMISS", "NCHROBS",
+               "BETA", "SE", "OR", "STAT", "P")
+gwas_assoc_compl <- gwas_assoc_subfrqlmiss_tib[, col_order]
 
-\FunctionTok{dim}\NormalTok{(gwas\_assoc\_compl)}
+dim(gwas_assoc_compl)
 
-\FunctionTok{head}\NormalTok{(gwas\_assoc\_compl)}
-\end{Highlighting}
-\end{Shaded}
+head(gwas_assoc_compl)
+\end{lstlisting}
 
 Let's list the number of SNPs per chromosome. This gives a pretty good idea about the per-chromosome coverage. And it's a sanity check: did the whole analysis run properly (we expect 22 chromosomes)?
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{library}\NormalTok{(}\StringTok{"knitr"}\NormalTok{)}
+\begin{lstlisting}[language=R]
+library("knitr")
 
-\CommentTok{\# Number of SNPs per chromosome}
-\NormalTok{knitr}\SpecialCharTok{::}\FunctionTok{kable}\NormalTok{(}\FunctionTok{table}\NormalTok{(gwas\_assoc\_compl}\SpecialCharTok{$}\NormalTok{CHR))}
-\end{Highlighting}
-\end{Shaded}
+# Number of SNPs per chromosome
+knitr::kable(table(gwas_assoc_compl$CHR))
+\end{lstlisting}
 
 Let's plot the QQ plot to diagnose our GWAS.
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{library}\NormalTok{(}\StringTok{"qqman"}\NormalTok{)}
+\begin{lstlisting}[language=R]
+library("qqman")
 
-\NormalTok{gwas\_threshold }\OtherTok{=} \SpecialCharTok{{-}}\FunctionTok{log10}\NormalTok{(}\FloatTok{5e{-}8}\NormalTok{)}
+gwas_threshold = -log10(5e-8)
 
-\FunctionTok{qq}\NormalTok{(gwas\_assoc\_compl}\SpecialCharTok{$}\NormalTok{P, }\AttributeTok{main =} \StringTok{"QQ plot of GWAS"}\NormalTok{,}
-   \AttributeTok{xlim =} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{7}\NormalTok{),}
-   \AttributeTok{ylim =} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{12}\NormalTok{),}
-   \AttributeTok{pch =} \DecValTok{20}\NormalTok{, }\AttributeTok{col =}\NormalTok{ uithof\_color[}\DecValTok{16}\NormalTok{], }\AttributeTok{cex =} \FloatTok{1.5}\NormalTok{, }\AttributeTok{las =} \DecValTok{1}\NormalTok{, }\AttributeTok{bty =} \StringTok{"n"}\NormalTok{)}
-\FunctionTok{abline}\NormalTok{(}\AttributeTok{h =}\NormalTok{ gwas\_threshold,}
-       \AttributeTok{col =}\NormalTok{ uithof\_color[}\DecValTok{25}\NormalTok{], }\AttributeTok{lty =} \StringTok{"dashed"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
+qq(gwas_assoc_compl$P, main = "QQ plot of GWAS",
+   xlim = c(0, 7),
+   ylim = c(0, 12),
+   pch = 20, col = uithof_color[16], cex = 1.5, las = 1, bty = "n")
+abline(h = gwas_threshold,
+       col = uithof_color[25], lty = "dashed")
+\end{lstlisting}
 
 \begin{figure}
 
@@ -1944,14 +1842,12 @@ Let's plot the QQ plot to diagnose our GWAS.
 
 We also need to create a \emph{Manhattan plot} to display the association test P-values as a function of chromosomal location and thus provide a visual summary of association test results that draw immediate attention to any regions of significance (Figure \ref{fig:show-manhattan}).
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{manhattan}\NormalTok{(gwas\_assoc\_compl, }\AttributeTok{main =} \StringTok{"Manhattan Plot"}\NormalTok{,}
-          \AttributeTok{ylim =} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{12}\NormalTok{),}
-          \AttributeTok{cex =} \FloatTok{0.6}\NormalTok{, }\AttributeTok{cex.axis =} \FloatTok{0.9}\NormalTok{,}
-          \AttributeTok{col =} \FunctionTok{c}\NormalTok{(}\StringTok{"\#1290D9"}\NormalTok{, }\StringTok{"\#49A01D"}\NormalTok{))}
-\end{Highlighting}
-\end{Shaded}
+\begin{lstlisting}[language=R]
+manhattan(gwas_assoc_compl, main = "Manhattan Plot",
+          ylim = c(0, 12),
+          cex = 0.6, cex.axis = 0.9,
+          col = c("#1290D9", "#49A01D"))
+\end{lstlisting}
 
 \begin{figure}
 
@@ -1965,27 +1861,23 @@ We also need to create a \emph{Manhattan plot} to display the association test P
 \hypertarget{other-plots}{%
 \section{Other plots}\label{other-plots}}
 
-It is also informative to plot the density per chromosome. We can use the \texttt{CMplot} for that which you can find \href{https://github.com/YinLiLin/R-CMplot}{here}. For now we just make these graphs `quick-n-dirty', you can further prettify them, but you easily loose track of time, so maybe carry on.
+It is also informative to plot the density per chromosome. We can use the \passthrough{\lstinline!CMplot!} for that which you can find \href{https://github.com/YinLiLin/R-CMplot}{here}. For now we just make these graphs `quick-n-dirty', you can further prettify them, but you easily loose track of time, so maybe carry on.
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{gwas\_assoc\_complsub }\OtherTok{\textless{}{-}} \FunctionTok{subset}\NormalTok{(gwas\_assoc\_compl, }\AttributeTok{select =} \FunctionTok{c}\NormalTok{(}\StringTok{"SNP"}\NormalTok{, }\StringTok{"CHR"}\NormalTok{, }\StringTok{"BP"}\NormalTok{, }\StringTok{"P"}\NormalTok{))}
-\end{Highlighting}
-\end{Shaded}
+\begin{lstlisting}[language=R]
+gwas_assoc_complsub <- subset(gwas_assoc_compl, select = c("SNP", "CHR", "BP", "P"))
+\end{lstlisting}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{library}\NormalTok{(}\StringTok{"CMplot"}\NormalTok{)}
+\begin{lstlisting}[language=R]
+library("CMplot")
 
-\FunctionTok{CMplot}\NormalTok{(gwas\_assoc\_complsub,}
-       \AttributeTok{plot.type =} \StringTok{"b"}\NormalTok{, }\AttributeTok{LOG10 =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{ylim =} \ConstantTok{NULL}\NormalTok{,}
-       \AttributeTok{threshold =} \FunctionTok{c}\NormalTok{(}\FloatTok{1e{-}6}\NormalTok{,}\FloatTok{1e{-}4}\NormalTok{), }\AttributeTok{threshold.lty =} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{), }\AttributeTok{threshold.lwd =} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{), }\AttributeTok{threshold.col =} \FunctionTok{c}\NormalTok{(}\StringTok{"black"}\NormalTok{, }\StringTok{"grey"}\NormalTok{),}
-       \AttributeTok{amplify =} \ConstantTok{TRUE}\NormalTok{,}
-       \AttributeTok{bin.size =} \FloatTok{1e6}\NormalTok{, }\AttributeTok{chr.den.col =} \FunctionTok{c}\NormalTok{(}\StringTok{"darkgreen"}\NormalTok{, }\StringTok{"yellow"}\NormalTok{, }\StringTok{"red"}\NormalTok{),}
-       \AttributeTok{signal.col =} \FunctionTok{c}\NormalTok{(}\StringTok{"red"}\NormalTok{, }\StringTok{"green"}\NormalTok{), }\AttributeTok{signal.cex =} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{), }\AttributeTok{signal.pch =} \FunctionTok{c}\NormalTok{(}\DecValTok{19}\NormalTok{,}\DecValTok{19}\NormalTok{),}
-       \AttributeTok{file =} \StringTok{"jpg"}\NormalTok{, }\AttributeTok{memo =} \StringTok{""}\NormalTok{, }\AttributeTok{dpi =} \DecValTok{300}\NormalTok{, }\AttributeTok{file.output =} \ConstantTok{FALSE}\NormalTok{, }\AttributeTok{verbose =} \ConstantTok{TRUE}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
+CMplot(gwas_assoc_complsub,
+       plot.type = "b", LOG10 = TRUE, ylim = NULL,
+       threshold = c(1e-6,1e-4), threshold.lty = c(1,2), threshold.lwd = c(1,1), threshold.col = c("black", "grey"),
+       amplify = TRUE,
+       bin.size = 1e6, chr.den.col = c("darkgreen", "yellow", "red"),
+       signal.col = c("red", "green"), signal.cex = c(1,1), signal.pch = c(19,19),
+       file = "jpg", memo = "", dpi = 300, file.output = FALSE, verbose = TRUE)
+\end{lstlisting}
 
 \begin{quote}
 What do the grey spots on the density plot indicate?
@@ -2034,7 +1926,7 @@ This would lead to the following graphs.
 
 You can also make an \href{https://r-graph-gallery.com/101_Manhattan_plot.html}{interactive version} of the Manhattan - just because you can. The code below shows you how.
 
-\begin{verbatim}
+\begin{lstlisting}
 library(plotly)
 library(dplyr)
 
@@ -2091,7 +1983,7 @@ p <- ggplot(don, aes(x=BPcum, y=-log10(P), text=text)) +
       panel.grid.minor.x = element_blank()
     )
 ggplotly(p, tooltip="text")
-\end{verbatim}
+\end{lstlisting}
 
 It will produce something like this.
 
@@ -2126,7 +2018,7 @@ You should be ready for the real stuff. And if not, the next chapter will help y
 \hypertarget{wtccc1-intro}{%
 \chapter{The Welcome Trust Case-Control Consortium}\label{wtccc1-intro}}
 
-Now that you know your way around \texttt{PLINK}, \texttt{bash} and \texttt{r} and have done some basic quality control and association testing, you are ready for the real thing. We have prepared a real dataset: the first release of the \href{https://www.wtccc.org.uk/ccc1/overview.html}{\emph{Welcome Trust Case-Control Consortium (WTCCC)}} on coronary artery disease (CAD) and a control dataset used for that project.
+Now that you know your way around \passthrough{\lstinline!PLINK!}, \passthrough{\lstinline!bash!} and \passthrough{\lstinline!r!} and have done some basic quality control and association testing, you are ready for the real thing. We have prepared a real dataset: the first release of the \href{https://www.wtccc.org.uk/ccc1/overview.html}{\emph{Welcome Trust Case-Control Consortium (WTCCC)}} on coronary artery disease (CAD) and a control dataset used for that project.
 
 \hypertarget{genotyping}{%
 \section{Genotyping}\label{genotyping}}
@@ -2159,7 +2051,7 @@ Your assignment is to do the following:
 \item
   Explore the individual datasets by calculating some statistics and visualising these.
 \item
-  Merge the datasets in the folder \texttt{wtccc1}.
+  Merge the datasets in the folder \passthrough{\lstinline!wtccc1!}.
 \item
   Calculate PCs using smartPCA.
 \item
@@ -2179,9 +2071,9 @@ Before we start we need to create a proper folder and download the data.
 
 Next, we'll download the reference.
 
-\begin{verbatim}
+\begin{lstlisting}
 wget "https://www.dropbox.com/sh/kumfwm7drt2flhp/AAB5n0OcUvJixI9pNiymx6-La?dl=0" -P ~/Desktop/practical/
-\end{verbatim}
+\end{lstlisting}
 
 \hypertarget{there-you-go}{%
 \section{There you go}\label{there-you-go}}
@@ -2193,7 +2085,7 @@ As I wrote, you are ready for the real stuff in Chapter \ref{wtccc1}.
 
 As usual, we start by exploring the data in hand.
 
-\begin{verbatim}
+\begin{lstlisting}
 plink --bfile wtccc1/CADn1871_500Kb37fwd --bmerge wtccc1/UKBSn1397_500Kb37fwd --make-bed --out wtccc1/wtccc1 && \
 plink --bfile wtccc1/wtccc1 --freq --out wtccc1/wtccc1 && \
 plink --bfile wtccc1/wtccc1 --hardy --out wtccc1/wtccc1 && \
@@ -2201,43 +2093,39 @@ plink --bfile wtccc1/wtccc1 --missing --out wtccc1/wtccc1 && \
 plink --bfile wtccc1/wtccc1 --test-missing --out wtccc1/wtccc1
 
 cat wtccc1/wtccc1.missing | awk '$5 < 0.00001' | awk '{ print $2 }' > wtccc1/wtccc1-fail-diffmiss-qc.txt
-\end{verbatim}
+\end{lstlisting}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{library}\NormalTok{(}\StringTok{"data.table"}\NormalTok{)}
+\begin{lstlisting}[language=R]
+library("data.table")
 
-\NormalTok{COURSE\_loc }\OtherTok{=} \StringTok{"\textasciitilde{}/Desktop/practical"} \CommentTok{\# getwd()}
+COURSE_loc = "~/Desktop/practical" # getwd()
 
-\NormalTok{wtccc1\_HWE }\OtherTok{\textless{}{-}}\NormalTok{ data.table}\SpecialCharTok{::}\FunctionTok{fread}\NormalTok{(}\FunctionTok{paste0}\NormalTok{(COURSE\_loc, }\StringTok{"/wtccc1/wtccc1.hwe"}\NormalTok{))}
-\NormalTok{wtccc1\_FRQ }\OtherTok{\textless{}{-}}\NormalTok{ data.table}\SpecialCharTok{::}\FunctionTok{fread}\NormalTok{(}\FunctionTok{paste0}\NormalTok{(COURSE\_loc, }\StringTok{"/wtccc1/wtccc1.frq"}\NormalTok{))}
-\NormalTok{wtccc1\_IMISS }\OtherTok{\textless{}{-}}\NormalTok{ data.table}\SpecialCharTok{::}\FunctionTok{fread}\NormalTok{(}\FunctionTok{paste0}\NormalTok{(COURSE\_loc, }\StringTok{"/wtccc1/wtccc1.imiss"}\NormalTok{))}
-\NormalTok{wtccc1\_LMISS }\OtherTok{\textless{}{-}}\NormalTok{ data.table}\SpecialCharTok{::}\FunctionTok{fread}\NormalTok{(}\FunctionTok{paste0}\NormalTok{(COURSE\_loc, }\StringTok{"/wtccc1/wtccc1.lmiss"}\NormalTok{))}
+wtccc1_HWE <- data.table::fread(paste0(COURSE_loc, "/wtccc1/wtccc1.hwe"))
+wtccc1_FRQ <- data.table::fread(paste0(COURSE_loc, "/wtccc1/wtccc1.frq"))
+wtccc1_IMISS <- data.table::fread(paste0(COURSE_loc, "/wtccc1/wtccc1.imiss"))
+wtccc1_LMISS <- data.table::fread(paste0(COURSE_loc, "/wtccc1/wtccc1.lmiss"))
 
-\NormalTok{wtccc1\_HWE}\SpecialCharTok{$}\NormalTok{logP }\OtherTok{\textless{}{-}} \SpecialCharTok{{-}}\FunctionTok{log10}\NormalTok{(wtccc1\_HWE}\SpecialCharTok{$}\NormalTok{P)}
-\end{Highlighting}
-\end{Shaded}
+wtccc1_HWE$logP <- -log10(wtccc1_HWE$P)
+\end{lstlisting}
 
 Let's investigate the HWE p-value in the whole cohort, and per stratum (cases and controls) with the code below.
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{library}\NormalTok{(}\StringTok{"ggpubr"}\NormalTok{)}
+\begin{lstlisting}[language=R]
+library("ggpubr")
 
-\NormalTok{ggpubr}\SpecialCharTok{::}\FunctionTok{gghistogram}\NormalTok{(wtccc1\_HWE, }\AttributeTok{x =} \StringTok{"logP"}\NormalTok{,}
-                    \AttributeTok{add =} \StringTok{"mean"}\NormalTok{,}
-                    \AttributeTok{add.params =} \FunctionTok{list}\NormalTok{(}\AttributeTok{color =} \StringTok{"\#595A5C"}\NormalTok{, }\AttributeTok{linetype =} \StringTok{"dashed"}\NormalTok{, }\AttributeTok{size =} \DecValTok{1}\NormalTok{),}
-                    \AttributeTok{rug =} \ConstantTok{TRUE}\NormalTok{,}
-                    \CommentTok{\# color = "\#1290D9", fill = "\#1290D9",}
-                    \AttributeTok{color =} \StringTok{"TEST"}\NormalTok{, }\AttributeTok{fill =} \StringTok{"TEST"}\NormalTok{,}
-                    \AttributeTok{palette =} \StringTok{"lancet"}\NormalTok{,}
-                    \AttributeTok{facet.by =} \StringTok{"TEST"}\NormalTok{,}
-                    \AttributeTok{bins =} \DecValTok{50}\NormalTok{,}
-                    \AttributeTok{xlab =} \StringTok{"HWE {-}log10(P)"}\NormalTok{) }\SpecialCharTok{+}
-  \FunctionTok{geom\_vline}\NormalTok{(}\AttributeTok{xintercept =} \DecValTok{5}\NormalTok{, }\AttributeTok{linetype =} \StringTok{"dashed"}\NormalTok{,}
-                \AttributeTok{color =} \StringTok{"\#E55738"}\NormalTok{, }\AttributeTok{size =} \DecValTok{1}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
+ggpubr::gghistogram(wtccc1_HWE, x = "logP",
+                    add = "mean",
+                    add.params = list(color = "#595A5C", linetype = "dashed", size = 1),
+                    rug = TRUE,
+                    # color = "#1290D9", fill = "#1290D9",
+                    color = "TEST", fill = "TEST",
+                    palette = "lancet",
+                    facet.by = "TEST",
+                    bins = 50,
+                    xlab = "HWE -log10(P)") +
+  geom_vline(xintercept = 5, linetype = "dashed",
+                color = "#E55738", size = 1)
+\end{lstlisting}
 
 This will result in Figure \ref{fig:show-wtccc1-hwe}.
 
@@ -2250,19 +2138,17 @@ This will result in Figure \ref{fig:show-wtccc1-hwe}.
 \caption{Stratified HWE p-values.}\label{fig:show-wtccc1-hwe}
 \end{figure}
 
-We should also inspect the allele frequencies. Note that \emph{by default} PLINK (whether v0.7, v1.9, or v2.0) stores the alleles as minor (A1) and major (A2), and therefore \texttt{-\/-maf} \emph{always} calculates the frequency of the minor allele (A1).
+We should also inspect the allele frequencies. Note that \emph{by default} PLINK (whether v0.7, v1.9, or v2.0) stores the alleles as minor (A1) and major (A2), and therefore \passthrough{\lstinline!--maf!} \emph{always} calculates the frequency of the minor allele (A1).
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{ggpubr}\SpecialCharTok{::}\FunctionTok{gghistogram}\NormalTok{(wtccc1\_FRQ, }\AttributeTok{x =} \StringTok{"MAF"}\NormalTok{,}
-                    \AttributeTok{add =} \StringTok{"mean"}\NormalTok{, }\AttributeTok{add.params =} \FunctionTok{list}\NormalTok{(}\AttributeTok{color =} \StringTok{"\#595A5C"}\NormalTok{, }\AttributeTok{linetype =} \StringTok{"dashed"}\NormalTok{, }\AttributeTok{size =} \DecValTok{1}\NormalTok{),}
-                    \AttributeTok{rug =} \ConstantTok{TRUE}\NormalTok{,}
-                    \AttributeTok{color =} \StringTok{"\#1290D9"}\NormalTok{, }\AttributeTok{fill =} \StringTok{"\#1290D9"}\NormalTok{,}
-                    \AttributeTok{xlab =} \StringTok{"minor allele frequency"}\NormalTok{) }\SpecialCharTok{+}
-  \FunctionTok{geom\_vline}\NormalTok{(}\AttributeTok{xintercept =} \FloatTok{0.05}\NormalTok{, }\AttributeTok{linetype =} \StringTok{"dashed"}\NormalTok{,}
-                \AttributeTok{color =} \StringTok{"\#E55738"}\NormalTok{, }\AttributeTok{size =} \DecValTok{1}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
+\begin{lstlisting}[language=R]
+ggpubr::gghistogram(wtccc1_FRQ, x = "MAF",
+                    add = "mean", add.params = list(color = "#595A5C", linetype = "dashed", size = 1),
+                    rug = TRUE,
+                    color = "#1290D9", fill = "#1290D9",
+                    xlab = "minor allele frequency") +
+  geom_vline(xintercept = 0.05, linetype = "dashed",
+                color = "#E55738", size = 1)
+\end{lstlisting}
 
 This will result in Figure \ref{fig:show-wtccc1-freq}.
 
@@ -2277,19 +2163,17 @@ This will result in Figure \ref{fig:show-wtccc1-freq}.
 
 There could be sample with very poor overall call rate, where for many SNPs there is no data. We will want to identify these samples and exclude them.
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{wtccc1\_IMISS}\SpecialCharTok{$}\NormalTok{callrate }\OtherTok{\textless{}{-}} \DecValTok{1} \SpecialCharTok{{-}}\NormalTok{ wtccc1\_IMISS}\SpecialCharTok{$}\NormalTok{F\_MISS}
+\begin{lstlisting}[language=R]
+wtccc1_IMISS$callrate <- 1 - wtccc1_IMISS$F_MISS
 
-\NormalTok{ggpubr}\SpecialCharTok{::}\FunctionTok{gghistogram}\NormalTok{(wtccc1\_IMISS, }\AttributeTok{x =} \StringTok{"callrate"}\NormalTok{,}
-                    \AttributeTok{add =} \StringTok{"mean"}\NormalTok{, }\AttributeTok{add.params =} \FunctionTok{list}\NormalTok{(}\AttributeTok{color =} \StringTok{"\#595A5C"}\NormalTok{, }\AttributeTok{linetype =} \StringTok{"dashed"}\NormalTok{, }\AttributeTok{size =} \DecValTok{1}\NormalTok{),}
-                    \AttributeTok{rug =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{bins =} \DecValTok{50}\NormalTok{,}
-                    \AttributeTok{color =} \StringTok{"\#1290D9"}\NormalTok{, }\AttributeTok{fill =} \StringTok{"\#1290D9"}\NormalTok{,}
-                    \AttributeTok{xlab =} \StringTok{"per sample call rate"}\NormalTok{) }\SpecialCharTok{+}
-  \FunctionTok{geom\_vline}\NormalTok{(}\AttributeTok{xintercept =} \FloatTok{0.95}\NormalTok{, }\AttributeTok{linetype =} \StringTok{"dashed"}\NormalTok{,}
-                \AttributeTok{color =} \StringTok{"\#E55738"}\NormalTok{, }\AttributeTok{size =} \DecValTok{1}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
+ggpubr::gghistogram(wtccc1_IMISS, x = "callrate",
+                    add = "mean", add.params = list(color = "#595A5C", linetype = "dashed", size = 1),
+                    rug = TRUE, bins = 50,
+                    color = "#1290D9", fill = "#1290D9",
+                    xlab = "per sample call rate") +
+  geom_vline(xintercept = 0.95, linetype = "dashed",
+                color = "#E55738", size = 1)
+\end{lstlisting}
 
 This will result in Figure \ref{fig:show-wtccc1-callratesample}.
 
@@ -2304,19 +2188,17 @@ This will result in Figure \ref{fig:show-wtccc1-callratesample}.
 
 Lastly, we must inspect the per SNP call rate; we need to know if there are SNPs that have no data for many samples. We will want to identify such SNPs and exclude these.
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{wtccc1\_LMISS}\SpecialCharTok{$}\NormalTok{callrate }\OtherTok{\textless{}{-}} \DecValTok{1} \SpecialCharTok{{-}}\NormalTok{ wtccc1\_LMISS}\SpecialCharTok{$}\NormalTok{F\_MISS}
+\begin{lstlisting}[language=R]
+wtccc1_LMISS$callrate <- 1 - wtccc1_LMISS$F_MISS
 
-\NormalTok{ggpubr}\SpecialCharTok{::}\FunctionTok{gghistogram}\NormalTok{(wtccc1\_LMISS, }\AttributeTok{x =} \StringTok{"callrate"}\NormalTok{,}
-                    \AttributeTok{add =} \StringTok{"mean"}\NormalTok{, }\AttributeTok{add.params =} \FunctionTok{list}\NormalTok{(}\AttributeTok{color =} \StringTok{"\#595A5C"}\NormalTok{, }\AttributeTok{linetype =} \StringTok{"dashed"}\NormalTok{, }\AttributeTok{size =} \DecValTok{1}\NormalTok{),}
-                    \AttributeTok{rug =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{bins =} \DecValTok{50}\NormalTok{,}
-                    \AttributeTok{color =} \StringTok{"\#1290D9"}\NormalTok{, }\AttributeTok{fill =} \StringTok{"\#1290D9"}\NormalTok{,}
-                    \AttributeTok{xlab =} \StringTok{"per SNP call rate"}\NormalTok{) }\SpecialCharTok{+}
-  \FunctionTok{geom\_vline}\NormalTok{(}\AttributeTok{xintercept =} \FloatTok{0.95}\NormalTok{, }\AttributeTok{linetype =} \StringTok{"dashed"}\NormalTok{,}
-                \AttributeTok{color =} \StringTok{"\#E55738"}\NormalTok{, }\AttributeTok{size =} \DecValTok{1}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
+ggpubr::gghistogram(wtccc1_LMISS, x = "callrate",
+                    add = "mean", add.params = list(color = "#595A5C", linetype = "dashed", size = 1),
+                    rug = TRUE, bins = 50,
+                    color = "#1290D9", fill = "#1290D9",
+                    xlab = "per SNP call rate") +
+  geom_vline(xintercept = 0.95, linetype = "dashed",
+                color = "#E55738", size = 1)
+\end{lstlisting}
 
 This will result in Figure \ref{fig:show-wtccc1-callratesnp}.
 
@@ -2338,16 +2220,16 @@ Now that we have handle on the data, we can filter it.
 Do you have any thoughts on that? Do you agree with the filters I set below? How would you do it differently and why?
 \end{quote}
 
-\begin{verbatim}
+\begin{lstlisting}
 plink --bfile wtccc1/wtccc1 --exclude wtccc1/wtccc1-fail-diffmiss-qc.txt --maf 0.01 --geno 0.05 --hwe 0.00001 --make-bed --out wtccc1/wtccc1_clean
-\end{verbatim}
+\end{lstlisting}
 
 \hypertarget{ancestral-background-1}{%
 \section{Ancestral background}\label{ancestral-background-1}}
 
 If these individuals are all from the United Kingdom, we are certain there will be admixture from other populations given UK's history. Let's project the WTCCC1 data on 1000G phase 1 populations.
 
-We will face the same issue as before with our dummy dataset with respect to \texttt{EIGENSOFT}. So I created the data for you to skip to the \protect\hyperlink{plotting-pca}{Plotting PCA} section immediately. Regardless, in the \protect\hyperlink{preparing-pca}{Preparing PCA} and \protect\hyperlink{running-pca-1}{Running PCA} sections I show you how to get there.
+We will face the same issue as before with our dummy dataset with respect to \passthrough{\lstinline!EIGENSOFT!}. So I created the data for you to skip to the \protect\hyperlink{plotting-pca}{Plotting PCA} section immediately. Regardless, in the \protect\hyperlink{preparing-pca}{Preparing PCA} and \protect\hyperlink{running-pca-1}{Running PCA} sections I show you how to get there.
 
 \hypertarget{preparing-pca}{%
 \subsection{Preparing PCA}\label{preparing-pca}}
@@ -2356,7 +2238,7 @@ We will face the same issue as before with our dummy dataset with respect to \te
 
 For PCA we need to perform extreme clean.
 
-\begin{verbatim}
+\begin{lstlisting}
 plink --bfile wtccc1/wtccc1_clean --maf 0.1 --geno 0.1 --indep-pairwise 100 50 0.2 --exclude support/exclude_problematic_range.txt --make-bed --out wtccc1/wtccc1_temp
 
 plink --bfile wtccc1/wtccc1_temp --exclude wtccc1/wtccc1_temp.prune.out --make-bed --out wtccc1/wtccc1_extrclean
@@ -2366,7 +2248,7 @@ rm -v wtccc1/wtccc1_temp*
 cat wtccc1/wtccc1_extrclean.bim | awk '{ print $2 }' > wtccc1/wtccc1_extrclean.variants.txt
 
 cat wtccc1/wtccc1.bim | grep "rs" > wtccc1/all.variants.txt
-\end{verbatim}
+\end{lstlisting}
 
 \textbf{Download 1000G phase 1}
 
@@ -2374,55 +2256,55 @@ Next, we are going to have to download the 1000G phase 1 data. If you haven't do
 
 We start by creating the necessary folder to save the data to.
 
-\begin{verbatim}
+\begin{lstlisting}
 mkdir -v ~/Desktop/practical/ref_1kg_phase1_all
-\end{verbatim}
+\end{lstlisting}
 
 Next, we'll download the reference.
 
-\begin{verbatim}
+\begin{lstlisting}
 wget "https://www.dropbox.com/sh/kumfwm7drt2flhp/AAB5n0OcUvJixI9pNiymx6-La?dl=0" -P ~/Desktop/practical/ref_1kg_phase1_all
-\end{verbatim}
+\end{lstlisting}
 
 \textbf{Merging WTCCC1 with 1000G phase 1}
 
 Now we are ready to extract the WTCCC1 variants from the 1000G phase 1 reference
 
-\begin{verbatim}
+\begin{lstlisting}
 plink --bfile ref_1kg_phase1_all/1kg_phase1_all --extract wtccc1/all.variants.txt --make-bed --out ref_1kg_phase1_all/1kg_phase1_wtccc1
-\end{verbatim}
+\end{lstlisting}
 
 Extracting the A/T and C/G SNPs as well.
 
-\begin{verbatim}
+\begin{lstlisting}
 cat ref_1kg_phase1_all/1kg_phase1_wtccc1.bim | \
 awk '($5 == "A" && $6 == "T") || ($5 == "T" && $6 == "A") || ($5 == "C" && $6 == "G") || ($5 == "G" && $6 == "C")' | awk '{ print $2, $1, $4, $3, $5, $6 }' \
 > ref_1kg_phase1_all/all.1kg_wtccc1.atcg.variants.txt
-\end{verbatim}
+\end{lstlisting}
 
-\begin{verbatim}
+\begin{lstlisting}
 plink --bfile ref_1kg_phase1_all/1kg_phase1_wtccc1 --exclude ref_1kg_phase1_all/all.1kg_wtccc1.atcg.variants.txt --make-bed --out ref_1kg_phase1_all/1kg_phase1_wtccc1_no_atcg
 
 plink --bfile ref_1kg_phase1_all/1kg_phase1_wtccc1_no_atcg --extract wtccc1/wtccc1_extrclean.variants.txt --make-bed --out ref_1kg_phase1_all/1kg_phase1_raw_no_atcg_wtccc1
-\end{verbatim}
+\end{lstlisting}
 
 Finally we will merge the datasets.
 
-\begin{verbatim}
+\begin{lstlisting}
 plink --bfile wtccc1/wtccc1_extrclean --bmerge ref_1kg_phase1_all/1kg_phase1_raw_no_atcg_wtccc1 --maf 0.1 --geno 0.1 --exclude support/exclude_problematic_range.txt --make-bed --out wtccc1/wtccc1_extrclean_1kg
-\end{verbatim}
+\end{lstlisting}
 
 \hypertarget{running-pca-1}{%
 \subsection{Running PCA}\label{running-pca-1}}
 
-\begin{verbatim}
+\begin{lstlisting}
 cp -v wtccc1/wtccc1_extrclean_1kg.bim wtccc1/wtccc1_extrclean_1kg.pedsnp
 cp -v wtccc1/wtccc1_extrclean_1kg.fam wtccc1/wtccc1_extrclean_1kg.pedind
-\end{verbatim}
+\end{lstlisting}
 
 Now that the cleaning is done, we can execute the actual PCA.
 
-\begin{verbatim}
+\begin{lstlisting}
 perl ~/git/EIG/bin/smartpca.perl \
 -i wtccc1/wtccc1_extrclean_1kg.bed \
 -a wtccc1/wtccc1_extrclean_1kg.pedsnp \
@@ -2436,79 +2318,73 @@ perl ~/git/EIG/bin/smartpca.perl \
 -t 10 \
 -s 6.0 \
 -w ref_1kg_phase1_all/1kg-pca-populations.txt
-\end{verbatim}
+\end{lstlisting}
 
 \hypertarget{plotting-pca}{%
 \subsection{Plotting PCA}\label{plotting-pca}}
 
-If all is peachy, you were able to run the PCA for the WTCCC1 data against 1000G phase 1. Using \texttt{smartpca} (you know, \texttt{EIGENSOFT}) we have calculated principal components (PCs) and we can now start plotting them. Let's create a scatter diagram of the first two principal components, including all individuals in the file \texttt{wtccc1\_extrclean\_1kg.pca.evec} (the first and second principal components are columns 2 and 3, respectively). Use the data in column 4 to color the points according to sample origin.
+If all is peachy, you were able to run the PCA for the WTCCC1 data against 1000G phase 1. Using \passthrough{\lstinline!smartpca!} (you know, \passthrough{\lstinline!EIGENSOFT!}) we have calculated principal components (PCs) and we can now start plotting them. Let's create a scatter diagram of the first two principal components, including all individuals in the file \passthrough{\lstinline!wtccc1\_extrclean\_1kg.pca.evec!} (the first and second principal components are columns 2 and 3, respectively). Use the data in column 4 to color the points according to sample origin.
 
 \begin{quote}
-Please note! You may have been able to make \texttt{EIGENSOFT} to work. So you may have to change ``/ref\_pca\_wtccc1/wtccc1\_extrclean\_1kg.pca.evec'' to ``/wtccc1/wtccc1\_extrclean\_1kg.pca.evec'' in the command below.
+Please note! You may have been able to make \passthrough{\lstinline!EIGENSOFT!} to work. So you may have to change ``/ref\_pca\_wtccc1/wtccc1\_extrclean\_1kg.pca.evec'' to ``/wtccc1/wtccc1\_extrclean\_1kg.pca.evec'' in the command below.
 \end{quote}
 
 And we should visualize the PCA results: are these individuals really all from European (UK) ancestry?
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{PCA\_WTCCC1\_1kG }\OtherTok{\textless{}{-}}\NormalTok{ data.table}\SpecialCharTok{::}\FunctionTok{fread}\NormalTok{(}\FunctionTok{paste0}\NormalTok{(COURSE\_loc,}\StringTok{"/ref\_pca\_wtccc1/wtccc1\_extrclean\_1kg.pca.evec"}\NormalTok{), }\AttributeTok{header =} \ConstantTok{FALSE}\NormalTok{, }\AttributeTok{skip =} \DecValTok{1}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
+\begin{lstlisting}[language=R]
+PCA_WTCCC1_1kG <- data.table::fread(paste0(COURSE_loc,"/ref_pca_wtccc1/wtccc1_extrclean_1kg.pca.evec"), header = FALSE, skip = 1)
+\end{lstlisting}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# Population    Description Super population    Code    Counts}
-\CommentTok{\# ASW   African Ancestry in Southwest US                              AFR   4     \#49A01D}
-\CommentTok{\# CEU   Utah residents with Northern and Western European ancestry  EUR 7     \#E55738}
-\CommentTok{\# CHB   Han Chinese in Bejing, China                                  EAS   8     \#9A3480}
-\CommentTok{\# CHS   Southern Han Chinese, China                                 EAS 9     \#705296}
-\CommentTok{\# CLM   Colombian in Medellin, Colombia                             MR  10    \#8D5B9A}
-\CommentTok{\# FIN   Finnish in Finland                                          EUR 12  \#2F8BC9}
-\CommentTok{\# GBR   British in England and Scotland                             EUR 13  \#1290D9}
-\CommentTok{\# IBS   Iberian populations in Spain                                  EUR   16  \#1396D8}
-\CommentTok{\# JPT   Japanese in Tokyo, Japan                                      EAS   18  \#D5267B}
-\CommentTok{\# LWK   Luhya in Webuye, Kenya                                      AFR 20  \#78B113}
-\CommentTok{\# MXL   Mexican Ancestry in Los Angeles, California                 AMR 22  \#F59D10}
-\CommentTok{\# PUR   Puerto Rican in Puerto Rico                                 AMR 25  \#FBB820}
-\CommentTok{\# TSI   Toscani in Italy                                              EUR   27  \#4C81BF}
-\CommentTok{\# YRI   Yoruba in Ibadan, Nigeria                                     AFR   28  \#C5D220}
+\begin{lstlisting}[language=R]
+# Population    Description Super population    Code    Counts
+# ASW   African Ancestry in Southwest US                              AFR   4     #49A01D
+# CEU   Utah residents with Northern and Western European ancestry  EUR 7     #E55738
+# CHB   Han Chinese in Bejing, China                                  EAS   8     #9A3480
+# CHS   Southern Han Chinese, China                                 EAS 9     #705296
+# CLM   Colombian in Medellin, Colombia                             MR  10    #8D5B9A
+# FIN   Finnish in Finland                                          EUR 12  #2F8BC9
+# GBR   British in England and Scotland                             EUR 13  #1290D9
+# IBS   Iberian populations in Spain                                  EUR   16  #1396D8
+# JPT   Japanese in Tokyo, Japan                                      EAS   18  #D5267B
+# LWK   Luhya in Webuye, Kenya                                      AFR 20  #78B113
+# MXL   Mexican Ancestry in Los Angeles, California                 AMR 22  #F59D10
+# PUR   Puerto Rican in Puerto Rico                                 AMR 25  #FBB820
+# TSI   Toscani in Italy                                              EUR   27  #4C81BF
+# YRI   Yoruba in Ibadan, Nigeria                                     AFR   28  #C5D220
 
-\NormalTok{PCA\_WTCCC1\_1kG}\SpecialCharTok{$}\NormalTok{V12[PCA\_WTCCC1\_1kG}\SpecialCharTok{$}\NormalTok{V12 }\SpecialCharTok{==} \StringTok{"2"}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"CAD"}
-\NormalTok{PCA\_WTCCC1\_1kG}\SpecialCharTok{$}\NormalTok{V12[PCA\_WTCCC1\_1kG}\SpecialCharTok{$}\NormalTok{V12 }\SpecialCharTok{==} \StringTok{"1"}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"UKBS"}
-\NormalTok{PCA\_WTCCC1\_1kG}\SpecialCharTok{$}\NormalTok{V12[PCA\_WTCCC1\_1kG}\SpecialCharTok{$}\NormalTok{V12 }\SpecialCharTok{==} \StringTok{"4"}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"ASW"}
-\NormalTok{PCA\_WTCCC1\_1kG}\SpecialCharTok{$}\NormalTok{V12[PCA\_WTCCC1\_1kG}\SpecialCharTok{$}\NormalTok{V12 }\SpecialCharTok{==} \StringTok{"7"}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"CEU"}
-\NormalTok{PCA\_WTCCC1\_1kG}\SpecialCharTok{$}\NormalTok{V12[PCA\_WTCCC1\_1kG}\SpecialCharTok{$}\NormalTok{V12 }\SpecialCharTok{==} \StringTok{"8"}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"CHB"}
-\NormalTok{PCA\_WTCCC1\_1kG}\SpecialCharTok{$}\NormalTok{V12[PCA\_WTCCC1\_1kG}\SpecialCharTok{$}\NormalTok{V12 }\SpecialCharTok{==} \StringTok{"9"}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"CHS"}
-\NormalTok{PCA\_WTCCC1\_1kG}\SpecialCharTok{$}\NormalTok{V12[PCA\_WTCCC1\_1kG}\SpecialCharTok{$}\NormalTok{V12 }\SpecialCharTok{==} \StringTok{"10"}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"CLM"}
-\NormalTok{PCA\_WTCCC1\_1kG}\SpecialCharTok{$}\NormalTok{V12[PCA\_WTCCC1\_1kG}\SpecialCharTok{$}\NormalTok{V12 }\SpecialCharTok{==} \StringTok{"12"}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"FIN"}
-\NormalTok{PCA\_WTCCC1\_1kG}\SpecialCharTok{$}\NormalTok{V12[PCA\_WTCCC1\_1kG}\SpecialCharTok{$}\NormalTok{V12 }\SpecialCharTok{==} \StringTok{"13"}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"GBR"}
-\NormalTok{PCA\_WTCCC1\_1kG}\SpecialCharTok{$}\NormalTok{V12[PCA\_WTCCC1\_1kG}\SpecialCharTok{$}\NormalTok{V12 }\SpecialCharTok{==} \StringTok{"16"}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"IBS"}
-\NormalTok{PCA\_WTCCC1\_1kG}\SpecialCharTok{$}\NormalTok{V12[PCA\_WTCCC1\_1kG}\SpecialCharTok{$}\NormalTok{V12 }\SpecialCharTok{==} \StringTok{"18"}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"JPT"}
-\NormalTok{PCA\_WTCCC1\_1kG}\SpecialCharTok{$}\NormalTok{V12[PCA\_WTCCC1\_1kG}\SpecialCharTok{$}\NormalTok{V12 }\SpecialCharTok{==} \StringTok{"20"}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"LWK"}
-\NormalTok{PCA\_WTCCC1\_1kG}\SpecialCharTok{$}\NormalTok{V12[PCA\_WTCCC1\_1kG}\SpecialCharTok{$}\NormalTok{V12 }\SpecialCharTok{==} \StringTok{"22"}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"MXL"}
-\NormalTok{PCA\_WTCCC1\_1kG}\SpecialCharTok{$}\NormalTok{V12[PCA\_WTCCC1\_1kG}\SpecialCharTok{$}\NormalTok{V12 }\SpecialCharTok{==} \StringTok{"25"}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"PUR"}
-\NormalTok{PCA\_WTCCC1\_1kG}\SpecialCharTok{$}\NormalTok{V12[PCA\_WTCCC1\_1kG}\SpecialCharTok{$}\NormalTok{V12 }\SpecialCharTok{==} \StringTok{"27"}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"TSI"}
-\NormalTok{PCA\_WTCCC1\_1kG}\SpecialCharTok{$}\NormalTok{V12[PCA\_WTCCC1\_1kG}\SpecialCharTok{$}\NormalTok{V12 }\SpecialCharTok{==} \StringTok{"28"}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"YRI"}
-\end{Highlighting}
-\end{Shaded}
+PCA_WTCCC1_1kG$V12[PCA_WTCCC1_1kG$V12 == "2"] <- "CAD"
+PCA_WTCCC1_1kG$V12[PCA_WTCCC1_1kG$V12 == "1"] <- "UKBS"
+PCA_WTCCC1_1kG$V12[PCA_WTCCC1_1kG$V12 == "4"] <- "ASW"
+PCA_WTCCC1_1kG$V12[PCA_WTCCC1_1kG$V12 == "7"] <- "CEU"
+PCA_WTCCC1_1kG$V12[PCA_WTCCC1_1kG$V12 == "8"] <- "CHB"
+PCA_WTCCC1_1kG$V12[PCA_WTCCC1_1kG$V12 == "9"] <- "CHS"
+PCA_WTCCC1_1kG$V12[PCA_WTCCC1_1kG$V12 == "10"] <- "CLM"
+PCA_WTCCC1_1kG$V12[PCA_WTCCC1_1kG$V12 == "12"] <- "FIN"
+PCA_WTCCC1_1kG$V12[PCA_WTCCC1_1kG$V12 == "13"] <- "GBR"
+PCA_WTCCC1_1kG$V12[PCA_WTCCC1_1kG$V12 == "16"] <- "IBS"
+PCA_WTCCC1_1kG$V12[PCA_WTCCC1_1kG$V12 == "18"] <- "JPT"
+PCA_WTCCC1_1kG$V12[PCA_WTCCC1_1kG$V12 == "20"] <- "LWK"
+PCA_WTCCC1_1kG$V12[PCA_WTCCC1_1kG$V12 == "22"] <- "MXL"
+PCA_WTCCC1_1kG$V12[PCA_WTCCC1_1kG$V12 == "25"] <- "PUR"
+PCA_WTCCC1_1kG$V12[PCA_WTCCC1_1kG$V12 == "27"] <- "TSI"
+PCA_WTCCC1_1kG$V12[PCA_WTCCC1_1kG$V12 == "28"] <- "YRI"
+\end{lstlisting}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{PCA\_WTCCC1\_1kGplot }\OtherTok{\textless{}{-}}\NormalTok{ ggpubr}\SpecialCharTok{::}\FunctionTok{ggscatter}\NormalTok{(PCA\_WTCCC1\_1kG, }\AttributeTok{x =} \StringTok{"V2"}\NormalTok{, }\AttributeTok{y =} \StringTok{"V3"}\NormalTok{,}
-                                        \AttributeTok{color =} \StringTok{"V12"}\NormalTok{,}
-                                        \AttributeTok{palette =} \FunctionTok{c}\NormalTok{(}\StringTok{"\#49A01D"}\NormalTok{, }\StringTok{"\#595A5C"}\NormalTok{, }\StringTok{"\#E55738"}\NormalTok{, }\StringTok{"\#9A3480"}\NormalTok{, }\StringTok{"\#705296"}\NormalTok{, }
-                                                    \StringTok{"\#8D5B9A"}\NormalTok{, }\StringTok{"\#2F8BC9"}\NormalTok{, }\StringTok{"\#1290D9"}\NormalTok{, }\StringTok{"\#1396D8"}\NormalTok{, }\StringTok{"\#D5267B"}\NormalTok{, }
-                                                    \StringTok{"\#78B113"}\NormalTok{, }\StringTok{"\#F59D10"}\NormalTok{, }\StringTok{"\#FBB820"}\NormalTok{, }\StringTok{"\#4C81BF"}\NormalTok{, }\StringTok{"\#595A5C"}\NormalTok{, }\StringTok{"\#C5D220"}\NormalTok{),}
-                                        \AttributeTok{xlab =} \StringTok{"principal component 1"}\NormalTok{, }\AttributeTok{ylab =} \StringTok{"principal component 2"}\NormalTok{) }\SpecialCharTok{+}
-  \FunctionTok{geom\_hline}\NormalTok{(}\AttributeTok{yintercept =} \FloatTok{0.023}\NormalTok{, }\AttributeTok{linetype =} \StringTok{"dashed"}\NormalTok{,}
-                \AttributeTok{color =} \StringTok{"\#595A5C"}\NormalTok{, }\AttributeTok{size =} \DecValTok{1}\NormalTok{)}
+\begin{lstlisting}[language=R]
+PCA_WTCCC1_1kGplot <- ggpubr::ggscatter(PCA_WTCCC1_1kG, x = "V2", y = "V3",
+                                        color = "V12",
+                                        palette = c("#49A01D", "#595A5C", "#E55738", "#9A3480", "#705296", 
+                                                    "#8D5B9A", "#2F8BC9", "#1290D9", "#1396D8", "#D5267B", 
+                                                    "#78B113", "#F59D10", "#FBB820", "#4C81BF", "#595A5C", "#C5D220"),
+                                        xlab = "principal component 1", ylab = "principal component 2") +
+  geom_hline(yintercept = 0.023, linetype = "dashed",
+                color = "#595A5C", size = 1)
 
-\NormalTok{  ggpubr}\SpecialCharTok{::}\FunctionTok{ggpar}\NormalTok{(PCA\_WTCCC1\_1kGplot,}
-            \AttributeTok{title =} \StringTok{"Principal Component Analysis"}\NormalTok{,}
-            \AttributeTok{subtitle =} \StringTok{"Reference population: 1000 G, phase 1"}\NormalTok{,}
-            \AttributeTok{legend.title =} \StringTok{"Populations"}\NormalTok{, }\AttributeTok{legend =} \StringTok{"right"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
+  ggpubr::ggpar(PCA_WTCCC1_1kGplot,
+            title = "Principal Component Analysis",
+            subtitle = "Reference population: 1000 G, phase 1",
+            legend.title = "Populations", legend = "right")
+\end{lstlisting}
 
 We expect most individuals from the WTCCC to be 100\% British, but a substantial group will have a different ancestral background as shown in the Figure \ref{fig:show-wtccc1-pca} you just made.
 
@@ -2532,100 +2408,96 @@ Go ahead, try that.
 
 You're code would be something like below:
 
-\begin{verbatim}
+\begin{lstlisting}
 cat wtccc1/wtccc1_extrclean_1kg.pca.evec | tail -n +2 | \
 awk '$3 < 0.023' | awk '{ print $1 }' | awk -F":" '{ print $1, $2 }' > wtccc1/fail-ancestry-QC.txt
-\end{verbatim}
+\end{lstlisting}
 
 Next we filter these samples and get a final fully QC'd dataset.
 
-\begin{verbatim}
+\begin{lstlisting}
 plink --bfile wtccc1/wtccc1_clean --exclude wtccc1/fail-ancestry-QC.txt --make-bed --out wtccc1/wtccc1_qc
-\end{verbatim}
+\end{lstlisting}
 
 \hypertarget{association-testing}{%
 \section{Association testing}\label{association-testing}}
 
 Now that we have explored the data, we are ready for some simple association testing. However, it would be great to have some PCs to correct for. We can use PLINK for that too.
 
-\begin{verbatim}
+\begin{lstlisting}
 plink --bfile wtccc1/wtccc1_extrclean --exclude wtccc1/fail-ancestry-QC.txt --pca --out wtccc1/wtccc1_extrclean
-\end{verbatim}
+\end{lstlisting}
 
 Let's add those PCs to the covariates-file.
 
-\begin{verbatim}
+\begin{lstlisting}
 echo "IID PC1 PC2 PC3 PC4 PC5 PC6 PC7 PC8 PC9 PC10 PC11 PC12 PC13 PC14 PC15 PC16 PC17 PC18 PC19 PC20" > wtccc1/wtccc1_qc.pca
 
 cat wtccc1/wtccc1_extrclean.eigenvec | awk '{ print $2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17,$18,$19,$20,$21,$22}' >> wtccc1/wtccc1_qc.pca
 
 perl scripts/mergeTables.pl --file1 wtccc1/wtccc1_qc.pca --file2 wtccc1/wtccc1.covar --index IID --format NORM > wtccc1/wtccc1_qc.covar_pca
-\end{verbatim}
+\end{lstlisting}
 
 Exciting, now we are ready to perform a GWAS on CAD in WTCCC1.
 
-\begin{verbatim}
+\begin{lstlisting}
 plink --bfile wtccc1/wtccc1_qc --logistic sex --covar wtccc1/wtccc1_qc.covar_pca --out wtccc1/wtccc1_qc_log_covar_pca
-\end{verbatim}
+\end{lstlisting}
 
 After you ran the association analysis, you're ready to process the data and take a first look at the results. First, we prepare the raw output.
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{wtccc1\_assoc }\OtherTok{\textless{}{-}}\NormalTok{ data.table}\SpecialCharTok{::}\FunctionTok{fread}\NormalTok{(}\FunctionTok{paste0}\NormalTok{(COURSE\_loc, }\StringTok{"/wtccc1/wtccc1\_qc\_log\_covar\_pca.assoc.logistic"}\NormalTok{))}
+\begin{lstlisting}[language=R]
+wtccc1_assoc <- data.table::fread(paste0(COURSE_loc, "/wtccc1/wtccc1_qc_log_covar_pca.assoc.logistic"))
 
-\FunctionTok{dim}\NormalTok{(wtccc1\_assoc)}
+dim(wtccc1_assoc)
 
-\NormalTok{wtccc1\_assoc[}\DecValTok{1}\SpecialCharTok{:}\DecValTok{9}\NormalTok{, }\DecValTok{1}\SpecialCharTok{:}\DecValTok{9}\NormalTok{]}
-\NormalTok{wtccc1\_assoc\_sub }\OtherTok{\textless{}{-}} \FunctionTok{subset}\NormalTok{(wtccc1\_assoc, TEST }\SpecialCharTok{==} \StringTok{"ADD"}\NormalTok{)}
-\NormalTok{wtccc1\_assoc\_sub}\SpecialCharTok{$}\NormalTok{TEST }\OtherTok{\textless{}{-}} \ConstantTok{NULL}
+wtccc1_assoc[1:9, 1:9]
+wtccc1_assoc_sub <- subset(wtccc1_assoc, TEST == "ADD")
+wtccc1_assoc_sub$TEST <- NULL
 
-\NormalTok{temp }\OtherTok{\textless{}{-}} \FunctionTok{subset}\NormalTok{(wtccc1\_FRQ, }\AttributeTok{select =} \FunctionTok{c}\NormalTok{(}\StringTok{"SNP"}\NormalTok{, }\StringTok{"A2"}\NormalTok{, }\StringTok{"MAF"}\NormalTok{, }\StringTok{"NCHROBS"}\NormalTok{))}
+temp <- subset(wtccc1_FRQ, select = c("SNP", "A2", "MAF", "NCHROBS"))
 
-\NormalTok{wtccc1\_assoc\_subfrq }\OtherTok{\textless{}{-}} \FunctionTok{merge}\NormalTok{(wtccc1\_assoc\_sub, temp, }\AttributeTok{by =} \StringTok{"SNP"}\NormalTok{)}
+wtccc1_assoc_subfrq <- merge(wtccc1_assoc_sub, temp, by = "SNP")
 
-\NormalTok{temp }\OtherTok{\textless{}{-}} \FunctionTok{subset}\NormalTok{(wtccc1\_LMISS, }\AttributeTok{select =} \FunctionTok{c}\NormalTok{(}\StringTok{"SNP"}\NormalTok{, }\StringTok{"callrate"}\NormalTok{))}
+temp <- subset(wtccc1_LMISS, select = c("SNP", "callrate"))
 
-\NormalTok{wtccc1\_assoc\_subfrqlmiss }\OtherTok{\textless{}{-}} \FunctionTok{merge}\NormalTok{(wtccc1\_assoc\_subfrq, temp, }\AttributeTok{by =} \StringTok{"SNP"}\NormalTok{)}
-\FunctionTok{head}\NormalTok{(wtccc1\_assoc\_subfrqlmiss)}
-\CommentTok{\# Remember:}
-\CommentTok{\# {-} that z = beta/se}
-\CommentTok{\# {-} beta = log(OR), because log is the natural log in r}
+wtccc1_assoc_subfrqlmiss <- merge(wtccc1_assoc_subfrq, temp, by = "SNP")
+head(wtccc1_assoc_subfrqlmiss)
+# Remember:
+# - that z = beta/se
+# - beta = log(OR), because log is the natural log in r
 
-\NormalTok{wtccc1\_assoc\_subfrqlmiss}\SpecialCharTok{$}\NormalTok{BETA }\OtherTok{=} \FunctionTok{log}\NormalTok{(wtccc1\_assoc\_subfrqlmiss}\SpecialCharTok{$}\NormalTok{OR)}
-\NormalTok{wtccc1\_assoc\_subfrqlmiss}\SpecialCharTok{$}\NormalTok{SE }\OtherTok{=}\NormalTok{ wtccc1\_assoc\_subfrqlmiss}\SpecialCharTok{$}\NormalTok{BETA}\SpecialCharTok{/}\NormalTok{wtccc1\_assoc\_subfrqlmiss}\SpecialCharTok{$}\NormalTok{STAT}
+wtccc1_assoc_subfrqlmiss$BETA = log(wtccc1_assoc_subfrqlmiss$OR)
+wtccc1_assoc_subfrqlmiss$SE = wtccc1_assoc_subfrqlmiss$BETA/wtccc1_assoc_subfrqlmiss$STAT
 
 
-\NormalTok{wtccc1\_assoc\_subfrqlmiss\_tib }\OtherTok{\textless{}{-}}\NormalTok{ dplyr}\SpecialCharTok{::}\FunctionTok{as\_tibble}\NormalTok{(wtccc1\_assoc\_subfrqlmiss)}
+wtccc1_assoc_subfrqlmiss_tib <- dplyr::as_tibble(wtccc1_assoc_subfrqlmiss)
 
-\NormalTok{col\_order }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"SNP"}\NormalTok{, }\StringTok{"CHR"}\NormalTok{, }\StringTok{"BP"}\NormalTok{,}
-               \StringTok{"A1"}\NormalTok{, }\StringTok{"A2"}\NormalTok{, }\StringTok{"MAF"}\NormalTok{, }\StringTok{"callrate"}\NormalTok{, }\StringTok{"NMISS"}\NormalTok{, }\StringTok{"NCHROBS"}\NormalTok{,}
-               \StringTok{"BETA"}\NormalTok{, }\StringTok{"SE"}\NormalTok{, }\StringTok{"OR"}\NormalTok{, }\StringTok{"STAT"}\NormalTok{, }\StringTok{"P"}\NormalTok{)}
-\NormalTok{wtccc1\_assoc\_compl }\OtherTok{\textless{}{-}}\NormalTok{ wtccc1\_assoc\_subfrqlmiss\_tib[, col\_order]}
+col_order <- c("SNP", "CHR", "BP",
+               "A1", "A2", "MAF", "callrate", "NMISS", "NCHROBS",
+               "BETA", "SE", "OR", "STAT", "P")
+wtccc1_assoc_compl <- wtccc1_assoc_subfrqlmiss_tib[, col_order]
 
-\FunctionTok{dim}\NormalTok{(wtccc1\_assoc\_compl)}
+dim(wtccc1_assoc_compl)
 
-\FunctionTok{head}\NormalTok{(wtccc1\_assoc\_compl)}
+head(wtccc1_assoc_compl)
 
-\NormalTok{wtccc1\_assoc\_complsub }\OtherTok{\textless{}{-}} \FunctionTok{subset}\NormalTok{(wtccc1\_assoc\_compl, }\AttributeTok{select =} \FunctionTok{c}\NormalTok{(}\StringTok{"SNP"}\NormalTok{, }\StringTok{"CHR"}\NormalTok{, }\StringTok{"BP"}\NormalTok{, }\StringTok{"P"}\NormalTok{))}
-\end{Highlighting}
-\end{Shaded}
+wtccc1_assoc_complsub <- subset(wtccc1_assoc_compl, select = c("SNP", "CHR", "BP", "P"))
+\end{lstlisting}
 
 You could visualize these results with the code below.
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{library}\NormalTok{(}\StringTok{"CMplot"}\NormalTok{)}
+\begin{lstlisting}[language=R]
+library("CMplot")
 
-\FunctionTok{CMplot}\NormalTok{(wtccc1\_assoc\_complsub,}
-       \AttributeTok{plot.type =} \StringTok{"b"}\NormalTok{, }\AttributeTok{LOG10 =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{ylim =} \ConstantTok{NULL}\NormalTok{,}
-       \AttributeTok{threshold =} \FunctionTok{c}\NormalTok{(}\FloatTok{1e{-}6}\NormalTok{,}\FloatTok{1e{-}4}\NormalTok{), }\AttributeTok{threshold.lty =} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{), }\AttributeTok{threshold.lwd =} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{), }\AttributeTok{threshold.col =} \FunctionTok{c}\NormalTok{(}\StringTok{"black"}\NormalTok{, }\StringTok{"grey"}\NormalTok{),}
-       \AttributeTok{amplify =} \ConstantTok{TRUE}\NormalTok{,}
-       \AttributeTok{bin.size =} \FloatTok{1e6}\NormalTok{, }\AttributeTok{chr.den.col =} \FunctionTok{c}\NormalTok{(}\StringTok{"darkgreen"}\NormalTok{, }\StringTok{"yellow"}\NormalTok{, }\StringTok{"red"}\NormalTok{),}
-       \AttributeTok{signal.col =} \FunctionTok{c}\NormalTok{(}\StringTok{"red"}\NormalTok{, }\StringTok{"green"}\NormalTok{), }\AttributeTok{signal.cex =} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{), }\AttributeTok{signal.pch =} \FunctionTok{c}\NormalTok{(}\DecValTok{19}\NormalTok{,}\DecValTok{19}\NormalTok{),}
-       \AttributeTok{file =} \StringTok{"jpg"}\NormalTok{, }\AttributeTok{memo =} \StringTok{""}\NormalTok{, }\AttributeTok{dpi =} \DecValTok{300}\NormalTok{, }\AttributeTok{file.output =} \ConstantTok{FALSE}\NormalTok{, }\AttributeTok{verbose =} \ConstantTok{TRUE}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
+CMplot(wtccc1_assoc_complsub,
+       plot.type = "b", LOG10 = TRUE, ylim = NULL,
+       threshold = c(1e-6,1e-4), threshold.lty = c(1,2), threshold.lwd = c(1,1), threshold.col = c("black", "grey"),
+       amplify = TRUE,
+       bin.size = 1e6, chr.den.col = c("darkgreen", "yellow", "red"),
+       signal.col = c("red", "green"), signal.cex = c(1,1), signal.pch = c(19,19),
+       file = "jpg", memo = "", dpi = 300, file.output = FALSE, verbose = TRUE)
+\end{lstlisting}
 
 This would lead to the following graphs.
 
@@ -2695,7 +2567,7 @@ The Manhattan plot immediately draws your attention to the peaks above the genom
 
 The visualization of a GWAS is very appealing and draws attention to single peaks, and the most significant variant. And with \textbf{clumping} you can identify the independent signals, i.e.~the top variants and their LD buddies in the locus. We implicitly assume that the top variant captures all the variation in the region by its linkage disequilibrium with an unknown causal variant, in other words it is `tagging' the (un)measured potential causal variant in the region. Intuitively it is unlikely that a single causal variant is accounting for all the LD between the unknown causal variant and the measured (genotyped or imputed) variants at the locus. So, a naive focus on only the top variant ignores the fact that multiple causal variants exist and thus the variation captured by that single top variant underestimates the total variation that could be explained by that single region (locus).
 
-\textbf{Conditional analysis} is a tool to identify the secondary variants associated with the trait of interest. This involves conditioning the association model (\texttt{trait\ \textasciitilde{}\ Variant\ X\ +\ covariates}) on the primary variant associated in that locus. A more comprehensive and general approach would be to condition on each variant in the whole genome starting with the top variants and stepwise selecting additional variants according to their conditional p-values. This strategy could potentially result in multiple top variants in the same locus. In other words, it could uncover different haplotypes that are causing the same association with the trait of interest.
+\textbf{Conditional analysis} is a tool to identify the secondary variants associated with the trait of interest. This involves conditioning the association model (\passthrough{\lstinline!trait \~ Variant X + covariates!}) on the primary variant associated in that locus. A more comprehensive and general approach would be to condition on each variant in the whole genome starting with the top variants and stepwise selecting additional variants according to their conditional p-values. This strategy could potentially result in multiple top variants in the same locus. In other words, it could uncover different haplotypes that are causing the same association with the trait of interest.
 
 This would be straightforward with super computers and full-access to individual level data. Unfortunately we often have neither.
 
@@ -2761,11 +2633,11 @@ There is an easy, quick-and-dirty way and a harder way.
 
 \textbf{MRBase}
 
-The quick-and-dirty way uses \href{http://www.mrbase.org/}{MRBase}. It is based on the \texttt{TwoSampleMR} package and uses the \texttt{MRInstruments} package to load in all the genetic instruments. The creators of MRBase have curated hundreds of GWAS and molecular QTL studies, and prepared the data for easy use on the website and in the R packages.
+The quick-and-dirty way uses \href{http://www.mrbase.org/}{MRBase}. It is based on the \passthrough{\lstinline!TwoSampleMR!} package and uses the \passthrough{\lstinline!MRInstruments!} package to load in all the genetic instruments. The creators of MRBase have curated hundreds of GWAS and molecular QTL studies, and prepared the data for easy use on the website and in the R packages.
 
 \textbf{TwoSampleMR}
 
-The hard way means getting your hands dirty and using the \texttt{TwoSampleMR} package yourself in \texttt{R}. You'll learn all the steps you need to take into account to get to the answer of this question. You'll create the diagnostic graphs and calculate the statistics.
+The hard way means getting your hands dirty and using the \passthrough{\lstinline!TwoSampleMR!} package yourself in \passthrough{\lstinline!R!}. You'll learn all the steps you need to take into account to get to the answer of this question. You'll create the diagnostic graphs and calculate the statistics.
 
 \hypertarget{your-choice}{%
 \subsection{Your choice}\label{your-choice}}
@@ -2805,20 +2677,20 @@ Go to the \href{https://fuma.ctglab.nl}{FUMA website}, get an account, and study
 \hypertarget{create-the-input}{%
 \subsection{Create the input}\label{create-the-input}}
 
-You will need to use the \texttt{fwrite} function in \texttt{r} to write the concatenated results of the WTCCC1 study (remember: \texttt{wtccc1\_assoc\_compl}).
+You will need to use the \passthrough{\lstinline!fwrite!} function in \passthrough{\lstinline!r!} to write the concatenated results of the WTCCC1 study (remember: \passthrough{\lstinline!wtccc1\_assoc\_compl!}).
 
 \emph{Question: can you figure out the sample size of the WTCCC1 data you used?}
 
-Make sure you know what the column-names are in the file, you'll need that for FUMA. You can use \texttt{cat\ your\_file\ \textbar{}\ head} to get the first 10 lines of the file.
+Make sure you know what the column-names are in the file, you'll need that for FUMA. You can use \passthrough{\lstinline!cat your\_file | head!} to get the first 10 lines of the file.
 
-You will need to compress the resulting output, this will make uploading to FUMA go faster. You can use the \texttt{bash}-program \texttt{gzip} for that. If you want to know what the options are for that program, you can use \texttt{gzip\ -h}.
+You will need to compress the resulting output, this will make uploading to FUMA go faster. You can use the \passthrough{\lstinline!bash!}-program \passthrough{\lstinline!gzip!} for that. If you want to know what the options are for that program, you can use \passthrough{\lstinline!gzip -h!}.
 
 \hypertarget{run-fuma---snp-to-gene}{%
 \subsection{Run FUMA - SNP to gene}\label{run-fuma---snp-to-gene}}
 
 Upload via the form on the FUMA-website. Since you've done the tutorial you are familiar with its options.
 
-Select \emph{everything} in the tabs \texttt{Gene\ Mapping\ (positional\ mapping)}, \texttt{Gene\ Mapping\ (eQTL\ mapping)} but \emph{not} \texttt{GTEx\ v6} and \texttt{GTEx\ v7}, and \texttt{Gene\ Mapping\ (3D\ Chromatin\ Interaction\ mapping)} and leave the settings at \texttt{Gene\ types} and \texttt{MHC\ region} as-is. At \texttt{MAGMA\ analysis} set the \emph{MAGMA gene expression analysis} to include all tissues, \emph{but} \texttt{GTEx\ v6} and \texttt{GTEx\ v7}.
+Select \emph{everything} in the tabs \passthrough{\lstinline!Gene Mapping (positional mapping)!}, \passthrough{\lstinline!Gene Mapping (eQTL mapping)!} but \emph{not} \passthrough{\lstinline!GTEx v6!} and \passthrough{\lstinline!GTEx v7!}, and \passthrough{\lstinline!Gene Mapping (3D Chromatin Interaction mapping)!} and leave the settings at \passthrough{\lstinline!Gene types!} and \passthrough{\lstinline!MHC region!} as-is. At \passthrough{\lstinline!MAGMA analysis!} set the \emph{MAGMA gene expression analysis} to include all tissues, \emph{but} \passthrough{\lstinline!GTEx v6!} and \passthrough{\lstinline!GTEx v7!}.
 
 Don't forget to give your analysis a name.
 
@@ -2848,7 +2720,7 @@ This will take some time and so it's a good moment to carry on with the rest of 
 \hypertarget{run-fuma---gene-to-function}{%
 \subsection{Run FUMA - Gene to function}\label{run-fuma---gene-to-function}}
 
-Now that you mapped SNPs to genes, it's time to go back to `My Jobs'. Select your job and perform \texttt{GENE2FUNC}.
+Now that you mapped SNPs to genes, it's time to go back to `My Jobs'. Select your job and perform \passthrough{\lstinline!GENE2FUNC!}.
 
 \emph{Questions}
 
@@ -2869,7 +2741,7 @@ Now that you mapped SNPs to genes, it's time to go back to `My Jobs'. Select you
 \section{Some closing thoughts}\label{some-closing-thoughts}}
 
 FUMA is a great tool, but it comes with a caveat. It includes a couple of references of which it is not readily clear which variants are included - the authors do provide the codes used on Git, but still, you don't know which variants precisely are filtered. That is key: perhaps the top variant you discovered is filtered in the reference. This means FUMA will not use it to map SNPs to genes, rather next best variant. This should be in high-LD - but, again, assumptions\ldots{} And of course, the references used might not match your data well enough.
-So, my advice: use FUMA (why not be lazy rather than work hard?), but aware of such caveats as I described. All in all, I do think FUMA is very complete, intuitive, and it makes your work publication-ready because it creates just the right file-formats for you too (\texttt{.png}, \texttt{.svg}, \texttt{.pdf}, \texttt{.jpeg}).
+So, my advice: use FUMA (why not be lazy rather than work hard?), but aware of such caveats as I described. All in all, I do think FUMA is very complete, intuitive, and it makes your work publication-ready because it creates just the right file-formats for you too (\passthrough{\lstinline!.png!}, \passthrough{\lstinline!.svg!}, \passthrough{\lstinline!.pdf!}, \passthrough{\lstinline!.jpeg!}).
 
 That said, time to move on to inspect other phenotypes in relation to your findings in the next Chapter \ref{phewas} or to return to the previous chapter on post-GWAS analyses \ref{post-gwas}.
 
@@ -2922,7 +2794,7 @@ You now know to what other traits, risk factors and diseases our trait of intere
 \hypertarget{mr_mrbase}{%
 \chapter{MRBase}\label{mr_mrbase}}
 
-You took the easy way out. No shame in that. Your choice. Right, so as I wrote, \emph{\href{http://www.mrbase.org/}{MRBase}} is very easy to handle. It is based on the \texttt{TwoSampleMR} package and uses the \texttt{MRInstruments} package to load in all the genetic instruments. The creators of MRBase have curated hundreds of GWAS and molecular QTL studies, and prepared the data for easy use on the website and in the R packages.
+You took the easy way out. No shame in that. Your choice. Right, so as I wrote, \emph{\href{http://www.mrbase.org/}{MRBase}} is very easy to handle. It is based on the \passthrough{\lstinline!TwoSampleMR!} package and uses the \passthrough{\lstinline!MRInstruments!} package to load in all the genetic instruments. The creators of MRBase have curated hundreds of GWAS and molecular QTL studies, and prepared the data for easy use on the website and in the R packages.
 
 Using \textbf{\href{http://www.mrbase.org/}{MRBase}} we intend to find out whether Type 2 Diabetes (T2D) causes coronary artery disease and ischemic stroke.
 
@@ -2945,24 +2817,22 @@ As with any proper epilogue I should not forget a heartfelt and honest thank you
 
 We can further visualize regions of interest using a package like \href{http://locuszoom.org}{LocusZoom}. But first we need to find the independent hits by \emph{clumping} the results. We will just use the defaults, but please take a note of all the options here \url{https://www.cog-genomics.org/plink/1.9/postproc\#clump}
 
-\begin{verbatim}
+\begin{lstlisting}
 plink --bfile gwas/gwa --clump gwas/data.assoc.logistic --clump-p1 5e-8 --clump-p2 0.05 --clump-kb 500 --clump-r2 0.05 --clump-verbose --out gwas/data.assoc.logistic
-\end{verbatim}
+\end{lstlisting}
 
 Now you will have a list of all the \emph{independent} SNPs, \emph{i.e.} the genetic loci, that are associated to the trait.
 
-\begin{verbatim}
+\begin{lstlisting}
 cat gwas/data.assoc.logistic.clumped
-\end{verbatim}
+\end{lstlisting}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\VariableTok{ROOTDIR}\OperatorTok{=}\StringTok{"/Users/swvanderlaan/Desktop/practical"} \CommentTok{\# change this to your root}
-\FunctionTok{cat} \VariableTok{$ROOTDIR}\NormalTok{/gwas/data.assoc.logistic.clumped}
-\end{Highlighting}
-\end{Shaded}
+\begin{lstlisting}[language=bash]
+ROOTDIR="/Users/swvanderlaan/Desktop/practical" # change this to your root
+cat $ROOTDIR/gwas/data.assoc.logistic.clumped
+\end{lstlisting}
 
-\begin{verbatim}
+\begin{lstlisting}
 ## 
 ##  CHR    F         SNP         BP          P    TOTAL   NSIG    S05    S01   S001  S0001
 ##    3    1   rs6802898   12366207   4.18e-20       50     35      4      2      1      8 
@@ -3031,17 +2901,17 @@ cat gwas/data.assoc.logistic.clumped
 ##            SPAN: 83kb
 ## 
 ## ------------------------------------------------------------------
-\end{verbatim}
+\end{lstlisting}
 
-Clumping identifies three loci and now that you know them, you can visualize them using LocusZoom. First, let's get what we need (\texttt{SNP} and \texttt{P}) and gzip the results.
+Clumping identifies three loci and now that you know them, you can visualize them using LocusZoom. First, let's get what we need (\passthrough{\lstinline!SNP!} and \passthrough{\lstinline!P!}) and gzip the results.
 
-\begin{verbatim}
+\begin{lstlisting}
 echo "SNP P" > gwas/data.assoc.logistic.locuszoom
 cat gwas/data.assoc.logistic | awk '$5=="ADD"' | awk '{ print $2, $9 }' >> gwas/data.assoc.logistic.locuszoom
 gzip -v gwas/data.assoc.logistic.locuszoom
-\end{verbatim}
+\end{lstlisting}
 
-Now you are ready to upload this \texttt{data.assoc.logistic.locuszoom.gz} file to the site: \url{http://locuszoom.org}. Try to visualize each locus using the information above and by following the instructions. Choose HapMap 2, hg18, CEU as the LD-reference.
+Now you are ready to upload this \passthrough{\lstinline!data.assoc.logistic.locuszoom.gz!} file to the site: \url{http://locuszoom.org}. Try to visualize each locus using the information above and by following the instructions. Choose HapMap 2, hg18, CEU as the LD-reference.
 
 You should get something like below.
 
@@ -3054,58 +2924,58 @@ You should get something like below.
 \hypertarget{eigensoft}{%
 \chapter{Additional: EIGENSOFT}\label{eigensoft}}
 
-Unfortunately, the preferred software \textbf{\href{https://github.com/DReichLab/EIG}{\texttt{EIGENSOFT}}} for Principal Component Analysis (PCA) is challenging to make it work to say the least. You need to install some programs for \textbf{\texttt{EIGENSOFT}} to work, and this is not always straightforward.
+Unfortunately, the preferred software \textbf{\href{https://github.com/DReichLab/EIG}{\passthrough{\lstinline!EIGENSOFT!}}} for Principal Component Analysis (PCA) is challenging to make it work to say the least. You need to install some programs for \textbf{\passthrough{\lstinline!EIGENSOFT!}} to work, and this is not always straightforward.
 
 So, here's the deal.
 
 I will share the how-to for a macOS environment below in {[}EIGENSOFT{]} - this should work in a Linux environment too as macOS is UNIX-based. You can choose to try and make it work in the VirtualMachine you're working on now, or on your personal laptop (be it UNIX or macOS based) at home (or in the office).
 
-However, for you convenience I ran the PCA for mapping of this dummy dataset against two references already and shared the files in the \texttt{ref\_pca}-folder. This means you can skip this section and jump straight to \protect\hyperlink{are-you-ready}{Are you ready?}.
+However, for you convenience I ran the PCA for mapping of this dummy dataset against two references already and shared the files in the \passthrough{\lstinline!ref\_pca!}-folder. This means you can skip this section and jump straight to \protect\hyperlink{are-you-ready}{Are you ready?}.
 
 \hypertarget{install-homebrew}{%
 \section{Install homebrew}\label{install-homebrew}}
 
 You need the missing package-manager and accompanying packages that Apple didn't provide.
 
-\begin{verbatim}
+\begin{lstlisting}
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-\end{verbatim}
+\end{lstlisting}
 
 Next, check that everything is in order.
 
-\begin{verbatim}
+\begin{lstlisting}
 brew doctor
-\end{verbatim}
+\end{lstlisting}
 
 \hypertarget{install-missing-packages}{%
 \section{Install missing packages}\label{install-missing-packages}}
 
-Right, now that you've done that, you're ready to install \texttt{gsl} and \texttt{openblas}.
+Right, now that you've done that, you're ready to install \passthrough{\lstinline!gsl!} and \passthrough{\lstinline!openblas!}.
 
-\begin{verbatim}
+\begin{lstlisting}
 brew install gsl
 brew install openblas
-\end{verbatim}
+\end{lstlisting}
 
-You may require \texttt{llvm} if \texttt{EIGENSOFT} isn't working.
+You may require \passthrough{\lstinline!llvm!} if \passthrough{\lstinline!EIGENSOFT!} isn't working.
 
-\begin{verbatim}
+\begin{lstlisting}
 brew install llvm
-\end{verbatim}
+\end{lstlisting}
 
 \hypertarget{installing-eigensoft}{%
 \section{Installing EIGENSOFT}\label{installing-eigensoft}}
 
 I am still sharing the code you'll need - you could try this on your personal MacBook for instance.
 
-\begin{verbatim}
+\begin{lstlisting}
 mkdir -v $HOME/git
 cd $HOME/git
 git clone https://github.com/DReichLab/EIG.git
 cd EIG/src
 make
 make install
-\end{verbatim}
+\end{lstlisting}
 
 \hypertarget{todo}{%
 \chapter{Things to do}\label{todo}}
@@ -3123,29 +2993,29 @@ List of to-do's according to MoSCoW: \emph{must have}, \emph{should have}, \emph
 \begin{itemize}
 \tightlist
 \item
-  {[}{]} \texttt{M} conditional analysis
+  {[}{]} \passthrough{\lstinline!M!} conditional analysis
 \item
-  {[}{]} \texttt{M} statistical finemapping
+  {[}{]} \passthrough{\lstinline!M!} statistical finemapping
 \item
-  {[}{]} \texttt{M} regional association plotting
+  {[}{]} \passthrough{\lstinline!M!} regional association plotting
 \item
-  {[}{]} \texttt{M} colocalization with formal testing
+  {[}{]} \passthrough{\lstinline!M!} colocalization with formal testing
 \item
-  {[}{]} \texttt{S} meta-analysis with dummy data
+  {[}{]} \passthrough{\lstinline!S!} meta-analysis with dummy data
 
   \begin{itemize}
   \tightlist
   \item
-    \texttt{S} including stratified QQ plots
+    \passthrough{\lstinline!S!} including stratified QQ plots
   \item
-    \texttt{M} HPC version with MetaGWASToolKit
+    \passthrough{\lstinline!M!} HPC version with MetaGWASToolKit
   \item
-    \texttt{S} stand-alone version with METAL
+    \passthrough{\lstinline!S!} stand-alone version with METAL
   \end{itemize}
 \item
-  {[}{]} \texttt{C} GWASToolKit
+  {[}{]} \passthrough{\lstinline!C!} GWASToolKit
 \item
-  {[}{]} \texttt{M} PlaqView lookups
+  {[}{]} \passthrough{\lstinline!M!} PlaqView lookups
 \end{itemize}
 
 \hypertarget{book-fixes}{%
@@ -3154,17 +3024,17 @@ List of to-do's according to MoSCoW: \emph{must have}, \emph{should have}, \emph
 \begin{itemize}
 \tightlist
 \item[$\boxtimes$]
-  \texttt{M} overall rendering too slow, paste in images as figure instead of on the fly generating
+  \passthrough{\lstinline!M!} overall rendering too slow, paste in images as figure instead of on the fly generating
 \item[$\boxtimes$]
-  \texttt{M} PDF is too large
+  \passthrough{\lstinline!M!} PDF is too large
 \item
-  {[}{]} \texttt{S} PDF is not formatted properly (text runs over)
+  {[}{]} \passthrough{\lstinline!S!} PDF is not formatted properly (text runs over)
 \item
-  {[}{]} \texttt{C} Different font type in PDF
+  {[}{]} \passthrough{\lstinline!C!} Different font type in PDF
 \item
-  {[}{]} \texttt{S} EPUB is not formatted properly (text runs over)
+  {[}{]} \passthrough{\lstinline!S!} EPUB is not formatted properly (text runs over)
 \item
-  {[}{]} \texttt{S} different setup for the chapter Additional chapters (this as a Apendix)
+  {[}{]} \passthrough{\lstinline!S!} different setup for the chapter Additional chapters (this as a Apendix)
 \end{itemize}
 
 \hypertarget{useful-links}{%

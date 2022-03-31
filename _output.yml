@@ -11,20 +11,21 @@ bookdown::gitbook:
       - ["A-Practical-Primer-in-Human-Complex-Genetics.pdf", "PDF"]
       - ["A-Practical-Primer-in-Human-Complex-Genetics.epub", "EPUB"]
     sharing:
-      facebook: false
-      github: false
+      facebook: true
+      github: true
       twitter: true
       linkedin: true
       weibo: false
       instapaper: false
       vk: false
-      whatsapp: false
+      whatsapp: true
       all: ['twitter', 'linkedin', 'whatsapp']
 bookdown::pdf_book:
   includes:
     in_header: preamble.tex
-  latex_engine: pdflatex
+  latex_engine: lualatex
   citation_package: natbib
+  pandoc_args: --listings
   keep_tex: yes
   extra_dependencies: ["float"]
 bookdown::epub_book: default
