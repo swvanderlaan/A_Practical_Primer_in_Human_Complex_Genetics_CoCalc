@@ -102,8 +102,6 @@ eigensoft
 install-homebrew
 install-missing-packages
 installing-eigensoft
-todo
-useful-links
 license
 copyright
 disclaimer
