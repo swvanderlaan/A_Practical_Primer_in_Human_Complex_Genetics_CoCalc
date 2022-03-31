@@ -8,7 +8,7 @@ bookdown::gitbook:
         <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown.</a></li>
     edit: https://github.com/swvanderlaan/A_Practical_Primer_in_Human_Complex_Genetics/edit/master/%s
     download:
-      - ["A-Practical-Primer-in-Human-Complex-Genetics.pdf", "PDF"]
+      # - ["A-Practical-Primer-in-Human-Complex-Genetics.pdf", "PDF"]
       - ["A-Practical-Primer-in-Human-Complex-Genetics.epub", "EPUB"]
     sharing:
       facebook: false
@@ -20,10 +20,10 @@ bookdown::gitbook:
       vk: false
       whatsapp: false
       all: ['twitter', 'linkedin', 'whatsapp']
-bookdown::pdf_book:
-  includes:
-    in_header: preamble.tex
-  latex_engine: pdflatex
-  citation_package: natbib
-  keep_tex: yes
+# bookdown::pdf_book:
+#   includes:
+#     in_header: preamble.tex
+#   latex_engine: pdflatex
+#   citation_package: natbib
+#   keep_tex: yes
 bookdown::epub_book: default
