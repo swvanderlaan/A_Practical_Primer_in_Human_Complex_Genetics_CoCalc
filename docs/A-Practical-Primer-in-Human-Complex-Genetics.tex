@@ -611,7 +611,6 @@ cat rawdata/rawdata.sexprobs.txt
 \begin{Shaded}
 \begin{Highlighting}[]
 \FunctionTok{library}\NormalTok{(}\StringTok{"knitr"}\NormalTok{)}
-
 \NormalTok{knitr}\SpecialCharTok{::}\FunctionTok{kable}\NormalTok{(}
 \NormalTok{  sexissues, }\AttributeTok{caption =} \StringTok{\textquotesingle{}Sex issues\textquotesingle{}}\NormalTok{,}
   \AttributeTok{booktabs =} \ConstantTok{TRUE}
@@ -621,7 +620,7 @@ cat rawdata/rawdata.sexprobs.txt
 
 When the homozygosity rate (\emph{F}) is more than 0.2, but less than 0.8, the genotype data are inconclusive regarding the sex of an individual and these are marked in column \emph{SNPSEX} with a 0, and the column \emph{STATUS} ``PROBLEM''.
 
-Report the IDs of individuals with discordant sex information (Table \ref{tab:sex-issues}) to those who conducted sex phenotyping. In situations in which discrepancy cannot be resolved, add the family ID (FID) and individual ID (IID) of the samples to a file named ``fail-sexcheck-qc.txt'' (one individual per line, tab delimited).
+Report the IDs of individuals with discordant sex information (Table \ref{tab:sex-issues}) to those who conducted sex phenotyping. In situations in which discrepancy cannot be resolved, add the family ID (FID) and individual ID (IID) of the samples to a file named \texttt{fail-sexcheck-qc.txt} (one individual per line, tab delimited).
 
 \begin{verbatim}
 grep "PROBLEM" rawdata/rawdata.sexcheck | awk '{ print $1, $2}'  > rawdata/fail-sexcheck-qc.txt
@@ -660,16 +659,16 @@ This produces two files, \texttt{rawdata/rawdata.imiss} and \texttt{rawdata/rawd
 \end{Highlighting}
 \end{Shaded}
 
+The grey dashed line in Figure \ref{fig:show-sample-callrate} indicates the mean call rate, while the red dashed line indicates the threshold we had determined above.
+
 \begin{figure}
 
-{\centering \includegraphics[width=0.8\linewidth]{A-Practical-Primer-in-Human-Complex-Genetics_files/figure-latex/sample-callrate-1} 
+{\centering \includegraphics[width=18.67in]{img/_gwas/sample-callrate} 
 
 }
 
-\caption{Call rate}\label{fig:sample-callrate}
+\caption{Per sample call rate.}\label{fig:show-sample-callrate}
 \end{figure}
-
-The grey dashed line in Figure \ref{fig:sample-callrate} indicates the mean call rate, while the red dashed line indicates the threshold we had determined above.
 
 \hypertarget{heterozygosity-rate}{%
 \section{Heterozygosity rate}\label{heterozygosity-rate}}
@@ -807,14 +806,14 @@ Often there is a correlation between heterozygosity rate and missing data. Thus,
 
 \begin{figure}
 
-{\centering \includegraphics[width=0.8\linewidth]{A-Practical-Primer-in-Human-Complex-Genetics_files/figure-latex/show-heterozygosity-1} 
+{\centering \includegraphics[width=18.67in]{img/_gwas/show-heterozygosity} 
 
 }
 
-\caption{Heterozygosity rate as a function of missing genotypes}\label{fig:show-heterozygosity}
+\caption{Heterozygosity as a function of SNP call rate.}\label{fig:show-heterozygosity}
 \end{figure}
 
-Examine the plot to decide reasonable thresholds at which to exclude individuals based on elevated missing or extreme heterozygosity. We chose to exclude all individuals with a genotype failure rate \textgreater= 0.03 (vertical dashed line) and/or a heterozygosity rate ± 3 s.d. from the mean (horizontal dashed lines). Add the FID and IID of the samples failing this QC to the file named \texttt{fail-imisshet-qc.txt}.
+Examine the plot (Figure \ref{fig:show-heterozygosity}) to decide reasonable thresholds at which to exclude individuals based on elevated missing or extreme heterozygosity. We chose to exclude all individuals with a genotype failure rate \textgreater= 0.03 (vertical dashed line) and/or a heterozygosity rate ± 3 s.d. from the mean (horizontal dashed lines). Add the FID and IID of the samples failing this QC to the file named \texttt{fail-imisshet-qc.txt}.
 
 \begin{quote}
 How would you create this file?
@@ -825,6 +824,18 @@ How would you create this file?
 \NormalTok{raw\_IMISSHETsub }\OtherTok{=} \FunctionTok{subset}\NormalTok{(raw\_IMISSHET, logF\_MISS }\SpecialCharTok{\textgreater{}}\NormalTok{ prop\_miss }\SpecialCharTok{|}\NormalTok{ (meanHet }\SpecialCharTok{\textless{}}\NormalTok{ lower\_meanHet }\SpecialCharTok{|}\NormalTok{ meanHet }\SpecialCharTok{\textgreater{}}\NormalTok{ upper\_meanHet),}
                          \AttributeTok{select =} \FunctionTok{c}\NormalTok{(}\StringTok{"FID"}\NormalTok{, }\StringTok{"IID"}\NormalTok{))}
 \NormalTok{data.table}\SpecialCharTok{::}\FunctionTok{fwrite}\NormalTok{(raw\_IMISSHETsub, }\FunctionTok{paste0}\NormalTok{(COURSE\_loc,}\StringTok{"/rawdata/fail{-}raw\_IMISSHETsub.txt"}\NormalTok{), }\AttributeTok{sep =}\StringTok{" "}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+If all is right, you'd have something like Table \ref{tab:failed-callrate-het}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(}\StringTok{"knitr"}\NormalTok{)}
+\NormalTok{knitr}\SpecialCharTok{::}\FunctionTok{kable}\NormalTok{(}
+\NormalTok{  failraw\_IMISSHETsub, }\AttributeTok{caption =} \StringTok{\textquotesingle{}Failed samples due to sample call rates and heterozygosity rate\textquotesingle{}}\NormalTok{,}
+  \AttributeTok{booktabs =} \ConstantTok{TRUE}
+\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1268,14 +1279,14 @@ We could plot our data against HapMap 3.
 
 \begin{figure}
 
-{\centering \includegraphics[width=0.8\linewidth]{A-Practical-Primer-in-Human-Complex-Genetics_files/figure-latex/pca-hapmap3-1} 
+{\centering \includegraphics[width=18.67in]{img/_gwas/pca-hapmap3} 
 
 }
 
-\caption{PCA - Your data vs. HapMap 3}\label{fig:pca-hapmap3}
+\caption{PCA - Your data vs. HapMap 3.}\label{fig:show-pca-hapmap3}
 \end{figure}
 
-Derive PC1 and PC2 thresholds so that only individuals who match the given ancestral population are included. For populations of European descent, this will be either the CEU or TSI HapMap3 individuals (Figure \ref{fig:pca-hapmap3}). Here, we chose to exclude all individuals with a second principal component score less than 0.075.
+Derive PC1 and PC2 thresholds so that only individuals who match the given ancestral population are included. For populations of European descent, this will be either the CEU or TSI HapMap3 individuals (Figure \ref{fig:show-pca-hapmap3}). Here, we chose to exclude all individuals with a second principal component score less than 0.075.
 
 Write the FID and IID of these individuals to a file called \texttt{fail-ancestry-QC.txt}.
 
@@ -1356,16 +1367,16 @@ Please note! You may have been able to make \texttt{EIGENSOFT} (Chapter \ref{eig
 \end{Highlighting}
 \end{Shaded}
 
+In a similar fashion as in the above with the HapMap3 reference, you could \textbf{remove the samples below the threshold} based on this PCA (Figure \ref{fig:show-pca-1000g}).
+
 \begin{figure}
 
-{\centering \includegraphics[width=0.8\linewidth]{A-Practical-Primer-in-Human-Complex-Genetics_files/figure-latex/pca-1000g-1} 
+{\centering \includegraphics[width=18.67in]{img/_gwas/pca-1000g} 
 
 }
 
-\caption{PCA - Your data vs. 1000G}\label{fig:pca-1000g}
+\caption{PCA - Your data vs. 1000g.}\label{fig:show-pca-1000g}
 \end{figure}
-
-In a similar fashion as in the above with the HapMap3 reference, you could \textbf{remove the samples below the threshold} based on this PCA (Figure \ref{fig:pca-1000g}).
 
 \hypertarget{removing-samples}{%
 \section{Removing samples}\label{removing-samples}}
@@ -1403,7 +1414,7 @@ We start by calculating the missing genotype rate for each SNP, in other words t
 plink --bfile rawdata/clean_inds_data --missing --out rawdata/clean_inds_data
 \end{verbatim}
 
-Let's visualize the results to identify a threshold for extreme genotype failure rate. We chose a callrate threshold of 3\%, but it's arbitrary and depending on the dataset and the number of samples.
+Let's visualize the results to identify a threshold for extreme genotype failure rate. We chose a callrate threshold of 3\%, but it's arbitrary and depending on the dataset and the number of samples (Figure \ref{fig:show-snp-callrate}).
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1431,7 +1442,14 @@ Let's visualize the results to identify a threshold for extreme genotype failure
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{A-Practical-Primer-in-Human-Complex-Genetics_files/figure-latex/show-snp-callrate-1.pdf}
+\begin{figure}
+
+{\centering \includegraphics[width=18.67in]{img/_gwas/show-snp-callrate} 
+
+}
+
+\caption{Per SNP call rate.}\label{fig:show-snp-callrate}
+\end{figure}
 
 \hypertarget{differential-snp-call-rates}{%
 \section{Differential SNP call rates}\label{differential-snp-call-rates}}
@@ -1457,7 +1475,7 @@ We should also get an idea on what the allele frequencies are in our dataset. Lo
 plink --bfile rawdata/clean_inds_data --freq --out rawdata/clean_inds_data
 \end{verbatim}
 
-Let's also plot these data. You can view the result below, and type over the code to do it yourself.
+Let's also plot these data. You can view the result below, and try it yourself (Figure \ref{fig:show-freq}).
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1477,7 +1495,14 @@ Let's also plot these data. You can view the result below, and type over the cod
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{A-Practical-Primer-in-Human-Complex-Genetics_files/figure-latex/show-freq-1.pdf}
+\begin{figure}
+
+{\centering \includegraphics[width=18.67in]{img/_gwas/show-freq} 
+
+}
+
+\caption{Minor allele frequency.}\label{fig:show-freq}
+\end{figure}
 
 \hypertarget{a-note-on-allele-coding}{%
 \subsection{A note on allele coding}\label{a-note-on-allele-coding}}
@@ -1537,7 +1562,14 @@ Let's also plot these data. You can view the result below, and type over the cod
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{A-Practical-Primer-in-Human-Complex-Genetics_files/figure-latex/show-hwe-1.pdf}
+\begin{figure}
+
+{\centering \includegraphics[width=18.67in]{img/_gwas/show-hwe} 
+
+}
+
+\caption{Hardy-Weinberg Equilibrium p-values per stratum.}\label{fig:show-hwe}
+\end{figure}
 
 \hypertarget{final-snp-qc}{%
 \section{Final SNP QC}\label{final-snp-qc}}
@@ -1581,7 +1613,7 @@ plink --bfile gwas/gwa --missing --out gwas/gwa
 plink --bfile gwas/gwa --hardy --out gwas/gwa
 \end{verbatim}
 
-Let's visualize the results.
+Let's visualize the results. First we should load in all the results.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1595,6 +1627,8 @@ Let's visualize the results.
 \NormalTok{gwas\_LMISS }\OtherTok{\textless{}{-}}\NormalTok{ data.table}\SpecialCharTok{::}\FunctionTok{fread}\NormalTok{(}\FunctionTok{paste0}\NormalTok{(COURSE\_loc, }\StringTok{"/gwas/gwa.lmiss"}\NormalTok{))}
 \end{Highlighting}
 \end{Shaded}
+
+We can plot the per-stratum HWE p-values.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1617,7 +1651,16 @@ Let's visualize the results.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{A-Practical-Primer-in-Human-Complex-Genetics_files/figure-latex/show-hwe-gwas-1.pdf}
+\begin{figure}
+
+{\centering \includegraphics[width=18.67in]{img/_gwas/show-hwe-gwas} 
+
+}
+
+\caption{Per stratum HWE p-values.}\label{fig:show-hwe-gwas}
+\end{figure}
+
+We will want to see what the distribution of allele frequencies looks like.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1631,7 +1674,16 @@ Let's visualize the results.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{A-Practical-Primer-in-Human-Complex-Genetics_files/figure-latex/show-freq-gwas-1.pdf}
+\begin{figure}
+
+{\centering \includegraphics[width=18.67in]{img/_gwas/show-freq-gwas} 
+
+}
+
+\caption{Minor allele frequencies.}\label{fig:show-freq-gwas}
+\end{figure}
+
+We will want to identify samples that have poor call rates.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1647,7 +1699,16 @@ Let's visualize the results.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{A-Practical-Primer-in-Human-Complex-Genetics_files/figure-latex/show-sample-callrate-gwas-1.pdf}
+\begin{figure}
+
+{\centering \includegraphics[width=18.67in]{img/_gwas/show-sample-callrate-gwas} 
+
+}
+
+\caption{Per sample call rates.}\label{fig:show-sample-callrate-gwas}
+\end{figure}
+
+We also need to know what the per SNP call rates are.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1663,7 +1724,14 @@ Let's visualize the results.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{A-Practical-Primer-in-Human-Complex-Genetics_files/figure-latex/show-snp-callrate-gwas-1.pdf}
+\begin{figure}
+
+{\centering \includegraphics[width=18.67in]{img/_gwas/show-snp-callrate-gwas} 
+
+}
+
+\caption{Per SNP call rates.}\label{fig:show-snp-callrate-gwas}
+\end{figure}
 
 \hypertarget{genetic-models}{%
 \section{Genetic models}\label{genetic-models}}
@@ -1689,34 +1757,12 @@ Let's review the contents of the results.
 \NormalTok{gwas\_model }\OtherTok{\textless{}{-}}\NormalTok{ data.table}\SpecialCharTok{::}\FunctionTok{fread}\NormalTok{(}\FunctionTok{paste0}\NormalTok{(COURSE\_loc, }\StringTok{"/gwas/data.model"}\NormalTok{))}
 
 \FunctionTok{dim}\NormalTok{(gwas\_model)}
-\end{Highlighting}
-\end{Shaded}
 
-\begin{verbatim}
-## [1] 1530510      10
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \NormalTok{N\_SNPS }\OtherTok{=} \FunctionTok{length}\NormalTok{(gwas\_model}\SpecialCharTok{$}\NormalTok{SNP)}
 
 \NormalTok{gwas\_model[}\DecValTok{1}\SpecialCharTok{:}\DecValTok{10}\NormalTok{, }\DecValTok{1}\SpecialCharTok{:}\DecValTok{10}\NormalTok{]}
 \end{Highlighting}
 \end{Shaded}
-
-\begin{verbatim}
-##     CHR       SNP A1 A2    TEST         AFF       UNAFF   CHISQ DF      P
-##  1:   1 rs3934834  T  C    GENO 23/348/1582 23/321/1521 0.26070  2 0.8778
-##  2:   1 rs3934834  T  C   TREND    394/3512    367/3363 0.12770  1 0.7209
-##  3:   1 rs3934834  T  C ALLELIC    394/3512    367/3363 0.13070  1 0.7177
-##  4:   1 rs3934834  T  C     DOM    371/1582    344/1521 0.19060  1 0.6625
-##  5:   1 rs3934834  T  C     REC     23/1930     23/1842 0.02475  1 0.8750
-##  6:   1 rs3737728  A  G    GENO 206/950/842 222/891/871 2.93100  2 0.2310
-##  7:   1 rs3737728  A  G   TREND   1362/2634   1335/2633 0.17780  1 0.6733
-##  8:   1 rs3737728  A  G ALLELIC   1362/2634   1335/2633 0.17200  1 0.6783
-##  9:   1 rs3737728  A  G     DOM    1156/842    1113/871 1.25700  1 0.2623
-## 10:   1 rs3737728  A  G     REC    206/1792    222/1762 0.80220  1 0.3704
-\end{verbatim}
 
 It contains 1,530,510 rows, one for each SNP, and each type of test (\emph{genotypic}, \emph{trend}, \emph{allelic}, \emph{dominant}, and \emph{recessive}) and the following columns:
 
@@ -1776,31 +1822,10 @@ Let's examine the results
 \NormalTok{gwas\_assoc }\OtherTok{\textless{}{-}}\NormalTok{ data.table}\SpecialCharTok{::}\FunctionTok{fread}\NormalTok{(}\FunctionTok{paste0}\NormalTok{(COURSE\_loc, }\StringTok{"/gwas/data.assoc.logistic"}\NormalTok{))}
 
 \FunctionTok{dim}\NormalTok{(gwas\_assoc)}
-\end{Highlighting}
-\end{Shaded}
 
-\begin{verbatim}
-## [1] 918306      9
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \NormalTok{gwas\_assoc[}\DecValTok{1}\SpecialCharTok{:}\DecValTok{9}\NormalTok{, }\DecValTok{1}\SpecialCharTok{:}\DecValTok{9}\NormalTok{]}
 \end{Highlighting}
 \end{Shaded}
-
-\begin{verbatim}
-##    CHR       SNP      BP A1 TEST NMISS     OR     STAT      P
-## 1:   1 rs3934834  995669  T  ADD  3818 1.0290  0.38120 0.7031
-## 2:   1 rs3934834  995669  T  AGE  3818 1.0020  1.11800 0.2635
-## 3:   1 rs3934834  995669  T  SEX  3818 1.0120  0.19090 0.8486
-## 4:   1 rs3737728 1011278  A  ADD  3982 1.0190  0.38670 0.6990
-## 5:   1 rs3737728 1011278  A  AGE  3982 1.0020  1.09800 0.2721
-## 6:   1 rs3737728 1011278  A  SEX  3982 1.0060  0.09898 0.9212
-## 7:   1 rs6687776 1020428  T  ADD  3915 0.9692 -0.33330 0.7389
-## 8:   1 rs6687776 1020428  T  AGE  3915 1.0020  1.04000 0.2984
-## 9:   1 rs6687776 1020428  T  SEX  3915 1.0150  0.23690 0.8127
-\end{verbatim}
 
 If no model option is specified, the first row for each SNP corresponds to results for a multiplicative test of association. The C \textgreater= 0 subsequent rows for each SNP correspond to separate tests of significance for each of the C covariates included in the regression model. We can remove the covariate-specific lines from the main report by adding the \texttt{hide-covar} flag.
 
@@ -1855,28 +1880,6 @@ First, we will add the standard error, call rate, A2, and allele frequencies.
 
 \NormalTok{gwas\_assoc\_subfrqlmiss }\OtherTok{\textless{}{-}} \FunctionTok{merge}\NormalTok{(gwas\_assoc\_subfrq, temp, }\AttributeTok{by =} \StringTok{"SNP"}\NormalTok{)}
 \FunctionTok{head}\NormalTok{(gwas\_assoc\_subfrqlmiss)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-##           SNP CHR        BP A1 NMISS     OR    STAT       P A2    MAF NCHROBS
-## 1: rs10000010   4  21227772  C  3996 1.0420  0.9010 0.36760  T 0.4258    7992
-## 2: rs10000023   4  95952929  T  3957 0.9902 -0.2160 0.82900  G 0.4841    7914
-## 3: rs10000030   4 103593179  A  3991 0.9779 -0.3696 0.71170  G 0.1616    7982
-## 4:  rs1000007   2 237416793  C  4000 1.0180  0.3649 0.71520  T 0.3122    8000
-## 5: rs10000092   4  21504615  C  3963 0.9240 -1.6770 0.09354  T 0.3430    7926
-## 6: rs10000121   4 157793485  G  3919 0.9665 -0.7525 0.45170  A 0.4532    7838
-##    callrate
-## 1:  0.99900
-## 2:  0.98925
-## 3:  0.99775
-## 4:  1.00000
-## 5:  0.99075
-## 6:  0.97975
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \CommentTok{\# Remember:}
 \CommentTok{\# {-} that z = beta/se}
 \CommentTok{\# {-} beta = log(OR), because log is the natural log in r}
@@ -1893,33 +1896,12 @@ First, we will add the standard error, call rate, A2, and allele frequencies.
 \NormalTok{gwas\_assoc\_compl }\OtherTok{\textless{}{-}}\NormalTok{ gwas\_assoc\_subfrqlmiss\_tib[, col\_order]}
 
 \FunctionTok{dim}\NormalTok{(gwas\_assoc\_compl)}
-\end{Highlighting}
-\end{Shaded}
 
-\begin{verbatim}
-## [1] 306102     14
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \FunctionTok{head}\NormalTok{(gwas\_assoc\_compl)}
 \end{Highlighting}
 \end{Shaded}
 
-\begin{verbatim}
-## # A tibble: 6 x 14
-##   SNP        CHR     BP A1    A2      MAF callrate NMISS NCHROBS     BETA     SE
-##   <chr>    <int>  <int> <chr> <chr> <dbl>    <dbl> <int>   <int>    <dbl>  <dbl>
-## 1 rs10000~     4 2.12e7 C     T     0.426    0.999  3996    7992  0.0411  0.0457
-## 2 rs10000~     4 9.60e7 T     G     0.484    0.989  3957    7914 -0.00985 0.0456
-## 3 rs10000~     4 1.04e8 A     G     0.162    0.998  3991    7982 -0.0223  0.0605
-## 4 rs10000~     2 2.37e8 C     T     0.312    1      4000    8000  0.0178  0.0489
-## 5 rs10000~     4 2.15e7 C     T     0.343    0.991  3963    7926 -0.0790  0.0471
-## 6 rs10000~     4 1.58e8 G     A     0.453    0.980  3919    7838 -0.0341  0.0453
-## # ... with 3 more variables: OR <dbl>, STAT <dbl>, P <dbl>
-\end{verbatim}
-
-Let's list the number of SNPs per chromosome. This gives a pretty good idea about the per-chromosome coverage. And it's a sanity check: did the whole analysis run properly (we expect 22 chromosomes)?.
+Let's list the number of SNPs per chromosome. This gives a pretty good idea about the per-chromosome coverage. And it's a sanity check: did the whole analysis run properly (we expect 22 chromosomes)?
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1930,55 +1912,7 @@ Let's list the number of SNPs per chromosome. This gives a pretty good idea abou
 \end{Highlighting}
 \end{Shaded}
 
-\begin{tabular}{l|r}
-\hline
-Var1 & Freq\\
-\hline
-1 & 23173\\
-\hline
-2 & 25206\\
-\hline
-3 & 21402\\
-\hline
-4 & 19008\\
-\hline
-5 & 19157\\
-\hline
-6 & 20672\\
-\hline
-7 & 16581\\
-\hline
-8 & 18089\\
-\hline
-9 & 15709\\
-\hline
-10 & 15536\\
-\hline
-11 & 14564\\
-\hline
-12 & 14889\\
-\hline
-13 & 11524\\
-\hline
-14 & 9822\\
-\hline
-15 & 8838\\
-\hline
-16 & 8920\\
-\hline
-17 & 8262\\
-\hline
-18 & 10356\\
-\hline
-19 & 5820\\
-\hline
-20 & 7792\\
-\hline
-21 & 5412\\
-\hline
-22 & 5370\\
-\hline
-\end{tabular}
+Let's plot the QQ plot to diagnose our GWAS.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1995,12 +1929,19 @@ Var1 & Freq\\
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{A-Practical-Primer-in-Human-Complex-Genetics_files/figure-latex/show-qq-1.pdf}
+\begin{figure}
+
+{\centering \includegraphics[width=18.67in]{img/_gwas/show-qq} 
+
+}
+
+\caption{A QQ plot.}\label{fig:show-qq}
+\end{figure}
 
 \hypertarget{manhattan-plots}{%
 \section{Manhattan plots}\label{manhattan-plots}}
 
-We also need to create a \emph{Manhattan plot} to display the association test P-values as a function of chromosomal location and thus provide a visual summary of association test results that draw immediate attention to any regions of significance.
+We also need to create a \emph{Manhattan plot} to display the association test P-values as a function of chromosomal location and thus provide a visual summary of association test results that draw immediate attention to any regions of significance (Figure \ref{fig:show-manhattan}).
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2011,7 +1952,14 @@ We also need to create a \emph{Manhattan plot} to display the association test P
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{A-Practical-Primer-in-Human-Complex-Genetics_files/figure-latex/show-manhattan-1.pdf}
+\begin{figure}
+
+{\centering \includegraphics[width=18.67in]{img/_gwas/show-manhattan} 
+
+}
+
+\caption{A manhattan plot.}\label{fig:show-manhattan}
+\end{figure}
 
 \hypertarget{other-plots}{%
 \section{Other plots}\label{other-plots}}
@@ -2038,28 +1986,47 @@ It is also informative to plot the density per chromosome. We can use the \textt
 \end{Highlighting}
 \end{Shaded}
 
-\begin{verbatim}
-##  SNP-Density Plotting.
-\end{verbatim}
-
-\includegraphics{A-Practical-Primer-in-Human-Complex-Genetics_files/figure-latex/show-cmplot-all-1.pdf} \includegraphics{A-Practical-Primer-in-Human-Complex-Genetics_files/figure-latex/show-cmplot-all-2.pdf}
-
-\begin{verbatim}
-##  Circular-Manhattan Plotting P.
-##  Rectangular-Manhattan Plotting P.
-\end{verbatim}
-
-\includegraphics{A-Practical-Primer-in-Human-Complex-Genetics_files/figure-latex/show-cmplot-all-3.pdf}
-
-\begin{verbatim}
-##  QQ Plotting P.
-\end{verbatim}
-
-\includegraphics{A-Practical-Primer-in-Human-Complex-Genetics_files/figure-latex/show-cmplot-all-4.pdf}
-
 \begin{quote}
 What do the grey spots on the density plot indicate?
 \end{quote}
+
+This would lead to the following graphs.
+
+\begin{figure}
+
+{\centering \includegraphics[width=18.67in]{img/_gwas/show-cmplot-all-density} 
+
+}
+
+\caption{SNP density of the association results.}\label{fig:show-cmplot-all-density}
+\end{figure}
+
+\textbackslash begin\{figure\}
+
+\{\centering \includegraphics[width=18.67in]{img/_gwas/show-cmplot-all-qq}
+
+\}
+
+\textbackslash caption\{A QQ plot including a 95\% confidence interval (blue area) and genome-wide significant hits (red).\}\label{fig:show-cmplot-all-qq}
+\textbackslash end\{figure\}
+
+\begin{figure}
+
+{\centering \includegraphics[width=18.67in]{img/_gwas/show-cmplot-all-manhattan} 
+
+}
+
+\caption{A regular manhattan plot. Colored by chromosome, suggestive hits are green, genome-wide hits are red. The bottom graph shows the per-chromosome SNP density.}\label{fig:show-cmplot-all-manhattan}
+\end{figure}
+
+\begin{figure}
+
+{\centering \includegraphics[width=18.67in]{img/_gwas/show-cmplot-all-circular} 
+
+}
+
+\caption{A circular manhattan.}\label{fig:show-cmplot-all-circular}
+\end{figure}
 
 \hypertarget{interactive-plots}{%
 \section{Interactive plots}\label{interactive-plots}}
@@ -2250,6 +2217,8 @@ cat wtccc1/wtccc1.missing | awk '$5 < 0.00001' | awk '{ print $2 }' > wtccc1/wtc
 \end{Highlighting}
 \end{Shaded}
 
+Let's investigate the HWE p-value in the whole cohort, and per stratum (cases and controls) with the code below.
+
 \begin{Shaded}
 \begin{Highlighting}[]
 \FunctionTok{library}\NormalTok{(}\StringTok{"ggpubr"}\NormalTok{)}
@@ -2269,7 +2238,18 @@ cat wtccc1/wtccc1.missing | awk '$5 < 0.00001' | awk '{ print $2 }' > wtccc1/wtc
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{A-Practical-Primer-in-Human-Complex-Genetics_files/figure-latex/WTCCC1 HWE-1.pdf}
+This will result in Figure \ref{fig:show-wtccc1-hwe}.
+
+\begin{figure}
+
+{\centering \includegraphics[width=18.67in]{img/_gwas/WTCCC1 HWE} 
+
+}
+
+\caption{Stratified HWE p-values.}\label{fig:show-wtccc1-hwe}
+\end{figure}
+
+We should also inspect the allele frequencies. Note that \emph{by default} PLINK (whether v0.7, v1.9, or v2.0) stores the alleles as minor (A1) and major (A2), and therefore \texttt{-\/-maf} \emph{always} calculates the frequency of the minor allele (A1).
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2283,7 +2263,18 @@ cat wtccc1/wtccc1.missing | awk '$5 < 0.00001' | awk '{ print $2 }' > wtccc1/wtc
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{A-Practical-Primer-in-Human-Complex-Genetics_files/figure-latex/WTCCC1 FREQ-1.pdf}
+This will result in Figure \ref{fig:show-wtccc1-freq}.
+
+\begin{figure}
+
+{\centering \includegraphics[width=18.67in]{img/_gwas/WTCCC1 FREQ} 
+
+}
+
+\caption{Minor allele frequencies.}\label{fig:show-wtccc1-freq}
+\end{figure}
+
+There could be sample with very poor overall call rate, where for many SNPs there is no data. We will want to identify these samples and exclude them.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2299,15 +2290,18 @@ cat wtccc1/wtccc1.missing | awk '$5 < 0.00001' | awk '{ print $2 }' > wtccc1/wtc
 \end{Highlighting}
 \end{Shaded}
 
-\begin{verbatim}
-## Warning: geom_vline(): Ignoring `mapping` because `xintercept` was provided.
-\end{verbatim}
+This will result in Figure \ref{fig:show-wtccc1-callratesample}.
 
-\begin{verbatim}
-## Warning: geom_vline(): Ignoring `data` because `xintercept` was provided.
-\end{verbatim}
+\begin{figure}
 
-\includegraphics{A-Practical-Primer-in-Human-Complex-Genetics_files/figure-latex/WTCCC1 callrate samples-1.pdf}
+{\centering \includegraphics[width=18.67in]{img/_gwas/WTCCC1 callrate samples} 
+
+}
+
+\caption{Per sample call rate.}\label{fig:show-wtccc1-callratesample}
+\end{figure}
+
+Lastly, we must inspect the per SNP call rate; we need to know if there are SNPs that have no data for many samples. We will want to identify such SNPs and exclude these.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2323,15 +2317,16 @@ cat wtccc1/wtccc1.missing | awk '$5 < 0.00001' | awk '{ print $2 }' > wtccc1/wtc
 \end{Highlighting}
 \end{Shaded}
 
-\begin{verbatim}
-## Warning: geom_vline(): Ignoring `mapping` because `xintercept` was provided.
-\end{verbatim}
+This will result in Figure \ref{fig:show-wtccc1-callratesnp}.
 
-\begin{verbatim}
-## Warning: geom_vline(): Ignoring `data` because `xintercept` was provided.
-\end{verbatim}
+\begin{figure}
 
-\includegraphics{A-Practical-Primer-in-Human-Complex-Genetics_files/figure-latex/WTCCC1 callrate SNPs-1.pdf}
+{\centering \includegraphics[width=18.67in]{img/_gwas/WTCCC1 callrate SNPs} 
+
+}
+
+\caption{Per SNP call rate.}\label{fig:show-wtccc1-callratesnp}
+\end{figure}
 
 \hypertarget{quality-control-1}{%
 \section{Quality control}\label{quality-control-1}}
@@ -2514,13 +2509,15 @@ And we should visualize the PCA results: are these individuals really all from E
 \end{Highlighting}
 \end{Shaded}
 
+We expect most individuals from the WTCCC to be 100\% British, but a substantial group will have a different ancestral background as shown in the Figure \ref{fig:show-wtccc1-pca} you just made.
+
 \begin{figure}
 
-{\centering \includegraphics[width=0.8\linewidth]{A-Practical-Primer-in-Human-Complex-Genetics_files/figure-latex/pca-1000g-wtccc-1} 
+{\centering \includegraphics[width=18.67in]{img/_gwas/WTCCC1-pca-1000g} 
 
 }
 
-\caption{PCA - WTCCC1 vs. 1000G}\label{fig:pca-1000g-wtccc}
+\caption{PCA - WTCCC1 vs. 1000G}\label{fig:show-wtccc1-pca}
 \end{figure}
 
 \hypertarget{removing-samples-1}{%
@@ -2570,39 +2567,15 @@ Exciting, now we are ready to perform a GWAS on CAD in WTCCC1.
 plink --bfile wtccc1/wtccc1_qc --logistic sex --covar wtccc1/wtccc1_qc.covar_pca --out wtccc1/wtccc1_qc_log_covar_pca
 \end{verbatim}
 
+After you ran the association analysis, you're ready to process the data and take a first look at the results. First, we prepare the raw output.
+
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{wtccc1\_assoc }\OtherTok{\textless{}{-}}\NormalTok{ data.table}\SpecialCharTok{::}\FunctionTok{fread}\NormalTok{(}\FunctionTok{paste0}\NormalTok{(COURSE\_loc, }\StringTok{"/wtccc1/wtccc1\_qc\_log\_covar\_pca.assoc.logistic"}\NormalTok{))}
 
 \FunctionTok{dim}\NormalTok{(wtccc1\_assoc)}
-\end{Highlighting}
-\end{Shaded}
 
-\begin{verbatim}
-## [1] 8726361       9
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \NormalTok{wtccc1\_assoc[}\DecValTok{1}\SpecialCharTok{:}\DecValTok{9}\NormalTok{, }\DecValTok{1}\SpecialCharTok{:}\DecValTok{9}\NormalTok{]}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-##    CHR       SNP     BP A1            TEST NMISS        OR     STAT          P
-## 1:   1 rs3094315 752566  G             ADD  3256 1.036e+00  0.37270  7.094e-01
-## 2:   1 rs3094315 752566  G age_recruitment  3256 4.351e+00 25.96000 1.471e-148
-## 3:   1 rs3094315 752566  G             PC1  3256 1.909e+01  1.11300  2.657e-01
-## 4:   1 rs3094315 752566  G             PC2  3256 1.009e-01 -0.87060  3.840e-01
-## 5:   1 rs3094315 752566  G             PC3  3256 1.842e-01 -0.62560  5.316e-01
-## 6:   1 rs3094315 752566  G             PC4  3256 7.391e-01 -0.11110  9.116e-01
-## 7:   1 rs3094315 752566  G             PC5  3256 1.817e-01 -0.63400  5.261e-01
-## 8:   1 rs3094315 752566  G             PC6  3256 9.170e-01 -0.03229  9.742e-01
-## 9:   1 rs3094315 752566  G             PC7  3256 1.839e+04  3.61000  3.057e-04
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \NormalTok{wtccc1\_assoc\_sub }\OtherTok{\textless{}{-}} \FunctionTok{subset}\NormalTok{(wtccc1\_assoc, TEST }\SpecialCharTok{==} \StringTok{"ADD"}\NormalTok{)}
 \NormalTok{wtccc1\_assoc\_sub}\SpecialCharTok{$}\NormalTok{TEST }\OtherTok{\textless{}{-}} \ConstantTok{NULL}
 
@@ -2614,28 +2587,6 @@ plink --bfile wtccc1/wtccc1_qc --logistic sex --covar wtccc1/wtccc1_qc.covar_pca
 
 \NormalTok{wtccc1\_assoc\_subfrqlmiss }\OtherTok{\textless{}{-}} \FunctionTok{merge}\NormalTok{(wtccc1\_assoc\_subfrq, temp, }\AttributeTok{by =} \StringTok{"SNP"}\NormalTok{)}
 \FunctionTok{head}\NormalTok{(wtccc1\_assoc\_subfrqlmiss)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-##           SNP CHR        BP A1 NMISS     OR     STAT      P A2    MAF NCHROBS
-## 1: rs10000012   4   1357325  G  3265 1.0480  0.48180 0.6299  C 0.1345    6530
-## 2:  rs1000002   3 183635768  T  3264 1.1100  1.55000 0.1212  C 0.4827    6528
-## 3:  rs1000003   3  98342907  G  3232 1.0080  0.08926 0.9289  A 0.1454    6464
-## 4: rs10000033   4 139599898  C  3266 1.0070  0.10840 0.9137  T 0.4545    6532
-## 5: rs10000037   4  38924330  A  3267 1.1100  1.35900 0.1741  G 0.2557    6534
-## 6: rs10000062   4   5254744  C  3266 0.8589 -1.59000 0.1119  G 0.1408    6532
-##    callrate
-## 1: 0.999082
-## 2: 0.998776
-## 3: 0.988980
-## 4: 0.999388
-## 5: 0.999694
-## 6: 0.999388
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \CommentTok{\# Remember:}
 \CommentTok{\# {-} that z = beta/se}
 \CommentTok{\# {-} beta = log(OR), because log is the natural log in r}
@@ -2652,37 +2603,14 @@ plink --bfile wtccc1/wtccc1_qc --logistic sex --covar wtccc1/wtccc1_qc.covar_pca
 \NormalTok{wtccc1\_assoc\_compl }\OtherTok{\textless{}{-}}\NormalTok{ wtccc1\_assoc\_subfrqlmiss\_tib[, col\_order]}
 
 \FunctionTok{dim}\NormalTok{(wtccc1\_assoc\_compl)}
-\end{Highlighting}
-\end{Shaded}
 
-\begin{verbatim}
-## [1] 379407     14
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \FunctionTok{head}\NormalTok{(wtccc1\_assoc\_compl)}
-\end{Highlighting}
-\end{Shaded}
 
-\begin{verbatim}
-## # A tibble: 6 x 14
-##   SNP        CHR     BP A1    A2      MAF callrate NMISS NCHROBS     BETA     SE
-##   <chr>    <int>  <int> <chr> <chr> <dbl>    <dbl> <int>   <int>    <dbl>  <dbl>
-## 1 rs10000~     4 1.36e6 G     C     0.134    0.999  3265    6530  0.0469  0.0973
-## 2 rs10000~     3 1.84e8 T     C     0.483    0.999  3264    6528  0.104   0.0673
-## 3 rs10000~     3 9.83e7 G     A     0.145    0.989  3232    6464  0.00797 0.0893
-## 4 rs10000~     4 1.40e8 C     T     0.454    0.999  3266    6532  0.00698 0.0644
-## 5 rs10000~     4 3.89e7 A     G     0.256    1.00   3267    6534  0.104   0.0768
-## 6 rs10000~     4 5.25e6 C     G     0.141    0.999  3266    6532 -0.152   0.0957
-## # ... with 3 more variables: OR <dbl>, STAT <dbl>, P <dbl>
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \NormalTok{wtccc1\_assoc\_complsub }\OtherTok{\textless{}{-}} \FunctionTok{subset}\NormalTok{(wtccc1\_assoc\_compl, }\AttributeTok{select =} \FunctionTok{c}\NormalTok{(}\StringTok{"SNP"}\NormalTok{, }\StringTok{"CHR"}\NormalTok{, }\StringTok{"BP"}\NormalTok{, }\StringTok{"P"}\NormalTok{))}
 \end{Highlighting}
 \end{Shaded}
+
+You could visualize these results with the code below.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2698,24 +2626,43 @@ plink --bfile wtccc1/wtccc1_qc --logistic sex --covar wtccc1/wtccc1_qc.covar_pca
 \end{Highlighting}
 \end{Shaded}
 
-\begin{verbatim}
-##  SNP-Density Plotting.
-\end{verbatim}
+This would lead to the following graphs.
 
-\includegraphics{A-Practical-Primer-in-Human-Complex-Genetics_files/figure-latex/WTCCC1ResultsManhattan-1.pdf} \includegraphics{A-Practical-Primer-in-Human-Complex-Genetics_files/figure-latex/WTCCC1ResultsManhattan-2.pdf}
+\begin{figure}
 
-\begin{verbatim}
-##  Circular-Manhattan Plotting P.
-##  Rectangular-Manhattan Plotting P.
-\end{verbatim}
+{\centering \includegraphics[width=18.67in]{img/_gwas/WTCCC1ResultsManhattan-density} 
 
-\includegraphics{A-Practical-Primer-in-Human-Complex-Genetics_files/figure-latex/WTCCC1ResultsManhattan-3.pdf}
+}
 
-\begin{verbatim}
-##  QQ Plotting P.
-\end{verbatim}
+\caption{SNP density of the association results.}\label{fig:show-wtccc1-graphs-density}
+\end{figure}
 
-\includegraphics{A-Practical-Primer-in-Human-Complex-Genetics_files/figure-latex/WTCCC1ResultsManhattan-4.pdf}
+\textbackslash begin\{figure\}
+
+\{\centering \includegraphics[width=18.67in]{img/_gwas/WTCCC1ResultsManhattan-qq}
+
+\}
+
+\textbackslash caption\{A QQ plot including a 95\% confidence interval (blue area) and genome-wide significant hits (red).\}\label{fig:show-wtccc1-graphs-qq}
+\textbackslash end\{figure\}
+
+\begin{figure}
+
+{\centering \includegraphics[width=18.67in]{img/_gwas/WTCCC1ResultsManhattan-manhattan} 
+
+}
+
+\caption{A regular manhattan plot. Colored by chromosome, suggestive hits are green, genome-wide hits are red. The bottom graph shows the per-chromosome SNP density.}\label{fig:show-wtccc1-graphs-manhattan}
+\end{figure}
+
+\begin{figure}
+
+{\centering \includegraphics[width=18.67in]{img/_gwas/WTCCC1ResultsManhattan-circular} 
+
+}
+
+\caption{A circular manhattan.}\label{fig:show-wtccc1-graphs-circular}
+\end{figure}
 
 \hypertarget{replication}{%
 \section{Replication!}\label{replication}}
@@ -3158,6 +3105,75 @@ cd EIG/src
 make
 make install
 \end{verbatim}
+
+\hypertarget{todo}{%
+\chapter{Things to do}\label{todo}}
+
+I provide a list of things to do, to improve, to alter, to edit or to add. Crazy ideas. Useful tips, tricks, or links.
+
+Obviously this list is not exhaustive nor intended for practical use for anyone else but me.
+
+\hypertarget{moscow}{%
+\section{MoSCoW}\label{moscow}}
+
+List of to-do's according to MoSCoW: \emph{must have}, \emph{should have}, \emph{could have}, \emph{would have}.
+\#\#\# Contents
+
+\begin{itemize}
+\tightlist
+\item
+  {[}{]} \texttt{M} conditional analysis
+\item
+  {[}{]} \texttt{M} statistical finemapping
+\item
+  {[}{]} \texttt{M} regional association plotting
+\item
+  {[}{]} \texttt{M} colocalization with formal testing
+\item
+  {[}{]} \texttt{S} meta-analysis with dummy data
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \texttt{S} including stratified QQ plots
+  \item
+    \texttt{M} HPC version with MetaGWASToolKit
+  \item
+    \texttt{S} stand-alone version with METAL
+  \end{itemize}
+\item
+  {[}{]} \texttt{C} GWASToolKit
+\item
+  {[}{]} \texttt{M} PlaqView lookups
+\end{itemize}
+
+\hypertarget{book-fixes}{%
+\section{Book fixes}\label{book-fixes}}
+
+\begin{itemize}
+\tightlist
+\item
+  {[}{]} \texttt{M} overall rendering too slow, paste in images as figure instead of on the fly generating
+\item
+  {[}{]} \texttt{S} PDF is too large
+\item
+  {[}{]} \texttt{S} PDF is not formatted properly (text runs over)
+\item
+  {[}{]} \texttt{C} Different font type in PDF
+\item
+  {[}{]} \texttt{S} EPUB is not formatted properly (text runs over)
+\item
+  {[}{]} \texttt{S} different setup for the chapter Additional chapters (this as a Apendix)
+\end{itemize}
+
+\hypertarget{useful-links}{%
+\section{Useful links}\label{useful-links}}
+
+\url{https://bookdown.org/yihui/rmarkdown-cookbook/unnumbered-sections.html}
+
+\url{https://bookdown.org/yihui/bookdown/cross-references.html}
+
+\url{https://pandoc.org/MANUAL.html\#extension-header_attributes}
 
 \hypertarget{license}{%
 \chapter{Licenses and disclaimers}\label{license}}

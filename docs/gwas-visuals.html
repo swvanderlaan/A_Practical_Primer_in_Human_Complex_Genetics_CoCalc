@@ -287,10 +287,16 @@ div.csl-indent {
 <li class="chapter" data-level="16.2" data-path="eigensoft.html"><a href="eigensoft.html#install-missing-packages"><i class="fa fa-check"></i><b>16.2</b> Install missing packages<span></span></a></li>
 <li class="chapter" data-level="16.3" data-path="eigensoft.html"><a href="eigensoft.html#installing-eigensoft"><i class="fa fa-check"></i><b>16.3</b> Installing EIGENSOFT<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="17" data-path="license.html"><a href="license.html"><i class="fa fa-check"></i><b>17</b> Licenses and disclaimers<span></span></a>
+<li class="chapter" data-level="17" data-path="todo.html"><a href="todo.html"><i class="fa fa-check"></i><b>17</b> Things to do<span></span></a>
 <ul>
-<li class="chapter" data-level="17.1" data-path="license.html"><a href="license.html#copyright"><i class="fa fa-check"></i><b>17.1</b> Copyright<span></span></a></li>
-<li class="chapter" data-level="17.2" data-path="license.html"><a href="license.html#disclaimer"><i class="fa fa-check"></i><b>17.2</b> Disclaimer<span></span></a></li>
+<li class="chapter" data-level="17.1" data-path="todo.html"><a href="todo.html#moscow"><i class="fa fa-check"></i><b>17.1</b> MoSCoW<span></span></a></li>
+<li class="chapter" data-level="17.2" data-path="todo.html"><a href="todo.html#book-fixes"><i class="fa fa-check"></i><b>17.2</b> Book fixes<span></span></a></li>
+<li class="chapter" data-level="17.3" data-path="todo.html"><a href="todo.html#useful-links"><i class="fa fa-check"></i><b>17.3</b> Useful links<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="18" data-path="license.html"><a href="license.html"><i class="fa fa-check"></i><b>18</b> Licenses and disclaimers<span></span></a>
+<ul>
+<li class="chapter" data-level="18.1" data-path="license.html"><a href="license.html#copyright"><i class="fa fa-check"></i><b>18.1</b> Copyright<span></span></a></li>
+<li class="chapter" data-level="18.2" data-path="license.html"><a href="license.html#disclaimer"><i class="fa fa-check"></i><b>18.2</b> Disclaimer<span></span></a></li>
 </ul></li>
 <li><a href="references.html#references">References<span></span></a></li>
 <li class="divider"></li>
@@ -320,210 +326,117 @@ div.csl-indent {
 <h3><span class="header-section-number">7.0.1</span> QQ plots<a href="gwas-visuals.html#qq-plots" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>We should create <em>quantile-quantile (QQ) plots</em> to compare the observed association test statistics with their expected values under the null hypothesis of no association and so assess the number, magnitude and quality of true associations.</p>
 <p>First, we will add the standard error, call rate, A2, and allele frequencies.</p>
-<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="gwas-visuals.html#cb109-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;data.table&quot;</span>)</span>
-<span id="cb109-2"><a href="gwas-visuals.html#cb109-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb109-3"><a href="gwas-visuals.html#cb109-3" aria-hidden="true" tabindex="-1"></a>COURSE_loc <span class="ot">=</span> <span class="st">&quot;~/Desktop/practical&quot;</span> <span class="co"># getwd()</span></span>
-<span id="cb109-4"><a href="gwas-visuals.html#cb109-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb109-5"><a href="gwas-visuals.html#cb109-5" aria-hidden="true" tabindex="-1"></a>gwas_assoc_sub <span class="ot">&lt;-</span> <span class="fu">subset</span>(gwas_assoc, TEST <span class="sc">==</span> <span class="st">&quot;ADD&quot;</span>)</span>
-<span id="cb109-6"><a href="gwas-visuals.html#cb109-6" aria-hidden="true" tabindex="-1"></a>gwas_assoc_sub<span class="sc">$</span>TEST <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
-<span id="cb109-7"><a href="gwas-visuals.html#cb109-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb109-8"><a href="gwas-visuals.html#cb109-8" aria-hidden="true" tabindex="-1"></a>temp <span class="ot">&lt;-</span> <span class="fu">subset</span>(gwas_FRQ, <span class="at">select =</span> <span class="fu">c</span>(<span class="st">&quot;SNP&quot;</span>, <span class="st">&quot;A2&quot;</span>, <span class="st">&quot;MAF&quot;</span>, <span class="st">&quot;NCHROBS&quot;</span>))</span>
-<span id="cb109-9"><a href="gwas-visuals.html#cb109-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb109-10"><a href="gwas-visuals.html#cb109-10" aria-hidden="true" tabindex="-1"></a>gwas_assoc_subfrq <span class="ot">&lt;-</span> <span class="fu">merge</span>(gwas_assoc_sub, temp, <span class="at">by =</span> <span class="st">&quot;SNP&quot;</span>)</span>
-<span id="cb109-11"><a href="gwas-visuals.html#cb109-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb109-12"><a href="gwas-visuals.html#cb109-12" aria-hidden="true" tabindex="-1"></a>temp <span class="ot">&lt;-</span> <span class="fu">subset</span>(gwas_LMISS, <span class="at">select =</span> <span class="fu">c</span>(<span class="st">&quot;SNP&quot;</span>, <span class="st">&quot;callrate&quot;</span>))</span>
-<span id="cb109-13"><a href="gwas-visuals.html#cb109-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb109-14"><a href="gwas-visuals.html#cb109-14" aria-hidden="true" tabindex="-1"></a>gwas_assoc_subfrqlmiss <span class="ot">&lt;-</span> <span class="fu">merge</span>(gwas_assoc_subfrq, temp, <span class="at">by =</span> <span class="st">&quot;SNP&quot;</span>)</span>
-<span id="cb109-15"><a href="gwas-visuals.html#cb109-15" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(gwas_assoc_subfrqlmiss)</span></code></pre></div>
-<pre><code>##           SNP CHR        BP A1 NMISS     OR    STAT       P A2    MAF NCHROBS
-## 1: rs10000010   4  21227772  C  3996 1.0420  0.9010 0.36760  T 0.4258    7992
-## 2: rs10000023   4  95952929  T  3957 0.9902 -0.2160 0.82900  G 0.4841    7914
-## 3: rs10000030   4 103593179  A  3991 0.9779 -0.3696 0.71170  G 0.1616    7982
-## 4:  rs1000007   2 237416793  C  4000 1.0180  0.3649 0.71520  T 0.3122    8000
-## 5: rs10000092   4  21504615  C  3963 0.9240 -1.6770 0.09354  T 0.3430    7926
-## 6: rs10000121   4 157793485  G  3919 0.9665 -0.7525 0.45170  A 0.4532    7838
-##    callrate
-## 1:  0.99900
-## 2:  0.98925
-## 3:  0.99775
-## 4:  1.00000
-## 5:  0.99075
-## 6:  0.97975</code></pre>
-<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="gwas-visuals.html#cb111-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Remember:</span></span>
-<span id="cb111-2"><a href="gwas-visuals.html#cb111-2" aria-hidden="true" tabindex="-1"></a><span class="co"># - that z = beta/se</span></span>
-<span id="cb111-3"><a href="gwas-visuals.html#cb111-3" aria-hidden="true" tabindex="-1"></a><span class="co"># - beta = log(OR), because log is the natural log in r</span></span>
-<span id="cb111-4"><a href="gwas-visuals.html#cb111-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb111-5"><a href="gwas-visuals.html#cb111-5" aria-hidden="true" tabindex="-1"></a>gwas_assoc_subfrqlmiss<span class="sc">$</span>BETA <span class="ot">=</span> <span class="fu">log</span>(gwas_assoc_subfrqlmiss<span class="sc">$</span>OR)</span>
-<span id="cb111-6"><a href="gwas-visuals.html#cb111-6" aria-hidden="true" tabindex="-1"></a>gwas_assoc_subfrqlmiss<span class="sc">$</span>SE <span class="ot">=</span> gwas_assoc_subfrqlmiss<span class="sc">$</span>BETA<span class="sc">/</span>gwas_assoc_subfrqlmiss<span class="sc">$</span>STAT</span>
-<span id="cb111-7"><a href="gwas-visuals.html#cb111-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb111-8"><a href="gwas-visuals.html#cb111-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb111-9"><a href="gwas-visuals.html#cb111-9" aria-hidden="true" tabindex="-1"></a>gwas_assoc_subfrqlmiss_tib <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">as_tibble</span>(gwas_assoc_subfrqlmiss)</span>
-<span id="cb111-10"><a href="gwas-visuals.html#cb111-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb111-11"><a href="gwas-visuals.html#cb111-11" aria-hidden="true" tabindex="-1"></a>col_order <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;SNP&quot;</span>, <span class="st">&quot;CHR&quot;</span>, <span class="st">&quot;BP&quot;</span>,</span>
-<span id="cb111-12"><a href="gwas-visuals.html#cb111-12" aria-hidden="true" tabindex="-1"></a>               <span class="st">&quot;A1&quot;</span>, <span class="st">&quot;A2&quot;</span>, <span class="st">&quot;MAF&quot;</span>, <span class="st">&quot;callrate&quot;</span>, <span class="st">&quot;NMISS&quot;</span>, <span class="st">&quot;NCHROBS&quot;</span>,</span>
-<span id="cb111-13"><a href="gwas-visuals.html#cb111-13" aria-hidden="true" tabindex="-1"></a>               <span class="st">&quot;BETA&quot;</span>, <span class="st">&quot;SE&quot;</span>, <span class="st">&quot;OR&quot;</span>, <span class="st">&quot;STAT&quot;</span>, <span class="st">&quot;P&quot;</span>)</span>
-<span id="cb111-14"><a href="gwas-visuals.html#cb111-14" aria-hidden="true" tabindex="-1"></a>gwas_assoc_compl <span class="ot">&lt;-</span> gwas_assoc_subfrqlmiss_tib[, col_order]</span>
-<span id="cb111-15"><a href="gwas-visuals.html#cb111-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb111-16"><a href="gwas-visuals.html#cb111-16" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(gwas_assoc_compl)</span></code></pre></div>
-<pre><code>## [1] 306102     14</code></pre>
-<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="gwas-visuals.html#cb113-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(gwas_assoc_compl)</span></code></pre></div>
-<pre><code>## # A tibble: 6 × 14
-##   SNP        CHR     BP A1    A2      MAF callrate NMISS NCHROBS     BETA     SE
-##   &lt;chr&gt;    &lt;int&gt;  &lt;int&gt; &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt;    &lt;dbl&gt; &lt;int&gt;   &lt;int&gt;    &lt;dbl&gt;  &lt;dbl&gt;
-## 1 rs10000…     4 2.12e7 C     T     0.426    0.999  3996    7992  0.0411  0.0457
-## 2 rs10000…     4 9.60e7 T     G     0.484    0.989  3957    7914 -0.00985 0.0456
-## 3 rs10000…     4 1.04e8 A     G     0.162    0.998  3991    7982 -0.0223  0.0605
-## 4 rs10000…     2 2.37e8 C     T     0.312    1      4000    8000  0.0178  0.0489
-## 5 rs10000…     4 2.15e7 C     T     0.343    0.991  3963    7926 -0.0790  0.0471
-## 6 rs10000…     4 1.58e8 G     A     0.453    0.980  3919    7838 -0.0341  0.0453
-## # … with 3 more variables: OR &lt;dbl&gt;, STAT &lt;dbl&gt;, P &lt;dbl&gt;</code></pre>
-<p>Let’s list the number of SNPs per chromosome. This gives a pretty good idea about the per-chromosome coverage. And it’s a sanity check: did the whole analysis run properly (we expect 22 chromosomes)?.</p>
-<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="gwas-visuals.html#cb115-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;knitr&quot;</span>)</span>
-<span id="cb115-2"><a href="gwas-visuals.html#cb115-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb115-3"><a href="gwas-visuals.html#cb115-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Number of SNPs per chromosome</span></span>
-<span id="cb115-4"><a href="gwas-visuals.html#cb115-4" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="fu">table</span>(gwas_assoc_compl<span class="sc">$</span>CHR))</span></code></pre></div>
-<table>
-<thead>
-<tr class="header">
-<th align="left">Var1</th>
-<th align="right">Freq</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">1</td>
-<td align="right">23173</td>
-</tr>
-<tr class="even">
-<td align="left">2</td>
-<td align="right">25206</td>
-</tr>
-<tr class="odd">
-<td align="left">3</td>
-<td align="right">21402</td>
-</tr>
-<tr class="even">
-<td align="left">4</td>
-<td align="right">19008</td>
-</tr>
-<tr class="odd">
-<td align="left">5</td>
-<td align="right">19157</td>
-</tr>
-<tr class="even">
-<td align="left">6</td>
-<td align="right">20672</td>
-</tr>
-<tr class="odd">
-<td align="left">7</td>
-<td align="right">16581</td>
-</tr>
-<tr class="even">
-<td align="left">8</td>
-<td align="right">18089</td>
-</tr>
-<tr class="odd">
-<td align="left">9</td>
-<td align="right">15709</td>
-</tr>
-<tr class="even">
-<td align="left">10</td>
-<td align="right">15536</td>
-</tr>
-<tr class="odd">
-<td align="left">11</td>
-<td align="right">14564</td>
-</tr>
-<tr class="even">
-<td align="left">12</td>
-<td align="right">14889</td>
-</tr>
-<tr class="odd">
-<td align="left">13</td>
-<td align="right">11524</td>
-</tr>
-<tr class="even">
-<td align="left">14</td>
-<td align="right">9822</td>
-</tr>
-<tr class="odd">
-<td align="left">15</td>
-<td align="right">8838</td>
-</tr>
-<tr class="even">
-<td align="left">16</td>
-<td align="right">8920</td>
-</tr>
-<tr class="odd">
-<td align="left">17</td>
-<td align="right">8262</td>
-</tr>
-<tr class="even">
-<td align="left">18</td>
-<td align="right">10356</td>
-</tr>
-<tr class="odd">
-<td align="left">19</td>
-<td align="right">5820</td>
-</tr>
-<tr class="even">
-<td align="left">20</td>
-<td align="right">7792</td>
-</tr>
-<tr class="odd">
-<td align="left">21</td>
-<td align="right">5412</td>
-</tr>
-<tr class="even">
-<td align="left">22</td>
-<td align="right">5370</td>
-</tr>
-</tbody>
-</table>
-<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="gwas-visuals.html#cb116-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;qqman&quot;</span>)</span>
-<span id="cb116-2"><a href="gwas-visuals.html#cb116-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb116-3"><a href="gwas-visuals.html#cb116-3" aria-hidden="true" tabindex="-1"></a>gwas_threshold <span class="ot">=</span> <span class="sc">-</span><span class="fu">log10</span>(<span class="fl">5e-8</span>)</span>
-<span id="cb116-4"><a href="gwas-visuals.html#cb116-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb116-5"><a href="gwas-visuals.html#cb116-5" aria-hidden="true" tabindex="-1"></a><span class="fu">qq</span>(gwas_assoc_compl<span class="sc">$</span>P, <span class="at">main =</span> <span class="st">&quot;QQ plot of GWAS&quot;</span>,</span>
-<span id="cb116-6"><a href="gwas-visuals.html#cb116-6" aria-hidden="true" tabindex="-1"></a>   <span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">7</span>),</span>
-<span id="cb116-7"><a href="gwas-visuals.html#cb116-7" aria-hidden="true" tabindex="-1"></a>   <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">12</span>),</span>
-<span id="cb116-8"><a href="gwas-visuals.html#cb116-8" aria-hidden="true" tabindex="-1"></a>   <span class="at">pch =</span> <span class="dv">20</span>, <span class="at">col =</span> uithof_color[<span class="dv">16</span>], <span class="at">cex =</span> <span class="fl">1.5</span>, <span class="at">las =</span> <span class="dv">1</span>, <span class="at">bty =</span> <span class="st">&quot;n&quot;</span>)</span>
-<span id="cb116-9"><a href="gwas-visuals.html#cb116-9" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> gwas_threshold,</span>
-<span id="cb116-10"><a href="gwas-visuals.html#cb116-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">col =</span> uithof_color[<span class="dv">25</span>], <span class="at">lty =</span> <span class="st">&quot;dashed&quot;</span>)</span></code></pre></div>
-<p><img src="A-Practical-Primer-in-Human-Complex-Genetics_files/figure-html/show-qq-1.png" width="672" /></p>
+<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="gwas-visuals.html#cb104-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;data.table&quot;</span>)</span>
+<span id="cb104-2"><a href="gwas-visuals.html#cb104-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb104-3"><a href="gwas-visuals.html#cb104-3" aria-hidden="true" tabindex="-1"></a>COURSE_loc <span class="ot">=</span> <span class="st">&quot;~/Desktop/practical&quot;</span> <span class="co"># getwd()</span></span>
+<span id="cb104-4"><a href="gwas-visuals.html#cb104-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb104-5"><a href="gwas-visuals.html#cb104-5" aria-hidden="true" tabindex="-1"></a>gwas_assoc_sub <span class="ot">&lt;-</span> <span class="fu">subset</span>(gwas_assoc, TEST <span class="sc">==</span> <span class="st">&quot;ADD&quot;</span>)</span>
+<span id="cb104-6"><a href="gwas-visuals.html#cb104-6" aria-hidden="true" tabindex="-1"></a>gwas_assoc_sub<span class="sc">$</span>TEST <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb104-7"><a href="gwas-visuals.html#cb104-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb104-8"><a href="gwas-visuals.html#cb104-8" aria-hidden="true" tabindex="-1"></a>temp <span class="ot">&lt;-</span> <span class="fu">subset</span>(gwas_FRQ, <span class="at">select =</span> <span class="fu">c</span>(<span class="st">&quot;SNP&quot;</span>, <span class="st">&quot;A2&quot;</span>, <span class="st">&quot;MAF&quot;</span>, <span class="st">&quot;NCHROBS&quot;</span>))</span>
+<span id="cb104-9"><a href="gwas-visuals.html#cb104-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb104-10"><a href="gwas-visuals.html#cb104-10" aria-hidden="true" tabindex="-1"></a>gwas_assoc_subfrq <span class="ot">&lt;-</span> <span class="fu">merge</span>(gwas_assoc_sub, temp, <span class="at">by =</span> <span class="st">&quot;SNP&quot;</span>)</span>
+<span id="cb104-11"><a href="gwas-visuals.html#cb104-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb104-12"><a href="gwas-visuals.html#cb104-12" aria-hidden="true" tabindex="-1"></a>temp <span class="ot">&lt;-</span> <span class="fu">subset</span>(gwas_LMISS, <span class="at">select =</span> <span class="fu">c</span>(<span class="st">&quot;SNP&quot;</span>, <span class="st">&quot;callrate&quot;</span>))</span>
+<span id="cb104-13"><a href="gwas-visuals.html#cb104-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb104-14"><a href="gwas-visuals.html#cb104-14" aria-hidden="true" tabindex="-1"></a>gwas_assoc_subfrqlmiss <span class="ot">&lt;-</span> <span class="fu">merge</span>(gwas_assoc_subfrq, temp, <span class="at">by =</span> <span class="st">&quot;SNP&quot;</span>)</span>
+<span id="cb104-15"><a href="gwas-visuals.html#cb104-15" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(gwas_assoc_subfrqlmiss)</span>
+<span id="cb104-16"><a href="gwas-visuals.html#cb104-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Remember:</span></span>
+<span id="cb104-17"><a href="gwas-visuals.html#cb104-17" aria-hidden="true" tabindex="-1"></a><span class="co"># - that z = beta/se</span></span>
+<span id="cb104-18"><a href="gwas-visuals.html#cb104-18" aria-hidden="true" tabindex="-1"></a><span class="co"># - beta = log(OR), because log is the natural log in r</span></span>
+<span id="cb104-19"><a href="gwas-visuals.html#cb104-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb104-20"><a href="gwas-visuals.html#cb104-20" aria-hidden="true" tabindex="-1"></a>gwas_assoc_subfrqlmiss<span class="sc">$</span>BETA <span class="ot">=</span> <span class="fu">log</span>(gwas_assoc_subfrqlmiss<span class="sc">$</span>OR)</span>
+<span id="cb104-21"><a href="gwas-visuals.html#cb104-21" aria-hidden="true" tabindex="-1"></a>gwas_assoc_subfrqlmiss<span class="sc">$</span>SE <span class="ot">=</span> gwas_assoc_subfrqlmiss<span class="sc">$</span>BETA<span class="sc">/</span>gwas_assoc_subfrqlmiss<span class="sc">$</span>STAT</span>
+<span id="cb104-22"><a href="gwas-visuals.html#cb104-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb104-23"><a href="gwas-visuals.html#cb104-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb104-24"><a href="gwas-visuals.html#cb104-24" aria-hidden="true" tabindex="-1"></a>gwas_assoc_subfrqlmiss_tib <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">as_tibble</span>(gwas_assoc_subfrqlmiss)</span>
+<span id="cb104-25"><a href="gwas-visuals.html#cb104-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb104-26"><a href="gwas-visuals.html#cb104-26" aria-hidden="true" tabindex="-1"></a>col_order <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;SNP&quot;</span>, <span class="st">&quot;CHR&quot;</span>, <span class="st">&quot;BP&quot;</span>,</span>
+<span id="cb104-27"><a href="gwas-visuals.html#cb104-27" aria-hidden="true" tabindex="-1"></a>               <span class="st">&quot;A1&quot;</span>, <span class="st">&quot;A2&quot;</span>, <span class="st">&quot;MAF&quot;</span>, <span class="st">&quot;callrate&quot;</span>, <span class="st">&quot;NMISS&quot;</span>, <span class="st">&quot;NCHROBS&quot;</span>,</span>
+<span id="cb104-28"><a href="gwas-visuals.html#cb104-28" aria-hidden="true" tabindex="-1"></a>               <span class="st">&quot;BETA&quot;</span>, <span class="st">&quot;SE&quot;</span>, <span class="st">&quot;OR&quot;</span>, <span class="st">&quot;STAT&quot;</span>, <span class="st">&quot;P&quot;</span>)</span>
+<span id="cb104-29"><a href="gwas-visuals.html#cb104-29" aria-hidden="true" tabindex="-1"></a>gwas_assoc_compl <span class="ot">&lt;-</span> gwas_assoc_subfrqlmiss_tib[, col_order]</span>
+<span id="cb104-30"><a href="gwas-visuals.html#cb104-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb104-31"><a href="gwas-visuals.html#cb104-31" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(gwas_assoc_compl)</span>
+<span id="cb104-32"><a href="gwas-visuals.html#cb104-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb104-33"><a href="gwas-visuals.html#cb104-33" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(gwas_assoc_compl)</span></code></pre></div>
+<p>Let’s list the number of SNPs per chromosome. This gives a pretty good idea about the per-chromosome coverage. And it’s a sanity check: did the whole analysis run properly (we expect 22 chromosomes)?</p>
+<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="gwas-visuals.html#cb105-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;knitr&quot;</span>)</span>
+<span id="cb105-2"><a href="gwas-visuals.html#cb105-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb105-3"><a href="gwas-visuals.html#cb105-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Number of SNPs per chromosome</span></span>
+<span id="cb105-4"><a href="gwas-visuals.html#cb105-4" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="fu">table</span>(gwas_assoc_compl<span class="sc">$</span>CHR))</span></code></pre></div>
+<p>Let’s plot the QQ plot to diagnose our GWAS.</p>
+<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="gwas-visuals.html#cb106-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;qqman&quot;</span>)</span>
+<span id="cb106-2"><a href="gwas-visuals.html#cb106-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb106-3"><a href="gwas-visuals.html#cb106-3" aria-hidden="true" tabindex="-1"></a>gwas_threshold <span class="ot">=</span> <span class="sc">-</span><span class="fu">log10</span>(<span class="fl">5e-8</span>)</span>
+<span id="cb106-4"><a href="gwas-visuals.html#cb106-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb106-5"><a href="gwas-visuals.html#cb106-5" aria-hidden="true" tabindex="-1"></a><span class="fu">qq</span>(gwas_assoc_compl<span class="sc">$</span>P, <span class="at">main =</span> <span class="st">&quot;QQ plot of GWAS&quot;</span>,</span>
+<span id="cb106-6"><a href="gwas-visuals.html#cb106-6" aria-hidden="true" tabindex="-1"></a>   <span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">7</span>),</span>
+<span id="cb106-7"><a href="gwas-visuals.html#cb106-7" aria-hidden="true" tabindex="-1"></a>   <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">12</span>),</span>
+<span id="cb106-8"><a href="gwas-visuals.html#cb106-8" aria-hidden="true" tabindex="-1"></a>   <span class="at">pch =</span> <span class="dv">20</span>, <span class="at">col =</span> uithof_color[<span class="dv">16</span>], <span class="at">cex =</span> <span class="fl">1.5</span>, <span class="at">las =</span> <span class="dv">1</span>, <span class="at">bty =</span> <span class="st">&quot;n&quot;</span>)</span>
+<span id="cb106-9"><a href="gwas-visuals.html#cb106-9" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> gwas_threshold,</span>
+<span id="cb106-10"><a href="gwas-visuals.html#cb106-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">col =</span> uithof_color[<span class="dv">25</span>], <span class="at">lty =</span> <span class="st">&quot;dashed&quot;</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:show-qq"></span>
+<img src="img/_gwas/show-qq.png" alt="A QQ plot." width="672" />
+<p class="caption">
+Figure 7.1: A QQ plot.
+</p>
+</div>
 </div>
 <div id="manhattan-plots" class="section level2 hasAnchor" number="7.1">
 <h2><span class="header-section-number">7.1</span> Manhattan plots<a href="gwas-visuals.html#manhattan-plots" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>We also need to create a <em>Manhattan plot</em> to display the association test P-values as a function of chromosomal location and thus provide a visual summary of association test results that draw immediate attention to any regions of significance.</p>
-<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="gwas-visuals.html#cb117-1" aria-hidden="true" tabindex="-1"></a><span class="fu">manhattan</span>(gwas_assoc_compl, <span class="at">main =</span> <span class="st">&quot;Manhattan Plot&quot;</span>,</span>
-<span id="cb117-2"><a href="gwas-visuals.html#cb117-2" aria-hidden="true" tabindex="-1"></a>          <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">12</span>),</span>
-<span id="cb117-3"><a href="gwas-visuals.html#cb117-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">cex =</span> <span class="fl">0.6</span>, <span class="at">cex.axis =</span> <span class="fl">0.9</span>,</span>
-<span id="cb117-4"><a href="gwas-visuals.html#cb117-4" aria-hidden="true" tabindex="-1"></a>          <span class="at">col =</span> <span class="fu">c</span>(<span class="st">&quot;#1290D9&quot;</span>, <span class="st">&quot;#49A01D&quot;</span>))</span></code></pre></div>
-<p><img src="A-Practical-Primer-in-Human-Complex-Genetics_files/figure-html/show-manhattan-1.png" width="672" /></p>
+<p>We also need to create a <em>Manhattan plot</em> to display the association test P-values as a function of chromosomal location and thus provide a visual summary of association test results that draw immediate attention to any regions of significance (Figure <a href="gwas-visuals.html#fig:show-manhattan">7.2</a>).</p>
+<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="gwas-visuals.html#cb107-1" aria-hidden="true" tabindex="-1"></a><span class="fu">manhattan</span>(gwas_assoc_compl, <span class="at">main =</span> <span class="st">&quot;Manhattan Plot&quot;</span>,</span>
+<span id="cb107-2"><a href="gwas-visuals.html#cb107-2" aria-hidden="true" tabindex="-1"></a>          <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">12</span>),</span>
+<span id="cb107-3"><a href="gwas-visuals.html#cb107-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">cex =</span> <span class="fl">0.6</span>, <span class="at">cex.axis =</span> <span class="fl">0.9</span>,</span>
+<span id="cb107-4"><a href="gwas-visuals.html#cb107-4" aria-hidden="true" tabindex="-1"></a>          <span class="at">col =</span> <span class="fu">c</span>(<span class="st">&quot;#1290D9&quot;</span>, <span class="st">&quot;#49A01D&quot;</span>))</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:show-manhattan"></span>
+<img src="img/_gwas/show-manhattan.png" alt="A manhattan plot." width="672" />
+<p class="caption">
+Figure 7.2: A manhattan plot.
+</p>
+</div>
 </div>
 <div id="other-plots" class="section level2 hasAnchor" number="7.2">
 <h2><span class="header-section-number">7.2</span> Other plots<a href="gwas-visuals.html#other-plots" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>It is also informative to plot the density per chromosome. We can use the <code>CMplot</code> for that which you can find <a href="https://github.com/YinLiLin/R-CMplot" target="_blank">here</a>. For now we just make these graphs ‘quick-n-dirty’, you can further prettify them, but you easily loose track of time, so maybe carry on.</p>
-<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="gwas-visuals.html#cb118-1" aria-hidden="true" tabindex="-1"></a>gwas_assoc_complsub <span class="ot">&lt;-</span> <span class="fu">subset</span>(gwas_assoc_compl, <span class="at">select =</span> <span class="fu">c</span>(<span class="st">&quot;SNP&quot;</span>, <span class="st">&quot;CHR&quot;</span>, <span class="st">&quot;BP&quot;</span>, <span class="st">&quot;P&quot;</span>))</span></code></pre></div>
-<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="gwas-visuals.html#cb119-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;CMplot&quot;</span>)</span>
-<span id="cb119-2"><a href="gwas-visuals.html#cb119-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb119-3"><a href="gwas-visuals.html#cb119-3" aria-hidden="true" tabindex="-1"></a><span class="fu">CMplot</span>(gwas_assoc_complsub,</span>
-<span id="cb119-4"><a href="gwas-visuals.html#cb119-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">plot.type =</span> <span class="st">&quot;b&quot;</span>, <span class="at">LOG10 =</span> <span class="cn">TRUE</span>, <span class="at">ylim =</span> <span class="cn">NULL</span>,</span>
-<span id="cb119-5"><a href="gwas-visuals.html#cb119-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">threshold =</span> <span class="fu">c</span>(<span class="fl">1e-6</span>,<span class="fl">1e-4</span>), <span class="at">threshold.lty =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>), <span class="at">threshold.lwd =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>), <span class="at">threshold.col =</span> <span class="fu">c</span>(<span class="st">&quot;black&quot;</span>, <span class="st">&quot;grey&quot;</span>),</span>
-<span id="cb119-6"><a href="gwas-visuals.html#cb119-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">amplify =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb119-7"><a href="gwas-visuals.html#cb119-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">bin.size =</span> <span class="fl">1e6</span>, <span class="at">chr.den.col =</span> <span class="fu">c</span>(<span class="st">&quot;darkgreen&quot;</span>, <span class="st">&quot;yellow&quot;</span>, <span class="st">&quot;red&quot;</span>),</span>
-<span id="cb119-8"><a href="gwas-visuals.html#cb119-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">signal.col =</span> <span class="fu">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;green&quot;</span>), <span class="at">signal.cex =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>), <span class="at">signal.pch =</span> <span class="fu">c</span>(<span class="dv">19</span>,<span class="dv">19</span>),</span>
-<span id="cb119-9"><a href="gwas-visuals.html#cb119-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">file =</span> <span class="st">&quot;jpg&quot;</span>, <span class="at">memo =</span> <span class="st">&quot;&quot;</span>, <span class="at">dpi =</span> <span class="dv">300</span>, <span class="at">file.output =</span> <span class="cn">FALSE</span>, <span class="at">verbose =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
-<pre><code>##  SNP-Density Plotting.</code></pre>
-<p><img src="A-Practical-Primer-in-Human-Complex-Genetics_files/figure-html/show-cmplot-all-1.png" width="672" /><img src="A-Practical-Primer-in-Human-Complex-Genetics_files/figure-html/show-cmplot-all-2.png" width="672" /></p>
-<pre><code>##  Circular-Manhattan Plotting P.
-##  Rectangular-Manhattan Plotting P.</code></pre>
-<p><img src="A-Practical-Primer-in-Human-Complex-Genetics_files/figure-html/show-cmplot-all-3.png" width="672" /></p>
-<pre><code>##  QQ Plotting P.</code></pre>
-<p><img src="A-Practical-Primer-in-Human-Complex-Genetics_files/figure-html/show-cmplot-all-4.png" width="672" /></p>
+<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="gwas-visuals.html#cb108-1" aria-hidden="true" tabindex="-1"></a>gwas_assoc_complsub <span class="ot">&lt;-</span> <span class="fu">subset</span>(gwas_assoc_compl, <span class="at">select =</span> <span class="fu">c</span>(<span class="st">&quot;SNP&quot;</span>, <span class="st">&quot;CHR&quot;</span>, <span class="st">&quot;BP&quot;</span>, <span class="st">&quot;P&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="gwas-visuals.html#cb109-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;CMplot&quot;</span>)</span>
+<span id="cb109-2"><a href="gwas-visuals.html#cb109-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb109-3"><a href="gwas-visuals.html#cb109-3" aria-hidden="true" tabindex="-1"></a><span class="fu">CMplot</span>(gwas_assoc_complsub,</span>
+<span id="cb109-4"><a href="gwas-visuals.html#cb109-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">plot.type =</span> <span class="st">&quot;b&quot;</span>, <span class="at">LOG10 =</span> <span class="cn">TRUE</span>, <span class="at">ylim =</span> <span class="cn">NULL</span>,</span>
+<span id="cb109-5"><a href="gwas-visuals.html#cb109-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">threshold =</span> <span class="fu">c</span>(<span class="fl">1e-6</span>,<span class="fl">1e-4</span>), <span class="at">threshold.lty =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>), <span class="at">threshold.lwd =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>), <span class="at">threshold.col =</span> <span class="fu">c</span>(<span class="st">&quot;black&quot;</span>, <span class="st">&quot;grey&quot;</span>),</span>
+<span id="cb109-6"><a href="gwas-visuals.html#cb109-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">amplify =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb109-7"><a href="gwas-visuals.html#cb109-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">bin.size =</span> <span class="fl">1e6</span>, <span class="at">chr.den.col =</span> <span class="fu">c</span>(<span class="st">&quot;darkgreen&quot;</span>, <span class="st">&quot;yellow&quot;</span>, <span class="st">&quot;red&quot;</span>),</span>
+<span id="cb109-8"><a href="gwas-visuals.html#cb109-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">signal.col =</span> <span class="fu">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;green&quot;</span>), <span class="at">signal.cex =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>), <span class="at">signal.pch =</span> <span class="fu">c</span>(<span class="dv">19</span>,<span class="dv">19</span>),</span>
+<span id="cb109-9"><a href="gwas-visuals.html#cb109-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">file =</span> <span class="st">&quot;jpg&quot;</span>, <span class="at">memo =</span> <span class="st">&quot;&quot;</span>, <span class="at">dpi =</span> <span class="dv">300</span>, <span class="at">file.output =</span> <span class="cn">FALSE</span>, <span class="at">verbose =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <blockquote>
 <p>What do the grey spots on the density plot indicate?</p>
 </blockquote>
+This would lead to the following graphs.
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:show-cmplot-all-density"></span>
+<img src="img/_gwas/show-cmplot-all-density.png" alt="SNP density of the association results." width="672" />
+<p class="caption">
+Figure 7.3: SNP density of the association results.
+</p>
+</div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:show-cmplot-all-qq"></span>
+<img src="img/_gwas/show-cmplot-all-qq.png" alt="A QQ plot including a 95% confidence interval (blue area) and genome-wide significant hits (red)." width="672" />
+<p class="caption">
+Figure 7.4: A QQ plot including a 95% confidence interval (blue area) and genome-wide significant hits (red).
+</p>
+</div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:show-cmplot-all-manhattan"></span>
+<img src="img/_gwas/show-cmplot-all-manhattan.png" alt="A regular manhattan plot. Colored by chromosome, suggestive hits are green, genome-wide hits are red. The bottom graph shows the per-chromosome SNP density." width="672" />
+<p class="caption">
+Figure 7.5: A regular manhattan plot. Colored by chromosome, suggestive hits are green, genome-wide hits are red. The bottom graph shows the per-chromosome SNP density.
+</p>
+</div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:show-cmplot-all-circular"></span>
+<img src="img/_gwas/show-cmplot-all-circular.png" alt="A circular manhattan." width="672" />
+<p class="caption">
+Figure 7.6: A circular manhattan.
+</p>
+</div>
 </div>
 <div id="interactive-plots" class="section level2 hasAnchor" number="7.3">
 <h2><span class="header-section-number">7.3</span> Interactive plots<a href="gwas-visuals.html#interactive-plots" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -651,7 +564,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": [["A-Practical-Primer-in-Human-Complex-Genetics.epub", "EPUB"]],
+"download": [["A-Practical-Primer-in-Human-Complex-Genetics.pdf", "PDF"], ["A-Practical-Primer-in-Human-Complex-Genetics.epub", "EPUB"]],
 "search": {
 "engine": "fuse",
 "options": null

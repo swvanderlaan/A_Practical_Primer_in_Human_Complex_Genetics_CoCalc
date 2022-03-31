@@ -12,9 +12,9 @@ We start by calculating the missing genotype rate for each SNP, in other words t
 plink --bfile rawdata/clean_inds_data --missing --out rawdata/clean_inds_data
 ```
 
-Let's visualize the results to identify a threshold for extreme genotype failure rate. We chose a callrate threshold of 3%, but it's arbitrary and depending on the dataset and the number of samples.
+Let's visualize the results to identify a threshold for extreme genotype failure rate. We chose a callrate threshold of 3%, but it's arbitrary and depending on the dataset and the number of samples (Figure \@ref(fig:show-snp-callrate)).
 
-```{r load-snp-callrate}
+```{r load-snp-callrate, eval = FALSE}
 library("data.table")
 
 COURSE_loc = "~/Desktop/practical" # getwd()
@@ -25,7 +25,7 @@ clean_LMISS$callrate <- 1 - clean_LMISS$F_MISS
 ```
 
 
-```{r show-snp-callrate, message=FALSE, warning=FALSE}
+```{r plot-snp-callrate, eval = FALSE}
 library("ggpubr")
 
 ggpubr::gghistogram(clean_LMISS, x = "callrate",
@@ -37,6 +37,9 @@ ggpubr::gghistogram(clean_LMISS, x = "callrate",
                 color = "#E55738", size = 1)
 ```
 
+```{r show-snp-callrate, fig.align='center', fig.cap='Per SNP call rate.', fig.show = TRUE, echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE}
+knitr::include_graphics(rep("img/_gwas/show-snp-callrate.png"))
+```
 
 ## Differential SNP call rates
 
@@ -62,14 +65,13 @@ We should also get an idea on what the allele frequencies are in our dataset. Lo
 plink --bfile rawdata/clean_inds_data --freq --out rawdata/clean_inds_data
 ```
 
-Let's also plot these data. You can view the result below, and type over the code to do it yourself.
+Let's also plot these data. You can view the result below, and try it yourself (Figure \@ref(fig:show-freq)).
 
-```{r load-freq}
+```{r load-freq, eval = FALSE}
 clean_FREQ <- data.table::fread(paste0(COURSE_loc, "/rawdata/clean_inds_data.frq"))
 ```
 
-
-```{r show-freq, message=FALSE, warning=FALSE}
+```{r plot-freq, eval = FALSE}
 ggpubr::gghistogram(clean_FREQ, x = "MAF",
                     add = "mean", add.params = list(color = "#595A5C", linetype = "dashed", size = 1),
                     rug = TRUE,
@@ -78,6 +80,11 @@ ggpubr::gghistogram(clean_FREQ, x = "MAF",
   geom_vline(xintercept = 0.05, linetype = "dashed",
                 color = "#E55738", size = 1)
 ```
+
+```{r show-freq, fig.align='center', fig.cap='Minor allele frequency.', fig.show = TRUE, echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE}
+knitr::include_graphics(rep("img/_gwas/show-freq.png"))
+```
+
 
 ### A note on allele coding
 
@@ -111,13 +118,13 @@ plink --bfile rawdata/clean_inds_data --hardy --out rawdata/clean_inds_data
 
 Let's also plot these data. You can view the result below, and type over the code to do it yourself.
 
-```{r load-hwe}
+```{r load-hwe, eval = FALSE}
 clean_HWE <- data.table::fread(paste0(COURSE_loc, "/rawdata/clean_inds_data.hwe"))
 clean_HWE$logP <- -log10(clean_HWE$P)
 ```
 
 
-```{r show-hwe, message=FALSE, warning=FALSE}
+```{r plot-hwe, eval = FALSE}
 ggpubr::gghistogram(clean_HWE, x = "logP",
                     add = "mean",
                     add.params = list(color = "#595A5C", linetype = "dashed", size = 1),
@@ -132,6 +139,9 @@ ggpubr::gghistogram(clean_HWE, x = "logP",
                 color = "#E55738", size = 1)
 ```
 
+```{r show-hwe, fig.align='center', fig.cap='Hardy-Weinberg Equilibrium p-values per stratum.', fig.show = TRUE, echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE}
+knitr::include_graphics(rep("img/_gwas/show-hwe.png"))
+```
 
 ## Final SNP QC
 

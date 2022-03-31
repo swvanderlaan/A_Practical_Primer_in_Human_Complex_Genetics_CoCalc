@@ -161,7 +161,7 @@ This will take you to a manual of the program with an extensive description of e
 
 
 ```{r ls-manual, fig.align='center', fig.cap='Partial output from the ls-manual.', fig.show = TRUE, echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE}
-knitr::include_graphics(rep("img/ls_manual.png"))
+knitr::include_graphics("img/ls_manual.png")
 
 ```
 
@@ -182,7 +182,7 @@ Now close the terminal window - really making sure that the terminal-program has
 
 Open a new terminal window and open `r` by simply typing `R` or `r`. You should install the following packages, and then you're good to go!
 
-```{r install-prereq, eval=FALSE, echo=TRUE}
+```{r install-prereq, eval = FALSE, echo = TRUE}
 install.packages(c("httr", "usethis", "data.table", "devtools", 
                    "qqman", "CMplot", "plotly", 
                    "dplyr", "tibble", "openxlsx"))
@@ -191,7 +191,7 @@ devtools::install_github("kassambara/ggpubr")
 
 You should load these packages too. 
 
-```{r library-prereq, eval=FALSE, echo=TRUE}
+```{r library-prereq, eval = FALSE, echo = TRUE}
 library("ggpubr")
 library("httr")
 library("usethis")

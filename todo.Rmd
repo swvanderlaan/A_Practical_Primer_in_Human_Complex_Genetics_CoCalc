@@ -4,6 +4,31 @@ I provide a list of things to do, to improve, to alter, to edit or to add. Crazy
 
 Obviously this list is not exhaustive nor intended for practical use for anyone else but me.
 
+## MoSCoW
+
+List of to-do's according to MoSCoW: _must have_, _should have_, _could have_, _would have_.
+### Contents
+
+- [] `M` conditional analysis
+- [] `M` statistical finemapping
+- [] `M` regional association plotting
+- [] `M` colocalization with formal testing
+- [] `S` meta-analysis with dummy data
+    - `S` including stratified QQ plots
+    - `M` HPC version with MetaGWASToolKit
+    - `S` stand-alone version with METAL
+- [] `C` GWASToolKit
+- [] `M` PlaqView lookups
+
+## Book fixes
+
+- [] `M` overall rendering too slow, paste in images as figure instead of on the fly generating
+- [] `S` PDF is too large
+- [] `S` PDF is not formatted properly (text runs over)
+- [] `C` Different font type in PDF
+- [] `S` EPUB is not formatted properly (text runs over)
+- [] `S` different setup for the chapter Additional chapters (this as a Apendix)
+
 ## Useful links
 
 https://bookdown.org/yihui/rmarkdown-cookbook/unnumbered-sections.html

@@ -41,9 +41,12 @@ sexissues <- data.table::fread(paste0(COURSE_loc,"/rawdata/rawdata.sexprobs.txt"
 
 ```
 
+```{r sex-issues-book, echo = FALSE, eval = TRUE}
+sexissues <- data.table::fread("data/rawdata.sexprobs.txt")
+```
+
 ```{r sex-issues, tidy = FALSE, echo = TRUE, eval = FALSE}
 library("knitr")
-
 knitr::kable(
   sexissues, caption = 'Sex issues',
   booktabs = TRUE
@@ -53,7 +56,7 @@ knitr::kable(
 
 When the homozygosity rate (_F_) is more than 0.2, but less than 0.8, the genotype data are inconclusive regarding the sex of an individual and these are marked in column _SNPSEX_ with a 0, and the column _STATUS_ "PROBLEM".
 
-Report the IDs of individuals with discordant sex information (Table \@ref(tab:sex-issues)) to those who conducted sex phenotyping. In situations in which discrepancy cannot be resolved, add the family ID (FID) and individual ID (IID) of the samples to a file named "fail-sexcheck-qc.txt" (one individual per line, tab delimited).
+Report the IDs of individuals with discordant sex information (Table \@ref(tab:sex-issues)) to those who conducted sex phenotyping. In situations in which discrepancy cannot be resolved, add the family ID (FID) and individual ID (IID) of the samples to a file named `fail-sexcheck-qc.txt` (one individual per line, tab delimited).
 
 ```
 grep "PROBLEM" rawdata/rawdata.sexcheck | awk '{ print $1, $2}'  > rawdata/fail-sexcheck-qc.txt
@@ -69,13 +72,13 @@ plink --bfile rawdata/rawdata --missing --out rawdata/rawdata
 This produces two files, `rawdata/rawdata.imiss` and `rawdata/rawdata.lmiss`. In the .imiss file the _N_MISS_ column denotes the number of missing SNPs, and the _F_MISS_ column denotes the proportion of missing SNPs per individual.
 
 
-```{r load-sample-callrate}
+```{r load-sample-callrate, eval = FALSE}
 raw_IMISS <- data.table::fread(paste0(COURSE_loc, "/rawdata/rawdata.imiss"))
 
 raw_IMISS$callrate <- 1 - raw_IMISS$F_MISS
 ```
 
-```{r sample-callrate, message=FALSE, warning=FALSE, out.width='80%', fig.align='center', fig.asp=.75, fig.cap='Call rate'}
+```{r sample-callrate, eval = FALSE}
 library("ggpubr")
 
 ggpubr::gghistogram(raw_IMISS, x = "callrate",
@@ -88,8 +91,12 @@ ggpubr::gghistogram(raw_IMISS, x = "callrate",
 
 ```
 
-The grey dashed line in Figure \@ref(fig:sample-callrate) indicates the mean call rate, while the red dashed line indicates the threshold we had determined above.
+The grey dashed line in Figure \@ref(fig:show-sample-callrate) indicates the mean call rate, while the red dashed line indicates the threshold we had determined above.
 
+```{r show-sample-callrate, fig.align='center', fig.cap='Per sample call rate.', fig.show = TRUE, echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE}
+knitr::include_graphics("img/_gwas/sample-callrate.png")
+
+```
 
 ## Heterozygosity rate
 
@@ -168,7 +175,7 @@ This creates the file `rawdata/rawdata.clean.ultraclean.het`, in which the third
 
 Often there is a correlation between heterozygosity rate and missing data. Thus, we should plot the observed heterozygosity rate per individual on the x-axis and the proportion of missing SNP, that is the 'SNP call rate', per individuals on the y-axis (Figure \@ref(fig:show-heterozygosity)).
 
-```{r load-heterozygosity, message=FALSE, warning=FALSE}
+```{r load-heterozygosity, eval = FALSE}
 raw_HET <- data.table::fread(paste0(COURSE_loc, "/rawdata/rawdata.clean.ultraclean.het"))
 
 raw_IMISS$logF_MISS = log10(raw_IMISS$F_MISS)
@@ -186,7 +193,7 @@ colors  <- densCols(raw_IMISSHET$logF_MISS, raw_IMISSHET$meanHet)
 
 ```
 
-```{r show-heterozygosity, message=FALSE, warning=FALSE, out.width='80%', fig.align='center', fig.asp=.75, fig.cap='Heterozygosity rate as a function of missing genotypes'}
+```{r heterozygosity, eval = FALSE}
 ggpubr::ggscatter(raw_IMISSHET, x = "logF_MISS", y = "meanHet",
                   color = colors,
                   xlab = "Proportion of missing genotypes", ylab = "Heterozygosity rate") +
@@ -200,18 +207,35 @@ ggpubr::ggscatter(raw_IMISSHET, x = "logF_MISS", y = "meanHet",
                 color = "#E55738", size = 1)
 ```
 
+```{r show-heterozygosity, fig.align='center', fig.cap='Heterozygosity as a function of SNP call rate.', fig.show = TRUE, echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE}
+knitr::include_graphics("img/_gwas/show-heterozygosity.png")
+```
 
-Examine the plot to decide reasonable thresholds at which to exclude individuals based on elevated missing or extreme heterozygosity. We chose to exclude all individuals with a genotype failure rate >= 0.03 (vertical dashed line) and/or a heterozygosity rate ± 3 s.d. from the mean (horizontal dashed lines). Add the FID and IID of the samples failing this QC to the file named `fail-imisshet-qc.txt`.
+Examine the plot (Figure \@ref(fig:show-heterozygosity)) to decide reasonable thresholds at which to exclude individuals based on elevated missing or extreme heterozygosity. We chose to exclude all individuals with a genotype failure rate >= 0.03 (vertical dashed line) and/or a heterozygosity rate ± 3 s.d. from the mean (horizontal dashed lines). Add the FID and IID of the samples failing this QC to the file named `fail-imisshet-qc.txt`.
 
 > How would you create this file?
 
 
-```{r create-fail-imisshet-qc}
+```{r create-fail-imisshet-qc, eval = FALSE}
 
 raw_IMISSHETsub = subset(raw_IMISSHET, logF_MISS > prop_miss | (meanHet < lower_meanHet | meanHet > upper_meanHet),
                          select = c("FID", "IID"))
 data.table::fwrite(raw_IMISSHETsub, paste0(COURSE_loc,"/rawdata/fail-raw_IMISSHETsub.txt"), sep =" ")
 
+```
+
+If all is right, you'd have something like Table \@ref(tab:failed-callrate-het).
+
+```{r failed-callrate-het-book, echo = FALSE, eval = TRUE}
+failraw_IMISSHETsub <- data.table::fread("data/fail-raw_IMISSHETsub.txt")
+```
+
+```{r failed-callrate-het, tidy = FALSE, echo = TRUE, eval = FALSE}
+library("knitr")
+knitr::kable(
+  failraw_IMISSHETsub, caption = 'Failed samples due to sample call rates and heterozygosity rate',
+  booktabs = TRUE
+)
 ```
 
 
@@ -253,6 +277,10 @@ cd ..
 
 ```{r load-ibdcallissues}
 ibdcallissues <- data.table::fread(paste0(COURSE_loc,"/rawdata/fail-IBD-QC.txt"))
+```
+
+```{r ibdcallissues-book, echo = FALSE, eval = TRUE}
+ibdcallissues <- data.table::fread("data/fail-IBD-QC.txt")
 ```
 
 ```{r show-ibdcallissues, tidy = FALSE, eval = FALSE, echo = TRUE}
@@ -558,13 +586,13 @@ A R script for creating this plot (`scripts/plot-pca-results.Rscript`) is also p
 
 We could plot our data against HapMap 3. 
 
-```{r load-pca-hm3}
+```{r load-pca-hm3, eval = FALSE}
 PCA <- data.table::fread(paste0(COURSE_loc,"/ref_pca/rawdata.hapmap3r2.pruned.pca.evec"), header = FALSE, skip = 1)
 
 ```
 
 
-```{r prep-pca-hm3}
+```{r prep-pca-hm3, eval = FALSE}
 
 # Case/Control -> black, pch = "+"
 # CEU = 3 -> red, pch = 20
@@ -580,7 +608,7 @@ PCA$V12[PCA$V12 == "6"] <- "YRI" #49A01D
 
 ```
 
-```{r pca-hapmap3, message=FALSE, warning=FALSE, out.width='80%', fig.align='center', fig.asp=.75, fig.cap='PCA - Your data vs. HapMap 3'}
+```{r pca-hapmap3, eval = FALSE}
 
 PCAplot <- ggpubr::ggscatter(PCA, x = "V2", y = "V3",
                              color = "V12",
@@ -597,8 +625,11 @@ PCAplot <- ggpubr::ggscatter(PCA, x = "V2", y = "V3",
 
 ```
 
+```{r show-pca-hapmap3, fig.align='center', fig.cap='PCA - Your data vs. HapMap 3.', fig.show = TRUE, echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE}
+knitr::include_graphics("img/_gwas/pca-hapmap3.png")
+```
 
-Derive PC1 and PC2 thresholds so that only individuals who match the given ancestral population are included. For populations of European descent, this will be either the CEU or TSI HapMap3 individuals (Figure \@ref(fig:pca-hapmap3)). Here, we chose to exclude all individuals with a second principal component score less than 0.075. 
+Derive PC1 and PC2 thresholds so that only individuals who match the given ancestral population are included. For populations of European descent, this will be either the CEU or TSI HapMap3 individuals (Figure \@ref(fig:show-pca-hapmap3)). Here, we chose to exclude all individuals with a second principal component score less than 0.075. 
 
 Write the FID and IID of these individuals to a file called `fail-ancestry-QC.txt`.
 
@@ -616,12 +647,12 @@ We could plot our data against 1000G phase 1.
 > Please note! You may have been able to make `EIGENSOFT` (Chapter \@ref(eigensoft)) to work. So you may have to change "/ref_pca/rawdata.1kg_phase1.pruned.pca.evec" to "/rawdata/rawdata.1kg_phase1.pruned.pca.evec" in the command below. 
 
 
-```{r load-pca-1000g}
+```{r load-pca-1000g, eval = FALSE}
 PCA_1kG <- data.table::fread(paste0(COURSE_loc,"/ref_pca/rawdata.1kg_phase1.pruned.pca.evec"), header = FALSE, skip = 1)
 ```
 
 
-```{r prep-pca-1000g}
+```{r prep-pca-1000g, eval = FALSE}
 # Population	Description	Super population	Code	Counts
 # ASW	African Ancestry in Southwest US	                          AFR	4	  #49A01D
 # CEU	Utah residents with Northern and Western European ancestry	EUR	7	  #E55738
@@ -658,7 +689,7 @@ PCA_1kG$V12[PCA_1kG$V12 == "28"] <- "YRI"
 ```
 
 
-```{r pca-1000g, message=FALSE, warning=FALSE, out.width='80%', fig.align='center', fig.asp=.75, fig.cap='PCA - Your data vs. 1000G'}
+```{r pca-1000g, eval = FALSE}
 PCA_1kGplot <- ggpubr::ggscatter(PCA_1kG, x = "V2", y = "V3",
                                  color = "V12",
                                  palette = c("#595A5C", "#49A01D", "#E55738", "#9A3480", "#705296", 
@@ -675,7 +706,12 @@ PCA_1kGplot <- ggpubr::ggscatter(PCA_1kG, x = "V2", y = "V3",
 
 ```
 
-In a similar fashion as in the above with the HapMap3 reference, you could **remove the samples below the threshold** based on this PCA (Figure \@ref(fig:pca-1000g)).
+In a similar fashion as in the above with the HapMap3 reference, you could **remove the samples below the threshold** based on this PCA (Figure \@ref(fig:show-pca-1000g)).
+
+```{r show-pca-1000g, fig.align='center', fig.cap='PCA - Your data vs. 1000g.', fig.show = TRUE, echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE}
+knitr::include_graphics("img/_gwas/pca-1000g.png")
+```
+
 
 ## Removing samples
 

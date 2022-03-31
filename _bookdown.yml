@@ -20,7 +20,7 @@ rmd_files: ["index.Rmd",
             "add_chapter_regional_plot.Rmd",
             "add_chapter_eigensoft.Rmd",
             # "other_things.Rmd",
-            # "todo.Rmd",
+            "todo.Rmd",
             "licenses.Rmd",
             # "colofon.Rmd",
             "references.Rmd"]

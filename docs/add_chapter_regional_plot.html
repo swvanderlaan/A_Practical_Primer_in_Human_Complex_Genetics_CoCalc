@@ -287,10 +287,16 @@ div.csl-indent {
 <li class="chapter" data-level="16.2" data-path="eigensoft.html"><a href="eigensoft.html#install-missing-packages"><i class="fa fa-check"></i><b>16.2</b> Install missing packages<span></span></a></li>
 <li class="chapter" data-level="16.3" data-path="eigensoft.html"><a href="eigensoft.html#installing-eigensoft"><i class="fa fa-check"></i><b>16.3</b> Installing EIGENSOFT<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="17" data-path="license.html"><a href="license.html"><i class="fa fa-check"></i><b>17</b> Licenses and disclaimers<span></span></a>
+<li class="chapter" data-level="17" data-path="todo.html"><a href="todo.html"><i class="fa fa-check"></i><b>17</b> Things to do<span></span></a>
 <ul>
-<li class="chapter" data-level="17.1" data-path="license.html"><a href="license.html#copyright"><i class="fa fa-check"></i><b>17.1</b> Copyright<span></span></a></li>
-<li class="chapter" data-level="17.2" data-path="license.html"><a href="license.html#disclaimer"><i class="fa fa-check"></i><b>17.2</b> Disclaimer<span></span></a></li>
+<li class="chapter" data-level="17.1" data-path="todo.html"><a href="todo.html#moscow"><i class="fa fa-check"></i><b>17.1</b> MoSCoW<span></span></a></li>
+<li class="chapter" data-level="17.2" data-path="todo.html"><a href="todo.html#book-fixes"><i class="fa fa-check"></i><b>17.2</b> Book fixes<span></span></a></li>
+<li class="chapter" data-level="17.3" data-path="todo.html"><a href="todo.html#useful-links"><i class="fa fa-check"></i><b>17.3</b> Useful links<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="18" data-path="license.html"><a href="license.html"><i class="fa fa-check"></i><b>18</b> Licenses and disclaimers<span></span></a>
+<ul>
+<li class="chapter" data-level="18.1" data-path="license.html"><a href="license.html#copyright"><i class="fa fa-check"></i><b>18.1</b> Copyright<span></span></a></li>
+<li class="chapter" data-level="18.2" data-path="license.html"><a href="license.html#disclaimer"><i class="fa fa-check"></i><b>18.2</b> Disclaimer<span></span></a></li>
 </ul></li>
 <li><a href="references.html#references">References<span></span></a></li>
 <li class="divider"></li>
@@ -319,8 +325,8 @@ div.csl-indent {
 <pre><code>plink --bfile gwas/gwa --clump gwas/data.assoc.logistic --clump-p1 5e-8 --clump-p2 0.05 --clump-kb 500 --clump-r2 0.05 --clump-verbose --out gwas/data.assoc.logistic</code></pre>
 <p>Now you will have a list of all the <em>independent</em> SNPs, <em>i.e.</em> the genetic loci, that are associated to the trait.</p>
 <pre><code>cat gwas/data.assoc.logistic.clumped</code></pre>
-<div class="sourceCode" id="cb170"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb170-1"><a href="add_chapter_regional_plot.html#cb170-1" aria-hidden="true" tabindex="-1"></a><span class="va">ROOTDIR</span><span class="op">=</span><span class="st">&quot;/Users/swvanderlaan/Desktop/practical&quot;</span> <span class="co"># change this to your root</span></span>
-<span id="cb170-2"><a href="add_chapter_regional_plot.html#cb170-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> <span class="va">$ROOTDIR</span>/gwas/data.assoc.logistic.clumped</span></code></pre></div>
+<div class="sourceCode" id="cb140"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb140-1"><a href="add_chapter_regional_plot.html#cb140-1" aria-hidden="true" tabindex="-1"></a><span class="va">ROOTDIR</span><span class="op">=</span><span class="st">&quot;/Users/swvanderlaan/Desktop/practical&quot;</span> <span class="co"># change this to your root</span></span>
+<span id="cb140-2"><a href="add_chapter_regional_plot.html#cb140-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> <span class="va">$ROOTDIR</span>/gwas/data.assoc.logistic.clumped</span></code></pre></div>
 <pre><code>## 
 ##  CHR    F         SNP         BP          P    TOTAL   NSIG    S05    S01   S001  S0001
 ##    3    1   rs6802898   12366207   4.18e-20       50     35      4      2      1      8 
@@ -448,7 +454,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": [["A-Practical-Primer-in-Human-Complex-Genetics.epub", "EPUB"]],
+"download": [["A-Practical-Primer-in-Human-Complex-Genetics.pdf", "PDF"], ["A-Practical-Primer-in-Human-Complex-Genetics.epub", "EPUB"]],
 "search": {
 "engine": "fuse",
 "options": null

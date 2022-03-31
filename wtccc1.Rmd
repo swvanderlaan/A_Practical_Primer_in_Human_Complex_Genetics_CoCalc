@@ -12,7 +12,7 @@ plink --bfile wtccc1/wtccc1 --test-missing --out wtccc1/wtccc1
 cat wtccc1/wtccc1.missing | awk '$5 < 0.00001' | awk '{ print $2 }' > wtccc1/wtccc1-fail-diffmiss-qc.txt
 ```
 
-```{r WTCCC1raw}
+```{r WTCCC1raw, eval = FALSE}
 library("data.table")
 
 COURSE_loc = "~/Desktop/practical" # getwd()
@@ -25,8 +25,8 @@ wtccc1_LMISS <- data.table::fread(paste0(COURSE_loc, "/wtccc1/wtccc1.lmiss"))
 wtccc1_HWE$logP <- -log10(wtccc1_HWE$P)
 ```
 
-
-```{r WTCCC1 HWE}
+Let's investigate the HWE p-value in the whole cohort, and per stratum (cases and controls) with the code below.
+```{r WTCCC1 HWE, eval = FALSE}
 library("ggpubr")
 
 ggpubr::gghistogram(wtccc1_HWE, x = "logP",
@@ -43,9 +43,14 @@ ggpubr::gghistogram(wtccc1_HWE, x = "logP",
                 color = "#E55738", size = 1)
 ```
 
+This will result in Figure \@ref(fig:show-wtccc1-hwe).
 
+```{r show-wtccc1-hwe, fig.align='center', fig.cap='Stratified HWE p-values.', fig.show = TRUE, echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE}
+knitr::include_graphics("img/_gwas/WTCCC1 HWE.png")
+```
 
-```{r WTCCC1 FREQ, message=FALSE, warning=FALSE}
+We should also inspect the allele frequencies. Note that _by default_ PLINK (whether v0.7, v1.9, or v2.0) stores the alleles as minor (A1) and major (A2), and therefore `--maf` _always_ calculates the frequency of the minor allele (A1).
+```{r WTCCC1 FREQ, eval = FALSE}
 ggpubr::gghistogram(wtccc1_FRQ, x = "MAF",
                     add = "mean", add.params = list(color = "#595A5C", linetype = "dashed", size = 1),
                     rug = TRUE,
@@ -55,8 +60,14 @@ ggpubr::gghistogram(wtccc1_FRQ, x = "MAF",
                 color = "#E55738", size = 1)
 ```
 
+This will result in Figure \@ref(fig:show-wtccc1-freq).
 
-```{r WTCCC1 callrate samples}
+```{r show-wtccc1-freq, fig.align='center', fig.cap='Minor allele frequencies.', fig.show = TRUE, echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE}
+knitr::include_graphics(rep("img/_gwas/WTCCC1 FREQ.png"))
+```
+
+There could be sample with very poor overall call rate, where for many SNPs there is no data. We will want to identify these samples and exclude them. 
+```{r WTCCC1 callrate samples, eval = FALSE}
 wtccc1_IMISS$callrate <- 1 - wtccc1_IMISS$F_MISS
 
 ggpubr::gghistogram(wtccc1_IMISS, x = "callrate",
@@ -68,8 +79,15 @@ ggpubr::gghistogram(wtccc1_IMISS, x = "callrate",
                 color = "#E55738", size = 1)
 ```
 
+This will result in Figure \@ref(fig:show-wtccc1-callratesample).
 
-```{r WTCCC1 callrate SNPs}
+```{r show-wtccc1-callratesample, fig.align='center', fig.cap='Per sample call rate.', fig.show = TRUE, echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE}
+knitr::include_graphics(rep("img/_gwas/WTCCC1 callrate samples.png"))
+```
+
+Lastly, we must inspect the per SNP call rate; we need to know if there are SNPs that have no data for many samples. We will want to identify such SNPs and exclude these.
+
+```{r WTCCC1 callrate SNPs, eval = FALSE}
 wtccc1_LMISS$callrate <- 1 - wtccc1_LMISS$F_MISS
 
 ggpubr::gghistogram(wtccc1_LMISS, x = "callrate",
@@ -80,6 +98,12 @@ ggpubr::gghistogram(wtccc1_LMISS, x = "callrate",
   geom_vline(xintercept = 0.95, linetype = "dashed",
                 color = "#E55738", size = 1)
 
+```
+
+This will result in Figure \@ref(fig:show-wtccc1-callratesnp).
+
+```{r show-wtccc1-callratesnp, fig.align='center', fig.cap='Per SNP call rate.', fig.show = TRUE, echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE}
+knitr::include_graphics(rep("img/_gwas/WTCCC1 callrate SNPs.png"))
 ```
 
 ## Quality control
@@ -196,12 +220,12 @@ If all is peachy, you were able to run the PCA for the WTCCC1 data against 1000G
 
 And we should visualize the PCA results: are these individuals really all from European (UK) ancestry? 
 
-```{r Load-PCA_WTCCC1_1kG}
+```{r Load-PCA_WTCCC1_1kG, eval = FALSE}
 PCA_WTCCC1_1kG <- data.table::fread(paste0(COURSE_loc,"/ref_pca_wtccc1/wtccc1_extrclean_1kg.pca.evec"), header = FALSE, skip = 1)
 ```
 
 
-```{r Prep-PCA_WTCCC1_1kG}
+```{r Prep-PCA_WTCCC1_1kG, eval = FALSE}
 # Population	Description	Super population	Code	Counts
 # ASW	African Ancestry in Southwest US	                          AFR	4	  #49A01D
 # CEU	Utah residents with Northern and Western European ancestry	EUR	7	  #E55738
@@ -237,7 +261,7 @@ PCA_WTCCC1_1kG$V12[PCA_WTCCC1_1kG$V12 == "28"] <- "YRI"
 ```
 
 
-```{r pca-1000g-wtccc, message=FALSE, warning=FALSE, out.width='80%', fig.align='center', fig.asp=.75, fig.cap='PCA - WTCCC1 vs. 1000G'}
+```{r WTCCC1-pca-1000g, eval = FALSE}
 PCA_WTCCC1_1kGplot <- ggpubr::ggscatter(PCA_WTCCC1_1kG, x = "V2", y = "V3",
                                         color = "V12",
                                         palette = c("#49A01D", "#595A5C", "#E55738", "#9A3480", "#705296", 
@@ -252,6 +276,12 @@ PCA_WTCCC1_1kGplot <- ggpubr::ggscatter(PCA_WTCCC1_1kG, x = "V2", y = "V3",
             subtitle = "Reference population: 1000 G, phase 1",
             legend.title = "Populations", legend = "right")
 
+```
+
+We expect most individuals from the WTCCC to be 100% British, but a substantial group will have a different ancestral background as shown in the Figure \@ref(fig:show-wtccc1-pca) you just made.
+
+```{r show-wtccc1-pca, fig.align='center', fig.cap='PCA - WTCCC1 vs. 1000G', fig.show = TRUE, echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE}
+knitr::include_graphics(rep("img/_gwas/WTCCC1-pca-1000g.png"))
 ```
 
 ### Removing samples
@@ -298,8 +328,9 @@ Exciting, now we are ready to perform a GWAS on CAD in WTCCC1.
 plink --bfile wtccc1/wtccc1_qc --logistic sex --covar wtccc1/wtccc1_qc.covar_pca --out wtccc1/wtccc1_qc_log_covar_pca
 ```
 
+After you ran the association analysis, you're ready to process the data and take a first look at the results. First, we prepare the raw output. 
 
-```{r WTCCC1ResultsPrep}
+```{r WTCCC1ResultsPrep, eval = FALSE}
 wtccc1_assoc <- data.table::fread(paste0(COURSE_loc, "/wtccc1/wtccc1_qc_log_covar_pca.assoc.logistic"))
 
 dim(wtccc1_assoc)
@@ -338,8 +369,9 @@ head(wtccc1_assoc_compl)
 wtccc1_assoc_complsub <- subset(wtccc1_assoc_compl, select = c("SNP", "CHR", "BP", "P"))
 ```
 
+You could visualize these results with the code below. 
 
-```{r WTCCC1ResultsManhattan}
+```{r WTCCC1ResultsManhattan, eval = FALSE}
 library("CMplot")
 
 CMplot(wtccc1_assoc_complsub,
@@ -351,6 +383,22 @@ CMplot(wtccc1_assoc_complsub,
        file = "jpg", memo = "", dpi = 300, file.output = FALSE, verbose = TRUE)
 ```
 
+This would lead to the following graphs. 
+```{r show-wtccc1-graphs-density, fig.align='center', fig.cap='SNP density of the association results.', fig.show = TRUE, echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE}
+knitr::include_graphics(rep("img/_gwas/WTCCC1ResultsManhattan-density.png"))
+```
+
+```{r show-wtccc1-graphs-qq, fig.align='center', fig.cap='A QQ plot including a 95% confidence interval (blue area) and genome-wide significant hits (red).', fig.show = TRUE, echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE}
+knitr::include_graphics(rep("img/_gwas/WTCCC1ResultsManhattan-qq.png"))
+```
+
+```{r show-wtccc1-graphs-manhattan, fig.align='center', fig.cap='A regular manhattan plot. Colored by chromosome, suggestive hits are green, genome-wide hits are red. The bottom graph shows the per-chromosome SNP density.', fig.show = TRUE, echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE}
+knitr::include_graphics(rep("img/_gwas/WTCCC1ResultsManhattan-manhattan.png"))
+```
+
+```{r show-wtccc1-graphs-circular, fig.align='center', fig.cap='A circular manhattan.', fig.show = TRUE, echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE}
+knitr::include_graphics(rep("img/_gwas/WTCCC1ResultsManhattan-circular.png"))
+```
 
 ## Replication! 
 

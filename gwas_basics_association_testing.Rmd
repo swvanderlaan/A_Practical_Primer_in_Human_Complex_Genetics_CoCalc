@@ -18,9 +18,9 @@ plink --bfile gwas/gwa --missing --out gwas/gwa
 plink --bfile gwas/gwa --hardy --out gwas/gwa
 ```
 
-Let's visualize the results.
+Let's visualize the results. First we should load in all the results.
 
-```{r load-data-gwas}
+```{r load-data-gwas, eval = FALSE}
 library("data.table")
 
 COURSE_loc = "~/Desktop/practical" # getwd()
@@ -31,8 +31,8 @@ gwas_IMISS <- data.table::fread(paste0(COURSE_loc, "/gwas/gwa.imiss"))
 gwas_LMISS <- data.table::fread(paste0(COURSE_loc, "/gwas/gwa.lmiss"))
 ```
 
-
-```{r show-hwe-gwas, message=FALSE, warning=FALSE}
+We can plot the per-stratum HWE p-values.
+```{r plot-hwe-gwas, eval = FALSE}
 library("ggpubr")
 
 gwas_HWE$logP <- -log10(gwas_HWE$P)
@@ -51,8 +51,12 @@ ggpubr::gghistogram(gwas_HWE, x = "logP",
                 color = "#E55738", size = 1)
 ```
 
+```{r show-hwe-gwas, fig.align='center', fig.cap='Per stratum HWE p-values.', fig.show = TRUE, echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE}
+knitr::include_graphics(rep("img/_gwas/show-hwe-gwas.png"))
+```
 
-```{r show-freq-gwas, message=FALSE, warning=FALSE}
+We will want to see what the distribution of allele frequencies looks like. 
+```{r plot-freq-gwas, eval = FALSE}
 ggpubr::gghistogram(gwas_FRQ, x = "MAF",
                     add = "mean", add.params = list(color = "#595A5C", linetype = "dashed", size = 1),
                     rug = TRUE,
@@ -62,8 +66,12 @@ ggpubr::gghistogram(gwas_FRQ, x = "MAF",
                 color = "#E55738", size = 1)
 ```
 
+```{r show-freq-gwas, fig.align='center', fig.cap='Minor allele frequencies.', fig.show = TRUE, echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE}
+knitr::include_graphics(rep("img/_gwas/show-freq-gwas.png"))
+```
 
-```{r show-sample-callrate-gwas, message=FALSE, warning=FALSE}
+We will want to identify samples that have poor call rates.
+```{r plot-sample-callrate-gwas, eval = FALSE}
 gwas_IMISS$callrate <- 1 - gwas_IMISS$F_MISS
 
 ggpubr::gghistogram(gwas_IMISS, x = "callrate",
@@ -75,8 +83,12 @@ ggpubr::gghistogram(gwas_IMISS, x = "callrate",
                 color = "#E55738", size = 1)
 ```
 
+```{r show-sample-callrate-gwas, fig.align='center', fig.cap='Per sample call rates.', fig.show = TRUE, echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE}
+knitr::include_graphics(rep("img/_gwas/show-sample-callrate-gwas.png"))
+```
 
-```{r show-snp-callrate-gwas, message=FALSE, warning=FALSE}
+We also need to know what the per SNP call rates are.
+```{r plot-snp-callrate-gwas, eval = FALSE}
 gwas_LMISS$callrate <- 1 - gwas_LMISS$F_MISS
 
 ggpubr::gghistogram(gwas_LMISS, x = "callrate",
@@ -86,6 +98,10 @@ ggpubr::gghistogram(gwas_LMISS, x = "callrate",
                     xlab = "per SNP call rate") +
   geom_vline(xintercept = 0.95, linetype = "dashed",
                 color = "#E55738", size = 1)
+```
+
+```{r show-snp-callrate-gwas, fig.align='center', fig.cap='Per SNP call rates.', fig.show = TRUE, echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE}
+knitr::include_graphics(rep("img/_gwas/show-snp-callrate-gwas.png"))
 ```
 
 
@@ -106,7 +122,7 @@ plink --bfile gwas/gwa --model --cell 3 --out gwas/data
 
 Let's review the contents of the results.
 
-```{r load-gwas-model}
+```{r load-gwas-model, eval = FALSE}
 gwas_model <- data.table::fread(paste0(COURSE_loc, "/gwas/data.model"))
 
 dim(gwas_model)
@@ -144,7 +160,7 @@ plink --bfile gwas/gwa --logistic sex --covar gwas/gwa.covar --out gwas/data
 ```
 
 Let's examine the results
-```{r load-gwas-assoc}
+```{r load-gwas-assoc, eval = FALSE}
 gwas_assoc <- data.table::fread(paste0(COURSE_loc, "/gwas/data.assoc.logistic"))
 
 dim(gwas_assoc)
