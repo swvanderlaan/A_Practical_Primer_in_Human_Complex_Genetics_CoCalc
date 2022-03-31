@@ -85,7 +85,7 @@ The quick-and-dirty way uses [MRBase](http://www.mrbase.org/){target="blank"}. I
 
 The hard way means getting your hands dirty and using the `TwoSampleMR` package yourself in `R`. You'll learn all the steps you need to take into account to get to the answer of this question. You'll create the diagnostic graphs and calculate the statistics. 
 
-## Your choice
+### Your choice
 
 Your choice. In both cases you'll learn how to do execute a MR, what to look out for in the statistics and diagnostic graphs, and how interpret the results. Your choice: Chapter \@ref(mr_mrbase) or Chapter \@ref(mr_twosamplemr).
 
@@ -95,13 +95,12 @@ In a future version I will aim to include a partial replication of the Cystatin 
 
 Under the assumption of polygenicity, many variants with small effects contribute to the phenotypic variation in a trait or the risk to disease. Sample size and accurate phenotyping have a major impact on the power of a GWAS. It is estimated that 70% of variants that reach 10<sup>-6</sup> in an initial discovery GWAS will reach genome-wide significance with increasing sample sizes. The individual variants that do reach genome-wide significance the first or second time around do not explain _all_ the phenotypic variation or residual disease risk.
 
-To capture the polygenicity of a trait beyond individual genome-wide significant hits we can calculate a polygenic score (PGS). There are several methods to calculate PGS, but essentially it comes down to multiplying the effect size at a given variant with the number of effect alleles a given individual carries. 
+To capture the polygenicity of a trait beyond individual genome-wide significant hits, we can calculate a polygenic score (PGS). There are several methods to calculate PGS, but essentially it comes down to multiplying the effect size at a given variant with the number of effect alleles a given individual carries. 
+Depending on the method you can use the 'hard-coded' genotyped data, or the imputed data. In case of the latter the effect sizes are multiplied by the genotype probabilities or dosages, this ensures that the PGS takes into account the uncertainty intrinsic to imputed data. 
 
-For instance, consider a method based on p-value thresholding. This method selects variants to be included in the PGS based on the 
+Let's consider the most intuitive PGS-method which is based on p-value thresholding, which was nicely applied in this classic [paper](https://doi.org/10.1038/nature08185){target="_blank"}. This method selects variants based on their p-value and than calculates the PGS. This can be done using increasingly liberal significance thresholds (p<sub>T</sub>), for instance starting with all variants with p < 10<sup>-8</sup>, next p < 10<sup>-7</sup>, p < 10<sup>-6</sup>, p < 10<sup>-5</sup>, p < 10<sup>-4</sup>, p < 10<sup>-3</sup>, p < 0.05, p < 0.1, p < 0.2, p < 0.3, p < 0.4, p < 0.5. Under the assumption of polygenicity we expect an increasingly stronger correlation (r<sup>2</sup>) of the PGS at a certain p<sub>T</sub> with the trait of interest. Another application of this method is provided by Van Setten[@vansetten2015].
 
-
-
-, selects The process is rather straightforward, one takes all the variants reaching a certain There is a great explanatory website on how to ca
+Lastly, there is a great explanatory [website](http://polygenicscores.org/explained/){target="_blank"} on how to calculate PGS, and it also shows one application of PGS (although much debate ensues about this particular application!).
 
 
 ## What comes next

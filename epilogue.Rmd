@@ -1,4 +1,4 @@
-# Epilogue {-} {#epilogue}
+# Epilogue {#epilogue}
 
 What started as a simple 'let's write a practical on how to do a GWAS', escalated to this GitBook. My second book. My fifth child (as far as I know). I hope you found it to be useful and learned a bit. 
 

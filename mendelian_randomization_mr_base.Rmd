@@ -4,7 +4,7 @@ You took the easy way out. No shame in that. Your choice. Right, so as I wrote, 
 
 Using **[MRBase](http://www.mrbase.org/){target="blank"}** we intend to find out whether Type 2 Diabetes (T2D) causes coronary artery disease and ischemic stroke.
 
-# The end?
+## The end?
 
 You are almost at the end. Time to return to the previous chapter on post-GWAS analyses \@ref(post-gwas).
 

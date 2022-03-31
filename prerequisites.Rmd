@@ -1,15 +1,11 @@
 # Prerequisites
 ![](img/girls_behind_macbook.jpeg)
 ```{r prerequisites, message = FALSE, warning = FALSE, echo = FALSE, eval = TRUE}
-COURSE_loc = "~/Desktop/practical"
-# COURSE_loc = "/Users/swvanderlaan/git/swvanderlaan/A_primer_in_Human_Cardiovascular_Genetics"
-
-source(paste0(COURSE_loc, "/scripts/functions.R"))
-source(paste0(COURSE_loc, "/scripts/colors.R"))
-source(paste0(COURSE_loc, "/scripts/packages.R"))
+source("scripts/functions.R")
+source("scripts/colors.R")
+source("scripts/packages.R")
 
 ```
-
 ## Linux, macOS, and Windows
 
 Most programs made to execute genetic epidemiology studies are developed for the Unix environment, for example Linux and macOS. So, they may not work as intended in a Windows environment. Windows does allow users to install a linux subsystem within Windows 10 and you can find the detail [guide](https://docs.microsoft.com/en-us/windows/wsl/about){target="_blank"} here.  
@@ -23,8 +19,10 @@ However, I highly recommend to 1) either install a linux subsystem on your Windo
 
 You need few programs for this practical, or for your (future) genetic epidemiology work for that matter (Table \@ref(tab:programs)).
 
-```{r, eval = TRUE, echo = FALSE}
+```{r load-programs, eval = TRUE, echo = FALSE}
+
 programs <- openxlsx::read.xlsx("information.xlsx", sheet = "Programs")
+
 ```
 
 
@@ -36,16 +34,6 @@ knitr::kable(
   booktabs = FALSE
 )
 ```
-
-<!-- Made this table with https://www.tablesgenerator.com/markdown_tables -->
-<!-- | **Program** 	| **Link**                             	| **Description**                                               | -->
-<!-- |-------------	|--------------------------------------	|-------------------------------------------------------------	| -->
-<!-- | _PLINK_     	| https://www.cog-genomics.org/plink2/ 	| PLINK is a free, open-source genetic analysis tool set, designed to perform a range of basic data parsing and quality control, as well as basic and large-scale analyses in a computationally efficient manner. | -->
-<!-- | _R_         	| https://cran.r-project.org/          	| A program to perform statistical analysis and visualizations. | -->
-<!-- | _RStudio_   	| https://www.rstudio.com              	| A user-friendly R-wrap-around for code editing, debugging, analyses, and visualization. | -->
-<!-- | _Homebrew_  	| https://brew.sh                      	| A great extension for Mac-users to install really useful programs that Apple didn't. | -->
-
-<!-- **Table 2.1:** Programs needed for genetic epidemiology. -->
 
 All genetic analyses can be done in PLINK, even on your laptop, but with large datasets, for example [UK Biobank](https://www.ukbiobank.ac.uk) size, it is better to switch to a [high-performance computing cluster](https://en.wikipedia.org/wiki/High-performance_computing){target="_blank"} like we have available at the [Utrecht Science Park](https://wiki.bioinformatics.umcutrecht.nl/bin/view/HPC/WebHome){target="_blank"}.
 
@@ -73,7 +61,7 @@ CODE BLOCK # some comment here
 
 ### Download the data
 
-First, let's start by downloading the data you need for this course to your Desktop: [LINK](). 
+First, let's start by downloading the data you need for this course to your Desktop. 
 
 
 Alternatively, you could do this through this command. This will create a directory on your Desktop with the command `mkdir`. The `-v` flag indicates the program should be _verbose_, meaning it should tell you what it is doing.
@@ -87,15 +75,30 @@ wget "https://www.dropbox.com/sh/kumfwm7drt2flhp/AAB5n0OcUvJixI9pNiymx6-La?dl=0"
 
 ```
 
+This will take a minute or two depending on your internet connection. Time to stretch your legs or grab a coffee (data scientists don't drink tea).
+
 ### Navigating the Terminal
 
 You can navigate around the computer through the terminal by typing `cd <path>`; `cd` stands for "change directory" and <path> means "some_file_directory_you_want_to_go_to".
 
+**For Linux/macOS Users**
+
+_will bring you to your home directory_
+
 ```
-# For Linux/macOS Users
-cd ~ # will bring you to your home directory
-cd ../ # will bring you to the parent directory (up one level) 
-cd XXX # will bring you to the XXX directory
+cd ~ 
+```
+
+_will bring you to the parent directory (up one level) _
+
+```
+cd ../ 
+```
+
+_will bring you to the XXX directory_
+
+```
+cd XXX 
 ```
 
 
@@ -108,14 +111,35 @@ cd ~/Desktop/practical
 
 Let's check out what is inside the directory, by listing (`ls`) its contents.
 
+
 ```
 ls -lh
+```
 
-# For Linux/macOS Users
-ls -l # shows files as list
-ls -lh # shows files as list with human readable format 
-ls -lt # shows the files as list sorted by time edited
-ls -lS # shows the files as list sorted by size
+
+**For Linux/macOS Users**
+
+_shows files as list_
+
+```
+ls -l 
+```
+
+_shows files as list with human readable format _
+
+```
+ls -lh 
+```
+
+_shows the files as list sorted by time edited_
+
+```
+ls -lt 
+```
+
+_shows the files as list sorted by size_
+```
+ls -lS 
 ```
 
 Adding the flags `-lh` will get you the contents of a directory in a list (`-l`) and make the size 'human-readable' (`-h`).
@@ -127,6 +151,19 @@ You can also count the number of files.
 ls | wc -l
 ```
 
+And if you want to know all the function of a program simply type the following.
+
+```
+man ls
+```
+
+This will take you to a manual of the program with an extensive description of each flag (Figure \@ref(fig:ls-manual)).
+
+
+```{r ls-manual, fig.align='center', fig.cap='Partial output from the ls-manual.', fig.show = TRUE, echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE}
+knitr::include_graphics(rep("img/ls_manual.png"))
+
+```
 
 ## Installing some R packages
 
@@ -145,14 +182,16 @@ Now close the terminal window - really making sure that the terminal-program has
 
 Open a new terminal window and open `r` by simply typing `R` or `r`. You should install the following packages, and then you're good to go!
 
-```
-install.packages(c("httr", "usethis", "data.table", "devtools", "qqman", "CMplot", "tibble", "plotly", "dplyr"))
+```{r install-prereq, eval=FALSE, echo=TRUE}
+install.packages(c("httr", "usethis", "data.table", "devtools", 
+                   "qqman", "CMplot", "plotly", 
+                   "dplyr", "tibble", "openxlsx"))
 devtools::install_github("kassambara/ggpubr")
 ```
 
 You should load these packages too. 
 
-```
+```{r library-prereq, eval=FALSE, echo=TRUE}
 library("ggpubr")
 library("httr")
 library("usethis")
@@ -163,63 +202,10 @@ library("CMplot")
 library("tibble")
 library("plotly")
 library("dplyr")
+library("openxlsx")
 ```
 
 All in all this may take some time, good moment to relax, review your notes, stretch your legs, or take a coffee.
-
-
-## EIGENSOFT
-
-Unfortunately, the preferred software **[`EIGENSOFT`](https://github.com/DReichLab/EIG){targe="_blank"}** for Principal Component Analysis (PCA) is challenging to make it work to say the least. You need to install some programs for **`EIGENSOFT`** to work, and this is not always straightforward. 
-
-So, here's the deal. 
-
-I will share the how-to for a macOS environment below in [EIGENSOFT] - this should work in a Linux environment too as macOS is UNIX-based. You can choose to try and make it work in the VirtualMachine you're working on now, or on your personal laptop (be it UNIX or macOS based) at home (or in the office). 
-
-However, for you convenience I ran the PCA for mapping of this dummy dataset against two references already and shared the files in the `ref_pca`-folder. This means you can skip this section and jump straight to [Are you ready?].
-
-### Install homebrew
-
-You need the missing package-manager and accompanying packages that Apple didn't provide. 
-
-```
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-```
-
-Next, check that everything is in order.
-
-```
-brew doctor
-```
-
-### Install missing packages
-
-Right, now that you've done that, you're ready to install `gsl` and `openblas`. 
-
-```
-brew install gsl
-brew install openblas
-```
-
-You may require `llvm` if `EIGENSOFT` isn't working.
-
-```
-brew install llvm
-```
-
-
-### Installing EIGENSOFT
-
-I am still sharing the code you'll need - you could try this on your personal MacBook for instance. 
-
-```
-mkdir -v $HOME/git
-cd $HOME/git
-git clone https://github.com/DReichLab/EIG.git
-cd EIG/src
-make
-make install
-```
 
 
 ## Are you ready?

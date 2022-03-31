@@ -1,15 +1,5 @@
 # GWAS visualisation {#gwas-visuals}
 
-```{r gwas_basics_results_visualization, message = FALSE, warning = FALSE, echo = FALSE, eval = TRUE}
-COURSE_loc = "~/Desktop/practical"
-# COURSE_loc = "/Users/swvanderlaan/git/swvanderlaan/A_primer_in_Human_Cardiovascular_Genetics"
-
-source(paste0(COURSE_loc, "/scripts/functions.R"))
-source(paste0(COURSE_loc, "/scripts/colors.R"))
-source(paste0(COURSE_loc, "/scripts/packages.R"))
-
-```
-
 Data visualization is key, not only for presentation but also to inspect the results.
 
 ### QQ plots
@@ -17,7 +7,11 @@ We should create _quantile-quantile (QQ) plots_ to compare the observed associat
 
 First, we will add the standard error, call rate, A2, and allele frequencies.
 
-```{r prep-qq}
+```{r prep-qq, eval=FALSE}
+library("data.table")
+
+COURSE_loc = "~/Desktop/practical" # getwd()
+
 gwas_assoc_sub <- subset(gwas_assoc, TEST == "ADD")
 gwas_assoc_sub$TEST <- NULL
 
@@ -51,13 +45,17 @@ head(gwas_assoc_compl)
 ```
 
 Let's list the number of SNPs per chromosome. This gives a pretty good idea about the per-chromosome coverage. And it's a sanity check: did the whole analysis run properly (we expect 22 chromosomes)?.
-```{r list-chr-qq}
+```{r list-chr-qq, eval=FALSE}
+library("knitr")
+
 # Number of SNPs per chromosome
 knitr::kable(table(gwas_assoc_compl$CHR))
 ```
 
 
-```{r show-qq, message=FALSE, warning=FALSE}
+```{r show-qq, message=FALSE, warning=FALSE, eval=FALSE}
+library("qqman")
+
 gwas_threshold = -log10(5e-8)
 
 qq(gwas_assoc_compl$P, main = "QQ plot of GWAS",
@@ -75,7 +73,7 @@ abline(h = gwas_threshold,
 We also need to create a _Manhattan plot_ to display the association test P-values as a function of chromosomal location and thus provide a visual summary of association test results that draw immediate attention to any regions of significance.
 
 
-```{r show-manhattan, message=FALSE, warning=FALSE}
+```{r show-manhattan, message=FALSE, warning=FALSE, eval=FALSE}
 manhattan(gwas_assoc_compl, main = "Manhattan Plot",
           ylim = c(0, 12),
           cex = 0.6, cex.axis = 0.9,
@@ -87,12 +85,14 @@ manhattan(gwas_assoc_compl, main = "Manhattan Plot",
 
 It is also informative to plot the density per chromosome. We can use the `CMplot` for that which you can find [here](https://github.com/YinLiLin/R-CMplot){target="_blank"}. For now we just make these graphs 'quick-n-dirty', you can further prettify them, but you easily loose track of time, so maybe carry on.
 
-```{r prep-cmplot, message=FALSE, warning=FALSE}
+```{r prep-cmplot, message=FALSE, warning=FALSE, eval=FALSE}
 gwas_assoc_complsub <- subset(gwas_assoc_compl, select = c("SNP", "CHR", "BP", "P"))
 ```
 
 
-```{r show-cmplot-all, message=FALSE, warning=FALSE}
+```{r show-cmplot-all, message=FALSE, warning=FALSE, eval=FALSE}
+library("CMplot")
+
 CMplot(gwas_assoc_complsub,
        plot.type = "b", LOG10 = TRUE, ylim = NULL,
        threshold = c(1e-6,1e-4), threshold.lty = c(1,2), threshold.lwd = c(1,1), threshold.col = c("black", "grey"),
@@ -101,7 +101,8 @@ CMplot(gwas_assoc_complsub,
        signal.col = c("red", "green"), signal.cex = c(1,1), signal.pch = c(19,19),
        file = "jpg", memo = "", dpi = 300, file.output = FALSE, verbose = TRUE)
 ```
-> What is so special about those grey spots on the density plot?
+
+> What do the grey spots on the density plot indicate?
 
 ## Interactive plots
 

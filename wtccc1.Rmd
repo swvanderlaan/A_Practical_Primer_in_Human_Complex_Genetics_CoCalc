@@ -1,15 +1,5 @@
 # WTCCC1: a GWAS on coronary artery disease (CAD) {#wtccc1}
 
-```{r wtccc1, message = FALSE, warning = FALSE, echo = FALSE, eval = TRUE}
-COURSE_loc = "~/Desktop/practical"
-# COURSE_loc = "/Users/swvanderlaan/git/swvanderlaan/A_primer_in_Human_Cardiovascular_Genetics"
-
-source(paste0(COURSE_loc, "/scripts/functions.R"))
-source(paste0(COURSE_loc, "/scripts/colors.R"))
-source(paste0(COURSE_loc, "/scripts/packages.R"))
-
-```
-
 As usual, we start by exploring the data in hand.
 
 ```
@@ -22,7 +12,11 @@ plink --bfile wtccc1/wtccc1 --test-missing --out wtccc1/wtccc1
 cat wtccc1/wtccc1.missing | awk '$5 < 0.00001' | awk '{ print $2 }' > wtccc1/wtccc1-fail-diffmiss-qc.txt
 ```
 
-```{r WTCCC1raw}
+```{r WTCCC1raw, eval=FALSE}
+library("data.table")
+
+COURSE_loc = "~/Desktop/practical" # getwd()
+
 wtccc1_HWE <- data.table::fread(paste0(COURSE_loc, "/wtccc1/wtccc1.hwe"))
 wtccc1_FRQ <- data.table::fread(paste0(COURSE_loc, "/wtccc1/wtccc1.frq"))
 wtccc1_IMISS <- data.table::fread(paste0(COURSE_loc, "/wtccc1/wtccc1.imiss"))
@@ -32,7 +26,9 @@ wtccc1_HWE$logP <- -log10(wtccc1_HWE$P)
 ```
 
 
-```{r WTCCC1 HWE}
+```{r WTCCC1 HWE, eval=FALSE}
+library("ggpubr")
+
 ggpubr::gghistogram(wtccc1_HWE, x = "logP",
                     add = "mean",
                     add.params = list(color = "#595A5C", linetype = "dashed", size = 1),
@@ -49,7 +45,7 @@ ggpubr::gghistogram(wtccc1_HWE, x = "logP",
 
 
 
-```{r WTCCC1 FREQ, message=FALSE, warning=FALSE}
+```{r WTCCC1 FREQ, message=FALSE, warning=FALSE, eval=FALSE}
 ggpubr::gghistogram(wtccc1_FRQ, x = "MAF",
                     add = "mean", add.params = list(color = "#595A5C", linetype = "dashed", size = 1),
                     rug = TRUE,
@@ -60,7 +56,7 @@ ggpubr::gghistogram(wtccc1_FRQ, x = "MAF",
 ```
 
 
-```{r WTCCC1 callrate samples}
+```{r WTCCC1 callrate samples, eval=FALSE}
 wtccc1_IMISS$callrate <- 1 - wtccc1_IMISS$F_MISS
 
 ggpubr::gghistogram(wtccc1_IMISS, x = "callrate",
@@ -73,7 +69,7 @@ ggpubr::gghistogram(wtccc1_IMISS, x = "callrate",
 ```
 
 
-```{r WTCCC1 callrate SNPs}
+```{r WTCCC1 callrate SNPs, eval=FALSE}
 wtccc1_LMISS$callrate <- 1 - wtccc1_LMISS$F_MISS
 
 ggpubr::gghistogram(wtccc1_LMISS, x = "callrate",
@@ -144,27 +140,27 @@ wget "https://www.dropbox.com/sh/kumfwm7drt2flhp/AAB5n0OcUvJixI9pNiymx6-La?dl=0"
 Now we are ready to extract the WTCCC1 variants from the 1000G phase 1 reference
 
 ```
-plink --bfile ref_1kg_phase1_all/1kg_phase1_all/1kg_phase1_all --extract wtccc1/all.variants.txt --make-bed --out ref_1kg_phase1_all/1kg_phase1_all/1kg_phase1_wtccc1
+plink --bfile ref_1kg_phase1_all/1kg_phase1_all --extract wtccc1/all.variants.txt --make-bed --out ref_1kg_phase1_all/1kg_phase1_wtccc1
 ```
 
 Extracting the A/T and C/G SNPs as well. 
 
 ```
-cat ref_1kg_phase1_all/1kg_phase1_all/1kg_phase1_wtccc1.bim | \
+cat ref_1kg_phase1_all/1kg_phase1_wtccc1.bim | \
 awk '($5 == "A" && $6 == "T") || ($5 == "T" && $6 == "A") || ($5 == "C" && $6 == "G") || ($5 == "G" && $6 == "C")' | awk '{ print $2, $1, $4, $3, $5, $6 }' \
-> ref_1kg_phase1_all/1kg_phase1_all/all.1kg_wtccc1.atcg.variants.txt
+> ref_1kg_phase1_all/all.1kg_wtccc1.atcg.variants.txt
 ```
 
 ```
-plink --bfile ref_1kg_phase1_all/1kg_phase1_all/1kg_phase1_wtccc1 --exclude ref_1kg_phase1_all/1kg_phase1_all/all.1kg_wtccc1.atcg.variants.txt --make-bed --out ref_1kg_phase1_all/1kg_phase1_all/1kg_phase1_wtccc1_no_atcg
+plink --bfile ref_1kg_phase1_all/1kg_phase1_wtccc1 --exclude ref_1kg_phase1_all/all.1kg_wtccc1.atcg.variants.txt --make-bed --out ref_1kg_phase1_all/1kg_phase1_wtccc1_no_atcg
 
-plink --bfile ref_1kg_phase1_all/1kg_phase1_all/1kg_phase1_wtccc1_no_atcg --extract wtccc1/wtccc1_extrclean.variants.txt --make-bed --out ref_1kg_phase1_all/1kg_phase1_all/1kg_phase1_raw_no_atcg_wtccc1
+plink --bfile ref_1kg_phase1_all/1kg_phase1_wtccc1_no_atcg --extract wtccc1/wtccc1_extrclean.variants.txt --make-bed --out ref_1kg_phase1_all/1kg_phase1_raw_no_atcg_wtccc1
 ```
 
 Finally we will merge the datasets. 
 
 ```
-plink --bfile wtccc1/wtccc1_extrclean --bmerge ref_1kg_phase1_all/1kg_phase1_all/1kg_phase1_raw_no_atcg_wtccc1 --maf 0.1 --geno 0.1 --exclude support/exclude_problematic_range.txt --make-bed --out wtccc1/wtccc1_extrclean_1kg
+plink --bfile wtccc1/wtccc1_extrclean --bmerge ref_1kg_phase1_all/1kg_phase1_raw_no_atcg_wtccc1 --maf 0.1 --geno 0.1 --exclude support/exclude_problematic_range.txt --make-bed --out wtccc1/wtccc1_extrclean_1kg
 ```
 
 ### Running PCA
@@ -189,23 +185,23 @@ perl ~/git/EIG/bin/smartpca.perl \
 -m 5 \
 -t 10 \
 -s 6.0 \
--w ref_1kg_phase1_all/1kg_phase1_all/1kg-pca-populations.txt
+-w ref_1kg_phase1_all/1kg-pca-populations.txt
 ```
 
 ### Plotting PCA
 
 If all is peachy, you were able to run the PCA for the WTCCC1 data against 1000G phase 1. Using `smartpca` (you know, `EIGENSOFT`) we have calculated principal components (PCs) and we can now start plotting them. Let's create a scatter diagram of the first two principal components, including all individuals in the file `wtccc1_extrclean_1kg.pca.evec` (the first and second principal components are columns 2 and 3, respectively). Use the data in column 4 to color the points according to sample origin. 
 
-> Please note! You may have been able to make `EIGENSOFT` to work. So you may have to change "/ref_pca/wtccc1_extrclean_1kg.pca.evec" to "/wtccc1/wtccc1_extrclean_1kg.pca.evec" in the command below. 
+> Please note! You may have been able to make `EIGENSOFT` to work. So you may have to change "/ref_pca_wtccc1/wtccc1_extrclean_1kg.pca.evec" to "/wtccc1/wtccc1_extrclean_1kg.pca.evec" in the command below. 
 
 And we should visualize the PCA results: are these individuals really all from European (UK) ancestry? 
 
-```{r Load-PCA_WTCCC1_1kG}
-PCA_WTCCC1_1kG <- data.table::fread(paste0(COURSE_loc,"/ref_pca/wtccc1_extrclean_1kg.pca.evec"), header = FALSE, skip = 1)
+```{r Load-PCA_WTCCC1_1kG, eval=FALSE}
+PCA_WTCCC1_1kG <- data.table::fread(paste0(COURSE_loc,"/ref_pca_wtccc1/wtccc1_extrclean_1kg.pca.evec"), header = FALSE, skip = 1)
 ```
 
 
-```{r Prep-PCA_WTCCC1_1kG}
+```{r Prep-PCA_WTCCC1_1kG, eval=FALSE}
 # Population	Description	Super population	Code	Counts
 # ASW	African Ancestry in Southwest US	                          AFR	4	  #49A01D
 # CEU	Utah residents with Northern and Western European ancestry	EUR	7	  #E55738
@@ -241,7 +237,7 @@ PCA_WTCCC1_1kG$V12[PCA_WTCCC1_1kG$V12 == "28"] <- "YRI"
 ```
 
 
-```{r pca-1000g-wtccc, message=FALSE, warning=FALSE, out.width='80%', fig.align='center', fig.asp=.75, fig.cap='PCA - WTCCC1 vs. 1000G'}
+```{r pca-1000g-wtccc, message=FALSE, warning=FALSE, out.width='80%', fig.align='center', fig.asp=.75, fig.cap='PCA - WTCCC1 vs. 1000G', eval=FALSE}
 PCA_WTCCC1_1kGplot <- ggpubr::ggscatter(PCA_WTCCC1_1kG, x = "V2", y = "V3",
                                         color = "V12",
                                         palette = c("#49A01D", "#595A5C", "#E55738", "#9A3480", "#705296", 
@@ -266,12 +262,12 @@ In a similar fashion as in the example _gwas_ and _rawdata_ datasets, you should
 
 You're code would be something like below:
 
-
 ```
 cat wtccc1/wtccc1_extrclean_1kg.pca.evec | tail -n +2 | \
 awk '$3 < 0.023' | awk '{ print $1 }' | awk -F":" '{ print $1, $2 }' > wtccc1/fail-ancestry-QC.txt
 ```
 
+Next we filter these samples and get a final fully QC'd dataset.
 
 ```
 plink --bfile wtccc1/wtccc1_clean --exclude wtccc1/fail-ancestry-QC.txt --make-bed --out wtccc1/wtccc1_qc
@@ -303,7 +299,7 @@ plink --bfile wtccc1/wtccc1_qc --logistic sex --covar wtccc1/wtccc1_qc.covar_pca
 ```
 
 
-```{r WTCCC1ResultsPrep}
+```{r WTCCC1ResultsPrep, eval=FALSE}
 wtccc1_assoc <- data.table::fread(paste0(COURSE_loc, "/wtccc1/wtccc1_qc_log_covar_pca.assoc.logistic"))
 
 dim(wtccc1_assoc)
@@ -343,7 +339,8 @@ wtccc1_assoc_complsub <- subset(wtccc1_assoc_compl, select = c("SNP", "CHR", "BP
 ```
 
 
-```{r WTCCC1ResultsManhattan}
+```{r WTCCC1ResultsManhattan, eval=FALSE}
+library("CMplot")
 
 CMplot(wtccc1_assoc_complsub,
        plot.type = "b", LOG10 = TRUE, ylim = NULL,

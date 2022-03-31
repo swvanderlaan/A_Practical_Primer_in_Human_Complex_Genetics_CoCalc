@@ -15,13 +15,19 @@ You will need to use the `fwrite` function in `r` to write the concatenated resu
 
 *Question: can you figure out the sample size of the WTCCC1 data you used?*
 
-You will need to compress the resulting output, this will make uploading to FUMA go faster. You can use the `bash`-program `gzip` for that. If you want to know what the options are for that program, you can use `gzip -h`
+Make sure you know what the column-names are in the file, you'll need that for FUMA. You can use `cat your_file | head` to get the first 10 lines of the file.
+
+You will need to compress the resulting output, this will make uploading to FUMA go faster. You can use the `bash`-program `gzip` for that. If you want to know what the options are for that program, you can use `gzip -h`.
 
 ### Run FUMA - SNP to gene
 
-Upload via the form on the FUMA-website. Since you've done the tutorial you are familiar with its options. Select _everything_ in the tabs `Gene Mapping (positional mapping)`, `Gene Mapping (eQTL mapping)` but *not* `GTEx v6`, and `Gene Mapping (3D Chromatin Interaction mapping)` and leave the settings at `Gene types` and `MHC region` as-is, and at `MAGMA analysis` set the _MAGMA gene expression analysis_ to include all tissues, *but* `GTEx v6`. 
+Upload via the form on the FUMA-website. Since you've done the tutorial you are familiar with its options. 
 
-Don't forget to give your analysis a name. This will take some time and so it's a good moment to carry on with the rest of the practical or take a break, or study for the exam.
+Select _everything_ in the tabs `Gene Mapping (positional mapping)`, `Gene Mapping (eQTL mapping)` but *not* `GTEx v6` and `GTEx v7`, and `Gene Mapping (3D Chromatin Interaction mapping)` and leave the settings at `Gene types` and `MHC region` as-is. At `MAGMA analysis` set the _MAGMA gene expression analysis_ to include all tissues, *but* `GTEx v6` and `GTEx v7`. 
+
+Don't forget to give your analysis a name. 
+
+This will take some time and so it's a good moment to carry on with the rest of the practical or take a break, or study for the exam.
 
 *Questions*
 

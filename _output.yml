@@ -3,10 +3,10 @@ bookdown::gitbook:
   config:
     toc:
       before: |
-        <li><a href="./">A primer in Human Cardiovascular Genetics</a></li>
+        <li><a href="./">A Practical Primer in Human Complex Genetics</a></li>
       after: |
-        <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
-    edit: https://github.com/swvanderlaan/A_primer_in_Human_Cardiovascular_Genetics/edit/master/%s
+        <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown.</a></li>
+    edit: https://github.com/swvanderlaan/A_Practical_Primer_in_Human_Complex_Genetics/edit/master/%s
     download: ["pdf"]
 bookdown::pdf_book:
   includes:

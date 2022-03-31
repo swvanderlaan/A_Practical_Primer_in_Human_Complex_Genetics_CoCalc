@@ -1,26 +1,14 @@
 # Sample QC {#gwas-basics-sample-qc}
 ![](img/gwas_sample_qc.png){width=70%}
-
-```{r gwas_basics_sample_qc, message = FALSE, warning = FALSE, echo = FALSE, eval = TRUE}
-COURSE_loc = "~/Desktop/practical"
-# COURSE_loc = "/Users/swvanderlaan/git/swvanderlaan/A_primer_in_Human_Cardiovascular_Genetics"
-
-source(paste0(COURSE_loc, "/scripts/functions.R"))
-source(paste0(COURSE_loc, "/scripts/colors.R"))
-source(paste0(COURSE_loc, "/scripts/packages.R"))
-
-```
-
-Let's start with the per-sample quality control.
-
+Let's start with the per-sample quality control. 
 
 ## Sex
 We need to identify of individuals with discordant sex information comparing phenotypic and genotypic data. Let's calculate the mean homozygosity rate across X-chromosome markers for each individual in the study.
 
 ```
 plink --bfile rawdata/rawdata --check-sex --out rawdata/rawdata
-
 ```
+
 This produces a file with the following columns:
 
 - _FID_	Family ID
@@ -44,11 +32,18 @@ Let's have a look at the results.
 cat rawdata/rawdata.sexprobs.txt
 ```
 
-```{r load-sex-issues}
+```{r load-sex-issues, eval=FALSE}
+library("data.table")
+
+COURSE_loc = "~/Desktop/practical" # getwd()
+
 sexissues <- data.table::fread(paste0(COURSE_loc,"/rawdata/rawdata.sexprobs.txt"))
+
 ```
 
-```{r sex-issues, tidy = FALSE, echo = FALSE, eval = TRUE}
+```{r sex-issues, tidy = FALSE, echo = TRUE, eval = FALSE}
+library("knitr")
+
 knitr::kable(
   sexissues, caption = 'Sex issues',
   booktabs = TRUE
@@ -62,7 +57,6 @@ Report the IDs of individuals with discordant sex information (Table \@ref(tab:s
 
 ```
 grep "PROBLEM" rawdata/rawdata.sexcheck | awk '{ print $1, $2}'  > rawdata/fail-sexcheck-qc.txt
-
 ```
 
 ## Sample call rates
@@ -70,19 +64,20 @@ Let's get an overview of the missing data per sample and per SNP.
 
 ```
 plink --bfile rawdata/rawdata --missing --out rawdata/rawdata
-
 ```
 
 This produces two files, `rawdata/rawdata.imiss` and `rawdata/rawdata.lmiss`. In the .imiss file the _N_MISS_ column denotes the number of missing SNPs, and the _F_MISS_ column denotes the proportion of missing SNPs per individual.
 
 
-```{r load-sample-callrate}
+```{r load-sample-callrate, eval=FALSE}
 raw_IMISS <- data.table::fread(paste0(COURSE_loc, "/rawdata/rawdata.imiss"))
 
 raw_IMISS$callrate <- 1 - raw_IMISS$F_MISS
 ```
 
-```{r sample-callrate, message=FALSE, warning=FALSE, out.width='80%', fig.align='center', fig.asp=.75, fig.cap='Call rate'}
+```{r sample-callrate, message=FALSE, warning=FALSE, out.width='80%', fig.align='center', fig.asp=.75, fig.cap='Call rate', eval=FALSE}
+library("ggpubr")
+
 ggpubr::gghistogram(raw_IMISS, x = "callrate",
                     add = "mean", add.params = list(color = "#595A5C", linetype = "dashed", size = 1),
                     rug = TRUE, bins = 50,
@@ -137,7 +132,7 @@ plink --bfile rawdata/rawdata \
 --make-bed --out rawdata/rawdata.clean.temp
 ```
 
-> Please note, we have create a dataset without taking into account LD structure. Thus the flag `--indep-pairwise 100 10 0.2` doesn't actually work. However, with real-data you can use it to prune out unwanted SNPs in high LD.
+> Please note, we have create a dataset without taking into account LD structure. Hence, the message 'Pruned 0 variants from chromosome 1, leaving 19420.' etc. In a dataset without any LD structure this flag `--indep-pairwise 100 10 0.2` doesn't actually work. However, with real-data you can use it to prune out unwanted SNPs in high LD.
 
 Third, exclude the pruned SNPs. Note, how we include a file to exclude high-LD for the purpose of the practical.
 
@@ -145,7 +140,6 @@ Third, exclude the pruned SNPs. Note, how we include a file to exclude high-LD f
 plink --bfile rawdata/rawdata.clean.temp \
 --extract rawdata/raw-GWA-data.prune.in \
 --make-bed --out rawdata/rawdata.clean.ultraclean.temp
-
 ```
 
 Fourth, remove the A/T and C/G SNPs.
@@ -162,7 +156,6 @@ Lastly, remove the temporary files.
 
 ```
 rm -v rawdata/*.temp*
-
 ```
 
 Finally, we can calculate the heterozygosity rate.
@@ -175,7 +168,7 @@ This creates the file `rawdata/rawdata.clean.ultraclean.het`, in which the third
 
 Often there is a correlation between heterozygosity rate and missing data. Thus, we should plot the observed heterozygosity rate per individual on the x-axis and the proportion of missing SNP, that is the 'SNP call rate', per individuals on the y-axis (Figure \@ref(fig:show-heterozygosity)).
 
-```{r load-heterozygosity}
+```{r load-heterozygosity, eval=FALSE, message=FALSE, warning=FALSE}
 raw_HET <- data.table::fread(paste0(COURSE_loc, "/rawdata/rawdata.clean.ultraclean.het"))
 
 raw_IMISS$logF_MISS = log10(raw_IMISS$F_MISS)
@@ -193,7 +186,7 @@ colors  <- densCols(raw_IMISSHET$logF_MISS, raw_IMISSHET$meanHet)
 
 ```
 
-```{r show-heterozygosity, message=FALSE, warning=FALSE, out.width='80%', fig.align='center', fig.asp=.75, fig.cap='Heterozygosity rate as a function of missing genotypes'}
+```{r show-heterozygosity, message=FALSE, warning=FALSE, out.width='80%', fig.align='center', fig.asp=.75, fig.cap='Heterozygosity rate as a function of missing genotypes', eval=FALSE}
 ggpubr::ggscatter(raw_IMISSHET, x = "logF_MISS", y = "meanHet",
                   color = colors,
                   xlab = "Proportion of missing genotypes", ylab = "Heterozygosity rate") +
@@ -213,7 +206,7 @@ Examine the plot to decide reasonable thresholds at which to exclude individuals
 > How would you create this file?
 
 
-```{r create-fail-imisshet-qc}
+```{r create-fail-imisshet-qc, eval=FALSE}
 
 raw_IMISSHETsub = subset(raw_IMISSHET, logF_MISS > prop_miss | (meanHet < lower_meanHet | meanHet > upper_meanHet),
                          select = c("FID", "IID"))
@@ -248,18 +241,21 @@ We can now identify all pairs of individuals with an IBD > 0.185. The code looks
 
 ```
 cd rawdata
-
-perl ../scripts/run-IBD-QC.pl rawdata rawdata.clean.ultraclean
-
-cd ..
-
 ```
 
-```{r load-ibdcallissues}
+```
+perl ../scripts/run-IBD-QC.pl rawdata rawdata.clean.ultraclean
+```
+
+```
+cd ..
+```
+
+```{r load-ibdcallissues, eval=FALSE}
 ibdcallissues <- data.table::fread(paste0(COURSE_loc,"/rawdata/fail-IBD-QC.txt"))
 ```
 
-```{r show-ibdcallissues, tidy = FALSE, eval = TRUE, echo = FALSE}
+```{r show-ibdcallissues, tidy = FALSE, eval = FALSE, echo = TRUE}
 knitr::kable(
   ibdcallissues, 
   caption = 'Failed IBD and callrate.',
@@ -272,7 +268,8 @@ knitr::kable(
 
 Using a **Principal Component Analysis (PCA)** we can reduce the dimensions of the data, and project the "ancestral distances". In other words, the principal component 1 (the first dimension) and principal component 2 (the second dimension) which will capture most of the variation in the data and represent how much each sample is alike the next. And when compared to a reference, you can deduce the ancestral background of each sample in your dataset. Of course this is relative: we will only know that a given sample is very much a like samples from a given population that exists today. 
 
-Nowadays we run such PCA against a large and diverse dataset containing many different populations. Old-school GWAS would compare a dataset against HapMap 3, nowadays we prefer at a minimum the 1000G populations. The thing is, the preferred software to run a PCA is tricky to install (see Chapter \@ref(prerequisites)). However, for you convenience I ran the PCA for mapping of this dummy dataset against HapMap 3 and 1000G already and shared the files in the `ref_pca`-folder. This means you can skip the [HapMap 3] and [1000G phase 1] sections and jump straight to [PCA plotting].
+Nowadays we run such PCA against a large and diverse dataset containing many different populations. Old-school GWAS would compare a dataset against HapMap 3, nowadays we prefer at a minimum the 1000G populations. The thing is, the preferred software to run a PCA is tricky to install (see Chapter \@ref(eigensoft)). 
+However, for you convenience I ran the PCA for mapping of this dummy dataset against HapMap 3 and 1000G already and shared the files in the `ref_pca`-folder. This means you can skip the [HapMap 3] and [1000G phase 1] sections and jump straight to [PCA plotting].
 
 
 ### HapMap 3
@@ -338,7 +335,7 @@ Now we have prepared our dataset to include high-quality SNPs with few missing d
 
 ### 1000G phase 1
 
-You could also merge your data and project it against the 1000G phase 1 populations. The 1000G phase 1 data is provided seperately, as it is rather big to share if you're not planning on using it.
+You could also merge your data and project it against the 1000G phase 1 populations. The 1000G phase 1 data is provided separately, as it is rather big to share if you're not planning on using it.
 
 
 #### Download 1000G phase 1
@@ -367,7 +364,7 @@ cat rawdata/rawdata.bim | grep "rs" > rawdata/all.variants.txt
 Extract those from the 1000G phase 1 data.
 
 ```
-plink --bfile ref_1kg_phase1_all/1kg_phase1_all/1kg_phase1_all --extract rawdata/all.variants.txt --make-bed --out ref_1kg_phase1_all/1kg_phase1_all/1kg_phase1_raw
+plink --bfile ref_1kg_phase1_all/1kg_phase1_all --extract rawdata/all.variants.txt --make-bed --out ref_1kg_phase1_all/1kg_phase1_raw
 ```
 
 #### Filter A/T & C/G SNPs
@@ -375,17 +372,17 @@ plink --bfile ref_1kg_phase1_all/1kg_phase1_all/1kg_phase1_all --extract rawdata
 As explained, the A/T and C/G SNPs are problematic, we want to exclude these too. So let's get a list of A/T and C/G variants from 1000G to exclude.
 
 ```
-cat ref_1kg_phase1_all/1kg_phase1_all/1kg_phase1_raw.bim | \
+cat ref_1kg_phase1_all/1kg_phase1_raw.bim | \
 awk '($5 == "A" && $6 == "T") || ($5 == "T" && $6 == "A") || ($5 == "C" && $6 == "G") || ($5 == "G" && $6 == "C")' | awk '{ print $2, $1, $4, $3, $5, $6 }' \
-> ref_1kg_phase1_all/1kg_phase1_all/all.1kg.atcg.variants.txt
+> ref_1kg_phase1_all/all.1kg.atcg.variants.txt
 ```
 
 Exclude those A/T and C/G variants in both datasets.
 
 ```
-plink --bfile ref_1kg_phase1_all/1kg_phase1_all/1kg_phase1_raw --exclude ref_1kg_phase1_all/1kg_phase1_all/all.1kg.atcg.variants.txt --make-bed --out ref_1kg_phase1_all/1kg_phase1_all/1kg_phase1_raw_no_atcg
+plink --bfile ref_1kg_phase1_all/1kg_phase1_raw --exclude ref_1kg_phase1_all/all.1kg.atcg.variants.txt --make-bed --out ref_1kg_phase1_all/1kg_phase1_raw_no_atcg
 
-plink --bfile rawdata/rawdata --exclude ref_1kg_phase1_all/1kg_phase1_all/all.1kg.atcg.variants.txt --make-bed --out rawdata/rawdata_1kg_phase1_raw_no_atcg
+plink --bfile rawdata/rawdata --exclude ref_1kg_phase1_all/all.1kg.atcg.variants.txt --make-bed --out rawdata/rawdata_1kg_phase1_raw_no_atcg
 ```
 
 #### Merging datasets
@@ -393,7 +390,7 @@ plink --bfile rawdata/rawdata --exclude ref_1kg_phase1_all/1kg_phase1_all/all.1k
 Try and merge the data while extracting the pruned SNP-set.
 
 ```
-plink --bfile rawdata/rawdata_1kg_phase1_raw_no_atcg --bmerge ref_1kg_phase1_all/1kg_phase1_all/1kg_phase1_raw_no_atcg --extract rawdata/raw-GWA-data.prune.in --make-bed --out rawdata/rawdata.1kg_phase1.pruned
+plink --bfile rawdata/rawdata_1kg_phase1_raw_no_atcg --bmerge ref_1kg_phase1_all/1kg_phase1_raw_no_atcg --extract rawdata/raw-GWA-data.prune.in --make-bed --out rawdata/rawdata.1kg_phase1.pruned
 ```
 
 There probably is an error ...
@@ -415,13 +412,13 @@ See https://www.cog-genomics.org/plink/1.9/data#merge3 for more discussion.
 So let's flip some variants.
 
 ```
-plink --bfile rawdata/rawdata --exclude ref_1kg_phase1_all/1kg_phase1_all/all.1kg.atcg.variants.txt --flip rawdata/rawdata.1kg_phase1.pruned-merge.missnp --make-bed --out rawdata/rawdata_1kg_phase1_raw_no_atcg
+plink --bfile rawdata/rawdata --exclude ref_1kg_phase1_all/all.1kg.atcg.variants.txt --flip rawdata/rawdata.1kg_phase1.pruned-merge.missnp --make-bed --out rawdata/rawdata_1kg_phase1_raw_no_atcg
 ```
 
 Let's try and merge the data while extracting the pruned SNP-set.
 
 ```
-plink --bfile rawdata/rawdata_1kg_phase1_raw_no_atcg --bmerge ref_1kg_phase1_all/1kg_phase1_all/1kg_phase1_raw_no_atcg --extract rawdata/raw-GWA-data.prune.in --make-bed --out rawdata/rawdata.1kg_phase1.pruned
+plink --bfile rawdata/rawdata_1kg_phase1_raw_no_atcg --bmerge ref_1kg_phase1_all/1kg_phase1_raw_no_atcg --extract rawdata/raw-GWA-data.prune.in --make-bed --out rawdata/rawdata.1kg_phase1.pruned
 ```
 
 There still is an error -- there are multi-allelic variants present which PLINK can't handle. 
@@ -449,7 +446,7 @@ plink --bfile rawdata/rawdata_1kg_phase1_raw_no_atcg --exclude rawdata/rawdata.1
 Now we should be able to merge the data...
 
 ```
-plink --bfile rawdata/rawdata_1kg_phase1_raw_no_atcg_bi --bmerge ref_1kg_phase1_all/1kg_phase1_all/1kg_phase1_raw_no_atcg --extract rawdata/raw-GWA-data.prune.in --make-bed --out rawdata/rawdata.1kg_phase1.pruned
+plink --bfile rawdata/rawdata_1kg_phase1_raw_no_atcg_bi --bmerge ref_1kg_phase1_all/1kg_phase1_raw_no_atcg --extract rawdata/raw-GWA-data.prune.in --make-bed --out rawdata/rawdata.1kg_phase1.pruned
 ```
 
 Now we have prepared our dataset to include high-quality SNPs with few missing data, high-frequent SNPs, excluding problematic ranges, and merged to the 1000G phase 1 reference dataset.
@@ -545,7 +542,7 @@ perl ~/git/EIG/bin/smartpca.perl \
 -m 5 \
 -t 10 \
 -s 6.0 \
--w ref_1kg_phase1_all/1kg_phase1_all/1kg-pca-populations.txt
+-w ref_1kg_phase1_all/1kg-pca-populations.txt
 ```
 
 
@@ -555,19 +552,19 @@ If all is peachy, you ran PCA against either HapMap 3 or 1000G phase 1. Using `s
 
 A R script for creating this plot (`scripts/plot-pca-results.Rscript`) is also provided (although any standard graphing software can be used), but below you'll find some fancy codes too.
 
-> Please note! You may have been able to make `EIGENSOFT` to work. So you may have to change "/ref_pca/rawdata.[ref].pruned.pca.evec" to "/rawdata/rawdata.[ref].pruned.pca.evec" in the command below. 
+> Please note! You may have been able to make `EIGENSOFT` (Chapter \@ref(eigensoft)) to work. So you may have to change "/ref_pca/rawdata.hapmap3r2.pruned.pca.evec" to "/rawdata/rawdata.hapmap3r2.pruned.pca.evec" in the command below. 
 
 #### HapMap 3 vs data
 
 We could plot our data against HapMap 3. 
 
-```{r load-pca-hm3}
+```{r load-pca-hm3, eval=FALSE}
 PCA <- data.table::fread(paste0(COURSE_loc,"/ref_pca/rawdata.hapmap3r2.pruned.pca.evec"), header = FALSE, skip = 1)
 
 ```
 
 
-```{r prep-pca-hm3}
+```{r prep-pca-hm3, eval=FALSE}
 
 # Case/Control -> black, pch = "+"
 # CEU = 3 -> red, pch = 20
@@ -583,7 +580,7 @@ PCA$V12[PCA$V12 == "6"] <- "YRI" #49A01D
 
 ```
 
-```{r pca-hapmap3, message=FALSE, warning=FALSE, out.width='80%', fig.align='center', fig.asp=.75, fig.cap='PCA - Your data vs. HapMap 3'}
+```{r pca-hapmap3, message=FALSE, warning=FALSE, out.width='80%', fig.align='center', fig.asp=.75, fig.cap='PCA - Your data vs. HapMap 3', eval=FALSE}
 
 PCAplot <- ggpubr::ggscatter(PCA, x = "V2", y = "V3",
                              color = "V12",
@@ -616,12 +613,15 @@ Choosing which thresholds to apply (and thus which individuals to remove) is not
 
 We could plot our data against 1000G phase 1. 
 
-```{r load-pca-1000g}
+> Please note! You may have been able to make `EIGENSOFT` (Chapter \@ref(eigensoft)) to work. So you may have to change "/ref_pca/rawdata.1kg_phase1.pruned.pca.evec" to "/rawdata/rawdata.1kg_phase1.pruned.pca.evec" in the command below. 
+
+
+```{r load-pca-1000g, eval=FALSE}
 PCA_1kG <- data.table::fread(paste0(COURSE_loc,"/ref_pca/rawdata.1kg_phase1.pruned.pca.evec"), header = FALSE, skip = 1)
 ```
 
 
-```{r prep-pca-1000g}
+```{r prep-pca-1000g, eval=FALSE}
 # Population	Description	Super population	Code	Counts
 # ASW	African Ancestry in Southwest US	                          AFR	4	  #49A01D
 # CEU	Utah residents with Northern and Western European ancestry	EUR	7	  #E55738
@@ -658,7 +658,7 @@ PCA_1kG$V12[PCA_1kG$V12 == "28"] <- "YRI"
 ```
 
 
-```{r pca-1000g, message=FALSE, warning=FALSE, out.width='80%', fig.align='center', fig.asp=.75, fig.cap='PCA - Your data vs. 1000G'}
+```{r pca-1000g, message=FALSE, warning=FALSE, out.width='80%', fig.align='center', fig.asp=.75, fig.cap='PCA - Your data vs. 1000G', eval=FALSE}
 PCA_1kGplot <- ggpubr::ggscatter(PCA_1kG, x = "V2", y = "V3",
                                  color = "V12",
                                  palette = c("#595A5C", "#49A01D", "#E55738", "#9A3480", "#705296", 
@@ -693,5 +693,5 @@ plink --bfile rawdata/rawdata --remove rawdata/fail-qc-inds.txt --make-bed --out
 
 ## The next step
 
-Now that you filtered samples, we should turn our attention to step 2 of the QC for GWAS: identify SNPs of poor quality in Chapter \@ref(gwas-basics-snp-qc).
+Now that you filtered samples, we should turn our attention to step 2 of the QC for GWAS: identify SNPs of poor quality in Chapter \@ref(gwas_basics_snp_qc).
 

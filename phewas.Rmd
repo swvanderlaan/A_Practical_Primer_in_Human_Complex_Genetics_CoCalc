@@ -1,25 +1,17 @@
 # Phenome-Wide Association Study (PheWAS) {#phewas}
 
-```{r phewas, message = FALSE, warning = FALSE, echo = FALSE, eval = TRUE}
-COURSE_loc = "~/Desktop/practical"
-# COURSE_loc = "/Users/swvanderlaan/git/swvanderlaan/A_primer_in_Human_Cardiovascular_Genetics"
-
-source(paste0(COURSE_loc, "/scripts/functions.R"))
-source(paste0(COURSE_loc, "/scripts/colors.R"))
-source(paste0(COURSE_loc, "/scripts/packages.R"))
-
-```
-
 Given the large biobanks available nowadays that have also genotyped the participants and collected a vast-array of information on them, it is possible to perform a phenome-wide association study, a PheWAS.
 
 There are several options in (Table \@ref(tab:tab-phewas)).
 
-```{r, eval = TRUE, echo = FALSE}
+```{r load-phewas, eval = TRUE, echo = FALSE}
+library("openxlsx")
 phewas <- openxlsx::read.xlsx("information.xlsx", sheet = "PheWAS")
 ```
 
 
 ```{r tab-phewas, tidy = FALSE, eval = TRUE, echo = FALSE}
+library("knitr")
 knitr::kable(
   phewas, 
   caption = 'PheWAS Resources.',

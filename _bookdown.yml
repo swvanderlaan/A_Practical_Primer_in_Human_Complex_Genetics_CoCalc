@@ -13,14 +13,16 @@ rmd_files: ["index.Rmd",
             # "finemapping.Rmd",
             "fuma.Rmd",
             "phewas.Rmd",
-            # "mendelian_randomization_mr_base.Rmd",
+            "mendelian_randomization_mr_base.Rmd",
             # "mendelian_randomization_twosamplemr.Rmd",
             # "summary.Rmd",
             "epilogue.Rmd",
             "add_chapter_regional_plot.Rmd",
+            "add_chapter_eigensoft.Rmd",
             # "other_things.Rmd",
             "todo.Rmd",
             "licenses.Rmd",
+            # "colofon.Rmd",
             "references.Rmd"]
 output_dir: "docs"
 language:

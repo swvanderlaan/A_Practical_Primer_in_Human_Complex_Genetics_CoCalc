@@ -1,4 +1,4 @@
-# Regional association plots {#add_chapter_regional_plot}
+# Additional: regional association plots {#add_chapter_regional_plot}
 
 We can further visualize regions of interest using a package like [LocusZoom](http://locuszoom.org). But first we need to find the independent hits by _clumping_ the results. We will just use the defaults, but please take a note of all the options here [https://www.cog-genomics.org/plink/1.9/postproc#clump](https://www.cog-genomics.org/plink/1.9/postproc#clump){target="_blank"}
 

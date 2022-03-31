@@ -1,16 +1,5 @@
 # Genome-Wide Association Study {#gwas-testing}
 
-```{r gwas_basics_association_testing, message = FALSE, warning = FALSE, echo = FALSE, eval = TRUE}
-COURSE_loc = "~/Desktop/practical"
-# COURSE_loc = "/Users/swvanderlaan/git/swvanderlaan/A_primer_in_Human_Cardiovascular_Genetics"
-
-source(paste0(COURSE_loc, "/scripts/functions.R"))
-source(paste0(COURSE_loc, "/scripts/colors.R"))
-source(paste0(COURSE_loc, "/scripts/packages.R"))
-
-```
-
-
 Now that you have learned how to perform QC, you can easily run a GWAS and execute some downstream visualization and analyses. Let's do this with a dummy dataset.
 
 ## Exploring the data
@@ -19,15 +8,23 @@ Even though someone says that the QC was done, it is still wise and good practic
 
 ```
 plink --bfile gwas/gwa --freq --out gwas/gwa
+```
 
+```
 plink --bfile gwas/gwa --missing --out gwas/gwa
+```
 
+```
 plink --bfile gwas/gwa --hardy --out gwas/gwa
 ```
 
 Let's visualize the results.
 
-```{r load-data-gwas}
+```{r load-data-gwas, eval=FALSE}
+library("data.table")
+
+COURSE_loc = "~/Desktop/practical" # getwd()
+
 gwas_HWE <- data.table::fread(paste0(COURSE_loc, "/gwas/gwa.hwe"))
 gwas_FRQ <- data.table::fread(paste0(COURSE_loc, "/gwas/gwa.frq"))
 gwas_IMISS <- data.table::fread(paste0(COURSE_loc, "/gwas/gwa.imiss"))
@@ -35,7 +32,9 @@ gwas_LMISS <- data.table::fread(paste0(COURSE_loc, "/gwas/gwa.lmiss"))
 ```
 
 
-```{r show-hwe-gwas, message=FALSE, warning=FALSE}
+```{r show-hwe-gwas, message=FALSE, warning=FALSE, eval=FALSE}
+library("ggpubr")
+
 gwas_HWE$logP <- -log10(gwas_HWE$P)
 
 ggpubr::gghistogram(gwas_HWE, x = "logP",
@@ -53,7 +52,7 @@ ggpubr::gghistogram(gwas_HWE, x = "logP",
 ```
 
 
-```{r show-freq-gwas, message=FALSE, warning=FALSE}
+```{r show-freq-gwas, message=FALSE, warning=FALSE, eval=FALSE}
 ggpubr::gghistogram(gwas_FRQ, x = "MAF",
                     add = "mean", add.params = list(color = "#595A5C", linetype = "dashed", size = 1),
                     rug = TRUE,
@@ -64,7 +63,7 @@ ggpubr::gghistogram(gwas_FRQ, x = "MAF",
 ```
 
 
-```{r show-sample-callrate-gwas, message=FALSE, warning=FALSE}
+```{r show-sample-callrate-gwas, message=FALSE, warning=FALSE, eval=FALSE}
 gwas_IMISS$callrate <- 1 - gwas_IMISS$F_MISS
 
 ggpubr::gghistogram(gwas_IMISS, x = "callrate",
@@ -77,7 +76,7 @@ ggpubr::gghistogram(gwas_IMISS, x = "callrate",
 ```
 
 
-```{r show-snp-callrate-gwas, message=FALSE, warning=FALSE}
+```{r show-snp-callrate-gwas, message=FALSE, warning=FALSE, eval=FALSE}
 gwas_LMISS$callrate <- 1 - gwas_LMISS$F_MISS
 
 ggpubr::gghistogram(gwas_LMISS, x = "callrate",
@@ -107,7 +106,7 @@ plink --bfile gwas/gwa --model --cell 3 --out gwas/data
 
 Let's review the contents of the results.
 
-```{r load-gwas-model}
+```{r load-gwas-model, eval=FALSE}
 gwas_model <- data.table::fread(paste0(COURSE_loc, "/gwas/data.model"))
 
 dim(gwas_model)
@@ -117,7 +116,7 @@ N_SNPS = length(gwas_model$SNP)
 gwas_model[1:10, 1:10]
 ```
 
-It contains `r N_SNPS` rows, one for each SNP, and each type of test (_genotypic_, _trend_, _allelic_, _dominant_, and _recessive_) and the following columns:
+It contains 1,530,510 rows, one for each SNP, and each type of test (_genotypic_, _trend_, _allelic_, _dominant_, and _recessive_) and the following columns:
 
 - chromosome [CHR],
 - the SNP identifier [SNP],
@@ -145,7 +144,7 @@ plink --bfile gwas/gwa --logistic sex --covar gwas/gwa.covar --out gwas/data
 ```
 
 Let's examine the results
-```{r load-gwas-assoc}
+```{r load-gwas-assoc, eval=FALSE}
 gwas_assoc <- data.table::fread(paste0(COURSE_loc, "/gwas/data.assoc.logistic"))
 
 dim(gwas_assoc)

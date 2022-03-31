@@ -26,6 +26,16 @@ Your assignment is to do the following:
 6. Identify independent SNPs.
 7. Make regional association plots.
 
+#### Download WTCCC1
+
+Before we start we need to create a proper folder and download the data.
+
+Next, we'll download the reference. 
+
+```
+wget "https://www.dropbox.com/sh/kumfwm7drt2flhp/AAB5n0OcUvJixI9pNiymx6-La?dl=0" -P ~/Desktop/practical/
+```
+
 
 ## There you go
 
