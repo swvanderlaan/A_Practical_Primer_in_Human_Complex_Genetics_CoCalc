@@ -1,6 +1,7 @@
 tab:programs
 fig:ls-manual
 tab:show-relatedness
+fig:pca-1000g-wtccc
 tab:tab-phewas
 about-this-primer
 introduction

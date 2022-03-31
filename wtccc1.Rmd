@@ -12,7 +12,7 @@ plink --bfile wtccc1/wtccc1 --test-missing --out wtccc1/wtccc1
 cat wtccc1/wtccc1.missing | awk '$5 < 0.00001' | awk '{ print $2 }' > wtccc1/wtccc1-fail-diffmiss-qc.txt
 ```
 
-```{r WTCCC1raw, eval=FALSE}
+```{r WTCCC1raw}
 library("data.table")
 
 COURSE_loc = "~/Desktop/practical" # getwd()
@@ -26,7 +26,7 @@ wtccc1_HWE$logP <- -log10(wtccc1_HWE$P)
 ```
 
 
-```{r WTCCC1 HWE, eval=FALSE}
+```{r WTCCC1 HWE}
 library("ggpubr")
 
 ggpubr::gghistogram(wtccc1_HWE, x = "logP",
@@ -45,7 +45,7 @@ ggpubr::gghistogram(wtccc1_HWE, x = "logP",
 
 
 
-```{r WTCCC1 FREQ, message=FALSE, warning=FALSE, eval=FALSE}
+```{r WTCCC1 FREQ, message=FALSE, warning=FALSE}
 ggpubr::gghistogram(wtccc1_FRQ, x = "MAF",
                     add = "mean", add.params = list(color = "#595A5C", linetype = "dashed", size = 1),
                     rug = TRUE,
@@ -56,7 +56,7 @@ ggpubr::gghistogram(wtccc1_FRQ, x = "MAF",
 ```
 
 
-```{r WTCCC1 callrate samples, eval=FALSE}
+```{r WTCCC1 callrate samples}
 wtccc1_IMISS$callrate <- 1 - wtccc1_IMISS$F_MISS
 
 ggpubr::gghistogram(wtccc1_IMISS, x = "callrate",
@@ -69,7 +69,7 @@ ggpubr::gghistogram(wtccc1_IMISS, x = "callrate",
 ```
 
 
-```{r WTCCC1 callrate SNPs, eval=FALSE}
+```{r WTCCC1 callrate SNPs}
 wtccc1_LMISS$callrate <- 1 - wtccc1_LMISS$F_MISS
 
 ggpubr::gghistogram(wtccc1_LMISS, x = "callrate",
@@ -196,12 +196,12 @@ If all is peachy, you were able to run the PCA for the WTCCC1 data against 1000G
 
 And we should visualize the PCA results: are these individuals really all from European (UK) ancestry? 
 
-```{r Load-PCA_WTCCC1_1kG, eval=FALSE}
+```{r Load-PCA_WTCCC1_1kG}
 PCA_WTCCC1_1kG <- data.table::fread(paste0(COURSE_loc,"/ref_pca_wtccc1/wtccc1_extrclean_1kg.pca.evec"), header = FALSE, skip = 1)
 ```
 
 
-```{r Prep-PCA_WTCCC1_1kG, eval=FALSE}
+```{r Prep-PCA_WTCCC1_1kG}
 # Population	Description	Super population	Code	Counts
 # ASW	African Ancestry in Southwest US	                          AFR	4	  #49A01D
 # CEU	Utah residents with Northern and Western European ancestry	EUR	7	  #E55738
@@ -237,7 +237,7 @@ PCA_WTCCC1_1kG$V12[PCA_WTCCC1_1kG$V12 == "28"] <- "YRI"
 ```
 
 
-```{r pca-1000g-wtccc, message=FALSE, warning=FALSE, out.width='80%', fig.align='center', fig.asp=.75, fig.cap='PCA - WTCCC1 vs. 1000G', eval=FALSE}
+```{r pca-1000g-wtccc, message=FALSE, warning=FALSE, out.width='80%', fig.align='center', fig.asp=.75, fig.cap='PCA - WTCCC1 vs. 1000G'}
 PCA_WTCCC1_1kGplot <- ggpubr::ggscatter(PCA_WTCCC1_1kG, x = "V2", y = "V3",
                                         color = "V12",
                                         palette = c("#49A01D", "#595A5C", "#E55738", "#9A3480", "#705296", 
@@ -299,7 +299,7 @@ plink --bfile wtccc1/wtccc1_qc --logistic sex --covar wtccc1/wtccc1_qc.covar_pca
 ```
 
 
-```{r WTCCC1ResultsPrep, eval=FALSE}
+```{r WTCCC1ResultsPrep}
 wtccc1_assoc <- data.table::fread(paste0(COURSE_loc, "/wtccc1/wtccc1_qc_log_covar_pca.assoc.logistic"))
 
 dim(wtccc1_assoc)
@@ -339,7 +339,7 @@ wtccc1_assoc_complsub <- subset(wtccc1_assoc_compl, select = c("SNP", "CHR", "BP
 ```
 
 
-```{r WTCCC1ResultsManhattan, eval=FALSE}
+```{r WTCCC1ResultsManhattan}
 library("CMplot")
 
 CMplot(wtccc1_assoc_complsub,
