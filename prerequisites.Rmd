@@ -51,9 +51,35 @@ knitr::kable(
 
 ```
 
-All genetic analyses can be done in PLINK, even on your laptop, but with large datasets, for example [UK Biobank](https://www.ukbiobank.ac.uk) size, it is better to switch to a [high-performance computing cluster](https://en.wikipedia.org/wiki/High-performance_computing){target="_blank"} like we have available at the [Utrecht Science Park](https://wiki.bioinformatics.umcutrecht.nl/bin/view/HPC/WebHome){target="_blank"}.
+### RStudio
+
+RStudio is a very user-friendly interface around R that makes your R-scripting-life a lot easier. You should get used to that. 
+We have a clean installation of Ubuntu in our VirtualMachine with full administrator rights. Let's start by installing RStudio. On your VirtualMachine go to the website of [RStudio](https://www.rstudio.com/products/rstudio/download/#download){target="_blank"} and select the right installer (`Ubuntu 18+/Debian 10+`), it should be name something like `rstudio-2022.02.1-461-amd64.deb`. 
+
+Double click the file after download (it's probably on the Desktop or the Download folder) and follow the instructions. 
+
+RStudio comes with R so you don't have to worry about that.
+
+
+### PLINK
+Right, onto PLINK. 
+
+All genetic analyses can be done in PLINK, even on your laptop, but with large datasets, for example [UK Biobank](https://www.ukbiobank.ac.uk){target="_blank"} size, it is better to switch to a [high-performance computing cluster](https://en.wikipedia.org/wiki/High-performance_computing){target="_blank"} like we have available at the [Utrecht Science Park](https://wiki.bioinformatics.umcutrecht.nl/bin/view/HPC/WebHome){target="_blank"}. The original PLINK v1.07 can be found [here](https://zzz.bwh.harvard.edu/plink/index.shtml){target="_blank"}, but nowadays we are using a newer, faster version: PLINK v1.9 which can be found [here](https://www.cog-genomics.org/plink2){target="_blank"}.
+
+You should be downloading the Linux 64-bits version indicated with the blue arrow in Figure \@ref(fig:plink)
+
+```{r plink, fig.align='center', fig.cap='The PLINK v1.9 website.', fig.show = TRUE, echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE}
+knitr::include_graphics("img/plink.png")
+
+```
+
+You'll download a zip-file containing PLINK to the Downloads folder, or the Desktop. If all is fine, you should be able to double click the `.zip`-file and it will unpack there and then. 
+
+### Alternatives to PLINK
 
 Nowadays, a lot of people also use programs like [SNPTEST](snptest){target="_blank"}, [BOLT-LMM](https://data.broadinstitute.org/alkesgroup/BOLT-LMM/){target="_blank"},  [GCTA](http://cnsgenomics.com/software/gcta/#Overview){target="_blank"}, or [regenie](https://rgcgithub.github.io/regenie/){target="_blank"} as alternatives to execute GWAS and downstream analyses, for example heritability estimation, Fst-calculation, and so on.
+
+### Other programs
 
 Mendelian randomization can be done either with the [SMR](http://cnsgenomics.com/software/smr/#Overview){target="_blank"} or [GSMR](http://cnsgenomics.com/software/gsmr/){target="_blank"} function from GCTA, or with R-packages, like [`TwoSampleMR`](https://mrcieu.github.io/TwoSampleMR/){target="_blank"}.
 
@@ -86,12 +112,32 @@ Alternatively, you could do this through this command. This will create a direct
 mkdir -v ~/Desktop/practical/
 ```
 
-```
-wget "https://www.dropbox.com/sh/kumfwm7drt2flhp/AAB5n0OcUvJixI9pNiymx6-La?dl=0" -P ~/Desktop/practical/
+Now, pay attention. There are three downloads. You will need to _first_ for starters, but I leave all three downloads here for future reference. Don't worry, the links will come back in other chapters too. 
 
-```
+First, start with downloading the first dataset, below:
 
-This will take a minute or two depending on your internet connection. Time to stretch your legs or grab a coffee (data scientists don't drink tea).
+https://www.dropbox.com/sh/kumfwm7drt2flhp/AAB5n0OcUvJixI9pNiymx6-La?dl=0
+
+Make sure you put the data in the `~/Desktop/practical/` folder.
+
+<!-- ``` -->
+<!-- wget "https://www.dropbox.com/sh/kumfwm7drt2flhp/AAB5n0OcUvJixI9pNiymx6-La?dl=0" -P ~/Desktop/practical/ -->
+<!-- ``` -->
+
+You'll end the course with the second dataset. Here's the link:
+
+https://www.dropbox.com/sh/kumfwm7drt2flhp/AAB5n0OcUvJixI9pNiymx6-La?dl=0
+
+Make sure you put the data in the `~/Desktop/practical/` folder.
+
+You _may_ need the third dataset _depending on the availability of a program_, which you can download through the link below. **Don't download it now.** 
+
+https://www.dropbox.com/sh/c6h5p7c63dkh11k/AAACPlG_tuNgSqnwq3EQGF2Ja?dl=0
+
+Make sure you put the data in the `~/Desktop/practical/ref_1kg_phase1_all/` folder.
+
+This will take a minute or two depending on your internet connection. Time to stretch your legs or grab a coffee (data scientists don't drink tea). 
+Oh, and the links are set to expire. 
 
 ### Navigating the Terminal
 
@@ -175,9 +221,15 @@ man ls
 
 This will take you to a manual of the program with an extensive description of each flag (Figure \@ref(fig:ls-manual)).
 
-
 ```{r ls-manual, fig.align='center', fig.cap='Partial output from the ls-manual.', fig.show = TRUE, echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE}
 knitr::include_graphics("img/ls_manual.png")
+
+```
+
+We also want to copy `plink` to that practical folder. 
+
+```
+cp -v ~/Downloads/plink/plink ~/Desktop/practical/plink 
 
 ```
 
@@ -196,13 +248,35 @@ sudo apt-get install libssl-dev
 
 Now close the terminal window - really making sure that the terminal-program has quit.
 
-Open a new terminal window and open `r` by simply typing `R` or `r`. You should install the following packages, and then you're good to go!
+Open your fresh installation of RStudio by double clicking the icon. You should be seeing something like figure \@ref(fig:rstudio-screenshot)
 
+```{r rstudio-screenshot, fig.align='center', fig.cap='RStudio screenshot.', fig.show = TRUE, echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE}
+knitr::include_graphics("img/rstudio-screenshot.png")
+
+```
+
+
+In the top right, you see a little green-white plus-sign, click this and select 'R Notebook' (Figure \@ref(fig:rstudio-screenshot-create-notebook)). 
+
+```{r rstudio-screenshot-create-notebook, fig.align='center', fig.cap='RStudio screenshot.', fig.show = TRUE, echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE}
+knitr::include_graphics("img/rstudio-screenshot-create-notebook.png")
+
+```
+
+You will create an untitled (`Untitled1`) `R` notebook: you can combine text descriptions, like you would in a lab-journal, with code-sections. Read what is in the notebook to get a grasp on that (Figure \@ref(fig:rstudio-screenshot-notebook)). 
+
+```{r rstudio-screenshot-notebook, fig.align='center', fig.cap='RStudio screenshot.', fig.show = TRUE, echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE}
+knitr::include_graphics("img/rstudio-screenshot-notebook.png")
+
+```
+
+Right, you should be installing some packages. To do so, you can remove `plot(cars)` (or leave and create a new code-block as per instructions in the notebook), and copy paste the code below. 
 ```{r install-prereq, eval = FALSE, echo = TRUE}
 install.packages(c("httr", "usethis", "data.table", "devtools", 
                    "qqman", "CMplot", "plotly", 
                    "dplyr", "tibble", "openxlsx"))
 devtools::install_github("kassambara/ggpubr")
+devtools::install_github("oliviasabik/RACER")
 ```
 
 You should load these packages too. 
@@ -219,6 +293,7 @@ library("tibble")
 library("plotly")
 library("dplyr")
 library("openxlsx")
+library("RACER")
 ```
 
 All in all this may take some time, good moment to relax, review your notes, stretch your legs, or take a coffee.
@@ -226,4 +301,8 @@ All in all this may take some time, good moment to relax, review your notes, str
 
 ## Are you ready?
 
-Are you ready? Did you bring coffee and a good dose of energy? Let's start! We first cover some basics in Chapter \@ref(gwas-basics).
+Are you ready? Did you bring coffee and a good dose of energy? Let's start! 
+
+Oh, one more thing: you can save your notebook, the one you just created, to keep all the `R` codes you are applying in the next chapters and add descriptions and notes. If you save this notebook you'll notice that a `html`-file is created. This file is a legible webbrowser-friendly version of your work and contains the codes and the output (code messages, tables, and figures). And the nice thing is, that you can easily share it with others over email. 
+
+Ok. 'Nough said, let's move on to cover some basics in Chapter \@ref(gwas-basics).

@@ -376,10 +376,14 @@ mkdir -v ~/Desktop/practical/ref_1kg_phase1_all
 
 Next, we'll download the reference. 
 
-```
-wget "https://www.dropbox.com/sh/kumfwm7drt2flhp/AAB5n0OcUvJixI9pNiymx6-La?dl=0" -P ~/Desktop/practical/ref_1kg_phase1_all
+https://www.dropbox.com/sh/c6h5p7c63dkh11k/AAACPlG_tuNgSqnwq3EQGF2Ja?dl=0
 
-```
+Make sure you put the data in the `~/Desktop/practical/ref_1kg_phase1_all` folder.
+
+<!-- ``` -->
+<!-- wget "https://www.dropbox.com/sh/kumfwm7drt2flhp/AAB5n0OcUvJixI9pNiymx6-La?dl=0" -P ~/Desktop/practical/ref_1kg_phase1_all -->
+
+<!-- ``` -->
 
 #### Filter the 1000G data
 

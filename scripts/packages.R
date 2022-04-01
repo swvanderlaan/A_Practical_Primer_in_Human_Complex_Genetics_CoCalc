@@ -32,6 +32,7 @@ install.packages.auto("ggthemes")
 # cat("\n* Genomic packages...\n")
 install.packages.auto("qqman")
 install.packages.auto("CMplot")
+install_github("oliviasabik/RACER")
 
 install.packages.auto("remotes")
 remotes::install_github("MRCIEU/TwoSampleMR")
@@ -40,8 +41,8 @@ remotes::install_github("MRCIEU/TwoSampleMR")
 # https://datascienceplus.com/ggplot2-features-for-visualizing-the-nhanes-data/
 # https://datascienceplus.com/blood-lipid-levels-accross-age-and-gender-nhanes/
 # http://wwww.silentspring.org/RNHANES/index.html
-devtools::install_github("silentspringinstitute/RNHANES")
-library("RNHANES")
+# devtools::install_github("silentspringinstitute/RNHANES")
+# library("RNHANES")
 
 # install.packages.auto("readr")
 # install.packages.auto("optparse")

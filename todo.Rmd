@@ -7,18 +7,21 @@ Obviously this list is not exhaustive nor intended for practical use for anyone 
 ## MoSCoW
 
 List of to-do's according to MoSCoW: _must have_, _should have_, _could have_, _would have_.
+
 ### Contents
 
+- [x] `M` add in full installation instructions for UBUNTU
+- [] `M` add in full installation instructions for macOS
 - [] `M` conditional analysis
 - [] `M` statistical finemapping
-- [] `M` regional association plotting
+- [x] `M` regional association plotting
 - [] `M` colocalization with formal testing
 - [] `S` meta-analysis with dummy data
     - `S` including stratified QQ plots
     - `M` HPC version with MetaGWASToolKit
     - `S` stand-alone version with METAL
 - [] `C` GWASToolKit
-- [] `M` PlaqView lookups
+- [] `C` PlaqView lookups
 
 ## Book fixes
 
@@ -28,6 +31,7 @@ List of to-do's according to MoSCoW: _must have_, _should have_, _could have_, _
 - [] `C` Different font type in PDF
 - [] `S` EPUB is not formatted properly (text runs over)
 - [] `S` different setup for the chapter Additional chapters (this as a Apendix)
+- [x] `S` fix the way the team is displayed
 
 ## Useful links
 

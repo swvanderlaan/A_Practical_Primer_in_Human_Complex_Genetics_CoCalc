@@ -13,7 +13,7 @@ The Manhattan plot immediately draws your attention to the peaks above the genom
 
 ## Conditional analyses
 
-The visualization of a GWAS is very appealing and draws attention to single peaks, and the most significant variant. And with **clumping** you can identify the independent signals, i.e. the top variants and their LD buddies in the locus. We implicitly assume that the top variant captures all the variation in the region by its linkage disequilibrium with an unknown causal variant, in other words it is 'tagging' the (un)measured potential causal variant in the region. Intuitively it is unlikely that a single causal variant is accounting for all the LD between the unknown causal variant and the measured (genotyped or imputed) variants at the locus. So, a naive focus on only the top variant ignores the fact that multiple causal variants exist and thus the variation captured by that single top variant underestimates the total variation that could be explained by that single region (locus).
+The visualization of a GWAS is very appealing and draws attention to single peaks, and the most significant variant. And with **clumping** you can identify the independent signals, _i.e._ the top variants and their LD buddies in the locus. We implicitly assume that the top variant captures all the variation in the region by its linkage disequilibrium with an unknown causal variant, in other words it is 'tagging' the (un)measured potential causal variant in the region. Intuitively it is unlikely that a single causal variant is accounting for all the LD between the unknown causal variant and the measured (genotyped or imputed) variants at the locus. So, a naive focus on only the top variant ignores the fact that multiple causal variants exist and thus the variation captured by that single top variant underestimates the total variation that could be explained by that single region (locus).
 
 **Conditional analysis** is a tool to identify the secondary variants associated with the trait of interest. This involves conditioning the association model (`trait ~ Variant X + covariates`) on the primary variant associated in that locus. A more comprehensive and general approach would be to condition on each variant in the whole genome starting with the top variants and stepwise selecting additional variants according to their conditional p-values. This strategy could potentially result in multiple top variants in the same locus. In other words, it could uncover different haplotypes that are causing the same association with the trait of interest. 
 
@@ -31,15 +31,15 @@ There are multiple methods and tools developed to get to this answer. I list a f
 
 **FINEMAP**
 
-This tool is very fast and versatile, and was developed by Christian Benner. It will identify the credible sets for each locus and calculates the posterior probabilities for each set. This is the more hands-on version of getting to credible sets.
+This tool is very fast and versatile, and was developed by Christian Benner. It will identify the _credible sets_ for each locus and calculates the _posterior probabilities_ for each set. This is the more hands-on version of getting to _credible sets_.
 
 **LocusZoom**
 
-You could upload - privately or publicly - your data to [my.locuszoom.org](https://my.locuszoom.org){target="_blank"} and obtain a list of causal variants with posterior probabilities. It uses a [simple procedure](https://statgen.github.io/gwas-credible-sets/method/locuszoom-credible-sets.pdf){target="_blank"} to obtain the credible sets using [these scripts](https://github.com/statgen/gwas-credible-sets/){target="_blank"}. This is the more lazy version of getting a list of likely causal variants.
+You could upload - privately or publicly - your data to [my.locuszoom.org](https://my.locuszoom.org){target="_blank"} and obtain a list of causal variants with posterior probabilities. It uses a [simple procedure](https://statgen.github.io/gwas-credible-sets/method/locuszoom-credible-sets.pdf){target="_blank"} to obtain the _credible sets_ using [these scripts](https://github.com/statgen/gwas-credible-sets/){target="_blank"}. This is the more lazy version of getting a list of likely causal variants.
 
 **SuSIE**
 
-An laternate approach to credible set identification is through [SuSIE](https://stephenslab.github.io/susieR/index.html){target="_blank"}. Through SuSIE you can identify credible sets under the assumption of multiple causal variants, whereas **FINEMAP** assumes a single causal variant.
+An laternate approach to _credible set_ identification is through [SuSIE](https://stephenslab.github.io/susieR/index.html){target="_blank"}. Through SuSIE you can identify _credible sets_ under the assumption of multiple causal variants, whereas **FINEMAP** assumes a single causal variant.
 
 For now, we will skip this part. I will add a whole chapter on this at some later stage. 
 
@@ -57,19 +57,25 @@ A **phenome-wide association study**, or **PheWAS**, deals with assessing the as
 
 Again, we'll get a bit hands-on and more _Do It Yourself_ in the chapter that deals with this. Let's jump over to Chapter \@ref(phewas). 
 
+## Colocalization
+
+From all of the above follows another intuitive question. Suppose a signal in your trait also shows association - to some extent - with other traits. Do these two signals than significantly overlap, more so than you would think based on chance? **Colocalization** deals with exactly this question. 
+
+We are not going to deal with **colocalization**, but a nice starting point is [RACER](https://github.com/oliviasabik/RACER){target="_blank"} about which you can read more in chapter \@ref(add_chapter_regional_plot). I will add a whole chapter on this at some later stage.  
+
 ## Genetic correlation
 
-Because of the underlying biology or because of the way they are measured or calculated, traits can be highly correlated - phenotypically. That is to say, when the levels of HDL are high, LDL is probably low, and so when you draw a correlation plot from some data obtained in a general population you'll see a nice pattern. Biology may also cause traits to be genetically correlated: the same genetic variants influence multiple traits. In other words, if a variant is associated with higher levels of LDL-cholesterol, it may alternatively be associated with lower HDL-cholesterol, etc. Genetic correlation will aid in further understanding the relations between traits biologically: if there is a strong genetic correlation, it is may be due to the same biological pathways and so the traits are 'linked' through the same processes (maybe counter-acting processes). 
+Because of the underlying biology or because of the way they are measured or calculated, traits can be highly correlated - phenotypically. That is to say, when the levels of HDL are high, LDL is probably low, and so when you draw a correlation plot from some data obtained in a general population you'll see a nice pattern. Biology may also cause traits to be genetically correlated: the same genetic variants influence multiple traits. In other words, if a variant is associated with higher levels of LDL-cholesterol, it may alternatively be associated with lower HDL-cholesterol, etc. Genetic correlation will aid in further understanding the relations between traits biologically: if there is a strong **genetic correlation**, it is may be due to the same biological pathways and so the traits are 'linked' through the same processes (maybe counter-acting processes). 
 
-> Puzzle: what other phenomenom could cause a high but spurious genetic correlation?
+> Puzzle: what other phenomenom could cause a high but spurious **genetic correlation**?
 
-We are not going to deal with genetic correlation. I will add a whole chapter on this at some later stage.  
+We are not going to deal with **genetic correlation**. I will add a whole chapter on this at some later stage.  
 
 ## Causal inference: Mendelian Randomization
 
 In observational studies we may find a strong association between a certain risk factor or biomarker and a disease. For instance, epidemiological studies show that high circulating cystatin C is associated with risk of cardiovascular disease (CVD), independent of creatinine-based renal function measurements[@vanderlaan2016]. However, residual confounding and reverse causality remain alternative explanations for the strong correlation between cystatin C and CVD, both of which are difficult to tease apart from traditional observational (epidemiological) studies.
 
-Mendelian Randomization (MR) harnesses the properties of the genome to enable causal inference of a biomarker. Specifically, the invariant nature of the genome and the random distribution of alleles from parents to offspring at conception mean that genetic information is not influenced by disease status (reverse causality) and should be free from confounding by traditional risk factors[@vanderlaan2016]. So, genetic variation that modulates serum concentrations of cystatin C could serve as an instrumental variable to assess the effect of lifelong elevated concentrations of cystatin C on disease risk, independent of potential confounders[@vanderlaan2016].
+**Mendelian Randomization (MR)** harnesses the properties of the genome to enable causal inference of a biomarker. Specifically, the invariant nature of the genome and the random distribution of alleles from parents to offspring at conception mean that genetic information is not influenced by disease status (reverse causality) and should be free from confounding by traditional risk factors[@vanderlaan2016]. So, genetic variation that modulates serum concentrations of cystatin C could serve as an instrumental variable to assess the effect of lifelong elevated concentrations of cystatin C on disease risk, independent of potential confounders[@vanderlaan2016].
 
 Finding the causal genes for complex disease is a primary objective of many researchers, because these genes are putative therapeutic targets. In this course we intend to find out whether Type 2 Diabetes (T2D) causes coronary artery disease and ischemic stroke.
 

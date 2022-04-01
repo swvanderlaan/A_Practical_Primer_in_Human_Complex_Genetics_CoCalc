@@ -82,6 +82,13 @@
   \thm@postskip=\thm@preskip
 }
 \makeatother
+\renewcommand{\topfraction}{.85}
+\renewcommand{\bottomfraction}{.7}
+\renewcommand{\textfraction}{.15}
+\renewcommand{\floatpagefraction}{.66}
+\setcounter{topnumber}{3}
+\setcounter{bottomnumber}{3}
+\setcounter{totalnumber}{4}
 \usepackage{float}
 \ifLuaTeX
   \usepackage{selnolig}  % disable illegal ligatures
@@ -98,7 +105,7 @@
 \makeatother
 \subtitle{with a use-case in cardiovascular disease}
 \author{\href{https://swvanderlaan.github.iio}{dr. Sander W. van der Laan} \href{https://www.twitter.com/swvanderlaan}{\includegraphics[width=0.025\textwidth,height=\textheight]{img/twitter_circle_blue.png}} \href{mailto:s.w.vanderlaan@gmail.com}{\includegraphics[width=0.025\textwidth,height=\textheight]{img/email_circle_blue.png}}}
-\date{Version 1.0.0beta \textbar{} last update: 2022-03-31}
+\date{Version 1.0.0beta \textbar{} last update: 2022-04-01}
 
 \begin{document}
 \maketitle
@@ -164,31 +171,17 @@ With respect to imputation you should also get familiar with the following two w
 
 We work with a team of enthusiastic lecturers with experience in bioinformatics, GWAS, genetic analyses, Mendelian randomization, and epidemiology. This year the team consists of:
 
-\includegraphics[width=0.15\textwidth,height=\textheight]{img/sander_vander_laan.jpg}
-Sander W. van der Laan
-\emph{Assistant professor}
-Course coordinator
-\href{mailto:s.w.vanderlaan-2@umcutrecht.nl}{\nolinkurl{s.w.vanderlaan-2@umcutrecht.nl}} \textbar{} \href{http://www.twitter.com/swvanderlaan}{swvanderlaan}
-
-\includegraphics[width=0.15\textwidth,height=\textheight]{img/charlotte_onland.jpg}
-Charlotte Onland-Moret
-\emph{Associate Professor}
-\href{mailto:N.C.Onland@umcutrecht.nl}{\nolinkurl{N.C.Onland@umcutrecht.nl}} \textbar{} \href{http://www.twitter.com/nconland}{nconland}
-
-\includegraphics[width=0.15\textwidth,height=\textheight]{img/jessica_van_setten.jpg}
-Jessica van Setten
-\emph{Assistant professor}
-\href{mailto:j.vansetten@umcutrecht.nl}{\nolinkurl{j.vansetten@umcutrecht.nl}} \textbar{} \href{http://www.twitter.com/j_vansetten}{j\_vansetten}
-
-\includegraphics[width=0.15\textwidth,height=\textheight]{img/marion_van_vugt.jpg}
-Marion van Vugt
-\emph{PhD student}
-\href{mailto:M.vanVugt-2@umcutrecht.nl}{\nolinkurl{M.vanVugt-2@umcutrecht.nl}} \textbar{} \href{http://www.twitter.com/MarionVugt}{MarionVugt}
-
-\includegraphics[width=0.15\textwidth,height=\textheight]{img/kristel_van_eijk.jpg}
-Kristel van Eijk
-\emph{Bioinformatician}
-\href{mailto:K.vanEijk-2@umcutrecht.nl}{\nolinkurl{K.vanEijk-2@umcutrecht.nl}}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.5000}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.5000}}@{}}
+\toprule
+\endhead
+\includegraphics[width=0.15\textwidth,height=\textheight]{img/sander_vander_laan.jpg}Sander W. van der Laan\emph{Assistant professor}Course coordinator\href{mailto:s.w.vanderlaan-2@umcutrecht.nl}{\nolinkurl{s.w.vanderlaan-2@umcutrecht.nl}} \textbar{} \href{http://www.twitter.com/swvanderlaan}{swvanderlaan} & \\
+\includegraphics[width=0.15\textwidth,height=\textheight]{img/charlotte_onland.jpg}N. Charlotte Onland-Moret\emph{Associate Professor}\href{mailto:N.C.Onland@umcutrecht.nl}{\nolinkurl{N.C.Onland@umcutrecht.nl}} \textbar{} \href{http://www.twitter.com/nconland}{nconland} & \includegraphics[width=0.15\textwidth,height=\textheight]{img/jessica_van_setten.jpg}Jessica van Setten\emph{Assistant professor}\href{mailto:j.vansetten@umcutrecht.nl}{\nolinkurl{j.vansetten@umcutrecht.nl}} \textbar{} \href{http://www.twitter.com/j_vansetten}{j\_vansetten} \\
+\includegraphics[width=0.15\textwidth,height=\textheight]{img/marion_van_vugt.jpg}Marion van Vugt\emph{PhD student}\href{mailto:M.vanVugt-2@umcutrecht.nl}{\nolinkurl{M.vanVugt-2@umcutrecht.nl}} \textbar{} \href{http://www.twitter.com/MarionVugt}{MarionVugt} & \includegraphics[width=0.15\textwidth,height=\textheight]{img/kristel_van_eijk.jpg}Kristel van Eijk\emph{Bioinformatician}\href{mailto:K.vanEijk-2@umcutrecht.nl}{\nolinkurl{K.vanEijk-2@umcutrecht.nl}} \\
+\includegraphics[width=0.15\textwidth,height=\textheight]{img/sanne_peters.jpg}Sanne A.E. Peters\emph{Associate professor}\href{mailto:s.a.e.peters@umcutrecht.nl}{\nolinkurl{s.a.e.peters@umcutrecht.nl}} \textbar{} \href{http://www.twitter.com/saepeters}{saepeters} & \\
+\bottomrule
+\end{longtable}
 
 \hypertarget{final-thoughts}{%
 \section{Final thoughts}\label{final-thoughts}}
@@ -239,9 +232,43 @@ Homebrew & https://brew.sh & A great extension for Mac-users to install really u
 \end{tabular}
 \end{table}
 
-All genetic analyses can be done in PLINK, even on your laptop, but with large datasets, for example \href{https://www.ukbiobank.ac.uk}{UK Biobank} size, it is better to switch to a \href{https://en.wikipedia.org/wiki/High-performance_computing}{high-performance computing cluster} like we have available at the \href{https://wiki.bioinformatics.umcutrecht.nl/bin/view/HPC/WebHome}{Utrecht Science Park}.
+\hypertarget{rstudio}{%
+\subsection{RStudio}\label{rstudio}}
+
+RStudio is a very user-friendly interface around R that makes your R-scripting-life a lot easier. You should get used to that.
+We have a clean installation of Ubuntu in our VirtualMachine with full administrator rights. Let's start by installing RStudio. On your VirtualMachine go to the website of \href{https://www.rstudio.com/products/rstudio/download/\#download}{RStudio} and select the right installer (\passthrough{\lstinline!Ubuntu 18+/Debian 10+!}), it should be name something like \passthrough{\lstinline!rstudio-2022.02.1-461-amd64.deb!}.
+
+Double click the file after download (it's probably on the Desktop or the Download folder) and follow the instructions.
+
+RStudio comes with R so you don't have to worry about that.
+
+\hypertarget{plink}{%
+\subsection{PLINK}\label{plink}}
+
+Right, onto PLINK.
+
+All genetic analyses can be done in PLINK, even on your laptop, but with large datasets, for example \href{https://www.ukbiobank.ac.uk}{UK Biobank} size, it is better to switch to a \href{https://en.wikipedia.org/wiki/High-performance_computing}{high-performance computing cluster} like we have available at the \href{https://wiki.bioinformatics.umcutrecht.nl/bin/view/HPC/WebHome}{Utrecht Science Park}. The original PLINK v1.07 can be found \href{https://zzz.bwh.harvard.edu/plink/index.shtml}{here}, but nowadays we are using a newer, faster version: PLINK v1.9 which can be found \href{https://www.cog-genomics.org/plink2}{here}.
+
+You should be downloading the Linux 64-bits version indicated with the blue arrow in Figure \ref{fig:plink}
+
+\begin{figure}
+
+{\centering \includegraphics[width=43.11in]{img/plink} 
+
+}
+
+\caption{The PLINK v1.9 website.}\label{fig:plink}
+\end{figure}
+
+You'll download a zip-file containing PLINK to the Downloads folder, or the Desktop. If all is fine, you should be able to double click the \passthrough{\lstinline!.zip!}-file and it will unpack there and then.
+
+\hypertarget{alternatives-to-plink}{%
+\subsection{Alternatives to PLINK}\label{alternatives-to-plink}}
 
 Nowadays, a lot of people also use programs like \href{snptest}{SNPTEST}, \href{https://data.broadinstitute.org/alkesgroup/BOLT-LMM/}{BOLT-LMM}, \href{http://cnsgenomics.com/software/gcta/\#Overview}{GCTA}, or \href{https://rgcgithub.github.io/regenie/}{regenie} as alternatives to execute GWAS and downstream analyses, for example heritability estimation, Fst-calculation, and so on.
+
+\hypertarget{other-programs}{%
+\subsection{Other programs}\label{other-programs}}
 
 Mendelian randomization can be done either with the \href{http://cnsgenomics.com/software/smr/\#Overview}{SMR} or \href{http://cnsgenomics.com/software/gsmr/}{GSMR} function from GCTA, or with R-packages, like \href{https://mrcieu.github.io/TwoSampleMR/}{\passthrough{\lstinline!TwoSampleMR!}}.
 
@@ -274,11 +301,28 @@ Alternatively, you could do this through this command. This will create a direct
 mkdir -v ~/Desktop/practical/
 \end{lstlisting}
 
-\begin{lstlisting}
-wget "https://www.dropbox.com/sh/kumfwm7drt2flhp/AAB5n0OcUvJixI9pNiymx6-La?dl=0" -P ~/Desktop/practical/
-\end{lstlisting}
+Now, pay attention. There are three downloads. You will need to \emph{first} for starters, but I leave all three downloads here for future reference. Don't worry, the links will come back in other chapters too.
+
+First, start with downloading the first dataset, below:
+
+\url{https://www.dropbox.com/sh/kumfwm7drt2flhp/AAB5n0OcUvJixI9pNiymx6-La?dl=0}
+
+Make sure you put the data in the \passthrough{\lstinline!\~/Desktop/practical/!} folder.
+
+You'll end the course with the second dataset. Here's the link:
+
+\url{https://www.dropbox.com/sh/kumfwm7drt2flhp/AAB5n0OcUvJixI9pNiymx6-La?dl=0}
+
+Make sure you put the data in the \passthrough{\lstinline!\~/Desktop/practical/!} folder.
+
+You \emph{may} need the third dataset \emph{depending on the availability of a program}, which you can download through the link below. \textbf{Don't download it now.}
+
+\url{https://www.dropbox.com/sh/c6h5p7c63dkh11k/AAACPlG_tuNgSqnwq3EQGF2Ja?dl=0}
+
+Make sure you put the data in the \passthrough{\lstinline!\~/Desktop/practical/ref\_1kg\_phase1\_all/!} folder.
 
 This will take a minute or two depending on your internet connection. Time to stretch your legs or grab a coffee (data scientists don't drink tea).
+Oh, and the links are set to expire.
 
 \hypertarget{navigating-the-terminal}{%
 \subsection{Navigating the Terminal}\label{navigating-the-terminal}}
@@ -368,6 +412,12 @@ This will take you to a manual of the program with an extensive description of e
 \caption{Partial output from the ls-manual.}\label{fig:ls-manual}
 \end{figure}
 
+We also want to copy \passthrough{\lstinline!plink!} to that practical folder.
+
+\begin{lstlisting}
+cp -v ~/Downloads/plink/plink ~/Desktop/practical/plink 
+\end{lstlisting}
+
 \hypertarget{installing-some-r-packages}{%
 \section{Installing some R packages}\label{installing-some-r-packages}}
 
@@ -383,13 +433,47 @@ sudo apt-get install libssl-dev
 
 Now close the terminal window - really making sure that the terminal-program has quit.
 
-Open a new terminal window and open \passthrough{\lstinline!r!} by simply typing \passthrough{\lstinline!R!} or \passthrough{\lstinline!r!}. You should install the following packages, and then you're good to go!
+Open your fresh installation of RStudio by double clicking the icon. You should be seeing something like figure \ref{fig:rstudio-screenshot}
+
+\begin{figure}
+
+{\centering \includegraphics[width=34.5in]{img/rstudio-screenshot} 
+
+}
+
+\caption{RStudio screenshot.}\label{fig:rstudio-screenshot}
+\end{figure}
+
+In the top right, you see a little green-white plus-sign, click this and select `R Notebook' (Figure \ref{fig:rstudio-screenshot-create-notebook}).
+
+\begin{figure}
+
+{\centering \includegraphics[width=34.5in]{img/rstudio-screenshot-create-notebook} 
+
+}
+
+\caption{RStudio screenshot.}\label{fig:rstudio-screenshot-create-notebook}
+\end{figure}
+
+You will create an untitled (\passthrough{\lstinline!Untitled1!}) \passthrough{\lstinline!R!} notebook: you can combine text descriptions, like you would in a lab-journal, with code-sections. Read what is in the notebook to get a grasp on that (Figure \ref{fig:rstudio-screenshot-notebook}).
+
+\begin{figure}
+
+{\centering \includegraphics[width=34.5in]{img/rstudio-screenshot-notebook} 
+
+}
+
+\caption{RStudio screenshot.}\label{fig:rstudio-screenshot-notebook}
+\end{figure}
+
+Right, you should be installing some packages. To do so, you can remove \passthrough{\lstinline!plot(cars)!} (or leave and create a new code-block as per instructions in the notebook), and copy paste the code below.
 
 \begin{lstlisting}[language=R]
 install.packages(c("httr", "usethis", "data.table", "devtools", 
                    "qqman", "CMplot", "plotly", 
                    "dplyr", "tibble", "openxlsx"))
 devtools::install_github("kassambara/ggpubr")
+devtools::install_github("oliviasabik/RACER")
 \end{lstlisting}
 
 You should load these packages too.
@@ -406,6 +490,7 @@ library("tibble")
 library("plotly")
 library("dplyr")
 library("openxlsx")
+library("RACER")
 \end{lstlisting}
 
 All in all this may take some time, good moment to relax, review your notes, stretch your legs, or take a coffee.
@@ -413,7 +498,11 @@ All in all this may take some time, good moment to relax, review your notes, str
 \hypertarget{are-you-ready}{%
 \section{Are you ready?}\label{are-you-ready}}
 
-Are you ready? Did you bring coffee and a good dose of energy? Let's start! We first cover some basics in Chapter \ref{gwas-basics}.
+Are you ready? Did you bring coffee and a good dose of energy? Let's start!
+
+Oh, one more thing: you can save your notebook, the one you just created, to keep all the \passthrough{\lstinline!R!} codes you are applying in the next chapters and add descriptions and notes. If you save this notebook you'll notice that a \passthrough{\lstinline!html!}-file is created. This file is a legible webbrowser-friendly version of your work and contains the codes and the output (code messages, tables, and figures). And the nice thing is, that you can easily share it with others over email.
+
+Ok. 'Nough said, let's move on to cover some basics in Chapter \ref{gwas-basics}.
 
 \hypertarget{gwas-basics}{%
 \chapter{Steps in a Genome-Wide Association Study}\label{gwas-basics}}
@@ -948,9 +1037,9 @@ mkdir -v ~/Desktop/practical/ref_1kg_phase1_all
 
 Next, we'll download the reference.
 
-\begin{lstlisting}
-wget "https://www.dropbox.com/sh/kumfwm7drt2flhp/AAB5n0OcUvJixI9pNiymx6-La?dl=0" -P ~/Desktop/practical/ref_1kg_phase1_all
-\end{lstlisting}
+\url{https://www.dropbox.com/sh/c6h5p7c63dkh11k/AAACPlG_tuNgSqnwq3EQGF2Ja?dl=0}
+
+Make sure you put the data in the \passthrough{\lstinline!\~/Desktop/practical/ref\_1kg\_phase1\_all!} folder.
 
 \hypertarget{filter-the-1000g-data}{%
 \subsubsection{Filter the 1000G data}\label{filter-the-1000g-data}}
@@ -2565,7 +2654,7 @@ The Manhattan plot immediately draws your attention to the peaks above the genom
 \hypertarget{conditional-analyses}{%
 \section{Conditional analyses}\label{conditional-analyses}}
 
-The visualization of a GWAS is very appealing and draws attention to single peaks, and the most significant variant. And with \textbf{clumping} you can identify the independent signals, i.e.~the top variants and their LD buddies in the locus. We implicitly assume that the top variant captures all the variation in the region by its linkage disequilibrium with an unknown causal variant, in other words it is `tagging' the (un)measured potential causal variant in the region. Intuitively it is unlikely that a single causal variant is accounting for all the LD between the unknown causal variant and the measured (genotyped or imputed) variants at the locus. So, a naive focus on only the top variant ignores the fact that multiple causal variants exist and thus the variation captured by that single top variant underestimates the total variation that could be explained by that single region (locus).
+The visualization of a GWAS is very appealing and draws attention to single peaks, and the most significant variant. And with \textbf{clumping} you can identify the independent signals, \emph{i.e.} the top variants and their LD buddies in the locus. We implicitly assume that the top variant captures all the variation in the region by its linkage disequilibrium with an unknown causal variant, in other words it is `tagging' the (un)measured potential causal variant in the region. Intuitively it is unlikely that a single causal variant is accounting for all the LD between the unknown causal variant and the measured (genotyped or imputed) variants at the locus. So, a naive focus on only the top variant ignores the fact that multiple causal variants exist and thus the variation captured by that single top variant underestimates the total variation that could be explained by that single region (locus).
 
 \textbf{Conditional analysis} is a tool to identify the secondary variants associated with the trait of interest. This involves conditioning the association model (\passthrough{\lstinline!trait \~ Variant X + covariates!}) on the primary variant associated in that locus. A more comprehensive and general approach would be to condition on each variant in the whole genome starting with the top variants and stepwise selecting additional variants according to their conditional p-values. This strategy could potentially result in multiple top variants in the same locus. In other words, it could uncover different haplotypes that are causing the same association with the trait of interest.
 
@@ -2583,15 +2672,15 @@ There are multiple methods and tools developed to get to this answer. I list a f
 
 \textbf{FINEMAP}
 
-This tool is very fast and versatile, and was developed by Christian Benner. It will identify the credible sets for each locus and calculates the posterior probabilities for each set. This is the more hands-on version of getting to credible sets.
+This tool is very fast and versatile, and was developed by Christian Benner. It will identify the \emph{credible sets} for each locus and calculates the \emph{posterior probabilities} for each set. This is the more hands-on version of getting to \emph{credible sets}.
 
 \textbf{LocusZoom}
 
-You could upload - privately or publicly - your data to \href{https://my.locuszoom.org}{my.locuszoom.org} and obtain a list of causal variants with posterior probabilities. It uses a \href{https://statgen.github.io/gwas-credible-sets/method/locuszoom-credible-sets.pdf}{simple procedure} to obtain the credible sets using \href{https://github.com/statgen/gwas-credible-sets/}{these scripts}. This is the more lazy version of getting a list of likely causal variants.
+You could upload - privately or publicly - your data to \href{https://my.locuszoom.org}{my.locuszoom.org} and obtain a list of causal variants with posterior probabilities. It uses a \href{https://statgen.github.io/gwas-credible-sets/method/locuszoom-credible-sets.pdf}{simple procedure} to obtain the \emph{credible sets} using \href{https://github.com/statgen/gwas-credible-sets/}{these scripts}. This is the more lazy version of getting a list of likely causal variants.
 
 \textbf{SuSIE}
 
-An laternate approach to credible set identification is through \href{https://stephenslab.github.io/susieR/index.html}{SuSIE}. Through SuSIE you can identify credible sets under the assumption of multiple causal variants, whereas \textbf{FINEMAP} assumes a single causal variant.
+An laternate approach to \emph{credible set} identification is through \href{https://stephenslab.github.io/susieR/index.html}{SuSIE}. Through SuSIE you can identify \emph{credible sets} under the assumption of multiple causal variants, whereas \textbf{FINEMAP} assumes a single causal variant.
 
 For now, we will skip this part. I will add a whole chapter on this at some later stage.
 
@@ -2609,23 +2698,30 @@ A \textbf{phenome-wide association study}, or \textbf{PheWAS}, deals with assess
 
 Again, we'll get a bit hands-on and more \emph{Do It Yourself} in the chapter that deals with this. Let's jump over to Chapter \ref{phewas}.
 
+\hypertarget{colocalization}{%
+\section{Colocalization}\label{colocalization}}
+
+From all of the above follows another intuitive question. Suppose a signal in your trait also shows association - to some extent - with other traits. Do these two signals than significantly overlap, more so than you would think based on chance? \textbf{Colocalization} deals with exactly this question.
+
+We are not going to deal with \textbf{colocalization}, but a nice starting point is \href{https://github.com/oliviasabik/RACER}{RACER} about which you can read more in chapter @ref(add\_chapter\_regional\_plot). I will add a whole chapter on this at some later stage.
+
 \hypertarget{genetic-correlation}{%
 \section{Genetic correlation}\label{genetic-correlation}}
 
-Because of the underlying biology or because of the way they are measured or calculated, traits can be highly correlated - phenotypically. That is to say, when the levels of HDL are high, LDL is probably low, and so when you draw a correlation plot from some data obtained in a general population you'll see a nice pattern. Biology may also cause traits to be genetically correlated: the same genetic variants influence multiple traits. In other words, if a variant is associated with higher levels of LDL-cholesterol, it may alternatively be associated with lower HDL-cholesterol, etc. Genetic correlation will aid in further understanding the relations between traits biologically: if there is a strong genetic correlation, it is may be due to the same biological pathways and so the traits are `linked' through the same processes (maybe counter-acting processes).
+Because of the underlying biology or because of the way they are measured or calculated, traits can be highly correlated - phenotypically. That is to say, when the levels of HDL are high, LDL is probably low, and so when you draw a correlation plot from some data obtained in a general population you'll see a nice pattern. Biology may also cause traits to be genetically correlated: the same genetic variants influence multiple traits. In other words, if a variant is associated with higher levels of LDL-cholesterol, it may alternatively be associated with lower HDL-cholesterol, etc. Genetic correlation will aid in further understanding the relations between traits biologically: if there is a strong \textbf{genetic correlation}, it is may be due to the same biological pathways and so the traits are `linked' through the same processes (maybe counter-acting processes).
 
 \begin{quote}
-Puzzle: what other phenomenom could cause a high but spurious genetic correlation?
+Puzzle: what other phenomenom could cause a high but spurious \textbf{genetic correlation}?
 \end{quote}
 
-We are not going to deal with genetic correlation. I will add a whole chapter on this at some later stage.
+We are not going to deal with \textbf{genetic correlation}. I will add a whole chapter on this at some later stage.
 
 \hypertarget{causal-inference-mendelian-randomization}{%
 \section{Causal inference: Mendelian Randomization}\label{causal-inference-mendelian-randomization}}
 
 In observational studies we may find a strong association between a certain risk factor or biomarker and a disease. For instance, epidemiological studies show that high circulating cystatin C is associated with risk of cardiovascular disease (CVD), independent of creatinine-based renal function measurements\citep{vanderlaan2016}. However, residual confounding and reverse causality remain alternative explanations for the strong correlation between cystatin C and CVD, both of which are difficult to tease apart from traditional observational (epidemiological) studies.
 
-Mendelian Randomization (MR) harnesses the properties of the genome to enable causal inference of a biomarker. Specifically, the invariant nature of the genome and the random distribution of alleles from parents to offspring at conception mean that genetic information is not influenced by disease status (reverse causality) and should be free from confounding by traditional risk factors\citep{vanderlaan2016}. So, genetic variation that modulates serum concentrations of cystatin C could serve as an instrumental variable to assess the effect of lifelong elevated concentrations of cystatin C on disease risk, independent of potential confounders\citep{vanderlaan2016}.
+\textbf{Mendelian Randomization (MR)} harnesses the properties of the genome to enable causal inference of a biomarker. Specifically, the invariant nature of the genome and the random distribution of alleles from parents to offspring at conception mean that genetic information is not influenced by disease status (reverse causality) and should be free from confounding by traditional risk factors\citep{vanderlaan2016}. So, genetic variation that modulates serum concentrations of cystatin C could serve as an instrumental variable to assess the effect of lifelong elevated concentrations of cystatin C on disease risk, independent of potential confounders\citep{vanderlaan2016}.
 
 Finding the causal genes for complex disease is a primary objective of many researchers, because these genes are putative therapeutic targets. In this course we intend to find out whether Type 2 Diabetes (T2D) causes coronary artery disease and ischemic stroke.
 
@@ -2815,7 +2911,7 @@ As with any proper epilogue I should not forget a heartfelt and honest thank you
 \hypertarget{add_chapter_regional_plot}{%
 \chapter{Additional: regional association plots}\label{add_chapter_regional_plot}}
 
-We can further visualize regions of interest using a package like \href{http://locuszoom.org}{LocusZoom}. But first we need to find the independent hits by \emph{clumping} the results. We will just use the defaults, but please take a note of all the options here \url{https://www.cog-genomics.org/plink/1.9/postproc\#clump}
+First we need to find the independent hits by \emph{clumping} the results. We will just use the defaults, but please take a note of all the options here \url{https://www.cog-genomics.org/plink/1.9/postproc\#clump}
 
 \begin{lstlisting}
 plink --bfile gwas/gwa --clump gwas/data.assoc.logistic --clump-p1 5e-8 --clump-p2 0.05 --clump-kb 500 --clump-r2 0.05 --clump-verbose --out gwas/data.assoc.logistic
@@ -2903,7 +2999,14 @@ cat $ROOTDIR/gwas/data.assoc.logistic.clumped
 ## ------------------------------------------------------------------
 \end{lstlisting}
 
-Clumping identifies three loci and now that you know them, you can visualize them using LocusZoom. First, let's get what we need (\passthrough{\lstinline!SNP!} and \passthrough{\lstinline!P!}) and gzip the results.
+In summary, clumping identifies three loci and now that you know them.
+
+\hypertarget{locuszoom}{%
+\section{LocusZoom}\label{locuszoom}}
+
+Now you are ready to visualize regions of interest using a package like \href{http://locuszoom.org}{LocusZoom}. Locuszoom is a great and easy tool, you'll soon discover. It's the fast and lazy way to get regional association plots.
+
+First, let's get what we need (\passthrough{\lstinline!SNP!} and \passthrough{\lstinline!P!}) and gzip the results.
 
 \begin{lstlisting}
 echo "SNP P" > gwas/data.assoc.logistic.locuszoom
@@ -2911,7 +3014,7 @@ cat gwas/data.assoc.logistic | awk '$5=="ADD"' | awk '{ print $2, $9 }' >> gwas/
 gzip -v gwas/data.assoc.logistic.locuszoom
 \end{lstlisting}
 
-Now you are ready to upload this \passthrough{\lstinline!data.assoc.logistic.locuszoom.gz!} file to the site: \url{http://locuszoom.org}. Try to visualize each locus using the information above and by following the instructions. Choose HapMap 2, hg18, CEU as the LD-reference.
+You can to upload this \passthrough{\lstinline!data.assoc.logistic.locuszoom.gz!} Try to visualize each locus using the information above and by following the instructions. Choose HapMap 2, hg18, CEU as the LD-reference.
 
 You should get something like below.
 
@@ -2920,6 +3023,147 @@ You should get something like below.
 \includegraphics[width=0.5\textwidth,height=\textheight]{./img/_gwas/CEU.rs7901695.400kb.png}
 
 \includegraphics[width=0.5\textwidth,height=\textheight]{./img/_gwas/CEU.rs8050136.400kb.png}
+
+\hypertarget{racer}{%
+\section{RACER}\label{racer}}
+
+An alternative to create regional association plots for each of these loci is using \href{https://github.com/oliviasabik/RACER}{\textbf{RACER}}. This packages offers substantial flexibility, and quite frankly, code-wise is easier to edit - think colorscheme, background etc. - as it is based on \href{https://ggplot2.tidyverse.org}{\passthrough{\lstinline!ggplot2!}}. The creator, Olivia Sabik, also wrote a nice \href{https://oliviasabik.github.io/RACERweb/index.html}{vignette} with excellent instructions.
+
+Using \textbf{RACER} is also a step-up to \textbf{colocalization} about which you read a bit more in chapter \ref{post-gwas}.
+
+Right, so from the above we identified three independent hits: rs6802898, rs7901695, rs8050136. Let's put them in a dataset with their chromosome and basepair position and create a list.
+
+\begin{lstlisting}[language=R]
+rsID <- c("rs6802898", "rs7901695", "rs8050136")
+CHR <- as.integer(c(3, 10, 16))
+BP <- as.integer(c(12366207, 114744078, 52373776))
+# BPend <- c(12366207 + 500000, 114744078 + 500000, 52373776 + 500000)
+
+variant_list <- data.frame(rsID, CHR, BP)
+\end{lstlisting}
+
+\begin{lstlisting}[language=R]
+variant_list
+\end{lstlisting}
+
+\begin{lstlisting}
+##        rsID CHR        BP
+## 1 rs6802898   3  12366207
+## 2 rs7901695  10 114744078
+## 3 rs8050136  16  52373776
+\end{lstlisting}
+
+\begin{lstlisting}[language=R]
+variants_of_interest <- c(variant_list$rsID)
+
+variants_of_interest
+\end{lstlisting}
+
+\begin{lstlisting}
+## [1] "rs6802898" "rs7901695" "rs8050136"
+\end{lstlisting}
+
+We can now take the filtered and prepared GWAS summary statistics, \emph{i.e.} \passthrough{\lstinline!gwas\_assoc\_compl!} you created earlier in chapter \ref{gwas-visuals}, to draw three nice regional association plots around these variants.
+
+This file should contain the following:
+
+\begin{lstlisting}
+tibble [306,102 × 14] (S3: tbl_df/tbl/data.frame)
+ $ SNP     : chr [1:306102] "rs10000010" "rs10000023" "rs10000030" "rs1000007" ...
+ $ CHR     : int [1:306102] 4 4 4 2 4 4 16 4 2 4 ...
+ $ BP      : int [1:306102] 21227772 95952929 103593179 237416793 21504615 157793485 24325037 33810744 235355721 77575270 ...
+ $ A1      : chr [1:306102] "C" "T" "A" "C" ...
+ $ A2      : chr [1:306102] "T" "G" "G" "T" ...
+ $ MAF     : num [1:306102] 0.426 0.484 0.162 0.312 0.343 ...
+ $ callrate: num [1:306102] 0.999 0.989 0.998 1 0.991 ...
+ $ NMISS   : int [1:306102] 3996 3957 3991 4000 3963 3919 3899 3931 3927 3941 ...
+ $ NCHROBS : int [1:306102] 7992 7914 7982 8000 7926 7838 7798 7862 7854 7882 ...
+ $ BETA    : num [1:306102] 0.04114 -0.00985 -0.02235 0.01784 -0.07904 ...
+ $ SE      : num [1:306102] 0.0457 0.0456 0.0605 0.0489 0.0471 ...
+ $ OR      : num [1:306102] 1.042 0.99 0.978 1.018 0.924 ...
+ $ STAT    : num [1:306102] 0.901 -0.216 -0.37 0.365 -1.677 ...
+ $ P       : num [1:306102] 0.3676 0.829 0.7117 0.7152 0.0935 ...
+ - attr(*, ".internal.selfref")=<externalptr> 
+ - attr(*, "sorted")= chr "SNP"
+\end{lstlisting}
+
+We could limit ourselves by limiting the region to plot by the clump-size (see above), but generally it's fine to just `take the top variant ± 500kb'.
+
+\begin{lstlisting}[language=R]
+library(RACER)
+
+RANGE=500000
+
+for(VARIANT in variants_of_interest){
+  cat(paste0("Getting data for ", VARIANT,".\n"))
+
+  tempCHR <- subset(variant_list, rsID == VARIANT)[,2]
+  tempSTART <- subset(variant_list, rsID == VARIANT)[,3] - RANGE
+  tempEND <- subset(variant_list, rsID == VARIANT)[,3] + RANGE
+  tempVARIANTnr <- subset(variant_list, rsID == VARIANT)[,1]
+
+  cat("\nSubset required data.\n")
+  temp <- subset(gwas_assoc_compl, 
+                 CHR == tempCHR & (BP >= tempSTART & BP <= tempEND))
+
+  cat("\nFormatting association data.\n")
+  # make sure you have the right column numbers here!
+  temp_f = RACER::formatRACER(assoc_data = temp, chr_col = 2, pos_col = 3, p_col = 14)
+
+  cat("\nGetting LD data.\n")
+  temp_f_ld = RACER::ldRACER(assoc_data = temp_f, rs_col = 1, pops = "EUR", lead_snp = VARIANT)
+  
+  cat(paste0("\nPlotting region surrounding ", VARIANT," on ",tempCHR,":",tempSTART,"-",tempEND,".\n"))
+  # source(paste0(PROJECT_loc, "/scripts/functions.R"))
+  p1 <- singlePlotRACER(assoc_data = temp_f_ld, 
+                               chr = tempCHR, build = "hg19", 
+                               plotby = "snp", snp_plot = VARIANT,
+                               label_lead = TRUE)
+  
+  print(p1)
+  cat(paste0("Saving image for ", VARIANT,".\n"))
+  ggsave(filename = paste0(COURSE_loc, "/gwas/", tempVARIANTnr, ".",VARIANT,".regional_assoc.png"), plot = p1)
+  # ggsave(filename = paste0(COURSE_loc, "/gwas/", tempVARIANTnr, ".",VARIANT,".regional_assoc.pdf"), plot = p1)
+  # ggsave(filename = paste0(COURSE_loc, "/gwas/", tempVARIANTnr, ".",VARIANT,".regional_assoc.eps"), plot = p1)
+  
+  rm(temp, p1,
+     temp_f, temp_f_ld,
+     tempCHR, tempSTART, tempEND,
+     VARIANT, tempVARIANTnr)
+  
+}
+\end{lstlisting}
+
+This should produce the figure similar to these below.
+
+\begin{figure}
+
+{\centering \includegraphics[width=25.25in]{img/_gwas/rs6802898.rs6802898.regional_assoc} 
+
+}
+
+\caption{Regional association plots.}\label{fig:show-racer}
+\end{figure}
+\begin{figure}
+
+{\centering \includegraphics[width=25.25in]{img/_gwas/rs7901695.rs7901695.regional_assoc} 
+
+}
+
+\caption{Regional association plots.}\label{fig:show-racer}
+\end{figure}
+\begin{figure}
+
+{\centering \includegraphics[width=25.25in]{img/_gwas/rs8050136.rs8050136.regional_assoc} 
+
+}
+
+\caption{Regional association plots.}\label{fig:show-racer}
+\end{figure}
+
+\begin{quote}
+Please note that we are letting RACER plot the variants on genome build 37 (hg19), but we actually provide hg18-based chromosome and basepair positions. The proper thing to do is to \href{https://genome.sph.umich.edu/wiki/LiftOver}{liftOver} our coordinates to match those in hg19. Here we didn't, because I just wanted to show you the `how it's done'. In a future edition I will make sure we will liftOver first.
+\end{quote}
 
 \hypertarget{eigensoft}{%
 \chapter{Additional: EIGENSOFT}\label{eigensoft}}
@@ -2988,16 +3232,22 @@ Obviously this list is not exhaustive nor intended for practical use for anyone 
 \section{MoSCoW}\label{moscow}}
 
 List of to-do's according to MoSCoW: \emph{must have}, \emph{should have}, \emph{could have}, \emph{would have}.
-\#\#\# Contents
+
+\hypertarget{contents}{%
+\subsection{Contents}\label{contents}}
 
 \begin{itemize}
 \tightlist
+\item[$\boxtimes$]
+  \passthrough{\lstinline!M!} add in full installation instructions for UBUNTU
+\item
+  {[}{]} \passthrough{\lstinline!M!} add in full installation instructions for macOS
 \item
   {[}{]} \passthrough{\lstinline!M!} conditional analysis
 \item
   {[}{]} \passthrough{\lstinline!M!} statistical finemapping
-\item
-  {[}{]} \passthrough{\lstinline!M!} regional association plotting
+\item[$\boxtimes$]
+  \passthrough{\lstinline!M!} regional association plotting
 \item
   {[}{]} \passthrough{\lstinline!M!} colocalization with formal testing
 \item
@@ -3015,7 +3265,7 @@ List of to-do's according to MoSCoW: \emph{must have}, \emph{should have}, \emph
 \item
   {[}{]} \passthrough{\lstinline!C!} GWASToolKit
 \item
-  {[}{]} \passthrough{\lstinline!M!} PlaqView lookups
+  {[}{]} \passthrough{\lstinline!C!} PlaqView lookups
 \end{itemize}
 
 \hypertarget{book-fixes}{%
@@ -3035,6 +3285,8 @@ List of to-do's according to MoSCoW: \emph{must have}, \emph{should have}, \emph
   {[}{]} \passthrough{\lstinline!S!} EPUB is not formatted properly (text runs over)
 \item
   {[}{]} \passthrough{\lstinline!S!} different setup for the chapter Additional chapters (this as a Apendix)
+\item[$\boxtimes$]
+  \passthrough{\lstinline!S!} fix the way the team is displayed
 \end{itemize}
 
 \hypertarget{useful-links}{%
