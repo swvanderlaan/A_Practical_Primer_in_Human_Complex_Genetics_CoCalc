@@ -63,7 +63,7 @@ We work with a team of enthusiastic lecturers with experience in bioinformatics,
 | ![](img/sander_vander_laan.jpg){width=15%}</br>Sander W. van der Laan</br>_Assistant professor_</br>Course coordinator</br><s.w.vanderlaan-2@umcutrecht.nl> \| [swvanderlaan](http://www.twitter.com/swvanderlaan){target="_blank"} |  |
 | ![](img/charlotte_onland.jpg){width=15%}</br>N. Charlotte Onland-Moret</br>_Associate Professor_</br><N.C.Onland@umcutrecht.nl> \| [nconland](http://www.twitter.com/nconland){target="_blank"} | ![](img/jessica_van_setten.jpg){width=15%}</br>Jessica van Setten</br>_Assistant professor_</br><j.vansetten@umcutrecht.nl> \| [j_vansetten](http://www.twitter.com/j_vansetten){target="_blank"} |
 | ![](img/marion_van_vugt.jpg){width=15%}</br>Marion van Vugt</br>_PhD student_</br><M.vanVugt-2@umcutrecht.nl> \| [MarionVugt](http://www.twitter.com/MarionVugt){target="_blank"} | ![](img/kristel_van_eijk.jpg){width=15%}</br>Kristel van Eijk</br>_Bioinformatician_</br><K.vanEijk-2@umcutrecht.nl> |
-| ![](img/sanne_peters.jpg){width=15%}</br>Sanne A.E. Peters</br>_Associate professor_</br><s.a.e.peters@umcutrecht.nl> \| [saepeters](http://www.twitter.com/saepeters){target="_blank"} | |
+| ![](img/sanne_peters.jpg){width=15%}</br>Sanne A.E. Peters</br>_Associate professor_</br><s.a.e.peters@umcutrecht.nl> \| [saepeters](http://www.twitter.com/saepeters){target="_blank"} | ![](img/bas_heijmans.jpeg){width=15%}</br>Bas T. Heijmans</br>_Professor_</br><b.t.heijmans@lumc.nl> |
 
 <!-- ![](img/sander_vander_laan.jpg){width=15%}</br> -->
 <!-- Sander W. van der Laan</br> -->

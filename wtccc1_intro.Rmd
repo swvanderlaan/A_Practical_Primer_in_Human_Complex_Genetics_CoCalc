@@ -30,11 +30,15 @@ Your assignment is to do the following:
 
 Before we start we need to create a proper folder and download the data.
 
-Next, we'll download the reference. 
+Next, we'll download the WTCCC1 data 
 
-```
-wget "https://www.dropbox.com/sh/kumfwm7drt2flhp/AAB5n0OcUvJixI9pNiymx6-La?dl=0" -P ~/Desktop/practical/
-```
+https://www.dropbox.com/sh/kumfwm7drt2flhp/AAB5n0OcUvJixI9pNiymx6-La?dl=0
+
+Make sure you put the data in the `~/Desktop/practical/` folder.
+
+<!-- ``` -->
+<!-- wget "https://www.dropbox.com/sh/kumfwm7drt2flhp/AAB5n0OcUvJixI9pNiymx6-La?dl=0" -P ~/Desktop/practical/ -->
+<!-- ``` -->
 
 
 ## There you go
