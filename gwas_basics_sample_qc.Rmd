@@ -211,7 +211,7 @@ ggpubr::ggscatter(raw_IMISSHET, x = "logF_MISS", y = "meanHet",
 # knitr::include_graphics("./img/_gwas/show-heterozygosity.png")
 # knitr::include_graphics("img/_gwas/show-heterozygosity.png")
 knitr::include_graphics("img/show-heterozygosity.png")
-knitr::include_graphics("img/_gwas/show-heterozygosity.png")
+# knitr::include_graphics("img/_gwas/show-heterozygosity.png")
 ```
 
 Examine the plot (Figure \@ref(fig:show-heterozygosity)) to decide reasonable thresholds at which to exclude individuals based on elevated missing or extreme heterozygosity. We chose to exclude all individuals with a genotype failure rate >= 0.03 (vertical dashed line) and/or a heterozygosity rate ± 3 s.d. from the mean (horizontal dashed lines). Add the FID and IID of the samples failing this QC to the file named `fail-imisshet-qc.txt`.

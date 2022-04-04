@@ -51,7 +51,7 @@ Researchers from the VUMC in Amsterdam have created an online tool that aids in 
 We have covered some aspects of post-GWAS analyses, and a lot are covered by FUMA. Let's try and annotate our WTCCC1 results. The assignment in this chapter \@ref(fuma) will be a bit more _Do It Yourself_.
 
 
-## PheWAS
+## Phenome-wide association study
 
 A **phenome-wide association study**, or **PheWAS**, deals with assessing the association of top variants identified in GWAS with other traits. Through a **PheWAS** you'll to get a notion whether on any of the top variants, the independent hits in your GWAS, have pleiotropic effects. In other words, whether your independent hits have effects on other traits too. This will paint a picture as it were about the role the genetic locus you identified plays in life: is it unique to your trait or does it affect other traits as well? What does it mean when your top variant near the gene _FTO_ associates not only to BMI, but also to type 2 diabetes and coronary artery disease? **PheWAS** will not answer that question, but they do help in inventory all the other traits to which your hits are associated.
 

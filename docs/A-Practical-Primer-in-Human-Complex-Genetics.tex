@@ -852,14 +852,6 @@ ggpubr::ggscatter(raw_IMISSHET, x = "logF_MISS", y = "meanHet",
 
 \caption{Heterozygosity as a function of SNP call rate.}\label{fig:show-heterozygosity}
 \end{figure}
-\begin{figure}
-
-{\centering \includegraphics[width=18.67in]{img/_gwas/show-heterozygosity} 
-
-}
-
-\caption{Heterozygosity as a function of SNP call rate.}\label{fig:show-heterozygosity}
-\end{figure}
 
 Examine the plot (Figure \ref{fig:show-heterozygosity}) to decide reasonable thresholds at which to exclude individuals based on elevated missing or extreme heterozygosity. We chose to exclude all individuals with a genotype failure rate \textgreater= 0.03 (vertical dashed line) and/or a heterozygosity rate ± 3 s.d. from the mean (horizontal dashed lines). Add the FID and IID of the samples failing this QC to the file named \passthrough{\lstinline!fail-imisshet-qc.txt!}.
 
@@ -2699,8 +2691,8 @@ Researchers from the VUMC in Amsterdam have created an online tool that aids in 
 
 We have covered some aspects of post-GWAS analyses, and a lot are covered by FUMA. Let's try and annotate our WTCCC1 results. The assignment in this chapter \ref{fuma} will be a bit more \emph{Do It Yourself}.
 
-\hypertarget{phewas}{%
-\section{PheWAS}\label{phewas}}
+\hypertarget{phenome-wide-association-study}{%
+\section{Phenome-wide association study}\label{phenome-wide-association-study}}
 
 A \textbf{phenome-wide association study}, or \textbf{PheWAS}, deals with assessing the association of top variants identified in GWAS with other traits. Through a \textbf{PheWAS} you'll to get a notion whether on any of the top variants, the independent hits in your GWAS, have pleiotropic effects. In other words, whether your independent hits have effects on other traits too. This will paint a picture as it were about the role the genetic locus you identified plays in life: is it unique to your trait or does it affect other traits as well? What does it mean when your top variant near the gene \emph{FTO} associates not only to BMI, but also to type 2 diabetes and coronary artery disease? \textbf{PheWAS} will not answer that question, but they do help in inventory all the other traits to which your hits are associated.
 
@@ -2850,9 +2842,9 @@ So, my advice: use FUMA (why not be lazy rather than work hard?), but aware of s
 That said, time to move on to inspect other phenotypes in relation to your findings in the next Chapter \ref{phewas} or to return to the previous chapter on post-GWAS analyses \ref{post-gwas}.
 
 \hypertarget{phewas}{%
-\chapter{Phenome-Wide Association Study (PheWAS)}\label{phewas}}
+\chapter{Phenome-Wide Association Study}\label{phewas}}
 
-Given the large biobanks available nowadays that have also genotyped the participants and collected a vast-array of information on them, it is possible to perform a phenome-wide association study, a PheWAS.
+Given the large biobanks available nowadays that have also genotyped the participants and collected a vast-array of information on them, it is possible to perform a \textbf{Phe}nome-\textbf{W}ide \textbf{A}ssociation \textbf{S}tudy.
 
 There are several options in (Table \ref{tab:tab-phewas}).
 
@@ -3228,83 +3220,6 @@ cd EIG/src
 make
 make install
 \end{lstlisting}
-
-\hypertarget{todo}{%
-\chapter{Things to do}\label{todo}}
-
-I provide a list of things to do, to improve, to alter, to edit or to add. Crazy ideas. Useful tips, tricks, or links.
-
-Obviously this list is not exhaustive nor intended for practical use for anyone else but me.
-
-\hypertarget{moscow}{%
-\section{MoSCoW}\label{moscow}}
-
-List of to-do's according to MoSCoW: \emph{must have}, \emph{should have}, \emph{could have}, \emph{would have}.
-
-\hypertarget{contents}{%
-\subsection{Contents}\label{contents}}
-
-\begin{itemize}
-\tightlist
-\item[$\boxtimes$]
-  \passthrough{\lstinline!M!} add in full installation instructions for UBUNTU
-\item
-  {[}{]} \passthrough{\lstinline!M!} add in full installation instructions for macOS
-\item
-  {[}{]} \passthrough{\lstinline!M!} conditional analysis
-\item
-  {[}{]} \passthrough{\lstinline!M!} statistical finemapping
-\item[$\boxtimes$]
-  \passthrough{\lstinline!M!} regional association plotting
-\item
-  {[}{]} \passthrough{\lstinline!M!} colocalization with formal testing
-\item
-  {[}{]} \passthrough{\lstinline!S!} meta-analysis with dummy data
-
-  \begin{itemize}
-  \tightlist
-  \item
-    \passthrough{\lstinline!S!} including stratified QQ plots
-  \item
-    \passthrough{\lstinline!M!} HPC version with MetaGWASToolKit
-  \item
-    \passthrough{\lstinline!S!} stand-alone version with METAL
-  \end{itemize}
-\item
-  {[}{]} \passthrough{\lstinline!C!} GWASToolKit
-\item
-  {[}{]} \passthrough{\lstinline!C!} PlaqView lookups
-\end{itemize}
-
-\hypertarget{book-fixes}{%
-\section{Book fixes}\label{book-fixes}}
-
-\begin{itemize}
-\tightlist
-\item[$\boxtimes$]
-  \passthrough{\lstinline!M!} overall rendering too slow, paste in images as figure instead of on the fly generating
-\item[$\boxtimes$]
-  \passthrough{\lstinline!M!} PDF is too large
-\item
-  {[}{]} \passthrough{\lstinline!S!} PDF is not formatted properly (text runs over)
-\item
-  {[}{]} \passthrough{\lstinline!C!} Different font type in PDF
-\item
-  {[}{]} \passthrough{\lstinline!S!} EPUB is not formatted properly (text runs over)
-\item
-  {[}{]} \passthrough{\lstinline!S!} different setup for the chapter Additional chapters (this as a Apendix)
-\item[$\boxtimes$]
-  \passthrough{\lstinline!S!} fix the way the team is displayed
-\end{itemize}
-
-\hypertarget{useful-links}{%
-\section{Useful links}\label{useful-links}}
-
-\url{https://bookdown.org/yihui/rmarkdown-cookbook/unnumbered-sections.html}
-
-\url{https://bookdown.org/yihui/bookdown/cross-references.html}
-
-\url{https://pandoc.org/MANUAL.html\#extension-header_attributes}
 
 \hypertarget{license}{%
 \chapter{Licenses and disclaimers}\label{license}}

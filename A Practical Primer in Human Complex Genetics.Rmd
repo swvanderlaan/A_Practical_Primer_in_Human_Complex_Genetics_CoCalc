@@ -694,7 +694,7 @@ ggpubr::ggscatter(raw_IMISSHET, x = "logF_MISS", y = "meanHet",
 # knitr::include_graphics("./img/_gwas/show-heterozygosity.png")
 # knitr::include_graphics("img/_gwas/show-heterozygosity.png")
 knitr::include_graphics("img/show-heterozygosity.png")
-knitr::include_graphics("img/_gwas/show-heterozygosity.png")
+# knitr::include_graphics("img/_gwas/show-heterozygosity.png")
 ```
 
 Examine the plot (Figure \@ref(fig:show-heterozygosity)) to decide reasonable thresholds at which to exclude individuals based on elevated missing or extreme heterozygosity. We chose to exclude all individuals with a genotype failure rate >= 0.03 (vertical dashed line) and/or a heterozygosity rate ± 3 s.d. from the mean (horizontal dashed lines). Add the FID and IID of the samples failing this QC to the file named `fail-imisshet-qc.txt`.
@@ -2320,7 +2320,7 @@ Researchers from the VUMC in Amsterdam have created an online tool that aids in 
 We have covered some aspects of post-GWAS analyses, and a lot are covered by FUMA. Let's try and annotate our WTCCC1 results. The assignment in this chapter \@ref(fuma) will be a bit more _Do It Yourself_.
 
 
-## PheWAS
+## Phenome-wide association study
 
 A **phenome-wide association study**, or **PheWAS**, deals with assessing the association of top variants identified in GWAS with other traits. Through a **PheWAS** you'll to get a notion whether on any of the top variants, the independent hits in your GWAS, have pleiotropic effects. In other words, whether your independent hits have effects on other traits too. This will paint a picture as it were about the role the genetic locus you identified plays in life: is it unique to your trait or does it affect other traits as well? What does it mean when your top variant near the gene _FTO_ associates not only to BMI, but also to type 2 diabetes and coronary artery disease? **PheWAS** will not answer that question, but they do help in inventory all the other traits to which your hits are associated.
 
@@ -2447,9 +2447,9 @@ That said, time to move on to inspect other phenotypes in relation to your findi
 
 <!--chapter:end:fuma.Rmd-->
 
-# Phenome-Wide Association Study (PheWAS) {#phewas}
+# Phenome-Wide Association Study {#phewas}
 
-Given the large biobanks available nowadays that have also genotyped the participants and collected a vast-array of information on them, it is possible to perform a phenome-wide association study, a PheWAS.
+Given the large biobanks available nowadays that have also genotyped the participants and collected a vast-array of information on them, it is possible to perform a **Phe**nome-**W**ide **A**ssociation **S**tudy.
 
 There are several options in (Table \@ref(tab:tab-phewas)).
 
@@ -2726,51 +2726,6 @@ make install
 ```
 
 <!--chapter:end:add_chapter_eigensoft.Rmd-->
-
-# Things to do {#todo}
-
-I provide a list of things to do, to improve, to alter, to edit or to add. Crazy ideas. Useful tips, tricks, or links. 
-
-Obviously this list is not exhaustive nor intended for practical use for anyone else but me.
-
-## MoSCoW
-
-List of to-do's according to MoSCoW: _must have_, _should have_, _could have_, _would have_.
-
-### Contents
-
-- [x] `M` add in full installation instructions for UBUNTU
-- [] `M` add in full installation instructions for macOS
-- [] `M` conditional analysis
-- [] `M` statistical finemapping
-- [x] `M` regional association plotting
-- [] `M` colocalization with formal testing
-- [] `S` meta-analysis with dummy data
-    - `S` including stratified QQ plots
-    - `M` HPC version with MetaGWASToolKit
-    - `S` stand-alone version with METAL
-- [] `C` GWASToolKit
-- [] `C` PlaqView lookups
-
-## Book fixes
-
-- [x] `M` overall rendering too slow, paste in images as figure instead of on the fly generating
-- [x] `M` PDF is too large
-- [] `S` PDF is not formatted properly (text runs over)
-- [] `C` Different font type in PDF
-- [] `S` EPUB is not formatted properly (text runs over)
-- [] `S` different setup for the chapter Additional chapters (this as a Apendix)
-- [x] `S` fix the way the team is displayed
-
-## Useful links
-
-https://bookdown.org/yihui/rmarkdown-cookbook/unnumbered-sections.html
-
-https://bookdown.org/yihui/bookdown/cross-references.html
-
-https://pandoc.org/MANUAL.html#extension-header_attributes
-
-<!--chapter:end:todo.Rmd-->
 
 # Licenses and disclaimers {#license}
 

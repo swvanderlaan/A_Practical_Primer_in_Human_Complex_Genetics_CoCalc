@@ -1,6 +1,6 @@
-# Phenome-Wide Association Study (PheWAS) {#phewas}
+# Phenome-Wide Association Study {#phewas}
 
-Given the large biobanks available nowadays that have also genotyped the participants and collected a vast-array of information on them, it is possible to perform a phenome-wide association study, a PheWAS.
+Given the large biobanks available nowadays that have also genotyped the participants and collected a vast-array of information on them, it is possible to perform a **Phe**nome-**W**ide **A**ssociation **S**tudy.
 
 There are several options in (Table \@ref(tab:tab-phewas)).
 
