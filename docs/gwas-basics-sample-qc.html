@@ -388,7 +388,7 @@ Let’s start with the per-sample quality control.</p>
 <span id="cb28-9"><a href="gwas-basics-sample-qc.html#cb28-9" aria-hidden="true" tabindex="-1"></a>                <span class="at">color =</span> <span class="st">&quot;#E55738&quot;</span>, <span class="at">size =</span> <span class="dv">1</span>)</span></code></pre></div>
 <p>The grey dashed line in Figure <a href="gwas-basics-sample-qc.html#fig:show-sample-callrate">4.1</a> indicates the mean call rate, while the red dashed line indicates the threshold we had determined above.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:show-sample-callrate"></span>
-<img src="img/_gwas/sample-callrate.png" alt="Per sample call rate." width="672" />
+<img src="img/sample-callrate.png" alt="Per sample call rate." width="672" />
 <p class="caption">
 Figure 4.1: Per sample call rate.
 </p>
@@ -472,7 +472,7 @@ awk &#39;($5 == &quot;A&quot; &amp;&amp; $6 == &quot;T&quot;) || ($5 == &quot;T&
 <span id="cb36-10"><a href="gwas-basics-sample-qc.html#cb36-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> prop_miss, <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>,</span>
 <span id="cb36-11"><a href="gwas-basics-sample-qc.html#cb36-11" aria-hidden="true" tabindex="-1"></a>                <span class="at">color =</span> <span class="st">&quot;#E55738&quot;</span>, <span class="at">size =</span> <span class="dv">1</span>)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:show-heterozygosity"></span>
-<img src="img/_gwas/show-heterozygosity.png" alt="Heterozygosity as a function of SNP call rate." width="672" /><img src="img/_gwas/show-heterozygosity.png" alt="Heterozygosity as a function of SNP call rate." width="672" /><img src="img/show-heterozygosity.png" alt="Heterozygosity as a function of SNP call rate." width="672" />
+<img src="img/show-heterozygosity.png" alt="Heterozygosity as a function of SNP call rate." width="672" /><img src="img/_gwas/show-heterozygosity.png" alt="Heterozygosity as a function of SNP call rate." width="672" />
 <p class="caption">
 Figure 4.2: Heterozygosity as a function of SNP call rate.
 </p>
@@ -850,7 +850,7 @@ cp -v rawdata/rawdata.1kg_phase1.pruned.fam rawdata/rawdata.1kg_phase1.pruned.pe
 <span id="cb70-11"><a href="gwas-basics-sample-qc.html#cb70-11" aria-hidden="true" tabindex="-1"></a>                <span class="at">subtitle =</span> <span class="st">&quot;Reference population: HapMap 3&quot;</span>,</span>
 <span id="cb70-12"><a href="gwas-basics-sample-qc.html#cb70-12" aria-hidden="true" tabindex="-1"></a>                <span class="at">legend.title =</span> <span class="st">&quot;Populations&quot;</span>, <span class="at">legend =</span> <span class="st">&quot;right&quot;</span>)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:show-pca-hapmap3"></span>
-<img src="img/_gwas/pca-hapmap3.png" alt="PCA - Your data vs. HapMap 3." width="672" />
+<img src="img/pca-hapmap3.png" alt="PCA - Your data vs. HapMap 3." width="672" />
 <p class="caption">
 Figure 4.3: PCA - Your data vs. HapMap 3.
 </p>
@@ -915,7 +915,7 @@ awk &#39;$3 &lt; 0.075&#39; | awk &#39;{ print $1 }&#39; | awk -F&quot;:&quot; &
 <span id="cb74-13"><a href="gwas-basics-sample-qc.html#cb74-13" aria-hidden="true" tabindex="-1"></a>                <span class="at">legend.title =</span> <span class="st">&quot;Populations&quot;</span>, <span class="at">legend =</span> <span class="st">&quot;right&quot;</span>)</span></code></pre></div>
 <p>In a similar fashion as in the above with the HapMap3 reference, you could <strong>remove the samples below the threshold</strong> based on this PCA (Figure <a href="gwas-basics-sample-qc.html#fig:show-pca-1000g">4.4</a>).</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:show-pca-1000g"></span>
-<img src="img/_gwas/pca-1000g.png" alt="PCA - Your data vs. 1000g." width="672" />
+<img src="img/pca-1000g.png" alt="PCA - Your data vs. 1000g." width="672" />
 <p class="caption">
 Figure 4.4: PCA - Your data vs. 1000g.
 </p>

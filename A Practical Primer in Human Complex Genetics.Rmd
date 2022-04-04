@@ -577,7 +577,7 @@ ggpubr::gghistogram(raw_IMISS, x = "callrate",
 The grey dashed line in Figure \@ref(fig:show-sample-callrate) indicates the mean call rate, while the red dashed line indicates the threshold we had determined above.
 
 ```{r show-sample-callrate, fig.align='center', fig.cap='Per sample call rate.', fig.show = TRUE, echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE}
-knitr::include_graphics("img/_gwas/sample-callrate.png")
+knitr::include_graphics("img/sample-callrate.png")
 
 ```
 
@@ -691,9 +691,10 @@ ggpubr::ggscatter(raw_IMISSHET, x = "logF_MISS", y = "meanHet",
 ```
 
 ```{r show-heterozygosity, fig.align='center', fig.cap='Heterozygosity as a function of SNP call rate.', fig.show = TRUE, echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE}
-knitr::include_graphics("./img/_gwas/show-heterozygosity.png")
-knitr::include_graphics("img/_gwas/show-heterozygosity.png")
+# knitr::include_graphics("./img/_gwas/show-heterozygosity.png")
+# knitr::include_graphics("img/_gwas/show-heterozygosity.png")
 knitr::include_graphics("img/show-heterozygosity.png")
+knitr::include_graphics("img/_gwas/show-heterozygosity.png")
 ```
 
 Examine the plot (Figure \@ref(fig:show-heterozygosity)) to decide reasonable thresholds at which to exclude individuals based on elevated missing or extreme heterozygosity. We chose to exclude all individuals with a genotype failure rate >= 0.03 (vertical dashed line) and/or a heterozygosity rate ± 3 s.d. from the mean (horizontal dashed lines). Add the FID and IID of the samples failing this QC to the file named `fail-imisshet-qc.txt`.
@@ -1115,7 +1116,7 @@ PCAplot <- ggpubr::ggscatter(PCA, x = "V2", y = "V3",
 ```
 
 ```{r show-pca-hapmap3, fig.align='center', fig.cap='PCA - Your data vs. HapMap 3.', fig.show = TRUE, echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE}
-knitr::include_graphics("img/_gwas/pca-hapmap3.png")
+knitr::include_graphics("img/pca-hapmap3.png")
 ```
 
 Derive PC1 and PC2 thresholds so that only individuals who match the given ancestral population are included. For populations of European descent, this will be either the CEU or TSI HapMap3 individuals (Figure \@ref(fig:show-pca-hapmap3)). Here, we chose to exclude all individuals with a second principal component score less than 0.075. 
@@ -1198,7 +1199,7 @@ PCA_1kGplot <- ggpubr::ggscatter(PCA_1kG, x = "V2", y = "V3",
 In a similar fashion as in the above with the HapMap3 reference, you could **remove the samples below the threshold** based on this PCA (Figure \@ref(fig:show-pca-1000g)).
 
 ```{r show-pca-1000g, fig.align='center', fig.cap='PCA - Your data vs. 1000g.', fig.show = TRUE, echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE}
-knitr::include_graphics("img/_gwas/pca-1000g.png")
+knitr::include_graphics("img/pca-1000g.png")
 ```
 
 
@@ -1263,7 +1264,7 @@ ggpubr::gghistogram(clean_LMISS, x = "callrate",
 ```
 
 ```{r show-snp-callrate, fig.align='center', fig.cap='Per SNP call rate.', fig.show = TRUE, echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE}
-knitr::include_graphics(rep("img/_gwas/show-snp-callrate.png"))
+knitr::include_graphics(rep("img/show-snp-callrate.png"))
 ```
 
 ## Differential SNP call rates
@@ -1307,7 +1308,7 @@ ggpubr::gghistogram(clean_FREQ, x = "MAF",
 ```
 
 ```{r show-freq, fig.align='center', fig.cap='Minor allele frequency.', fig.show = TRUE, echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE}
-knitr::include_graphics(rep("img/_gwas/show-freq.png"))
+knitr::include_graphics(rep("img/show-freq.png"))
 ```
 
 
@@ -1365,7 +1366,7 @@ ggpubr::gghistogram(clean_HWE, x = "logP",
 ```
 
 ```{r show-hwe, fig.align='center', fig.cap='Hardy-Weinberg Equilibrium p-values per stratum.', fig.show = TRUE, echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE}
-knitr::include_graphics(rep("img/_gwas/show-hwe.png"))
+knitr::include_graphics(rep("img/show-hwe.png"))
 ```
 
 ## Final SNP QC
@@ -1442,7 +1443,7 @@ ggpubr::gghistogram(gwas_HWE, x = "logP",
 ```
 
 ```{r show-hwe-gwas, fig.align='center', fig.cap='Per stratum HWE p-values.', fig.show = TRUE, echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE}
-knitr::include_graphics(rep("img/_gwas/show-hwe-gwas.png"))
+knitr::include_graphics(rep("img/show-hwe-gwas.png"))
 ```
 
 We will want to see what the distribution of allele frequencies looks like. 
@@ -1457,7 +1458,7 @@ ggpubr::gghistogram(gwas_FRQ, x = "MAF",
 ```
 
 ```{r show-freq-gwas, fig.align='center', fig.cap='Minor allele frequencies.', fig.show = TRUE, echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE}
-knitr::include_graphics(rep("img/_gwas/show-freq-gwas.png"))
+knitr::include_graphics(rep("img/show-freq-gwas.png"))
 ```
 
 We will want to identify samples that have poor call rates.
@@ -1474,7 +1475,7 @@ ggpubr::gghistogram(gwas_IMISS, x = "callrate",
 ```
 
 ```{r show-sample-callrate-gwas, fig.align='center', fig.cap='Per sample call rates.', fig.show = TRUE, echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE}
-knitr::include_graphics(rep("img/_gwas/show-sample-callrate-gwas.png"))
+knitr::include_graphics(rep("img/show-sample-callrate-gwas.png"))
 ```
 
 We also need to know what the per SNP call rates are.
@@ -1491,7 +1492,7 @@ ggpubr::gghistogram(gwas_LMISS, x = "callrate",
 ```
 
 ```{r show-snp-callrate-gwas, fig.align='center', fig.cap='Per SNP call rates.', fig.show = TRUE, echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE}
-knitr::include_graphics(rep("img/_gwas/show-snp-callrate-gwas.png"))
+knitr::include_graphics(rep("img/show-snp-callrate-gwas.png"))
 ```
 
 
@@ -1654,7 +1655,7 @@ abline(h = gwas_threshold,
 ```
 
 ```{r show-qq, fig.align='center', fig.cap='A QQ plot.', fig.show = TRUE, echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE}
-knitr::include_graphics(rep("img/_gwas/show-qq.png"))
+knitr::include_graphics(rep("img/show-qq.png"))
 ```
 
 ## Manhattan plots
@@ -1670,7 +1671,7 @@ manhattan(gwas_assoc_compl, main = "Manhattan Plot",
 ```
 
 ```{r show-manhattan, fig.align='center', fig.cap='A manhattan plot.', fig.show = TRUE, echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE}
-knitr::include_graphics(rep("img/_gwas/show-manhattan.png"))
+knitr::include_graphics(rep("img/show-manhattan.png"))
 ```
 
 ## Other plots
@@ -1698,19 +1699,19 @@ CMplot(gwas_assoc_complsub,
 
 This would lead to the following graphs. 
 ```{r show-cmplot-all-density, fig.align='center', fig.cap='SNP density of the association results.', fig.show = TRUE, echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE}
-knitr::include_graphics(rep("img/_gwas/show-cmplot-all-density.png"))
+knitr::include_graphics(rep("img/show-cmplot-all-density.png"))
 ```
 
 ```{r show-cmplot-all-qq, fig.align='center', fig.cap='A QQ plot including a 95% confidence interval (blue area) and genome-wide significant hits (red).', fig.show = TRUE, echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE}
-knitr::include_graphics(rep("img/_gwas/show-cmplot-all-qq.png"))
+knitr::include_graphics(rep("img/show-cmplot-all-qq.png"))
 ```
 
 ```{r show-cmplot-all-manhattan, fig.align='center', fig.cap='A regular manhattan plot. Colored by chromosome, suggestive hits are green, genome-wide hits are red. The bottom graph shows the per-chromosome SNP density.', fig.show = TRUE, echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE}
-knitr::include_graphics(rep("img/_gwas/show-cmplot-all-manhattan.png"))
+knitr::include_graphics(rep("img/show-cmplot-all-manhattan.png"))
 ```
 
 ```{r show-cmplot-all-circular, fig.align='center', fig.cap='A circular manhattan.', fig.show = TRUE, echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE}
-knitr::include_graphics(rep("img/_gwas/show-cmplot-all-circular.png"))
+knitr::include_graphics(rep("img/show-cmplot-all-circular.png"))
 ```
 
 ## Interactive plots
@@ -1900,7 +1901,7 @@ ggpubr::gghistogram(wtccc1_HWE, x = "logP",
 This will result in Figure \@ref(fig:show-wtccc1-hwe).
 
 ```{r show-wtccc1-hwe, fig.align='center', fig.cap='Stratified HWE p-values.', fig.show = TRUE, echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE}
-knitr::include_graphics("img/_gwas/WTCCC1 HWE.png")
+knitr::include_graphics("img/WTCCC1 HWE.png")
 ```
 
 We should also inspect the allele frequencies. Note that _by default_ PLINK (whether v0.7, v1.9, or v2.0) stores the alleles as minor (A1) and major (A2), and therefore `--maf` _always_ calculates the frequency of the minor allele (A1).
@@ -1917,7 +1918,7 @@ ggpubr::gghistogram(wtccc1_FRQ, x = "MAF",
 This will result in Figure \@ref(fig:show-wtccc1-freq).
 
 ```{r show-wtccc1-freq, fig.align='center', fig.cap='Minor allele frequencies.', fig.show = TRUE, echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE}
-knitr::include_graphics(rep("img/_gwas/WTCCC1 FREQ.png"))
+knitr::include_graphics(rep("img/WTCCC1 FREQ.png"))
 ```
 
 There could be sample with very poor overall call rate, where for many SNPs there is no data. We will want to identify these samples and exclude them. 
@@ -1936,7 +1937,7 @@ ggpubr::gghistogram(wtccc1_IMISS, x = "callrate",
 This will result in Figure \@ref(fig:show-wtccc1-callratesample).
 
 ```{r show-wtccc1-callratesample, fig.align='center', fig.cap='Per sample call rate.', fig.show = TRUE, echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE}
-knitr::include_graphics(rep("img/_gwas/WTCCC1 callrate samples.png"))
+knitr::include_graphics(rep("img/WTCCC1 callrate samples.png"))
 ```
 
 Lastly, we must inspect the per SNP call rate; we need to know if there are SNPs that have no data for many samples. We will want to identify such SNPs and exclude these.
@@ -1957,7 +1958,7 @@ ggpubr::gghistogram(wtccc1_LMISS, x = "callrate",
 This will result in Figure \@ref(fig:show-wtccc1-callratesnp).
 
 ```{r show-wtccc1-callratesnp, fig.align='center', fig.cap='Per SNP call rate.', fig.show = TRUE, echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE}
-knitr::include_graphics(rep("img/_gwas/WTCCC1 callrate SNPs.png"))
+knitr::include_graphics(rep("img/WTCCC1 callrate SNPs.png"))
 ```
 
 ## Quality control
@@ -2135,7 +2136,7 @@ PCA_WTCCC1_1kGplot <- ggpubr::ggscatter(PCA_WTCCC1_1kG, x = "V2", y = "V3",
 We expect most individuals from the WTCCC to be 100% British, but a substantial group will have a different ancestral background as shown in the Figure \@ref(fig:show-wtccc1-pca) you just made.
 
 ```{r show-wtccc1-pca, fig.align='center', fig.cap='PCA - WTCCC1 vs. 1000G', fig.show = TRUE, echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE}
-knitr::include_graphics(rep("img/_gwas/WTCCC1-pca-1000g.png"))
+knitr::include_graphics(rep("img/WTCCC1-pca-1000g.png"))
 ```
 
 ### Removing samples
@@ -2239,19 +2240,19 @@ CMplot(wtccc1_assoc_complsub,
 
 This would lead to the following graphs. 
 ```{r show-wtccc1-graphs-density, fig.align='center', fig.cap='SNP density of the association results.', fig.show = TRUE, echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE}
-knitr::include_graphics(rep("img/_gwas/WTCCC1ResultsManhattan-density.png"))
+knitr::include_graphics(rep("img/WTCCC1ResultsManhattan-density.png"))
 ```
 
 ```{r show-wtccc1-graphs-qq, fig.align='center', fig.cap='A QQ plot including a 95% confidence interval (blue area) and genome-wide significant hits (red).', fig.show = TRUE, echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE}
-knitr::include_graphics(rep("img/_gwas/WTCCC1ResultsManhattan-qq.png"))
+knitr::include_graphics(rep("img/WTCCC1ResultsManhattan-qq.png"))
 ```
 
 ```{r show-wtccc1-graphs-manhattan, fig.align='center', fig.cap='A regular manhattan plot. Colored by chromosome, suggestive hits are green, genome-wide hits are red. The bottom graph shows the per-chromosome SNP density.', fig.show = TRUE, echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE}
-knitr::include_graphics(rep("img/_gwas/WTCCC1ResultsManhattan-manhattan.png"))
+knitr::include_graphics(rep("img/WTCCC1ResultsManhattan-manhattan.png"))
 ```
 
 ```{r show-wtccc1-graphs-circular, fig.align='center', fig.cap='A circular manhattan.', fig.show = TRUE, echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE}
-knitr::include_graphics(rep("img/_gwas/WTCCC1ResultsManhattan-circular.png"))
+knitr::include_graphics(rep("img/WTCCC1ResultsManhattan-circular.png"))
 ```
 
 ## Replication! 
@@ -2659,9 +2660,9 @@ for(VARIANT in variants_of_interest){
 
 This should produce the figure similar to these below. 
 ```{r show-racer, fig.align='center', fig.cap='Regional association plots.', fig.show = TRUE, echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE}
-knitr::include_graphics(rep("img/_gwas/rs6802898.rs6802898.regional_assoc.png"))
-knitr::include_graphics(rep("img/_gwas/rs7901695.rs7901695.regional_assoc.png"))
-knitr::include_graphics(rep("img/_gwas/rs8050136.rs8050136.regional_assoc.png"))
+knitr::include_graphics(rep("img/rs6802898.rs6802898.regional_assoc.png"))
+knitr::include_graphics(rep("img/rs7901695.rs7901695.regional_assoc.png"))
+knitr::include_graphics(rep("img/rs8050136.rs8050136.regional_assoc.png"))
 
 
 ```

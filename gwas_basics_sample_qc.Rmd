@@ -94,7 +94,7 @@ ggpubr::gghistogram(raw_IMISS, x = "callrate",
 The grey dashed line in Figure \@ref(fig:show-sample-callrate) indicates the mean call rate, while the red dashed line indicates the threshold we had determined above.
 
 ```{r show-sample-callrate, fig.align='center', fig.cap='Per sample call rate.', fig.show = TRUE, echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE}
-knitr::include_graphics("img/_gwas/sample-callrate.png")
+knitr::include_graphics("img/sample-callrate.png")
 
 ```
 
@@ -633,7 +633,7 @@ PCAplot <- ggpubr::ggscatter(PCA, x = "V2", y = "V3",
 ```
 
 ```{r show-pca-hapmap3, fig.align='center', fig.cap='PCA - Your data vs. HapMap 3.', fig.show = TRUE, echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE}
-knitr::include_graphics("img/_gwas/pca-hapmap3.png")
+knitr::include_graphics("img/pca-hapmap3.png")
 ```
 
 Derive PC1 and PC2 thresholds so that only individuals who match the given ancestral population are included. For populations of European descent, this will be either the CEU or TSI HapMap3 individuals (Figure \@ref(fig:show-pca-hapmap3)). Here, we chose to exclude all individuals with a second principal component score less than 0.075. 
@@ -716,7 +716,7 @@ PCA_1kGplot <- ggpubr::ggscatter(PCA_1kG, x = "V2", y = "V3",
 In a similar fashion as in the above with the HapMap3 reference, you could **remove the samples below the threshold** based on this PCA (Figure \@ref(fig:show-pca-1000g)).
 
 ```{r show-pca-1000g, fig.align='center', fig.cap='PCA - Your data vs. 1000g.', fig.show = TRUE, echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE}
-knitr::include_graphics("img/_gwas/pca-1000g.png")
+knitr::include_graphics("img/pca-1000g.png")
 ```
 
 
