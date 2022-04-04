@@ -852,6 +852,22 @@ ggpubr::ggscatter(raw_IMISSHET, x = "logF_MISS", y = "meanHet",
 
 \caption{Heterozygosity as a function of SNP call rate.}\label{fig:show-heterozygosity}
 \end{figure}
+\begin{figure}
+
+{\centering \includegraphics[width=18.67in]{img/_gwas/show-heterozygosity} 
+
+}
+
+\caption{Heterozygosity as a function of SNP call rate.}\label{fig:show-heterozygosity}
+\end{figure}
+\begin{figure}
+
+{\centering \includegraphics[width=18.67in]{img/show-heterozygosity} 
+
+}
+
+\caption{Heterozygosity as a function of SNP call rate.}\label{fig:show-heterozygosity}
+\end{figure}
 
 Examine the plot (Figure \ref{fig:show-heterozygosity}) to decide reasonable thresholds at which to exclude individuals based on elevated missing or extreme heterozygosity. We chose to exclude all individuals with a genotype failure rate \textgreater= 0.03 (vertical dashed line) and/or a heterozygosity rate ± 3 s.d. from the mean (horizontal dashed lines). Add the FID and IID of the samples failing this QC to the file named \passthrough{\lstinline!fail-imisshet-qc.txt!}.
 
