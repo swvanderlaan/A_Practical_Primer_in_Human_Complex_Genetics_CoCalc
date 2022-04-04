@@ -38,7 +38,7 @@ ggpubr::gghistogram(clean_LMISS, x = "callrate",
 ```
 
 ```{r show-snp-callrate, fig.align='center', fig.cap='Per SNP call rate.', fig.show = TRUE, echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE}
-knitr::include_graphics(rep("img/_gwas/show-snp-callrate.png"))
+knitr::include_graphics(rep("img/show-snp-callrate.png"))
 ```
 
 ## Differential SNP call rates
@@ -82,7 +82,7 @@ ggpubr::gghistogram(clean_FREQ, x = "MAF",
 ```
 
 ```{r show-freq, fig.align='center', fig.cap='Minor allele frequency.', fig.show = TRUE, echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE}
-knitr::include_graphics(rep("img/_gwas/show-freq.png"))
+knitr::include_graphics(rep("img/show-freq.png"))
 ```
 
 
@@ -140,7 +140,7 @@ ggpubr::gghistogram(clean_HWE, x = "logP",
 ```
 
 ```{r show-hwe, fig.align='center', fig.cap='Hardy-Weinberg Equilibrium p-values per stratum.', fig.show = TRUE, echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE}
-knitr::include_graphics(rep("img/_gwas/show-hwe.png"))
+knitr::include_graphics(rep("img/show-hwe.png"))
 ```
 
 ## Final SNP QC

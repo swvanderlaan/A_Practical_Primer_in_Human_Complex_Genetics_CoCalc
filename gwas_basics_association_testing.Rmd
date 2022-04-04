@@ -52,7 +52,7 @@ ggpubr::gghistogram(gwas_HWE, x = "logP",
 ```
 
 ```{r show-hwe-gwas, fig.align='center', fig.cap='Per stratum HWE p-values.', fig.show = TRUE, echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE}
-knitr::include_graphics(rep("img/_gwas/show-hwe-gwas.png"))
+knitr::include_graphics(rep("img/show-hwe-gwas.png"))
 ```
 
 We will want to see what the distribution of allele frequencies looks like. 
@@ -67,7 +67,7 @@ ggpubr::gghistogram(gwas_FRQ, x = "MAF",
 ```
 
 ```{r show-freq-gwas, fig.align='center', fig.cap='Minor allele frequencies.', fig.show = TRUE, echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE}
-knitr::include_graphics(rep("img/_gwas/show-freq-gwas.png"))
+knitr::include_graphics(rep("img/show-freq-gwas.png"))
 ```
 
 We will want to identify samples that have poor call rates.
@@ -84,7 +84,7 @@ ggpubr::gghistogram(gwas_IMISS, x = "callrate",
 ```
 
 ```{r show-sample-callrate-gwas, fig.align='center', fig.cap='Per sample call rates.', fig.show = TRUE, echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE}
-knitr::include_graphics(rep("img/_gwas/show-sample-callrate-gwas.png"))
+knitr::include_graphics(rep("img/show-sample-callrate-gwas.png"))
 ```
 
 We also need to know what the per SNP call rates are.
@@ -101,7 +101,7 @@ ggpubr::gghistogram(gwas_LMISS, x = "callrate",
 ```
 
 ```{r show-snp-callrate-gwas, fig.align='center', fig.cap='Per SNP call rates.', fig.show = TRUE, echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE}
-knitr::include_graphics(rep("img/_gwas/show-snp-callrate-gwas.png"))
+knitr::include_graphics(rep("img/show-snp-callrate-gwas.png"))
 ```
 
 

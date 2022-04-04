@@ -68,7 +68,7 @@ abline(h = gwas_threshold,
 ```
 
 ```{r show-qq, fig.align='center', fig.cap='A QQ plot.', fig.show = TRUE, echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE}
-knitr::include_graphics(rep("img/_gwas/show-qq.png"))
+knitr::include_graphics(rep("img/show-qq.png"))
 ```
 
 ## Manhattan plots
@@ -84,7 +84,7 @@ manhattan(gwas_assoc_compl, main = "Manhattan Plot",
 ```
 
 ```{r show-manhattan, fig.align='center', fig.cap='A manhattan plot.', fig.show = TRUE, echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE}
-knitr::include_graphics(rep("img/_gwas/show-manhattan.png"))
+knitr::include_graphics(rep("img/show-manhattan.png"))
 ```
 
 ## Other plots
@@ -112,19 +112,19 @@ CMplot(gwas_assoc_complsub,
 
 This would lead to the following graphs. 
 ```{r show-cmplot-all-density, fig.align='center', fig.cap='SNP density of the association results.', fig.show = TRUE, echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE}
-knitr::include_graphics(rep("img/_gwas/show-cmplot-all-density.png"))
+knitr::include_graphics(rep("img/show-cmplot-all-density.png"))
 ```
 
 ```{r show-cmplot-all-qq, fig.align='center', fig.cap='A QQ plot including a 95% confidence interval (blue area) and genome-wide significant hits (red).', fig.show = TRUE, echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE}
-knitr::include_graphics(rep("img/_gwas/show-cmplot-all-qq.png"))
+knitr::include_graphics(rep("img/show-cmplot-all-qq.png"))
 ```
 
 ```{r show-cmplot-all-manhattan, fig.align='center', fig.cap='A regular manhattan plot. Colored by chromosome, suggestive hits are green, genome-wide hits are red. The bottom graph shows the per-chromosome SNP density.', fig.show = TRUE, echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE}
-knitr::include_graphics(rep("img/_gwas/show-cmplot-all-manhattan.png"))
+knitr::include_graphics(rep("img/show-cmplot-all-manhattan.png"))
 ```
 
 ```{r show-cmplot-all-circular, fig.align='center', fig.cap='A circular manhattan.', fig.show = TRUE, echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE}
-knitr::include_graphics(rep("img/_gwas/show-cmplot-all-circular.png"))
+knitr::include_graphics(rep("img/show-cmplot-all-circular.png"))
 ```
 
 ## Interactive plots

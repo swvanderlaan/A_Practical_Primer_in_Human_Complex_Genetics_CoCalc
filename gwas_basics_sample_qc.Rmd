@@ -208,8 +208,8 @@ ggpubr::ggscatter(raw_IMISSHET, x = "logF_MISS", y = "meanHet",
 ```
 
 ```{r show-heterozygosity, fig.align='center', fig.cap='Heterozygosity as a function of SNP call rate.', fig.show = TRUE, echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE}
-knitr::include_graphics("./img/_gwas/show-heterozygosity.png")
-knitr::include_graphics("img/_gwas/show-heterozygosity.png")
+# knitr::include_graphics("./img/_gwas/show-heterozygosity.png")
+# knitr::include_graphics("img/_gwas/show-heterozygosity.png")
 knitr::include_graphics("img/show-heterozygosity.png")
 ```
 
