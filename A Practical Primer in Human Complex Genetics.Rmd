@@ -219,7 +219,7 @@ mkdir -v ~/Desktop/practical/
 
 Now, pay attention. There are three downloads. You will need to _first_ for starters, but I leave all three downloads here for future reference. Don't worry, the links will come back in other chapters too. 
 
-First, start with downloading the first dataset, below:
+First, start with downloading the first dataset (approx. 610Mb), below:
 
 https://www.dropbox.com/sh/kumfwm7drt2flhp/AAB5n0OcUvJixI9pNiymx6-La?dl=0
 
@@ -229,15 +229,15 @@ Make sure you put the data in the `~/Desktop/practical/` folder.
 <!-- wget "https://www.dropbox.com/sh/kumfwm7drt2flhp/AAB5n0OcUvJixI9pNiymx6-La?dl=0" -P ~/Desktop/practical/ -->
 <!-- ``` -->
 
-You'll end the course with the second dataset. Here's the link:
+You'll end the course with the second dataset (approx. 750Mb). Here's the link:
 
-https://www.dropbox.com/sh/kumfwm7drt2flhp/AAB5n0OcUvJixI9pNiymx6-La?dl=0
+https://www.dropbox.com/sh/iu9rkvnoiwxnzdb/AACkd-7E1-MywkQalo0b4wAda?dl=0 
 
 Make sure you put the data in the `~/Desktop/practical/` folder.
 
-You _may_ need the third dataset _depending on the availability of a program_, which you can download through the link below. **Don't download it now.** 
+You _may_ need the third dataset _depending on the availability of a program_, which you can download through the link below (approx. 11Gb). **Don't download it now.** 
 
-https://www.dropbox.com/sh/c6h5p7c63dkh11k/AAACPlG_tuNgSqnwq3EQGF2Ja?dl=0
+https://www.dropbox.com/sh/c6h5p7c63dkh11k/AAACPlG_tuNgSqnwq3EQGF2Ja?dl=0 
 
 Make sure you put the data in the `~/Desktop/practical/ref_1kg_phase1_all/` folder.
 
