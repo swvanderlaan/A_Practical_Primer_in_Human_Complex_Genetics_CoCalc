@@ -230,13 +230,13 @@ data.table::fwrite(raw_IMISSHETsub, paste0(COURSE_loc,"/rawdata/fail-raw_IMISSHE
 If all is right, you'd have something like Table \@ref(tab:failed-callrate-het).
 
 ```{r failed-callrate-het-book, echo = FALSE, eval = TRUE}
-failraw_IMISSHETsub <- data.table::fread("data/fail-raw_IMISSHETsub.txt")
+raw_IMISSHETsub <- data.table::fread("data/fail-raw_IMISSHETsub.txt")
 ```
 
 ```{r failed-callrate-het, tidy = FALSE, echo = TRUE, eval = FALSE}
 library("knitr")
 knitr::kable(
-  failraw_IMISSHETsub, caption = 'Failed samples due to sample call rates and heterozygosity rate',
+  raw_IMISSHETsub, caption = 'Failed samples due to sample call rates and heterozygosity rate',
   booktabs = TRUE
 )
 ```

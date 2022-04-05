@@ -134,21 +134,21 @@ gwas_model[1:10, 1:10]
 
 It contains 1,530,510 rows, one for each SNP, and each type of test (_genotypic_, _trend_, _allelic_, _dominant_, and _recessive_) and the following columns:
 
-- chromosome [CHR],
-- the SNP identifier [SNP],
-- the minor allele [A1] (PLINK always codes the A1-allele as the minor allele!),
-- the major allele [A2],
-- the test performed [TEST]:
-  - GENO (genotypic association);
-  - TREND (Cochran-Armitage trend);
-  - ALLELIC (allelic as- sociation);
-  - DOM (dominant model); and
-  - REC (recessive model)],
-- the cell frequency counts for cases [AFF], and
-- the cell frequency counts for controls [UNAFF],
-- the chi-square test statistic [CHISQ],
-- the degrees of freedom for the test [DF],
-- and the asymptotic P value [P] of association.
+- chromosome [CHR],</br>
+- the SNP identifier [SNP],</br>
+- the minor allele [A1] (PLINK always codes the A1-allele as the minor allele!),</br>
+- the major allele [A2],</br>
+- the test performed [TEST]:</br>
+  - GENO (genotypic association);</br>
+  - TREND (Cochran-Armitage trend);</br>
+  - ALLELIC (allelic as- sociation);</br>
+  - DOM (dominant model); and</br>
+  - REC (recessive model)],</br>
+- the cell frequency counts for cases [AFF], and</br>
+- the cell frequency counts for controls [UNAFF],</br>
+- the chi-square test statistic [CHISQ],</br>
+- the degrees of freedom for the test [DF],</br>
+- and the asymptotic P value [P] of association.</br>
 
 ## Logistic regression
 We can also perform a test of association using logistic regression. In this case we might want to correct for covariates/confounding factors, for example age, sex, ancestral background, i.e. principal components, and other study specific covariates (e.g. hospital of inclusion, genotyping centre etc.). In that case each of these P values is adjusted for the effect of the covariates.
