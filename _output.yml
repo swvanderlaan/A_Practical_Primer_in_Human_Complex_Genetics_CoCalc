@@ -19,13 +19,31 @@ bookdown::gitbook:
       instapaper: false
       vk: false
       whatsapp: true
-      all: ['twitter', 'linkedin', 'whatsapp']
+      all: false
 bookdown::pdf_book:
   includes:
     in_header: preamble.tex
   latex_engine: lualatex
+  # latex_engine: xelatex # enables rendering of emoticons https://www.reddit.com/r/Rlanguage/comments/1266wbh/rmarkdown_fails_to_knit_unicode_character_u001b/
   citation_package: natbib
   pandoc_args: --listings
   keep_tex: yes
   extra_dependencies: ["float"]
-bookdown::epub_book: default
+  number_sections: true
+  theme: paper
+bookdown::epub_book:
+  fig_width: 5
+  fig_height: 4
+  dev: "png"
+  fig_caption: true
+  number_sections: true
+  cover_image: "img/_headers/banner_man_standing_dna.png"
+  chapter_level: 1
+  epub_version: "epub"
+  template: paper
+bookdown::html_document:
+  number_sections: yes
+  toc: yes
+  theme: paper
+  fig_caption: yes
+

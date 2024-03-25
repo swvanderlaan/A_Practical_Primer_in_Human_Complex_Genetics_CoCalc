@@ -1,29 +1,30 @@
 book_filename: "A Practical Primer in Human Complex Genetics"
-rmd_files: ["index.Rmd",
-            "prerequisites.Rmd",
-            "gwas_basics.Rmd",
-            "gwas_basics_sample_qc.Rmd",
-            "gwas_basics_snp_qc.Rmd",
-            "gwas_basics_association_testing.Rmd",
-            "gwas_basics_results_visualization.Rmd",
-            "wtccc1_intro.Rmd",
-            "wtccc1.Rmd",
-            "post_gwas.Rmd",
-            # "conditional_analysis.Rmd",
-            # "finemapping.Rmd",
-            "fuma.Rmd",
-            "phewas.Rmd",
-            "mendelian_randomization_mr_base.Rmd",
-            # "mendelian_randomization_twosamplemr.Rmd",
-            # "summary.Rmd",
-            "epilogue.Rmd",
-            "add_chapter_regional_plot.Rmd",
-            "add_chapter_eigensoft.Rmd",
-            # "other_things.Rmd",
-            # "todo.Rmd",
-            "licenses.Rmd",
-            # "colofon.Rmd",
-            "references.Rmd"]
+rmd_files: ["index.Rmd", # introduction
+            "chapters/02_1_somebackgroundreading.Rmd", # 2.1
+            "chapters/02_2_prerequisites.Rmd", # 2.2
+            # "chapters/gwas_basics.Rmd", # 3.1
+            # "chapters/gwas_basics_sample_qc.Rmd", #3.2
+            # "chapters/gwas_basics_snp_qc.Rmd", #3.3
+            # "chapters/gwas_basics_association_testing.Rmd", #3.4
+            # "chapters/gwas_basics_results_visualization.Rmd", #3.5
+            # "chapters/wtccc1_intro.Rmd", #4.1
+            # "chapters/wtccc1.Rmd", #4.2
+            # "chapters/post_gwas.Rmd", #5.1
+            # "chapters/conditional_analysis.Rmd", #5.2
+            # "chapters/finemapping.Rmd", #5.3
+            # "chapters/fuma.Rmd", #5.4
+            # "chapters/phewas.Rmd", #5.5
+            # "chapters/mendelian_randomization_mr_base.Rmd", #5.6
+            # "chapters/mendelian_randomization_twosamplemr.Rmd", #5.7
+            # "chapters/summary.Rmd", #6
+            "chapters/7_epilogue.Rmd", #7
+            # "chapters/add_chapter_regional_plot.Rmd", #8.1
+            # "chapters/add_chapter_eigensoft.Rmd", #8.2
+            # "chapters/other_things.Rmd", #9
+            "chapters/10_todo.Rmd", #10
+            "chapters/11_licenses.Rmd", #11
+            # "colofon.Rmd", #12
+            "chapters/13_references.Rmd"] #13
 output_dir: "docs"
 language:
   ui:

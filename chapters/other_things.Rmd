@@ -1,0 +1,119 @@
+# On PCAs & Other things
+```{r mendelian_randomization_twosamplemr, message = FALSE, warning = FALSE, echo = FALSE, eval = TRUE}
+COURSE_loc = "~/Desktop/practical"
+# COURSE_loc = "/Users/swvanderlaan/git/swvanderlaan/A_primer_in_Human_Cardiovascular_Genetics"
+
+source(paste0(COURSE_loc, "/scripts/functions.R"))
+source(paste0(COURSE_loc, "/scripts/colors.R"))
+source(paste0(COURSE_loc, "/scripts/packages.R"))
+
+```
+
+
+## Principal Component Analysis
+
+Principal Component Analysis (PCA) is a "multi-dimensional reduction" method. As an example we can study fish. We can describe and measure fish in multiple ways (dimensions), and do this for thousands of fish.
+
+Let's create a dummy dataset, with 10,000 measurements of 6 variables.
+
+```{r DummyData}
+# Fix the outcome
+set.seed(200219)
+
+# Create dummy dataset
+df.dummy <- data.table(a_var = 1:25 + rnorm(n = 1000, mean = 7.9, sd = 2.5),
+                       b_var = 1:10 + rnorm(n = 1000, mean = 6.1, sd = 2.9),
+                       c_var = 1:20 + rnorm(n = 1000, mean = 6.4, sd = 3.1),
+                       x_var = 1:10 + rnorm(n = 1000, mean = 13.9, sd = 1.7),
+                       y_var = 1:5 + rnorm(n = 1000, mean = 4.2, sd = 0.89),
+                       z_var = 1:40 + rnorm(n = 1000, mean = 7.4, sd = 0.96)
+                       )
+
+dim(df.dummy)
+df.dummy[1:5,1:6]
+```
+
+Now let's plot the first two measurements.
+
+```{r DummyScatter}
+
+ggscatter(data = df.dummy,
+          x = "x_var", xlab = "length [mm]",
+          y = "y_var", ylab = "breadth [mm]",
+          # color = "#1290D9",
+          # cor.coef = TRUE, cor.method = "pearson",
+          # add = "reg.line", conf.int = TRUE, add.params = list(color = "#E55738"),
+          ggtheme = theme_pubr())
+```
+
+# Blood correlations
+We can use data from the National Health and Nutrition Examination Survey (NHANES) conducted by the Centers for Disease Control (CDC) to examine blood lipid correlations in a random sample from the American population.
+
+We can load available files and variables, and search for items of interest.
+
+```{r NHANES data_available}
+files <- nhanes_data_files()
+variables <- nhanes_variables()
+
+nhanes_search(variables, "blood pressure", cycle == "2015-2016")
+# TRIGLY_I LBDLDLSI
+# TRIGLY_I LBDTRSI
+# HDL_I LBDHDDSI
+# TCHOL_I LBDTCSI
+```
+
+Here we load the data we selected above.
+```{r NHANES data_loading}
+data = nhanes_load_data("DEMO_I", "2015-2016", cache = "./nhanes_data_demo_i", recode_data = TRUE)
+data2 = data %>%
+  left_join(nhanes_load_data("TRIGLY_I", "2015-2016", cache = "./nhanes_data_trigly_i", recode_data = TRUE), by = "SEQN") %>%
+  left_join(nhanes_load_data("TCHOL_I", "2015-2016", cache = "./nhanes_data_tchol_i", recode_data = TRUE), by = "SEQN") %>%
+  left_join(nhanes_load_data("HDL_I", "2015-2016", cache = "./nhanes_data_hdl_i", recode_data = TRUE), by = "SEQN") %>%
+  left_join(nhanes_load_data("BPX_I", "2015-2016", cache = "./nhanes_data_bpx_i", recode_data = TRUE), by = "SEQN") %>%
+  left_join(nhanes_load_data("ALQ_I", "2015-2016", cache = "./nhanes_data_alq_i", recode_data = TRUE), by = "SEQN")
+
+summary(data2)
+
+data_qc = data2 %>%
+  filter(!is.na(RIAGENDR), !is.na(RIDAGEYR), RIDAGEYR != "80 years of age and over") %>%
+  mutate(
+    hta = ifelse(BPXSY1 > 130 | BPXDI1 > 90, "Yes", "No"),
+    dyslip = ifelse(LBDLDL >= 100, "Yes", "No"),
+    gender = recode_factor(RIAGENDR, `1` = "Men", `2` = "Women"))
+
+levels <- c(30, 35, 40, 45,
+            50, 55, 60, 65, 70,
+            75)
+labels <- c("30-35", "35-40", "40-45", "45-50",
+            "50-55", "55-60", "60-65", "65-70", "70-75")
+data_qc %>% mutate(age_group = cut(as.numeric(RIDAGEYR), levels, labels = labels))
+
+data_qc %<>% mutate(RIDAGEYR = as.integer(RIDAGEYR))
+
+```
+
+
+Now we are ready to summarize some data, and get some plotting going.
+
+```{r NHANES data_summary}
+
+gghistogram(data_qc, "RIDAGEYR", y = "..count..",
+            color = "gender", fill = "gender", bins = 50,
+            palette = "jco", rug = TRUE, add_density = TRUE) +
+  labs(
+    title = "Age stratified by sex",
+    x = "Age [years]",
+    caption = "Source: NHANES survey 2015-2016, USA."
+    )
+
+ggscatterhist(data_qc, "RIDAGEYR", y = "LBDTCSI",
+              group = "gender", color = "gender", fill = "gender",
+              palette = "jco",
+              title = "Age vs. Total cholesterol stratified by sex",
+              xlab = "Age [years]", ylab = "Total cholesterol [mmol/L]",
+              legend = "bottom",
+              caption = "Source: NHANES survey 2015-2016, USA."
+              )
+
+```
+

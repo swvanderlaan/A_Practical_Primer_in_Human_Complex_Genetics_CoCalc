@@ -1,4 +1,0 @@
- FID  IID       PEDSEX       SNPSEX       STATUS            F
- 772  772            2            0      PROBLEM       0.3084
- 853  853            2            0      PROBLEM       0.3666
-1920 1920            2            0      PROBLEM       0.4066

@@ -13,3 +13,6 @@ pre code {
   white-space: inherit;
   white-space: pre-wrap;
 }
+.p {
+  font-family: Arial, Helvetica, sans-serif;
+}
