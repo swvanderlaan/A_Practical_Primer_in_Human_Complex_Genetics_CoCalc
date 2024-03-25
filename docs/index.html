@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>A Practical Primer in Human Complex Genetics</title>
   <meta name="description" content="This is a practical primer in human complex genetics with a use-case in cardiovascular disease. The output format for this primer is bookdown::gitbook." />
-  <meta name="generator" content="bookdown 0.37 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.38.1 and GitBook 2.6.7" />
 
   <meta property="og:title" content="A Practical Primer in Human Complex Genetics" />
   <meta property="og:type" content="book" />
@@ -200,10 +200,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1 class="title">A Practical Primer in Human Complex Genetics</h1>
 <h2 class="subtitle"><em>with a use-case in cardiovascular disease</em></h2>
 <p class="author"><em><a href="https://vanderlaanand.science">dr. Sander W. van der Laan</a> <a href="https://www.twitter.com/swvanderlaan"><img src="img/_logo/twitter_circle_blue.png" style="width:2.0%" /></a> <a href="mailto:s.w.vanderlaan@gmail.com"><img src="img/_logo/email_circle_blue.png" style="width:2.0%" /></a></em></p>
-<p class="date"><em>Version 2.0.0 | last update: 2024-03-25</em></p>
+<p class="date"><em>Version 2.0.0 (2024-03-25)</em></p>
 </div>
 <div id="about-this-primer" class="section level1 hasAnchor" number="1">
 <h1><span class="header-section-number">Chapter 1</span> About this primer<a href="index.html#about-this-primer" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p><img src="img/_headers/banner_man_standing_dna.png" style="width:100.0%" /></p>
 <p>Ever since the first genome-wide association study (GWAS) on <a href="https://doi.org/10.1126/science.1109557" target="_blank">age-related macular degeneration</a>, and the promise of personalized medicine in the wake of the Human Genome Project, large-scale genetic association studies hold significant sway in contemporary health research and <a href="http://dx.doi.org/10.1038/nrd.2017.262" target="_blank">drive drug-development pipelines</a>. In the past 2 decades, researchers delved into GWAS, aiming to unveil genetic variations linked to both human traits, such as the color of your eyes, and rare and common complex diseases. These findings serve as crucial keys to unravel the intricate mechanisms underlying diseases, shedding light on whether the correlations identified in observational studies between risk factors and diseases are truly causal.</p>
 <p>These studies have ushered in an exciting era where many researchers thrive on developing new methods and bioinformatic tools to parse ever-growing large datasets collected large population-based biobanks. However, the analyses of these data are challenging and it can be daunting to see the forest for tree among the many tools and their various functions. Enter <em>A Practical Primer in Human Complex Genetics</em>. This <a href="https://cjvanlissa.github.io/gitbook-demo/" target="_blank">GitBook</a> was originally written back in 2022 for the <strong>Genetic Epidemiology</strong> course organized by the <a href="https://epidemiology-education.nl" target="_blank">Master Epidemiology</a> of Utrecht University. This practical guide will teach you how to design a GWAS, perform quality control (QC), execute the actual analyses, annotate the GWAS results, and perform further downstream post-GWAS analyses. Throughout the book you’ll work with ‘dummy’, that is fake, data, but in the end, we will use real-world data from the first release of the <a href="https://www.wtccc.org.uk/ccc1/overview.html" target="_blank"><em>Welcome Trust Case-Control Consortium (WTCCC)</em></a> focusing on coronary artery disease (CAD).</p>
 <p>A major component of modern-day GWAS is <a href="https://www.nature.com/articles/nrg2796" target="_blank">genetic imputation</a>, but for practical reasons it is not part of this book. However, I will provide some pointers as to how to go about do this with minimal coding or scripting experience. Likewise, the courses does not cover the aspects of meta-analyses of GWAS, but some excellent resources exist to which I will direct. As this practical primer evolves, these and other topics may find their place in this book.
@@ -212,12 +213,6 @@ I should also point out that emphasis of this book is on it being a <em>practica
 <p>I can imagine this seems overwhelming, but trust me, you’ll be okay. Just follow this practical. You’ll learn by doing and at the end of the day, you can execute a GWAS independently.</p>
 <p><strong>Ready to start?</strong></p>
 <p>Your first point of action is to prepare your system for this course in Chapter @ref(02_1_somebackgroundreading).</p>
-<!-- Add an image above the title -->
-<!-- https://stackoverflow.com/questions/62074546/add-image-before-bookdown-title -->
-<script>
-title=document.getElementById('header');
-title.innerHTML = '<img src="img/_headers/banner_man_standing_dna.png" alt="A Practical Primer in Human Complex Genetics">' + title.innerHTML
-</script>
 
 </div>
             </section>

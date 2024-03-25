@@ -1,7 +1,7 @@
 book_filename: "A Practical Primer in Human Complex Genetics"
 rmd_files: ["index.Rmd", # introduction
-            "chapters/02_1_somebackgroundreading.Rmd", # 2.1
-            "chapters/02_2_prerequisites.Rmd", # 2.2
+            "02_1_somebackgroundreading.Rmd", # 2.1
+            "02_2_prerequisites.Rmd", # 2.2
             # "chapters/gwas_basics.Rmd", # 3.1
             # "chapters/gwas_basics_sample_qc.Rmd", #3.2
             # "chapters/gwas_basics_snp_qc.Rmd", #3.3
@@ -17,14 +17,14 @@ rmd_files: ["index.Rmd", # introduction
             # "chapters/mendelian_randomization_mr_base.Rmd", #5.6
             # "chapters/mendelian_randomization_twosamplemr.Rmd", #5.7
             # "chapters/summary.Rmd", #6
-            "chapters/7_epilogue.Rmd", #7
+            "07_epilogue.Rmd", #7
             # "chapters/add_chapter_regional_plot.Rmd", #8.1
             # "chapters/add_chapter_eigensoft.Rmd", #8.2
             # "chapters/other_things.Rmd", #9
-            "chapters/10_todo.Rmd", #10
-            "chapters/11_licenses.Rmd", #11
+            "10_todo.Rmd", #10
+            "11_licenses.Rmd", #11
             # "colofon.Rmd", #12
-            "chapters/13_references.Rmd"] #13
+            "13_references.Rmd"] #13
 output_dir: "docs"
 language:
   ui:

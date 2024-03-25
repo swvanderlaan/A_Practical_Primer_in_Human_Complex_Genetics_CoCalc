@@ -13,6 +13,7 @@ pre code {
   white-space: inherit;
   white-space: pre-wrap;
 }
-.p {
-  font-family: Arial, Helvetica, sans-serif;
+p {
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+  font-family: "Thin 100", "ExtraLight 200", sans-serif;
 }

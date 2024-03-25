@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 5 Things to do | A Practical Primer in Human Complex Genetics</title>
   <meta name="description" content="This is a practical primer in human complex genetics with a use-case in cardiovascular disease. The output format for this primer is bookdown::gitbook." />
-  <meta name="generator" content="bookdown 0.37 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.38.1 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 5 Things to do | A Practical Primer in Human Complex Genetics" />
   <meta property="og:type" content="book" />
@@ -233,6 +233,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>[] <code>S</code> EPUB is not formatted properly (text runs over)</li>
 <li>[] <code>S</code> different setup for the chapter Additional chapters (this as a Apendix)</li>
 <li><input type="checkbox" checked="" /><code>S</code> fix the way the team is displayed</li>
+<li>[] <code>S</code> fix images per header in EPUB</li>
+<li>[] <code>S</code> fix book cover
+<ul>
+<li><a href="https://www.designhill.com/design-blog/the-perfect-ebook-cover-size-guide-and-publishing-tips/" class="uri">https://www.designhill.com/design-blog/the-perfect-ebook-cover-size-guide-and-publishing-tips/</a></li>
+<li><a href="https://snappa.com/blog/ebook-cover-size/" class="uri">https://snappa.com/blog/ebook-cover-size/</a></li>
+<li><a href="https://kdp.amazon.com/en_US/help/topic/G200645690" class="uri">https://kdp.amazon.com/en_US/help/topic/G200645690</a>.</li>
+</ul></li>
 </ul>
 </div>
 <div id="useful-links-for-me-mostly" class="section level2 hasAnchor" number="5.3">
@@ -240,6 +247,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><a href="https://bookdown.org/yihui/rmarkdown-cookbook/unnumbered-sections.html" class="uri">https://bookdown.org/yihui/rmarkdown-cookbook/unnumbered-sections.html</a></p>
 <p><a href="https://bookdown.org/yihui/bookdown/cross-references.html" class="uri">https://bookdown.org/yihui/bookdown/cross-references.html</a></p>
 <p><a href="https://pandoc.org/MANUAL.html#extension-header_attributes" class="uri">https://pandoc.org/MANUAL.html#extension-header_attributes</a></p>
+<p>Add an image above the title:</p>
+<ul>
+<li><a href="https://stackoverflow.com/questions/62074546/add-image-before-bookdown-title" class="uri">https://stackoverflow.com/questions/62074546/add-image-before-bookdown-title</a></li>
+</ul>
+<p>But it causes an issue, described <a href="https://www.mobileread.com/forums/showthread.php?t=206086">here</a>. So you better remove this chunk of code:</p>
+<pre><code>\```{js, echo = FALSE}
+title=document.getElementById(&#39;header&#39;);
+title.innerHTML = &#39;&lt;img src=&quot;img/_headers/banner_man_standing_dna.png&quot; alt=&quot;A Practical Primer in Human Complex Genetics&quot;&gt;&#39; + title.innerHTML
+\```</code></pre>
 
 </div>
 </div>
@@ -280,7 +296,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/swvanderlaan/A_Practical_Primer_in_Human_Complex_Genetics/edit/master/chapters/10_todo.Rmd",
+"link": "https://github.com/swvanderlaan/A_Practical_Primer_in_Human_Complex_Genetics/edit/master/10_todo.Rmd",
 "text": "Edit"
 },
 "history": {

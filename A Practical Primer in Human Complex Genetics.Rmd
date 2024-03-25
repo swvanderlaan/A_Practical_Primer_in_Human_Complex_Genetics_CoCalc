@@ -2,7 +2,7 @@
 title: "A Practical Primer in Human Complex Genetics"
 subtitle: "with a use-case in cardiovascular disease"
 author: "[dr. Sander W. van der Laan](https://vanderlaanand.science) [![](img/_logo/twitter_circle_blue.png){width=2%}](https://www.twitter.com/swvanderlaan) [![](img/_logo/email_circle_blue.png){width=2%}](mailto:s.w.vanderlaan@gmail.com)"
-date: "Version 2.0.0 | last update: `r Sys.Date()`"
+date: "Version 2.0.0 (`r Sys.Date()`)"
 description: This is a practical primer in human complex genetics with a use-case in cardiovascular disease. The output format for this primer is bookdown::gitbook.
 documentclass: book
 github-repo: swvanderlaan/A_Practical_Primer_in_Human_Complex_Genetics
@@ -16,6 +16,7 @@ always_allow_html: true
 ---
 
 # About this primer
+![](img/_headers/banner_man_standing_dna.png){width=100%}
 
 Ever since the first genome-wide association study (GWAS) on [age-related macular degeneration](https://doi.org/10.1126/science.1109557){target="_blank"}, and the promise of personalized medicine in the wake of the Human Genome Project, large-scale genetic association studies hold significant sway in contemporary health research and [drive drug-development pipelines](http://dx.doi.org/10.1038/nrd.2017.262){target="_blank"}. In the past 2 decades, researchers delved into GWAS, aiming to unveil genetic variations linked to both human traits, such as the color of your eyes, and rare and common complex diseases. These findings serve as crucial keys to unravel the intricate mechanisms underlying diseases, shedding light on whether the correlations identified in observational studies between risk factors and diseases are truly causal. 
 
@@ -32,17 +33,11 @@ I can imagine this seems overwhelming, but trust me, you'll be okay. Just follow
 
 Your first point of action is to prepare your system for this course in Chapter \@ref(02_1_somebackgroundreading).
 
-<!-- Add an image above the title -->
-<!-- https://stackoverflow.com/questions/62074546/add-image-before-bookdown-title -->
-
-```{js, echo = FALSE}
-title=document.getElementById('header');
-title.innerHTML = '<img src="img/_headers/banner_man_standing_dna.png" alt="A Practical Primer in Human Complex Genetics">' + title.innerHTML
-```
 
 <!--chapter:end:index.Rmd-->
 
 # Some background reading
+![](img/_headers/papers_on_wall.png){width=100%}
 
 Standing on the shoulders of giants, that's what this book and I do. I want to acknowledge some great work that has helped me tremendously and, really, this book wouldn't exist without this awesome work. So, I do want to give you some background reading. Is it a prerequisite? No, not really. For starters, the course covers most and you'll learn as you go. And if you didn't come here through the course, you'll be fine just the same. That said, it's a always good idea to get familiar with these works as you move forward on your path towards your first GWAS - in fact, I had these printed out with markings and writings all over them as I executed my first GWAS, and they've been great as a reference many times after. 
 
@@ -68,20 +63,15 @@ With respect to imputation and meta-analyses of GWAS you should also get familia
 
 Are you ready? Did you bring coffee and a good dose of energy? Let's start! Your first point of action is to prepare your system for this course in Chapter \@ref(02_2_prerequisites).
 
-```{js, echo = FALSE}
-title=document.getElementById('header');
-title.innerHTML = '<img src="../img/headers/papers_on_wall.jpeg" alt="A Practical Primer in Human Complex Genetics">' + title.innerHTML
-```
-
-<!--chapter:end:chapters/02_1_somebackgroundreading.Rmd-->
+<!--chapter:end:02_1_somebackgroundreading.Rmd-->
 
 # Prerequisites
+![](img/_headers/women_behind_macbook.png){width=100%}
 
 ```{r prerequisites, message = FALSE, warning = FALSE, echo = FALSE, eval = TRUE}
 source("scripts/functions.R")
 source("scripts/colors.R")
 source("scripts/packages.R")
-
 ```
 
 ## Linux, macOS, and Windows
@@ -387,14 +377,9 @@ Are you ready? Did you bring coffee and a good dose of energy? Let's start!
 
 Oh, one more thing: you can save your notebook, the one you just created, to keep all the `R` codes you are applying in the next chapters and add descriptions and notes. If you save this notebook you'll notice that a `html`-file is created. This file is a legible webbrowser-friendly version of your work and contains the codes and the output (code messages, tables, and figures). And the nice thing is, that you can easily share it with others over email. 
 
-<!-- Ok. 'Nough said, let's move on to cover some basics in Chapter \@ref(gwas-basics).-->
+Ok. 'Nough said, let's move on to cover some basics in Chapter ref(gwas-basics).
 
-```{js, echo = FALSE}
-title=document.getElementById('header');
-title.innerHTML = '<img src="../img/headers/women_behind_macbook.jpeg" alt="A Practical Primer in Human Complex Genetics">' + title.innerHTML
-```
-
-<!--chapter:end:chapters/02_2_prerequisites.Rmd-->
+<!--chapter:end:02_2_prerequisites.Rmd-->
 
 # Epilogue {#epilogue}
 
@@ -411,7 +396,7 @@ As with any proper epilogue I should not forget a heartfelt and honest thank you
 <!-- family -->
 
 
-<!--chapter:end:chapters/7_epilogue.Rmd-->
+<!--chapter:end:07_epilogue.Rmd-->
 
 # Things to do {#todo}
 
@@ -447,6 +432,11 @@ List of to-do's according to MoSCoW: _must have_, _should have_, _could have_, _
 - [] `S` EPUB is not formatted properly (text runs over)
 - [] `S` different setup for the chapter Additional chapters (this as a Apendix)
 - [x] `S` fix the way the team is displayed
+- [] `S` fix images per header in EPUB
+- [] `S` fix book cover
+  - https://www.designhill.com/design-blog/the-perfect-ebook-cover-size-guide-and-publishing-tips/
+  - https://snappa.com/blog/ebook-cover-size/
+  - https://kdp.amazon.com/en_US/help/topic/G200645690.
 
 ## Useful links (for me mostly)
 
@@ -456,9 +446,25 @@ https://bookdown.org/yihui/bookdown/cross-references.html
 
 https://pandoc.org/MANUAL.html#extension-header_attributes
 
-<!--chapter:end:chapters/10_todo.Rmd-->
+Add an image above the title:
+
+- https://stackoverflow.com/questions/62074546/add-image-before-bookdown-title
+
+But it causes an issue, described [here](https://www.mobileread.com/forums/showthread.php?t=206086). So you better remove this chunk of code:
+
+
+```
+\```{js, echo = FALSE}
+title=document.getElementById('header');
+title.innerHTML = '<img src="img/_headers/banner_man_standing_dna.png" alt="A Practical Primer in Human Complex Genetics">' + title.innerHTML
+\```
+```
+
+
+<!--chapter:end:10_todo.Rmd-->
 
 # Licenses and disclaimers {#license}
+![](img/_headers/licenses.png){width=100%}
 
 ## Copyright
 
@@ -471,23 +477,19 @@ The content contained herein is provided only for educational and informational 
 
 ## Images used
 
-I used images from many sources to brighten up the book. These are listed here in no particular order.
+I used images from [Unsplash](https://unsplash.com/s/photos/legal) to brighten up the book. These are listed here in no particular order.
 
 - papers_on_wall - https://unsplash.com/photos/open-book-lot-Oaqk7qqNh_c
 - women_behind_macbook - https://unsplash.com/photos/woman-using-macbook-pro-with-person-in-white-top-bPVM4nOy0Rg
 - woman_working_on_code - https://unsplash.com/photos/woman-wearing-black-t-shirt-holding-white-computer-keyboard-YK0HPwWDJ1I
 - licenses - https://unsplash.com/photos/book-lot-on-black-wooden-shelf-zeH-ljawHtg
 
-```{js, echo = FALSE}
-title=document.getElementById('header');
-title.innerHTML = '<img src="../img/headers/licenses.jpeg" alt="A Practical Primer in Human Complex Genetics">' + title.innerHTML
-```
 
-<!--chapter:end:chapters/11_licenses.Rmd-->
+<!--chapter:end:11_licenses.Rmd-->
 
 `r if (knitr:::is_html_output()) '
 # References {-}
 '`
 
-<!--chapter:end:chapters/13_references.Rmd-->
+<!--chapter:end:13_references.Rmd-->
 

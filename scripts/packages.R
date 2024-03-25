@@ -3,7 +3,10 @@
 ################################################################################
 
 # Bookdown package
-# install.packages.auto("bookdown")
+# there is an issue with \@ref(some_chapter) reported here:https://github.com/rstudio/bookdown/issues/832
+# you may need to reinstall rmarkdown and bookdown which should fix this.
+# remotes::install_github(c('rstudio/rmarkdown', 'rstudio/bookdown'))
+library(rmarkdown)
 library(bookdown)
 
 # TinyTex - needed for LaTeX output (pdf) of book
