@@ -15,15 +15,6 @@ biblio-style: apalike
 always_allow_html: true
 ---
 
-```{r include = FALSE}
-if(!knitr:::is_html_output())
-{
-  options("width"=56)
-  knitr::opts_chunk$set(tidy.opts=list(width.cutoff=56, indent = 2), tidy = TRUE)
-  knitr::opts_chunk$set(fig.pos = 'H')
-}
-```
-
 # About this primer
 
 ![](./img/_headers/banner_man_standing_dna.png){width=100%}

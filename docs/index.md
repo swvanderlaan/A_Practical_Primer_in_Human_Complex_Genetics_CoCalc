@@ -15,8 +15,6 @@ biblio-style: apalike
 always_allow_html: true
 ---
 
-
-
 # About this primer
 
 ![](./img/_headers/banner_man_standing_dna.png){width=100%}
