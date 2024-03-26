@@ -8,9 +8,15 @@ language:
 rmd_files: ["index.Rmd", # introduction
             "02_1_somebackgroundreading.Rmd", # 2.1
             "02_2_gettingstarted.Rmd", # 2.2
+<<<<<<< HEAD
             # "03_1_gwas_basics.Rmd", # 3.1
             # "03_2_gwas_basics_sample_qc.Rmd", #3.2
             # "03_3_gwas_basics_snp_qc.Rmd", #3.3
+=======
+            "03_1_gwas_basics.Rmd", # 3.1
+            "03_2_gwas_basics_sample_qc.Rmd", #3.2
+            "03_3_gwas_basics_snp_qc.Rmd", #3.3
+>>>>>>> eecc10b (fixes)
             # "03_4_gwas_basics_association_testing.Rmd", #3.4
             # "03_5_gwas_basics_results_visualization.Rmd", #3.5
             # "04_1_wtccc1_intro.Rmd", #4.1

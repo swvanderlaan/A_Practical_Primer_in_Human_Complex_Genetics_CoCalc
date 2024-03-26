@@ -1,5 +1,9 @@
 # Per-SNP QC {#gwas_basics_snp_qc}
+<<<<<<< HEAD
 ![](img/_gwas_dummy/gwas_snp_qc.png){width=70%}
+=======
+![](./img/_gwas_dummy/gwas_snp_qc.png){width=70%}
+>>>>>>> eecc10b (fixes)
 ```{r include = FALSE}
 if(!knitr:::is_html_output())
 {
