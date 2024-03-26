@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 5 Sample QC | A Practical Primer in Human Complex Genetics</title>
+  <meta name="description" content="This is a practical primer in human complex genetics with a use-case in cardiovascular disease. The output format for this primer is bookdown::gitbook." />
+  <meta name="generator" content="bookdown 0.38.1 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 5 Sample QC | A Practical Primer in Human Complex Genetics" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="This is a practical primer in human complex genetics with a use-case in cardiovascular disease. The output format for this primer is bookdown::gitbook." />
+  <meta name="github-repo" content="swvanderlaan/A_Practical_Primer_in_Human_Complex_Genetics" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 5 Sample QC | A Practical Primer in Human Complex Genetics" />
+  
+  <meta name="twitter:description" content="This is a practical primer in human complex genetics with a use-case in cardiovascular disease. The output format for this primer is bookdown::gitbook." />
+  
+
+<meta name="author" content="dr. Sander W. van der Laan  " />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="gwas-basics.html"/>
+<link rel="next" href="gwas_basics_snp_qc.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<link href="libs/tabwid-1.1.3/tabwid.css" rel="stylesheet" />
+<script src="libs/tabwid-1.1.3/tabwid.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Practical Primer in Human Complex Genetics</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> About this primer</a></li>
+<li class="chapter" data-level="2" data-path="somebackgroundreading.html"><a href="somebackgroundreading.html"><i class="fa fa-check"></i><b>2</b> Some background reading</a></li>
+<li class="chapter" data-level="3" data-path="getting-started.html"><a href="getting-started.html"><i class="fa fa-check"></i><b>3</b> Getting started</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="getting-started.html"><a href="getting-started.html#the-programs-we-use"><i class="fa fa-check"></i><b>3.1</b> The programs we use</a></li>
+<li class="chapter" data-level="3.2" data-path="getting-started.html"><a href="getting-started.html#cocalc"><i class="fa fa-check"></i><b>3.2</b> CoCalc</a></li>
+<li class="chapter" data-level="3.3" data-path="getting-started.html"><a href="getting-started.html#standalone"><i class="fa fa-check"></i><b>3.3</b> Standalone</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="getting-started.html"><a href="getting-started.html#terminal"><i class="fa fa-check"></i><b>3.3.1</b> Terminal</a></li>
+<li class="chapter" data-level="3.3.2" data-path="getting-started.html"><a href="getting-started.html#the-data-you-need"><i class="fa fa-check"></i><b>3.3.2</b> The data you need</a></li>
+<li class="chapter" data-level="3.3.3" data-path="getting-started.html"><a href="getting-started.html#navigating-the-terminal"><i class="fa fa-check"></i><b>3.3.3</b> Navigating the Terminal</a></li>
+<li class="chapter" data-level="3.3.4" data-path="getting-started.html"><a href="getting-started.html#installing-the-software"><i class="fa fa-check"></i><b>3.3.4</b> Installing the software</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="getting-started.html"><a href="getting-started.html#installing-r-and-rstudio"><i class="fa fa-check"></i><b>3.4</b> Installing R and RStudio</a></li>
+<li class="chapter" data-level="3.5" data-path="getting-started.html"><a href="getting-started.html#are-you-ready"><i class="fa fa-check"></i><b>3.5</b> Are you ready?</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="gwas-basics.html"><a href="gwas-basics.html"><i class="fa fa-check"></i><b>4</b> Steps in a Genome-Wide Association Study</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="gwas-basics.html"><a href="gwas-basics.html#converting-datasets"><i class="fa fa-check"></i><b>4.1</b> Converting datasets</a></li>
+<li class="chapter" data-level="4.2" data-path="gwas-basics.html"><a href="gwas-basics.html#quality-control"><i class="fa fa-check"></i><b>4.2</b> Quality control</a></li>
+<li class="chapter" data-level="4.3" data-path="gwas-basics.html"><a href="gwas-basics.html#lets-get-our-hands-dirty"><i class="fa fa-check"></i><b>4.3</b> Let’s get our hands dirty</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="gwas-basics-sample-qc.html"><a href="gwas-basics-sample-qc.html"><i class="fa fa-check"></i><b>5</b> Sample QC</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="gwas-basics-sample-qc.html"><a href="gwas-basics-sample-qc.html#sex"><i class="fa fa-check"></i><b>5.1</b> Sex</a></li>
+<li class="chapter" data-level="5.2" data-path="gwas-basics-sample-qc.html"><a href="gwas-basics-sample-qc.html#sample-call-rates"><i class="fa fa-check"></i><b>5.2</b> Sample call rates</a></li>
+<li class="chapter" data-level="5.3" data-path="gwas-basics-sample-qc.html"><a href="gwas-basics-sample-qc.html#heterozygosity-rate"><i class="fa fa-check"></i><b>5.3</b> Heterozygosity rate</a></li>
+<li class="chapter" data-level="5.4" data-path="gwas-basics-sample-qc.html"><a href="gwas-basics-sample-qc.html#relatedness"><i class="fa fa-check"></i><b>5.4</b> Relatedness</a></li>
+<li class="chapter" data-level="5.5" data-path="gwas-basics-sample-qc.html"><a href="gwas-basics-sample-qc.html#ancestral-background"><i class="fa fa-check"></i><b>5.5</b> Ancestral background</a>
+<ul>
+<li class="chapter" data-level="5.5.1" data-path="gwas-basics-sample-qc.html"><a href="gwas-basics-sample-qc.html#g-phase-1"><i class="fa fa-check"></i><b>5.5.1</b> 1000G phase 1</a></li>
+<li class="chapter" data-level="5.5.2" data-path="gwas-basics-sample-qc.html"><a href="gwas-basics-sample-qc.html#principal-component-analysis"><i class="fa fa-check"></i><b>5.5.2</b> Principal component analysis</a></li>
+<li class="chapter" data-level="5.5.3" data-path="gwas-basics-sample-qc.html"><a href="gwas-basics-sample-qc.html#plotting-the-pca-results"><i class="fa fa-check"></i><b>5.5.3</b> Plotting the PCA results</a></li>
+</ul></li>
+<li class="chapter" data-level="5.6" data-path="gwas-basics-sample-qc.html"><a href="gwas-basics-sample-qc.html#removing-samples"><i class="fa fa-check"></i><b>5.6</b> Removing samples</a></li>
+<li class="chapter" data-level="5.7" data-path="gwas-basics-sample-qc.html"><a href="gwas-basics-sample-qc.html#the-next-step"><i class="fa fa-check"></i><b>5.7</b> The next step</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="gwas_basics_snp_qc.html"><a href="gwas_basics_snp_qc.html"><i class="fa fa-check"></i><b>6</b> Per-SNP QC</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="gwas_basics_snp_qc.html"><a href="gwas_basics_snp_qc.html#snp-call-rates"><i class="fa fa-check"></i><b>6.1</b> SNP call rates</a></li>
+<li class="chapter" data-level="6.2" data-path="gwas_basics_snp_qc.html"><a href="gwas_basics_snp_qc.html#differential-snp-call-rates"><i class="fa fa-check"></i><b>6.2</b> Differential SNP call rates</a></li>
+<li class="chapter" data-level="6.3" data-path="gwas_basics_snp_qc.html"><a href="gwas_basics_snp_qc.html#allele-frequencies"><i class="fa fa-check"></i><b>6.3</b> Allele frequencies</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="gwas_basics_snp_qc.html"><a href="gwas_basics_snp_qc.html#a-note-on-allele-coding"><i class="fa fa-check"></i><b>6.3.1</b> A note on allele coding</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="gwas_basics_snp_qc.html"><a href="gwas_basics_snp_qc.html#hardy-weinberg-equilibrium"><i class="fa fa-check"></i><b>6.4</b> Hardy-Weinberg Equilibrium</a></li>
+<li class="chapter" data-level="6.5" data-path="gwas_basics_snp_qc.html"><a href="gwas_basics_snp_qc.html#final-snp-qc"><i class="fa fa-check"></i><b>6.5</b> Final SNP QC</a></li>
+<li class="chapter" data-level="6.6" data-path="gwas_basics_snp_qc.html"><a href="gwas_basics_snp_qc.html#a-milestone"><i class="fa fa-check"></i><b>6.6</b> A Milestone</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="epilogue.html"><a href="epilogue.html"><i class="fa fa-check"></i><b>7</b> Epilogue</a></li>
+<li class="chapter" data-level="8" data-path="eigensoft.html"><a href="eigensoft.html"><i class="fa fa-check"></i><b>8</b> Additional: EIGENSOFT</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="eigensoft.html"><a href="eigensoft.html#install-homebrew"><i class="fa fa-check"></i><b>8.1</b> Install homebrew</a></li>
+<li class="chapter" data-level="8.2" data-path="eigensoft.html"><a href="eigensoft.html#install-missing-packages"><i class="fa fa-check"></i><b>8.2</b> Install missing packages</a></li>
+<li class="chapter" data-level="8.3" data-path="eigensoft.html"><a href="eigensoft.html#installing-eigensoft"><i class="fa fa-check"></i><b>8.3</b> Installing EIGENSOFT</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="todo.html"><a href="todo.html"><i class="fa fa-check"></i><b>9</b> Things to do</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="todo.html"><a href="todo.html#moscow"><i class="fa fa-check"></i><b>9.1</b> MoSCoW</a>
+<ul>
+<li class="chapter" data-level="9.1.1" data-path="todo.html"><a href="todo.html#contents"><i class="fa fa-check"></i><b>9.1.1</b> Contents</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="todo.html"><a href="todo.html#book-fixes"><i class="fa fa-check"></i><b>9.2</b> Book fixes</a></li>
+<li class="chapter" data-level="9.3" data-path="todo.html"><a href="todo.html#useful-links-for-me-mostly"><i class="fa fa-check"></i><b>9.3</b> Useful links (for me mostly)</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="license.html"><a href="license.html"><i class="fa fa-check"></i><b>10</b> Licenses and disclaimers</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="license.html"><a href="license.html#copyright"><i class="fa fa-check"></i><b>10.1</b> Copyright</a></li>
+<li class="chapter" data-level="10.2" data-path="license.html"><a href="license.html#disclaimer"><i class="fa fa-check"></i><b>10.2</b> Disclaimer</a></li>
+<li class="chapter" data-level="10.3" data-path="license.html"><a href="license.html#images-used"><i class="fa fa-check"></i><b>10.3</b> Images used</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="colofon.html"><a href="colofon.html"><i class="fa fa-check"></i><b>11</b> Colofon</a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown.</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">A Practical Primer in Human Complex Genetics</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="gwas-basics-sample-qc" class="section level1 hasAnchor" number="5">
+<h1><span class="header-section-number">Chapter 5</span> Sample QC<a href="gwas-basics-sample-qc.html#gwas-basics-sample-qc" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p><img src="img/_gwas_dummy/gwas_sample_qc.png" style="width:70.0%" /></p>
+<p>Let’s start with the per-sample quality control.</p>
+<div id="sex" class="section level2 hasAnchor" number="5.1">
+<h2><span class="header-section-number">5.1</span> Sex<a href="gwas-basics-sample-qc.html#sex" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We need to identify of individuals with discordant sex information comparing phenotypic and genotypic data. Let’s calculate the mean homozygosity rate across X-chromosome markers for each individual in the study.</p>
+<pre><code>plink --bfile dummy_project/rawdata --check-sex --out dummy_project/rawdata</code></pre>
+<p>This produces a file with the following columns:</p>
+<ul>
+<li><em>FID</em> Family ID</li>
+<li><em>IID</em> Within-family ID</li>
+<li><em>PEDSEX</em> Sex code in input file</li>
+<li><em>SNPSEX</em> Imputed sex code (1 = male, 2 = female, 0 = unknown)</li>
+<li><em>STATUS</em> ‘OK’ if PEDSEX and SNPSEX match and are nonzero, ‘PROBLEM’ otherwise</li>
+<li><em>F</em> Inbreeding coefficient, considering only X chromosome. Not present with ‘y-only’.</li>
+<li><em>YCOUNT</em> Number of nonmissing genotype calls on Y chromosome. Requires ‘ycount’/‘y-only’.</li>
+</ul>
+<p>We need to get a list of individuals with discordant sex data.</p>
+<pre><code>cat dummy_project/rawdata.sexcheck | awk &#39;$5 ==&quot;STATUS&quot; || $5 ==&quot;PROBLEM&quot;&#39;  &gt; dummy_project/rawdata.sexprobs.txt</code></pre>
+<p>Let’s have a look at the results.</p>
+<pre><code>cat dummy_project/rawdata.sexprobs.txt</code></pre>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="gwas-basics-sample-qc.html#cb26-1" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;data.table&quot;</span>)</span>
+<span id="cb26-2"><a href="gwas-basics-sample-qc.html#cb26-2" tabindex="-1"></a></span>
+<span id="cb26-3"><a href="gwas-basics-sample-qc.html#cb26-3" tabindex="-1"></a>COURSE_loc <span class="ot">=</span> <span class="st">&quot;~/Desktop/practical&quot;</span> <span class="co"># getwd()</span></span>
+<span id="cb26-4"><a href="gwas-basics-sample-qc.html#cb26-4" tabindex="-1"></a></span>
+<span id="cb26-5"><a href="gwas-basics-sample-qc.html#cb26-5" tabindex="-1"></a>sexissues <span class="ot">&lt;-</span> data.table<span class="sc">::</span><span class="fu">fread</span>(<span class="fu">paste0</span>(COURSE_loc,<span class="st">&quot;/dummy_project/rawdata.sexprobs.txt&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="gwas-basics-sample-qc.html#cb27-1" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;knitr&quot;</span>)</span>
+<span id="cb27-2"><a href="gwas-basics-sample-qc.html#cb27-2" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(</span>
+<span id="cb27-3"><a href="gwas-basics-sample-qc.html#cb27-3" tabindex="-1"></a>  sexissues, <span class="at">caption =</span> <span class="st">&#39;Sex issues&#39;</span>,</span>
+<span id="cb27-4"><a href="gwas-basics-sample-qc.html#cb27-4" tabindex="-1"></a>  <span class="at">booktabs =</span> <span class="cn">TRUE</span></span>
+<span id="cb27-5"><a href="gwas-basics-sample-qc.html#cb27-5" tabindex="-1"></a>)</span></code></pre></div>
+<p>When the homozygosity rate (<em>F</em>) is more than 0.2, but less than 0.8, the genotype data are inconclusive regarding the sex of an individual and these are marked in column <em>SNPSEX</em> with a 0, and the column <em>STATUS</em> “PROBLEM”.</p>
+<p>Report the IDs of individuals with discordant sex information (Table <a href="#tab:sex-issues"><strong>??</strong></a>) to those who conducted sex phenotyping. In situations in which discrepancy cannot be resolved, add the family ID (FID) and individual ID (IID) of the samples to a file named <code>fail-sexcheck-qc.txt</code> (one individual per line, tab delimited).</p>
+<pre><code>grep &quot;PROBLEM&quot; dummy_project/rawdata.sexcheck | awk &#39;{ print $1, $2}&#39;  &gt; dummy_project/fail-sexcheck-qc.txt</code></pre>
+</div>
+<div id="sample-call-rates" class="section level2 hasAnchor" number="5.2">
+<h2><span class="header-section-number">5.2</span> Sample call rates<a href="gwas-basics-sample-qc.html#sample-call-rates" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Let’s get an overview of the missing data per sample and per SNP.</p>
+<pre><code>plink --bfile dummy_project/rawdata --missing --out dummy_project/rawdata</code></pre>
+<p>This produces two files, <code>rawdata/rawdata.imiss</code> and <code>rawdata/rawdata.lmiss</code>. In the .imiss file the <em>N_MISS</em> column denotes the number of missing SNPs, and the <em>F_MISS</em> column denotes the proportion of missing SNPs per individual.</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="gwas-basics-sample-qc.html#cb30-1" tabindex="-1"></a>raw_IMISS <span class="ot">&lt;-</span> data.table<span class="sc">::</span><span class="fu">fread</span>(<span class="fu">paste0</span>(COURSE_loc, <span class="st">&quot;/dummy_project/rawdata.imiss&quot;</span>))</span>
+<span id="cb30-2"><a href="gwas-basics-sample-qc.html#cb30-2" tabindex="-1"></a></span>
+<span id="cb30-3"><a href="gwas-basics-sample-qc.html#cb30-3" tabindex="-1"></a>raw_IMISS<span class="sc">$</span>callrate <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> raw_IMISS<span class="sc">$</span>F_MISS</span></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="gwas-basics-sample-qc.html#cb31-1" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;ggpubr&quot;</span>)</span>
+<span id="cb31-2"><a href="gwas-basics-sample-qc.html#cb31-2" tabindex="-1"></a></span>
+<span id="cb31-3"><a href="gwas-basics-sample-qc.html#cb31-3" tabindex="-1"></a>ggpubr<span class="sc">::</span><span class="fu">gghistogram</span>(raw_IMISS, <span class="at">x =</span> <span class="st">&quot;callrate&quot;</span>,</span>
+<span id="cb31-4"><a href="gwas-basics-sample-qc.html#cb31-4" tabindex="-1"></a>                    <span class="at">add =</span> <span class="st">&quot;mean&quot;</span>, <span class="at">add.params =</span> <span class="fu">list</span>(<span class="at">color =</span> <span class="st">&quot;#595A5C&quot;</span>, <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>, <span class="at">size =</span> <span class="dv">1</span>),</span>
+<span id="cb31-5"><a href="gwas-basics-sample-qc.html#cb31-5" tabindex="-1"></a>                    <span class="at">rug =</span> <span class="cn">TRUE</span>, <span class="at">bins =</span> <span class="dv">50</span>,</span>
+<span id="cb31-6"><a href="gwas-basics-sample-qc.html#cb31-6" tabindex="-1"></a>                    <span class="at">color =</span> <span class="st">&quot;#1290D9&quot;</span>, <span class="at">fill =</span> <span class="st">&quot;#1290D9&quot;</span>,</span>
+<span id="cb31-7"><a href="gwas-basics-sample-qc.html#cb31-7" tabindex="-1"></a>                    <span class="at">xlab =</span> <span class="st">&quot;per sample call rate&quot;</span>) <span class="sc">+</span></span>
+<span id="cb31-8"><a href="gwas-basics-sample-qc.html#cb31-8" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fl">0.95</span>, <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>,</span>
+<span id="cb31-9"><a href="gwas-basics-sample-qc.html#cb31-9" tabindex="-1"></a>                <span class="at">color =</span> <span class="st">&quot;#E55738&quot;</span>, <span class="at">size =</span> <span class="dv">1</span>)</span>
+<span id="cb31-10"><a href="gwas-basics-sample-qc.html#cb31-10" tabindex="-1"></a>ggplot2<span class="sc">::</span><span class="fu">ggsave</span>(<span class="fu">paste0</span>(COURSE_loc, <span class="st">&quot;/dummy_project/gwas-qc-sample-call-rate.png&quot;</span>),</span>
+<span id="cb31-11"><a href="gwas-basics-sample-qc.html#cb31-11" tabindex="-1"></a>       <span class="at">plot =</span> <span class="fu">last_plot</span>())</span></code></pre></div>
+<p>The grey dashed line in Figure <a href="gwas-basics-sample-qc.html#fig:show-sample-callrate">5.1</a> indicates the mean call rate, while the red dashed line indicates the threshold we had determined above.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:show-sample-callrate"></span>
+<img src="img/_gwas_dummy/gwas-qc-sample-callrate.png" alt="Per sample call rate." width="672" />
+<p class="caption">
+Figure 5.1: Per sample call rate.
+</p>
+</div>
+</div>
+<div id="heterozygosity-rate" class="section level2 hasAnchor" number="5.3">
+<h2><span class="header-section-number">5.3</span> Heterozygosity rate<a href="gwas-basics-sample-qc.html#heterozygosity-rate" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>To properly calculate heterozygosity rate and relatedness (identity-by-descent [IBD]) we need to do four things:</p>
+<ol style="list-style-type: decimal">
+<li>pre-clean the data to get a high-quality set,</li>
+<li>of independent SNPs,</li>
+<li>exclude long-range linkage disequilibrium (LD) blocks that bias with these calculations, and</li>
+<li>exclude A/T and C/G SNPs as these may be ambivalent in interpretation when frequencies between cases and controls are close (MAF ± 0.45),</li>
+<li>remove all non-autosomal SNPs.</li>
+</ol>
+<p>You can find an up-to-date list of LD blocks you should exclude in these types of analyses <a href="https://genome.sph.umich.edu/wiki/Regions_of_high_linkage_disequilibrium_(LD)" target="_blank">here</a> for the different genome builds. In this case we are using build 37. For the purpose of this book we included a file with these regions in the <code>support</code>-directory.</p>
+<p>We will use the following settings:</p>
+<ul>
+<li>remove A/T and C/G SNPs with the flag <code>--exclude dummy_project/all.atcg.variants.txt</code>,</li>
+<li>call rate &lt;1% with the flag <code>--geno 0.10</code>,</li>
+<li>Hardy-Weinberg Equilibrium (HWE) p-value &gt; 1x10-3 with the flag <code>--hwe 1e-3</code>,</li>
+<li>and MAF&gt;10% with the flag <code>--maf 0.10</code>,</li>
+<li>prune the data to only select independent SNPs (with low LD r^2) of one pair each with <code>r^2 = 0.2</code> with the flags <code>--indep-pairwise 100 10 0.2</code> and <code>--extract rawdata/raw-GWA-data.prune.in</code>,</li>
+<li>SNPs in long-range LD regions (for example: MHC chr 6 25.8-36Mb, chr 8 inversion 6-16Mb, chr17 40-45Mb, and a few more) with the flag <code>--exclude range support/exclude_problematic_range.txt</code>,</li>
+<li>remove non-autosomal SNPs with the flag <code>--autosome</code>.</li>
+</ul>
+<p>First, get a list of A/T and C/G SNPs. Remember, the list of markers for this GWAS is noted in the <code>.bim</code> file. We can simply grep all the lines where the two alleles either have an A/T or C/G combination.</p>
+<pre><code>cat dummy_project/rawdata.bim | \
+awk &#39;($5 == &quot;A&quot; &amp;&amp; $6 == &quot;T&quot;) || ($5 == &quot;T&quot; &amp;&amp; $6 == &quot;A&quot;) || ($5 == &quot;C&quot; &amp;&amp; $6 == &quot;G&quot;) || ($5 == &quot;G&quot; &amp;&amp; $6 == &quot;C&quot;)&#39; | awk &#39;{ print $2, $1, $4, $3, $5, $6 }&#39; \
+&gt; dummy_project/all.atcg.variants.txt</code></pre>
+<p>Second, clean the data and get a list of independent SNPs.</p>
+<!-- *NEXT YEAR: further explain the exact commands  and how they relate with the above. Is this needed? * -->
+<pre><code>plink --bfile dummy_project/rawdata \
+--autosome \
+--maf 0.10 --geno 0.10 --hwe 1e-3 \
+--indep-pairwise 100 10 0.2 \
+--exclude range support/exclude_problematic_range.txt \
+--make-bed --out dummy_project/rawdata.clean.temp</code></pre>
+<blockquote>
+<p>Please note, we have create a dataset without taking into account LD structure. Hence, the message ‘Pruned 0 variants from chromosome 1, leaving 19420.’ etc. In a dataset without any LD structure this flag <code>--indep-pairwise 100 10 0.2</code> doesn’t actually work. However, with real-data you can use it to prune out unwanted SNPs in high LD.</p>
+</blockquote>
+<p>Third, exclude the pruned SNPs. Note, how we include a file to exclude high-LD for the purpose of the practical.</p>
+<pre><code>plink --bfile dummy_project/rawdata.clean.temp \
+--extract rawdata/raw-GWA-data.prune.in \
+--make-bed --out dummy_project/rawdata.clean.ultraclean.temp</code></pre>
+<p>Fourth, remove the A/T and C/G SNPs.</p>
+<pre><code>plink --bfile dummy_project/rawdata.clean.ultraclean.temp \
+--exclude dummy_project/all.atcg.variants.txt \
+--make-bed --out dummy_project/rawdata.clean.ultraclean</code></pre>
+<blockquote>
+<p>Please note, this dataset doesn’t actually include this type of SNP, hence <code>rawdata/all.atcg.variants.txt</code> is empty! Again, you can use this command in real-data to exclude A/T and C/G SNPs.</p>
+</blockquote>
+<p>Lastly, remove the temporary files.</p>
+<pre><code>rm -fv dummy_project/*.temp*</code></pre>
+<p>Finally, we can calculate the heterozygosity rate.</p>
+<pre><code>plink --bfile dummy_project/rawdata.clean.ultraclean --het --out dummy_project/rawdata.clean.ultraclean</code></pre>
+<p>This creates the file <code>dummy_project/rawdata.clean.ultraclean.het</code>, in which the third column denotes the observed number of homozygous genotypes, O(Hom), and the fifth column denotes the number of nonmissing genotypes, N(NM), per individual. We can now calculate the observed heterozygosity rate per individual using the formula (N(NM) - O(Hom))/N(NM).</p>
+<p>Often there is a correlation between heterozygosity rate and missing data. Thus, we should plot the observed heterozygosity rate per individual on the x-axis and the proportion of missing SNP, that is the ‘SNP call rate’, per individuals on the y-axis (Figure <a href="gwas-basics-sample-qc.html#fig:show-heterozygosity">5.2</a>).</p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="gwas-basics-sample-qc.html#cb38-1" tabindex="-1"></a>raw_HET <span class="ot">&lt;-</span> data.table<span class="sc">::</span><span class="fu">fread</span>(<span class="fu">paste0</span>(COURSE_loc, <span class="st">&quot;/dummy_project/rawdata.clean.ultraclean.het&quot;</span>))</span>
+<span id="cb38-2"><a href="gwas-basics-sample-qc.html#cb38-2" tabindex="-1"></a></span>
+<span id="cb38-3"><a href="gwas-basics-sample-qc.html#cb38-3" tabindex="-1"></a>raw_IMISS<span class="sc">$</span>logF_MISS <span class="ot">=</span> <span class="fu">log10</span>(raw_IMISS<span class="sc">$</span>F_MISS)</span>
+<span id="cb38-4"><a href="gwas-basics-sample-qc.html#cb38-4" tabindex="-1"></a>prop_miss <span class="ot">=</span> <span class="sc">-</span><span class="fl">1.522879</span></span>
+<span id="cb38-5"><a href="gwas-basics-sample-qc.html#cb38-5" tabindex="-1"></a></span>
+<span id="cb38-6"><a href="gwas-basics-sample-qc.html#cb38-6" tabindex="-1"></a>raw_HET<span class="sc">$</span>meanHet <span class="ot">=</span> (raw_HET<span class="sc">$</span><span class="st">`</span><span class="at">N(NM)</span><span class="st">`</span> <span class="sc">-</span> raw_HET<span class="sc">$</span><span class="st">`</span><span class="at">O(HOM)</span><span class="st">`</span>)<span class="sc">/</span>raw_HET<span class="sc">$</span><span class="st">`</span><span class="at">N(NM)</span><span class="st">`</span></span>
+<span id="cb38-7"><a href="gwas-basics-sample-qc.html#cb38-7" tabindex="-1"></a>lower_meanHet <span class="ot">=</span> <span class="fu">mean</span>(raw_HET<span class="sc">$</span>meanHet) <span class="sc">-</span> (<span class="dv">3</span><span class="sc">*</span><span class="fu">sd</span>(raw_HET<span class="sc">$</span>meanHet))</span>
+<span id="cb38-8"><a href="gwas-basics-sample-qc.html#cb38-8" tabindex="-1"></a>upper_meanHet <span class="ot">=</span> <span class="fu">mean</span>(raw_HET<span class="sc">$</span>meanHet) <span class="sc">+</span> (<span class="dv">3</span><span class="sc">*</span><span class="fu">sd</span>(raw_HET<span class="sc">$</span>meanHet))</span>
+<span id="cb38-9"><a href="gwas-basics-sample-qc.html#cb38-9" tabindex="-1"></a></span>
+<span id="cb38-10"><a href="gwas-basics-sample-qc.html#cb38-10" tabindex="-1"></a>raw_IMISSHET <span class="ot">=</span> <span class="fu">merge</span>(raw_IMISS, raw_HET, <span class="at">by =</span> <span class="st">&quot;IID&quot;</span>)</span>
+<span id="cb38-11"><a href="gwas-basics-sample-qc.html#cb38-11" tabindex="-1"></a>raw_IMISSHET<span class="sc">$</span>FID.y <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb38-12"><a href="gwas-basics-sample-qc.html#cb38-12" tabindex="-1"></a><span class="fu">colnames</span>(raw_IMISSHET)[<span class="fu">colnames</span>(raw_IMISSHET)<span class="sc">==</span><span class="st">&quot;FID.x&quot;</span>] <span class="ot">&lt;-</span> <span class="st">&quot;FID&quot;</span></span>
+<span id="cb38-13"><a href="gwas-basics-sample-qc.html#cb38-13" tabindex="-1"></a></span>
+<span id="cb38-14"><a href="gwas-basics-sample-qc.html#cb38-14" tabindex="-1"></a>colors  <span class="ot">&lt;-</span> <span class="fu">densCols</span>(raw_IMISSHET<span class="sc">$</span>logF_MISS, raw_IMISSHET<span class="sc">$</span>meanHet)</span></code></pre></div>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="gwas-basics-sample-qc.html#cb39-1" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;geneplotter&quot;</span>)</span>
+<span id="cb39-2"><a href="gwas-basics-sample-qc.html#cb39-2" tabindex="-1"></a><span class="fu">png</span>(<span class="fu">paste0</span>(COURSE_loc, <span class="st">&quot;/dummy_project/gwas-qc-imiss-vs-het.png&quot;</span>))</span>
+<span id="cb39-3"><a href="gwas-basics-sample-qc.html#cb39-3" tabindex="-1"></a><span class="fu">plot</span>(raw_IMISSHET<span class="sc">$</span>logF_MISS,</span>
+<span id="cb39-4"><a href="gwas-basics-sample-qc.html#cb39-4" tabindex="-1"></a>     raw_IMISSHET<span class="sc">$</span>meanHet, </span>
+<span id="cb39-5"><a href="gwas-basics-sample-qc.html#cb39-5" tabindex="-1"></a>     <span class="at">col =</span> colors, </span>
+<span id="cb39-6"><a href="gwas-basics-sample-qc.html#cb39-6" tabindex="-1"></a>     <span class="at">xlim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">3</span>,<span class="dv">0</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="fl">0.5</span>),</span>
+<span id="cb39-7"><a href="gwas-basics-sample-qc.html#cb39-7" tabindex="-1"></a>     <span class="at">pch =</span> <span class="dv">20</span>, </span>
+<span id="cb39-8"><a href="gwas-basics-sample-qc.html#cb39-8" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;Proportion of missing genotypes&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Heterozygosity rate&quot;</span>, <span class="at">axes =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb39-9"><a href="gwas-basics-sample-qc.html#cb39-9" tabindex="-1"></a><span class="fu">axis</span>(<span class="dv">2</span>, <span class="at">at =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="fl">0.05</span>,<span class="fl">0.10</span>,<span class="fl">0.15</span>,<span class="fl">0.2</span>,<span class="fl">0.25</span>,<span class="fl">0.3</span>,<span class="fl">0.35</span>,<span class="fl">0.4</span>,<span class="fl">0.45</span>,<span class="fl">0.5</span>), <span class="at">tick =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb39-10"><a href="gwas-basics-sample-qc.html#cb39-10" tabindex="-1"></a><span class="fu">axis</span>(<span class="dv">1</span>, <span class="at">at =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">3</span>,<span class="sc">-</span><span class="dv">2</span>,<span class="sc">-</span><span class="dv">1</span>,<span class="dv">0</span>), </span>
+<span id="cb39-11"><a href="gwas-basics-sample-qc.html#cb39-11" tabindex="-1"></a>     <span class="at">labels =</span> <span class="fu">c</span>(<span class="fl">0.001</span>,<span class="fl">0.01</span>,<span class="fl">0.1</span>,<span class="dv">1</span>))</span>
+<span id="cb39-12"><a href="gwas-basics-sample-qc.html#cb39-12" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> lower_meanHet, <span class="at">col =</span> <span class="st">&quot;#E55738&quot;</span>, <span class="at">lty =</span> <span class="dv">2</span>)</span>
+<span id="cb39-13"><a href="gwas-basics-sample-qc.html#cb39-13" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> upper_meanHet, <span class="at">col =</span> <span class="st">&quot;#E55738&quot;</span>, <span class="at">lty =</span> <span class="dv">2</span>)</span>
+<span id="cb39-14"><a href="gwas-basics-sample-qc.html#cb39-14" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> prop_miss, <span class="at">col =</span> <span class="st">&quot;#E55738&quot;</span>, <span class="at">lty =</span> <span class="dv">2</span>)</span></code></pre></div>
+<!-- I prefer to use ggpubr, but I don't understand why this code doesn't work anymore...?!?! -->
+<!-- ```{r heterozygosity, eval = FALSE} -->
+<!-- ggpubr::ggscatter(raw_IMISSHET, x = "logF_MISS", y = "meanHet", -->
+<!--                   colors = colors, -->
+<!--                   xlab = "Proportion of missing genotypes", ylab = "Heterozygosity rate") + -->
+<!--   scale_x_continuous(labels=c("-3" = "0.001", "-2" = "0.01", -->
+<!--                               "-1" = "0.1", "0" = "1")) + -->
+<!--   geom_hline(yintercept = lower_meanHet, linetype = "dashed", -->
+<!--                 color = "#E55738", size = 1) + -->
+<!--   geom_hline(yintercept = upper_meanHet, linetype = "dashed", -->
+<!--                 color = "#E55738", size = 1) + -->
+<!--   geom_vline(xintercept = prop_miss, linetype = "dashed", -->
+<!--                 color = "#E55738", size = 1) -->
+<!-- ``` -->
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:show-heterozygosity"></span>
+<img src="img/_gwas_dummy/show-heterozygosity.png" alt="Heterozygosity as a function of SNP call rate." width="240" />
+<p class="caption">
+Figure 5.2: Heterozygosity as a function of SNP call rate.
+</p>
+</div>
+<p>Examine the plot (Figure <a href="gwas-basics-sample-qc.html#fig:show-heterozygosity">5.2</a>) to decide reasonable thresholds at which to exclude individuals based on elevated missing or extreme heterozygosity. We chose to exclude all individuals with a genotype failure rate &gt;= 0.03 (vertical dashed line) and/or a heterozygosity rate ± 3 s.d. from the mean (horizontal dashed lines). Add the FID and IID of the samples failing this QC to the file named <code>fail-imisshet-qc.txt</code>.</p>
+<blockquote>
+<p>How would you create this file?</p>
+</blockquote>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="gwas-basics-sample-qc.html#cb40-1" tabindex="-1"></a>raw_IMISSHETsub <span class="ot">=</span> <span class="fu">subset</span>(raw_IMISSHET, logF_MISS <span class="sc">&gt;</span> prop_miss <span class="sc">|</span> (meanHet <span class="sc">&lt;</span> lower_meanHet <span class="sc">|</span> meanHet <span class="sc">&gt;</span> upper_meanHet),</span>
+<span id="cb40-2"><a href="gwas-basics-sample-qc.html#cb40-2" tabindex="-1"></a>                         <span class="at">select =</span> <span class="fu">c</span>(<span class="st">&quot;FID&quot;</span>, <span class="st">&quot;IID&quot;</span>))</span>
+<span id="cb40-3"><a href="gwas-basics-sample-qc.html#cb40-3" tabindex="-1"></a>data.table<span class="sc">::</span><span class="fu">fwrite</span>(raw_IMISSHETsub, <span class="fu">paste0</span>(COURSE_loc,<span class="st">&quot;/dummy_project/fail-raw_IMISSHETsub.txt&quot;</span>), <span class="at">sep =</span><span class="st">&quot; &quot;</span>)</span></code></pre></div>
+<p>If all is right, you’d have something like Table <a href="#tab:failed-callrate-het"><strong>??</strong></a>.</p>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="gwas-basics-sample-qc.html#cb41-1" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;knitr&quot;</span>)</span>
+<span id="cb41-2"><a href="gwas-basics-sample-qc.html#cb41-2" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(</span>
+<span id="cb41-3"><a href="gwas-basics-sample-qc.html#cb41-3" tabindex="-1"></a>  raw_IMISSHETsub, <span class="at">caption =</span> <span class="st">&#39;Failed samples due to sample call rates and heterozygosity rate&#39;</span>,</span>
+<span id="cb41-4"><a href="gwas-basics-sample-qc.html#cb41-4" tabindex="-1"></a>  <span class="at">booktabs =</span> <span class="cn">TRUE</span></span>
+<span id="cb41-5"><a href="gwas-basics-sample-qc.html#cb41-5" tabindex="-1"></a>)</span></code></pre></div>
+</div>
+<div id="relatedness" class="section level2 hasAnchor" number="5.4">
+<h2><span class="header-section-number">5.4</span> Relatedness<a href="gwas-basics-sample-qc.html#relatedness" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<!-- https://rpubs.com/EAVWing/symbols -->
+<p>We calculate Identity-by-Descent (IBS) to identify duplicated and related samples. In Table <a href="gwas-basics-sample-qc.html#tab:show-relatedness">5.1</a> we show how much DNA is shared between individuals depending on their relation<span class="citation">(<a href="#ref-staples2014">Stapples J. 2014</a>)</span>. IBS is measured by calculating pi-hat (<span class="math inline">\(\widehat{\pi}\)</span>), which is in essence the proportion of the DNA that a pair of samples share. To calculate this, we needed this ultraclean dataset, without low-quality SNPs and without high-LD regions.</p>
+<table>
+<caption><span id="tab:show-relatedness">Table 5.1: </span>Familial relations and % DNA shared.</caption>
+<colgroup>
+<col width="62%" />
+<col width="14%" />
+<col width="8%" />
+<col width="9%" />
+<col width="5%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Relatedness</th>
+<th align="left">%.DNA.sharing</th>
+<th align="left">IBD0</th>
+<th align="left">IBD1</th>
+<th align="right">IBD2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Monozygotic twins</td>
+<td align="left">±100%</td>
+<td align="left">0</td>
+<td align="left">1</td>
+<td align="right">0.00</td>
+</tr>
+<tr class="even">
+<td align="left">Parents/child</td>
+<td align="left">±50%</td>
+<td align="left">0.25</td>
+<td align="left">0.5</td>
+<td align="right">0.25</td>
+</tr>
+<tr class="odd">
+<td align="left">Sibling</td>
+<td align="left">±50%</td>
+<td align="left">0.25</td>
+<td align="left">0.5</td>
+<td align="right">0.25</td>
+</tr>
+<tr class="even">
+<td align="left">Fraternal twins</td>
+<td align="left">±50%</td>
+<td align="left">0.25</td>
+<td align="left">0.5</td>
+<td align="right">0.25</td>
+</tr>
+<tr class="odd">
+<td align="left">Grandparent/grandchild</td>
+<td align="left">±25%</td>
+<td align="left">0.5</td>
+<td align="left">0.5</td>
+<td align="right">0.00</td>
+</tr>
+<tr class="even">
+<td align="left">Aunt/Uncle/Niece/Nephew</td>
+<td align="left">±25%</td>
+<td align="left">0.5</td>
+<td align="left">0.5</td>
+<td align="right">0.00</td>
+</tr>
+<tr class="odd">
+<td align="left">Half-sibling</td>
+<td align="left">±25%</td>
+<td align="left">0.5</td>
+<td align="left">0.5</td>
+<td align="right">0.00</td>
+</tr>
+<tr class="even">
+<td align="left">First-cousin</td>
+<td align="left">±12.5%</td>
+<td align="left">0.75</td>
+<td align="left">0.25</td>
+<td align="right">0.00</td>
+</tr>
+<tr class="odd">
+<td align="left">Half first-cousin</td>
+<td align="left">±6.25%</td>
+<td align="left">0.875</td>
+<td align="left">0.125</td>
+<td align="right">0.00</td>
+</tr>
+<tr class="even">
+<td align="left">First-cousin once removed</td>
+<td align="left">±6.25%</td>
+<td align="left">0.875</td>
+<td align="left">0.125</td>
+<td align="right">0.00</td>
+</tr>
+<tr class="odd">
+<td align="left">Second-cousin</td>
+<td align="left">±3.13%</td>
+<td align="left">0.9375</td>
+<td align="left">6.25E-2</td>
+<td align="right">0.00</td>
+</tr>
+<tr class="even">
+<td align="left">Second-cousin once removed</td>
+<td align="left">±1.56%</td>
+<td align="left">0.96875</td>
+<td align="left">3.125E-2</td>
+<td align="right">0.00</td>
+</tr>
+<tr class="odd">
+<td align="left">Distantly related</td>
+<td align="left">&lt;1.56%</td>
+<td align="left">varies</td>
+<td align="left">varies</td>
+<td align="right">0.00</td>
+</tr>
+<tr class="even">
+<td align="left">Unrelated (includes relationships beyond the third degree)</td>
+<td align="left">&lt;1.56%</td>
+<td align="left">1</td>
+<td align="left">0</td>
+<td align="right">0.00</td>
+</tr>
+</tbody>
+</table>
+<p><code>PLINK</code> calculates the inter-individual relatedness using the <code>--genome</code> function.</p>
+<pre><code>plink --bfile dummy_project/rawdata.clean.ultraclean --genome --out dummy_project/rawdata.clean.ultraclean</code></pre>
+<p>We can now identify all pairs of individuals with an IBD &gt; 0.185. The code looks at the individual call rates stored in rawdata.imiss and outputs the IDs of the individual with the lowest call rate to ‘fail-IBD-QC.txt’ for subsequent removal (Table <a href="#tab:show-ibdcallissues"><strong>??</strong></a>).</p>
+<p>First, move to the <code>dummy_project</code> directory.</p>
+<pre><code>cd dummy_project</code></pre>
+<p>Now, execute this script - it should work just fine out-of-the-box.</p>
+<pre><code>perl ../scripts/run-IBD-QC.pl rawdata rawdata.clean.ultraclean</code></pre>
+<p>Go back one directory.</p>
+<pre><code>cd ..</code></pre>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="gwas-basics-sample-qc.html#cb46-1" tabindex="-1"></a>ibdcallissues <span class="ot">&lt;-</span> data.table<span class="sc">::</span><span class="fu">fread</span>(<span class="fu">paste0</span>(COURSE_loc,<span class="st">&quot;/dummy_project/fail-IBD-QC.txt&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="gwas-basics-sample-qc.html#cb47-1" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(</span>
+<span id="cb47-2"><a href="gwas-basics-sample-qc.html#cb47-2" tabindex="-1"></a>  ibdcallissues, </span>
+<span id="cb47-3"><a href="gwas-basics-sample-qc.html#cb47-3" tabindex="-1"></a>  <span class="at">caption =</span> <span class="st">&#39;Failed IBD and callrate.&#39;</span>,</span>
+<span id="cb47-4"><a href="gwas-basics-sample-qc.html#cb47-4" tabindex="-1"></a>  <span class="co"># align = ,</span></span>
+<span id="cb47-5"><a href="gwas-basics-sample-qc.html#cb47-5" tabindex="-1"></a>  <span class="at">booktabs =</span> <span class="cn">FALSE</span></span>
+<span id="cb47-6"><a href="gwas-basics-sample-qc.html#cb47-6" tabindex="-1"></a>)</span></code></pre></div>
+</div>
+<div id="ancestral-background" class="section level2 hasAnchor" number="5.5">
+<h2><span class="header-section-number">5.5</span> Ancestral background<a href="gwas-basics-sample-qc.html#ancestral-background" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Using a <strong>Principal Component Analysis (PCA)</strong> we can reduce the dimensions of the data, and project the “ancestral distances”. In other words, the principal component 1 (the first dimension) and principal component 2 (the second dimension) which will capture most of the variation in the data and represent how much each sample is alike the next. And when compared to a reference, you can deduce the ancestral background of each sample in your dataset. Of course this is relative: we will only know that a given sample is very much a like samples from a given population that <em>exists today</em>.</p>
+<p>Nowadays we run such PCA against a large and diverse dataset containing many different populations. Old-school GWAS (pre-2009) would compare a dataset against <a href="https://www.broadinstitute.org/medical-and-population-genetics/hapmap-3" target="_blank">HapMap 3</a>, nowadays we prefer at a minimum the <a href="https://www.internationalgenome.org" target="_blank">1000G phase 3 populations</a>. And in those ancient times the preferred software to run a PCA was <em>Eigensoft</em> which is a bit tricky to install (see Chapter <a href="eigensoft.html#eigensoft">8</a>), but nowadays <code>PLINK</code> provides the <code>--pca</code>-flag.</p>
+<p>For the purpose of this practical primer we will run PCA against an earlier version of 1000G, phase 1, which is slightly smaller and just as good to use.</p>
+<div id="g-phase-1" class="section level3 hasAnchor" number="5.5.1">
+<h3><span class="header-section-number">5.5.1</span> 1000G phase 1<a href="gwas-basics-sample-qc.html#g-phase-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>We will project our data to the reference, in this example 1000G phase 1 (1000G), which includes individuals from 14 distinct global populations across 4 ‘super’-populations (Europeans [<code>EUR</code>], Africans [<code>AFR</code>], East-Asians [<code>EAS</code>], and Latin Americans [<code>AMR</code>]). In the real-world, using phase 1 may be just fine, but if you think your population evolved through extensive migration it’s probably best to use phase 3 data. In other words, the choice of reference is really depending on the dataset.</p>
+<p>First, we will merge our data with 1000G. The alleles at each marker must be aligned to the same DNA strand to allow our data to merge correctly. Because not all SNPs are required for this analysis the A-&gt;T and C-&gt;G SNPs, which are more difficult to align, can be omitted.</p>
+<div id="filter-the-1000g-data" class="section level4 hasAnchor" number="5.5.1.1">
+<h4><span class="header-section-number">5.5.1.1</span> Filter the 1000G data<a href="gwas-basics-sample-qc.html#filter-the-1000g-data" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>First, we should get a list of relevant variants from our <code>rawdata</code>-dataset. We don’t need the other variants present in the 1000G dataset, right?</p>
+<pre><code>cat dummy_project/rawdata.bim | grep &quot;rs&quot; &gt; dummy_project/all.variants.txt</code></pre>
+<p>Extract those from the 1000G phase 1 data.</p>
+<pre><code>plink --bfile ref_1kg_phase1_all/1kg_phase1_all --extract dummy_project/all.variants.txt --make-bed --out ref_1kg_phase1_all/1kg_phase1_raw</code></pre>
+</div>
+<div id="filter-at-cg-snps" class="section level4 hasAnchor" number="5.5.1.2">
+<h4><span class="header-section-number">5.5.1.2</span> Filter A/T &amp; C/G SNPs<a href="gwas-basics-sample-qc.html#filter-at-cg-snps" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>As explained, the A/T and C/G SNPs are problematic, we want to exclude these too. So let’s get a list of A/T and C/G variants from 1000G to exclude - this may take a while.</p>
+<pre><code>cat ref_1kg_phase1_all/1kg_phase1_raw.bim | \
+awk &#39;($5 == &quot;A&quot; &amp;&amp; $6 == &quot;T&quot;) || ($5 == &quot;T&quot; &amp;&amp; $6 == &quot;A&quot;) || ($5 == &quot;C&quot; &amp;&amp; $6 == &quot;G&quot;) || ($5 == &quot;G&quot; &amp;&amp; $6 == &quot;C&quot;)&#39; | awk &#39;{ print $2, $1, $4, $3, $5, $6 }&#39; \
+&gt; ref_1kg_phase1_all/all.1kg.atcg.variants.txt</code></pre>
+<p>Exclude those A/T and C/G variants in both datasets and at the same time filter to only retain high-quality data and exclude non-autosomal variants.</p>
+<pre><code>plink --bfile ref_1kg_phase1_all/1kg_phase1_raw --exclude ref_1kg_phase1_all/all.1kg.atcg.variants.txt -make-bed --out ref_1kg_phase1_all/1kg_phase1_raw_no_atcg
+
+plink --bfile dummy_project/rawdata --exclude ref_1kg_phase1_all/all.1kg.atcg.variants.txt --make-bed --out dummy_project/rawdata_1kg_phase1_raw_no_atcg</code></pre>
+</div>
+<div id="merging-datasets" class="section level4 hasAnchor" number="5.5.1.3">
+<h4><span class="header-section-number">5.5.1.3</span> Merging datasets<a href="gwas-basics-sample-qc.html#merging-datasets" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Try and merge the data.</p>
+<pre><code>plink --bfile dummy_project/rawdata_1kg_phase1_raw_no_atcg --bmerge ref_1kg_phase1_all/1kg_phase1_raw_no_atcg --make-bed --out dummy_project/rawdata.1kg_phase1</code></pre>
+<p>There probably is an error …</p>
+<pre><code>Error: 72 variants with 3+ alleles present.
+* If you believe this is due to strand inconsistency, try --flip with
+  dummy_project/rawdata.1kg_phase1-merge.missnp.
+  (Warning: if the subsequent merge seems to work, strand errors involving SNPs
+  with A/T or C/G alleles probably remain in your data.  If LD between nearby
+  SNPs is high, --flip-scan should detect them.)
+* If you are dealing with genuine multiallelic variants, we recommend exporting
+  that subset of the data to VCF (via e.g. &#39;--recode vcf&#39;), merging with
+  another tool/script, and then importing the result; PLINK is not yet suited
+  to handling them.
+See https://www.cog-genomics.org/plink/1.9/data#merge3 for more discussion.</code></pre>
+<p>So let’s flip some variants.</p>
+<pre><code>plink --bfile dummy_project/rawdata --exclude ref_1kg_phase1_all/all.1kg.atcg.variants.txt --flip dummy_project/rawdata.1kg_phase1-merge.missnp --make-bed --out dummy_project/rawdata_1kg_phase1_raw_no_atcg</code></pre>
+<p>Let’s try again and merge the data.</p>
+<pre><code>plink --bfile dummy_project/rawdata_1kg_phase1_raw_no_atcg --bmerge ref_1kg_phase1_all/1kg_phase1_raw_no_atcg --make-bed --out dummy_project/rawdata.1kg_phase1</code></pre>
+<p>There still is an error – there are a few multi-allelic variants present which <code>PLINK</code> can’t handle.</p>
+<pre><code>Error: 14 variants with 3+ alleles present.
+* If you believe this is due to strand inconsistency, try --flip with
+  dummy_project/rawdata.1kg_phase1-merge.missnp.
+  (Warning: if the subsequent merge seems to work, strand errors involving SNPs
+  with A/T or C/G alleles probably remain in your data.  If LD between nearby
+  SNPs is high, --flip-scan should detect them.)
+* If you are dealing with genuine multiallelic variants, we recommend exporting
+  that subset of the data to VCF (via e.g. &#39;--recode vcf&#39;), merging with
+  another tool/script, and then importing the result; PLINK is not yet suited
+  to handling them.
+See https://www.cog-genomics.org/plink/1.9/data#merge3 for more discussion.</code></pre>
+<p>Let’s just remove these multi-allelic variants.</p>
+<pre><code>plink --bfile dummy_project/rawdata_1kg_phase1_raw_no_atcg --exclude dummy_project/rawdata.1kg_phase1-merge.missnp --make-bed --out dummy_project/rawdata_1kg_phase1_raw_no_atcg_bi</code></pre>
+<p>After removing those pesky multi-allelic variants, we should be able to merge the data. We should take of the following:</p>
+<ul>
+<li>extract the pruned SNP-set (remember?), <code>--extract rawdata/raw-GWA-data.prune.i</code>,</li>
+<li>exclude non-autosomal variants, <code>--autosome</code>,</li>
+<li>and only keeping high-quality data, <code>--maf 0.10 --geno 0.10 --hwe 1e-3</code>,
+<!-- - remove non-founders from the 1000G data, `--keep-founders`, -->
+<!-- - remove any duplicate variants based on SNPID, `--rm-dup force-first` -->
+<!-- - and list any duplicate variants based on chromosomal base pair position, `--list-duplicate-vars` --></li>
+</ul>
+<pre><code>plink --bfile dummy_project/rawdata_1kg_phase1_raw_no_atcg_bi \
+--bmerge ref_1kg_phase1_all/1kg_phase1_raw_no_atcg \
+--autosome \
+--maf 0.10 --geno 0.10 --hwe 1e-3 \
+--extract rawdata/raw-GWA-data.prune.in \
+--make-bed --out dummy_project/rawdata.1kg_phase1.clean</code></pre>
+<!-- ``` -->
+<!-- plink --bfile dummy_project/rawdata_1kg_phase1_raw_no_atcg_bi \ -->
+<!-- --bmerge ref_1kg_phase1_all/1kg_phase1_raw_no_atcg \ -->
+<!-- --autosome \ -->
+<!-- --maf 0.10 --geno 0.10 --hwe 1e-3 \ -->
+<!-- --extract rawdata/raw-GWA-data.prune.in \ -->
+<!-- --list-duplicate-vars \ -->
+<!-- --make-bed --out dummy_project/rawdata.1kg_phase1.pruned -->
+<!-- ``` -->
+<!-- ``` -->
+<!-- plink --bfile dummy_project/rawdata.1kg_phase1.pruned \ -->
+<!-- --exclude dummy_project/rawdata.1kg_phase1.pruned.dupvar \ -->
+<!-- --rm-dup force-first \ -->
+<!-- --make-bed --out dummy_project/rawdata.1kg_phase1.clean -->
+<!-- ``` -->
+<p>Before we continue it’s best to clean up a bit of the mess.</p>
+<pre><code>rm -fv dummy_project/rawdata_1kg_phase1_raw_no_atcg_bi* ref_1kg_phase1_all/1kg_phase1_raw_no_atcg* dummy_project/rawdata.1kg_phase1.pruned* dummy_project/rawdata_1kg_phase1_raw_no_atcg* dummy_project/rawdata.1kg_phase1-merge* dummy_project/rawdata.1kg_phase1.bed dummy_project/rawdata.1kg_phase1.bim dummy_project/rawdata.1kg_phase1.fam dummy_project/rawdata.1kg_phase1.hh dummy_project/rawdata.1kg_phase1.log ref_1kg_phase1_all/1kg_phase1_raw.*</code></pre>
+<p>Now we have prepared our dataset with only high-quality SNPs that have few missing data, that are high-frequent, exclude problematic genomic ranges, and merged to the 1000G phase 1 reference dataset. Your output should look something like this:</p>
+<pre><code>PLINK v1.90b7.2 64-bit (11 Dec 2023)           www.cog-genomics.org/plink/1.9/
+(C) 2005-2023 Shaun Purcell, Christopher Chang   GNU General Public License v3
+Logging to dummy_project/rawdata.1kg_phase1.clean.log.
+Options in effect:
+  --autosome
+  --bfile dummy_project/rawdata_1kg_phase1_raw_no_atcg_bi
+  --bmerge ref_1kg_phase1_all/1kg_phase1_raw_no_atcg
+  --extract rawdata/raw-GWA-data.prune.in
+  --geno 0.10
+  --hwe 1e-3
+  --maf 0.10
+  --make-bed
+  --out dummy_project/rawdata.1kg_phase1.clean
+
+16384 MB RAM detected; reserving 8192 MB for main workspace.
+2000 people loaded from dummy_project/rawdata_1kg_phase1_raw_no_atcg_bi.fam.
+1092 people to be merged from ref_1kg_phase1_all/1kg_phase1_raw_no_atcg.fam.
+Of these, 1092 are new, while 0 are present in the base dataset.
+Warning: Multiple positions seen for variant &#39;rs3934834&#39;.
+Warning: Multiple positions seen for variant &#39;rs3737728&#39;.
+Warning: Multiple positions seen for variant &#39;rs6687776&#39;.
+Warning: Multiple chromosomes seen for variant &#39;rs1050301&#39;.
+Warning: Multiple chromosomes seen for variant &#39;rs4850&#39;.
+317476 markers loaded from dummy_project/rawdata_1kg_phase1_raw_no_atcg_bi.bim.
+312239 markers to be merged from ref_1kg_phase1_all/1kg_phase1_raw_no_atcg.bim.
+Of these, 14 are new, while 312225 are present in the base dataset.
+312190 more multiple-position warnings: see log file.
+Performing single-pass merge (3092 people, 308317 variants).
+Merged fileset written to dummy_project/rawdata.1kg_phase1.clean-merge.bed +
+dummy_project/rawdata.1kg_phase1.clean-merge.bim +
+dummy_project/rawdata.1kg_phase1.clean-merge.fam .
+308317 variants loaded from .bim file.
+3092 people (1522 males, 1570 females) loaded from .fam.
+3092 phenotype values loaded from .fam.
+--extract: 49856 variants remaining.
+Using 1 thread (no multithreaded calculations invoked).
+Before main variant filters, 3078 founders and 14 nonfounders present.
+Calculating allele frequencies... done.
+Total genotyping rate is 0.994867.
+299 variants removed due to missing genotype data (--geno).
+--hwe: 13825 variants removed due to Hardy-Weinberg exact test.
+2617 variants removed due to minor allele threshold(s)
+(--maf/--max-maf/--mac/--max-mac).
+33115 variants and 3092 people pass filters and QC.
+Phenotype data is quantitative.
+--make-bed to dummy_project/rawdata.1kg_phase1.clean.bed +
+dummy_project/rawdata.1kg_phase1.clean.bim +
+dummy_project/rawdata.1kg_phase1.clean.fam ... done.</code></pre>
+<p>So in total there are 3,092 individuals, 1,522 males and 1,570 females, and 3,078 founders and 14 non-founders. The total genotyping rate is 99.5% and 33,115 variants are present.</p>
+</div>
+</div>
+<div id="principal-component-analysis" class="section level3 hasAnchor" number="5.5.2">
+<h3><span class="header-section-number">5.5.2</span> Principal component analysis<a href="gwas-basics-sample-qc.html#principal-component-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Great, we’ve prepared our dummy project data and merged this with 1000G phase 1. Let’s execute the PCA using <code>--pca</code> in <code>PLINK</code>.</p>
+<pre><code>plink --bfile dummy_project/rawdata.1kg_phase1.clean --pca --out dummy_project/rawdata.1kg_phase1.clean</code></pre>
+</div>
+<div id="plotting-the-pca-results" class="section level3 hasAnchor" number="5.5.3">
+<h3><span class="header-section-number">5.5.3</span> Plotting the PCA results<a href="gwas-basics-sample-qc.html#plotting-the-pca-results" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>If all is peachy, you just succesfully ran PCA against 1000G phase 1. Using <code>--pca</code> we have calculated principal components (PCs), 20 in total by default, and we can now start plotting them. Let’s create a scatter diagram of the first two principal components, including all individuals in the file <code>rawdata.1kg_phase1.clean.eigenvec</code> (the first and second principal components are columns 3 and 4, respectively). We need to collect some per-sample information to color the points according to sample origin.</p>
+<blockquote>
+<p>Note: A R script for creating this plot (<code>scripts/plot-pca-results.Rscript</code>) is also provided (although any standard graphing software can be used), but below you’ll find some fancy codes too.</p>
+</blockquote>
+<p>First we collect the results from the <code>--pca</code>, the dummy data phenotype information, and the reference population information.</p>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="gwas-basics-sample-qc.html#cb62-1" tabindex="-1"></a>PCA_eigenval <span class="ot">&lt;-</span> data.table<span class="sc">::</span><span class="fu">fread</span>(<span class="fu">paste0</span>(COURSE_loc,<span class="st">&quot;/dummy_project/rawdata.1kg_phase1.clean.eigenval&quot;</span>))</span>
+<span id="cb62-2"><a href="gwas-basics-sample-qc.html#cb62-2" tabindex="-1"></a>PCA_eigenvec <span class="ot">&lt;-</span> data.table<span class="sc">::</span><span class="fu">fread</span>(<span class="fu">paste0</span>(COURSE_loc,<span class="st">&quot;/dummy_project/rawdata.1kg_phase1.clean.eigenvec&quot;</span>))</span>
+<span id="cb62-3"><a href="gwas-basics-sample-qc.html#cb62-3" tabindex="-1"></a>ref_pop_raw <span class="ot">&lt;-</span> data.table<span class="sc">::</span><span class="fu">fread</span>(<span class="fu">paste0</span>(COURSE_loc,<span class="st">&quot;/ref_1kg_phase1_all/1kg_phase1_all.pheno&quot;</span>))</span>
+<span id="cb62-4"><a href="gwas-basics-sample-qc.html#cb62-4" tabindex="-1"></a>dummy_pop <span class="ot">&lt;-</span> data.table<span class="sc">::</span><span class="fu">fread</span>(<span class="fu">paste0</span>(COURSE_loc,<span class="st">&quot;/dummy_project/rawdata.fam&quot;</span>))</span>
+<span id="cb62-5"><a href="gwas-basics-sample-qc.html#cb62-5" tabindex="-1"></a></span>
+<span id="cb62-6"><a href="gwas-basics-sample-qc.html#cb62-6" tabindex="-1"></a><span class="co"># Rename some </span></span>
+<span id="cb62-7"><a href="gwas-basics-sample-qc.html#cb62-7" tabindex="-1"></a><span class="fu">names</span>(PCA_eigenval)[<span class="fu">names</span>(PCA_eigenval) <span class="sc">==</span> <span class="st">&quot;V1&quot;</span>] <span class="ot">&lt;-</span> <span class="st">&quot;Eigenvalue&quot;</span></span>
+<span id="cb62-8"><a href="gwas-basics-sample-qc.html#cb62-8" tabindex="-1"></a></span>
+<span id="cb62-9"><a href="gwas-basics-sample-qc.html#cb62-9" tabindex="-1"></a><span class="fu">names</span>(PCA_eigenvec)[<span class="fu">names</span>(PCA_eigenvec) <span class="sc">==</span> <span class="st">&quot;V1&quot;</span>] <span class="ot">&lt;-</span> <span class="st">&quot;FID&quot;</span></span>
+<span id="cb62-10"><a href="gwas-basics-sample-qc.html#cb62-10" tabindex="-1"></a><span class="fu">names</span>(PCA_eigenvec)[<span class="fu">names</span>(PCA_eigenvec) <span class="sc">==</span> <span class="st">&quot;V2&quot;</span>] <span class="ot">&lt;-</span> <span class="st">&quot;IID&quot;</span></span>
+<span id="cb62-11"><a href="gwas-basics-sample-qc.html#cb62-11" tabindex="-1"></a><span class="fu">names</span>(PCA_eigenvec)[<span class="fu">names</span>(PCA_eigenvec) <span class="sc">==</span> <span class="st">&quot;V3&quot;</span>] <span class="ot">&lt;-</span> <span class="st">&quot;PC1&quot;</span></span>
+<span id="cb62-12"><a href="gwas-basics-sample-qc.html#cb62-12" tabindex="-1"></a><span class="fu">names</span>(PCA_eigenvec)[<span class="fu">names</span>(PCA_eigenvec) <span class="sc">==</span> <span class="st">&quot;V4&quot;</span>] <span class="ot">&lt;-</span> <span class="st">&quot;PC2&quot;</span></span>
+<span id="cb62-13"><a href="gwas-basics-sample-qc.html#cb62-13" tabindex="-1"></a><span class="fu">names</span>(PCA_eigenvec)[<span class="fu">names</span>(PCA_eigenvec) <span class="sc">==</span> <span class="st">&quot;V5&quot;</span>] <span class="ot">&lt;-</span> <span class="st">&quot;PC3&quot;</span></span>
+<span id="cb62-14"><a href="gwas-basics-sample-qc.html#cb62-14" tabindex="-1"></a><span class="fu">names</span>(PCA_eigenvec)[<span class="fu">names</span>(PCA_eigenvec) <span class="sc">==</span> <span class="st">&quot;V6&quot;</span>] <span class="ot">&lt;-</span> <span class="st">&quot;PC4&quot;</span></span>
+<span id="cb62-15"><a href="gwas-basics-sample-qc.html#cb62-15" tabindex="-1"></a><span class="fu">names</span>(PCA_eigenvec)[<span class="fu">names</span>(PCA_eigenvec) <span class="sc">==</span> <span class="st">&quot;V7&quot;</span>] <span class="ot">&lt;-</span> <span class="st">&quot;PC5&quot;</span></span>
+<span id="cb62-16"><a href="gwas-basics-sample-qc.html#cb62-16" tabindex="-1"></a><span class="fu">names</span>(PCA_eigenvec)[<span class="fu">names</span>(PCA_eigenvec) <span class="sc">==</span> <span class="st">&quot;V8&quot;</span>] <span class="ot">&lt;-</span> <span class="st">&quot;PC6&quot;</span></span>
+<span id="cb62-17"><a href="gwas-basics-sample-qc.html#cb62-17" tabindex="-1"></a><span class="fu">names</span>(PCA_eigenvec)[<span class="fu">names</span>(PCA_eigenvec) <span class="sc">==</span> <span class="st">&quot;V9&quot;</span>] <span class="ot">&lt;-</span> <span class="st">&quot;PC7&quot;</span></span>
+<span id="cb62-18"><a href="gwas-basics-sample-qc.html#cb62-18" tabindex="-1"></a><span class="fu">names</span>(PCA_eigenvec)[<span class="fu">names</span>(PCA_eigenvec) <span class="sc">==</span> <span class="st">&quot;V10&quot;</span>] <span class="ot">&lt;-</span> <span class="st">&quot;PC8&quot;</span></span>
+<span id="cb62-19"><a href="gwas-basics-sample-qc.html#cb62-19" tabindex="-1"></a><span class="fu">names</span>(PCA_eigenvec)[<span class="fu">names</span>(PCA_eigenvec) <span class="sc">==</span> <span class="st">&quot;V11&quot;</span>] <span class="ot">&lt;-</span> <span class="st">&quot;PC9&quot;</span></span>
+<span id="cb62-20"><a href="gwas-basics-sample-qc.html#cb62-20" tabindex="-1"></a><span class="fu">names</span>(PCA_eigenvec)[<span class="fu">names</span>(PCA_eigenvec) <span class="sc">==</span> <span class="st">&quot;V12&quot;</span>] <span class="ot">&lt;-</span> <span class="st">&quot;PC10&quot;</span></span>
+<span id="cb62-21"><a href="gwas-basics-sample-qc.html#cb62-21" tabindex="-1"></a><span class="fu">names</span>(PCA_eigenvec)[<span class="fu">names</span>(PCA_eigenvec) <span class="sc">==</span> <span class="st">&quot;V13&quot;</span>] <span class="ot">&lt;-</span> <span class="st">&quot;PC11&quot;</span></span>
+<span id="cb62-22"><a href="gwas-basics-sample-qc.html#cb62-22" tabindex="-1"></a><span class="fu">names</span>(PCA_eigenvec)[<span class="fu">names</span>(PCA_eigenvec) <span class="sc">==</span> <span class="st">&quot;V14&quot;</span>] <span class="ot">&lt;-</span> <span class="st">&quot;PC12&quot;</span></span>
+<span id="cb62-23"><a href="gwas-basics-sample-qc.html#cb62-23" tabindex="-1"></a><span class="fu">names</span>(PCA_eigenvec)[<span class="fu">names</span>(PCA_eigenvec) <span class="sc">==</span> <span class="st">&quot;V15&quot;</span>] <span class="ot">&lt;-</span> <span class="st">&quot;PC13&quot;</span></span>
+<span id="cb62-24"><a href="gwas-basics-sample-qc.html#cb62-24" tabindex="-1"></a><span class="fu">names</span>(PCA_eigenvec)[<span class="fu">names</span>(PCA_eigenvec) <span class="sc">==</span> <span class="st">&quot;V16&quot;</span>] <span class="ot">&lt;-</span> <span class="st">&quot;PC14&quot;</span></span>
+<span id="cb62-25"><a href="gwas-basics-sample-qc.html#cb62-25" tabindex="-1"></a><span class="fu">names</span>(PCA_eigenvec)[<span class="fu">names</span>(PCA_eigenvec) <span class="sc">==</span> <span class="st">&quot;V17&quot;</span>] <span class="ot">&lt;-</span> <span class="st">&quot;PC15&quot;</span></span>
+<span id="cb62-26"><a href="gwas-basics-sample-qc.html#cb62-26" tabindex="-1"></a><span class="fu">names</span>(PCA_eigenvec)[<span class="fu">names</span>(PCA_eigenvec) <span class="sc">==</span> <span class="st">&quot;V18&quot;</span>] <span class="ot">&lt;-</span> <span class="st">&quot;PC16&quot;</span></span>
+<span id="cb62-27"><a href="gwas-basics-sample-qc.html#cb62-27" tabindex="-1"></a><span class="fu">names</span>(PCA_eigenvec)[<span class="fu">names</span>(PCA_eigenvec) <span class="sc">==</span> <span class="st">&quot;V19&quot;</span>] <span class="ot">&lt;-</span> <span class="st">&quot;PC17&quot;</span></span>
+<span id="cb62-28"><a href="gwas-basics-sample-qc.html#cb62-28" tabindex="-1"></a><span class="fu">names</span>(PCA_eigenvec)[<span class="fu">names</span>(PCA_eigenvec) <span class="sc">==</span> <span class="st">&quot;V20&quot;</span>] <span class="ot">&lt;-</span> <span class="st">&quot;PC18&quot;</span></span>
+<span id="cb62-29"><a href="gwas-basics-sample-qc.html#cb62-29" tabindex="-1"></a><span class="fu">names</span>(PCA_eigenvec)[<span class="fu">names</span>(PCA_eigenvec) <span class="sc">==</span> <span class="st">&quot;V21&quot;</span>] <span class="ot">&lt;-</span> <span class="st">&quot;PC19&quot;</span></span>
+<span id="cb62-30"><a href="gwas-basics-sample-qc.html#cb62-30" tabindex="-1"></a><span class="fu">names</span>(PCA_eigenvec)[<span class="fu">names</span>(PCA_eigenvec) <span class="sc">==</span> <span class="st">&quot;V22&quot;</span>] <span class="ot">&lt;-</span> <span class="st">&quot;PC20&quot;</span></span>
+<span id="cb62-31"><a href="gwas-basics-sample-qc.html#cb62-31" tabindex="-1"></a></span>
+<span id="cb62-32"><a href="gwas-basics-sample-qc.html#cb62-32" tabindex="-1"></a><span class="fu">names</span>(dummy_pop)[<span class="fu">names</span>(dummy_pop) <span class="sc">==</span> <span class="st">&quot;V1&quot;</span>] <span class="ot">&lt;-</span> <span class="st">&quot;Family_ID&quot;</span></span>
+<span id="cb62-33"><a href="gwas-basics-sample-qc.html#cb62-33" tabindex="-1"></a><span class="fu">names</span>(dummy_pop)[<span class="fu">names</span>(dummy_pop) <span class="sc">==</span> <span class="st">&quot;V2&quot;</span>] <span class="ot">&lt;-</span> <span class="st">&quot;Individual_ID&quot;</span></span>
+<span id="cb62-34"><a href="gwas-basics-sample-qc.html#cb62-34" tabindex="-1"></a><span class="fu">names</span>(dummy_pop)[<span class="fu">names</span>(dummy_pop) <span class="sc">==</span> <span class="st">&quot;V5&quot;</span>] <span class="ot">&lt;-</span> <span class="st">&quot;Gender&quot;</span></span>
+<span id="cb62-35"><a href="gwas-basics-sample-qc.html#cb62-35" tabindex="-1"></a><span class="fu">names</span>(dummy_pop)[<span class="fu">names</span>(dummy_pop) <span class="sc">==</span> <span class="st">&quot;V6&quot;</span>] <span class="ot">&lt;-</span> <span class="st">&quot;Phenotype&quot;</span></span>
+<span id="cb62-36"><a href="gwas-basics-sample-qc.html#cb62-36" tabindex="-1"></a>dummy_pop<span class="sc">$</span>V3<span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb62-37"><a href="gwas-basics-sample-qc.html#cb62-37" tabindex="-1"></a>dummy_pop<span class="sc">$</span>V4<span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb62-38"><a href="gwas-basics-sample-qc.html#cb62-38" tabindex="-1"></a></span>
+<span id="cb62-39"><a href="gwas-basics-sample-qc.html#cb62-39" tabindex="-1"></a>dummy_pop<span class="sc">$</span>Population <span class="ot">&lt;-</span> dummy_pop<span class="sc">$</span>Phenotype</span>
+<span id="cb62-40"><a href="gwas-basics-sample-qc.html#cb62-40" tabindex="-1"></a>dummy_pop<span class="sc">$</span>Population[dummy_pop<span class="sc">$</span>Population <span class="sc">==</span> <span class="dv">2</span>] <span class="ot">&lt;-</span> <span class="st">&quot;Case&quot;</span></span>
+<span id="cb62-41"><a href="gwas-basics-sample-qc.html#cb62-41" tabindex="-1"></a>dummy_pop<span class="sc">$</span>Population[dummy_pop<span class="sc">$</span>Population <span class="sc">==</span> <span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="st">&quot;Control&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="gwas-basics-sample-qc.html#cb63-1" tabindex="-1"></a><span class="co"># we subset the data we need</span></span>
+<span id="cb63-2"><a href="gwas-basics-sample-qc.html#cb63-2" tabindex="-1"></a>ref_pop <span class="ot">&lt;-</span> <span class="fu">subset</span>(ref_pop_raw, <span class="at">select =</span> <span class="fu">c</span>(<span class="st">&quot;Family_ID&quot;</span>, <span class="st">&quot;Individual_ID&quot;</span>, <span class="st">&quot;Gender&quot;</span>, <span class="st">&quot;Phenotype&quot;</span>, <span class="st">&quot;Population&quot;</span>))</span>
+<span id="cb63-3"><a href="gwas-basics-sample-qc.html#cb63-3" tabindex="-1"></a><span class="fu">rm</span>(ref_pop_raw)</span>
+<span id="cb63-4"><a href="gwas-basics-sample-qc.html#cb63-4" tabindex="-1"></a></span>
+<span id="cb63-5"><a href="gwas-basics-sample-qc.html#cb63-5" tabindex="-1"></a><span class="co"># we combine the reference and dummy information</span></span>
+<span id="cb63-6"><a href="gwas-basics-sample-qc.html#cb63-6" tabindex="-1"></a>ref_dummy_pop <span class="ot">&lt;-</span> <span class="fu">rbind</span>(dummy_pop, ref_pop)</span></code></pre></div>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="gwas-basics-sample-qc.html#cb64-1" tabindex="-1"></a>PCA_1kG <span class="ot">&lt;-</span> <span class="fu">merge</span>(PCA_eigenvec,</span>
+<span id="cb64-2"><a href="gwas-basics-sample-qc.html#cb64-2" tabindex="-1"></a>                 ref_dummy_pop,</span>
+<span id="cb64-3"><a href="gwas-basics-sample-qc.html#cb64-3" tabindex="-1"></a>                 <span class="at">by.x =</span> <span class="st">&quot;IID&quot;</span>,</span>
+<span id="cb64-4"><a href="gwas-basics-sample-qc.html#cb64-4" tabindex="-1"></a>                 <span class="at">by.y =</span> <span class="st">&quot;Individual_ID&quot;</span>,</span>
+<span id="cb64-5"><a href="gwas-basics-sample-qc.html#cb64-5" tabindex="-1"></a>                 <span class="at">sort =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb64-6"><a href="gwas-basics-sample-qc.html#cb64-6" tabindex="-1"></a>                 <span class="at">all.x =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="gwas-basics-sample-qc.html#cb65-1" tabindex="-1"></a><span class="co"># Population    Description Super population    Code    Counts</span></span>
+<span id="cb65-2"><a href="gwas-basics-sample-qc.html#cb65-2" tabindex="-1"></a><span class="co"># ASW   African Ancestry in Southwest US                              AFR   4     #49A01D</span></span>
+<span id="cb65-3"><a href="gwas-basics-sample-qc.html#cb65-3" tabindex="-1"></a><span class="co"># CEU   Utah residents with Northern and Western European ancestry  EUR 7     #E55738</span></span>
+<span id="cb65-4"><a href="gwas-basics-sample-qc.html#cb65-4" tabindex="-1"></a><span class="co"># CHB   Han Chinese in Bejing, China                                  EAS   8     #9A3480</span></span>
+<span id="cb65-5"><a href="gwas-basics-sample-qc.html#cb65-5" tabindex="-1"></a><span class="co"># CHS   Southern Han Chinese, China                                 EAS 9     #705296</span></span>
+<span id="cb65-6"><a href="gwas-basics-sample-qc.html#cb65-6" tabindex="-1"></a><span class="co"># CLM   Colombian in Medellin, Colombia                             MR  10  #8D5B9A</span></span>
+<span id="cb65-7"><a href="gwas-basics-sample-qc.html#cb65-7" tabindex="-1"></a><span class="co"># FIN   Finnish in Finland                                          EUR 12  #2F8BC9</span></span>
+<span id="cb65-8"><a href="gwas-basics-sample-qc.html#cb65-8" tabindex="-1"></a><span class="co"># GBR   British in England and Scotland                             EUR 13  #1290D9</span></span>
+<span id="cb65-9"><a href="gwas-basics-sample-qc.html#cb65-9" tabindex="-1"></a><span class="co"># IBS   Iberian populations in Spain                                  EUR   16  #1396D8</span></span>
+<span id="cb65-10"><a href="gwas-basics-sample-qc.html#cb65-10" tabindex="-1"></a><span class="co"># JPT   Japanese in Tokyo, Japan                                      EAS   18  #D5267B</span></span>
+<span id="cb65-11"><a href="gwas-basics-sample-qc.html#cb65-11" tabindex="-1"></a><span class="co"># LWK   Luhya in Webuye, Kenya                                      AFR 20  #78B113</span></span>
+<span id="cb65-12"><a href="gwas-basics-sample-qc.html#cb65-12" tabindex="-1"></a><span class="co"># MXL   Mexican Ancestry in Los Angeles, California                 AMR 22  #F59D10</span></span>
+<span id="cb65-13"><a href="gwas-basics-sample-qc.html#cb65-13" tabindex="-1"></a><span class="co"># PUR   Puerto Rican in Puerto Rico                                 AMR 25  #FBB820</span></span>
+<span id="cb65-14"><a href="gwas-basics-sample-qc.html#cb65-14" tabindex="-1"></a><span class="co"># TSI   Toscani in Italy                                              EUR   27  #4C81BF</span></span>
+<span id="cb65-15"><a href="gwas-basics-sample-qc.html#cb65-15" tabindex="-1"></a><span class="co"># YRI   Yoruba in Ibadan, Nigeria                                     AFR   28  #C5D220</span></span>
+<span id="cb65-16"><a href="gwas-basics-sample-qc.html#cb65-16" tabindex="-1"></a></span>
+<span id="cb65-17"><a href="gwas-basics-sample-qc.html#cb65-17" tabindex="-1"></a>PCA_1kGplot <span class="ot">&lt;-</span> ggpubr<span class="sc">::</span><span class="fu">ggscatter</span>(PCA_1kG, </span>
+<span id="cb65-18"><a href="gwas-basics-sample-qc.html#cb65-18" tabindex="-1"></a>                                 <span class="at">x =</span> <span class="st">&quot;PC1&quot;</span>, </span>
+<span id="cb65-19"><a href="gwas-basics-sample-qc.html#cb65-19" tabindex="-1"></a>                                 <span class="at">y =</span> <span class="st">&quot;PC2&quot;</span>,</span>
+<span id="cb65-20"><a href="gwas-basics-sample-qc.html#cb65-20" tabindex="-1"></a>                                 <span class="at">color =</span> <span class="st">&quot;Population&quot;</span>, </span>
+<span id="cb65-21"><a href="gwas-basics-sample-qc.html#cb65-21" tabindex="-1"></a>                                 <span class="at">palette =</span> <span class="fu">c</span>(<span class="st">&quot;#49A01D&quot;</span>, <span class="co"># ASW </span></span>
+<span id="cb65-22"><a href="gwas-basics-sample-qc.html#cb65-22" tabindex="-1"></a>                                             <span class="st">&quot;#595A5C&quot;</span>, <span class="co"># Case </span></span>
+<span id="cb65-23"><a href="gwas-basics-sample-qc.html#cb65-23" tabindex="-1"></a>                                             <span class="st">&quot;#E55738&quot;</span>, <span class="co"># CEU </span></span>
+<span id="cb65-24"><a href="gwas-basics-sample-qc.html#cb65-24" tabindex="-1"></a>                                             <span class="st">&quot;#9A3480&quot;</span>, <span class="co"># CHB </span></span>
+<span id="cb65-25"><a href="gwas-basics-sample-qc.html#cb65-25" tabindex="-1"></a>                                             <span class="st">&quot;#705296&quot;</span>, <span class="co"># CHS </span></span>
+<span id="cb65-26"><a href="gwas-basics-sample-qc.html#cb65-26" tabindex="-1"></a>                                             <span class="st">&quot;#8D5B9A&quot;</span>, <span class="co"># CLM </span></span>
+<span id="cb65-27"><a href="gwas-basics-sample-qc.html#cb65-27" tabindex="-1"></a>                                             <span class="st">&quot;#A2A3A4&quot;</span>, <span class="co"># Control </span></span>
+<span id="cb65-28"><a href="gwas-basics-sample-qc.html#cb65-28" tabindex="-1"></a>                                             <span class="st">&quot;#2F8BC9&quot;</span>, <span class="co"># FIN </span></span>
+<span id="cb65-29"><a href="gwas-basics-sample-qc.html#cb65-29" tabindex="-1"></a>                                             <span class="st">&quot;#1290D9&quot;</span>, <span class="co"># GBR </span></span>
+<span id="cb65-30"><a href="gwas-basics-sample-qc.html#cb65-30" tabindex="-1"></a>                                             <span class="st">&quot;#1396D8&quot;</span>, <span class="co"># IBS </span></span>
+<span id="cb65-31"><a href="gwas-basics-sample-qc.html#cb65-31" tabindex="-1"></a>                                             <span class="st">&quot;#D5267B&quot;</span>, <span class="co"># JPT </span></span>
+<span id="cb65-32"><a href="gwas-basics-sample-qc.html#cb65-32" tabindex="-1"></a>                                             <span class="st">&quot;#78B113&quot;</span>, <span class="co"># LWK </span></span>
+<span id="cb65-33"><a href="gwas-basics-sample-qc.html#cb65-33" tabindex="-1"></a>                                             <span class="st">&quot;#F59D10&quot;</span>, <span class="co"># MXL </span></span>
+<span id="cb65-34"><a href="gwas-basics-sample-qc.html#cb65-34" tabindex="-1"></a>                                             <span class="st">&quot;#FBB820&quot;</span>, <span class="co"># PUR </span></span>
+<span id="cb65-35"><a href="gwas-basics-sample-qc.html#cb65-35" tabindex="-1"></a>                                             <span class="st">&quot;#4C81BF&quot;</span>, <span class="co"># TSI </span></span>
+<span id="cb65-36"><a href="gwas-basics-sample-qc.html#cb65-36" tabindex="-1"></a>                                             <span class="st">&quot;#C5D220&quot;</span>), <span class="co"># YRI</span></span>
+<span id="cb65-37"><a href="gwas-basics-sample-qc.html#cb65-37" tabindex="-1"></a>                                 <span class="at">xlab =</span> <span class="st">&quot;principal component 1&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;principal component 2&quot;</span>) <span class="sc">+</span></span>
+<span id="cb65-38"><a href="gwas-basics-sample-qc.html#cb65-38" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fl">0.0023</span>, <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>,</span>
+<span id="cb65-39"><a href="gwas-basics-sample-qc.html#cb65-39" tabindex="-1"></a>                      <span class="at">color =</span> <span class="st">&quot;#E55738&quot;</span>, <span class="at">size =</span> <span class="dv">1</span>)</span>
+<span id="cb65-40"><a href="gwas-basics-sample-qc.html#cb65-40" tabindex="-1"></a></span>
+<span id="cb65-41"><a href="gwas-basics-sample-qc.html#cb65-41" tabindex="-1"></a>p2 <span class="ot">&lt;-</span>  ggpubr<span class="sc">::</span><span class="fu">ggpar</span>(PCA_1kGplot,</span>
+<span id="cb65-42"><a href="gwas-basics-sample-qc.html#cb65-42" tabindex="-1"></a>                     <span class="at">title =</span> <span class="st">&quot;Principal Component Analysis&quot;</span>,</span>
+<span id="cb65-43"><a href="gwas-basics-sample-qc.html#cb65-43" tabindex="-1"></a>                     <span class="at">subtitle =</span> <span class="st">&quot;Reference population: 1000 G, phase 1&quot;</span>,</span>
+<span id="cb65-44"><a href="gwas-basics-sample-qc.html#cb65-44" tabindex="-1"></a>                     <span class="at">legend.title =</span> <span class="st">&quot;Populations&quot;</span>, <span class="at">legend =</span> <span class="st">&quot;right&quot;</span>)</span>
+<span id="cb65-45"><a href="gwas-basics-sample-qc.html#cb65-45" tabindex="-1"></a>ggplot2<span class="sc">::</span><span class="fu">ggsave</span>(<span class="fu">paste0</span>(COURSE_loc, <span class="st">&quot;/dummy_project/gwas-qc-pca-1000g.png&quot;</span>), <span class="at">plot =</span> p2)</span>
+<span id="cb65-46"><a href="gwas-basics-sample-qc.html#cb65-46" tabindex="-1"></a>p2</span>
+<span id="cb65-47"><a href="gwas-basics-sample-qc.html#cb65-47" tabindex="-1"></a><span class="fu">rm</span>(p2)</span></code></pre></div>
+<p>Derive PC1 and PC2 thresholds so that only individuals who match the given ancestral population are included. For populations of European descent, this will be either the CEU or TSI 1000G individuals (Figure <a href="#fig:show-pca-1kg"><strong>??</strong></a>). Here, we chose to exclude all individuals with a first principal component score less than <code>0.0023</code>.</p>
+<p>Write the FID and IID of these individuals to a file called <code>fail-ancestry-QC.txt</code>.</p>
+<pre><code>cat dummy_project/rawdata.1kg_phase1.clean.eigenvec | \
+awk &#39;$3 &lt; 0.0023&#39; | awk &#39;{ print $1, $2 }&#39; &gt; dummy_project/fail-ancestry-QC.txt</code></pre>
+<p>Choosing which thresholds to apply (and thus which individuals to remove) is not a straightforward process. The key is to remove those individuals with greatly divergent ancestry, as these samples introduce the most bias to the study. Identification of more fine-scale ancestry can be conducted by using less divergent reference samples (<em>e.g.</em>, within Europe, stratification could be identified using the CEU, TSI (Italian), GBR (British), FIN (Finnish) and IBS (Iberian) samples from the 1,000 Genomes Project (<a href="http://www.1000genomes.org/" class="uri">http://www.1000genomes.org/</a>)). Robust identification of fine-scale population structure often requires the construction of many (2–10) principal components.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:show-pca-1000g"></span>
+<img src="img/_gwas_dummy/gwas-qc-pca-1000g.png" alt="PCA - Your data vs. 1000g." width="1050" />
+<p class="caption">
+Figure 5.3: PCA - Your data vs. 1000g.
+</p>
+</div>
+</div>
+</div>
+<div id="removing-samples" class="section level2 hasAnchor" number="5.6">
+<h2><span class="header-section-number">5.6</span> Removing samples<a href="gwas-basics-sample-qc.html#removing-samples" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Finally! We have a list of samples of poor quality or divergent ancestry, and duplicated or related samples. We should remove these. Let’s collect all IDs from our <code>fail-*</code>-files into a single file.</p>
+<pre><code>cat dummy_project/fail-* | sort -k1 | uniq &gt; dummy_project/fail-qc-inds.txt</code></pre>
+<p>This new file should now contain a list of unique individuals failing the previous QC steps which we want to remove.</p>
+<pre><code>plink --bfile dummy_project/rawdata --remove dummy_project/fail-qc-inds.txt --make-bed --out dummy_project/clean_inds_data</code></pre>
+<blockquote>
+<p>How many variants and samples are left? How many cases and how many controls did you loose?</p>
+</blockquote>
+</div>
+<div id="the-next-step" class="section level2 hasAnchor" number="5.7">
+<h2><span class="header-section-number">5.7</span> The next step<a href="gwas-basics-sample-qc.html#the-next-step" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Now that you filtered samples, we should turn our attention to step 2 of the QC for GWAS: identify SNPs of poor quality in Chapter @ref(gwas_basics_snp_qc).</p>
+
+</div>
+</div>
+<h3>References<a href="references.html#references" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-staples2014" class="csl-entry">
+Stapples J., et al. 2014. <span>“PRIMUS: Rapid Reconstruction of Pedigrees from Genome-Wide Estimates of Identity by Descent.”</span> <a href="https://doi.org/10.1016/j.ajhg.2014.10.005">https://doi.org/10.1016/j.ajhg.2014.10.005</a>.
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="gwas-basics.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="gwas_basics_snp_qc.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": true,
+"twitter": true,
+"linkedin": true,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": true,
+"all": false
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/swvanderlaan/A_Practical_Primer_in_Human_Complex_Genetics/edit/master/03_2_gwas_basics_sample_qc.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": [["A-Practical-Primer-in-Human-Complex-Genetics.pdf", "PDF"], ["A-Practical-Primer-in-Human-Complex-Genetics.epub", "EPUB"]],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

@@ -69,7 +69,10 @@ _gsdata_/
 # rsconnect
 
 # Data and results
+data/rawdata
+data/ref_1kg_phase1_all
 _data
+_data_practical
 _archived
 _docs_old
 _temp

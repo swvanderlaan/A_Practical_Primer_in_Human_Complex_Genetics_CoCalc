@@ -15,6 +15,15 @@ biblio-style: apalike
 always_allow_html: true
 ---
 
+```{r include = FALSE}
+if(!knitr:::is_html_output())
+{
+  options("width"=56)
+  knitr::opts_chunk$set(tidy.opts=list(width.cutoff=56, indent = 2), tidy = TRUE)
+  knitr::opts_chunk$set(fig.pos = 'H')
+}
+```
+
 # About this primer
 ![](img/_headers/banner_man_standing_dna.png){width=100%}
 
@@ -31,5 +40,5 @@ I can imagine this seems overwhelming, but trust me, you'll be okay. Just follow
 
 **Ready to start?**
 
-Your first point of action is to prepare your system for this course in Chapter \@ref(02_1_somebackgroundreading).
+Your first point of action is to prepare your system for this course in Chapter \@ref(somebackgroundreading).
 

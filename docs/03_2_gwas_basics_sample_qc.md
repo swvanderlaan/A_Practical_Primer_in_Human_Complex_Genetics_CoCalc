@@ -1,0 +1,709 @@
+# Sample QC {#gwas-basics-sample-qc}
+![](img/_gwas_dummy/gwas_sample_qc.png){width=70%}
+
+
+Let's start with the per-sample quality control. 
+
+## Sex
+We need to identify of individuals with discordant sex information comparing phenotypic and genotypic data. Let's calculate the mean homozygosity rate across X-chromosome markers for each individual in the study.
+
+```
+plink --bfile dummy_project/rawdata --check-sex --out dummy_project/rawdata
+```
+
+This produces a file with the following columns:
+
+- _FID_	Family ID
+- _IID_	Within-family ID
+- _PEDSEX_	Sex code in input file
+- _SNPSEX_	Imputed sex code (1 = male, 2 = female, 0 = unknown)
+- _STATUS_	'OK' if PEDSEX and SNPSEX match and are nonzero, 'PROBLEM' otherwise
+- _F_	Inbreeding coefficient, considering only X chromosome. Not present with 'y-only'.
+- _YCOUNT_	Number of nonmissing genotype calls on Y chromosome. Requires 'ycount'/'y-only'.
+
+
+We need to get a list of individuals with discordant sex data.
+
+```
+cat dummy_project/rawdata.sexcheck | awk '$5 =="STATUS" || $5 =="PROBLEM"'  > dummy_project/rawdata.sexprobs.txt
+```
+
+Let's have a look at the results.
+
+```
+cat dummy_project/rawdata.sexprobs.txt
+```
+
+
+```r
+library("data.table")
+
+COURSE_loc = "~/Desktop/practical" # getwd()
+
+sexissues <- data.table::fread(paste0(COURSE_loc,"/dummy_project/rawdata.sexprobs.txt"))
+```
+
+
+
+
+```r
+library("knitr")
+knitr::kable(
+  sexissues, caption = 'Sex issues',
+  booktabs = TRUE
+)
+```
+
+
+When the homozygosity rate (_F_) is more than 0.2, but less than 0.8, the genotype data are inconclusive regarding the sex of an individual and these are marked in column _SNPSEX_ with a 0, and the column _STATUS_ "PROBLEM".
+
+Report the IDs of individuals with discordant sex information (Table \@ref(tab:sex-issues)) to those who conducted sex phenotyping. In situations in which discrepancy cannot be resolved, add the family ID (FID) and individual ID (IID) of the samples to a file named `fail-sexcheck-qc.txt` (one individual per line, tab delimited).
+
+```
+grep "PROBLEM" dummy_project/rawdata.sexcheck | awk '{ print $1, $2}'  > dummy_project/fail-sexcheck-qc.txt
+```
+
+## Sample call rates
+Let's get an overview of the missing data per sample and per SNP.
+
+```
+plink --bfile dummy_project/rawdata --missing --out dummy_project/rawdata
+```
+
+This produces two files, `rawdata/rawdata.imiss` and `rawdata/rawdata.lmiss`. In the .imiss file the _N_MISS_ column denotes the number of missing SNPs, and the _F_MISS_ column denotes the proportion of missing SNPs per individual.
+
+
+
+```r
+raw_IMISS <- data.table::fread(paste0(COURSE_loc, "/dummy_project/rawdata.imiss"))
+
+raw_IMISS$callrate <- 1 - raw_IMISS$F_MISS
+```
+
+
+```r
+library("ggpubr")
+
+ggpubr::gghistogram(raw_IMISS, x = "callrate",
+                    add = "mean", add.params = list(color = "#595A5C", linetype = "dashed", size = 1),
+                    rug = TRUE, bins = 50,
+                    color = "#1290D9", fill = "#1290D9",
+                    xlab = "per sample call rate") +
+  ggplot2::geom_vline(xintercept = 0.95, linetype = "dashed",
+                color = "#E55738", size = 1)
+ggplot2::ggsave(paste0(COURSE_loc, "/dummy_project/gwas-qc-sample-call-rate.png"),
+       plot = last_plot())
+```
+
+The grey dashed line in Figure \@ref(fig:show-sample-callrate) indicates the mean call rate, while the red dashed line indicates the threshold we had determined above.
+
+<div class="figure" style="text-align: center">
+<img src="img/_gwas_dummy/gwas-qc-sample-callrate.png" alt="Per sample call rate." width="672" />
+<p class="caption">(\#fig:show-sample-callrate)Per sample call rate.</p>
+</div>
+
+
+## Heterozygosity rate
+
+To properly calculate heterozygosity rate and relatedness (identity-by-descent [IBD]) we need to do four things:
+
+1) pre-clean the data to get a high-quality set,
+2) of independent SNPs,
+3) exclude long-range linkage disequilibrium (LD) blocks that bias with these calculations, and
+4) exclude A/T and C/G SNPs as these may be ambivalent in interpretation when frequencies between cases and controls are close (MAF ± 0.45),
+5) remove all non-autosomal SNPs.
+
+You can find an up-to-date list of LD blocks you should exclude in these types of analyses [here](https://genome.sph.umich.edu/wiki/Regions_of_high_linkage_disequilibrium_(LD)){target="_blank"} for the different genome builds. In this case we are using build 37. For the purpose of this book we included a file with these regions in the `support`-directory.
+
+We will use the following settings:
+
+- remove A/T and C/G SNPs with the flag `--exclude dummy_project/all.atcg.variants.txt`,
+- call rate <1% with the flag `--geno 0.10`,
+- Hardy-Weinberg Equilibrium (HWE) p-value > 1x10-3 with the flag `--hwe 1e-3`,
+- and MAF>10% with the flag `--maf 0.10 `,
+- prune the data to only select independent SNPs (with low LD r^2) of one pair each with `r^2 = 0.2` with the flags `--indep-pairwise 100 10 0.2` and `--extract rawdata/raw-GWA-data.prune.in`,
+- SNPs in long-range LD regions (for example: MHC chr 6 25.8-36Mb, chr 8 inversion 6-16Mb, chr17 40-45Mb, and a few more) with the flag `--exclude range support/exclude_problematic_range.txt`,
+- remove non-autosomal SNPs with the flag `--autosome`.
+
+First, get a list of A/T and C/G SNPs. Remember, the list of markers for this GWAS is noted in the `.bim` file. We can simply grep all the lines where the two alleles either have an A/T or C/G combination.
+
+```
+cat dummy_project/rawdata.bim | \
+awk '($5 == "A" && $6 == "T") || ($5 == "T" && $6 == "A") || ($5 == "C" && $6 == "G") || ($5 == "G" && $6 == "C")' | awk '{ print $2, $1, $4, $3, $5, $6 }' \
+> dummy_project/all.atcg.variants.txt
+```
+
+Second, clean the data and get a list of independent SNPs.
+
+<!-- *NEXT YEAR: further explain the exact commands  and how they relate with the above. Is this needed? * -->
+
+```
+plink --bfile dummy_project/rawdata \
+--autosome \
+--maf 0.10 --geno 0.10 --hwe 1e-3 \
+--indep-pairwise 100 10 0.2 \
+--exclude range support/exclude_problematic_range.txt \
+--make-bed --out dummy_project/rawdata.clean.temp
+```
+
+> Please note, we have create a dataset without taking into account LD structure. Hence, the message 'Pruned 0 variants from chromosome 1, leaving 19420.' etc. In a dataset without any LD structure this flag `--indep-pairwise 100 10 0.2` doesn't actually work. However, with real-data you can use it to prune out unwanted SNPs in high LD.
+
+Third, exclude the pruned SNPs. Note, how we include a file to exclude high-LD for the purpose of the practical.
+
+```
+plink --bfile dummy_project/rawdata.clean.temp \
+--extract rawdata/raw-GWA-data.prune.in \
+--make-bed --out dummy_project/rawdata.clean.ultraclean.temp
+```
+
+Fourth, remove the A/T and C/G SNPs.
+
+```
+plink --bfile dummy_project/rawdata.clean.ultraclean.temp \
+--exclude dummy_project/all.atcg.variants.txt \
+--make-bed --out dummy_project/rawdata.clean.ultraclean
+```
+
+> Please note, this dataset doesn't actually include this type of SNP, hence `rawdata/all.atcg.variants.txt` is empty! Again, you can use this command in real-data to exclude A/T and C/G SNPs.
+
+Lastly, remove the temporary files.
+
+```
+rm -fv dummy_project/*.temp*
+```
+
+Finally, we can calculate the heterozygosity rate.
+
+```
+plink --bfile dummy_project/rawdata.clean.ultraclean --het --out dummy_project/rawdata.clean.ultraclean
+```
+
+This creates the file `dummy_project/rawdata.clean.ultraclean.het`, in which the third column denotes the observed number of homozygous genotypes, O(Hom), and the fifth column denotes the number of nonmissing genotypes, N(NM), per individual. We can now calculate the observed heterozygosity rate per individual using the formula (N(NM) - O(Hom))/N(NM).
+
+Often there is a correlation between heterozygosity rate and missing data. Thus, we should plot the observed heterozygosity rate per individual on the x-axis and the proportion of missing SNP, that is the 'SNP call rate', per individuals on the y-axis (Figure \@ref(fig:show-heterozygosity)).
+
+
+```r
+raw_HET <- data.table::fread(paste0(COURSE_loc, "/dummy_project/rawdata.clean.ultraclean.het"))
+
+raw_IMISS$logF_MISS = log10(raw_IMISS$F_MISS)
+prop_miss = -1.522879
+
+raw_HET$meanHet = (raw_HET$`N(NM)` - raw_HET$`O(HOM)`)/raw_HET$`N(NM)`
+lower_meanHet = mean(raw_HET$meanHet) - (3*sd(raw_HET$meanHet))
+upper_meanHet = mean(raw_HET$meanHet) + (3*sd(raw_HET$meanHet))
+
+raw_IMISSHET = merge(raw_IMISS, raw_HET, by = "IID")
+raw_IMISSHET$FID.y <- NULL
+colnames(raw_IMISSHET)[colnames(raw_IMISSHET)=="FID.x"] <- "FID"
+
+colors  <- densCols(raw_IMISSHET$logF_MISS, raw_IMISSHET$meanHet)
+```
+
+
+
+```r
+library("geneplotter")
+png(paste0(COURSE_loc, "/dummy_project/gwas-qc-imiss-vs-het.png"))
+plot(raw_IMISSHET$logF_MISS,
+     raw_IMISSHET$meanHet, 
+     col = colors, 
+     xlim = c(-3,0), ylim = c(0,0.5),
+     pch = 20, 
+     xlab = "Proportion of missing genotypes", ylab = "Heterozygosity rate", axes = FALSE)
+axis(2, at = c(0,0.05,0.10,0.15,0.2,0.25,0.3,0.35,0.4,0.45,0.5), tick = TRUE)
+axis(1, at = c(-3,-2,-1,0), 
+     labels = c(0.001,0.01,0.1,1))
+abline(h = lower_meanHet, col = "#E55738", lty = 2)
+abline(h = upper_meanHet, col = "#E55738", lty = 2)
+abline(v = prop_miss, col = "#E55738", lty = 2)
+```
+
+<!-- I prefer to use ggpubr, but I don't understand why this code doesn't work anymore...?!?! -->
+<!-- ```{r heterozygosity, eval = FALSE} -->
+<!-- ggpubr::ggscatter(raw_IMISSHET, x = "logF_MISS", y = "meanHet", -->
+<!--                   colors = colors, -->
+<!--                   xlab = "Proportion of missing genotypes", ylab = "Heterozygosity rate") + -->
+<!--   scale_x_continuous(labels=c("-3" = "0.001", "-2" = "0.01", -->
+<!--                               "-1" = "0.1", "0" = "1")) + -->
+<!--   geom_hline(yintercept = lower_meanHet, linetype = "dashed", -->
+<!--                 color = "#E55738", size = 1) + -->
+<!--   geom_hline(yintercept = upper_meanHet, linetype = "dashed", -->
+<!--                 color = "#E55738", size = 1) + -->
+<!--   geom_vline(xintercept = prop_miss, linetype = "dashed", -->
+<!--                 color = "#E55738", size = 1) -->
+<!-- ``` -->
+
+<div class="figure" style="text-align: center">
+<img src="img/_gwas_dummy/show-heterozygosity.png" alt="Heterozygosity as a function of SNP call rate." width="240" />
+<p class="caption">(\#fig:show-heterozygosity)Heterozygosity as a function of SNP call rate.</p>
+</div>
+
+Examine the plot (Figure \@ref(fig:show-heterozygosity)) to decide reasonable thresholds at which to exclude individuals based on elevated missing or extreme heterozygosity. We chose to exclude all individuals with a genotype failure rate >= 0.03 (vertical dashed line) and/or a heterozygosity rate ± 3 s.d. from the mean (horizontal dashed lines). Add the FID and IID of the samples failing this QC to the file named `fail-imisshet-qc.txt`.
+
+> How would you create this file?
+
+
+```r
+raw_IMISSHETsub = subset(raw_IMISSHET, logF_MISS > prop_miss | (meanHet < lower_meanHet | meanHet > upper_meanHet),
+                         select = c("FID", "IID"))
+data.table::fwrite(raw_IMISSHETsub, paste0(COURSE_loc,"/dummy_project/fail-raw_IMISSHETsub.txt"), sep =" ")
+```
+
+If all is right, you'd have something like Table \@ref(tab:failed-callrate-het).
+
+
+
+
+```r
+library("knitr")
+knitr::kable(
+  raw_IMISSHETsub, caption = 'Failed samples due to sample call rates and heterozygosity rate',
+  booktabs = TRUE
+)
+```
+
+
+## Relatedness
+<!-- https://rpubs.com/EAVWing/symbols -->
+We calculate Identity-by-Descent (IBS) to identify duplicated and related samples. In Table \@ref(tab:show-relatedness) we show how much DNA is shared between individuals depending on their relation[@staples2014]. IBS is measured by calculating pi-hat ($\widehat{\pi}$), which is in essence the proportion of the DNA that a pair of samples share. To calculate this, we needed this ultraclean dataset, without low-quality SNPs and without high-LD regions. 
+
+
+
+
+
+Table: (\#tab:show-relatedness)Familial relations and % DNA shared.
+
+|Relatedness                                                |%.DNA.sharing |IBD0    |IBD1     | IBD2|
+|:----------------------------------------------------------|:-------------|:-------|:--------|----:|
+|Monozygotic twins                                          |±100%         |0       |1        | 0.00|
+|Parents/child                                              |±50%          |0.25    |0.5      | 0.25|
+|Sibling                                                    |±50%          |0.25    |0.5      | 0.25|
+|Fraternal twins                                            |±50%          |0.25    |0.5      | 0.25|
+|Grandparent/grandchild                                     |±25%          |0.5     |0.5      | 0.00|
+|Aunt/Uncle/Niece/Nephew                                    |±25%          |0.5     |0.5      | 0.00|
+|Half-sibling                                               |±25%          |0.5     |0.5      | 0.00|
+|First-cousin                                               |±12.5%        |0.75    |0.25     | 0.00|
+|Half first-cousin                                          |±6.25%        |0.875   |0.125    | 0.00|
+|First-cousin once removed                                  |±6.25%        |0.875   |0.125    | 0.00|
+|Second-cousin                                              |±3.13%        |0.9375  |6.25E-2  | 0.00|
+|Second-cousin once removed                                 |±1.56%        |0.96875 |3.125E-2 | 0.00|
+|Distantly related                                          |<1.56%        |varies  |varies   | 0.00|
+|Unrelated (includes relationships beyond the third degree) |<1.56%        |1       |0        | 0.00|
+
+`PLINK` calculates the inter-individual relatedness using the `--genome` function.
+
+```
+plink --bfile dummy_project/rawdata.clean.ultraclean --genome --out dummy_project/rawdata.clean.ultraclean
+```
+
+We can now identify all pairs of individuals with an IBD > 0.185. The code looks at the individual call rates stored in rawdata.imiss and outputs the IDs of the individual with the lowest call rate to ‘fail-IBD-QC.txt’ for subsequent removal (Table \@ref(tab:show-ibdcallissues)).
+
+First, move to the `dummy_project` directory.
+
+```
+cd dummy_project
+```
+
+Now, execute this script - it should work just fine out-of-the-box.
+
+```
+perl ../scripts/run-IBD-QC.pl rawdata rawdata.clean.ultraclean
+```
+
+Go back one directory.
+
+```
+cd ..
+```
+
+
+```r
+ibdcallissues <- data.table::fread(paste0(COURSE_loc,"/dummy_project/fail-IBD-QC.txt"))
+```
+
+
+
+
+```r
+knitr::kable(
+  ibdcallissues, 
+  caption = 'Failed IBD and callrate.',
+  # align = ,
+  booktabs = FALSE
+)
+```
+
+## Ancestral background
+
+Using a **Principal Component Analysis (PCA)** we can reduce the dimensions of the data, and project the "ancestral distances". In other words, the principal component 1 (the first dimension) and principal component 2 (the second dimension) which will capture most of the variation in the data and represent how much each sample is alike the next. And when compared to a reference, you can deduce the ancestral background of each sample in your dataset. Of course this is relative: we will only know that a given sample is very much a like samples from a given population that _exists today_. 
+
+Nowadays we run such PCA against a large and diverse dataset containing many different populations. Old-school GWAS (pre-2009) would compare a dataset against [HapMap 3](https://www.broadinstitute.org/medical-and-population-genetics/hapmap-3){target="_blank"}, nowadays we prefer at a minimum the [1000G phase 3 populations](https://www.internationalgenome.org){target="_blank"}. And in those ancient times the preferred software to run a PCA was _Eigensoft_ which is a bit tricky to install (see Chapter \@ref(eigensoft)), but nowadays `PLINK` provides the `--pca`-flag. 
+
+For the purpose of this practical primer we will run PCA against an earlier version of 1000G, phase 1, which is slightly smaller and just as good to use. 
+
+### 1000G phase 1
+
+We will project our data to the reference, in this example 1000G phase 1 (1000G), which includes individuals from 14 distinct global populations across 4 'super'-populations (Europeans [`EUR`], Africans [`AFR`], East-Asians [`EAS`], and Latin Americans [`AMR`]). In the real-world, using phase 1 may be just fine, but if you think your population evolved through extensive migration it's probably best to use phase 3 data. In other words, the choice of reference is really depending on the dataset.
+
+First, we will merge our data with 1000G. The alleles at each marker must be aligned to the same DNA strand to allow our data to merge correctly. Because not all SNPs are required for this analysis the A->T and C->G SNPs, which are more difficult to align, can be omitted.
+
+#### Filter the 1000G data
+
+First, we should get a list of relevant variants from our `rawdata`-dataset. We don't need the other variants present in the 1000G dataset, right?
+
+```
+cat dummy_project/rawdata.bim | grep "rs" > dummy_project/all.variants.txt
+```
+
+Extract those from the 1000G phase 1 data.
+
+```
+plink --bfile ref_1kg_phase1_all/1kg_phase1_all --extract dummy_project/all.variants.txt --make-bed --out ref_1kg_phase1_all/1kg_phase1_raw
+```
+
+#### Filter A/T & C/G SNPs
+
+As explained, the A/T and C/G SNPs are problematic, we want to exclude these too. So let's get a list of A/T and C/G variants from 1000G to exclude - this may take a while.
+
+```
+cat ref_1kg_phase1_all/1kg_phase1_raw.bim | \
+awk '($5 == "A" && $6 == "T") || ($5 == "T" && $6 == "A") || ($5 == "C" && $6 == "G") || ($5 == "G" && $6 == "C")' | awk '{ print $2, $1, $4, $3, $5, $6 }' \
+> ref_1kg_phase1_all/all.1kg.atcg.variants.txt
+```
+
+Exclude those A/T and C/G variants in both datasets and at the same time filter to only retain high-quality data and exclude non-autosomal variants. 
+
+```
+plink --bfile ref_1kg_phase1_all/1kg_phase1_raw --exclude ref_1kg_phase1_all/all.1kg.atcg.variants.txt -make-bed --out ref_1kg_phase1_all/1kg_phase1_raw_no_atcg
+
+plink --bfile dummy_project/rawdata --exclude ref_1kg_phase1_all/all.1kg.atcg.variants.txt --make-bed --out dummy_project/rawdata_1kg_phase1_raw_no_atcg
+```
+
+#### Merging datasets
+
+Try and merge the data.
+
+```
+plink --bfile dummy_project/rawdata_1kg_phase1_raw_no_atcg --bmerge ref_1kg_phase1_all/1kg_phase1_raw_no_atcg --make-bed --out dummy_project/rawdata.1kg_phase1
+```
+
+There probably is an error ...
+
+```
+Error: 72 variants with 3+ alleles present.
+* If you believe this is due to strand inconsistency, try --flip with
+  dummy_project/rawdata.1kg_phase1-merge.missnp.
+  (Warning: if the subsequent merge seems to work, strand errors involving SNPs
+  with A/T or C/G alleles probably remain in your data.  If LD between nearby
+  SNPs is high, --flip-scan should detect them.)
+* If you are dealing with genuine multiallelic variants, we recommend exporting
+  that subset of the data to VCF (via e.g. '--recode vcf'), merging with
+  another tool/script, and then importing the result; PLINK is not yet suited
+  to handling them.
+See https://www.cog-genomics.org/plink/1.9/data#merge3 for more discussion.
+```
+
+So let's flip some variants.
+
+```
+plink --bfile dummy_project/rawdata --exclude ref_1kg_phase1_all/all.1kg.atcg.variants.txt --flip dummy_project/rawdata.1kg_phase1-merge.missnp --make-bed --out dummy_project/rawdata_1kg_phase1_raw_no_atcg
+```
+
+Let's try again and merge the data.
+
+```
+plink --bfile dummy_project/rawdata_1kg_phase1_raw_no_atcg --bmerge ref_1kg_phase1_all/1kg_phase1_raw_no_atcg --make-bed --out dummy_project/rawdata.1kg_phase1
+```
+
+There still is an error -- there are a few multi-allelic variants present which `PLINK` can't handle. 
+
+```
+Error: 14 variants with 3+ alleles present.
+* If you believe this is due to strand inconsistency, try --flip with
+  dummy_project/rawdata.1kg_phase1-merge.missnp.
+  (Warning: if the subsequent merge seems to work, strand errors involving SNPs
+  with A/T or C/G alleles probably remain in your data.  If LD between nearby
+  SNPs is high, --flip-scan should detect them.)
+* If you are dealing with genuine multiallelic variants, we recommend exporting
+  that subset of the data to VCF (via e.g. '--recode vcf'), merging with
+  another tool/script, and then importing the result; PLINK is not yet suited
+  to handling them.
+See https://www.cog-genomics.org/plink/1.9/data#merge3 for more discussion.
+```
+
+Let's just remove these multi-allelic variants.
+
+```
+plink --bfile dummy_project/rawdata_1kg_phase1_raw_no_atcg --exclude dummy_project/rawdata.1kg_phase1-merge.missnp --make-bed --out dummy_project/rawdata_1kg_phase1_raw_no_atcg_bi
+```
+
+After removing those pesky multi-allelic variants, we should be able to merge the data. We should take of the following:
+
+- extract the pruned SNP-set (remember?), `--extract rawdata/raw-GWA-data.prune.i`, 
+- exclude non-autosomal variants, `--autosome`, 
+- and only keeping high-quality data, `--maf 0.10 --geno 0.10 --hwe 1e-3`, 
+<!-- - remove non-founders from the 1000G data, `--keep-founders`, -->
+<!-- - remove any duplicate variants based on SNPID, `--rm-dup force-first` -->
+<!-- - and list any duplicate variants based on chromosomal base pair position, `--list-duplicate-vars` -->
+
+```
+plink --bfile dummy_project/rawdata_1kg_phase1_raw_no_atcg_bi \
+--bmerge ref_1kg_phase1_all/1kg_phase1_raw_no_atcg \
+--autosome \
+--maf 0.10 --geno 0.10 --hwe 1e-3 \
+--extract rawdata/raw-GWA-data.prune.in \
+--make-bed --out dummy_project/rawdata.1kg_phase1.clean
+```
+
+<!-- ``` -->
+<!-- plink --bfile dummy_project/rawdata_1kg_phase1_raw_no_atcg_bi \ -->
+<!-- --bmerge ref_1kg_phase1_all/1kg_phase1_raw_no_atcg \ -->
+<!-- --autosome \ -->
+<!-- --maf 0.10 --geno 0.10 --hwe 1e-3 \ -->
+<!-- --extract rawdata/raw-GWA-data.prune.in \ -->
+<!-- --list-duplicate-vars \ -->
+<!-- --make-bed --out dummy_project/rawdata.1kg_phase1.pruned -->
+<!-- ``` -->
+
+<!-- ``` -->
+<!-- plink --bfile dummy_project/rawdata.1kg_phase1.pruned \ -->
+<!-- --exclude dummy_project/rawdata.1kg_phase1.pruned.dupvar \ -->
+<!-- --rm-dup force-first \ -->
+<!-- --make-bed --out dummy_project/rawdata.1kg_phase1.clean -->
+<!-- ``` -->
+
+Before we continue it's best to clean up a bit of the mess. 
+
+```
+rm -fv dummy_project/rawdata_1kg_phase1_raw_no_atcg_bi* ref_1kg_phase1_all/1kg_phase1_raw_no_atcg* dummy_project/rawdata.1kg_phase1.pruned* dummy_project/rawdata_1kg_phase1_raw_no_atcg* dummy_project/rawdata.1kg_phase1-merge* dummy_project/rawdata.1kg_phase1.bed dummy_project/rawdata.1kg_phase1.bim dummy_project/rawdata.1kg_phase1.fam dummy_project/rawdata.1kg_phase1.hh dummy_project/rawdata.1kg_phase1.log ref_1kg_phase1_all/1kg_phase1_raw.*
+```
+
+Now we have prepared our dataset with only high-quality SNPs that have few missing data, that are high-frequent, exclude problematic genomic ranges, and merged to the 1000G phase 1 reference dataset. Your output should look something like this:
+
+```
+PLINK v1.90b7.2 64-bit (11 Dec 2023)           www.cog-genomics.org/plink/1.9/
+(C) 2005-2023 Shaun Purcell, Christopher Chang   GNU General Public License v3
+Logging to dummy_project/rawdata.1kg_phase1.clean.log.
+Options in effect:
+  --autosome
+  --bfile dummy_project/rawdata_1kg_phase1_raw_no_atcg_bi
+  --bmerge ref_1kg_phase1_all/1kg_phase1_raw_no_atcg
+  --extract rawdata/raw-GWA-data.prune.in
+  --geno 0.10
+  --hwe 1e-3
+  --maf 0.10
+  --make-bed
+  --out dummy_project/rawdata.1kg_phase1.clean
+
+16384 MB RAM detected; reserving 8192 MB for main workspace.
+2000 people loaded from dummy_project/rawdata_1kg_phase1_raw_no_atcg_bi.fam.
+1092 people to be merged from ref_1kg_phase1_all/1kg_phase1_raw_no_atcg.fam.
+Of these, 1092 are new, while 0 are present in the base dataset.
+Warning: Multiple positions seen for variant 'rs3934834'.
+Warning: Multiple positions seen for variant 'rs3737728'.
+Warning: Multiple positions seen for variant 'rs6687776'.
+Warning: Multiple chromosomes seen for variant 'rs1050301'.
+Warning: Multiple chromosomes seen for variant 'rs4850'.
+317476 markers loaded from dummy_project/rawdata_1kg_phase1_raw_no_atcg_bi.bim.
+312239 markers to be merged from ref_1kg_phase1_all/1kg_phase1_raw_no_atcg.bim.
+Of these, 14 are new, while 312225 are present in the base dataset.
+312190 more multiple-position warnings: see log file.
+Performing single-pass merge (3092 people, 308317 variants).
+Merged fileset written to dummy_project/rawdata.1kg_phase1.clean-merge.bed +
+dummy_project/rawdata.1kg_phase1.clean-merge.bim +
+dummy_project/rawdata.1kg_phase1.clean-merge.fam .
+308317 variants loaded from .bim file.
+3092 people (1522 males, 1570 females) loaded from .fam.
+3092 phenotype values loaded from .fam.
+--extract: 49856 variants remaining.
+Using 1 thread (no multithreaded calculations invoked).
+Before main variant filters, 3078 founders and 14 nonfounders present.
+Calculating allele frequencies... done.
+Total genotyping rate is 0.994867.
+299 variants removed due to missing genotype data (--geno).
+--hwe: 13825 variants removed due to Hardy-Weinberg exact test.
+2617 variants removed due to minor allele threshold(s)
+(--maf/--max-maf/--mac/--max-mac).
+33115 variants and 3092 people pass filters and QC.
+Phenotype data is quantitative.
+--make-bed to dummy_project/rawdata.1kg_phase1.clean.bed +
+dummy_project/rawdata.1kg_phase1.clean.bim +
+dummy_project/rawdata.1kg_phase1.clean.fam ... done.
+```
+
+So in total there are 3,092 individuals, 1,522 males and 1,570 females, and 3,078 founders and 14 non-founders. The total genotyping rate is 99.5% and 33,115 variants are present.
+
+
+### Principal component analysis
+
+Great, we've prepared our dummy project data and merged this with 1000G phase 1. Let's execute the PCA using `--pca` in `PLINK`.
+
+```
+plink --bfile dummy_project/rawdata.1kg_phase1.clean --pca --out dummy_project/rawdata.1kg_phase1.clean
+```
+
+### Plotting the PCA results
+
+If all is peachy, you just succesfully ran PCA against 1000G phase 1. Using `--pca` we have calculated principal components (PCs), 20 in total by default, and we can now start plotting them. Let's create a scatter diagram of the first two principal components, including all individuals in the file `rawdata.1kg_phase1.clean.eigenvec` (the first and second principal components are columns 3 and 4, respectively). We need to collect some per-sample information to color the points according to sample origin. 
+
+> Note: A R script for creating this plot (`scripts/plot-pca-results.Rscript`) is also provided (although any standard graphing software can be used), but below you'll find some fancy codes too.
+
+First we collect the results from the `--pca`, the dummy data phenotype information, and the reference population information.
+
+
+```r
+PCA_eigenval <- data.table::fread(paste0(COURSE_loc,"/dummy_project/rawdata.1kg_phase1.clean.eigenval"))
+PCA_eigenvec <- data.table::fread(paste0(COURSE_loc,"/dummy_project/rawdata.1kg_phase1.clean.eigenvec"))
+ref_pop_raw <- data.table::fread(paste0(COURSE_loc,"/ref_1kg_phase1_all/1kg_phase1_all.pheno"))
+dummy_pop <- data.table::fread(paste0(COURSE_loc,"/dummy_project/rawdata.fam"))
+
+# Rename some 
+names(PCA_eigenval)[names(PCA_eigenval) == "V1"] <- "Eigenvalue"
+
+names(PCA_eigenvec)[names(PCA_eigenvec) == "V1"] <- "FID"
+names(PCA_eigenvec)[names(PCA_eigenvec) == "V2"] <- "IID"
+names(PCA_eigenvec)[names(PCA_eigenvec) == "V3"] <- "PC1"
+names(PCA_eigenvec)[names(PCA_eigenvec) == "V4"] <- "PC2"
+names(PCA_eigenvec)[names(PCA_eigenvec) == "V5"] <- "PC3"
+names(PCA_eigenvec)[names(PCA_eigenvec) == "V6"] <- "PC4"
+names(PCA_eigenvec)[names(PCA_eigenvec) == "V7"] <- "PC5"
+names(PCA_eigenvec)[names(PCA_eigenvec) == "V8"] <- "PC6"
+names(PCA_eigenvec)[names(PCA_eigenvec) == "V9"] <- "PC7"
+names(PCA_eigenvec)[names(PCA_eigenvec) == "V10"] <- "PC8"
+names(PCA_eigenvec)[names(PCA_eigenvec) == "V11"] <- "PC9"
+names(PCA_eigenvec)[names(PCA_eigenvec) == "V12"] <- "PC10"
+names(PCA_eigenvec)[names(PCA_eigenvec) == "V13"] <- "PC11"
+names(PCA_eigenvec)[names(PCA_eigenvec) == "V14"] <- "PC12"
+names(PCA_eigenvec)[names(PCA_eigenvec) == "V15"] <- "PC13"
+names(PCA_eigenvec)[names(PCA_eigenvec) == "V16"] <- "PC14"
+names(PCA_eigenvec)[names(PCA_eigenvec) == "V17"] <- "PC15"
+names(PCA_eigenvec)[names(PCA_eigenvec) == "V18"] <- "PC16"
+names(PCA_eigenvec)[names(PCA_eigenvec) == "V19"] <- "PC17"
+names(PCA_eigenvec)[names(PCA_eigenvec) == "V20"] <- "PC18"
+names(PCA_eigenvec)[names(PCA_eigenvec) == "V21"] <- "PC19"
+names(PCA_eigenvec)[names(PCA_eigenvec) == "V22"] <- "PC20"
+
+names(dummy_pop)[names(dummy_pop) == "V1"] <- "Family_ID"
+names(dummy_pop)[names(dummy_pop) == "V2"] <- "Individual_ID"
+names(dummy_pop)[names(dummy_pop) == "V5"] <- "Gender"
+names(dummy_pop)[names(dummy_pop) == "V6"] <- "Phenotype"
+dummy_pop$V3<- NULL
+dummy_pop$V4<- NULL
+
+dummy_pop$Population <- dummy_pop$Phenotype
+dummy_pop$Population[dummy_pop$Population == 2] <- "Case"
+dummy_pop$Population[dummy_pop$Population == 1] <- "Control"
+```
+
+
+```r
+# we subset the data we need
+ref_pop <- subset(ref_pop_raw, select = c("Family_ID", "Individual_ID", "Gender", "Phenotype", "Population"))
+rm(ref_pop_raw)
+
+# we combine the reference and dummy information
+ref_dummy_pop <- rbind(dummy_pop, ref_pop)
+```
+
+
+
+```r
+PCA_1kG <- merge(PCA_eigenvec,
+                 ref_dummy_pop,
+                 by.x = "IID",
+                 by.y = "Individual_ID",
+                 sort = FALSE,
+                 all.x = TRUE)
+```
+
+
+
+```r
+# Population	Description	Super population	Code	Counts
+# ASW	African Ancestry in Southwest US	                          AFR	4	  #49A01D
+# CEU	Utah residents with Northern and Western European ancestry	EUR	7	  #E55738
+# CHB	Han Chinese in Bejing, China	                              EAS	8	  #9A3480
+# CHS	Southern Han Chinese, China	                                EAS	9	  #705296
+# CLM	Colombian in Medellin, Colombia	                            MR	10	#8D5B9A
+# FIN	Finnish in Finland	                                        EUR	12	#2F8BC9
+# GBR	British in England and Scotland	                            EUR	13	#1290D9
+# IBS	Iberian populations in Spain	                              EUR	16	#1396D8
+# JPT	Japanese in Tokyo, Japan	                                  EAS	18	#D5267B
+# LWK	Luhya in Webuye, Kenya	                                    AFR	20	#78B113
+# MXL	Mexican Ancestry in Los Angeles, California	                AMR	22	#F59D10
+# PUR	Puerto Rican in Puerto Rico	                                AMR	25	#FBB820
+# TSI	Toscani in Italy	                                          EUR	27	#4C81BF
+# YRI	Yoruba in Ibadan, Nigeria	                                  AFR	28	#C5D220
+
+PCA_1kGplot <- ggpubr::ggscatter(PCA_1kG, 
+                                 x = "PC1", 
+                                 y = "PC2",
+                                 color = "Population", 
+                                 palette = c("#49A01D", # ASW 
+                                             "#595A5C", # Case 
+                                             "#E55738", # CEU 
+                                             "#9A3480", # CHB 
+                                             "#705296", # CHS 
+                                             "#8D5B9A", # CLM 
+                                             "#A2A3A4", # Control 
+                                             "#2F8BC9", # FIN 
+                                             "#1290D9", # GBR 
+                                             "#1396D8", # IBS 
+                                             "#D5267B", # JPT 
+                                             "#78B113", # LWK 
+                                             "#F59D10", # MXL 
+                                             "#FBB820", # PUR 
+                                             "#4C81BF", # TSI 
+                                             "#C5D220"), # YRI
+                                 xlab = "principal component 1", ylab = "principal component 2") +
+  ggplot2::geom_vline(xintercept = 0.0023, linetype = "dashed",
+                      color = "#E55738", size = 1)
+
+p2 <-  ggpubr::ggpar(PCA_1kGplot,
+                     title = "Principal Component Analysis",
+                     subtitle = "Reference population: 1000 G, phase 1",
+                     legend.title = "Populations", legend = "right")
+ggplot2::ggsave(paste0(COURSE_loc, "/dummy_project/gwas-qc-pca-1000g.png"), plot = p2)
+p2
+rm(p2)
+```
+
+
+Derive PC1 and PC2 thresholds so that only individuals who match the given ancestral population are included. For populations of European descent, this will be either the CEU or TSI 1000G individuals (Figure \@ref(fig:show-pca-1kg)). Here, we chose to exclude all individuals with a first principal component score less than `0.0023`. 
+
+Write the FID and IID of these individuals to a file called `fail-ancestry-QC.txt`.
+
+```
+cat dummy_project/rawdata.1kg_phase1.clean.eigenvec | \
+awk '$3 < 0.0023' | awk '{ print $1, $2 }' > dummy_project/fail-ancestry-QC.txt
+```
+
+Choosing which thresholds to apply (and thus which individuals to remove) is not a straightforward process. The key is to remove those individuals with greatly divergent ancestry, as these samples introduce the most bias to the study. Identification of more fine-scale ancestry can be conducted by using less divergent reference samples (_e.g._, within Europe, stratification could be identified using the CEU, TSI (Italian), GBR (British), FIN (Finnish) and IBS (Iberian) samples from the 1,000 Genomes Project (http://www.1000genomes.org/)). Robust identification of fine-scale population structure often requires the construction of many (2–10) principal components.
+
+<div class="figure" style="text-align: center">
+<img src="img/_gwas_dummy/gwas-qc-pca-1000g.png" alt="PCA - Your data vs. 1000g." width="1050" />
+<p class="caption">(\#fig:show-pca-1000g)PCA - Your data vs. 1000g.</p>
+</div>
+
+
+## Removing samples
+
+Finally! We have a list of samples of poor quality or divergent ancestry, and duplicated or related samples. We should remove these. Let's collect all IDs from our `fail-*`-files into a single file.
+
+```
+cat dummy_project/fail-* | sort -k1 | uniq > dummy_project/fail-qc-inds.txt
+```
+
+This new file should now contain a list of unique individuals failing the previous QC steps which we want to remove.
+
+```
+plink --bfile dummy_project/rawdata --remove dummy_project/fail-qc-inds.txt --make-bed --out dummy_project/clean_inds_data
+```
+
+> How many variants and samples are left? How many cases and how many controls did you loose? 
+
+## The next step
+
+Now that you filtered samples, we should turn our attention to step 2 of the QC for GWAS: identify SNPs of poor quality in Chapter \@ref(gwas_basics_snp_qc).
+

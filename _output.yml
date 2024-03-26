@@ -31,16 +31,16 @@ bookdown::gitbook:
 #   extra_dependencies: ["float"]
 #   number_sections: true
 #   theme: paper
-bookdown::epub_book:
-  fig_width: 5
-  fig_height: 4
-  dev: "png"
-  fig_caption: true
-  number_sections: true
-  cover_image: "img/_headers/banner_man_standing_dna.png"
-  chapter_level: 1
-  epub_version: "epub"
-  template: "default"
+# bookdown::epub_book:
+#   fig_width: 5
+#   fig_height: 4
+#   dev: "png"
+#   fig_caption: true
+#   number_sections: true
+#   cover_image: "img/_headers/banner_man_standing_dna.png"
+#   chapter_level: 1
+#   epub_version: "epub"
+#   template: "default"
 # bookdown::html_document:
 #   number_sections: yes
 #   toc: yes

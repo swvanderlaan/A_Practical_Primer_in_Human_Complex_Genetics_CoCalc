@@ -1,11 +1,25 @@
-# Prerequisites
+# Getting started {#getting-started}
 ![](img/_headers/women_behind_macbook.png){width=100%}
 
-```{r prerequisites, message = FALSE, warning = FALSE, echo = FALSE, eval = TRUE}
+```{r getting_started, message = FALSE, warning = FALSE, echo = FALSE, eval = TRUE}
 source("scripts/functions.R")
 source("scripts/colors.R")
 source("scripts/packages.R")
 ```
+
+
+- introduction
+- briefly touch on operating system
+- split CoCalc vs standalone
+  - CoCalc: everything is installed
+  - standalone: 
+    - focus on macOS/Linux
+    - what to install
+    - show how to navigate on macOS/Linux Terminal
+
+
+[Some introductory text]
+
 
 ## Linux, macOS, and Windows
 
@@ -16,7 +30,12 @@ However, I highly recommend one of two options. One, install a linux subsystem o
 > For this practical every command is intended for Linux/macOS, in other words Unix-systems.
 
 
-## Programs you need
+## CoCalc
+
+
+## Standalone
+
+### Programs you need
 
 You need few programs for this practical, or for your (future) genetic epidemiology work for that matter (Table \@ref(tab:programs)).
 

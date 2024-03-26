@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 3 Getting started | A Practical Primer in Human Complex Genetics</title>
+  <meta name="description" content="This is a practical primer in human complex genetics with a use-case in cardiovascular disease. The output format for this primer is bookdown::gitbook." />
+  <meta name="generator" content="bookdown 0.38.1 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 3 Getting started | A Practical Primer in Human Complex Genetics" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="This is a practical primer in human complex genetics with a use-case in cardiovascular disease. The output format for this primer is bookdown::gitbook." />
+  <meta name="github-repo" content="swvanderlaan/A_Practical_Primer_in_Human_Complex_Genetics" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 3 Getting started | A Practical Primer in Human Complex Genetics" />
+  
+  <meta name="twitter:description" content="This is a practical primer in human complex genetics with a use-case in cardiovascular disease. The output format for this primer is bookdown::gitbook." />
+  
+
+<meta name="author" content="dr. Sander W. van der Laan  " />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="somebackgroundreading.html"/>
+<link rel="next" href="gwas-basics.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<link href="libs/tabwid-1.1.3/tabwid.css" rel="stylesheet" />
+<script src="libs/tabwid-1.1.3/tabwid.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Practical Primer in Human Complex Genetics</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> About this primer</a></li>
+<li class="chapter" data-level="2" data-path="somebackgroundreading.html"><a href="somebackgroundreading.html"><i class="fa fa-check"></i><b>2</b> Some background reading</a></li>
+<li class="chapter" data-level="3" data-path="getting-started.html"><a href="getting-started.html"><i class="fa fa-check"></i><b>3</b> Getting started</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="getting-started.html"><a href="getting-started.html#the-programs-we-use"><i class="fa fa-check"></i><b>3.1</b> The programs we use</a></li>
+<li class="chapter" data-level="3.2" data-path="getting-started.html"><a href="getting-started.html#cocalc"><i class="fa fa-check"></i><b>3.2</b> CoCalc</a></li>
+<li class="chapter" data-level="3.3" data-path="getting-started.html"><a href="getting-started.html#standalone"><i class="fa fa-check"></i><b>3.3</b> Standalone</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="getting-started.html"><a href="getting-started.html#terminal"><i class="fa fa-check"></i><b>3.3.1</b> Terminal</a></li>
+<li class="chapter" data-level="3.3.2" data-path="getting-started.html"><a href="getting-started.html#the-data-you-need"><i class="fa fa-check"></i><b>3.3.2</b> The data you need</a></li>
+<li class="chapter" data-level="3.3.3" data-path="getting-started.html"><a href="getting-started.html#navigating-the-terminal"><i class="fa fa-check"></i><b>3.3.3</b> Navigating the Terminal</a></li>
+<li class="chapter" data-level="3.3.4" data-path="getting-started.html"><a href="getting-started.html#installing-the-software"><i class="fa fa-check"></i><b>3.3.4</b> Installing the software</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="getting-started.html"><a href="getting-started.html#installing-r-and-rstudio"><i class="fa fa-check"></i><b>3.4</b> Installing R and RStudio</a></li>
+<li class="chapter" data-level="3.5" data-path="getting-started.html"><a href="getting-started.html#are-you-ready"><i class="fa fa-check"></i><b>3.5</b> Are you ready?</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="gwas-basics.html"><a href="gwas-basics.html"><i class="fa fa-check"></i><b>4</b> Steps in a Genome-Wide Association Study</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="gwas-basics.html"><a href="gwas-basics.html#converting-datasets"><i class="fa fa-check"></i><b>4.1</b> Converting datasets</a></li>
+<li class="chapter" data-level="4.2" data-path="gwas-basics.html"><a href="gwas-basics.html#quality-control"><i class="fa fa-check"></i><b>4.2</b> Quality control</a></li>
+<li class="chapter" data-level="4.3" data-path="gwas-basics.html"><a href="gwas-basics.html#lets-get-our-hands-dirty"><i class="fa fa-check"></i><b>4.3</b> Let’s get our hands dirty</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="gwas-basics-sample-qc.html"><a href="gwas-basics-sample-qc.html"><i class="fa fa-check"></i><b>5</b> Sample QC</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="gwas-basics-sample-qc.html"><a href="gwas-basics-sample-qc.html#sex"><i class="fa fa-check"></i><b>5.1</b> Sex</a></li>
+<li class="chapter" data-level="5.2" data-path="gwas-basics-sample-qc.html"><a href="gwas-basics-sample-qc.html#sample-call-rates"><i class="fa fa-check"></i><b>5.2</b> Sample call rates</a></li>
+<li class="chapter" data-level="5.3" data-path="gwas-basics-sample-qc.html"><a href="gwas-basics-sample-qc.html#heterozygosity-rate"><i class="fa fa-check"></i><b>5.3</b> Heterozygosity rate</a></li>
+<li class="chapter" data-level="5.4" data-path="gwas-basics-sample-qc.html"><a href="gwas-basics-sample-qc.html#relatedness"><i class="fa fa-check"></i><b>5.4</b> Relatedness</a></li>
+<li class="chapter" data-level="5.5" data-path="gwas-basics-sample-qc.html"><a href="gwas-basics-sample-qc.html#ancestral-background"><i class="fa fa-check"></i><b>5.5</b> Ancestral background</a>
+<ul>
+<li class="chapter" data-level="5.5.1" data-path="gwas-basics-sample-qc.html"><a href="gwas-basics-sample-qc.html#g-phase-1"><i class="fa fa-check"></i><b>5.5.1</b> 1000G phase 1</a></li>
+<li class="chapter" data-level="5.5.2" data-path="gwas-basics-sample-qc.html"><a href="gwas-basics-sample-qc.html#principal-component-analysis"><i class="fa fa-check"></i><b>5.5.2</b> Principal component analysis</a></li>
+<li class="chapter" data-level="5.5.3" data-path="gwas-basics-sample-qc.html"><a href="gwas-basics-sample-qc.html#plotting-the-pca-results"><i class="fa fa-check"></i><b>5.5.3</b> Plotting the PCA results</a></li>
+</ul></li>
+<li class="chapter" data-level="5.6" data-path="gwas-basics-sample-qc.html"><a href="gwas-basics-sample-qc.html#removing-samples"><i class="fa fa-check"></i><b>5.6</b> Removing samples</a></li>
+<li class="chapter" data-level="5.7" data-path="gwas-basics-sample-qc.html"><a href="gwas-basics-sample-qc.html#the-next-step"><i class="fa fa-check"></i><b>5.7</b> The next step</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="gwas_basics_snp_qc.html"><a href="gwas_basics_snp_qc.html"><i class="fa fa-check"></i><b>6</b> Per-SNP QC</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="gwas_basics_snp_qc.html"><a href="gwas_basics_snp_qc.html#snp-call-rates"><i class="fa fa-check"></i><b>6.1</b> SNP call rates</a></li>
+<li class="chapter" data-level="6.2" data-path="gwas_basics_snp_qc.html"><a href="gwas_basics_snp_qc.html#differential-snp-call-rates"><i class="fa fa-check"></i><b>6.2</b> Differential SNP call rates</a></li>
+<li class="chapter" data-level="6.3" data-path="gwas_basics_snp_qc.html"><a href="gwas_basics_snp_qc.html#allele-frequencies"><i class="fa fa-check"></i><b>6.3</b> Allele frequencies</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="gwas_basics_snp_qc.html"><a href="gwas_basics_snp_qc.html#a-note-on-allele-coding"><i class="fa fa-check"></i><b>6.3.1</b> A note on allele coding</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="gwas_basics_snp_qc.html"><a href="gwas_basics_snp_qc.html#hardy-weinberg-equilibrium"><i class="fa fa-check"></i><b>6.4</b> Hardy-Weinberg Equilibrium</a></li>
+<li class="chapter" data-level="6.5" data-path="gwas_basics_snp_qc.html"><a href="gwas_basics_snp_qc.html#final-snp-qc"><i class="fa fa-check"></i><b>6.5</b> Final SNP QC</a></li>
+<li class="chapter" data-level="6.6" data-path="gwas_basics_snp_qc.html"><a href="gwas_basics_snp_qc.html#a-milestone"><i class="fa fa-check"></i><b>6.6</b> A Milestone</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="epilogue.html"><a href="epilogue.html"><i class="fa fa-check"></i><b>7</b> Epilogue</a></li>
+<li class="chapter" data-level="8" data-path="eigensoft.html"><a href="eigensoft.html"><i class="fa fa-check"></i><b>8</b> Additional: EIGENSOFT</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="eigensoft.html"><a href="eigensoft.html#install-homebrew"><i class="fa fa-check"></i><b>8.1</b> Install homebrew</a></li>
+<li class="chapter" data-level="8.2" data-path="eigensoft.html"><a href="eigensoft.html#install-missing-packages"><i class="fa fa-check"></i><b>8.2</b> Install missing packages</a></li>
+<li class="chapter" data-level="8.3" data-path="eigensoft.html"><a href="eigensoft.html#installing-eigensoft"><i class="fa fa-check"></i><b>8.3</b> Installing EIGENSOFT</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="todo.html"><a href="todo.html"><i class="fa fa-check"></i><b>9</b> Things to do</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="todo.html"><a href="todo.html#moscow"><i class="fa fa-check"></i><b>9.1</b> MoSCoW</a>
+<ul>
+<li class="chapter" data-level="9.1.1" data-path="todo.html"><a href="todo.html#contents"><i class="fa fa-check"></i><b>9.1.1</b> Contents</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="todo.html"><a href="todo.html#book-fixes"><i class="fa fa-check"></i><b>9.2</b> Book fixes</a></li>
+<li class="chapter" data-level="9.3" data-path="todo.html"><a href="todo.html#useful-links-for-me-mostly"><i class="fa fa-check"></i><b>9.3</b> Useful links (for me mostly)</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="license.html"><a href="license.html"><i class="fa fa-check"></i><b>10</b> Licenses and disclaimers</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="license.html"><a href="license.html#copyright"><i class="fa fa-check"></i><b>10.1</b> Copyright</a></li>
+<li class="chapter" data-level="10.2" data-path="license.html"><a href="license.html#disclaimer"><i class="fa fa-check"></i><b>10.2</b> Disclaimer</a></li>
+<li class="chapter" data-level="10.3" data-path="license.html"><a href="license.html#images-used"><i class="fa fa-check"></i><b>10.3</b> Images used</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="colofon.html"><a href="colofon.html"><i class="fa fa-check"></i><b>11</b> Colofon</a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown.</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">A Practical Primer in Human Complex Genetics</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="getting-started" class="section level1 hasAnchor" number="3">
+<h1><span class="header-section-number">Chapter 3</span> Getting started<a href="getting-started.html#getting-started" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p><img src="img/_headers/women_behind_macbook.png" style="width:100.0%" /></p>
+<pre><code>## 
+## Packages to install for this book and its contents to automagically work.
+## 
+## * Bookdown and rmarkdown packages...
+## 
+## * General packages...
+## 
+## * GGplotting packages - for publication ready plotting...
+## 
+## * Genomic packages...</code></pre>
+<blockquote>
+<p>[THIS CHAPTER NEEDS WORK]
+- introduction
+- briefly touch on operating system
+- split CoCalc vs standalone
+- CoCalc: everything is installed
+- standalone:
+- focus on macOS
+- what to install
+- show how to navigate on macOS Terminal
+[Some introductory text]</p>
+</blockquote>
+<p>Before getting started, we need to discuss your computer. Most programs made to execute genetic epidemiology studies are developed for the Unix environment, for example Linux and macOS. So, they may not work as intended in a Windows environment. Windows does allow users to install a linux subsystem within Windows 10+ and you can find the detail <a href="https://docs.microsoft.com/en-us/windows/wsl/about" target="_blank">guide</a> here.</p>
+<p>However, I highly recommend one of two options.</p>
+<ul>
+<li>One, install a linux subsystem on your Windows computer (for example <a href="https://blog.storagecraft.com/the-dead-simple-guide-to-installing-a-linux-virtual-machine-on-windows/" target="_blank">a virtual machine with Ubuntu could work</a>).</li>
+<li>Two, switch to macOS in combination with <a href="https://brew.sh" target="_blank">homebrew</a>. This will give you all the flexibility to use Unix-based programs for your genetic epidemiology work and at the same time you’ll keep the advantage of a powerful computer with a user-friendly interface.</li>
+</ul>
+<p>I chose the latter.</p>
+<blockquote>
+<p>For this practical every command is intended for Linux/macOS, in other words Unix-systems.</p>
+</blockquote>
+<p><strong>CoCalc vs. Standalone</strong>
+For the purpose of this practical primer there are one of two steps you need to take to get started. When you are following the course, you will want to read the section <strong>CoCalc</strong>. When you want to use this book as a standalone, you should check out the instructions in section <strong>Standalone</strong> - this is probably also the section you want to follow for real-world cases.</p>
+<p>But first, I’ll briefly provide some background on the variaous programs that are commonly used.</p>
+<div id="the-programs-we-use" class="section level2 hasAnchor" number="3.1">
+<h2><span class="header-section-number">3.1</span> The programs we use<a href="getting-started.html#the-programs-we-use" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We’ll use a few programs throughout this practical. You’ll probably need these for your (future) genetic epidemiology work too (Table <a href="#tab:programs"><strong>??</strong></a>).</p>
+<div class="tabwid"><style>.cl-102331b2{}.cl-101d549a{font-family:'Helvetica';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-101fc900{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-101fda80{width:0.924in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-101fda8a{width:2.716in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-101fda8b{width:14.002in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-101fda94{width:0.924in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-101fda95{width:2.716in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-101fda9e{width:14.002in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-101fda9f{width:0.924in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-101fdaa8{width:2.716in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-101fdaa9{width:14.002in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table data-quarto-disable-processing='true' class='cl-102331b2'><thead><tr style="overflow-wrap:break-word;"><th class="cl-101fda80"><p class="cl-101fc900"><span class="cl-101d549a">Program</span></p></th><th class="cl-101fda8a"><p class="cl-101fc900"><span class="cl-101d549a">Link</span></p></th><th class="cl-101fda8b"><p class="cl-101fc900"><span class="cl-101d549a">Description</span></p></th></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-101fda94"><p class="cl-101fc900"><span class="cl-101d549a">PLINK</span></p></td><td class="cl-101fda95"><p class="cl-101fc900"><span class="cl-101d549a">https://www.cog-genomics.org/plink2/</span></p></td><td class="cl-101fda9e"><p class="cl-101fc900"><span class="cl-101d549a">PLINK is a free, open-source genetic analysis tool set, designed to perform a range of basic data parsing and quality control, as well as basic and large-scale analyses in a computationally efficient manner.</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-101fda94"><p class="cl-101fc900"><span class="cl-101d549a">R</span></p></td><td class="cl-101fda95"><p class="cl-101fc900"><span class="cl-101d549a">https://cran.r-project.org/</span></p></td><td class="cl-101fda9e"><p class="cl-101fc900"><span class="cl-101d549a">A program to perform statistical analysis and visualizations.</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-101fda94"><p class="cl-101fc900"><span class="cl-101d549a">RStudio</span></p></td><td class="cl-101fda95"><p class="cl-101fc900"><span class="cl-101d549a">https://www.rstudio.com</span></p></td><td class="cl-101fda9e"><p class="cl-101fc900"><span class="cl-101d549a">A user-friendly R-wrap-around for code editing, debugging, analyses, and visualization.</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-101fda9f"><p class="cl-101fc900"><span class="cl-101d549a">Homebrew</span></p></td><td class="cl-101fdaa8"><p class="cl-101fc900"><span class="cl-101d549a">https://brew.sh</span></p></td><td class="cl-101fdaa9"><p class="cl-101fc900"><span class="cl-101d549a">A great extension for Mac-users to install really useful programs that Apple didn't.</span></p></td></tr></tbody></table></div>
+<p><strong>RStudio</strong></p>
+<p><strong>RStudio</strong> is a very user-friendly interface around <code>R</code> that makes your <code>R</code>-scripting-life a lot easier. You should get used to that. <strong>RStudio</strong> comes with <code>R</code> so you don’t have to worry about that.</p>
+<p><strong>PLINK</strong>
+Right, onto <code>PLINK</code>.</p>
+<p>All genetic analyses can be done in PLINK, even on your laptop, but with large datasets, for example <a href="https://www.ukbiobank.ac.uk" target="_blank">UK Biobank</a> size, it is better to switch to a <a href="https://en.wikipedia.org/wiki/High-performance_computing" target="_blank">high-performance computing cluster (HPC)</a> like we have available at the <a href="https://wiki.bioinformatics.umcutrecht.nl/bin/view/HPC/WebHome" target="_blank">Utrecht Science Park</a>. The original PLINK v1.07 can be found <a href="https://zzz.bwh.harvard.edu/plink/index.shtml" target="_blank">here</a>, but nowadays we are using a newer, faster version: <strong>PLINK v1.9</strong> which can be found <a href="https://www.cog-genomics.org/plink2" target="_blank">here</a>. It still says ‘PLINK 1.90 beta’ (Figure <a href="getting-started.html#fig:plink">3.1</a>), but you can consider this version stable and save to work with, but as you can see, some functions are not supported anymore.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:plink"></span>
+<img src="img/plink.png" alt="The PLINK v1.9 website." width="1552" />
+<p class="caption">
+Figure 3.1: The PLINK v1.9 website.
+</p>
+</div>
+<p><strong>Alternatives to <code>PLINK</code></strong></p>
+<p>Nowadays, a lot of people also use programs like <a href="snptest" target="_blank">SNPTEST</a>, <a href="https://data.broadinstitute.org/alkesgroup/BOLT-LMM/" target="_blank">BOLT-LMM</a>, <a href="http://cnsgenomics.com/software/gcta/#Overview" target="_blank">GCTA</a>, or <a href="https://rgcgithub.github.io/regenie/" target="_blank">regenie</a> as alternatives to execute GWAS. These programs were designed with specific use-cases in mind, for instance really large biobank data including hundreds of thousands individuals, better control for population stratification, the ability to estimate trait heritability or Fst, and so on.</p>
+<p><strong>Other programs</strong></p>
+<p>Mendelian randomization can be done either with the <a href="http://cnsgenomics.com/software/smr/#Overview" target="_blank">SMR</a> or <a href="http://cnsgenomics.com/software/gsmr/" target="_blank">GSMR</a> function from GCTA, or with R-packages, like <a href="https://mrcieu.github.io/TwoSampleMR/" target="_blank"><code>TwoSampleMR</code></a>.</p>
+</div>
+<div id="cocalc" class="section level2 hasAnchor" number="3.2">
+<h2><span class="header-section-number">3.2</span> CoCalc<a href="getting-started.html#cocalc" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<blockquote>
+<p>[ TEXT NEEDS UPDATING]</p>
+</blockquote>
+<p>Now, pay attention. If you came here through the course <strong>Genetic Epidemiology</strong>, you don’t have to do anything. All the data you need are already downloaded.</p>
+<p>However, when you are using this book as a standalone, you’ll need to start by downloading the data you need for this practical to your Desktop.</p>
+<p>For the course we set up a CoCalc Server and everything should be fine; we installed everything you need.</p>
+</div>
+<div id="standalone" class="section level2 hasAnchor" number="3.3">
+<h2><span class="header-section-number">3.3</span> Standalone<a href="getting-started.html#standalone" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>So, you plan to use this book as ‘Standalone’ on a macOS environment. This means you’ll need to install a few things first.</p>
+<div id="terminal" class="section level3 hasAnchor" number="3.3.1">
+<h3><span class="header-section-number">3.3.1</span> Terminal<a href="getting-started.html#terminal" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>For all the programs we use, except <strong>RStudio</strong>, you will need the <strong>Terminal</strong>. This comes with every major operating system; on Windows it is called ‘PowerShell’, but let’s not go there. And regardless, you will (have to start to) make your own scripts. The benefit of using scripts is that each step in your workflow is clearly stipulated and annotated, and it allows for greater reproducibility, easier troubleshooting, and scaling up to high-performance computer clusters.</p>
+<p>Open the <strong>Terminal</strong>, it should be on the left in the toolbar as a little black computer-monitor-like icon. Mac users can type <code>command + space</code> and type <code>terminal</code>, a <strong>Terminal</strong> screen should open.</p>
+<blockquote>
+<p>From now on we will use little code blocks like the example to indicate a code you should type/copy-paste and hit enter. If a code is followed by a comment, it is indicated by a # - you don’t need to copy-paste and execute this.</p>
+</blockquote>
+<pre><code>CODE BLOCK
+
+CODE BLOCK # some comment here</code></pre>
+</div>
+<div id="the-data-you-need" class="section level3 hasAnchor" number="3.3.2">
+<h3><span class="header-section-number">3.3.2</span> The data you need<a href="getting-started.html#the-data-you-need" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>You’ll need to start by downloading the data you need for this practical to your Desktop.</p>
+<p>Here’s the link to the data.</p>
+<p><a href="https://drive.google.com/drive/folders/1iDLB1y534DfgEZNPCYBrIj5X7g_XlBba?usp=share_link">Link to Google Drive with data</a></p>
+<p>Make sure you put the data in the <code>~/Desktop/practical/</code> folder.</p>
+<p>The data are pretty large (approx. 15Gb), so this will take a minute or two depending on your internet connection. Time to stretch your legs or grab a coffee (data scientists don’t drink tea).</p>
+</div>
+<div id="navigating-the-terminal" class="section level3 hasAnchor" number="3.3.3">
+<h3><span class="header-section-number">3.3.3</span> Navigating the Terminal<a href="getting-started.html#navigating-the-terminal" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>You can navigate around the computer through the terminal by typing <code>cd &lt;path&gt;</code>; <code>cd</code> stands for “change directory” and <code>&lt;path&gt;</code> means “some_file_directory_you_want_to_go_to”.</p>
+<p><strong>For Linux/macOS Users</strong></p>
+<p><em>will bring you to your home directory</em></p>
+<pre><code>cd ~ </code></pre>
+<p><em>will bring you to the parent directory (up one level) </em></p>
+<pre><code>cd ../ </code></pre>
+<p><em>will bring you to the XXX directory</em></p>
+<pre><code>cd XXX </code></pre>
+<p>Let’s navigate to the folder you just downloaded.</p>
+<pre><code>cd ~/Desktop/practical</code></pre>
+<p>Let’s check out what is inside the directory, by listing (<code>ls</code>) its contents.</p>
+<p><em>shows files as list</em></p>
+<pre><code>ls -l </code></pre>
+<p><em>shows files as list with human readable format </em></p>
+<pre><code>ls -lh </code></pre>
+<p>Adding the flags <code>-lh</code> will get you the contents of a directory in a list (<code>-l</code>) and make the size ‘human-readable’ (<code>-h</code>).</p>
+<p><em>shows the files as list sorted by time edited</em></p>
+<pre><code>ls -lt </code></pre>
+<p><em>shows the files as list sorted by size</em></p>
+<pre><code>ls -lS </code></pre>
+<p>You can also count the number of files.</p>
+<pre><code>ls | wc -l</code></pre>
+<p>And if you want to know all the function of a program simply type the following.</p>
+<pre><code>man ls</code></pre>
+<p>This will take you to a manual of the program with an extensive description of each flag (Figure <a href="getting-started.html#fig:ls-manual">3.2</a>).</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:ls-manual"></span>
+<img src="img/ls_manual.png" alt="Partial output from the ls-manual." width="815" />
+<p class="caption">
+Figure 3.2: Partial output from the ls-manual.
+</p>
+</div>
+</div>
+<div id="installing-the-software" class="section level3 hasAnchor" number="3.3.4">
+<h3><span class="header-section-number">3.3.4</span> Installing the software<a href="getting-started.html#installing-the-software" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="brew" class="section level4 hasAnchor" number="3.3.4.1">
+<h4><span class="header-section-number">3.3.4.1</span> brew<a href="getting-started.html#brew" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Linux has a great package-manager that is lacking on macOS. You can install <a href="https://brew.sh" target="_blank"><code>brew</code></a> to compensate for this. This adds the ability to install almost any Linux-based program through the <strong>Terminal</strong> such as <code>wget</code>, <code>llvm</code>, etc.</p>
+<p>Open <strong>Terminal</strong> and execute the following:</p>
+<pre><code>/bin/bash -c &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)&quot;</code></pre>
+<p>Check if everything is in order.</p>
+<pre><code>brew doctor</code></pre>
+<p>It shouldn’t report any errors.</p>
+</div>
+<div id="plink" class="section level4 hasAnchor" number="3.3.4.2">
+<h4><span class="header-section-number">3.3.4.2</span> PLINK<a href="getting-started.html#plink" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>First, we’ll get <code>PLINK</code>. Navigate to the <strong>PLINK v1.9</strong> website, which can be found <a href="https://www.cog-genomics.org/plink2" target="_blank">here</a>. Download the macOS (64-bit) version under ‘Stable (beta x.x, day month year)’.</p>
+<blockquote>
+<p>Note: Apple produced Intel-based computers for a few years back, and most programs, packages, libraries and whatnot are designed for that. So, I highly recommend using software designed for that and activating Rosetta2 in your Terminal. Don’t know how to do that? Following <a href="https://support.apple.com/en-us/102527" target="_blank">these instructions</a>.</p>
+</blockquote>
+<p>Unzip the folder and put <code>plink</code> in the practical folder.</p>
+<pre><code>mv -v ~/Downloads/plink_mac_20231211/plink ~/Desktop/practical/plink </code></pre>
+</div>
+</div>
+</div>
+<div id="installing-r-and-rstudio" class="section level2 hasAnchor" number="3.4">
+<h2><span class="header-section-number">3.4</span> Installing R and RStudio<a href="getting-started.html#installing-r-and-rstudio" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Let’s go ahead and use <code>brew</code> to install the <code>R</code> and <strong>RStudio</strong> software.</p>
+<p>In <strong>Terminal</strong> execute the following and just follow the instructions.</p>
+<pre><code>brew install rstudio
+brew install --cask r</code></pre>
+<p>Now close the terminal window - really make sure that the terminal-program has quit.</p>
+<p>Open your fresh installation of <strong>RStudio</strong> by double clicking the icon. You should be seeing something like figure <a href="getting-started.html#fig:rstudio-screenshot">3.3</a></p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:rstudio-screenshot"></span>
+<img src="img/rstudio-screenshot.png" alt="RStudio screenshot." width="1242" />
+<p class="caption">
+Figure 3.3: RStudio screenshot.
+</p>
+</div>
+<p>In the top right, you see a little green-white plus-sign, click this and select ‘R Notebook’ (Figure <a href="getting-started.html#fig:rstudio-screenshot-create-notebook">3.4</a>).</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:rstudio-screenshot-create-notebook"></span>
+<img src="img/rstudio-screenshot-create-notebook.png" alt="RStudio screenshot." width="1242" />
+<p class="caption">
+Figure 3.4: RStudio screenshot.
+</p>
+</div>
+<p>You will create an untitled (<code>Untitled1</code>) <code>R</code> notebook: you can combine text descriptions, like you would in a lab-journal, with code-sections. Read what is in the notebook to get a grasp on that (Figure <a href="getting-started.html#fig:rstudio-screenshot-notebook">3.5</a>).</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:rstudio-screenshot-notebook"></span>
+<img src="img/rstudio-screenshot-notebook.png" alt="RStudio screenshot." width="1242" />
+<p class="caption">
+Figure 3.5: RStudio screenshot.
+</p>
+</div>
+<p>Right, you should be installing some packages. To do so, you can remove <code>plot(cars)</code> (or leave and create a new code-block as per instructions in the notebook), and copy paste the code below. Make sure to put in a code block like the example in which <code>plot(cars)</code> is in.</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="getting-started.html#cb17-1" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="fu">c</span>(<span class="st">&quot;rstudio/rmarkdown&quot;</span>))</span>
+<span id="cb17-2"><a href="getting-started.html#cb17-2" tabindex="-1"></a></span>
+<span id="cb17-3"><a href="getting-started.html#cb17-3" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">&quot;formatR&quot;</span>, <span class="st">&quot;remotes&quot;</span>, </span>
+<span id="cb17-4"><a href="getting-started.html#cb17-4" tabindex="-1"></a>                   <span class="st">&quot;httr&quot;</span>, <span class="st">&quot;usethis&quot;</span>, </span>
+<span id="cb17-5"><a href="getting-started.html#cb17-5" tabindex="-1"></a>                   <span class="st">&quot;data.table&quot;</span>, <span class="st">&quot;devtools&quot;</span>, </span>
+<span id="cb17-6"><a href="getting-started.html#cb17-6" tabindex="-1"></a>                   <span class="st">&quot;dplyr&quot;</span>, <span class="st">&quot;tibble&quot;</span>, <span class="st">&quot;tidyverse&quot;</span>, </span>
+<span id="cb17-7"><a href="getting-started.html#cb17-7" tabindex="-1"></a>                   <span class="st">&quot;openxlsx&quot;</span>,</span>
+<span id="cb17-8"><a href="getting-started.html#cb17-8" tabindex="-1"></a>                   <span class="st">&quot;ggplot2&quot;</span>,</span>
+<span id="cb17-9"><a href="getting-started.html#cb17-9" tabindex="-1"></a>                   <span class="st">&quot;ggsci&quot;</span>, <span class="st">&quot;ggthemes&quot;</span>,</span>
+<span id="cb17-10"><a href="getting-started.html#cb17-10" tabindex="-1"></a>                   <span class="st">&quot;qqman&quot;</span>, <span class="st">&quot;CMplot&quot;</span>, <span class="st">&quot;plotly&quot;</span>, </span>
+<span id="cb17-11"><a href="getting-started.html#cb17-11" tabindex="-1"></a>                   <span class="st">&quot;openxlsx&quot;</span>))</span>
+<span id="cb17-12"><a href="getting-started.html#cb17-12" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&quot;kassambara/ggpubr&quot;</span>)</span>
+<span id="cb17-13"><a href="getting-started.html#cb17-13" tabindex="-1"></a></span>
+<span id="cb17-14"><a href="getting-started.html#cb17-14" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&quot;oliviasabik/RACER&quot;</span>)</span>
+<span id="cb17-15"><a href="getting-started.html#cb17-15" tabindex="-1"></a></span>
+<span id="cb17-16"><a href="getting-started.html#cb17-16" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&quot;MRCIEU/TwoSampleMR&quot;</span>)</span>
+<span id="cb17-17"><a href="getting-started.html#cb17-17" tabindex="-1"></a></span>
+<span id="cb17-18"><a href="getting-started.html#cb17-18" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">require</span>(<span class="st">&quot;BiocManager&quot;</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb17-19"><a href="getting-started.html#cb17-19" tabindex="-1"></a>  <span class="fu">install.packages</span>(<span class="st">&quot;BiocManager&quot;</span>)</span>
+<span id="cb17-20"><a href="getting-started.html#cb17-20" tabindex="-1"></a>BiocManager<span class="sc">::</span><span class="fu">install</span>(<span class="st">&quot;geneplotter&quot;</span>)</span></code></pre></div>
+<p>You should load these packages too.</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="getting-started.html#cb18-1" tabindex="-1"></a><span class="fu">library</span>(rmarkdown)</span>
+<span id="cb18-2"><a href="getting-started.html#cb18-2" tabindex="-1"></a><span class="fu">library</span>(formatR)</span>
+<span id="cb18-3"><a href="getting-started.html#cb18-3" tabindex="-1"></a></span>
+<span id="cb18-4"><a href="getting-started.html#cb18-4" tabindex="-1"></a><span class="fu">library</span>(openxlsx)</span>
+<span id="cb18-5"><a href="getting-started.html#cb18-5" tabindex="-1"></a></span>
+<span id="cb18-6"><a href="getting-started.html#cb18-6" tabindex="-1"></a><span class="fu">library</span>(data.table)</span>
+<span id="cb18-7"><a href="getting-started.html#cb18-7" tabindex="-1"></a></span>
+<span id="cb18-8"><a href="getting-started.html#cb18-8" tabindex="-1"></a><span class="fu">library</span>(tibble)</span>
+<span id="cb18-9"><a href="getting-started.html#cb18-9" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb18-10"><a href="getting-started.html#cb18-10" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb18-11"><a href="getting-started.html#cb18-11" tabindex="-1"></a><span class="fu">library</span>(plotly)</span>
+<span id="cb18-12"><a href="getting-started.html#cb18-12" tabindex="-1"></a></span>
+<span id="cb18-13"><a href="getting-started.html#cb18-13" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb18-14"><a href="getting-started.html#cb18-14" tabindex="-1"></a><span class="fu">library</span>(devtools)</span>
+<span id="cb18-15"><a href="getting-started.html#cb18-15" tabindex="-1"></a><span class="fu">library</span>(ggpubr)</span>
+<span id="cb18-16"><a href="getting-started.html#cb18-16" tabindex="-1"></a><span class="fu">library</span>(ggsci)</span>
+<span id="cb18-17"><a href="getting-started.html#cb18-17" tabindex="-1"></a><span class="fu">library</span>(ggthemes)</span>
+<span id="cb18-18"><a href="getting-started.html#cb18-18" tabindex="-1"></a></span>
+<span id="cb18-19"><a href="getting-started.html#cb18-19" tabindex="-1"></a><span class="fu">library</span>(qqman)</span>
+<span id="cb18-20"><a href="getting-started.html#cb18-20" tabindex="-1"></a><span class="fu">library</span>(CMplot)</span>
+<span id="cb18-21"><a href="getting-started.html#cb18-21" tabindex="-1"></a><span class="fu">library</span>(RACER)</span>
+<span id="cb18-22"><a href="getting-started.html#cb18-22" tabindex="-1"></a></span>
+<span id="cb18-23"><a href="getting-started.html#cb18-23" tabindex="-1"></a><span class="fu">library</span>(remotes)</span>
+<span id="cb18-24"><a href="getting-started.html#cb18-24" tabindex="-1"></a><span class="fu">library</span>(TwoSampleMR)</span>
+<span id="cb18-25"><a href="getting-started.html#cb18-25" tabindex="-1"></a></span>
+<span id="cb18-26"><a href="getting-started.html#cb18-26" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;geneplotter&quot;</span>)</span></code></pre></div>
+<p>All in all this may take some time, good moment to relax, review your notes, stretch your legs, or take a coffee.</p>
+</div>
+<div id="are-you-ready" class="section level2 hasAnchor" number="3.5">
+<h2><span class="header-section-number">3.5</span> Are you ready?<a href="getting-started.html#are-you-ready" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Are you ready? Did you bring coffee and a good dose of energy? Let’s start!</p>
+<p>Oh, one more thing: you can save your notebook, the one you just created, to keep all the <code>R</code> codes you are applying in the next chapters and add descriptions and notes. If you save this notebook you’ll notice that a <code>html</code>-file is created. This file is a legible webbrowser-friendly version of your work and contains the codes and the output (code messages, tables, and figures). And the nice thing is, that you can easily share it with others over email.</p>
+<p>Ok. ’Nough said, let’s move on to cover some basics in Chapter <a href="gwas-basics.html#gwas-basics">4</a>.</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="somebackgroundreading.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="gwas-basics.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": true,
+"twitter": true,
+"linkedin": true,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": true,
+"all": false
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/swvanderlaan/A_Practical_Primer_in_Human_Complex_Genetics/edit/master/02_2_gettingstarted.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": [["A-Practical-Primer-in-Human-Complex-Genetics.pdf", "PDF"], ["A-Practical-Primer-in-Human-Complex-Genetics.epub", "EPUB"]],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

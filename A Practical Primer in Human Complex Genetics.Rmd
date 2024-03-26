@@ -31,12 +31,12 @@ I can imagine this seems overwhelming, but trust me, you'll be okay. Just follow
 
 **Ready to start?**
 
-Your first point of action is to prepare your system for this course in Chapter \@ref(02_1_somebackgroundreading).
+Your first point of action is to prepare your system for this course in Chapter \@ref(somebackgroundreading).
 
 
 <!--chapter:end:index.Rmd-->
 
-# Some background reading
+# Some background reading  {#somebackgroundreading}
 ![](img/_headers/papers_on_wall.png){width=100%}
 
 Standing on the shoulders of giants, that's what this book and I do. I want to acknowledge some great work that has helped me tremendously and, really, this book wouldn't exist without this awesome work. So, I do want to give you some background reading. Is it a prerequisite? No, not really. For starters, the course covers most and you'll learn as you go. And if you didn't come here through the course, you'll be fine just the same. That said, it's a always good idea to get familiar with these works as you move forward on your path towards your first GWAS - in fact, I had these printed out with markings and writings all over them as I executed my first GWAS, and they've been great as a reference many times after. 
@@ -61,18 +61,32 @@ With respect to imputation and meta-analyses of GWAS you should also get familia
 
 **Are you ready?**
 
-Are you ready? Did you bring coffee and a good dose of energy? Let's start! Your first point of action is to prepare your system for this course in Chapter \@ref(02_2_prerequisites).
+Are you ready? Did you bring coffee and a good dose of energy? Let's start! Your first point of action is to prepare your system for this course in Chapter \@refgetting-started).
 
 <!--chapter:end:02_1_somebackgroundreading.Rmd-->
 
-# Prerequisites
+# Getting started {#getting-started}
 ![](img/_headers/women_behind_macbook.png){width=100%}
 
-```{r prerequisites, message = FALSE, warning = FALSE, echo = FALSE, eval = TRUE}
+```{r getting_started, message = FALSE, warning = FALSE, echo = FALSE, eval = TRUE}
 source("scripts/functions.R")
 source("scripts/colors.R")
 source("scripts/packages.R")
 ```
+
+
+- introduction
+- briefly touch on operating system
+- split CoCalc vs standalone
+  - CoCalc: everything is installed
+  - standalone: 
+    - focus on macOS/Linux
+    - what to install
+    - show how to navigate on macOS/Linux Terminal
+
+
+[Some introductory text]
+
 
 ## Linux, macOS, and Windows
 
@@ -83,7 +97,12 @@ However, I highly recommend one of two options. One, install a linux subsystem o
 > For this practical every command is intended for Linux/macOS, in other words Unix-systems.
 
 
-## Programs you need
+## CoCalc
+
+
+## Standalone
+
+### Programs you need
 
 You need few programs for this practical, or for your (future) genetic epidemiology work for that matter (Table \@ref(tab:programs)).
 
@@ -381,6 +400,74 @@ Ok. 'Nough said, let's move on to cover some basics in Chapter ref(gwas-basics).
 
 <!--chapter:end:02_2_prerequisites.Rmd-->
 
+# Steps in a Genome-Wide Association Study {#gwas-basics}
+![](img/_headers/women_behind_macbook.png){width=100%}
+
+Now that you understand a bit of the navigation in Unix-systems, you're ready to start this practical primer. We will make use of a dummy dataset containing cases and controls. We will explain and execute the following steps:
+
+1. convert raw data to a more memory-efficient format
+2. apply extensive quality control on samples and SNPs
+3. assess the ancestral background of your study population
+4. perform association testing
+5. visualize association results
+
+
+## Converting datasets
+
+The format in which genotype data are returned to investigators varies among genome-wide SNP platforms and genotyping centers. Usually genotypes have been called by a genotyping center and returned in the standard `PED` and `MAP` file formats designed for `PLINK`.
+
+A `PED` file is a white space (space or tab)-delimited file in which each line represents one individual and the first six columns are mandatory and in the following order:
+
+- 'Family ID', 
+- 'Individual ID', 
+- 'Paternal ID', 
+- 'Maternal ID', 
+- 'Sex (1=male, 2=female, 0=missing)', and 
+- 'Phenotype (1=unaffected, 2=affected, 0=missing)'. 
+
+The subsequent columns denote genotypes that can be any character (e.g., 1, 2, 3, 4 or A, C, G, T). Zero denotes a missing genotype. Each SNP must have two alleles (i.e., both alleles are either present or absent). 
+The order of SNPs in the PED file is given in the MAP file, in which each line denotes a single marker and the four white-space–separated columns are chromosome (1–22, X, Y or 0 for unplaced), marker name (typically an rs number), genetic distance in Morgans (this can be fixed to 0) and base-pair position (bp units).
+
+Let's start by using `PLINK` to converting the datasets to a lighter, binary form (a `.bed`-file). This file saves data in a more memory- and time-efficient manner (in a 'binary'-format) to facilitate the analysis of large-scale data sets [@purcell2007]. The marker-information is stored in the `.bim`-file and the family information in the `.fam`-file. `PLINK` creates a `.log` file (named `raw-GWA-data.log`) that details (among other information) the implemented commands, the number of cases and controls in the input files, any excluded data and the genotyping rate in the remaining data. This file is very useful for checking whether the software is successfully completing commands.
+
+Make sure you are in the right directory. Do you remember how to get there?
+
+```
+cd ~/Desktop/practical
+```
+
+*No worries for now: I've done this already for you!*
+
+```
+plink19 --file rawdata/raw-GWA-data --make-bed --out rawdata/rawdata
+```
+
+## Quality control
+
+We are ready for some quality control and quality assurance, heavily inspired by Anderson _et al._ [@anderson2010] and Laurie _et al._ [@laurie2010]. In general, we should check out a couple of things regarding the data quality on two levels:
+
+1) samples
+2) variants
+
+So, we will investigate the following:
+
+- Are the *sexes* based on genetic data matching the ones given by the phenotype file?
+- Identify individuals that are outliers in terms of missing data (_call rate_) or heterozygosity rates. This could indicate a genotyping error or sample swap.
+- Identify duplicated or related individuals.
+- Identify individuals with divergent ancestry.
+- What are the allele frequencies?
+- What is the per-SNP call rate?
+- In the case of a case-control study (which is the case here), we need to check differential missingness between cases and controls. 
+
+> By the way: you could extent the check on differential missingness to for instance 'genotyping platform', or 'hospital of inclusion', if you think this might influence the genotyping experiment technically.
+
+
+## Let's get our hands dirty
+
+All clear? Let's start the work. On to step 1 of the QC for GWAS: filter samples of poor quality in Chapter \@ref(gwas-basics-sample-qc).
+
+<!--chapter:end:03_1_gwas_basics.Rmd-->
+
 # Epilogue {#epilogue}
 
 What started as a simple 'let's write a practical on how to do a GWAS', escalated into this GitBook. My second book. My fifth child (as far as I know). I hope you found it to be useful and learned a bit. 
@@ -486,6 +573,27 @@ I used images from [Unsplash](https://unsplash.com/s/photos/legal) to brighten u
 
 
 <!--chapter:end:11_licenses.Rmd-->
+
+# Colofon
+
+<!-- In the spirit of Open Science, it is good to think about making your course materials Open Source. That means that other people can use them. In principle, if you publish materials online without license information, you hold the copyright to those materials. If you want them to be Open Source, you must include a license. It is not always obvious what license to choose. -->
+
+<!-- The Creative Commons licenses are typically suitable for course materials. This GitBook, for example, is licensed under CC-BY 4.0. That means you can use and remix it as you like, but you must credit the original source. -->
+
+<!-- If your project is more focused on software or source code, consider using the [GNU GPL v3 license](https://www.gnu.org/licenses/gpl-3.0.en.html) instead.  -->
+
+<!-- You can find [more information about the Creative Commons Licenses here](https://creativecommons.org/share-your-work/licensing-examples). Specific licenses that might be useful are: -->
+
+<!-- * [CC0 ("No Rights Reserved")](https://creativecommons.org/share-your-work/public-domain/cc0/), everybody can do what they want with your work. -->
+<!-- * [CC-BY 4.0 ("Attribution")](https://creativecommons.org/licenses/by/4.0/), everybody can do what they want with your work, but they must credit you. Note that this license may not be suitable for software or source code! -->
+
+
+<!-- For compatibility between CC and GNU licenses, see [this FAQ](https://creativecommons.org/faq/#Can_I_apply_a_Creative_Commons_license_to_software.3F). -->
+
+
+Add in text on colofon
+
+<!--chapter:end:12_colofon.Rmd-->
 
 `r if (knitr:::is_html_output()) '
 # References {-}
