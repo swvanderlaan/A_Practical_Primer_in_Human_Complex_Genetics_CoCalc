@@ -52,28 +52,27 @@ programs <- openxlsx::read.xlsx("information.xlsx", sheet = "Programs")
 
 
 ```{r programs, tidy = FALSE, eval = TRUE, echo = FALSE}
-# knitr::kable(
-#   programs,
-#   caption = 'Programs needed for genetic epidemiology.',
-#   # align = ,
-#   booktabs = FALSE
-# )
-
-ft <- flextable(
+knitr::kable(
   programs,
-  # col_keys = names(data),
-  # cwidth = 0.75,
-  # cheight = 0.25,
-  # defaults = list(),
-  theme_fun = theme_booktabs
+  caption = 'Programs needed for genetic epidemiology.',
+  # align = ,
+  booktabs = FALSE
 )
 
-# set_table_properties(ft, width = 1, layout = "autofit")
-
-# fit_to_width(ft, max_width = 50)
-
-autofit(ft, add_w = 0, add_h = 0)
-
+# ft <- flextable(
+#   programs,
+#   # col_keys = names(data),
+#   # cwidth = 0.75,
+#   # cheight = 0.25,
+#   # defaults = list(),
+#   theme_fun = theme_booktabs
+# )
+# 
+# # set_table_properties(ft, width = 1, layout = "autofit")
+# 
+# # fit_to_width(ft, max_width = 50)
+# 
+# autofit(ft, add_w = 0, add_h = 0)
 ```
 
 **RStudio**
