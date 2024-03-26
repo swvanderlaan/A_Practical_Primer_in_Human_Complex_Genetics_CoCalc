@@ -1,5 +1,5 @@
 # Sample QC {#gwas-basics-sample-qc}
-![](img/_gwas_dummy/gwas_sample_qc.png){width=70%}
+![](./img/_gwas_dummy/gwas_sample_qc.png){width=70%}
 
 
 Let's start with the per-sample quality control. 

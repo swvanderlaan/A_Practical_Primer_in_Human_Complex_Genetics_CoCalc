@@ -1,5 +1,5 @@
 # Per-SNP QC {#gwas_basics_snp_qc}
-![](img/_gwas_dummy/gwas_snp_qc.png){width=70%}
+![](./img/_gwas_dummy/gwas_snp_qc.png){width=70%}
 
 
 Now that we removed samples, we can focus on low-quality variants.

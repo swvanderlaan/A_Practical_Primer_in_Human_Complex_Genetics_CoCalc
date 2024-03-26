@@ -1,5 +1,5 @@
 # Getting started {#getting-started}
-![](img/_headers/women_behind_macbook.png){width=100%}
+![](./img/_headers/women_behind_macbook.png){width=100%}
 
 
 

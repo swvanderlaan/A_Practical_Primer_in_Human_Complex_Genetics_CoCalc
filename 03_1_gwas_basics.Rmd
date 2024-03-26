@@ -1,9 +1,5 @@
 # Steps in a Genome-Wide Association Study {#gwas-basics}
-<<<<<<< HEAD
-![](img/_headers/woman_working_on_code.png){width=100%}
-=======
 ![](./img/_headers/woman_working_on_code.png){width=100%}
->>>>>>> eecc10b (fixes)
 ```{r include = FALSE}
 if(!knitr:::is_html_output())
 {

@@ -1,9 +1,5 @@
 # Some background reading  {#somebackgroundreading}
-<<<<<<< HEAD
-![](img/_headers/papers_on_wall.png){width=100%}
-=======
 ![](./img/_headers/papers_on_wall.png){width=100%}
->>>>>>> eecc10b (fixes)
 ```{r include = FALSE}
 if(!knitr:::is_html_output())
 {

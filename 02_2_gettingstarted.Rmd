@@ -1,9 +1,5 @@
 # Getting started {#getting-started}
-<<<<<<< HEAD
-![](img/_headers/women_behind_macbook.png){width=100%}
-=======
 ![](./img/_headers/women_behind_macbook.png){width=100%}
->>>>>>> eecc10b (fixes)
 ```{r include = FALSE}
 if(!knitr:::is_html_output())
 {

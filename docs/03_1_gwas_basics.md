@@ -1,5 +1,5 @@
 # Steps in a Genome-Wide Association Study {#gwas-basics}
-![](img/_headers/woman_working_on_code.png){width=100%}
+![](./img/_headers/woman_working_on_code.png){width=100%}
 
 
 Now that you understand a bit of the navigation in Unix-systems, you're ready to start this practical primer. We will make use of a dummy dataset containing cases and controls. We will explain and execute the following steps:
