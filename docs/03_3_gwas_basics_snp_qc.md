@@ -43,7 +43,7 @@ clean_LMISS_plot
 ```
 
 <div class="figure" style="text-align: center">
-<img src="img/_gwas_dummy/show-snp-callrate.png" alt="Per SNP call rate." width="1050" />
+<img src="img/_gwas_dummy/show-snp-callrate.png" alt="Per SNP call rate." width="2100" />
 <p class="caption">(\#fig:show-snp-callrate)Per SNP call rate.</p>
 </div>
 
@@ -92,7 +92,7 @@ clean_FREQ_plot
 ```
 
 <div class="figure" style="text-align: center">
-<img src="img/_gwas_dummy/show-freq.png" alt="Minor allele frequency." width="672" />
+<img src="img/_gwas_dummy/show-freq.png" alt="Minor allele frequency." width="1344" />
 <p class="caption">(\#fig:show-freq)Minor allele frequency.</p>
 </div>
 
@@ -156,7 +156,7 @@ clean_HWE_plot
 ```
 
 <div class="figure" style="text-align: center">
-<img src="img/_gwas_dummy/show-hwe.png" alt="Hardy-Weinberg Equilibrium p-values per stratum." width="672" />
+<img src="img/_gwas_dummy/show-hwe.png" alt="Hardy-Weinberg Equilibrium p-values per stratum." width="1344" />
 <p class="caption">(\#fig:show-hwe)Hardy-Weinberg Equilibrium p-values per stratum.</p>
 </div>
 

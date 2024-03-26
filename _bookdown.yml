@@ -1,5 +1,5 @@
 book_filename: "A Practical Primer in Human Complex Genetics"
-delete_merged_file: false
+delete_merged_file: yes
 new_session: yes
 output_dir: "docs"
 language:

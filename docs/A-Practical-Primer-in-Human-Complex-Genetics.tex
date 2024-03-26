@@ -85,17 +85,6 @@
 \setcounter{bottomnumber}{3}
 \setcounter{totalnumber}{4}
 \usepackage{float}
-\usepackage{fontspec}
-\usepackage{multirow}
-\usepackage{multicol}
-\usepackage{colortbl}
-\usepackage{hhline}
-\newlength\Oldarrayrulewidth
-\newlength\Oldtabcolsep
-\usepackage{longtable}
-\usepackage{array}
-\usepackage{hyperref}
-\usepackage{wrapfig}
 \ifLuaTeX
   \usepackage{selnolig}  % disable illegal ligatures
 \fi
@@ -118,7 +107,7 @@
 }
 \makeatother
 \subtitle{with a use-case in cardiovascular disease}
-\author{\href{https://vanderlaanand.science}{dr. Sander W. van der Laan} \href{https://www.twitter.com/swvanderlaan}{\includegraphics[width=0.02\textwidth,height=\textheight]{img/_logo/twitter_circle_blue.png}} \href{mailto:s.w.vanderlaan@gmail.com}{\includegraphics[width=0.02\textwidth,height=\textheight]{img/_logo/email_circle_blue.png}}}
+\author{\href{https://vanderlaanand.science}{dr. Sander W. van der Laan} \href{https://www.twitter.com/swvanderlaan}{\includegraphics[width=0.02\textwidth,height=\textheight]{./img/_logo/twitter_circle_blue.png}} \href{mailto:s.w.vanderlaan@gmail.com}{\includegraphics[width=0.02\textwidth,height=\textheight]{./img/_logo/email_circle_blue.png}}}
 \date{Version 2.0.0 (2024-03-26)}
 
 \begin{document}
@@ -131,7 +120,7 @@
 \hypertarget{about-this-primer}{%
 \chapter{About this primer}\label{about-this-primer}}
 
-\includegraphics[width=1\textwidth,height=\textheight]{img/_headers/banner_man_standing_dna.png}
+\includegraphics[width=1\textwidth,height=\textheight]{./img/_headers/banner_man_standing_dna.png}
 
 Ever since the first genome-wide association study (GWAS) on \href{https://doi.org/10.1126/science.1109557}{age-related macular degeneration}, and the promise of personalized medicine in the wake of the Human Genome Project, large-scale genetic association studies hold significant sway in contemporary health research and \href{http://dx.doi.org/10.1038/nrd.2017.262}{drive drug-development pipelines}. In the past 2 decades, researchers delved into GWAS, aiming to unveil genetic variations linked to both human traits, such as the color of your eyes, and rare and common complex diseases. These findings serve as crucial keys to unravel the intricate mechanisms underlying diseases, shedding light on whether the correlations identified in observational studies between risk factors and diseases are truly causal.
 
@@ -151,7 +140,7 @@ Your first point of action is to prepare your system for this course in Chapter 
 \hypertarget{somebackgroundreading}{%
 \chapter{Some background reading}\label{somebackgroundreading}}
 
-\includegraphics[width=1\textwidth,height=\textheight]{img/_headers/papers_on_wall.png}
+\includegraphics[width=1\textwidth,height=\textheight]{./img/_headers/papers_on_wall.png}
 
 Standing on the shoulders of giants, that's what this book and I do. I want to acknowledge some great work that has helped me tremendously and, really, this book wouldn't exist without this awesome work. So, I do want to give you some background reading. Is it a prerequisite? No, not really. For starters, the course covers most and you'll learn as you go. And if you didn't come here through the course, you'll be fine just the same. That said, it's a always good idea to get familiar with these works as you move forward on your path towards your first GWAS - in fact, I had these printed out with markings and writings all over them as I executed my first GWAS, and they've been great as a reference many times after.
 
@@ -199,7 +188,7 @@ Are you ready? Did you bring coffee and a good dose of energy? Let's start! Your
 \hypertarget{getting-started}{%
 \chapter{Getting started}\label{getting-started}}
 
-\includegraphics[width=1\textwidth,height=\textheight]{img/_headers/women_behind_macbook.png}
+\includegraphics[width=1\textwidth,height=\textheight]{./img/_headers/women_behind_macbook.png}
 
 \begin{lstlisting}
 ## 
@@ -255,71 +244,24 @@ But first, I'll briefly provide some background on the variaous programs that ar
 
 We'll use a few programs throughout this practical. You'll probably need these for your (future) genetic epidemiology work too (Table \ref{tab:programs}).
 
-\global\setlength{\Oldarrayrulewidth}{\arrayrulewidth}
+\begin{table}
 
-\global\setlength{\Oldtabcolsep}{\tabcolsep}
-
-\setlength{\tabcolsep}{2pt}
-
-\renewcommand*{\arraystretch}{1.5}
-
-
-
-\providecommand{\ascline}[3]{\noalign{\global\arrayrulewidth #1}\arrayrulecolor[HTML]{#2}\cline{#3}}
-
-\begin{longtable}[c]{|p{0.92in}|p{2.72in}|p{14.00in}}
-
-
-
-\ascline{1.5pt}{666666}{1-3}
-
-\multicolumn{1}{>{\raggedright}m{\dimexpr 0.92in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{Program}}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 2.72in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{Link}}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 14in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{Description}}}} \\
-
-\ascline{1.5pt}{666666}{1-3}\endfirsthead 
-
-\ascline{1.5pt}{666666}{1-3}
-
-\multicolumn{1}{>{\raggedright}m{\dimexpr 0.92in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{Program}}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 2.72in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{Link}}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 14in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{Description}}}} \\
-
-\ascline{1.5pt}{666666}{1-3}\endhead
-
-
-
-\multicolumn{1}{>{\raggedright}m{\dimexpr 0.92in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{PLINK}}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 2.72in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{https://www.cog-genomics.org/plink2/}}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 14in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{PLINK\ is\ a\ free,\ open-source\ genetic\ analysis\ tool\ set,\ designed\ to\ perform\ a\ range\ of\ basic\ data\ parsing\ and\ quality\ control,\ as\ well\ as\ basic\ and\ large-scale\ analyses\ in\ a\ computationally\ efficient\ manner.}}}} \\
-
-
-
-
-
-\multicolumn{1}{>{\raggedright}m{\dimexpr 0.92in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{R}}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 2.72in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{https://cran.r-project.org/}}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 14in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{A\ program\ to\ perform\ statistical\ analysis\ and\ visualizations.}}}} \\
-
-
-
-
-
-\multicolumn{1}{>{\raggedright}m{\dimexpr 0.92in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{RStudio}}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 2.72in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{https://www.rstudio.com}}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 14in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{A\ user-friendly\ R-wrap-around\ for\ code\ editing,\ debugging,\ analyses,\ and\ visualization.}}}} \\
-
-
-
-
-
-\multicolumn{1}{>{\raggedright}m{\dimexpr 0.92in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{Homebrew}}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 2.72in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{https://brew.sh}}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 14in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{A\ great\ extension\ for\ Mac-users\ to\ install\ really\ useful\ programs\ that\ Apple\ didn't.}}}} \\
-
-\ascline{1.5pt}{666666}{1-3}
-
-
-
-\end{longtable}
-
-
-
-\arrayrulecolor[HTML]{000000}
-
-\global\setlength{\arrayrulewidth}{\Oldarrayrulewidth}
-
-\global\setlength{\tabcolsep}{\Oldtabcolsep}
-
-\renewcommand*{\arraystretch}{1}
+\caption{\label{tab:programs}Programs needed for genetic epidemiology.}
+\centering
+\begin{tabular}[t]{l|l|l}
+\hline
+Program & Link & Description\\
+\hline
+PLINK & https://www.cog-genomics.org/plink2/ & PLINK is a free, open-source genetic analysis tool set, designed to perform a range of basic data parsing and quality control, as well as basic and large-scale analyses in a computationally efficient manner.\\
+\hline
+R & https://cran.r-project.org/ & A program to perform statistical analysis and visualizations.\\
+\hline
+RStudio & https://www.rstudio.com & A user-friendly R-wrap-around for code editing, debugging, analyses, and visualization.\\
+\hline
+Homebrew & https://brew.sh & A great extension for Mac-users to install really useful programs that Apple didn't.\\
+\hline
+\end{tabular}
+\end{table}
 
 \textbf{RStudio}
 
@@ -625,7 +567,7 @@ Ok. 'Nough said, let's move on to cover some basics in Chapter \ref{gwas-basics}
 \hypertarget{gwas-basics}{%
 \chapter{Steps in a Genome-Wide Association Study}\label{gwas-basics}}
 
-\includegraphics[width=1\textwidth,height=\textheight]{img/_headers/woman_working_on_code.png}
+\includegraphics[width=1\textwidth,height=\textheight]{./img/_headers/woman_working_on_code.png}
 
 Now that you understand a bit of the navigation in Unix-systems, you're ready to start this practical primer. We will make use of a dummy dataset containing cases and controls. We will explain and execute the following steps:
 
@@ -774,7 +716,7 @@ All clear? Let's start the work. On to step 1 of the QC for GWAS: filter samples
 \hypertarget{gwas-basics-sample-qc}{%
 \chapter{Sample QC}\label{gwas-basics-sample-qc}}
 
-\includegraphics[width=0.7\textwidth,height=\textheight]{img/_gwas_dummy/gwas_sample_qc.png}
+\includegraphics[width=0.7\textwidth,height=\textheight]{./img/_gwas_dummy/gwas_sample_qc.png}
 
 Let's start with the per-sample quality control.
 
@@ -1501,7 +1443,7 @@ Now that you filtered samples, we should turn our attention to step 2 of the QC 
 \hypertarget{gwas_basics_snp_qc}{%
 \chapter{Per-SNP QC}\label{gwas_basics_snp_qc}}
 
-\includegraphics[width=0.7\textwidth,height=\textheight]{img/_gwas_dummy/gwas_snp_qc.png}
+\includegraphics[width=0.7\textwidth,height=\textheight]{./img/_gwas_dummy/gwas_snp_qc.png}
 
 Now that we removed samples, we can focus on low-quality variants.
 
