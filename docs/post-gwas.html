@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 11 Post-GWAS Analyses | A Practical Primer in Human Complex Genetics</title>
+  <meta name="description" content="This is a practical primer in human complex genetics with a use-case in cardiovascular disease. The output format for this primer is bookdown::gitbook." />
+  <meta name="generator" content="bookdown 0.38.1 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 11 Post-GWAS Analyses | A Practical Primer in Human Complex Genetics" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="This is a practical primer in human complex genetics with a use-case in cardiovascular disease. The output format for this primer is bookdown::gitbook." />
+  <meta name="github-repo" content="swvanderlaan/A_Practical_Primer_in_Human_Complex_Genetics" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 11 Post-GWAS Analyses | A Practical Primer in Human Complex Genetics" />
+  
+  <meta name="twitter:description" content="This is a practical primer in human complex genetics with a use-case in cardiovascular disease. The output format for this primer is bookdown::gitbook." />
+  
+
+<meta name="author" content="dr. Sander W. van der Laan  " />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="wtccc1.html"/>
+<link rel="next" href="epilogue.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Practical Primer in Human Complex Genetics</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> About this primer</a></li>
+<li class="chapter" data-level="2" data-path="somebackgroundreading.html"><a href="somebackgroundreading.html"><i class="fa fa-check"></i><b>2</b> Some background reading</a></li>
+<li class="chapter" data-level="3" data-path="getting-started.html"><a href="getting-started.html"><i class="fa fa-check"></i><b>3</b> Getting started</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="getting-started.html"><a href="getting-started.html#the-programs-we-use"><i class="fa fa-check"></i><b>3.1</b> The programs we use</a></li>
+<li class="chapter" data-level="3.2" data-path="getting-started.html"><a href="getting-started.html#cocalc"><i class="fa fa-check"></i><b>3.2</b> CoCalc</a></li>
+<li class="chapter" data-level="3.3" data-path="getting-started.html"><a href="getting-started.html#standalone"><i class="fa fa-check"></i><b>3.3</b> Standalone</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="getting-started.html"><a href="getting-started.html#terminal"><i class="fa fa-check"></i><b>3.3.1</b> Terminal</a></li>
+<li class="chapter" data-level="3.3.2" data-path="getting-started.html"><a href="getting-started.html#the-data-you-need"><i class="fa fa-check"></i><b>3.3.2</b> The data you need</a></li>
+<li class="chapter" data-level="3.3.3" data-path="getting-started.html"><a href="getting-started.html#navigating-the-terminal"><i class="fa fa-check"></i><b>3.3.3</b> Navigating the Terminal</a></li>
+<li class="chapter" data-level="3.3.4" data-path="getting-started.html"><a href="getting-started.html#installing-the-software"><i class="fa fa-check"></i><b>3.3.4</b> Installing the software</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="getting-started.html"><a href="getting-started.html#installing-r-and-rstudio"><i class="fa fa-check"></i><b>3.4</b> Installing R and RStudio</a></li>
+<li class="chapter" data-level="3.5" data-path="getting-started.html"><a href="getting-started.html#are-you-ready"><i class="fa fa-check"></i><b>3.5</b> Are you ready?</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="gwas-basics.html"><a href="gwas-basics.html"><i class="fa fa-check"></i><b>4</b> Steps in a Genome-Wide Association Study</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="gwas-basics.html"><a href="gwas-basics.html#converting-datasets"><i class="fa fa-check"></i><b>4.1</b> Converting datasets</a></li>
+<li class="chapter" data-level="4.2" data-path="gwas-basics.html"><a href="gwas-basics.html#quality-control"><i class="fa fa-check"></i><b>4.2</b> Quality control</a></li>
+<li class="chapter" data-level="4.3" data-path="gwas-basics.html"><a href="gwas-basics.html#lets-get-our-hands-dirty"><i class="fa fa-check"></i><b>4.3</b> Let’s get our hands dirty</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="gwas-basics-sample-qc.html"><a href="gwas-basics-sample-qc.html"><i class="fa fa-check"></i><b>5</b> Sample QC</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="gwas-basics-sample-qc.html"><a href="gwas-basics-sample-qc.html#sex"><i class="fa fa-check"></i><b>5.1</b> Sex</a></li>
+<li class="chapter" data-level="5.2" data-path="gwas-basics-sample-qc.html"><a href="gwas-basics-sample-qc.html#sample-call-rates"><i class="fa fa-check"></i><b>5.2</b> Sample call rates</a></li>
+<li class="chapter" data-level="5.3" data-path="gwas-basics-sample-qc.html"><a href="gwas-basics-sample-qc.html#heterozygosity-rate"><i class="fa fa-check"></i><b>5.3</b> Heterozygosity rate</a></li>
+<li class="chapter" data-level="5.4" data-path="gwas-basics-sample-qc.html"><a href="gwas-basics-sample-qc.html#relatedness"><i class="fa fa-check"></i><b>5.4</b> Relatedness</a></li>
+<li class="chapter" data-level="5.5" data-path="gwas-basics-sample-qc.html"><a href="gwas-basics-sample-qc.html#ancestral-background"><i class="fa fa-check"></i><b>5.5</b> Ancestral background</a>
+<ul>
+<li class="chapter" data-level="5.5.1" data-path="gwas-basics-sample-qc.html"><a href="gwas-basics-sample-qc.html#g-phase-1"><i class="fa fa-check"></i><b>5.5.1</b> 1000G phase 1</a></li>
+<li class="chapter" data-level="5.5.2" data-path="gwas-basics-sample-qc.html"><a href="gwas-basics-sample-qc.html#principal-component-analysis"><i class="fa fa-check"></i><b>5.5.2</b> Principal component analysis</a></li>
+<li class="chapter" data-level="5.5.3" data-path="gwas-basics-sample-qc.html"><a href="gwas-basics-sample-qc.html#plotting-the-pca-results"><i class="fa fa-check"></i><b>5.5.3</b> Plotting the PCA results</a></li>
+</ul></li>
+<li class="chapter" data-level="5.6" data-path="gwas-basics-sample-qc.html"><a href="gwas-basics-sample-qc.html#removing-samples"><i class="fa fa-check"></i><b>5.6</b> Removing samples</a></li>
+<li class="chapter" data-level="5.7" data-path="gwas-basics-sample-qc.html"><a href="gwas-basics-sample-qc.html#the-next-step"><i class="fa fa-check"></i><b>5.7</b> The next step</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="gwas_basics_snp_qc.html"><a href="gwas_basics_snp_qc.html"><i class="fa fa-check"></i><b>6</b> Per-SNP QC</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="gwas_basics_snp_qc.html"><a href="gwas_basics_snp_qc.html#snp-call-rates"><i class="fa fa-check"></i><b>6.1</b> SNP call rates</a></li>
+<li class="chapter" data-level="6.2" data-path="gwas_basics_snp_qc.html"><a href="gwas_basics_snp_qc.html#differential-snp-call-rates"><i class="fa fa-check"></i><b>6.2</b> Differential SNP call rates</a></li>
+<li class="chapter" data-level="6.3" data-path="gwas_basics_snp_qc.html"><a href="gwas_basics_snp_qc.html#allele-frequencies"><i class="fa fa-check"></i><b>6.3</b> Allele frequencies</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="gwas_basics_snp_qc.html"><a href="gwas_basics_snp_qc.html#a-note-on-allele-coding"><i class="fa fa-check"></i><b>6.3.1</b> A note on allele coding</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="gwas_basics_snp_qc.html"><a href="gwas_basics_snp_qc.html#hardy-weinberg-equilibrium"><i class="fa fa-check"></i><b>6.4</b> Hardy-Weinberg Equilibrium</a></li>
+<li class="chapter" data-level="6.5" data-path="gwas_basics_snp_qc.html"><a href="gwas_basics_snp_qc.html#final-snp-qc"><i class="fa fa-check"></i><b>6.5</b> Final SNP QC</a></li>
+<li class="chapter" data-level="6.6" data-path="gwas_basics_snp_qc.html"><a href="gwas_basics_snp_qc.html#a-milestone"><i class="fa fa-check"></i><b>6.6</b> A Milestone</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="gwas-testing.html"><a href="gwas-testing.html"><i class="fa fa-check"></i><b>7</b> Genome-Wide Association Study</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="gwas-testing.html"><a href="gwas-testing.html#exploring-the-data"><i class="fa fa-check"></i><b>7.1</b> Exploring the data</a></li>
+<li class="chapter" data-level="7.2" data-path="gwas-testing.html"><a href="gwas-testing.html#genetic-models"><i class="fa fa-check"></i><b>7.2</b> Genetic models</a></li>
+<li class="chapter" data-level="7.3" data-path="gwas-testing.html"><a href="gwas-testing.html#logistic-regression"><i class="fa fa-check"></i><b>7.3</b> Logistic regression</a></li>
+<li class="chapter" data-level="7.4" data-path="gwas-testing.html"><a href="gwas-testing.html#lets-get-visual"><i class="fa fa-check"></i><b>7.4</b> Let’s get visual</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="gwas-visuals.html"><a href="gwas-visuals.html"><i class="fa fa-check"></i><b>8</b> GWAS visualisation</a>
+<ul>
+<li class="chapter" data-level="8.0.1" data-path="gwas-visuals.html"><a href="gwas-visuals.html#qq-plots"><i class="fa fa-check"></i><b>8.0.1</b> QQ plots</a></li>
+<li class="chapter" data-level="8.1" data-path="gwas-visuals.html"><a href="gwas-visuals.html#manhattan-plots"><i class="fa fa-check"></i><b>8.1</b> Manhattan plots</a></li>
+<li class="chapter" data-level="8.2" data-path="gwas-visuals.html"><a href="gwas-visuals.html#other-plots"><i class="fa fa-check"></i><b>8.2</b> Other plots</a></li>
+<li class="chapter" data-level="8.3" data-path="gwas-visuals.html"><a href="gwas-visuals.html#interactive-plots"><i class="fa fa-check"></i><b>8.3</b> Interactive plots</a></li>
+<li class="chapter" data-level="8.4" data-path="gwas-visuals.html"><a href="gwas-visuals.html#stop-playing-around"><i class="fa fa-check"></i><b>8.4</b> Stop playing around</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="wtccc1-intro.html"><a href="wtccc1-intro.html"><i class="fa fa-check"></i><b>9</b> The Welcome Trust Case-Control Consortium</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="wtccc1-intro.html"><a href="wtccc1-intro.html#genotyping"><i class="fa fa-check"></i><b>9.1</b> Genotyping</a></li>
+<li class="chapter" data-level="9.2" data-path="wtccc1-intro.html"><a href="wtccc1-intro.html#the-data"><i class="fa fa-check"></i><b>9.2</b> The data</a></li>
+<li class="chapter" data-level="9.3" data-path="wtccc1-intro.html"><a href="wtccc1-intro.html#assignment"><i class="fa fa-check"></i><b>9.3</b> Assignment</a></li>
+<li class="chapter" data-level="9.4" data-path="wtccc1-intro.html"><a href="wtccc1-intro.html#there-you-go"><i class="fa fa-check"></i><b>9.4</b> There you go</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="wtccc1.html"><a href="wtccc1.html"><i class="fa fa-check"></i><b>10</b> WTCCC1: a GWAS on coronary artery disease (CAD)</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="wtccc1.html"><a href="wtccc1.html#quality-control-1"><i class="fa fa-check"></i><b>10.1</b> Quality control</a></li>
+<li class="chapter" data-level="10.2" data-path="wtccc1.html"><a href="wtccc1.html#ancestral-background-1"><i class="fa fa-check"></i><b>10.2</b> Ancestral background</a>
+<ul>
+<li class="chapter" data-level="10.2.1" data-path="wtccc1.html"><a href="wtccc1.html#preparing-pca"><i class="fa fa-check"></i><b>10.2.1</b> Preparing PCA</a></li>
+<li class="chapter" data-level="10.2.2" data-path="wtccc1.html"><a href="wtccc1.html#running-pca"><i class="fa fa-check"></i><b>10.2.2</b> Running PCA</a></li>
+<li class="chapter" data-level="10.2.3" data-path="wtccc1.html"><a href="wtccc1.html#plotting-pca"><i class="fa fa-check"></i><b>10.2.3</b> Plotting PCA</a></li>
+<li class="chapter" data-level="10.2.4" data-path="wtccc1.html"><a href="wtccc1.html#removing-samples-1"><i class="fa fa-check"></i><b>10.2.4</b> Removing samples</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="wtccc1.html"><a href="wtccc1.html#association-testing"><i class="fa fa-check"></i><b>10.3</b> Association testing</a></li>
+<li class="chapter" data-level="10.4" data-path="wtccc1.html"><a href="wtccc1.html#replication"><i class="fa fa-check"></i><b>10.4</b> Replication!</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="post-gwas.html"><a href="post-gwas.html"><i class="fa fa-check"></i><b>11</b> Post-GWAS Analyses</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="post-gwas.html"><a href="post-gwas.html#clumping"><i class="fa fa-check"></i><b>11.1</b> Clumping</a></li>
+<li class="chapter" data-level="11.2" data-path="post-gwas.html"><a href="post-gwas.html#conditional-analyses"><i class="fa fa-check"></i><b>11.2</b> Conditional analyses</a></li>
+<li class="chapter" data-level="11.3" data-path="post-gwas.html"><a href="post-gwas.html#statistical-finemapping"><i class="fa fa-check"></i><b>11.3</b> Statistical finemapping</a></li>
+<li class="chapter" data-level="11.4" data-path="post-gwas.html"><a href="post-gwas.html#fuma-functional-mapping-and-annotation-of-gwas"><i class="fa fa-check"></i><b>11.4</b> FUMA: FUnctional Mapping and Annotation of GWAS</a></li>
+<li class="chapter" data-level="11.5" data-path="post-gwas.html"><a href="post-gwas.html#phenome-wide-association-study"><i class="fa fa-check"></i><b>11.5</b> Phenome-wide association study</a></li>
+<li class="chapter" data-level="11.6" data-path="post-gwas.html"><a href="post-gwas.html#colocalization"><i class="fa fa-check"></i><b>11.6</b> Colocalization</a></li>
+<li class="chapter" data-level="11.7" data-path="post-gwas.html"><a href="post-gwas.html#genetic-correlation"><i class="fa fa-check"></i><b>11.7</b> Genetic correlation</a></li>
+<li class="chapter" data-level="11.8" data-path="post-gwas.html"><a href="post-gwas.html#causal-inference-mendelian-randomization"><i class="fa fa-check"></i><b>11.8</b> Causal inference: Mendelian Randomization</a>
+<ul>
+<li class="chapter" data-level="11.8.1" data-path="post-gwas.html"><a href="post-gwas.html#your-choice"><i class="fa fa-check"></i><b>11.8.1</b> Your choice</a></li>
+</ul></li>
+<li class="chapter" data-level="11.9" data-path="post-gwas.html"><a href="post-gwas.html#polygenic-scores"><i class="fa fa-check"></i><b>11.9</b> Polygenic scores</a></li>
+<li class="chapter" data-level="11.10" data-path="post-gwas.html"><a href="post-gwas.html#what-comes-next"><i class="fa fa-check"></i><b>11.10</b> What comes next</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="epilogue.html"><a href="epilogue.html"><i class="fa fa-check"></i><b>12</b> Epilogue</a></li>
+<li class="chapter" data-level="13" data-path="eigensoft.html"><a href="eigensoft.html"><i class="fa fa-check"></i><b>13</b> Additional: EIGENSOFT</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="eigensoft.html"><a href="eigensoft.html#install-homebrew"><i class="fa fa-check"></i><b>13.1</b> Install homebrew</a></li>
+<li class="chapter" data-level="13.2" data-path="eigensoft.html"><a href="eigensoft.html#install-missing-packages"><i class="fa fa-check"></i><b>13.2</b> Install missing packages</a></li>
+<li class="chapter" data-level="13.3" data-path="eigensoft.html"><a href="eigensoft.html#installing-eigensoft"><i class="fa fa-check"></i><b>13.3</b> Installing EIGENSOFT</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="todo.html"><a href="todo.html"><i class="fa fa-check"></i><b>14</b> Things to do</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="todo.html"><a href="todo.html#moscow"><i class="fa fa-check"></i><b>14.1</b> MoSCoW</a>
+<ul>
+<li class="chapter" data-level="14.1.1" data-path="todo.html"><a href="todo.html#contents"><i class="fa fa-check"></i><b>14.1.1</b> Contents</a></li>
+</ul></li>
+<li class="chapter" data-level="14.2" data-path="todo.html"><a href="todo.html#book-fixes"><i class="fa fa-check"></i><b>14.2</b> Book fixes</a></li>
+<li class="chapter" data-level="14.3" data-path="todo.html"><a href="todo.html#useful-links-for-me-mostly"><i class="fa fa-check"></i><b>14.3</b> Useful links (for me mostly)</a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="license.html"><a href="license.html"><i class="fa fa-check"></i><b>15</b> Licenses and disclaimers</a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="license.html"><a href="license.html#copyright"><i class="fa fa-check"></i><b>15.1</b> Copyright</a></li>
+<li class="chapter" data-level="15.2" data-path="license.html"><a href="license.html#disclaimer"><i class="fa fa-check"></i><b>15.2</b> Disclaimer</a></li>
+<li class="chapter" data-level="15.3" data-path="license.html"><a href="license.html#images-used"><i class="fa fa-check"></i><b>15.3</b> Images used</a></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="colofon.html"><a href="colofon.html"><i class="fa fa-check"></i><b>16</b> Colofon</a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown.</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">A Practical Primer in Human Complex Genetics</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="post-gwas" class="section level1 hasAnchor" number="11">
+<h1><span class="header-section-number">Chapter 11</span> Post-GWAS Analyses<a href="post-gwas.html#post-gwas" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p><img src="img/_headers/banner_man_standing_dna.png" style="width:100.0%" /></p>
+<p>A critical step in post-GWAS analysis is probably ‘mapping SNPs to genes’. It is critical, but it is also the most challenging. <em>How do you even map SNPs to genes?</em> What criteria to use? Should we take into account physical position? Or is it of interest that certain SNPs might influence downstream or upstream gene expression? And what of the fact that most loci discovered in GWAS are _inter_genic? What is the heritability of our trait? Are there any pleiotropic effects?</p>
+<p>In the next few sections I deal with a couple of the downstream, post-GWAS analyses. We don’t have time to go practically into a few of these steps, but I do believe it is important to provide you with some pointers where to start.</p>
+<div id="clumping" class="section level2 hasAnchor" number="11.1">
+<h2><span class="header-section-number">11.1</span> Clumping<a href="post-gwas.html#clumping" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The Manhattan plot immediately draws your attention to the peaks above the genome-wide significance threshold. <strong>Clumping</strong> is the procedure in which we identify the <em>independent hits</em>, those top variants and the variants in linkage disequilibrium (their ‘LD buddies’) in the same genomic region (<em>locus</em>). The basic steps are as follows. First define threshold above which to identify the top variant, usually this is the genome-wide significance threshold. Next, define the maximum p-value of association a variant may have with the trait of interest. Define the strength of the correlation that is allowed between the top variant and its LD buddies. And lastly define the size of region around the top variant to assess.</p>
+<p><strong>Clumping</strong> can easily be done in PLINK. And you can too with the dummy GWAS dataset in this additional chapter @ref(add_chapter_regional_plot). You don’t have to now, it’s just for fun.</p>
+</div>
+<div id="conditional-analyses" class="section level2 hasAnchor" number="11.2">
+<h2><span class="header-section-number">11.2</span> Conditional analyses<a href="post-gwas.html#conditional-analyses" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The visualization of a GWAS is very appealing and draws attention to single peaks, and the most significant variant. And with <strong>clumping</strong> you can identify the independent signals, <em>i.e.</em> the top variants and their LD buddies in the locus. We implicitly assume that the top variant captures all the variation in the region by its linkage disequilibrium with an unknown causal variant, in other words it is ‘tagging’ the (un)measured potential causal variant in the region. Intuitively it is unlikely that a single causal variant is accounting for all the LD between the unknown causal variant and the measured (genotyped or imputed) variants at the locus. So, a naive focus on only the top variant ignores the fact that multiple causal variants exist and thus the variation captured by that single top variant underestimates the total variation that could be explained by that single region (locus).</p>
+<p><strong>Conditional analysis</strong> is a tool to identify the secondary variants associated with the trait of interest. This involves conditioning the association model (<code>trait ~ Variant X + covariates</code>) on the primary variant associated in that locus. A more comprehensive and general approach would be to condition on each variant in the whole genome starting with the top variants and stepwise selecting additional variants according to their conditional p-values. This strategy could potentially result in multiple top variants in the same locus. In other words, it could uncover different haplotypes that are causing the same association with the trait of interest.</p>
+<p>This would be straightforward with super computers and full-access to individual level data. Unfortunately we often have neither.</p>
+<p>Don’t despair, a method exists that fills this gap. With the program <a href="http://cnsgenomics.com/software/gcta/#Overview" target="_blank">GCTA</a> you can execute conditional analyses on GWAS summary statistics - the kind you just produced with the dummy data and with the WTCCC1 dataset - and a proper reference. You can read more on this in <a href="https://www.nature.com/articles/ng.2213" target="_blank">the paper</a>.</p>
+<p>For now, we will skip this part. I will add a whole chapter on this at some later stage.</p>
+</div>
+<div id="statistical-finemapping" class="section level2 hasAnchor" number="11.3">
+<h2><span class="header-section-number">11.3</span> Statistical finemapping<a href="post-gwas.html#statistical-finemapping" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>Statistical finemapping</strong> is closely related to <strong>conditional analysis</strong>. Where <strong>conditional analysis</strong> identifies secondary signals in a region associated to the trait of interest, <strong>statistical finemapping</strong> answers the question ‘which variants are likely causal to the trait?’. In more formal words, through <strong>statistical finemapping</strong> we identify the <em>95% credible set of causal variants</em>.
+There are multiple methods and tools developed to get to this answer. I list a few and I encourage you to read up on these.</p>
+<p><strong>FINEMAP</strong></p>
+<p>This tool is very fast and versatile, and was developed by Christian Benner. It will identify the <em>credible sets</em> for each locus and calculates the <em>posterior probabilities</em> for each set. This is the more hands-on version of getting to <em>credible sets</em>.</p>
+<p><strong>LocusZoom</strong></p>
+<p>You could upload - privately or publicly - your data to <a href="https://my.locuszoom.org" target="_blank">my.locuszoom.org</a> and obtain a list of causal variants with posterior probabilities. It uses a <a href="https://statgen.github.io/gwas-credible-sets/method/locuszoom-credible-sets.pdf" target="_blank">simple procedure</a> to obtain the <em>credible sets</em> using <a href="https://github.com/statgen/gwas-credible-sets/" target="_blank">these scripts</a>. This is the more lazy version of getting a list of likely causal variants.</p>
+<p><strong>SuSIE</strong></p>
+<p>An laternate approach to <em>credible set</em> identification is through <a href="https://stephenslab.github.io/susieR/index.html" target="_blank">SuSIE</a>. Through SuSIE you can identify <em>credible sets</em> under the assumption of multiple causal variants, whereas <strong>FINEMAP</strong> assumes a single causal variant.</p>
+<p>For now, we will skip this part. I will add a whole chapter on this at some later stage.</p>
+</div>
+<div id="fuma-functional-mapping-and-annotation-of-gwas" class="section level2 hasAnchor" number="11.4">
+<h2><span class="header-section-number">11.4</span> FUMA: FUnctional Mapping and Annotation of GWAS<a href="post-gwas.html#fuma-functional-mapping-and-annotation-of-gwas" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Researchers from the VUMC in Amsterdam have created an online tool that aids in mapping genes and function to GWAS: <em>“Functional Mapping and Annotation of Genome-Wide Association Studies”</em> a.k.a. <a href="https://fuma.ctglab.nl" target="_blank">FUMA</a>. This online tool uses a variety of datasets and programs to prioritize genes and map these to associated loci.</p>
+<p>We have covered some aspects of post-GWAS analyses, and a lot are covered by FUMA. Let’s try and annotate our WTCCC1 results. The assignment in this chapter <a href="#fuma"><strong>??</strong></a> will be a bit more <em>Do It Yourself</em>.</p>
+</div>
+<div id="phenome-wide-association-study" class="section level2 hasAnchor" number="11.5">
+<h2><span class="header-section-number">11.5</span> Phenome-wide association study<a href="post-gwas.html#phenome-wide-association-study" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>A <strong>phenome-wide association study</strong>, or <strong>PheWAS</strong>, deals with assessing the association of top variants identified in GWAS with other traits. Through a <strong>PheWAS</strong> you’ll to get a notion whether on any of the top variants, the independent hits in your GWAS, have pleiotropic effects. In other words, whether your independent hits have effects on other traits too. This will paint a picture as it were about the role the genetic locus you identified plays in life: is it unique to your trait or does it affect other traits as well? What does it mean when your top variant near the gene <em>FTO</em> associates not only to BMI, but also to type 2 diabetes and coronary artery disease? <strong>PheWAS</strong> will not answer that question, but they do help in inventory all the other traits to which your hits are associated.</p>
+<p>Again, we’ll get a bit hands-on and more <em>Do It Yourself</em> in the chapter that deals with this. Let’s jump over to Chapter <a href="#phewas"><strong>??</strong></a>.</p>
+</div>
+<div id="colocalization" class="section level2 hasAnchor" number="11.6">
+<h2><span class="header-section-number">11.6</span> Colocalization<a href="post-gwas.html#colocalization" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>From all of the above follows another intuitive question. Suppose a signal in your trait also shows association - to some extent - with other traits. Do these two signals than significantly overlap, more so than you would think based on chance? <strong>Colocalization</strong> deals with exactly this question.</p>
+<p>We are not going to deal with <strong>colocalization</strong>, but a nice starting point is <a href="https://github.com/oliviasabik/RACER" target="_blank">RACER</a> about which you can read more in chapter @ref(add_chapter_regional_plot). I will add a whole chapter on this at some later stage.</p>
+</div>
+<div id="genetic-correlation" class="section level2 hasAnchor" number="11.7">
+<h2><span class="header-section-number">11.7</span> Genetic correlation<a href="post-gwas.html#genetic-correlation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Because of the underlying biology or because of the way they are measured or calculated, traits can be highly correlated - phenotypically. That is to say, when the levels of HDL are high, LDL is probably low, and so when you draw a correlation plot from some data obtained in a general population you’ll see a nice pattern. Biology may also cause traits to be genetically correlated: the same genetic variants influence multiple traits. In other words, if a variant is associated with higher levels of LDL-cholesterol, it may alternatively be associated with lower HDL-cholesterol, etc. Genetic correlation will aid in further understanding the relations between traits biologically: if there is a strong <strong>genetic correlation</strong>, it is may be due to the same biological pathways and so the traits are ‘linked’ through the same processes (maybe counter-acting processes).</p>
+<blockquote>
+<p>Puzzle: what other phenomenom could cause a high but spurious <strong>genetic correlation</strong>?</p>
+</blockquote>
+<p>We are not going to deal with <strong>genetic correlation</strong>. I will add a whole chapter on this at some later stage.</p>
+</div>
+<div id="causal-inference-mendelian-randomization" class="section level2 hasAnchor" number="11.8">
+<h2><span class="header-section-number">11.8</span> Causal inference: Mendelian Randomization<a href="post-gwas.html#causal-inference-mendelian-randomization" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In observational studies we may find a strong association between a certain risk factor or biomarker and a disease. For instance, epidemiological studies show that high circulating cystatin C is associated with risk of cardiovascular disease (CVD), independent of creatinine-based renal function measurements<span class="citation">(<a href="#ref-vanderlaan2016">Laan S. W. 2016</a>)</span>. However, residual confounding and reverse causality remain alternative explanations for the strong correlation between cystatin C and CVD, both of which are difficult to tease apart from traditional observational (epidemiological) studies.</p>
+<p><strong>Mendelian Randomization (MR)</strong> harnesses the properties of the genome to enable causal inference of a biomarker. Specifically, the invariant nature of the genome and the random distribution of alleles from parents to offspring at conception mean that genetic information is not influenced by disease status (reverse causality) and should be free from confounding by traditional risk factors<span class="citation">(<a href="#ref-vanderlaan2016">Laan S. W. 2016</a>)</span>. So, genetic variation that modulates serum concentrations of cystatin C could serve as an instrumental variable to assess the effect of lifelong elevated concentrations of cystatin C on disease risk, independent of potential confounders<span class="citation">(<a href="#ref-vanderlaan2016">Laan S. W. 2016</a>)</span>.</p>
+<p>Finding the causal genes for complex disease is a primary objective of many researchers, because these genes are putative therapeutic targets. In this course we intend to find out whether Type 2 Diabetes (T2D) causes coronary artery disease and ischemic stroke.</p>
+<p>There is an easy, quick-and-dirty way and a harder way.</p>
+<p><strong>MRBase</strong></p>
+<p>The quick-and-dirty way uses <a href="http://www.mrbase.org/" target="blank">MRBase</a>. It is based on the <code>TwoSampleMR</code> package and uses the <code>MRInstruments</code> package to load in all the genetic instruments. The creators of MRBase have curated hundreds of GWAS and molecular QTL studies, and prepared the data for easy use on the website and in the R packages.</p>
+<p><strong>TwoSampleMR</strong></p>
+<p>The hard way means getting your hands dirty and using the <code>TwoSampleMR</code> package yourself in <code>R</code>. You’ll learn all the steps you need to take into account to get to the answer of this question. You’ll create the diagnostic graphs and calculate the statistics.</p>
+<div id="your-choice" class="section level3 hasAnchor" number="11.8.1">
+<h3><span class="header-section-number">11.8.1</span> Your choice<a href="post-gwas.html#your-choice" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Your choice. In both cases you’ll learn how to do execute a MR, what to look out for in the statistics and diagnostic graphs, and how interpret the results. Your choice: Chapter @ref(mr_mrbase) or Chapter @ref(mr_twosamplemr).</p>
+<p>In a future version I will aim to include a partial replication of the Cystatin C paper<span class="citation">(<a href="#ref-vanderlaan2016">Laan S. W. 2016</a>)</span></p>
+</div>
+</div>
+<div id="polygenic-scores" class="section level2 hasAnchor" number="11.9">
+<h2><span class="header-section-number">11.9</span> Polygenic scores<a href="post-gwas.html#polygenic-scores" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Under the assumption of polygenicity, many variants with small effects contribute to the phenotypic variation in a trait or the risk to disease. Sample size and accurate phenotyping have a major impact on the power of a GWAS. It is estimated that 70% of variants that reach 10<sup>-6</sup> in an initial discovery GWAS will reach genome-wide significance with increasing sample sizes. The individual variants that do reach genome-wide significance the first or second time around do not explain <em>all</em> the phenotypic variation or residual disease risk.</p>
+<p>To capture the polygenicity of a trait beyond individual genome-wide significant hits, we can calculate a polygenic score (PGS). There are several methods to calculate PGS, but essentially it comes down to multiplying the effect size at a given variant with the number of effect alleles a given individual carries.
+Depending on the method you can use the ‘hard-coded’ genotyped data, or the imputed data. In case of the latter the effect sizes are multiplied by the genotype probabilities or dosages, this ensures that the PGS takes into account the uncertainty intrinsic to imputed data.</p>
+<p>Let’s consider the most intuitive PGS-method which is based on p-value thresholding, which was nicely applied in this classic <a href="https://doi.org/10.1038/nature08185" target="_blank">paper</a>. This method selects variants based on their p-value and than calculates the PGS. This can be done using increasingly liberal significance thresholds (p<sub>T</sub>), for instance starting with all variants with p &lt; 10<sup>-8</sup>, next p &lt; 10<sup>-7</sup>, p &lt; 10<sup>-6</sup>, p &lt; 10<sup>-5</sup>, p &lt; 10<sup>-4</sup>, p &lt; 10<sup>-3</sup>, p &lt; 0.05, p &lt; 0.1, p &lt; 0.2, p &lt; 0.3, p &lt; 0.4, p &lt; 0.5. Under the assumption of polygenicity we expect an increasingly stronger correlation (r<sup>2</sup>) of the PGS at a certain p<sub>T</sub> with the trait of interest. Another application of this method is provided by Van Setten<span class="citation">(<a href="#ref-vansetten2015">Setten J. 2015</a>)</span>.</p>
+<p>Lastly, there is a great explanatory <a href="http://polygenicscores.org/explained/" target="_blank">website</a> on how to calculate PGS, and it also shows one application of PGS (although much debate ensues about this particular application!).</p>
+</div>
+<div id="what-comes-next" class="section level2 hasAnchor" number="11.10">
+<h2><span class="header-section-number">11.10</span> What comes next<a href="post-gwas.html#what-comes-next" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>You come to the end of this practical primer. What is left are a summary (not written yet) of what you’ve learned and should take home. And some musings in the Epilogue (<a href="epilogue.html#epilogue">12</a> on this book and what the future holds.</p>
+
+</div>
+</div>
+<h3>References<a href="references.html#references" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-vanderlaan2016" class="csl-entry">
+Laan S. W., et al. van der. 2016. <span>“Cystatin c and Cardiovascular Disease, a Mendelian Randomization Study.”</span> <a href="https://doi.org/10.1016/j.jacc.2016.05.092">https://doi.org/10.1016/j.jacc.2016.05.092</a>.
+</div>
+<div id="ref-vansetten2015" class="csl-entry">
+Setten J., et al. van. 2015. <span>“Serum Lipid Levels, Body Mass Index, and Their Role in Coronary Artery Calcification: A Polygenic Analysis.”</span> <a href="https://doi.org/10.1161/CIRCGENETICS.114.000496">https://doi.org/10.1161/CIRCGENETICS.114.000496</a>.
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="wtccc1.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="epilogue.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": false,
+"twitter": true,
+"linkedin": true,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": true,
+"all": false
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/swvanderlaan/A_Practical_Primer_in_Human_Complex_Genetics05_1_post_gwas.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": [["A-Practical-Primer-in-Human-Complex-Genetics.pdf", "PDF"], ["A-Practical-Primer-in-Human-Complex-Genetics.epub", "EPUB"]],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

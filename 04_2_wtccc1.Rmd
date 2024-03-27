@@ -12,7 +12,7 @@ plink --bfile wtccc1/wtccc1 --test-missing --out wtccc1/wtccc1
 cat wtccc1/wtccc1.missing | awk '$5 < 0.00001' | awk '{ print $2 }' > wtccc1/wtccc1-fail-diffmiss-qc.txt
 ```
 
-```{r WTCCC1raw, eval = FALSE}
+```{r WTCCC1raw, eval = FALSE, message = FALSE, warning = FALSE}
 library("data.table")
 
 COURSE_loc = "~/Desktop/practical" # getwd()
@@ -39,14 +39,15 @@ ggpubr::gghistogram(wtccc1_HWE, x = "logP",
                     facet.by = "TEST",
                     bins = 50,
                     xlab = "HWE -log10(P)") +
-  geom_vline(xintercept = 5, linetype = "dashed",
-                color = "#E55738", size = 1)
+  ggplot2::geom_vline(xintercept = 5, linetype = "dashed",
+                      color = "#E55738", size = 1)
+ggplot2::ggsave(paste0(COURSE_loc, "/wtccc1/wtccc1-hwe.png"), plot = last_plot())
 ```
 
 This will result in Figure \@ref(fig:show-wtccc1-hwe).
 
 ```{r show-wtccc1-hwe, fig.align='center', fig.cap='Stratified HWE p-values.', fig.show = TRUE, echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE}
-knitr::include_graphics("img/WTCCC1 HWE.png")
+knitr::include_graphics("img/_gwas_wtccc/WTCCC1-HWE.png")
 ```
 
 We should also inspect the allele frequencies. Note that _by default_ PLINK (whether v0.7, v1.9, or v2.0) stores the alleles as minor (A1) and major (A2), and therefore `--maf` _always_ calculates the frequency of the minor allele (A1).
@@ -56,14 +57,15 @@ ggpubr::gghistogram(wtccc1_FRQ, x = "MAF",
                     rug = TRUE,
                     color = "#1290D9", fill = "#1290D9",
                     xlab = "minor allele frequency") +
-  geom_vline(xintercept = 0.05, linetype = "dashed",
-                color = "#E55738", size = 1)
+  ggplot2::geom_vline(xintercept = 0.05, linetype = "dashed",
+                      color = "#E55738", size = 1)
+ggplot2::ggsave(paste0(COURSE_loc, "/wtccc1/wtccc1-freq.png"), plot = last_plot())
 ```
 
 This will result in Figure \@ref(fig:show-wtccc1-freq).
 
 ```{r show-wtccc1-freq, fig.align='center', fig.cap='Minor allele frequencies.', fig.show = TRUE, echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE}
-knitr::include_graphics(rep("img/WTCCC1 FREQ.png"))
+knitr::include_graphics(rep("img/_gwas_wtccc/WTCCC1-FREQ.png"))
 ```
 
 There could be sample with very poor overall call rate, where for many SNPs there is no data. We will want to identify these samples and exclude them. 
@@ -75,14 +77,15 @@ ggpubr::gghistogram(wtccc1_IMISS, x = "callrate",
                     rug = TRUE, bins = 50,
                     color = "#1290D9", fill = "#1290D9",
                     xlab = "per sample call rate") +
-  geom_vline(xintercept = 0.95, linetype = "dashed",
-                color = "#E55738", size = 1)
+  ggplot2::geom_vline(xintercept = 0.95, linetype = "dashed",
+                      color = "#E55738", size = 1)
+ggplot2::ggsave(paste0(COURSE_loc, "/wtccc1/wtccc1-sample-call-rate.png"), plot = last_plot())
 ```
 
 This will result in Figure \@ref(fig:show-wtccc1-callratesample).
 
 ```{r show-wtccc1-callratesample, fig.align='center', fig.cap='Per sample call rate.', fig.show = TRUE, echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE}
-knitr::include_graphics(rep("img/WTCCC1 callrate samples.png"))
+knitr::include_graphics(rep("img/_gwas_wtccc/WTCCC1-callrate-samples.png"))
 ```
 
 Lastly, we must inspect the per SNP call rate; we need to know if there are SNPs that have no data for many samples. We will want to identify such SNPs and exclude these.
@@ -95,15 +98,15 @@ ggpubr::gghistogram(wtccc1_LMISS, x = "callrate",
                     rug = TRUE, bins = 50,
                     color = "#1290D9", fill = "#1290D9",
                     xlab = "per SNP call rate") +
-  geom_vline(xintercept = 0.95, linetype = "dashed",
-                color = "#E55738", size = 1)
-
+  ggplot2::geom_vline(xintercept = 0.95, linetype = "dashed",
+                      color = "#E55738", size = 1)
+ggplot2::ggsave(paste0(COURSE_loc, "/wtccc1/wtccc1-hwe.png"), plot = last_plot())
 ```
 
 This will result in Figure \@ref(fig:show-wtccc1-callratesnp).
 
 ```{r show-wtccc1-callratesnp, fig.align='center', fig.cap='Per SNP call rate.', fig.show = TRUE, echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE}
-knitr::include_graphics(rep("img/WTCCC1 callrate SNPs.png"))
+knitr::include_graphics(rep("img/_gwas_wtccc/WTCCC1-callrate-SNPs.png"))
 ```
 
 ## Quality control
@@ -134,29 +137,11 @@ plink --bfile wtccc1/wtccc1_clean --maf 0.1 --geno 0.1 --indep-pairwise 100 50 0
 
 plink --bfile wtccc1/wtccc1_temp --exclude wtccc1/wtccc1_temp.prune.out --make-bed --out wtccc1/wtccc1_extrclean
 
-rm -v wtccc1/wtccc1_temp*
+rm -fv wtccc1/wtccc1_temp*
 
 cat wtccc1/wtccc1_extrclean.bim | awk '{ print $2 }' > wtccc1/wtccc1_extrclean.variants.txt
 
 cat wtccc1/wtccc1.bim | grep "rs" > wtccc1/all.variants.txt
-```
-
-**Download 1000G phase 1**
-
-Next, we are going to have to download the 1000G phase 1 data. If you haven't done that already, here's the how.
-
-
-We start by creating the necessary folder to save the data to.
-
-```
-mkdir -v ~/Desktop/practical/ref_1kg_phase1_all
-```
-
-Next, we'll download the reference. 
-
-```
-wget "https://www.dropbox.com/sh/kumfwm7drt2flhp/AAB5n0OcUvJixI9pNiymx6-La?dl=0" -P ~/Desktop/practical/ref_1kg_phase1_all
-
 ```
 
 **Merging WTCCC1 with 1000G phase 1**
@@ -281,7 +266,7 @@ PCA_WTCCC1_1kGplot <- ggpubr::ggscatter(PCA_WTCCC1_1kG, x = "V2", y = "V3",
 We expect most individuals from the WTCCC to be 100% British, but a substantial group will have a different ancestral background as shown in the Figure \@ref(fig:show-wtccc1-pca) you just made.
 
 ```{r show-wtccc1-pca, fig.align='center', fig.cap='PCA - WTCCC1 vs. 1000G', fig.show = TRUE, echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE}
-knitr::include_graphics(rep("img/WTCCC1-pca-1000g.png"))
+knitr::include_graphics(rep("img/_gwas_wtccc/WTCCC1-pca-1000g.png"))
 ```
 
 ### Removing samples
@@ -385,26 +370,26 @@ CMplot(wtccc1_assoc_complsub,
 
 This would lead to the following graphs. 
 ```{r show-wtccc1-graphs-density, fig.align='center', fig.cap='SNP density of the association results.', fig.show = TRUE, echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE}
-knitr::include_graphics(rep("img/WTCCC1ResultsManhattan-density.png"))
+knitr::include_graphics(rep("img/_gwas_wtccc/WTCCC1ResultsManhattan-density.png"))
 ```
 
 ```{r show-wtccc1-graphs-qq, fig.align='center', fig.cap='A QQ plot including a 95% confidence interval (blue area) and genome-wide significant hits (red).', fig.show = TRUE, echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE}
-knitr::include_graphics(rep("img/WTCCC1ResultsManhattan-qq.png"))
+knitr::include_graphics(rep("img/_gwas_wtccc/WTCCC1ResultsManhattan-qq.png"))
 ```
 
 ```{r show-wtccc1-graphs-manhattan, fig.align='center', fig.cap='A regular manhattan plot. Colored by chromosome, suggestive hits are green, genome-wide hits are red. The bottom graph shows the per-chromosome SNP density.', fig.show = TRUE, echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE}
-knitr::include_graphics(rep("img/WTCCC1ResultsManhattan-manhattan.png"))
+knitr::include_graphics(rep("img/_gwas_wtccc/WTCCC1ResultsManhattan-manhattan.png"))
 ```
 
 ```{r show-wtccc1-graphs-circular, fig.align='center', fig.cap='A circular manhattan.', fig.show = TRUE, echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE}
-knitr::include_graphics(rep("img/WTCCC1ResultsManhattan-circular.png"))
+knitr::include_graphics(rep("img/_gwas_wtccc/WTCCC1ResultsManhattan-circular.png"))
 ```
 
 ## Replication! 
 
 You reached an important milestone. 
 
-**You recreated the work by the whole WTCCC1-team that took them years in just one afternoon.** 
+**You recreated the work by the whole WTCCC1-team that took them years in just one afternoon!** 
 
 Wow. Take a pause. And realize what you've done. 
 

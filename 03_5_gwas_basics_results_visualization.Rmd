@@ -1,4 +1,19 @@
 # GWAS visualisation {#gwas-visuals}
+![](./img/_gwas/interactive_plot.png){width=70%}
+```{r include = FALSE}
+if(!knitr:::is_html_output())
+{
+  options("width"=56)
+  knitr::opts_chunk$set(tidy.opts=list(width.cutoff=56, indent = 2), tidy = TRUE)
+  knitr::opts_chunk$set(fig.pos = 'H')
+}
+```
+
+```{r getting_started, message = FALSE, warning = FALSE, echo = FALSE, eval = TRUE}
+source("scripts/functions.R")
+source("scripts/colors.R")
+source("scripts/packages.R")
+```
 
 Data visualization is key, not only for presentation but also to inspect the results.
 
@@ -59,16 +74,17 @@ library("qqman")
 
 gwas_threshold = -log10(5e-8)
 
-qq(gwas_assoc_compl$P, main = "QQ plot of GWAS",
-   xlim = c(0, 7),
-   ylim = c(0, 12),
-   pch = 20, col = uithof_color[16], cex = 1.5, las = 1, bty = "n")
+png(paste0(COURSE_loc, "/dummy_project/gwas-qq.png"))
+qqman::qq(gwas_assoc_compl$P, main = "QQ plot of GWAS",
+          xlim = c(0, 7),
+          ylim = c(0, 12),
+          pch = 20, col = uithof_color[16], cex = 1.5, las = 1, bty = "n")
 abline(h = gwas_threshold,
        col = uithof_color[25], lty = "dashed")
 ```
 
 ```{r show-qq, fig.align='center', fig.cap='A QQ plot.', fig.show = TRUE, echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE}
-knitr::include_graphics(rep("img/show-qq.png"))
+knitr::include_graphics(rep("img/_gwas_dummy/show-qq.png"))
 ```
 
 ## Manhattan plots
@@ -76,15 +92,16 @@ knitr::include_graphics(rep("img/show-qq.png"))
 We also need to create a _Manhattan plot_ to display the association test P-values as a function of chromosomal location and thus provide a visual summary of association test results that draw immediate attention to any regions of significance (Figure \@ref(fig:show-manhattan)).
 
 ```{r plot-manhattan, eval = FALSE}
-manhattan(gwas_assoc_compl, main = "Manhattan Plot",
-          ylim = c(0, 12),
-          cex = 0.6, cex.axis = 0.9,
-          col = c("#1290D9", "#49A01D"))
+png(paste0(COURSE_loc, "/dummy_project/gwas-manhattan.png"))
+qqman::manhattan(gwas_assoc_compl, main = "Manhattan Plot",
+                 ylim = c(0, 12),
+                 cex = 0.6, cex.axis = 0.9,
+                 col = c("#1290D9", "#49A01D"))
 
 ```
 
 ```{r show-manhattan, fig.align='center', fig.cap='A manhattan plot.', fig.show = TRUE, echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE}
-knitr::include_graphics(rep("img/show-manhattan.png"))
+knitr::include_graphics(rep("img/_gwas_dummy/show-manhattan.png"))
 ```
 
 ## Other plots
@@ -96,35 +113,36 @@ gwas_assoc_complsub <- subset(gwas_assoc_compl, select = c("SNP", "CHR", "BP", "
 ```
 
 
-```{r plot-cmplot-all, eval = FALSE}
+```{r plot-cmplot-all, eval = FALSE, message = FALSE, warning = FALSE}
 library("CMplot")
 
 CMplot(gwas_assoc_complsub,
-       plot.type = "b", LOG10 = TRUE, ylim = NULL,
+       plot.type = c("d", "c", "m", "q"), LOG10 = TRUE, ylim = NULL,
        threshold = c(1e-6,1e-4), threshold.lty = c(1,2), threshold.lwd = c(1,1), threshold.col = c("black", "grey"),
        amplify = TRUE,
        bin.size = 1e6, chr.den.col = c("darkgreen", "yellow", "red"),
        signal.col = c("red", "green"), signal.cex = c(1,1), signal.pch = c(19,19),
-       file = "jpg", memo = "", dpi = 300, file.output = FALSE, verbose = TRUE)
+       file.output = FALSE, file = "png", 
+       main = "", dpi = 300, verbose = TRUE)
 ```
 
 > What do the grey spots on the density plot indicate?
 
 This would lead to the following graphs. 
 ```{r show-cmplot-all-density, fig.align='center', fig.cap='SNP density of the association results.', fig.show = TRUE, echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE}
-knitr::include_graphics(rep("img/show-cmplot-all-density.png"))
+knitr::include_graphics(rep("img/_gwas_dummy/show-cmplot-all-density.png"))
 ```
 
 ```{r show-cmplot-all-qq, fig.align='center', fig.cap='A QQ plot including a 95% confidence interval (blue area) and genome-wide significant hits (red).', fig.show = TRUE, echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE}
-knitr::include_graphics(rep("img/show-cmplot-all-qq.png"))
+knitr::include_graphics(rep("img/_gwas_dummy/show-cmplot-all-qq.png"))
 ```
 
 ```{r show-cmplot-all-manhattan, fig.align='center', fig.cap='A regular manhattan plot. Colored by chromosome, suggestive hits are green, genome-wide hits are red. The bottom graph shows the per-chromosome SNP density.', fig.show = TRUE, echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE}
-knitr::include_graphics(rep("img/show-cmplot-all-manhattan.png"))
+knitr::include_graphics(rep("img/_gwas_dummy/show-cmplot-all-manhattan.png"))
 ```
 
 ```{r show-cmplot-all-circular, fig.align='center', fig.cap='A circular manhattan.', fig.show = TRUE, echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE}
-knitr::include_graphics(rep("img/show-cmplot-all-circular.png"))
+knitr::include_graphics(rep("img/_gwas_dummy/show-cmplot-all-circular.png"))
 ```
 
 ## Interactive plots
@@ -194,11 +212,10 @@ ggplotly(p, tooltip="text")
 
 It will produce something like this.
 
-![](img/_gwas/interactive plot.png)
+![](img/_gwas/interactive_plot.png)
 
 
 Again, this is an example with dummy data - you can try to do it for our GWAS, but careful with the time. You can also choose to carry on.
-
 
 You will encounter the above types of visualizations in any high-quality GWAS paper, because each is so critically informative. Usually, analysts of large-scale meta-analyses of GWAS will also stratify the QQ-plots based on the imputation quality (if your GWAS was imputed), call rate, and allele frequency (although that is rarely shared in publications, not even in supplemental material).
 

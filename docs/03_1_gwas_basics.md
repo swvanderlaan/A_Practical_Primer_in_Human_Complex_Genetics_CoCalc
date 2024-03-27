@@ -2,6 +2,20 @@
 ![](./img/_headers/woman_working_on_code.png){width=100%}
 
 
+
+```
+## 
+## Packages to install for this book and its contents to automagically work.
+## 
+## * Bookdown and rmarkdown packages...
+## 
+## * General packages...
+## 
+## * GGplotting packages - for publication ready plotting...
+## 
+## * Genomic packages...
+```
+
 Now that you understand a bit of the navigation in Unix-systems, you're ready to start this practical primer. We will make use of a dummy dataset containing cases and controls. We will explain and execute the following steps:
 
 1. convert raw data to a more memory-efficient format

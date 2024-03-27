@@ -1,4 +1,5 @@
 # Things to do {#todo}
+![](./img/_headers/banner_man_standing_dna.png){width=100%}
 
 I provide a list of things to do, to improve, to alter, to edit or to add. Crazy ideas. Useful tips, tricks, or links. 
 
@@ -10,7 +11,7 @@ List of to-do's according to MoSCoW: _must have_, _should have_, _could have_, _
 
 ### Contents
 
-- [x] `M` add in full installation instructions for UBUNTU
+- [x] `M` add in full installation instructions for UBUNTU > DROPPED
 - [] `M` add in full installation instructions for macOS
 - [] `M` conditional analysis
 - [] `M` statistical finemapping
@@ -27,12 +28,13 @@ List of to-do's according to MoSCoW: _must have_, _should have_, _could have_, _
 
 - [x] `M` overall rendering too slow, paste in images as figure instead of on the fly generating
 - [x] `M` PDF is too large
+- [] `M` fix images per header in EPUB
+- [] `M` fix images per header in GitBook (not showing)
 - [] `S` PDF is not formatted properly (text runs over)
 - [] `C` Different font type in PDF
 - [] `S` EPUB is not formatted properly (text runs over)
 - [] `S` different setup for the chapter Additional chapters (this as a Apendix)
 - [x] `S` fix the way the team is displayed
-- [] `S` fix images per header in EPUB
 - [] `S` fix book cover
   - https://www.designhill.com/design-blog/the-perfect-ebook-cover-size-guide-and-publishing-tips/
   - https://snappa.com/blog/ebook-cover-size/

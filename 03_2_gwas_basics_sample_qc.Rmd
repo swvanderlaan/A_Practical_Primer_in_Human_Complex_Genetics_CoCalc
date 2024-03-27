@@ -9,6 +9,12 @@ if(!knitr:::is_html_output())
 }
 ```
 
+```{r getting_started, message = FALSE, warning = FALSE, echo = FALSE, eval = TRUE}
+source("scripts/functions.R")
+source("scripts/colors.R")
+source("scripts/packages.R")
+```
+
 Let's start with the per-sample quality control. 
 
 ## Sex

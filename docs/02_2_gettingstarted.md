@@ -70,7 +70,7 @@ Right, onto `PLINK`.
 All genetic analyses can be done in PLINK, even on your laptop, but with large datasets, for example [UK Biobank](https://www.ukbiobank.ac.uk){target="_blank"} size, it is better to switch to a [high-performance computing cluster (HPC)](https://en.wikipedia.org/wiki/High-performance_computing){target="_blank"} like we have available at the [Utrecht Science Park](https://wiki.bioinformatics.umcutrecht.nl/bin/view/HPC/WebHome){target="_blank"}. The original PLINK v1.07 can be found [here](https://zzz.bwh.harvard.edu/plink/index.shtml){target="_blank"}, but nowadays we are using a newer, faster version: **PLINK v1.9** which can be found [here](https://www.cog-genomics.org/plink2){target="_blank"}. It still says 'PLINK 1.90 beta' (Figure \@ref(fig:plink)), but you can consider this version stable and save to work with, but as you can see, some functions are not supported anymore.
 
 <div class="figure" style="text-align: center">
-<img src="img/plink.png" alt="The PLINK v1.9 website." width="3104" />
+<img src="img/plink.png" alt="The PLINK v1.9 website." width="1552" />
 <p class="caption">(\#fig:plink)The PLINK v1.9 website.</p>
 </div>
 
@@ -198,7 +198,7 @@ man ls
 This will take you to a manual of the program with an extensive description of each flag (Figure \@ref(fig:ls-manual)).
 
 <div class="figure" style="text-align: center">
-<img src="img/ls_manual.png" alt="Partial output from the ls-manual." width="1630" />
+<img src="img/ls_manual.png" alt="Partial output from the ls-manual." width="815" />
 <p class="caption">(\#fig:ls-manual)Partial output from the ls-manual.</p>
 </div>
 
@@ -250,7 +250,7 @@ Now close the terminal window - really make sure that the terminal-program has q
 Open your fresh installation of **RStudio** by double clicking the icon. You should be seeing something like figure \@ref(fig:rstudio-screenshot)
 
 <div class="figure" style="text-align: center">
-<img src="img/rstudio-screenshot.png" alt="RStudio screenshot." width="2484" />
+<img src="img/rstudio-screenshot.png" alt="RStudio screenshot." width="1242" />
 <p class="caption">(\#fig:rstudio-screenshot)RStudio screenshot.</p>
 </div>
 
@@ -258,14 +258,14 @@ Open your fresh installation of **RStudio** by double clicking the icon. You sho
 In the top right, you see a little green-white plus-sign, click this and select 'R Notebook' (Figure \@ref(fig:rstudio-screenshot-create-notebook)). 
 
 <div class="figure" style="text-align: center">
-<img src="img/rstudio-screenshot-create-notebook.png" alt="RStudio screenshot." width="2484" />
+<img src="img/rstudio-screenshot-create-notebook.png" alt="RStudio screenshot." width="1242" />
 <p class="caption">(\#fig:rstudio-screenshot-create-notebook)RStudio screenshot.</p>
 </div>
 
 You will create an untitled (`Untitled1`) `R` notebook: you can combine text descriptions, like you would in a lab-journal, with code-sections. Read what is in the notebook to get a grasp on that (Figure \@ref(fig:rstudio-screenshot-notebook)). 
 
 <div class="figure" style="text-align: center">
-<img src="img/rstudio-screenshot-notebook.png" alt="RStudio screenshot." width="2484" />
+<img src="img/rstudio-screenshot-notebook.png" alt="RStudio screenshot." width="1242" />
 <p class="caption">(\#fig:rstudio-screenshot-notebook)RStudio screenshot.</p>
 </div>
 

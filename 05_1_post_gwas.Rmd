@@ -1,9 +1,17 @@
 # Post-GWAS Analyses {#post-gwas}
+![](./img/_headers/banner_man_standing_dna.png){width=100%}
+```{r include = FALSE}
+if(!knitr:::is_html_output())
+{
+  options("width"=56)
+  knitr::opts_chunk$set(tidy.opts=list(width.cutoff=56, indent = 2), tidy = TRUE)
+  knitr::opts_chunk$set(fig.pos = 'H')
+}
+```
 
 A critical step in post-GWAS analysis is probably 'mapping SNPs to genes'. It is critical, but it is also the most challenging. _How do you even map SNPs to genes?_ What criteria to use? Should we take into account physical position? Or is it of interest that certain SNPs might influence downstream or upstream gene expression? And what of the fact that most loci discovered in GWAS are _inter_genic? What is the heritability of our trait? Are there any pleiotropic effects?
 
 In the next few sections I deal with a couple of the downstream, post-GWAS analyses. We don't have time to go practically into a few of these steps, but I do believe it is important to provide you with some pointers where to start. 
-
 
 ## Clumping
 

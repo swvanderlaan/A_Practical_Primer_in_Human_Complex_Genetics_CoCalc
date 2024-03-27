@@ -2,7 +2,7 @@
 title: "A Practical Primer in Human Complex Genetics"
 subtitle: "with a use-case in cardiovascular disease"
 author: "[dr. Sander W. van der Laan](https://vanderlaanand.science) [![](./img/_logo/twitter_circle_blue.png){width=2%}](https://www.twitter.com/swvanderlaan) [![](./img/_logo/email_circle_blue.png){width=2%}](mailto:s.w.vanderlaan@gmail.com)"
-date: "Version 2.0.1 (2024-03-26)"
+date: "Version 2.0.2 (2024-03-26)"
 description: "This is a practical primer in human complex genetics with a use-case in cardiovascular disease. The output format for this primer is bookdown::gitbook."
 documentclass: book
 github-repo: swvanderlaan/A_Practical_Primer_in_Human_Complex_Genetics
@@ -17,6 +17,7 @@ always_allow_html: true
 
 # About this primer
 ![](./img/_headers/banner_man_standing_dna.png){width=100%}
+
 
 Ever since the first genome-wide association study (GWAS) on [age-related macular degeneration](https://doi.org/10.1126/science.1109557){target="_blank"}, and the promise of personalized medicine in the wake of the Human Genome Project, large-scale genetic association studies hold significant sway in contemporary health research and [drive drug-development pipelines](http://dx.doi.org/10.1038/nrd.2017.262){target="_blank"}. In the past 2 decades, researchers delved into GWAS, aiming to unveil genetic variations linked to both human traits, such as the color of your eyes, and rare and common complex diseases. These findings serve as crucial keys to unravel the intricate mechanisms underlying diseases, shedding light on whether the correlations identified in observational studies between risk factors and diseases are truly causal. 
 

@@ -2,6 +2,20 @@
 ![](./img/_gwas/interactive_plot.png){width=70%}
 
 
+
+```
+## 
+## Packages to install for this book and its contents to automagically work.
+## 
+## * Bookdown and rmarkdown packages...
+## 
+## * General packages...
+## 
+## * GGplotting packages - for publication ready plotting...
+## 
+## * Genomic packages...
+```
+
 Now that you have learned how to perform QC, you can easily run a GWAS and execute some downstream visualization and analyses. Let's do this with a dummy dataset.
 
 ## Exploring the data
@@ -9,15 +23,15 @@ Now that you have learned how to perform QC, you can easily run a GWAS and execu
 Even though someone says that the QC was done, it is still wise and good practice to run some of the commands above to get a 'feeling' about the data. So let's do this.
 
 ```
-plink --bfile gwas/gwa --freq --out gwas/gwa
+plink --bfile gwas/gwa --freq --out dummy_project/gwa
 ```
 
 ```
-plink --bfile gwas/gwa --missing --out gwas/gwa
+plink --bfile gwas/gwa --missing --out dummy_project/gwa
 ```
 
 ```
-plink --bfile gwas/gwa --hardy --out gwas/gwa
+plink --bfile gwas/gwa --hardy --out dummy_project/gwa
 ```
 
 Let's visualize the results. First we should load in all the results.
@@ -28,10 +42,10 @@ library("data.table")
 
 COURSE_loc = "~/Desktop/practical" # getwd()
 
-gwas_HWE <- data.table::fread(paste0(COURSE_loc, "/gwas/gwa.hwe"))
-gwas_FRQ <- data.table::fread(paste0(COURSE_loc, "/gwas/gwa.frq"))
-gwas_IMISS <- data.table::fread(paste0(COURSE_loc, "/gwas/gwa.imiss"))
-gwas_LMISS <- data.table::fread(paste0(COURSE_loc, "/gwas/gwa.lmiss"))
+gwas_HWE <- data.table::fread(paste0(COURSE_loc, "/dummy_project/gwa.hwe"))
+gwas_FRQ <- data.table::fread(paste0(COURSE_loc, "/dummy_project/gwa.frq"))
+gwas_IMISS <- data.table::fread(paste0(COURSE_loc, "/dummy_project/gwa.imiss"))
+gwas_LMISS <- data.table::fread(paste0(COURSE_loc, "/dummy_project/gwa.lmiss"))
 ```
 
 We can plot the per-stratum HWE p-values.
@@ -58,7 +72,7 @@ ggplot2::ggsave(paste0(COURSE_loc, "/dummy_project/gwas-hwe.png"),
 ```
 
 <div class="figure" style="text-align: center">
-<img src="img/_gwas_dummy/show-hwe-gwas.png" alt="Per stratum HWE p-values." width="1344" />
+<img src="img/_gwas_dummy/show-hwe-gwas.png" alt="Per stratum HWE p-values." width="672" />
 <p class="caption">(\#fig:show-hwe-gwas)Per stratum HWE p-values.</p>
 </div>
 
@@ -77,7 +91,7 @@ ggplot2::ggsave(paste0(COURSE_loc, "/dummy_project/gwas-freq.png"),
 ```
 
 <div class="figure" style="text-align: center">
-<img src="img/_gwas_dummy/show-freq-gwas.png" alt="Minor allele frequencies." width="1344" />
+<img src="img/_gwas_dummy/show-freq-gwas.png" alt="Minor allele frequencies." width="672" />
 <p class="caption">(\#fig:show-freq-gwas)Minor allele frequencies.</p>
 </div>
 
@@ -98,7 +112,7 @@ ggplot2::ggsave(paste0(COURSE_loc, "/dummy_project/gwas-sample-call-rate.png"),
 ```
 
 <div class="figure" style="text-align: center">
-<img src="img/_gwas_dummy/show-sample-callrate-gwas.png" alt="Per sample call rates." width="1344" />
+<img src="img/_gwas_dummy/show-sample-callrate-gwas.png" alt="Per sample call rates." width="672" />
 <p class="caption">(\#fig:show-sample-callrate-gwas)Per sample call rates.</p>
 </div>
 
@@ -119,7 +133,7 @@ ggplot2::ggsave(paste0(COURSE_loc, "/dummy_project/gwas-snp-call-rate.png"),
 ```
 
 <div class="figure" style="text-align: center">
-<img src="img/_gwas_dummy/show-snp-callrate-gwas.png" alt="Per SNP call rates." width="1344" />
+<img src="img/_gwas_dummy/show-snp-callrate-gwas.png" alt="Per SNP call rates." width="672" />
 <p class="caption">(\#fig:show-snp-callrate-gwas)Per SNP call rates.</p>
 </div>
 
@@ -143,7 +157,7 @@ Let's review the contents of the results.
 
 
 ```r
-gwas_model <- data.table::fread(paste0(COURSE_loc, "/gwas/data.model"))
+gwas_model <- data.table::fread(paste0(COURSE_loc, "/dummy_project/data.model"))
 
 dim(gwas_model)
 
@@ -182,7 +196,7 @@ plink --bfile gwas/gwa --logistic sex --covar gwas/gwa.covar --out gwas/data
 Let's examine the results
 
 ```r
-gwas_assoc <- data.table::fread(paste0(COURSE_loc, "/gwas/data.assoc.logistic"))
+gwas_assoc <- data.table::fread(paste0(COURSE_loc, "/dummy_project/data.assoc.logistic"))
 
 dim(gwas_assoc)
 

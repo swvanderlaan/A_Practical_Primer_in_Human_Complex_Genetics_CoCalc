@@ -2,6 +2,20 @@
 ![](./img/_gwas_dummy/gwas_sample_qc.png){width=70%}
 
 
+
+```
+## 
+## Packages to install for this book and its contents to automagically work.
+## 
+## * Bookdown and rmarkdown packages...
+## 
+## * General packages...
+## 
+## * GGplotting packages - for publication ready plotting...
+## 
+## * Genomic packages...
+```
+
 Let's start with the per-sample quality control. 
 
 ## Sex
@@ -98,7 +112,7 @@ ggplot2::ggsave(paste0(COURSE_loc, "/dummy_project/gwas-qc-sample-call-rate.png"
 The grey dashed line in Figure \@ref(fig:show-sample-callrate) indicates the mean call rate, while the red dashed line indicates the threshold we had determined above.
 
 <div class="figure" style="text-align: center">
-<img src="img/_gwas_dummy/gwas-qc-sample-callrate.png" alt="Per sample call rate." width="1344" />
+<img src="img/_gwas_dummy/gwas-qc-sample-callrate.png" alt="Per sample call rate." width="672" />
 <p class="caption">(\#fig:show-sample-callrate)Per sample call rate.</p>
 </div>
 
@@ -235,7 +249,7 @@ abline(v = prop_miss, col = "#E55738", lty = 2)
 <!-- ``` -->
 
 <div class="figure" style="text-align: center">
-<img src="img/_gwas_dummy/show-heterozygosity.png" alt="Heterozygosity as a function of SNP call rate." width="480" />
+<img src="img/_gwas_dummy/show-heterozygosity.png" alt="Heterozygosity as a function of SNP call rate." width="240" />
 <p class="caption">(\#fig:show-heterozygosity)Heterozygosity as a function of SNP call rate.</p>
 </div>
 
@@ -682,7 +696,7 @@ awk '$3 < 0.0023' | awk '{ print $1, $2 }' > dummy_project/fail-ancestry-QC.txt
 Choosing which thresholds to apply (and thus which individuals to remove) is not a straightforward process. The key is to remove those individuals with greatly divergent ancestry, as these samples introduce the most bias to the study. Identification of more fine-scale ancestry can be conducted by using less divergent reference samples (_e.g._, within Europe, stratification could be identified using the CEU, TSI (Italian), GBR (British), FIN (Finnish) and IBS (Iberian) samples from the 1,000 Genomes Project (http://www.1000genomes.org/)). Robust identification of fine-scale population structure often requires the construction of many (2–10) principal components.
 
 <div class="figure" style="text-align: center">
-<img src="img/_gwas_dummy/gwas-qc-pca-1000g.png" alt="PCA - Your data vs. 1000g." width="2100" />
+<img src="img/_gwas_dummy/gwas-qc-pca-1000g.png" alt="PCA - Your data vs. 1000g." width="1050" />
 <p class="caption">(\#fig:show-pca-1000g)PCA - Your data vs. 1000g.</p>
 </div>
 

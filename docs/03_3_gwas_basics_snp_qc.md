@@ -2,6 +2,20 @@
 ![](./img/_gwas_dummy/gwas_snp_qc.png){width=70%}
 
 
+
+```
+## 
+## Packages to install for this book and its contents to automagically work.
+## 
+## * Bookdown and rmarkdown packages...
+## 
+## * General packages...
+## 
+## * GGplotting packages - for publication ready plotting...
+## 
+## * Genomic packages...
+```
+
 Now that we removed samples, we can focus on low-quality variants.
 
 ## SNP call rates
@@ -43,7 +57,7 @@ clean_LMISS_plot
 ```
 
 <div class="figure" style="text-align: center">
-<img src="img/_gwas_dummy/show-snp-callrate.png" alt="Per SNP call rate." width="2100" />
+<img src="img/_gwas_dummy/show-snp-callrate.png" alt="Per SNP call rate." width="1050" />
 <p class="caption">(\#fig:show-snp-callrate)Per SNP call rate.</p>
 </div>
 
@@ -92,7 +106,7 @@ clean_FREQ_plot
 ```
 
 <div class="figure" style="text-align: center">
-<img src="img/_gwas_dummy/show-freq.png" alt="Minor allele frequency." width="1344" />
+<img src="img/_gwas_dummy/show-freq.png" alt="Minor allele frequency." width="672" />
 <p class="caption">(\#fig:show-freq)Minor allele frequency.</p>
 </div>
 
@@ -156,7 +170,7 @@ clean_HWE_plot
 ```
 
 <div class="figure" style="text-align: center">
-<img src="img/_gwas_dummy/show-hwe.png" alt="Hardy-Weinberg Equilibrium p-values per stratum." width="1344" />
+<img src="img/_gwas_dummy/show-hwe.png" alt="Hardy-Weinberg Equilibrium p-values per stratum." width="672" />
 <p class="caption">(\#fig:show-hwe)Hardy-Weinberg Equilibrium p-values per stratum.</p>
 </div>
 
