@@ -1,5 +1,30 @@
 # WTCCC1: a GWAS on coronary artery disease (CAD) {#wtccc1}
+<!-- ![](./img/_headers/interactive_plot.png){width=100%} -->
+```{r load-functions-packages, message = FALSE, warning = FALSE, echo = FALSE, eval = TRUE, include = FALSE}
+source("scripts/functions.R")
+source("scripts/colors.R")
+source("scripts/packages.R")
+COURSE_loc = "~/Desktop/practical"
+```
 
+```{r include = FALSE}
+if(!knitr:::is_html_output())
+{
+  options("width"=56)
+  knitr::opts_chunk$set(tidy.opts=list(width.cutoff=56, indent = 2), tidy = TRUE)
+  knitr::opts_chunk$set(fig.pos = 'H')
+}
+```
+
+```{r getting_started, message = FALSE, warning = FALSE, echo = FALSE, eval = TRUE, include = FALSE}
+# general setting to apply to all chunks - can be overrode per chunk.
+opts_chunk$set(echo = FALSE, 
+               warning = FALSE, 
+               message = FALSE, 
+               out.width = "85%", 
+               fig.align = "center", 
+               tidy = FALSE)
+```
 As usual, we start by exploring the data in hand.
 
 ```
@@ -393,4 +418,9 @@ You reached an important milestone.
 
 Wow. Take a pause. And realize what you've done. 
 
-Back then there wasn't much on analyses _after_ a GWAS, nowadays there are many post-GWAS analyses methods. We will cover them in the next Chapter \@ref(post-gwas).
+Back then there wasn't much on analyses _after_ a GWAS, nowadays there are many post-GWAS analyses methods. We will cover them in the next Chapter \@ref(post_gwas).
+
+<!-- ```{js, echo = FALSE} -->
+<!-- title=document.getElementById('header'); -->
+<!-- title.innerHTML = '<img src="img/_headers/interactive_plot.png" alt="WTCCC1: coronary artery disease">' + title.innerHTML -->
+<!-- ``` -->

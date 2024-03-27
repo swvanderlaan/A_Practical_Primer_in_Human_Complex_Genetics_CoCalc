@@ -1,4 +1,9 @@
 # Additional: EIGENSOFT {#eigensoft}
+<!-- ![](./img/_gwas_dummy/banner_man_standing_dna.png){width=70%} -->
+
+
+
+
 
 There used to be a time that the preferred software **[`EIGENSOFT`](https://github.com/DReichLab/EIG){targe="_blank"}** for Principal Component Analysis (PCA) was **`EIGENSOFT`** For many, it still is. However, **`EIGENSOFT`** is a bit challenging to make it work to say the least. You need to install some programs, and this is not always straightforward.
 
@@ -50,3 +55,8 @@ cd EIG/src
 make
 make install
 ```
+
+<!-- ```{js, echo = FALSE} -->
+<!-- title=document.getElementById('header'); -->
+<!-- title.innerHTML = '<img src="img/_headers/banner_man_standing_dna.png" alt="Eigensoft">' + title.innerHTML -->
+<!-- ``` -->

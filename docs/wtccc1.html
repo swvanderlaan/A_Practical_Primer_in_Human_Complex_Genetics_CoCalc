@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 10 WTCCC1: a GWAS on coronary artery disease (CAD) | A Practical Primer in Human Complex Genetics</title>
+  <title>10 WTCCC1: a GWAS on coronary artery disease (CAD) | A Practical Primer in Human Complex Genetics</title>
   <meta name="description" content="This is a practical primer in human complex genetics with a use-case in cardiovascular disease. The output format for this primer is bookdown::gitbook." />
   <meta name="generator" content="bookdown 0.38.1 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 10 WTCCC1: a GWAS on coronary artery disease (CAD) | A Practical Primer in Human Complex Genetics" />
+  <meta property="og:title" content="10 WTCCC1: a GWAS on coronary artery disease (CAD) | A Practical Primer in Human Complex Genetics" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="This is a practical primer in human complex genetics with a use-case in cardiovascular disease. The output format for this primer is bookdown::gitbook." />
   <meta name="github-repo" content="swvanderlaan/A_Practical_Primer_in_Human_Complex_Genetics" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 10 WTCCC1: a GWAS on coronary artery disease (CAD) | A Practical Primer in Human Complex Genetics" />
+  <meta name="twitter:title" content="10 WTCCC1: a GWAS on coronary artery disease (CAD) | A Practical Primer in Human Complex Genetics" />
   
   <meta name="twitter:description" content="This is a practical primer in human complex genetics with a use-case in cardiovascular disease. The output format for this primer is bookdown::gitbook." />
   
@@ -29,8 +29,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="wtccc1-intro.html"/>
-<link rel="next" href="post-gwas.html"/>
+<link rel="prev" href="wtccc1_intro.html"/>
+<link rel="next" href="post_gwas.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -52,6 +52,8 @@
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<link href="libs/tabwid-1.1.3/tabwid.css" rel="stylesheet" />
+<script src="libs/tabwid-1.1.3/tabwid.js"></script>
 
 
 <style type="text/css">
@@ -166,17 +168,24 @@ div.csl-indent {
 <li class="chapter" data-level="2" data-path="somebackgroundreading.html"><a href="somebackgroundreading.html"><i class="fa fa-check"></i><b>2</b> Some background reading</a></li>
 <li class="chapter" data-level="3" data-path="getting-started.html"><a href="getting-started.html"><i class="fa fa-check"></i><b>3</b> Getting started</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="getting-started.html"><a href="getting-started.html#the-programs-we-use"><i class="fa fa-check"></i><b>3.1</b> The programs we use</a></li>
-<li class="chapter" data-level="3.2" data-path="getting-started.html"><a href="getting-started.html#cocalc"><i class="fa fa-check"></i><b>3.2</b> CoCalc</a></li>
-<li class="chapter" data-level="3.3" data-path="getting-started.html"><a href="getting-started.html#standalone"><i class="fa fa-check"></i><b>3.3</b> Standalone</a>
+<li class="chapter" data-level="3.1" data-path="getting-started.html"><a href="getting-started.html#your-computer"><i class="fa fa-check"></i><b>3.1</b> Your computer</a></li>
+<li class="chapter" data-level="3.2" data-path="getting-started.html"><a href="getting-started.html#cocalc-vs.-standalone"><i class="fa fa-check"></i><b>3.2</b> CoCalc vs. Standalone</a></li>
+<li class="chapter" data-level="3.3" data-path="getting-started.html"><a href="getting-started.html#the-programs-we-use"><i class="fa fa-check"></i><b>3.3</b> The programs we use</a>
 <ul>
-<li class="chapter" data-level="3.3.1" data-path="getting-started.html"><a href="getting-started.html#terminal"><i class="fa fa-check"></i><b>3.3.1</b> Terminal</a></li>
-<li class="chapter" data-level="3.3.2" data-path="getting-started.html"><a href="getting-started.html#the-data-you-need"><i class="fa fa-check"></i><b>3.3.2</b> The data you need</a></li>
-<li class="chapter" data-level="3.3.3" data-path="getting-started.html"><a href="getting-started.html#navigating-the-terminal"><i class="fa fa-check"></i><b>3.3.3</b> Navigating the Terminal</a></li>
-<li class="chapter" data-level="3.3.4" data-path="getting-started.html"><a href="getting-started.html#installing-the-software"><i class="fa fa-check"></i><b>3.3.4</b> Installing the software</a></li>
+<li class="chapter" data-level="3.3.1" data-path="getting-started.html"><a href="getting-started.html#rstudio"><i class="fa fa-check"></i><b>3.3.1</b> RStudio</a></li>
+<li class="chapter" data-level="3.3.2" data-path="getting-started.html"><a href="getting-started.html#plink"><i class="fa fa-check"></i><b>3.3.2</b> PLINK</a></li>
+<li class="chapter" data-level="3.3.3" data-path="getting-started.html"><a href="getting-started.html#alternatives-to-plink"><i class="fa fa-check"></i><b>3.3.3</b> Alternatives to <code>PLINK</code></a></li>
+<li class="chapter" data-level="3.3.4" data-path="getting-started.html"><a href="getting-started.html#other-programs"><i class="fa fa-check"></i><b>3.3.4</b> Other programs</a></li>
 </ul></li>
-<li class="chapter" data-level="3.4" data-path="getting-started.html"><a href="getting-started.html#installing-r-and-rstudio"><i class="fa fa-check"></i><b>3.4</b> Installing R and RStudio</a></li>
-<li class="chapter" data-level="3.5" data-path="getting-started.html"><a href="getting-started.html#are-you-ready"><i class="fa fa-check"></i><b>3.5</b> Are you ready?</a></li>
+<li class="chapter" data-level="3.4" data-path="getting-started.html"><a href="getting-started.html#cocalc"><i class="fa fa-check"></i><b>3.4</b> CoCalc</a></li>
+<li class="chapter" data-level="3.5" data-path="getting-started.html"><a href="getting-started.html#standalone"><i class="fa fa-check"></i><b>3.5</b> Standalone</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="getting-started.html"><a href="getting-started.html#the-data-you-need"><i class="fa fa-check"></i><b>3.5.1</b> The data you need</a></li>
+<li class="chapter" data-level="3.5.2" data-path="getting-started.html"><a href="getting-started.html#terminal"><i class="fa fa-check"></i><b>3.5.2</b> Terminal</a></li>
+<li class="chapter" data-level="3.5.3" data-path="getting-started.html"><a href="getting-started.html#navigating-the-terminal"><i class="fa fa-check"></i><b>3.5.3</b> Navigating the Terminal</a></li>
+<li class="chapter" data-level="3.5.4" data-path="getting-started.html"><a href="getting-started.html#installing-the-software"><i class="fa fa-check"></i><b>3.5.4</b> Installing the software</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="getting-started.html"><a href="getting-started.html#are-you-ready"><i class="fa fa-check"></i><b>3.6</b> Are you ready?</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="gwas-basics.html"><a href="gwas-basics.html"><i class="fa fa-check"></i><b>4</b> Steps in a Genome-Wide Association Study</a>
 <ul>
@@ -211,12 +220,12 @@ div.csl-indent {
 <li class="chapter" data-level="6.5" data-path="gwas_basics_snp_qc.html"><a href="gwas_basics_snp_qc.html#final-snp-qc"><i class="fa fa-check"></i><b>6.5</b> Final SNP QC</a></li>
 <li class="chapter" data-level="6.6" data-path="gwas_basics_snp_qc.html"><a href="gwas_basics_snp_qc.html#a-milestone"><i class="fa fa-check"></i><b>6.6</b> A Milestone</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="gwas-testing.html"><a href="gwas-testing.html"><i class="fa fa-check"></i><b>7</b> Genome-Wide Association Study</a>
+<li class="chapter" data-level="7" data-path="gwas_testing.html"><a href="gwas_testing.html"><i class="fa fa-check"></i><b>7</b> Genome-Wide Association Study</a>
 <ul>
-<li class="chapter" data-level="7.1" data-path="gwas-testing.html"><a href="gwas-testing.html#exploring-the-data"><i class="fa fa-check"></i><b>7.1</b> Exploring the data</a></li>
-<li class="chapter" data-level="7.2" data-path="gwas-testing.html"><a href="gwas-testing.html#genetic-models"><i class="fa fa-check"></i><b>7.2</b> Genetic models</a></li>
-<li class="chapter" data-level="7.3" data-path="gwas-testing.html"><a href="gwas-testing.html#logistic-regression"><i class="fa fa-check"></i><b>7.3</b> Logistic regression</a></li>
-<li class="chapter" data-level="7.4" data-path="gwas-testing.html"><a href="gwas-testing.html#lets-get-visual"><i class="fa fa-check"></i><b>7.4</b> Let’s get visual</a></li>
+<li class="chapter" data-level="7.1" data-path="gwas_testing.html"><a href="gwas_testing.html#exploring-the-data"><i class="fa fa-check"></i><b>7.1</b> Exploring the data</a></li>
+<li class="chapter" data-level="7.2" data-path="gwas_testing.html"><a href="gwas_testing.html#genetic-models"><i class="fa fa-check"></i><b>7.2</b> Genetic models</a></li>
+<li class="chapter" data-level="7.3" data-path="gwas_testing.html"><a href="gwas_testing.html#logistic-regression"><i class="fa fa-check"></i><b>7.3</b> Logistic regression</a></li>
+<li class="chapter" data-level="7.4" data-path="gwas_testing.html"><a href="gwas_testing.html#lets-get-visual"><i class="fa fa-check"></i><b>7.4</b> Let’s get visual</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="gwas-visuals.html"><a href="gwas-visuals.html"><i class="fa fa-check"></i><b>8</b> GWAS visualisation</a>
 <ul>
@@ -226,12 +235,12 @@ div.csl-indent {
 <li class="chapter" data-level="8.3" data-path="gwas-visuals.html"><a href="gwas-visuals.html#interactive-plots"><i class="fa fa-check"></i><b>8.3</b> Interactive plots</a></li>
 <li class="chapter" data-level="8.4" data-path="gwas-visuals.html"><a href="gwas-visuals.html#stop-playing-around"><i class="fa fa-check"></i><b>8.4</b> Stop playing around</a></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="wtccc1-intro.html"><a href="wtccc1-intro.html"><i class="fa fa-check"></i><b>9</b> The Welcome Trust Case-Control Consortium</a>
+<li class="chapter" data-level="9" data-path="wtccc1_intro.html"><a href="wtccc1_intro.html"><i class="fa fa-check"></i><b>9</b> The Welcome Trust Case-Control Consortium</a>
 <ul>
-<li class="chapter" data-level="9.1" data-path="wtccc1-intro.html"><a href="wtccc1-intro.html#genotyping"><i class="fa fa-check"></i><b>9.1</b> Genotyping</a></li>
-<li class="chapter" data-level="9.2" data-path="wtccc1-intro.html"><a href="wtccc1-intro.html#the-data"><i class="fa fa-check"></i><b>9.2</b> The data</a></li>
-<li class="chapter" data-level="9.3" data-path="wtccc1-intro.html"><a href="wtccc1-intro.html#assignment"><i class="fa fa-check"></i><b>9.3</b> Assignment</a></li>
-<li class="chapter" data-level="9.4" data-path="wtccc1-intro.html"><a href="wtccc1-intro.html#there-you-go"><i class="fa fa-check"></i><b>9.4</b> There you go</a></li>
+<li class="chapter" data-level="9.1" data-path="wtccc1_intro.html"><a href="wtccc1_intro.html#genotyping"><i class="fa fa-check"></i><b>9.1</b> Genotyping</a></li>
+<li class="chapter" data-level="9.2" data-path="wtccc1_intro.html"><a href="wtccc1_intro.html#the-data"><i class="fa fa-check"></i><b>9.2</b> The data</a></li>
+<li class="chapter" data-level="9.3" data-path="wtccc1_intro.html"><a href="wtccc1_intro.html#assignment"><i class="fa fa-check"></i><b>9.3</b> Assignment</a></li>
+<li class="chapter" data-level="9.4" data-path="wtccc1_intro.html"><a href="wtccc1_intro.html#there-you-go"><i class="fa fa-check"></i><b>9.4</b> There you go</a></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="wtccc1.html"><a href="wtccc1.html"><i class="fa fa-check"></i><b>10</b> WTCCC1: a GWAS on coronary artery disease (CAD)</a>
 <ul>
@@ -246,48 +255,100 @@ div.csl-indent {
 <li class="chapter" data-level="10.3" data-path="wtccc1.html"><a href="wtccc1.html#association-testing"><i class="fa fa-check"></i><b>10.3</b> Association testing</a></li>
 <li class="chapter" data-level="10.4" data-path="wtccc1.html"><a href="wtccc1.html#replication"><i class="fa fa-check"></i><b>10.4</b> Replication!</a></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="post-gwas.html"><a href="post-gwas.html"><i class="fa fa-check"></i><b>11</b> Post-GWAS Analyses</a>
+<li class="chapter" data-level="11" data-path="post_gwas.html"><a href="post_gwas.html"><i class="fa fa-check"></i><b>11</b> Post-GWAS Analyses</a>
 <ul>
-<li class="chapter" data-level="11.1" data-path="post-gwas.html"><a href="post-gwas.html#clumping"><i class="fa fa-check"></i><b>11.1</b> Clumping</a></li>
-<li class="chapter" data-level="11.2" data-path="post-gwas.html"><a href="post-gwas.html#conditional-analyses"><i class="fa fa-check"></i><b>11.2</b> Conditional analyses</a></li>
-<li class="chapter" data-level="11.3" data-path="post-gwas.html"><a href="post-gwas.html#statistical-finemapping"><i class="fa fa-check"></i><b>11.3</b> Statistical finemapping</a></li>
-<li class="chapter" data-level="11.4" data-path="post-gwas.html"><a href="post-gwas.html#fuma-functional-mapping-and-annotation-of-gwas"><i class="fa fa-check"></i><b>11.4</b> FUMA: FUnctional Mapping and Annotation of GWAS</a></li>
-<li class="chapter" data-level="11.5" data-path="post-gwas.html"><a href="post-gwas.html#phenome-wide-association-study"><i class="fa fa-check"></i><b>11.5</b> Phenome-wide association study</a></li>
-<li class="chapter" data-level="11.6" data-path="post-gwas.html"><a href="post-gwas.html#colocalization"><i class="fa fa-check"></i><b>11.6</b> Colocalization</a></li>
-<li class="chapter" data-level="11.7" data-path="post-gwas.html"><a href="post-gwas.html#genetic-correlation"><i class="fa fa-check"></i><b>11.7</b> Genetic correlation</a></li>
-<li class="chapter" data-level="11.8" data-path="post-gwas.html"><a href="post-gwas.html#causal-inference-mendelian-randomization"><i class="fa fa-check"></i><b>11.8</b> Causal inference: Mendelian Randomization</a>
+<li class="chapter" data-level="11.1" data-path="post_gwas.html"><a href="post_gwas.html#clumping"><i class="fa fa-check"></i><b>11.1</b> Clumping</a></li>
+<li class="chapter" data-level="11.2" data-path="post_gwas.html"><a href="post_gwas.html#conditional-analyses"><i class="fa fa-check"></i><b>11.2</b> Conditional analyses</a></li>
+<li class="chapter" data-level="11.3" data-path="post_gwas.html"><a href="post_gwas.html#statistical-finemapping"><i class="fa fa-check"></i><b>11.3</b> Statistical finemapping</a></li>
+<li class="chapter" data-level="11.4" data-path="post_gwas.html"><a href="post_gwas.html#fuma-functional-mapping-and-annotation-of-gwas"><i class="fa fa-check"></i><b>11.4</b> FUMA: FUnctional Mapping and Annotation of GWAS</a></li>
+<li class="chapter" data-level="11.5" data-path="post_gwas.html"><a href="post_gwas.html#phenome-wide-association-study"><i class="fa fa-check"></i><b>11.5</b> Phenome-wide association study</a></li>
+<li class="chapter" data-level="11.6" data-path="post_gwas.html"><a href="post_gwas.html#colocalization"><i class="fa fa-check"></i><b>11.6</b> Colocalization</a></li>
+<li class="chapter" data-level="11.7" data-path="post_gwas.html"><a href="post_gwas.html#genetic-correlation"><i class="fa fa-check"></i><b>11.7</b> Genetic correlation</a></li>
+<li class="chapter" data-level="11.8" data-path="post_gwas.html"><a href="post_gwas.html#causal-inference-mendelian-randomization"><i class="fa fa-check"></i><b>11.8</b> Causal inference: Mendelian Randomization</a>
 <ul>
-<li class="chapter" data-level="11.8.1" data-path="post-gwas.html"><a href="post-gwas.html#your-choice"><i class="fa fa-check"></i><b>11.8.1</b> Your choice</a></li>
+<li class="chapter" data-level="11.8.1" data-path="post_gwas.html"><a href="post_gwas.html#your-choice"><i class="fa fa-check"></i><b>11.8.1</b> Your choice</a></li>
 </ul></li>
-<li class="chapter" data-level="11.9" data-path="post-gwas.html"><a href="post-gwas.html#polygenic-scores"><i class="fa fa-check"></i><b>11.9</b> Polygenic scores</a></li>
-<li class="chapter" data-level="11.10" data-path="post-gwas.html"><a href="post-gwas.html#what-comes-next"><i class="fa fa-check"></i><b>11.10</b> What comes next</a></li>
+<li class="chapter" data-level="11.9" data-path="post_gwas.html"><a href="post_gwas.html#polygenic-scores"><i class="fa fa-check"></i><b>11.9</b> Polygenic scores</a></li>
+<li class="chapter" data-level="11.10" data-path="post_gwas.html"><a href="post_gwas.html#what-comes-next"><i class="fa fa-check"></i><b>11.10</b> What comes next</a></li>
 </ul></li>
-<li class="chapter" data-level="12" data-path="epilogue.html"><a href="epilogue.html"><i class="fa fa-check"></i><b>12</b> Epilogue</a></li>
-<li class="chapter" data-level="13" data-path="eigensoft.html"><a href="eigensoft.html"><i class="fa fa-check"></i><b>13</b> Additional: EIGENSOFT</a>
+<li class="chapter" data-level="12" data-path="conditional_analysis.html"><a href="conditional_analysis.html"><i class="fa fa-check"></i><b>12</b> Conditional analysis</a>
 <ul>
-<li class="chapter" data-level="13.1" data-path="eigensoft.html"><a href="eigensoft.html#install-homebrew"><i class="fa fa-check"></i><b>13.1</b> Install homebrew</a></li>
-<li class="chapter" data-level="13.2" data-path="eigensoft.html"><a href="eigensoft.html#install-missing-packages"><i class="fa fa-check"></i><b>13.2</b> Install missing packages</a></li>
-<li class="chapter" data-level="13.3" data-path="eigensoft.html"><a href="eigensoft.html#installing-eigensoft"><i class="fa fa-check"></i><b>13.3</b> Installing EIGENSOFT</a></li>
+<li class="chapter" data-level="12.1" data-path="conditional_analysis.html"><a href="conditional_analysis.html#section-1"><i class="fa fa-check"></i><b>12.1</b> Section 1</a></li>
+<li class="chapter" data-level="12.2" data-path="conditional_analysis.html"><a href="conditional_analysis.html#section-2"><i class="fa fa-check"></i><b>12.2</b> Section 2</a></li>
+<li class="chapter" data-level="12.3" data-path="conditional_analysis.html"><a href="conditional_analysis.html#section-3"><i class="fa fa-check"></i><b>12.3</b> Section 3</a></li>
+<li class="chapter" data-level="12.4" data-path="conditional_analysis.html"><a href="conditional_analysis.html#replication-1"><i class="fa fa-check"></i><b>12.4</b> Replication!</a></li>
 </ul></li>
-<li class="chapter" data-level="14" data-path="todo.html"><a href="todo.html"><i class="fa fa-check"></i><b>14</b> Things to do</a>
+<li class="chapter" data-level="13" data-path="finemapping.html"><a href="finemapping.html"><i class="fa fa-check"></i><b>13</b> Statistical finemapping</a>
 <ul>
-<li class="chapter" data-level="14.1" data-path="todo.html"><a href="todo.html#moscow"><i class="fa fa-check"></i><b>14.1</b> MoSCoW</a>
+<li class="chapter" data-level="13.1" data-path="finemapping.html"><a href="finemapping.html#section-1-1"><i class="fa fa-check"></i><b>13.1</b> Section 1</a></li>
+<li class="chapter" data-level="13.2" data-path="finemapping.html"><a href="finemapping.html#section-2-1"><i class="fa fa-check"></i><b>13.2</b> Section 2</a></li>
+<li class="chapter" data-level="13.3" data-path="finemapping.html"><a href="finemapping.html#section-3-1"><i class="fa fa-check"></i><b>13.3</b> Section 3</a></li>
+<li class="chapter" data-level="13.4" data-path="finemapping.html"><a href="finemapping.html#replication-2"><i class="fa fa-check"></i><b>13.4</b> Replication!</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="fuma.html"><a href="fuma.html"><i class="fa fa-check"></i><b>14</b> Functional Mapping and Annotation of GWAS</a>
 <ul>
-<li class="chapter" data-level="14.1.1" data-path="todo.html"><a href="todo.html#contents"><i class="fa fa-check"></i><b>14.1.1</b> Contents</a></li>
-</ul></li>
-<li class="chapter" data-level="14.2" data-path="todo.html"><a href="todo.html#book-fixes"><i class="fa fa-check"></i><b>14.2</b> Book fixes</a></li>
-<li class="chapter" data-level="14.3" data-path="todo.html"><a href="todo.html#useful-links-for-me-mostly"><i class="fa fa-check"></i><b>14.3</b> Useful links (for me mostly)</a></li>
-</ul></li>
-<li class="chapter" data-level="15" data-path="license.html"><a href="license.html"><i class="fa fa-check"></i><b>15</b> Licenses and disclaimers</a>
+<li class="chapter" data-level="14.1" data-path="fuma.html"><a href="fuma.html#assignment-1"><i class="fa fa-check"></i><b>14.1</b> Assignment</a>
 <ul>
-<li class="chapter" data-level="15.1" data-path="license.html"><a href="license.html#copyright"><i class="fa fa-check"></i><b>15.1</b> Copyright</a></li>
-<li class="chapter" data-level="15.2" data-path="license.html"><a href="license.html#disclaimer"><i class="fa fa-check"></i><b>15.2</b> Disclaimer</a></li>
-<li class="chapter" data-level="15.3" data-path="license.html"><a href="license.html#images-used"><i class="fa fa-check"></i><b>15.3</b> Images used</a></li>
+<li class="chapter" data-level="14.1.1" data-path="fuma.html"><a href="fuma.html#tutorial"><i class="fa fa-check"></i><b>14.1.1</b> Tutorial</a></li>
+<li class="chapter" data-level="14.1.2" data-path="fuma.html"><a href="fuma.html#create-the-input"><i class="fa fa-check"></i><b>14.1.2</b> Create the input</a></li>
+<li class="chapter" data-level="14.1.3" data-path="fuma.html"><a href="fuma.html#run-fuma---snp-to-gene"><i class="fa fa-check"></i><b>14.1.3</b> Run FUMA - SNP to gene</a></li>
+<li class="chapter" data-level="14.1.4" data-path="fuma.html"><a href="fuma.html#run-fuma---gene-to-function"><i class="fa fa-check"></i><b>14.1.4</b> Run FUMA - Gene to function</a></li>
 </ul></li>
-<li class="chapter" data-level="16" data-path="colofon.html"><a href="colofon.html"><i class="fa fa-check"></i><b>16</b> Colofon</a></li>
+<li class="chapter" data-level="14.2" data-path="fuma.html"><a href="fuma.html#some-closing-thoughts"><i class="fa fa-check"></i><b>14.2</b> Some closing thoughts</a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="phewas.html"><a href="phewas.html"><i class="fa fa-check"></i><b>15</b> Phenome-Wide Association Study</a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="phewas.html"><a href="phewas.html#whats-next"><i class="fa fa-check"></i><b>15.1</b> What’s next?</a></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="mr_mrbase.html"><a href="mr_mrbase.html"><i class="fa fa-check"></i><b>16</b> MRBase</a>
+<ul>
+<li class="chapter" data-level="16.1" data-path="mr_mrbase.html"><a href="mr_mrbase.html#the-end"><i class="fa fa-check"></i><b>16.1</b> The end?</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="summary.html"><a href="summary.html"><i class="fa fa-check"></i>Summary</a>
+<ul>
+<li class="chapter" data-level="16.2" data-path="summary.html"><a href="summary.html#section-1-2"><i class="fa fa-check"></i><b>16.2</b> Section 1</a></li>
+<li class="chapter" data-level="16.3" data-path="summary.html"><a href="summary.html#section-2-2"><i class="fa fa-check"></i><b>16.3</b> Section 2</a></li>
+<li class="chapter" data-level="16.4" data-path="summary.html"><a href="summary.html#section-3-2"><i class="fa fa-check"></i><b>16.4</b> Section 3</a></li>
+<li class="chapter" data-level="16.5" data-path="summary.html"><a href="summary.html#replication-3"><i class="fa fa-check"></i><b>16.5</b> Replication!</a></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="epilogue.html"><a href="epilogue.html"><i class="fa fa-check"></i><b>17</b> Epilogue</a></li>
+<li class="chapter" data-level="18" data-path="eigensoft.html"><a href="eigensoft.html"><i class="fa fa-check"></i><b>18</b> Additional: EIGENSOFT</a>
+<ul>
+<li class="chapter" data-level="18.1" data-path="eigensoft.html"><a href="eigensoft.html#install-homebrew"><i class="fa fa-check"></i><b>18.1</b> Install homebrew</a></li>
+<li class="chapter" data-level="18.2" data-path="eigensoft.html"><a href="eigensoft.html#install-missing-packages"><i class="fa fa-check"></i><b>18.2</b> Install missing packages</a></li>
+<li class="chapter" data-level="18.3" data-path="eigensoft.html"><a href="eigensoft.html#installing-eigensoft"><i class="fa fa-check"></i><b>18.3</b> Installing EIGENSOFT</a></li>
+</ul></li>
+<li class="chapter" data-level="19" data-path="pca_other_things.html"><a href="pca_other_things.html"><i class="fa fa-check"></i><b>19</b> Additional: on PCAs &amp; Other things</a>
+<ul>
+<li class="chapter" data-level="19.1" data-path="pca_other_things.html"><a href="pca_other_things.html#principal-component-analysis-1"><i class="fa fa-check"></i><b>19.1</b> Principal Component Analysis</a></li>
+<li class="chapter" data-level="19.2" data-path="pca_other_things.html"><a href="pca_other_things.html#blood-correlations"><i class="fa fa-check"></i><b>19.2</b> Blood correlations</a></li>
+</ul></li>
+<li class="chapter" data-level="20" data-path="answers.html"><a href="answers.html"><i class="fa fa-check"></i><b>20</b> Answers to the questions</a>
+<ul>
+<li class="chapter" data-level="20.1" data-path="answers.html"><a href="answers.html#chapter-3.1-gwas-basics"><i class="fa fa-check"></i><b>20.1</b> Chapter 3.1: GWAS Basics</a></li>
+<li class="chapter" data-level="20.2" data-path="answers.html"><a href="answers.html#chapter-3.4-gwas-basics---association-testing"><i class="fa fa-check"></i><b>20.2</b> Chapter 3.4: GWAS Basics - Association testing</a></li>
+<li class="chapter" data-level="20.3" data-path="answers.html"><a href="answers.html#chapter-5.4-fuma"><i class="fa fa-check"></i><b>20.3</b> Chapter 5.4: FUMA</a></li>
+</ul></li>
+<li class="chapter" data-level="21" data-path="todo.html"><a href="todo.html"><i class="fa fa-check"></i><b>21</b> Things to do</a>
+<ul>
+<li class="chapter" data-level="21.1" data-path="todo.html"><a href="todo.html#moscow"><i class="fa fa-check"></i><b>21.1</b> MoSCoW</a>
+<ul>
+<li class="chapter" data-level="21.1.1" data-path="todo.html"><a href="todo.html#contents"><i class="fa fa-check"></i><b>21.1.1</b> Contents</a></li>
+</ul></li>
+<li class="chapter" data-level="21.2" data-path="todo.html"><a href="todo.html#book-fixes"><i class="fa fa-check"></i><b>21.2</b> Book fixes</a></li>
+<li class="chapter" data-level="21.3" data-path="todo.html"><a href="todo.html#useful-links"><i class="fa fa-check"></i><b>21.3</b> Useful links</a></li>
+</ul></li>
+<li class="chapter" data-level="22" data-path="license.html"><a href="license.html"><i class="fa fa-check"></i><b>22</b> Licenses and disclaimers</a>
+<ul>
+<li class="chapter" data-level="22.1" data-path="license.html"><a href="license.html#copyright"><i class="fa fa-check"></i><b>22.1</b> Copyright</a></li>
+<li class="chapter" data-level="22.2" data-path="license.html"><a href="license.html#disclaimer"><i class="fa fa-check"></i><b>22.2</b> Disclaimer</a></li>
+<li class="chapter" data-level="22.3" data-path="license.html"><a href="license.html#images-and-data-used"><i class="fa fa-check"></i><b>22.3</b> Images and data used</a></li>
+<li class="chapter" data-level="22.4" data-path="license.html"><a href="license.html#copyright-1"><i class="fa fa-check"></i><b>22.4</b> Copyright</a></li>
+</ul></li>
+<li class="chapter" data-level="23" data-path="colophon.html"><a href="colophon.html"><i class="fa fa-check"></i><b>23</b> Colophon</a></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
-<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown.</a></li>
+<li><a href="https://vanderlaanand.science" target="blank">&copy; 1979-2024. Sander W. van der Laan.</a></li>
 
 </ul>
 
@@ -307,7 +368,8 @@ div.csl-indent {
 
             <section class="normal" id="section-">
 <div id="wtccc1" class="section level1 hasAnchor" number="10">
-<h1><span class="header-section-number">Chapter 10</span> WTCCC1: a GWAS on coronary artery disease (CAD)<a href="wtccc1.html#wtccc1" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<h1><span class="header-section-number">10</span> WTCCC1: a GWAS on coronary artery disease (CAD)<a href="wtccc1.html#wtccc1" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<!-- ![](./img/_headers/interactive_plot.png){width=100%} -->
 <p>As usual, we start by exploring the data in hand.</p>
 <pre><code>plink --bfile wtccc1/CADn1871_500Kb37fwd --bmerge wtccc1/UKBSn1397_500Kb37fwd --make-bed --out wtccc1/wtccc1 &amp;&amp; \
 plink --bfile wtccc1/wtccc1 --freq --out wtccc1/wtccc1 &amp;&amp; \
@@ -316,87 +378,34 @@ plink --bfile wtccc1/wtccc1 --missing --out wtccc1/wtccc1 &amp;&amp; \
 plink --bfile wtccc1/wtccc1 --test-missing --out wtccc1/wtccc1
 
 cat wtccc1/wtccc1.missing | awk &#39;$5 &lt; 0.00001&#39; | awk &#39;{ print $2 }&#39; &gt; wtccc1/wtccc1-fail-diffmiss-qc.txt</code></pre>
-<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="wtccc1.html#cb109-1" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;data.table&quot;</span>)</span>
-<span id="cb109-2"><a href="wtccc1.html#cb109-2" tabindex="-1"></a></span>
-<span id="cb109-3"><a href="wtccc1.html#cb109-3" tabindex="-1"></a>COURSE_loc <span class="ot">=</span> <span class="st">&quot;~/Desktop/practical&quot;</span> <span class="co"># getwd()</span></span>
-<span id="cb109-4"><a href="wtccc1.html#cb109-4" tabindex="-1"></a></span>
-<span id="cb109-5"><a href="wtccc1.html#cb109-5" tabindex="-1"></a>wtccc1_HWE <span class="ot">&lt;-</span> data.table<span class="sc">::</span><span class="fu">fread</span>(<span class="fu">paste0</span>(COURSE_loc, <span class="st">&quot;/wtccc1/wtccc1.hwe&quot;</span>))</span>
-<span id="cb109-6"><a href="wtccc1.html#cb109-6" tabindex="-1"></a>wtccc1_FRQ <span class="ot">&lt;-</span> data.table<span class="sc">::</span><span class="fu">fread</span>(<span class="fu">paste0</span>(COURSE_loc, <span class="st">&quot;/wtccc1/wtccc1.frq&quot;</span>))</span>
-<span id="cb109-7"><a href="wtccc1.html#cb109-7" tabindex="-1"></a>wtccc1_IMISS <span class="ot">&lt;-</span> data.table<span class="sc">::</span><span class="fu">fread</span>(<span class="fu">paste0</span>(COURSE_loc, <span class="st">&quot;/wtccc1/wtccc1.imiss&quot;</span>))</span>
-<span id="cb109-8"><a href="wtccc1.html#cb109-8" tabindex="-1"></a>wtccc1_LMISS <span class="ot">&lt;-</span> data.table<span class="sc">::</span><span class="fu">fread</span>(<span class="fu">paste0</span>(COURSE_loc, <span class="st">&quot;/wtccc1/wtccc1.lmiss&quot;</span>))</span>
-<span id="cb109-9"><a href="wtccc1.html#cb109-9" tabindex="-1"></a></span>
-<span id="cb109-10"><a href="wtccc1.html#cb109-10" tabindex="-1"></a>wtccc1_HWE<span class="sc">$</span>logP <span class="ot">&lt;-</span> <span class="sc">-</span><span class="fu">log10</span>(wtccc1_HWE<span class="sc">$</span>P)</span></code></pre></div>
 <p>Let’s investigate the HWE p-value in the whole cohort, and per stratum (cases and controls) with the code below.</p>
-<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="wtccc1.html#cb110-1" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;ggpubr&quot;</span>)</span>
-<span id="cb110-2"><a href="wtccc1.html#cb110-2" tabindex="-1"></a></span>
-<span id="cb110-3"><a href="wtccc1.html#cb110-3" tabindex="-1"></a>ggpubr<span class="sc">::</span><span class="fu">gghistogram</span>(wtccc1_HWE, <span class="at">x =</span> <span class="st">&quot;logP&quot;</span>,</span>
-<span id="cb110-4"><a href="wtccc1.html#cb110-4" tabindex="-1"></a>                    <span class="at">add =</span> <span class="st">&quot;mean&quot;</span>,</span>
-<span id="cb110-5"><a href="wtccc1.html#cb110-5" tabindex="-1"></a>                    <span class="at">add.params =</span> <span class="fu">list</span>(<span class="at">color =</span> <span class="st">&quot;#595A5C&quot;</span>, <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>, <span class="at">size =</span> <span class="dv">1</span>),</span>
-<span id="cb110-6"><a href="wtccc1.html#cb110-6" tabindex="-1"></a>                    <span class="at">rug =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb110-7"><a href="wtccc1.html#cb110-7" tabindex="-1"></a>                    <span class="co"># color = &quot;#1290D9&quot;, fill = &quot;#1290D9&quot;,</span></span>
-<span id="cb110-8"><a href="wtccc1.html#cb110-8" tabindex="-1"></a>                    <span class="at">color =</span> <span class="st">&quot;TEST&quot;</span>, <span class="at">fill =</span> <span class="st">&quot;TEST&quot;</span>,</span>
-<span id="cb110-9"><a href="wtccc1.html#cb110-9" tabindex="-1"></a>                    <span class="at">palette =</span> <span class="st">&quot;lancet&quot;</span>,</span>
-<span id="cb110-10"><a href="wtccc1.html#cb110-10" tabindex="-1"></a>                    <span class="at">facet.by =</span> <span class="st">&quot;TEST&quot;</span>,</span>
-<span id="cb110-11"><a href="wtccc1.html#cb110-11" tabindex="-1"></a>                    <span class="at">bins =</span> <span class="dv">50</span>,</span>
-<span id="cb110-12"><a href="wtccc1.html#cb110-12" tabindex="-1"></a>                    <span class="at">xlab =</span> <span class="st">&quot;HWE -log10(P)&quot;</span>) <span class="sc">+</span></span>
-<span id="cb110-13"><a href="wtccc1.html#cb110-13" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">5</span>, <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>,</span>
-<span id="cb110-14"><a href="wtccc1.html#cb110-14" tabindex="-1"></a>                      <span class="at">color =</span> <span class="st">&quot;#E55738&quot;</span>, <span class="at">size =</span> <span class="dv">1</span>)</span>
-<span id="cb110-15"><a href="wtccc1.html#cb110-15" tabindex="-1"></a>ggplot2<span class="sc">::</span><span class="fu">ggsave</span>(<span class="fu">paste0</span>(COURSE_loc, <span class="st">&quot;/wtccc1/wtccc1-hwe.png&quot;</span>), <span class="at">plot =</span> <span class="fu">last_plot</span>())</span></code></pre></div>
 <p>This will result in Figure <a href="wtccc1.html#fig:show-wtccc1-hwe">10.1</a>.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:show-wtccc1-hwe"></span>
-<img src="img/_gwas_wtccc/WTCCC1-HWE.png" alt="Stratified HWE p-values." width="672" />
+<img src="img/_gwas_wtccc/WTCCC1-HWE.png" alt="Stratified HWE p-values." width="85%" />
 <p class="caption">
 Figure 10.1: Stratified HWE p-values.
 </p>
 </div>
 <p>We should also inspect the allele frequencies. Note that <em>by default</em> PLINK (whether v0.7, v1.9, or v2.0) stores the alleles as minor (A1) and major (A2), and therefore <code>--maf</code> <em>always</em> calculates the frequency of the minor allele (A1).</p>
-<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="wtccc1.html#cb111-1" tabindex="-1"></a>ggpubr<span class="sc">::</span><span class="fu">gghistogram</span>(wtccc1_FRQ, <span class="at">x =</span> <span class="st">&quot;MAF&quot;</span>,</span>
-<span id="cb111-2"><a href="wtccc1.html#cb111-2" tabindex="-1"></a>                    <span class="at">add =</span> <span class="st">&quot;mean&quot;</span>, <span class="at">add.params =</span> <span class="fu">list</span>(<span class="at">color =</span> <span class="st">&quot;#595A5C&quot;</span>, <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>, <span class="at">size =</span> <span class="dv">1</span>),</span>
-<span id="cb111-3"><a href="wtccc1.html#cb111-3" tabindex="-1"></a>                    <span class="at">rug =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb111-4"><a href="wtccc1.html#cb111-4" tabindex="-1"></a>                    <span class="at">color =</span> <span class="st">&quot;#1290D9&quot;</span>, <span class="at">fill =</span> <span class="st">&quot;#1290D9&quot;</span>,</span>
-<span id="cb111-5"><a href="wtccc1.html#cb111-5" tabindex="-1"></a>                    <span class="at">xlab =</span> <span class="st">&quot;minor allele frequency&quot;</span>) <span class="sc">+</span></span>
-<span id="cb111-6"><a href="wtccc1.html#cb111-6" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fl">0.05</span>, <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>,</span>
-<span id="cb111-7"><a href="wtccc1.html#cb111-7" tabindex="-1"></a>                      <span class="at">color =</span> <span class="st">&quot;#E55738&quot;</span>, <span class="at">size =</span> <span class="dv">1</span>)</span>
-<span id="cb111-8"><a href="wtccc1.html#cb111-8" tabindex="-1"></a>ggplot2<span class="sc">::</span><span class="fu">ggsave</span>(<span class="fu">paste0</span>(COURSE_loc, <span class="st">&quot;/wtccc1/wtccc1-freq.png&quot;</span>), <span class="at">plot =</span> <span class="fu">last_plot</span>())</span></code></pre></div>
 <p>This will result in Figure <a href="wtccc1.html#fig:show-wtccc1-freq">10.2</a>.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:show-wtccc1-freq"></span>
-<img src="img/_gwas_wtccc/WTCCC1-FREQ.png" alt="Minor allele frequencies." width="672" />
+<img src="img/_gwas_wtccc/WTCCC1-FREQ.png" alt="Minor allele frequencies." width="85%" />
 <p class="caption">
 Figure 10.2: Minor allele frequencies.
 </p>
 </div>
 <p>There could be sample with very poor overall call rate, where for many SNPs there is no data. We will want to identify these samples and exclude them.</p>
-<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="wtccc1.html#cb112-1" tabindex="-1"></a>wtccc1_IMISS<span class="sc">$</span>callrate <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> wtccc1_IMISS<span class="sc">$</span>F_MISS</span>
-<span id="cb112-2"><a href="wtccc1.html#cb112-2" tabindex="-1"></a></span>
-<span id="cb112-3"><a href="wtccc1.html#cb112-3" tabindex="-1"></a>ggpubr<span class="sc">::</span><span class="fu">gghistogram</span>(wtccc1_IMISS, <span class="at">x =</span> <span class="st">&quot;callrate&quot;</span>,</span>
-<span id="cb112-4"><a href="wtccc1.html#cb112-4" tabindex="-1"></a>                    <span class="at">add =</span> <span class="st">&quot;mean&quot;</span>, <span class="at">add.params =</span> <span class="fu">list</span>(<span class="at">color =</span> <span class="st">&quot;#595A5C&quot;</span>, <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>, <span class="at">size =</span> <span class="dv">1</span>),</span>
-<span id="cb112-5"><a href="wtccc1.html#cb112-5" tabindex="-1"></a>                    <span class="at">rug =</span> <span class="cn">TRUE</span>, <span class="at">bins =</span> <span class="dv">50</span>,</span>
-<span id="cb112-6"><a href="wtccc1.html#cb112-6" tabindex="-1"></a>                    <span class="at">color =</span> <span class="st">&quot;#1290D9&quot;</span>, <span class="at">fill =</span> <span class="st">&quot;#1290D9&quot;</span>,</span>
-<span id="cb112-7"><a href="wtccc1.html#cb112-7" tabindex="-1"></a>                    <span class="at">xlab =</span> <span class="st">&quot;per sample call rate&quot;</span>) <span class="sc">+</span></span>
-<span id="cb112-8"><a href="wtccc1.html#cb112-8" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fl">0.95</span>, <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>,</span>
-<span id="cb112-9"><a href="wtccc1.html#cb112-9" tabindex="-1"></a>                      <span class="at">color =</span> <span class="st">&quot;#E55738&quot;</span>, <span class="at">size =</span> <span class="dv">1</span>)</span>
-<span id="cb112-10"><a href="wtccc1.html#cb112-10" tabindex="-1"></a>ggplot2<span class="sc">::</span><span class="fu">ggsave</span>(<span class="fu">paste0</span>(COURSE_loc, <span class="st">&quot;/wtccc1/wtccc1-sample-call-rate.png&quot;</span>), <span class="at">plot =</span> <span class="fu">last_plot</span>())</span></code></pre></div>
 <p>This will result in Figure <a href="wtccc1.html#fig:show-wtccc1-callratesample">10.3</a>.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:show-wtccc1-callratesample"></span>
-<img src="img/_gwas_wtccc/WTCCC1-callrate-samples.png" alt="Per sample call rate." width="672" />
+<img src="img/_gwas_wtccc/WTCCC1-callrate-samples.png" alt="Per sample call rate." width="85%" />
 <p class="caption">
 Figure 10.3: Per sample call rate.
 </p>
 </div>
 <p>Lastly, we must inspect the per SNP call rate; we need to know if there are SNPs that have no data for many samples. We will want to identify such SNPs and exclude these.</p>
-<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="wtccc1.html#cb113-1" tabindex="-1"></a>wtccc1_LMISS<span class="sc">$</span>callrate <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> wtccc1_LMISS<span class="sc">$</span>F_MISS</span>
-<span id="cb113-2"><a href="wtccc1.html#cb113-2" tabindex="-1"></a></span>
-<span id="cb113-3"><a href="wtccc1.html#cb113-3" tabindex="-1"></a>ggpubr<span class="sc">::</span><span class="fu">gghistogram</span>(wtccc1_LMISS, <span class="at">x =</span> <span class="st">&quot;callrate&quot;</span>,</span>
-<span id="cb113-4"><a href="wtccc1.html#cb113-4" tabindex="-1"></a>                    <span class="at">add =</span> <span class="st">&quot;mean&quot;</span>, <span class="at">add.params =</span> <span class="fu">list</span>(<span class="at">color =</span> <span class="st">&quot;#595A5C&quot;</span>, <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>, <span class="at">size =</span> <span class="dv">1</span>),</span>
-<span id="cb113-5"><a href="wtccc1.html#cb113-5" tabindex="-1"></a>                    <span class="at">rug =</span> <span class="cn">TRUE</span>, <span class="at">bins =</span> <span class="dv">50</span>,</span>
-<span id="cb113-6"><a href="wtccc1.html#cb113-6" tabindex="-1"></a>                    <span class="at">color =</span> <span class="st">&quot;#1290D9&quot;</span>, <span class="at">fill =</span> <span class="st">&quot;#1290D9&quot;</span>,</span>
-<span id="cb113-7"><a href="wtccc1.html#cb113-7" tabindex="-1"></a>                    <span class="at">xlab =</span> <span class="st">&quot;per SNP call rate&quot;</span>) <span class="sc">+</span></span>
-<span id="cb113-8"><a href="wtccc1.html#cb113-8" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fl">0.95</span>, <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>,</span>
-<span id="cb113-9"><a href="wtccc1.html#cb113-9" tabindex="-1"></a>                      <span class="at">color =</span> <span class="st">&quot;#E55738&quot;</span>, <span class="at">size =</span> <span class="dv">1</span>)</span>
-<span id="cb113-10"><a href="wtccc1.html#cb113-10" tabindex="-1"></a>ggplot2<span class="sc">::</span><span class="fu">ggsave</span>(<span class="fu">paste0</span>(COURSE_loc, <span class="st">&quot;/wtccc1/wtccc1-hwe.png&quot;</span>), <span class="at">plot =</span> <span class="fu">last_plot</span>())</span></code></pre></div>
 <p>This will result in Figure <a href="wtccc1.html#fig:show-wtccc1-callratesnp">10.4</a>.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:show-wtccc1-callratesnp"></span>
-<img src="img/_gwas_wtccc/WTCCC1-callrate-SNPs.png" alt="Per SNP call rate." width="672" />
+<img src="img/_gwas_wtccc/WTCCC1-callrate-SNPs.png" alt="Per SNP call rate." width="85%" />
 <p class="caption">
 Figure 10.4: Per SNP call rate.
 </p>
@@ -465,55 +474,9 @@ cp -v wtccc1/wtccc1_extrclean_1kg.fam wtccc1/wtccc1_extrclean_1kg.pedind</code><
 <p>Please note! You may have been able to make <code>EIGENSOFT</code> to work. So you may have to change “/ref_pca_wtccc1/wtccc1_extrclean_1kg.pca.evec” to “/wtccc1/wtccc1_extrclean_1kg.pca.evec” in the command below.</p>
 </blockquote>
 <p>And we should visualize the PCA results: are these individuals really all from European (UK) ancestry?</p>
-<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="wtccc1.html#cb122-1" tabindex="-1"></a>PCA_WTCCC1_1kG <span class="ot">&lt;-</span> data.table<span class="sc">::</span><span class="fu">fread</span>(<span class="fu">paste0</span>(COURSE_loc,<span class="st">&quot;/ref_pca_wtccc1/wtccc1_extrclean_1kg.pca.evec&quot;</span>), <span class="at">header =</span> <span class="cn">FALSE</span>, <span class="at">skip =</span> <span class="dv">1</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="wtccc1.html#cb123-1" tabindex="-1"></a><span class="co"># Population    Description Super population    Code    Counts</span></span>
-<span id="cb123-2"><a href="wtccc1.html#cb123-2" tabindex="-1"></a><span class="co"># ASW   African Ancestry in Southwest US                              AFR   4     #49A01D</span></span>
-<span id="cb123-3"><a href="wtccc1.html#cb123-3" tabindex="-1"></a><span class="co"># CEU   Utah residents with Northern and Western European ancestry  EUR 7     #E55738</span></span>
-<span id="cb123-4"><a href="wtccc1.html#cb123-4" tabindex="-1"></a><span class="co"># CHB   Han Chinese in Bejing, China                                  EAS   8     #9A3480</span></span>
-<span id="cb123-5"><a href="wtccc1.html#cb123-5" tabindex="-1"></a><span class="co"># CHS   Southern Han Chinese, China                                 EAS 9     #705296</span></span>
-<span id="cb123-6"><a href="wtccc1.html#cb123-6" tabindex="-1"></a><span class="co"># CLM   Colombian in Medellin, Colombia                             MR  10    #8D5B9A</span></span>
-<span id="cb123-7"><a href="wtccc1.html#cb123-7" tabindex="-1"></a><span class="co"># FIN   Finnish in Finland                                          EUR 12  #2F8BC9</span></span>
-<span id="cb123-8"><a href="wtccc1.html#cb123-8" tabindex="-1"></a><span class="co"># GBR   British in England and Scotland                             EUR 13  #1290D9</span></span>
-<span id="cb123-9"><a href="wtccc1.html#cb123-9" tabindex="-1"></a><span class="co"># IBS   Iberian populations in Spain                                  EUR   16  #1396D8</span></span>
-<span id="cb123-10"><a href="wtccc1.html#cb123-10" tabindex="-1"></a><span class="co"># JPT   Japanese in Tokyo, Japan                                      EAS   18  #D5267B</span></span>
-<span id="cb123-11"><a href="wtccc1.html#cb123-11" tabindex="-1"></a><span class="co"># LWK   Luhya in Webuye, Kenya                                      AFR 20  #78B113</span></span>
-<span id="cb123-12"><a href="wtccc1.html#cb123-12" tabindex="-1"></a><span class="co"># MXL   Mexican Ancestry in Los Angeles, California                 AMR 22  #F59D10</span></span>
-<span id="cb123-13"><a href="wtccc1.html#cb123-13" tabindex="-1"></a><span class="co"># PUR   Puerto Rican in Puerto Rico                                 AMR 25  #FBB820</span></span>
-<span id="cb123-14"><a href="wtccc1.html#cb123-14" tabindex="-1"></a><span class="co"># TSI   Toscani in Italy                                              EUR   27  #4C81BF</span></span>
-<span id="cb123-15"><a href="wtccc1.html#cb123-15" tabindex="-1"></a><span class="co"># YRI   Yoruba in Ibadan, Nigeria                                     AFR   28  #C5D220</span></span>
-<span id="cb123-16"><a href="wtccc1.html#cb123-16" tabindex="-1"></a></span>
-<span id="cb123-17"><a href="wtccc1.html#cb123-17" tabindex="-1"></a>PCA_WTCCC1_1kG<span class="sc">$</span>V12[PCA_WTCCC1_1kG<span class="sc">$</span>V12 <span class="sc">==</span> <span class="st">&quot;2&quot;</span>] <span class="ot">&lt;-</span> <span class="st">&quot;CAD&quot;</span></span>
-<span id="cb123-18"><a href="wtccc1.html#cb123-18" tabindex="-1"></a>PCA_WTCCC1_1kG<span class="sc">$</span>V12[PCA_WTCCC1_1kG<span class="sc">$</span>V12 <span class="sc">==</span> <span class="st">&quot;1&quot;</span>] <span class="ot">&lt;-</span> <span class="st">&quot;UKBS&quot;</span></span>
-<span id="cb123-19"><a href="wtccc1.html#cb123-19" tabindex="-1"></a>PCA_WTCCC1_1kG<span class="sc">$</span>V12[PCA_WTCCC1_1kG<span class="sc">$</span>V12 <span class="sc">==</span> <span class="st">&quot;4&quot;</span>] <span class="ot">&lt;-</span> <span class="st">&quot;ASW&quot;</span></span>
-<span id="cb123-20"><a href="wtccc1.html#cb123-20" tabindex="-1"></a>PCA_WTCCC1_1kG<span class="sc">$</span>V12[PCA_WTCCC1_1kG<span class="sc">$</span>V12 <span class="sc">==</span> <span class="st">&quot;7&quot;</span>] <span class="ot">&lt;-</span> <span class="st">&quot;CEU&quot;</span></span>
-<span id="cb123-21"><a href="wtccc1.html#cb123-21" tabindex="-1"></a>PCA_WTCCC1_1kG<span class="sc">$</span>V12[PCA_WTCCC1_1kG<span class="sc">$</span>V12 <span class="sc">==</span> <span class="st">&quot;8&quot;</span>] <span class="ot">&lt;-</span> <span class="st">&quot;CHB&quot;</span></span>
-<span id="cb123-22"><a href="wtccc1.html#cb123-22" tabindex="-1"></a>PCA_WTCCC1_1kG<span class="sc">$</span>V12[PCA_WTCCC1_1kG<span class="sc">$</span>V12 <span class="sc">==</span> <span class="st">&quot;9&quot;</span>] <span class="ot">&lt;-</span> <span class="st">&quot;CHS&quot;</span></span>
-<span id="cb123-23"><a href="wtccc1.html#cb123-23" tabindex="-1"></a>PCA_WTCCC1_1kG<span class="sc">$</span>V12[PCA_WTCCC1_1kG<span class="sc">$</span>V12 <span class="sc">==</span> <span class="st">&quot;10&quot;</span>] <span class="ot">&lt;-</span> <span class="st">&quot;CLM&quot;</span></span>
-<span id="cb123-24"><a href="wtccc1.html#cb123-24" tabindex="-1"></a>PCA_WTCCC1_1kG<span class="sc">$</span>V12[PCA_WTCCC1_1kG<span class="sc">$</span>V12 <span class="sc">==</span> <span class="st">&quot;12&quot;</span>] <span class="ot">&lt;-</span> <span class="st">&quot;FIN&quot;</span></span>
-<span id="cb123-25"><a href="wtccc1.html#cb123-25" tabindex="-1"></a>PCA_WTCCC1_1kG<span class="sc">$</span>V12[PCA_WTCCC1_1kG<span class="sc">$</span>V12 <span class="sc">==</span> <span class="st">&quot;13&quot;</span>] <span class="ot">&lt;-</span> <span class="st">&quot;GBR&quot;</span></span>
-<span id="cb123-26"><a href="wtccc1.html#cb123-26" tabindex="-1"></a>PCA_WTCCC1_1kG<span class="sc">$</span>V12[PCA_WTCCC1_1kG<span class="sc">$</span>V12 <span class="sc">==</span> <span class="st">&quot;16&quot;</span>] <span class="ot">&lt;-</span> <span class="st">&quot;IBS&quot;</span></span>
-<span id="cb123-27"><a href="wtccc1.html#cb123-27" tabindex="-1"></a>PCA_WTCCC1_1kG<span class="sc">$</span>V12[PCA_WTCCC1_1kG<span class="sc">$</span>V12 <span class="sc">==</span> <span class="st">&quot;18&quot;</span>] <span class="ot">&lt;-</span> <span class="st">&quot;JPT&quot;</span></span>
-<span id="cb123-28"><a href="wtccc1.html#cb123-28" tabindex="-1"></a>PCA_WTCCC1_1kG<span class="sc">$</span>V12[PCA_WTCCC1_1kG<span class="sc">$</span>V12 <span class="sc">==</span> <span class="st">&quot;20&quot;</span>] <span class="ot">&lt;-</span> <span class="st">&quot;LWK&quot;</span></span>
-<span id="cb123-29"><a href="wtccc1.html#cb123-29" tabindex="-1"></a>PCA_WTCCC1_1kG<span class="sc">$</span>V12[PCA_WTCCC1_1kG<span class="sc">$</span>V12 <span class="sc">==</span> <span class="st">&quot;22&quot;</span>] <span class="ot">&lt;-</span> <span class="st">&quot;MXL&quot;</span></span>
-<span id="cb123-30"><a href="wtccc1.html#cb123-30" tabindex="-1"></a>PCA_WTCCC1_1kG<span class="sc">$</span>V12[PCA_WTCCC1_1kG<span class="sc">$</span>V12 <span class="sc">==</span> <span class="st">&quot;25&quot;</span>] <span class="ot">&lt;-</span> <span class="st">&quot;PUR&quot;</span></span>
-<span id="cb123-31"><a href="wtccc1.html#cb123-31" tabindex="-1"></a>PCA_WTCCC1_1kG<span class="sc">$</span>V12[PCA_WTCCC1_1kG<span class="sc">$</span>V12 <span class="sc">==</span> <span class="st">&quot;27&quot;</span>] <span class="ot">&lt;-</span> <span class="st">&quot;TSI&quot;</span></span>
-<span id="cb123-32"><a href="wtccc1.html#cb123-32" tabindex="-1"></a>PCA_WTCCC1_1kG<span class="sc">$</span>V12[PCA_WTCCC1_1kG<span class="sc">$</span>V12 <span class="sc">==</span> <span class="st">&quot;28&quot;</span>] <span class="ot">&lt;-</span> <span class="st">&quot;YRI&quot;</span></span></code></pre></div>
-<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="wtccc1.html#cb124-1" tabindex="-1"></a>PCA_WTCCC1_1kGplot <span class="ot">&lt;-</span> ggpubr<span class="sc">::</span><span class="fu">ggscatter</span>(PCA_WTCCC1_1kG, <span class="at">x =</span> <span class="st">&quot;V2&quot;</span>, <span class="at">y =</span> <span class="st">&quot;V3&quot;</span>,</span>
-<span id="cb124-2"><a href="wtccc1.html#cb124-2" tabindex="-1"></a>                                        <span class="at">color =</span> <span class="st">&quot;V12&quot;</span>,</span>
-<span id="cb124-3"><a href="wtccc1.html#cb124-3" tabindex="-1"></a>                                        <span class="at">palette =</span> <span class="fu">c</span>(<span class="st">&quot;#49A01D&quot;</span>, <span class="st">&quot;#595A5C&quot;</span>, <span class="st">&quot;#E55738&quot;</span>, <span class="st">&quot;#9A3480&quot;</span>, <span class="st">&quot;#705296&quot;</span>, </span>
-<span id="cb124-4"><a href="wtccc1.html#cb124-4" tabindex="-1"></a>                                                    <span class="st">&quot;#8D5B9A&quot;</span>, <span class="st">&quot;#2F8BC9&quot;</span>, <span class="st">&quot;#1290D9&quot;</span>, <span class="st">&quot;#1396D8&quot;</span>, <span class="st">&quot;#D5267B&quot;</span>, </span>
-<span id="cb124-5"><a href="wtccc1.html#cb124-5" tabindex="-1"></a>                                                    <span class="st">&quot;#78B113&quot;</span>, <span class="st">&quot;#F59D10&quot;</span>, <span class="st">&quot;#FBB820&quot;</span>, <span class="st">&quot;#4C81BF&quot;</span>, <span class="st">&quot;#595A5C&quot;</span>, <span class="st">&quot;#C5D220&quot;</span>),</span>
-<span id="cb124-6"><a href="wtccc1.html#cb124-6" tabindex="-1"></a>                                        <span class="at">xlab =</span> <span class="st">&quot;principal component 1&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;principal component 2&quot;</span>) <span class="sc">+</span></span>
-<span id="cb124-7"><a href="wtccc1.html#cb124-7" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="fl">0.023</span>, <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>,</span>
-<span id="cb124-8"><a href="wtccc1.html#cb124-8" tabindex="-1"></a>                <span class="at">color =</span> <span class="st">&quot;#595A5C&quot;</span>, <span class="at">size =</span> <span class="dv">1</span>)</span>
-<span id="cb124-9"><a href="wtccc1.html#cb124-9" tabindex="-1"></a></span>
-<span id="cb124-10"><a href="wtccc1.html#cb124-10" tabindex="-1"></a>  ggpubr<span class="sc">::</span><span class="fu">ggpar</span>(PCA_WTCCC1_1kGplot,</span>
-<span id="cb124-11"><a href="wtccc1.html#cb124-11" tabindex="-1"></a>            <span class="at">title =</span> <span class="st">&quot;Principal Component Analysis&quot;</span>,</span>
-<span id="cb124-12"><a href="wtccc1.html#cb124-12" tabindex="-1"></a>            <span class="at">subtitle =</span> <span class="st">&quot;Reference population: 1000 G, phase 1&quot;</span>,</span>
-<span id="cb124-13"><a href="wtccc1.html#cb124-13" tabindex="-1"></a>            <span class="at">legend.title =</span> <span class="st">&quot;Populations&quot;</span>, <span class="at">legend =</span> <span class="st">&quot;right&quot;</span>)</span></code></pre></div>
 <p>We expect most individuals from the WTCCC to be 100% British, but a substantial group will have a different ancestral background as shown in the Figure <a href="wtccc1.html#fig:show-wtccc1-pca">10.5</a> you just made.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:show-wtccc1-pca"></span>
-<img src="img/_gwas_wtccc/WTCCC1-pca-1000g.png" alt="PCA - WTCCC1 vs. 1000G" width="672" />
+<img src="img/_gwas_wtccc/WTCCC1-pca-1000g.png" alt="PCA - WTCCC1 vs. 1000G" width="85%" />
 <p class="caption">
 Figure 10.5: PCA - WTCCC1 vs. 1000G
 </p>
@@ -545,73 +508,28 @@ perl scripts/mergeTables.pl --file1 wtccc1/wtccc1_qc.pca --file2 wtccc1/wtccc1.c
 <p>Exciting, now we are ready to perform a GWAS on CAD in WTCCC1.</p>
 <pre><code>plink --bfile wtccc1/wtccc1_qc --logistic sex --covar wtccc1/wtccc1_qc.covar_pca --out wtccc1/wtccc1_qc_log_covar_pca</code></pre>
 <p>After you ran the association analysis, you’re ready to process the data and take a first look at the results. First, we prepare the raw output.</p>
-<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="wtccc1.html#cb130-1" tabindex="-1"></a>wtccc1_assoc <span class="ot">&lt;-</span> data.table<span class="sc">::</span><span class="fu">fread</span>(<span class="fu">paste0</span>(COURSE_loc, <span class="st">&quot;/wtccc1/wtccc1_qc_log_covar_pca.assoc.logistic&quot;</span>))</span>
-<span id="cb130-2"><a href="wtccc1.html#cb130-2" tabindex="-1"></a></span>
-<span id="cb130-3"><a href="wtccc1.html#cb130-3" tabindex="-1"></a><span class="fu">dim</span>(wtccc1_assoc)</span>
-<span id="cb130-4"><a href="wtccc1.html#cb130-4" tabindex="-1"></a></span>
-<span id="cb130-5"><a href="wtccc1.html#cb130-5" tabindex="-1"></a>wtccc1_assoc[<span class="dv">1</span><span class="sc">:</span><span class="dv">9</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">9</span>]</span>
-<span id="cb130-6"><a href="wtccc1.html#cb130-6" tabindex="-1"></a>wtccc1_assoc_sub <span class="ot">&lt;-</span> <span class="fu">subset</span>(wtccc1_assoc, TEST <span class="sc">==</span> <span class="st">&quot;ADD&quot;</span>)</span>
-<span id="cb130-7"><a href="wtccc1.html#cb130-7" tabindex="-1"></a>wtccc1_assoc_sub<span class="sc">$</span>TEST <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
-<span id="cb130-8"><a href="wtccc1.html#cb130-8" tabindex="-1"></a></span>
-<span id="cb130-9"><a href="wtccc1.html#cb130-9" tabindex="-1"></a>temp <span class="ot">&lt;-</span> <span class="fu">subset</span>(wtccc1_FRQ, <span class="at">select =</span> <span class="fu">c</span>(<span class="st">&quot;SNP&quot;</span>, <span class="st">&quot;A2&quot;</span>, <span class="st">&quot;MAF&quot;</span>, <span class="st">&quot;NCHROBS&quot;</span>))</span>
-<span id="cb130-10"><a href="wtccc1.html#cb130-10" tabindex="-1"></a></span>
-<span id="cb130-11"><a href="wtccc1.html#cb130-11" tabindex="-1"></a>wtccc1_assoc_subfrq <span class="ot">&lt;-</span> <span class="fu">merge</span>(wtccc1_assoc_sub, temp, <span class="at">by =</span> <span class="st">&quot;SNP&quot;</span>)</span>
-<span id="cb130-12"><a href="wtccc1.html#cb130-12" tabindex="-1"></a></span>
-<span id="cb130-13"><a href="wtccc1.html#cb130-13" tabindex="-1"></a>temp <span class="ot">&lt;-</span> <span class="fu">subset</span>(wtccc1_LMISS, <span class="at">select =</span> <span class="fu">c</span>(<span class="st">&quot;SNP&quot;</span>, <span class="st">&quot;callrate&quot;</span>))</span>
-<span id="cb130-14"><a href="wtccc1.html#cb130-14" tabindex="-1"></a></span>
-<span id="cb130-15"><a href="wtccc1.html#cb130-15" tabindex="-1"></a>wtccc1_assoc_subfrqlmiss <span class="ot">&lt;-</span> <span class="fu">merge</span>(wtccc1_assoc_subfrq, temp, <span class="at">by =</span> <span class="st">&quot;SNP&quot;</span>)</span>
-<span id="cb130-16"><a href="wtccc1.html#cb130-16" tabindex="-1"></a><span class="fu">head</span>(wtccc1_assoc_subfrqlmiss)</span>
-<span id="cb130-17"><a href="wtccc1.html#cb130-17" tabindex="-1"></a><span class="co"># Remember:</span></span>
-<span id="cb130-18"><a href="wtccc1.html#cb130-18" tabindex="-1"></a><span class="co"># - that z = beta/se</span></span>
-<span id="cb130-19"><a href="wtccc1.html#cb130-19" tabindex="-1"></a><span class="co"># - beta = log(OR), because log is the natural log in r</span></span>
-<span id="cb130-20"><a href="wtccc1.html#cb130-20" tabindex="-1"></a></span>
-<span id="cb130-21"><a href="wtccc1.html#cb130-21" tabindex="-1"></a>wtccc1_assoc_subfrqlmiss<span class="sc">$</span>BETA <span class="ot">=</span> <span class="fu">log</span>(wtccc1_assoc_subfrqlmiss<span class="sc">$</span>OR)</span>
-<span id="cb130-22"><a href="wtccc1.html#cb130-22" tabindex="-1"></a>wtccc1_assoc_subfrqlmiss<span class="sc">$</span>SE <span class="ot">=</span> wtccc1_assoc_subfrqlmiss<span class="sc">$</span>BETA<span class="sc">/</span>wtccc1_assoc_subfrqlmiss<span class="sc">$</span>STAT</span>
-<span id="cb130-23"><a href="wtccc1.html#cb130-23" tabindex="-1"></a></span>
-<span id="cb130-24"><a href="wtccc1.html#cb130-24" tabindex="-1"></a></span>
-<span id="cb130-25"><a href="wtccc1.html#cb130-25" tabindex="-1"></a>wtccc1_assoc_subfrqlmiss_tib <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">as_tibble</span>(wtccc1_assoc_subfrqlmiss)</span>
-<span id="cb130-26"><a href="wtccc1.html#cb130-26" tabindex="-1"></a></span>
-<span id="cb130-27"><a href="wtccc1.html#cb130-27" tabindex="-1"></a>col_order <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;SNP&quot;</span>, <span class="st">&quot;CHR&quot;</span>, <span class="st">&quot;BP&quot;</span>,</span>
-<span id="cb130-28"><a href="wtccc1.html#cb130-28" tabindex="-1"></a>               <span class="st">&quot;A1&quot;</span>, <span class="st">&quot;A2&quot;</span>, <span class="st">&quot;MAF&quot;</span>, <span class="st">&quot;callrate&quot;</span>, <span class="st">&quot;NMISS&quot;</span>, <span class="st">&quot;NCHROBS&quot;</span>,</span>
-<span id="cb130-29"><a href="wtccc1.html#cb130-29" tabindex="-1"></a>               <span class="st">&quot;BETA&quot;</span>, <span class="st">&quot;SE&quot;</span>, <span class="st">&quot;OR&quot;</span>, <span class="st">&quot;STAT&quot;</span>, <span class="st">&quot;P&quot;</span>)</span>
-<span id="cb130-30"><a href="wtccc1.html#cb130-30" tabindex="-1"></a>wtccc1_assoc_compl <span class="ot">&lt;-</span> wtccc1_assoc_subfrqlmiss_tib[, col_order]</span>
-<span id="cb130-31"><a href="wtccc1.html#cb130-31" tabindex="-1"></a></span>
-<span id="cb130-32"><a href="wtccc1.html#cb130-32" tabindex="-1"></a><span class="fu">dim</span>(wtccc1_assoc_compl)</span>
-<span id="cb130-33"><a href="wtccc1.html#cb130-33" tabindex="-1"></a></span>
-<span id="cb130-34"><a href="wtccc1.html#cb130-34" tabindex="-1"></a><span class="fu">head</span>(wtccc1_assoc_compl)</span>
-<span id="cb130-35"><a href="wtccc1.html#cb130-35" tabindex="-1"></a></span>
-<span id="cb130-36"><a href="wtccc1.html#cb130-36" tabindex="-1"></a>wtccc1_assoc_complsub <span class="ot">&lt;-</span> <span class="fu">subset</span>(wtccc1_assoc_compl, <span class="at">select =</span> <span class="fu">c</span>(<span class="st">&quot;SNP&quot;</span>, <span class="st">&quot;CHR&quot;</span>, <span class="st">&quot;BP&quot;</span>, <span class="st">&quot;P&quot;</span>))</span></code></pre></div>
 <p>You could visualize these results with the code below.</p>
-<div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb131-1"><a href="wtccc1.html#cb131-1" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;CMplot&quot;</span>)</span>
-<span id="cb131-2"><a href="wtccc1.html#cb131-2" tabindex="-1"></a></span>
-<span id="cb131-3"><a href="wtccc1.html#cb131-3" tabindex="-1"></a><span class="fu">CMplot</span>(wtccc1_assoc_complsub,</span>
-<span id="cb131-4"><a href="wtccc1.html#cb131-4" tabindex="-1"></a>       <span class="at">plot.type =</span> <span class="st">&quot;b&quot;</span>, <span class="at">LOG10 =</span> <span class="cn">TRUE</span>, <span class="at">ylim =</span> <span class="cn">NULL</span>,</span>
-<span id="cb131-5"><a href="wtccc1.html#cb131-5" tabindex="-1"></a>       <span class="at">threshold =</span> <span class="fu">c</span>(<span class="fl">1e-6</span>,<span class="fl">1e-4</span>), <span class="at">threshold.lty =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>), <span class="at">threshold.lwd =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>), <span class="at">threshold.col =</span> <span class="fu">c</span>(<span class="st">&quot;black&quot;</span>, <span class="st">&quot;grey&quot;</span>),</span>
-<span id="cb131-6"><a href="wtccc1.html#cb131-6" tabindex="-1"></a>       <span class="at">amplify =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb131-7"><a href="wtccc1.html#cb131-7" tabindex="-1"></a>       <span class="at">bin.size =</span> <span class="fl">1e6</span>, <span class="at">chr.den.col =</span> <span class="fu">c</span>(<span class="st">&quot;darkgreen&quot;</span>, <span class="st">&quot;yellow&quot;</span>, <span class="st">&quot;red&quot;</span>),</span>
-<span id="cb131-8"><a href="wtccc1.html#cb131-8" tabindex="-1"></a>       <span class="at">signal.col =</span> <span class="fu">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;green&quot;</span>), <span class="at">signal.cex =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>), <span class="at">signal.pch =</span> <span class="fu">c</span>(<span class="dv">19</span>,<span class="dv">19</span>),</span>
-<span id="cb131-9"><a href="wtccc1.html#cb131-9" tabindex="-1"></a>       <span class="at">file =</span> <span class="st">&quot;jpg&quot;</span>, <span class="at">memo =</span> <span class="st">&quot;&quot;</span>, <span class="at">dpi =</span> <span class="dv">300</span>, <span class="at">file.output =</span> <span class="cn">FALSE</span>, <span class="at">verbose =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 This would lead to the following graphs.
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:show-wtccc1-graphs-density"></span>
-<img src="img/_gwas_wtccc/WTCCC1ResultsManhattan-density.png" alt="SNP density of the association results." width="672" />
+<img src="img/_gwas_wtccc/WTCCC1ResultsManhattan-density.png" alt="SNP density of the association results." width="85%" />
 <p class="caption">
 Figure 10.6: SNP density of the association results.
 </p>
 </div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:show-wtccc1-graphs-qq"></span>
-<img src="img/_gwas_wtccc/WTCCC1ResultsManhattan-qq.png" alt="A QQ plot including a 95% confidence interval (blue area) and genome-wide significant hits (red)." width="672" />
+<img src="img/_gwas_wtccc/WTCCC1ResultsManhattan-qq.png" alt="A QQ plot including a 95% confidence interval (blue area) and genome-wide significant hits (red)." width="85%" />
 <p class="caption">
 Figure 10.7: A QQ plot including a 95% confidence interval (blue area) and genome-wide significant hits (red).
 </p>
 </div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:show-wtccc1-graphs-manhattan"></span>
-<img src="img/_gwas_wtccc/WTCCC1ResultsManhattan-manhattan.png" alt="A regular manhattan plot. Colored by chromosome, suggestive hits are green, genome-wide hits are red. The bottom graph shows the per-chromosome SNP density." width="672" />
+<img src="img/_gwas_wtccc/WTCCC1ResultsManhattan-manhattan.png" alt="A regular manhattan plot. Colored by chromosome, suggestive hits are green, genome-wide hits are red. The bottom graph shows the per-chromosome SNP density." width="85%" />
 <p class="caption">
 Figure 10.8: A regular manhattan plot. Colored by chromosome, suggestive hits are green, genome-wide hits are red. The bottom graph shows the per-chromosome SNP density.
 </p>
 </div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:show-wtccc1-graphs-circular"></span>
-<img src="img/_gwas_wtccc/WTCCC1ResultsManhattan-circular.png" alt="A circular manhattan." width="672" />
+<img src="img/_gwas_wtccc/WTCCC1ResultsManhattan-circular.png" alt="A circular manhattan." width="85%" />
 <p class="caption">
 Figure 10.9: A circular manhattan.
 </p>
@@ -622,7 +540,11 @@ Figure 10.9: A circular manhattan.
 <p>You reached an important milestone.</p>
 <p><strong>You recreated the work by the whole WTCCC1-team that took them years in just one afternoon!</strong></p>
 <p>Wow. Take a pause. And realize what you’ve done.</p>
-<p>Back then there wasn’t much on analyses <em>after</em> a GWAS, nowadays there are many post-GWAS analyses methods. We will cover them in the next Chapter <a href="post-gwas.html#post-gwas">11</a>.</p>
+<p>Back then there wasn’t much on analyses <em>after</em> a GWAS, nowadays there are many post-GWAS analyses methods. We will cover them in the next Chapter @ref(post_gwas).</p>
+<!-- ```{js, echo = FALSE} -->
+<!-- title=document.getElementById('header'); -->
+<!-- title.innerHTML = '<img src="img/_headers/interactive_plot.png" alt="WTCCC1: coronary artery disease">' + title.innerHTML -->
+<!-- ``` -->
 
 </div>
 </div>
@@ -631,8 +553,8 @@ Figure 10.9: A circular manhattan.
           </div>
         </div>
       </div>
-<a href="wtccc1-intro.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="post-gwas.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="wtccc1_intro.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="post_gwas.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -664,8 +586,8 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/swvanderlaan/A_Practical_Primer_in_Human_Complex_Genetics04_2_wtccc1.Rmd",
-"text": "Edit"
+"link": null,
+"text": null
 },
 "history": {
 "link": null,

@@ -1,5 +1,21 @@
 # Sample QC {#gwas-basics-sample-qc}
-![](./img/_gwas_dummy/gwas_sample_qc.png){width=70%}
+<!-- ![](./img/_gwas_dummy/gwas_sample_qc.png){width=70%} -->
+```{r load-functions-packages, message = FALSE, warning = FALSE, echo = FALSE, eval = TRUE, include = FALSE}
+# source("scripts/functions.R")
+# source("scripts/colors.R")
+# source("scripts/packages.R")
+
+library(rmarkdown)
+library(bookdown)
+library(flextable)
+library(knitr)
+library(kableExtra)
+library(webshot)
+library(webshot2)
+library(formatR)
+library(tinytex)
+```
+
 ```{r include = FALSE}
 if(!knitr:::is_html_output())
 {
@@ -9,13 +25,17 @@ if(!knitr:::is_html_output())
 }
 ```
 
-```{r getting_started, message = FALSE, warning = FALSE, echo = FALSE, eval = TRUE}
-source("scripts/functions.R")
-source("scripts/colors.R")
-source("scripts/packages.R")
+```{r getting_started, message = FALSE, warning = FALSE, echo = FALSE, eval = TRUE, include = FALSE}
+# general setting to apply to all chunks - can be overrode per chunk.
+opts_chunk$set(echo = FALSE, 
+               warning = FALSE, 
+               message = FALSE, 
+               out.width = "85%", 
+               fig.align = "center", 
+               tidy = FALSE)
 ```
 
-Let's start with the per-sample quality control. 
+Let's start with the per-sample quality control. The goal here is to identify all the samples that for some reason (mentioned in the previous section) should be excluded. 
 
 ## Sex
 We need to identify of individuals with discordant sex information comparing phenotypic and genotypic data. Let's calculate the mean homozygosity rate across X-chromosome markers for each individual in the study.
@@ -60,18 +80,28 @@ sexissues <- data.table::fread(paste0(COURSE_loc,"/dummy_project/rawdata.sexprob
 sexissues <- data.table::fread("data/dummy_project/rawdata.sexprobs.txt")
 ```
 
-```{r sex-issues, tidy = FALSE, echo = TRUE, eval = FALSE}
-library("knitr")
-knitr::kable(
-  sexissues, caption = 'Sex issues',
-  booktabs = TRUE
+```{r tab.id = "sexissues", tab.cap = "Sex issues.", eval = TRUE}
+library("flextable")
+ft <- flextable(
+  sexissues,
+  # col_keys = names(data),
+  # cwidth = 0.75,
+  # cheight = 0.25,
+  # defaults = list(),
+  theme_fun = theme_booktabs
 )
+# 
+# set_table_properties(ft, width = 1, layout = "autofit")
+# 
+# fit_to_width(ft, max_width = 50)
+# 
+autofit(ft, add_w = 0, add_h = 0)
 ```
 
 
 When the homozygosity rate (_F_) is more than 0.2, but less than 0.8, the genotype data are inconclusive regarding the sex of an individual and these are marked in column _SNPSEX_ with a 0, and the column _STATUS_ "PROBLEM".
 
-Report the IDs of individuals with discordant sex information (Table \@ref(tab:sex-issues)) to those who conducted sex phenotyping. In situations in which discrepancy cannot be resolved, add the family ID (FID) and individual ID (IID) of the samples to a file named `fail-sexcheck-qc.txt` (one individual per line, tab delimited).
+Report the IDs of individuals with discordant sex information (Table \@ref(tab:sexissues)) to those who conducted sex phenotyping. In situations in which discrepancy cannot be resolved, add the family ID (FID) and individual ID (IID) of the samples to a file named `fail-sexcheck-qc.txt` (one individual per line, tab delimited).
 
 ```
 grep "PROBLEM" dummy_project/rawdata.sexcheck | awk '{ print $1, $2}'  > dummy_project/fail-sexcheck-qc.txt
@@ -84,7 +114,7 @@ Let's get an overview of the missing data per sample and per SNP.
 plink --bfile dummy_project/rawdata --missing --out dummy_project/rawdata
 ```
 
-This produces two files, `rawdata/rawdata.imiss` and `rawdata/rawdata.lmiss`. In the .imiss file the _N_MISS_ column denotes the number of missing SNPs, and the _F_MISS_ column denotes the proportion of missing SNPs per individual.
+This produces two files, `rawdata/rawdata.imiss` and `rawdata/rawdata.lmiss`. In the `.imiss`-file the _N_MISS_ column denotes the number of missing SNPs, and the _F_MISS_ column denotes the proportion of missing SNPs per individual.
 
 
 ```{r load-sample-callrate, eval = FALSE}
@@ -107,9 +137,9 @@ ggplot2::ggsave(paste0(COURSE_loc, "/dummy_project/gwas-qc-sample-call-rate.png"
        plot = last_plot())
 ```
 
-The grey dashed line in Figure \@ref(fig:show-sample-callrate) indicates the mean call rate, while the red dashed line indicates the threshold we had determined above.
+The grey dashed line in Figure \@ref(fig:showsamplecallrate) indicates the mean call rate, while the red dashed line indicates the threshold we had determined above.
 
-```{r show-sample-callrate, fig.align='center', fig.cap='Per sample call rate.', fig.show = TRUE, echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE}
+```{r showsamplecallrate, fig.align='center', fig.cap='Per sample call rate.', fig.show = TRUE, eval=TRUE}
 knitr::include_graphics("img/_gwas_dummy/gwas-qc-sample-callrate.png")
 ```
 
@@ -191,7 +221,7 @@ plink --bfile dummy_project/rawdata.clean.ultraclean --het --out dummy_project/r
 
 This creates the file `dummy_project/rawdata.clean.ultraclean.het`, in which the third column denotes the observed number of homozygous genotypes, O(Hom), and the fifth column denotes the number of nonmissing genotypes, N(NM), per individual. We can now calculate the observed heterozygosity rate per individual using the formula (N(NM) - O(Hom))/N(NM).
 
-Often there is a correlation between heterozygosity rate and missing data. Thus, we should plot the observed heterozygosity rate per individual on the x-axis and the proportion of missing SNP, that is the 'SNP call rate', per individuals on the y-axis (Figure \@ref(fig:show-heterozygosity)).
+Often there is a correlation between heterozygosity rate and missing data. Thus, we should plot the observed heterozygosity rate per individual on the x-axis and the proportion of missing SNP, that is the 'SNP call rate', per individuals on the y-axis (Figure \@ref(fig:showheterozygosity)).
 
 ```{r load-heterozygosity, eval = FALSE, warning = TRUE}
 raw_HET <- data.table::fread(paste0(COURSE_loc, "/dummy_project/rawdata.clean.ultraclean.het"))
@@ -244,11 +274,11 @@ abline(v = prop_miss, col = "#E55738", lty = 2)
 <!--                 color = "#E55738", size = 1) -->
 <!-- ``` -->
 
-```{r show-heterozygosity, fig.align='center', fig.cap='Heterozygosity as a function of SNP call rate.', fig.show = TRUE, echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE}
+```{r showheterozygosity, fig.align='center', fig.cap='Heterozygosity as a function of SNP call rate.', fig.show = TRUE, eval=TRUE}
 knitr::include_graphics("img/_gwas_dummy/show-heterozygosity.png")
 ```
 
-Examine the plot (Figure \@ref(fig:show-heterozygosity)) to decide reasonable thresholds at which to exclude individuals based on elevated missing or extreme heterozygosity. We chose to exclude all individuals with a genotype failure rate >= 0.03 (vertical dashed line) and/or a heterozygosity rate ± 3 s.d. from the mean (horizontal dashed lines). Add the FID and IID of the samples failing this QC to the file named `fail-imisshet-qc.txt`.
+Examine the plot (Figure \@ref(fig:showheterozygosity)) to decide reasonable thresholds at which to exclude individuals based on elevated missing or extreme heterozygosity. We chose to exclude all individuals with a genotype failure rate >= 0.03 (vertical dashed line) and/or a heterozygosity rate ± 3 s.d. from the mean (horizontal dashed lines). Add the FID and IID of the samples failing this QC to the file named `fail-imisshet-qc.txt`.
 
 > How would you create this file?
 
@@ -258,37 +288,56 @@ raw_IMISSHETsub = subset(raw_IMISSHET, logF_MISS > prop_miss | (meanHet < lower_
 data.table::fwrite(raw_IMISSHETsub, paste0(COURSE_loc,"/dummy_project/fail-raw_IMISSHETsub.txt"), sep =" ")
 ```
 
-If all is right, you'd have something like Table \@ref(tab:failed-callrate-het).
+If all is right, you'd have something like Table \@ref(tab:failedcallratehet).
 
 ```{r failed-callrate-het-book, echo = FALSE, eval = TRUE}
 raw_IMISSHETsub <- data.table::fread("data/dummy_project/fail-raw_IMISSHETsub.txt")
 ```
 
-```{r failed-callrate-het, tidy = FALSE, echo = TRUE, eval = FALSE}
-library("knitr")
-knitr::kable(
-  raw_IMISSHETsub, caption = 'Failed samples due to sample call rates and heterozygosity rate',
-  booktabs = TRUE
+```{r tab.id = "failedcallratehet", tab.cap = "Failed samples due to sample call rates and heterozygosity rate.", eval = TRUE}
+library("flextable")
+ft <- flextable(
+  raw_IMISSHETsub,
+  # col_keys = names(data),
+  # cwidth = 0.75,
+  # cheight = 0.25,
+  # defaults = list(),
+  theme_fun = theme_booktabs
 )
+# 
+# set_table_properties(ft, width = 1, layout = "autofit")
+# 
+# fit_to_width(ft, max_width = 50)
+# 
+autofit(ft, add_w = 0, add_h = 0)
 ```
 
 
 ## Relatedness
 <!-- https://rpubs.com/EAVWing/symbols -->
-We calculate Identity-by-Descent (IBS) to identify duplicated and related samples. In Table \@ref(tab:show-relatedness) we show how much DNA is shared between individuals depending on their relation[@staples2014]. IBS is measured by calculating pi-hat ($\widehat{\pi}$), which is in essence the proportion of the DNA that a pair of samples share. To calculate this, we needed this ultraclean dataset, without low-quality SNPs and without high-LD regions. 
+We calculate Identity-by-Descent (IBS) to identify duplicated and related samples. In Table \@ref(tab:showrelatedness) we show how much DNA is shared between individuals depending on their relation[@staples2014]. IBS is measured by calculating pi-hat ($\widehat{\pi}$), which is in essence the proportion of the DNA that a pair of samples share. To calculate this, we needed this ultraclean dataset, without low-quality SNPs and without high-LD regions. 
 
 ```{r load-relatedness, eval = TRUE, echo = FALSE}
 relatedness <- openxlsx::read.xlsx("information.xlsx", sheet = "Relatedness")
 ```
 
 
-```{r show-relatedness, tidy = FALSE, eval = TRUE, echo = FALSE}
-knitr::kable(
-  relatedness, 
-  caption = 'Familial relations and % DNA shared.',
-  # align = ,
-  booktabs = FALSE
+```{r, tab.id='showrelatedness', tab.cap='Familial relations and % DNA shared.', eval = TRUE}
+library("flextable")
+ft <- flextable(
+  relatedness,
+  # col_keys = names(data),
+  # cwidth = 0.75,
+  # cheight = 0.25,
+  # defaults = list(),
+  theme_fun = theme_booktabs
 )
+# 
+# set_table_properties(ft, width = 1, layout = "autofit")
+# 
+# fit_to_width(ft, max_width = 50)
+# 
+autofit(ft, add_w = 0, add_h = 0)
 ```
 
 `PLINK` calculates the inter-individual relatedness using the `--genome` function.
@@ -297,7 +346,7 @@ knitr::kable(
 plink --bfile dummy_project/rawdata.clean.ultraclean --genome --out dummy_project/rawdata.clean.ultraclean
 ```
 
-We can now identify all pairs of individuals with an IBD > 0.185. The code looks at the individual call rates stored in rawdata.imiss and outputs the IDs of the individual with the lowest call rate to ‘fail-IBD-QC.txt’ for subsequent removal (Table \@ref(tab:show-ibdcallissues)).
+We can now identify all pairs of individuals with an IBD > 0.185. The code looks at the individual call rates stored in `rawdata.imiss` and outputs the IDs of the individual with the lowest call rate to ‘fail-IBD-QC.txt’ for subsequent removal (Table \@ref(tab:showibdcallissues)).
 
 First, move to the `dummy_project` directory.
 
@@ -323,15 +372,26 @@ ibdcallissues <- data.table::fread(paste0(COURSE_loc,"/dummy_project/fail-IBD-QC
 
 ```{r ibdcallissues-book, echo = FALSE, eval = TRUE}
 ibdcallissues <- data.table::fread("data/dummy_project/fail-IBD-QC.txt")
+names(ibdcallissues)[names(ibdcallissues) == "V1"] <- "FID"
+names(ibdcallissues)[names(ibdcallissues) == "V2"] <- "IID"
 ```
 
-```{r show-ibdcallissues, tidy = FALSE, eval = FALSE, echo = TRUE}
-knitr::kable(
-  ibdcallissues, 
-  caption = 'Failed IBD and callrate.',
-  # align = ,
-  booktabs = FALSE
+```{r tab.id='showibdcallissues', tab.cap='Failed IBD and callrate.', eval = TRUE}
+library("flextable")
+ft <- flextable(
+  ibdcallissues,
+  # col_keys = names(data),
+  # cwidth = 0.75,
+  # cheight = 0.25,
+  # defaults = list(),
+  theme_fun = theme_booktabs
 )
+# 
+# set_table_properties(ft, width = 1, layout = "autofit")
+# 
+# fit_to_width(ft, max_width = 50)
+# 
+autofit(ft, add_w = 0, add_h = 0)
 ```
 
 ## Ancestral background
@@ -443,6 +503,7 @@ After removing those pesky multi-allelic variants, we should be able to merge th
 - extract the pruned SNP-set (remember?), `--extract rawdata/raw-GWA-data.prune.i`, 
 - exclude non-autosomal variants, `--autosome`, 
 - and only keeping high-quality data, `--maf 0.10 --geno 0.10 --hwe 1e-3`, 
+<!-- THIS CHUNK COULD BE USED TO REMOVE DUPLICATES, BUT IT DOESN'T WORK IN PLINK 1.9 -->
 <!-- - remove non-founders from the 1000G data, `--keep-founders`, -->
 <!-- - remove any duplicate variants based on SNPID, `--rm-dup force-first` -->
 <!-- - and list any duplicate variants based on chromosomal base pair position, `--list-duplicate-vars` -->
@@ -456,6 +517,7 @@ plink --bfile dummy_project/rawdata_1kg_phase1_raw_no_atcg_bi \
 --make-bed --out dummy_project/rawdata.1kg_phase1.clean
 ```
 
+<!-- THIS CHUNK COULD BE USED TO REMOVE DUPLICATES, BUT IT DOESN'T WORK IN PLINK 1.9 -->
 <!-- ``` -->
 <!-- plink --bfile dummy_project/rawdata_1kg_phase1_raw_no_atcg_bi \ -->
 <!-- --bmerge ref_1kg_phase1_all/1kg_phase1_raw_no_atcg \ -->
@@ -547,8 +609,6 @@ plink --bfile dummy_project/rawdata.1kg_phase1.clean --pca --out dummy_project/r
 
 If all is peachy, you just succesfully ran PCA against 1000G phase 1. Using `--pca` we have calculated principal components (PCs), 20 in total by default, and we can now start plotting them. Let's create a scatter diagram of the first two principal components, including all individuals in the file `rawdata.1kg_phase1.clean.eigenvec` (the first and second principal components are columns 3 and 4, respectively). We need to collect some per-sample information to color the points according to sample origin. 
 
-> Note: A R script for creating this plot (`scripts/plot-pca-results.Rscript`) is also provided (although any standard graphing software can be used), but below you'll find some fancy codes too.
-
 First we collect the results from the `--pca`, the dummy data phenotype information, and the reference population information.
 
 ```{r load-pca-1kg-part1, eval = FALSE}
@@ -637,22 +697,22 @@ PCA_1kGplot <- ggpubr::ggscatter(PCA_1kG,
                                  x = "PC1", 
                                  y = "PC2",
                                  color = "Population", 
-                                 palette = c("#49A01D", # ASW 
-                                             "#595A5C", # Case 
-                                             "#E55738", # CEU 
-                                             "#9A3480", # CHB 
-                                             "#705296", # CHS 
-                                             "#8D5B9A", # CLM 
-                                             "#A2A3A4", # Control 
-                                             "#2F8BC9", # FIN 
-                                             "#1290D9", # GBR 
-                                             "#1396D8", # IBS 
-                                             "#D5267B", # JPT 
-                                             "#78B113", # LWK 
-                                             "#F59D10", # MXL 
-                                             "#FBB820", # PUR 
-                                             "#4C81BF", # TSI 
-                                             "#C5D220"), # YRI
+                                 palette = c("#49A01D", 
+                                             "#595A5C", 
+                                             "#E55738", 
+                                             "#9A3480", 
+                                             "#705296", 
+                                             "#8D5B9A", 
+                                             "#A2A3A4", 
+                                             "#2F8BC9", 
+                                             "#1290D9", 
+                                             "#1396D8", 
+                                             "#D5267B", 
+                                             "#78B113", 
+                                             "#F59D10", 
+                                             "#FBB820", 
+                                             "#4C81BF", 
+                                             "#C5D220"),
                                  xlab = "principal component 1", ylab = "principal component 2") +
   ggplot2::geom_vline(xintercept = 0.0023, linetype = "dashed",
                       color = "#E55738", size = 1)
@@ -667,7 +727,7 @@ rm(p2)
 ```
 
 
-Derive PC1 and PC2 thresholds so that only individuals who match the given ancestral population are included. For populations of European descent, this will be either the CEU or TSI 1000G individuals (Figure \@ref(fig:show-pca-1kg)). Here, we chose to exclude all individuals with a first principal component score less than `0.0023`. 
+Derive PC1 and PC2 thresholds so that only individuals who match the given ancestral population are included. For populations of European descent, this will be either the CEU or TSI 1000G individuals (Figure \@ref(fig:showpca1kg)). Here, we chose to exclude all individuals with a first principal component score less than `0.0023`. 
 
 Write the FID and IID of these individuals to a file called `fail-ancestry-QC.txt`.
 
@@ -678,7 +738,7 @@ awk '$3 < 0.0023' | awk '{ print $1, $2 }' > dummy_project/fail-ancestry-QC.txt
 
 Choosing which thresholds to apply (and thus which individuals to remove) is not a straightforward process. The key is to remove those individuals with greatly divergent ancestry, as these samples introduce the most bias to the study. Identification of more fine-scale ancestry can be conducted by using less divergent reference samples (_e.g._, within Europe, stratification could be identified using the CEU, TSI (Italian), GBR (British), FIN (Finnish) and IBS (Iberian) samples from the 1,000 Genomes Project (http://www.1000genomes.org/)). Robust identification of fine-scale population structure often requires the construction of many (2–10) principal components.
 
-```{r show-pca-1000g, fig.align='center', fig.cap='PCA - Your data vs. 1000g.', fig.show = TRUE, echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE}
+```{r showpca1kg, fig.align='center', fig.cap='PCA - Your data vs. 1000g.', fig.show = TRUE, eval=TRUE}
 knitr::include_graphics("img/_gwas_dummy/gwas-qc-pca-1000g.png")
 ```
 
@@ -697,9 +757,13 @@ This new file should now contain a list of unique individuals failing the previo
 plink --bfile dummy_project/rawdata --remove dummy_project/fail-qc-inds.txt --make-bed --out dummy_project/clean_inds_data
 ```
 
-> How many variants and samples are left? How many cases and how many controls did you loose? 
+> Question: How many variants and samples are left? How many cases and how many controls did you loose? 
 
 ## The next step
 
 Now that you filtered samples, we should turn our attention to step 2 of the QC for GWAS: identify SNPs of poor quality in Chapter \@ref(gwas_basics_snp_qc).
 
+<!-- ```{js, echo = FALSE} -->
+<!-- title=document.getElementById('header'); -->
+<!-- title.innerHTML = '<img src="img/_headers/gwas_sample_qc.png" alt="GWAS basics: Sample QC">' + title.innerHTML -->
+<!-- ``` -->

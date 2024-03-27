@@ -1,10 +1,29 @@
 # Two Sample Mendelian Randomisation {#mr_twosamplemr}
-```{r mr_twosamplemr, message = FALSE, warning = FALSE, echo = FALSE, eval = TRUE}
+<!-- ![](./img/_headers/banner_man_standing_dna.png){width=100%} -->
+```{r load-functions-packages, message = FALSE, warning = FALSE, echo = FALSE, eval = TRUE, include = FALSE}
+source("scripts/functions.R")
+source("scripts/colors.R")
+source("scripts/packages.R")
 COURSE_loc = "~/Desktop/practical"
-# COURSE_loc = "/Users/swvanderlaan/git/swvanderlaan/A_primer_in_Human_Cardiovascular_Genetics"
-source(paste0(COURSE_loc, "/scripts/functions.R"))
-source(paste0(COURSE_loc, "/scripts/colors.R"))
-source(paste0(COURSE_loc, "/scripts/packages.R"))
+```
+
+```{r include = FALSE}
+if(!knitr:::is_html_output())
+{
+  options("width"=56)
+  knitr::opts_chunk$set(tidy.opts=list(width.cutoff=56, indent = 2), tidy = TRUE)
+  knitr::opts_chunk$set(fig.pos = 'H')
+}
+```
+
+```{r getting_started, message = FALSE, warning = FALSE, echo = FALSE, eval = TRUE, include = FALSE}
+# general setting to apply to all chunks - can be overrode per chunk.
+opts_chunk$set(echo = FALSE, 
+               warning = FALSE, 
+               message = FALSE, 
+               out.width = "85%", 
+               fig.align = "center", 
+               tidy = FALSE)
 ```
 So you took the hard way. You want to get your hands dirty yourself. Your choice. 
 
@@ -18,21 +37,6 @@ Briefly, the workflow of a Two-Sample MR is as follows (see also diagram below):
 4. Perform MR analysis, sensitivity analyses, create plots, compile reports
 
 ![](img/twosamplemr.png)
-
-You need R 3.5.0 or higher to be able to install the packages you need.
-
-```
-install.packages("remotes")
-remotes::install_github("MRCIEU/TwoSampleMR") # to run TwoSampleMR
-library("TwoSampleMR")
-```
-
-<!-- ``` -->
-<!-- devtools::install_github("MRCIEU/MRInstruments") -->
-<!-- library(MRInstruments) -->
-
-<!-- ``` -->
-
 
 ## Loading the package
 
@@ -145,7 +149,6 @@ _Horizontal pleiotropy_ arises due to SNPs influencing two traits through indepe
 Further, we should test for study heterogeneity.
 
 ```{r MR_sensitivity}
-
 mr_heterogeneity(dat)
 
 mr_pleiotropy_test(dat)
@@ -219,4 +222,9 @@ p4
 
 ## The end?
 
-You are almost at the end. Time to return to the previous chapter on post-GWAS analyses \@ref(post-gwas).
+You are almost at the end. Time to return to the previous chapter on post-GWAS analyses \@ref(post_gwas).
+
+<!-- ```{js, echo = FALSE} -->
+<!-- title=document.getElementById('header'); -->
+<!-- title.innerHTML = '<img src="img/_headers/banner_man_standing_dna.png" alt="TwoSample Mendelian Randomization">' + title.innerHTML -->
+<!-- ``` -->

@@ -1,5 +1,8 @@
-# Post-GWAS Analyses {#post-gwas}
-![](./img/_headers/banner_man_standing_dna.png){width=100%}
+# Post-GWAS Analyses {#post_gwas}
+<!-- ![](./img/_headers/banner_man_standing_dna.png){width=100%} -->
+
+
+
 
 
 A critical step in post-GWAS analysis is probably 'mapping SNPs to genes'. It is critical, but it is also the most challenging. _How do you even map SNPs to genes?_ What criteria to use? Should we take into account physical position? Or is it of interest that certain SNPs might influence downstream or upstream gene expression? And what of the fact that most loci discovered in GWAS are _inter_genic? What is the heritability of our trait? Are there any pleiotropic effects?
@@ -114,3 +117,7 @@ Lastly, there is a great explanatory [website](http://polygenicscores.org/explai
 
 You come to the end of this practical primer. What is left are a summary (not written yet) of what you've learned and should take home. And some musings in the Epilogue (\@ref(epilogue) on this book and what the future holds.
 
+<!-- ```{js, echo = FALSE} -->
+<!-- title=document.getElementById('header'); -->
+<!-- title.innerHTML = '<img src="img/_headers/banner_man_standing_dna.png" alt="post-GWAS">' + title.innerHTML -->
+<!-- ``` -->

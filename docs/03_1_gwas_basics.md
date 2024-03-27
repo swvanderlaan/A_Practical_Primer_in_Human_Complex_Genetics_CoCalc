@@ -1,20 +1,10 @@
 # Steps in a Genome-Wide Association Study {#gwas-basics}
-![](./img/_headers/woman_working_on_code.png){width=100%}
+<!-- ![](./img/_headers/woman_working_on_code.png){width=100%} -->
 
 
 
-```
-## 
-## Packages to install for this book and its contents to automagically work.
-## 
-## * Bookdown and rmarkdown packages...
-## 
-## * General packages...
-## 
-## * GGplotting packages - for publication ready plotting...
-## 
-## * Genomic packages...
-```
+
+
 
 Now that you understand a bit of the navigation in Unix-systems, you're ready to start this practical primer. We will make use of a dummy dataset containing cases and controls. We will explain and execute the following steps:
 
@@ -115,9 +105,14 @@ So, we will investigate the following:
 - What is the per-SNP call rate?
 - In the case of a case-control study (which is the case here), we need to check differential missingness between cases and controls. 
 
-> By the way: you could extend the check on differential missingness to for instance 'genotyping platform', or 'hospital of inclusion', if you think this might influence the genotyping experiment technically.
+> Question: Can you think of other scenarios in which you may want to extend the check on differential missingness beyond a check between cases and controls?
 
 
 ## Let's get our hands dirty
 
 All clear? Let's start the work. On to step 1 of the QC for GWAS: filter samples of poor quality in Chapter \@ref(gwas-basics-sample-qc).
+
+<!-- ```{js, echo = FALSE} -->
+<!-- title=document.getElementById('header'); -->
+<!-- title.innerHTML = '<img src="img/_headers/woman_working_on_code.png" alt="GWAS basics">' + title.innerHTML -->
+<!-- ``` -->

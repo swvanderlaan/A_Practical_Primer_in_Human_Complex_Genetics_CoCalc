@@ -1,20 +1,9 @@
-# The Welcome Trust Case-Control Consortium {#wtccc1-intro}
-![](./img/_gwas/interactive_plot.png){width=70%}
+# The Welcome Trust Case-Control Consortium {#wtccc1_intro}
+<!-- ![](./img/_headers/interactive_plot.png){width=100%} -->
 
 
 
-```
-## 
-## Packages to install for this book and its contents to automagically work.
-## 
-## * Bookdown and rmarkdown packages...
-## 
-## * General packages...
-## 
-## * GGplotting packages - for publication ready plotting...
-## 
-## * Genomic packages...
-```
+
 
 Now that you know your way around `PLINK`, `bash` and `r` and have done some basic quality control and association testing, you are ready for the real thing. We have prepared a real dataset: the first release of the [*Welcome Trust Case-Control Consortium (WTCCC)*](https://www.wtccc.org.uk/ccc1/overview.html){target="_blank"} on coronary artery disease (CAD) and a control dataset used for that project. 
 
@@ -46,3 +35,8 @@ Your assignment in the next chapter (Chapter \@ref(wtccc1)) is to do the followi
 ## There you go
 
 As I wrote, you are ready for the real stuff in Chapter \@ref(wtccc1). 
+
+<!-- ```{js, echo = FALSE} -->
+<!-- title=document.getElementById('header'); -->
+<!-- title.innerHTML = '<img src="img/_headers/interactive_plot.png" alt="WTCCC1 introduction">' + title.innerHTML -->
+<!-- ``` -->

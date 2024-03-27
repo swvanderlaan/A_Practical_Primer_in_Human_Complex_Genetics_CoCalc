@@ -1,5 +1,9 @@
 # Licenses and disclaimers {#license}
-![](img/_headers/licenses.png){width=100%}
+<!-- ![](img/_headers/licenses.png){width=100%} -->
+
+
+
+
 
 ## Copyright
 
@@ -9,13 +13,22 @@ This book and all its material ("content") is protected by copyright under Dutch
 
 The content contained herein is provided only for educational and informational purposes or as required by Dutch law. The author attempted to ensure that content is accurate and obtained from reliable sources, but does not represent it to be error-free. The author may add, amend or repeal any text, procedure or regulation, and failure to timely post such changes to this book shall not be construed as a waiver of enforcement. The author does not warrant that any functions on this website or the contents and references herein will be uninterrupted, that defects will be corrected, or that this website or the contents and references will be free from viruses or other harmful components. Any links to third party information on the author’s website are provided as a courtesy and do not constitute an endorsement of those materials or the third party providing them.
 
+## Images and data used
 
-## Images used
+I took the at-most care to use refer to the original works and data sources where needed. Likewise, all the images c.q. figures are either produced specifically for this book, or I took them from [**Unsplash**](https://unsplash.com/s/photos/legal) to brighten up the book. If you feel I made a mistake and your work should be properly referenced, please don't hesitate to contact me. 
 
-I used images from [Unsplash](https://unsplash.com/s/photos/legal) to brighten up the book. These are listed here in no particular order.
+These are the images from **Unsplash** listed here in no particular order.
 
 - papers_on_wall - https://unsplash.com/photos/open-book-lot-Oaqk7qqNh_c
 - women_behind_macbook - https://unsplash.com/photos/woman-using-macbook-pro-with-person-in-white-top-bPVM4nOy0Rg
 - woman_working_on_code - https://unsplash.com/photos/woman-wearing-black-t-shirt-holding-white-computer-keyboard-YK0HPwWDJ1I
 - licenses - https://unsplash.com/photos/book-lot-on-black-wooden-shelf-zeH-ljawHtg
 
+## Copyright
+
+Copyright 1979-2024. All rights reserved. Sander W. van der Laan | [s.w.vanderlaan [at] gmail.com](mailto:s.w.vanderlaan@gmail.com) | [https://vanderlaanand.science](https://vanderlaanand.science){target="_blank"}. Published with [`bookdown`](https://bookdown.org/yihui/bookdown/){target="_blank"}.
+
+<!-- ```{js, echo = FALSE} -->
+<!-- title=document.getElementById('header'); -->
+<!-- title.innerHTML = '<img src="img/_headers/banner_man_standing_dna.png" alt="Licenses">' + title.innerHTML -->
+<!-- ``` -->

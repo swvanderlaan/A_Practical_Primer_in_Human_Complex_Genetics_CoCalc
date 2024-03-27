@@ -7,10 +7,10 @@ bookdown::gitbook:
       before: |
         <li><a href="./">A Practical Primer in Human Complex Genetics</a></li>
       after: |
-        <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown.</a></li>
+        <li><a href="https://vanderlaanand.science" target="blank">&copy; 1979-2024. Sander W. van der Laan.</a></li>
     # toolbar:
     #   position: fixed
-    edit: https://github.com/swvanderlaan/A_Practical_Primer_in_Human_Complex_Genetics%s
+    # edit: https://github.com/swvanderlaan/A_Practical_Primer_in_Human_Complex_Genetics/tree/master%s
     download:
       - ["A-Practical-Primer-in-Human-Complex-Genetics.pdf", "PDF"]
       - ["A-Practical-Primer-in-Human-Complex-Genetics.epub", "EPUB"]

@@ -1,20 +1,10 @@
-# Genome-Wide Association Study {#gwas-testing}
-![](./img/_gwas/interactive_plot.png){width=70%}
+# Genome-Wide Association Study {#gwas_testing}
+<!-- ![](./img/_gwas/interactive_plot.png){width=70%} -->
 
 
 
-```
-## 
-## Packages to install for this book and its contents to automagically work.
-## 
-## * Bookdown and rmarkdown packages...
-## 
-## * General packages...
-## 
-## * GGplotting packages - for publication ready plotting...
-## 
-## * Genomic packages...
-```
+
+
 
 Now that you have learned how to perform QC, you can easily run a GWAS and execute some downstream visualization and analyses. Let's do this with a dummy dataset.
 
@@ -36,105 +26,52 @@ plink --bfile gwas/gwa --hardy --out dummy_project/gwa
 
 Let's visualize the results. First we should load in all the results.
 
+> Question: Load the data using R. [Hint: use and adapt the examples from the previous chapters.]
 
-```r
-library("data.table")
 
-COURSE_loc = "~/Desktop/practical" # getwd()
-
-gwas_HWE <- data.table::fread(paste0(COURSE_loc, "/dummy_project/gwa.hwe"))
-gwas_FRQ <- data.table::fread(paste0(COURSE_loc, "/dummy_project/gwa.frq"))
-gwas_IMISS <- data.table::fread(paste0(COURSE_loc, "/dummy_project/gwa.imiss"))
-gwas_LMISS <- data.table::fread(paste0(COURSE_loc, "/dummy_project/gwa.lmiss"))
-```
 
 We can plot the per-stratum HWE p-values.
 
-```r
-library("ggpubr")
+> Question: Plot the per-stratum HWE p-values using R. [Hint: use and adapt the examples from the previous chapters.]
 
-gwas_HWE$logP <- -log10(gwas_HWE$P)
 
-ggpubr::gghistogram(gwas_HWE, x = "logP",
-                    add = "mean",
-                    add.params = list(color = "#595A5C", linetype = "dashed", size = 1),
-                    rug = TRUE,
-                    # color = "#1290D9", fill = "#1290D9",
-                    color = "TEST", fill = "TEST",
-                    palette = "lancet",
-                    facet.by = "TEST",
-                    bins = 50,
-                    xlab = "HWE -log10(P)") +
-  ggplot2::geom_vline(xintercept = 5, linetype = "dashed",
-                      color = "#E55738", size = 1)
-ggplot2::ggsave(paste0(COURSE_loc, "/dummy_project/gwas-hwe.png"),
-       plot = last_plot())
-```
 
 <div class="figure" style="text-align: center">
-<img src="img/_gwas_dummy/show-hwe-gwas.png" alt="Per stratum HWE p-values." width="672" />
-<p class="caption">(\#fig:show-hwe-gwas)Per stratum HWE p-values.</p>
+<img src="img/_gwas_dummy/show-hwe-gwas.png" alt="Per stratum HWE p-values." width="85%" />
+<p class="caption">(\#fig:unnamed-chunk-2)Per stratum HWE p-values.</p>
 </div>
 
 We will want to see what the distribution of allele frequencies looks like. 
 
-```r
-ggpubr::gghistogram(gwas_FRQ, x = "MAF",
-                    add = "mean", add.params = list(color = "#595A5C", linetype = "dashed", size = 1),
-                    rug = TRUE,
-                    color = "#1290D9", fill = "#1290D9",
-                    xlab = "minor allele frequency") +
-  ggplot2::geom_vline(xintercept = 0.05, linetype = "dashed",
-                      color = "#E55738", size = 1)
-ggplot2::ggsave(paste0(COURSE_loc, "/dummy_project/gwas-freq.png"),
-       plot = last_plot())
-```
+> Question: Plot the allele frequencies using R. [Hint: use and adapt the examples from the previous chapters.]
+
+
 
 <div class="figure" style="text-align: center">
-<img src="img/_gwas_dummy/show-freq-gwas.png" alt="Minor allele frequencies." width="672" />
-<p class="caption">(\#fig:show-freq-gwas)Minor allele frequencies.</p>
+<img src="img/_gwas_dummy/show-freq-gwas.png" alt="Minor allele frequencies." width="85%" />
+<p class="caption">(\#fig:unnamed-chunk-3)Minor allele frequencies.</p>
 </div>
 
 We will want to identify samples that have poor call rates.
 
-```r
-gwas_IMISS$callrate <- 1 - gwas_IMISS$F_MISS
+> Question: Plot the per-sample call rates using R. [Hint: use and adapt the examples from the previous chapters.]
 
-ggpubr::gghistogram(gwas_IMISS, x = "callrate",
-                    add = "mean", add.params = list(color = "#595A5C", linetype = "dashed", size = 1),
-                    rug = TRUE, bins = 50,
-                    color = "#1290D9", fill = "#1290D9",
-                    xlab = "per sample call rate") +
-  ggplot2::geom_vline(xintercept = 0.95, linetype = "dashed",
-                      color = "#E55738", size = 1)
-ggplot2::ggsave(paste0(COURSE_loc, "/dummy_project/gwas-sample-call-rate.png"),
-       plot = last_plot())
-```
+
 
 <div class="figure" style="text-align: center">
-<img src="img/_gwas_dummy/show-sample-callrate-gwas.png" alt="Per sample call rates." width="672" />
-<p class="caption">(\#fig:show-sample-callrate-gwas)Per sample call rates.</p>
+<img src="img/_gwas_dummy/show-sample-callrate-gwas.png" alt="Per sample call rates." width="85%" />
+<p class="caption">(\#fig:unnamed-chunk-4)Per sample call rates.</p>
 </div>
 
 We also need to know what the per SNP call rates are.
 
-```r
-gwas_LMISS$callrate <- 1 - gwas_LMISS$F_MISS
+> Question: Plot the per-SNP call rates using R. [Hint: use and adapt the examples from the previous chapters.]
 
-ggpubr::gghistogram(gwas_LMISS, x = "callrate",
-                    add = "mean", add.params = list(color = "#595A5C", linetype = "dashed", size = 1),
-                    rug = TRUE, bins = 50,
-                    color = "#1290D9", fill = "#1290D9",
-                    xlab = "per SNP call rate") +
-  ggplot2::geom_vline(xintercept = 0.95, linetype = "dashed",
-                      color = "#E55738", size = 1)
-ggplot2::ggsave(paste0(COURSE_loc, "/dummy_project/gwas-snp-call-rate.png"),
-       plot = last_plot())
-```
+
 
 <div class="figure" style="text-align: center">
-<img src="img/_gwas_dummy/show-snp-callrate-gwas.png" alt="Per SNP call rates." width="672" />
-<p class="caption">(\#fig:show-snp-callrate-gwas)Per SNP call rates.</p>
+<img src="img/_gwas_dummy/show-snp-callrate-gwas.png" alt="Per SNP call rates." width="85%" />
+<p class="caption">(\#fig:unnamed-chunk-5)Per SNP call rates.</p>
 </div>
 
 
@@ -156,33 +93,26 @@ plink --bfile gwas/gwa --model --cell 3 --out gwas/data
 Let's review the contents of the results.
 
 
-```r
-gwas_model <- data.table::fread(paste0(COURSE_loc, "/dummy_project/data.model"))
-
-dim(gwas_model)
-
-N_SNPS = length(gwas_model$SNP)
-
-gwas_model[1:10, 1:10]
-```
 
 It contains 1,530,510 rows, one for each SNP, and each type of test (_genotypic_, _trend_, _allelic_, _dominant_, and _recessive_) and the following columns:
 
-- chromosome [CHR],
-- the SNP identifier [SNP],
-- the minor allele [A1] (remember, `PLINK` always codes the A1-allele as the minor allele!),
-- the major allele [A2],
-- the test performed [TEST]:
-  - GENO (genotypic association);
-  - TREND (Cochran-Armitage trend);
-  - ALLELIC (allelic as- sociation);
-  - DOM (dominant model); and
-  - REC (recessive model)],
-- the cell frequency counts for cases [AFF], 
-- the cell frequency counts for controls [UNAFF],
-- the chi-square test statistic [CHISQ],
-- the degrees of freedom for the test [DF],
-- and the asymptotic P value [P] of association.
+- chromosome [`CHR`],
+- the SNP identifier [`SNP`],
+- the minor allele [`A1`] (remember, `PLINK` always codes the A1-allele as the minor allele!),
+- the major allele [`A2`],
+- the test performed [`TEST`]:
+  - `GENO` (genotypic association);
+  - `TREND` (Cochran-Armitage trend);
+  - `ALLELIC` (allelic as- sociation);
+  - `DOM` (dominant model); and
+  - `REC` (recessive model)],
+- the cell frequency counts for cases [`AFF`], 
+- the cell frequency counts for controls [`UNAFF`],
+- the chi-square test statistic [`CHISQ`],
+- the degrees of freedom for the test [`DF`],
+- and the asymptotic P value [`P`] of association.
+
+> Question: Do you know which model, _i.e._ `TEST` is most commonly used and reported? And why is that, do think?
 
 ## Logistic regression
 We can also perform a test of association using logistic regression. In this case we might want to correct for covariates/confounding factors, for example age, sex, ancestral background, i.e. principal components, and other study specific covariates (e.g. hospital of inclusion, genotyping centre etc.). In that case each of these P values is adjusted for the effect of the covariates.
@@ -193,35 +123,58 @@ When running a regression analysis, be it linear or logistic, PLINK assumes a mu
 plink --bfile gwas/gwa --logistic sex --covar gwas/gwa.covar --out gwas/data
 ```
 
-Let's examine the results
+Let's examine the results.
 
-```r
-gwas_assoc <- data.table::fread(paste0(COURSE_loc, "/dummy_project/data.assoc.logistic"))
 
-dim(gwas_assoc)
 
-gwas_assoc[1:9, 1:9]
 ```
+## [1] 918306      9
+```
+
+
+```
+##      CHR       SNP      BP     A1   TEST NMISS     OR     STAT      P
+##    <int>    <char>   <int> <char> <char> <int>  <num>    <num>  <num>
+## 1:     1 rs3934834  995669      T    ADD  3818 1.0290  0.38120 0.7031
+## 2:     1 rs3934834  995669      T    AGE  3818 1.0020  1.11800 0.2635
+## 3:     1 rs3934834  995669      T    SEX  3818 1.0120  0.19090 0.8486
+## 4:     1 rs3737728 1011278      A    ADD  3982 1.0190  0.38670 0.6990
+## 5:     1 rs3737728 1011278      A    AGE  3982 1.0020  1.09800 0.2721
+## 6:     1 rs3737728 1011278      A    SEX  3982 1.0060  0.09898 0.9212
+## 7:     1 rs6687776 1020428      T    ADD  3915 0.9692 -0.33330 0.7389
+## 8:     1 rs6687776 1020428      T    AGE  3915 1.0020  1.04000 0.2984
+## 9:     1 rs6687776 1020428      T    SEX  3915 1.0150  0.23690 0.8127
+```
+
+> Question: How come there are more lines in this file than there are variants?
 
 If no model option is specified, the first row for each SNP corresponds to results for a multiplicative test of association. The C >= 0 subsequent rows for each SNP correspond to separate tests of significance for each of the C covariates included in the regression model. We can remove the covariate-specific lines from the main report by adding the `hide-covar` flag.
 
 The columns in the association results are:
-- the chromosome [CHR],
-- the SNP identifier [SNP],
-- the base-pair location [BP],
-- the minor allele [A1],
-- the test performed [TEST]: ADD (multiplicative model or genotypic model testing additivity),
-  - GENO_2DF (genotypic model),
-  - DOMDEV (genotypic model testing deviation from additivity),
-  - DOM (dominant model), or
-  - REC (recessive model)],
-- the number of missing individuals included [NMISS],
-- the OR relative to the A1, _i.e._ minor allele,
-- the coefficient z-statistic [STAT], and
-- the asymptotic P-value [P] of association.
 
-We need to calculate the standard error and confidence interval from the z-statistic. We can modify the effect size (OR) to output the beta by adding the `beta` flag.
+- the chromosome [`CHR`],
+- the SNP identifier [`SNP`],
+- the base-pair location [`BP`],
+- the minor allele [`A1`],
+- the test performed [`TEST`]: ADD (multiplicative model or genotypic model testing additivity),
+  - `GENO_2DF` (genotypic model),
+  - `DOMDEV` (genotypic model testing deviation from additivity),
+  - `DOM` (dominant model), or
+  - `REC` (recessive model)],
+- the number of missing individuals included [`NMISS`],
+- the `OR` relative to the A1, _i.e._ minor allele,
+- the coefficient z-statistic [`STAT`], and
+- the asymptotic P-value [`P`] of association.
+
+We need to calculate the standard error and confidence interval from the z-statistic. We can modify the effect size (`OR`) to output the _beta_ by adding the `beta` flag.
+
+> Question: Can you write down the mathematical relation between _beta_ and _OR_?
 
 ## Let's get visual
 
 Looking at numbers is important, but it won't give you a perfect overview. We should turn to visualizing our results in Chapter \@ref(gwas-visuals).
+
+<!-- ```{js, echo = FALSE} -->
+<!-- title=document.getElementById('header'); -->
+<!-- title.innerHTML = '<img src="img/_headers/interactive_plot.png" alt="GWAS basics: association testing">' + title.innerHTML -->
+<!-- ``` -->

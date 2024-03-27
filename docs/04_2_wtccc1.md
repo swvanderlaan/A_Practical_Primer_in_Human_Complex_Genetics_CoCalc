@@ -1,4 +1,9 @@
 # WTCCC1: a GWAS on coronary artery disease (CAD) {#wtccc1}
+<!-- ![](./img/_headers/interactive_plot.png){width=100%} -->
+
+
+
+
 
 As usual, we start by exploring the data in hand.
 
@@ -13,108 +18,45 @@ cat wtccc1/wtccc1.missing | awk '$5 < 0.00001' | awk '{ print $2 }' > wtccc1/wtc
 ```
 
 
-```r
-library("data.table")
-
-COURSE_loc = "~/Desktop/practical" # getwd()
-
-wtccc1_HWE <- data.table::fread(paste0(COURSE_loc, "/wtccc1/wtccc1.hwe"))
-wtccc1_FRQ <- data.table::fread(paste0(COURSE_loc, "/wtccc1/wtccc1.frq"))
-wtccc1_IMISS <- data.table::fread(paste0(COURSE_loc, "/wtccc1/wtccc1.imiss"))
-wtccc1_LMISS <- data.table::fread(paste0(COURSE_loc, "/wtccc1/wtccc1.lmiss"))
-
-wtccc1_HWE$logP <- -log10(wtccc1_HWE$P)
-```
 
 Let's investigate the HWE p-value in the whole cohort, and per stratum (cases and controls) with the code below.
 
-```r
-library("ggpubr")
-
-ggpubr::gghistogram(wtccc1_HWE, x = "logP",
-                    add = "mean",
-                    add.params = list(color = "#595A5C", linetype = "dashed", size = 1),
-                    rug = TRUE,
-                    # color = "#1290D9", fill = "#1290D9",
-                    color = "TEST", fill = "TEST",
-                    palette = "lancet",
-                    facet.by = "TEST",
-                    bins = 50,
-                    xlab = "HWE -log10(P)") +
-  ggplot2::geom_vline(xintercept = 5, linetype = "dashed",
-                      color = "#E55738", size = 1)
-ggplot2::ggsave(paste0(COURSE_loc, "/wtccc1/wtccc1-hwe.png"), plot = last_plot())
-```
 
 This will result in Figure \@ref(fig:show-wtccc1-hwe).
 
 <div class="figure" style="text-align: center">
-<img src="img/_gwas_wtccc/WTCCC1-HWE.png" alt="Stratified HWE p-values." width="672" />
+<img src="img/_gwas_wtccc/WTCCC1-HWE.png" alt="Stratified HWE p-values." width="85%" />
 <p class="caption">(\#fig:show-wtccc1-hwe)Stratified HWE p-values.</p>
 </div>
 
 We should also inspect the allele frequencies. Note that _by default_ PLINK (whether v0.7, v1.9, or v2.0) stores the alleles as minor (A1) and major (A2), and therefore `--maf` _always_ calculates the frequency of the minor allele (A1).
 
-```r
-ggpubr::gghistogram(wtccc1_FRQ, x = "MAF",
-                    add = "mean", add.params = list(color = "#595A5C", linetype = "dashed", size = 1),
-                    rug = TRUE,
-                    color = "#1290D9", fill = "#1290D9",
-                    xlab = "minor allele frequency") +
-  ggplot2::geom_vline(xintercept = 0.05, linetype = "dashed",
-                      color = "#E55738", size = 1)
-ggplot2::ggsave(paste0(COURSE_loc, "/wtccc1/wtccc1-freq.png"), plot = last_plot())
-```
 
 This will result in Figure \@ref(fig:show-wtccc1-freq).
 
 <div class="figure" style="text-align: center">
-<img src="img/_gwas_wtccc/WTCCC1-FREQ.png" alt="Minor allele frequencies." width="672" />
+<img src="img/_gwas_wtccc/WTCCC1-FREQ.png" alt="Minor allele frequencies." width="85%" />
 <p class="caption">(\#fig:show-wtccc1-freq)Minor allele frequencies.</p>
 </div>
 
 There could be sample with very poor overall call rate, where for many SNPs there is no data. We will want to identify these samples and exclude them. 
 
-```r
-wtccc1_IMISS$callrate <- 1 - wtccc1_IMISS$F_MISS
-
-ggpubr::gghistogram(wtccc1_IMISS, x = "callrate",
-                    add = "mean", add.params = list(color = "#595A5C", linetype = "dashed", size = 1),
-                    rug = TRUE, bins = 50,
-                    color = "#1290D9", fill = "#1290D9",
-                    xlab = "per sample call rate") +
-  ggplot2::geom_vline(xintercept = 0.95, linetype = "dashed",
-                      color = "#E55738", size = 1)
-ggplot2::ggsave(paste0(COURSE_loc, "/wtccc1/wtccc1-sample-call-rate.png"), plot = last_plot())
-```
 
 This will result in Figure \@ref(fig:show-wtccc1-callratesample).
 
 <div class="figure" style="text-align: center">
-<img src="img/_gwas_wtccc/WTCCC1-callrate-samples.png" alt="Per sample call rate." width="672" />
+<img src="img/_gwas_wtccc/WTCCC1-callrate-samples.png" alt="Per sample call rate." width="85%" />
 <p class="caption">(\#fig:show-wtccc1-callratesample)Per sample call rate.</p>
 </div>
 
 Lastly, we must inspect the per SNP call rate; we need to know if there are SNPs that have no data for many samples. We will want to identify such SNPs and exclude these.
 
 
-```r
-wtccc1_LMISS$callrate <- 1 - wtccc1_LMISS$F_MISS
-
-ggpubr::gghistogram(wtccc1_LMISS, x = "callrate",
-                    add = "mean", add.params = list(color = "#595A5C", linetype = "dashed", size = 1),
-                    rug = TRUE, bins = 50,
-                    color = "#1290D9", fill = "#1290D9",
-                    xlab = "per SNP call rate") +
-  ggplot2::geom_vline(xintercept = 0.95, linetype = "dashed",
-                      color = "#E55738", size = 1)
-ggplot2::ggsave(paste0(COURSE_loc, "/wtccc1/wtccc1-hwe.png"), plot = last_plot())
-```
 
 This will result in Figure \@ref(fig:show-wtccc1-callratesnp).
 
 <div class="figure" style="text-align: center">
-<img src="img/_gwas_wtccc/WTCCC1-callrate-SNPs.png" alt="Per SNP call rate." width="672" />
+<img src="img/_gwas_wtccc/WTCCC1-callrate-SNPs.png" alt="Per SNP call rate." width="85%" />
 <p class="caption">(\#fig:show-wtccc1-callratesnp)Per SNP call rate.</p>
 </div>
 
@@ -215,69 +157,17 @@ If all is peachy, you were able to run the PCA for the WTCCC1 data against 1000G
 And we should visualize the PCA results: are these individuals really all from European (UK) ancestry? 
 
 
-```r
-PCA_WTCCC1_1kG <- data.table::fread(paste0(COURSE_loc,"/ref_pca_wtccc1/wtccc1_extrclean_1kg.pca.evec"), header = FALSE, skip = 1)
-```
 
 
 
-```r
-# Population	Description	Super population	Code	Counts
-# ASW	African Ancestry in Southwest US	                          AFR	4	  #49A01D
-# CEU	Utah residents with Northern and Western European ancestry	EUR	7	  #E55738
-# CHB	Han Chinese in Bejing, China	                              EAS	8	  #9A3480
-# CHS	Southern Han Chinese, China	                                EAS	9	  #705296
-# CLM	Colombian in Medellin, Colombia	                            MR	10	  #8D5B9A
-# FIN	Finnish in Finland	                                        EUR	12	#2F8BC9
-# GBR	British in England and Scotland	                            EUR	13	#1290D9
-# IBS	Iberian populations in Spain	                              EUR	16	#1396D8
-# JPT	Japanese in Tokyo, Japan	                                  EAS	18	#D5267B
-# LWK	Luhya in Webuye, Kenya	                                    AFR	20	#78B113
-# MXL	Mexican Ancestry in Los Angeles, California	                AMR	22	#F59D10
-# PUR	Puerto Rican in Puerto Rico	                                AMR	25	#FBB820
-# TSI	Toscani in Italy	                                          EUR	27	#4C81BF
-# YRI	Yoruba in Ibadan, Nigeria	                                  AFR	28	#C5D220
-
-PCA_WTCCC1_1kG$V12[PCA_WTCCC1_1kG$V12 == "2"] <- "CAD"
-PCA_WTCCC1_1kG$V12[PCA_WTCCC1_1kG$V12 == "1"] <- "UKBS"
-PCA_WTCCC1_1kG$V12[PCA_WTCCC1_1kG$V12 == "4"] <- "ASW"
-PCA_WTCCC1_1kG$V12[PCA_WTCCC1_1kG$V12 == "7"] <- "CEU"
-PCA_WTCCC1_1kG$V12[PCA_WTCCC1_1kG$V12 == "8"] <- "CHB"
-PCA_WTCCC1_1kG$V12[PCA_WTCCC1_1kG$V12 == "9"] <- "CHS"
-PCA_WTCCC1_1kG$V12[PCA_WTCCC1_1kG$V12 == "10"] <- "CLM"
-PCA_WTCCC1_1kG$V12[PCA_WTCCC1_1kG$V12 == "12"] <- "FIN"
-PCA_WTCCC1_1kG$V12[PCA_WTCCC1_1kG$V12 == "13"] <- "GBR"
-PCA_WTCCC1_1kG$V12[PCA_WTCCC1_1kG$V12 == "16"] <- "IBS"
-PCA_WTCCC1_1kG$V12[PCA_WTCCC1_1kG$V12 == "18"] <- "JPT"
-PCA_WTCCC1_1kG$V12[PCA_WTCCC1_1kG$V12 == "20"] <- "LWK"
-PCA_WTCCC1_1kG$V12[PCA_WTCCC1_1kG$V12 == "22"] <- "MXL"
-PCA_WTCCC1_1kG$V12[PCA_WTCCC1_1kG$V12 == "25"] <- "PUR"
-PCA_WTCCC1_1kG$V12[PCA_WTCCC1_1kG$V12 == "27"] <- "TSI"
-PCA_WTCCC1_1kG$V12[PCA_WTCCC1_1kG$V12 == "28"] <- "YRI"
-```
 
 
 
-```r
-PCA_WTCCC1_1kGplot <- ggpubr::ggscatter(PCA_WTCCC1_1kG, x = "V2", y = "V3",
-                                        color = "V12",
-                                        palette = c("#49A01D", "#595A5C", "#E55738", "#9A3480", "#705296", 
-                                                    "#8D5B9A", "#2F8BC9", "#1290D9", "#1396D8", "#D5267B", 
-                                                    "#78B113", "#F59D10", "#FBB820", "#4C81BF", "#595A5C", "#C5D220"),
-                                        xlab = "principal component 1", ylab = "principal component 2") +
-  geom_hline(yintercept = 0.023, linetype = "dashed",
-                color = "#595A5C", size = 1)
-
-  ggpubr::ggpar(PCA_WTCCC1_1kGplot,
-            title = "Principal Component Analysis",
-            subtitle = "Reference population: 1000 G, phase 1",
-            legend.title = "Populations", legend = "right")
-```
 
 We expect most individuals from the WTCCC to be 100% British, but a substantial group will have a different ancestral background as shown in the Figure \@ref(fig:show-wtccc1-pca) you just made.
 
 <div class="figure" style="text-align: center">
-<img src="img/_gwas_wtccc/WTCCC1-pca-1000g.png" alt="PCA - WTCCC1 vs. 1000G" width="672" />
+<img src="img/_gwas_wtccc/WTCCC1-pca-1000g.png" alt="PCA - WTCCC1 vs. 1000G" width="85%" />
 <p class="caption">(\#fig:show-wtccc1-pca)PCA - WTCCC1 vs. 1000G</p>
 </div>
 
@@ -328,78 +218,29 @@ plink --bfile wtccc1/wtccc1_qc --logistic sex --covar wtccc1/wtccc1_qc.covar_pca
 After you ran the association analysis, you're ready to process the data and take a first look at the results. First, we prepare the raw output. 
 
 
-```r
-wtccc1_assoc <- data.table::fread(paste0(COURSE_loc, "/wtccc1/wtccc1_qc_log_covar_pca.assoc.logistic"))
-
-dim(wtccc1_assoc)
-
-wtccc1_assoc[1:9, 1:9]
-wtccc1_assoc_sub <- subset(wtccc1_assoc, TEST == "ADD")
-wtccc1_assoc_sub$TEST <- NULL
-
-temp <- subset(wtccc1_FRQ, select = c("SNP", "A2", "MAF", "NCHROBS"))
-
-wtccc1_assoc_subfrq <- merge(wtccc1_assoc_sub, temp, by = "SNP")
-
-temp <- subset(wtccc1_LMISS, select = c("SNP", "callrate"))
-
-wtccc1_assoc_subfrqlmiss <- merge(wtccc1_assoc_subfrq, temp, by = "SNP")
-head(wtccc1_assoc_subfrqlmiss)
-# Remember:
-# - that z = beta/se
-# - beta = log(OR), because log is the natural log in r
-
-wtccc1_assoc_subfrqlmiss$BETA = log(wtccc1_assoc_subfrqlmiss$OR)
-wtccc1_assoc_subfrqlmiss$SE = wtccc1_assoc_subfrqlmiss$BETA/wtccc1_assoc_subfrqlmiss$STAT
-
-
-wtccc1_assoc_subfrqlmiss_tib <- dplyr::as_tibble(wtccc1_assoc_subfrqlmiss)
-
-col_order <- c("SNP", "CHR", "BP",
-               "A1", "A2", "MAF", "callrate", "NMISS", "NCHROBS",
-               "BETA", "SE", "OR", "STAT", "P")
-wtccc1_assoc_compl <- wtccc1_assoc_subfrqlmiss_tib[, col_order]
-
-dim(wtccc1_assoc_compl)
-
-head(wtccc1_assoc_compl)
-
-wtccc1_assoc_complsub <- subset(wtccc1_assoc_compl, select = c("SNP", "CHR", "BP", "P"))
-```
 
 You could visualize these results with the code below. 
 
 
-```r
-library("CMplot")
-
-CMplot(wtccc1_assoc_complsub,
-       plot.type = "b", LOG10 = TRUE, ylim = NULL,
-       threshold = c(1e-6,1e-4), threshold.lty = c(1,2), threshold.lwd = c(1,1), threshold.col = c("black", "grey"),
-       amplify = TRUE,
-       bin.size = 1e6, chr.den.col = c("darkgreen", "yellow", "red"),
-       signal.col = c("red", "green"), signal.cex = c(1,1), signal.pch = c(19,19),
-       file = "jpg", memo = "", dpi = 300, file.output = FALSE, verbose = TRUE)
-```
 
 This would lead to the following graphs. 
 <div class="figure" style="text-align: center">
-<img src="img/_gwas_wtccc/WTCCC1ResultsManhattan-density.png" alt="SNP density of the association results." width="672" />
+<img src="img/_gwas_wtccc/WTCCC1ResultsManhattan-density.png" alt="SNP density of the association results." width="85%" />
 <p class="caption">(\#fig:show-wtccc1-graphs-density)SNP density of the association results.</p>
 </div>
 
 <div class="figure" style="text-align: center">
-<img src="img/_gwas_wtccc/WTCCC1ResultsManhattan-qq.png" alt="A QQ plot including a 95% confidence interval (blue area) and genome-wide significant hits (red)." width="672" />
+<img src="img/_gwas_wtccc/WTCCC1ResultsManhattan-qq.png" alt="A QQ plot including a 95% confidence interval (blue area) and genome-wide significant hits (red)." width="85%" />
 <p class="caption">(\#fig:show-wtccc1-graphs-qq)A QQ plot including a 95% confidence interval (blue area) and genome-wide significant hits (red).</p>
 </div>
 
 <div class="figure" style="text-align: center">
-<img src="img/_gwas_wtccc/WTCCC1ResultsManhattan-manhattan.png" alt="A regular manhattan plot. Colored by chromosome, suggestive hits are green, genome-wide hits are red. The bottom graph shows the per-chromosome SNP density." width="672" />
+<img src="img/_gwas_wtccc/WTCCC1ResultsManhattan-manhattan.png" alt="A regular manhattan plot. Colored by chromosome, suggestive hits are green, genome-wide hits are red. The bottom graph shows the per-chromosome SNP density." width="85%" />
 <p class="caption">(\#fig:show-wtccc1-graphs-manhattan)A regular manhattan plot. Colored by chromosome, suggestive hits are green, genome-wide hits are red. The bottom graph shows the per-chromosome SNP density.</p>
 </div>
 
 <div class="figure" style="text-align: center">
-<img src="img/_gwas_wtccc/WTCCC1ResultsManhattan-circular.png" alt="A circular manhattan." width="672" />
+<img src="img/_gwas_wtccc/WTCCC1ResultsManhattan-circular.png" alt="A circular manhattan." width="85%" />
 <p class="caption">(\#fig:show-wtccc1-graphs-circular)A circular manhattan.</p>
 </div>
 
@@ -411,4 +252,9 @@ You reached an important milestone.
 
 Wow. Take a pause. And realize what you've done. 
 
-Back then there wasn't much on analyses _after_ a GWAS, nowadays there are many post-GWAS analyses methods. We will cover them in the next Chapter \@ref(post-gwas).
+Back then there wasn't much on analyses _after_ a GWAS, nowadays there are many post-GWAS analyses methods. We will cover them in the next Chapter \@ref(post_gwas).
+
+<!-- ```{js, echo = FALSE} -->
+<!-- title=document.getElementById('header'); -->
+<!-- title.innerHTML = '<img src="img/_headers/interactive_plot.png" alt="WTCCC1: coronary artery disease">' + title.innerHTML -->
+<!-- ``` -->

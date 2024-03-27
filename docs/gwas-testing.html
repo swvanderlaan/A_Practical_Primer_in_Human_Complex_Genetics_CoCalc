@@ -52,6 +52,8 @@
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<link href="libs/tabwid-1.1.3/tabwid.css" rel="stylesheet" />
+<script src="libs/tabwid-1.1.3/tabwid.js"></script>
 
 
 <style type="text/css">
@@ -277,6 +279,10 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="14.2" data-path="todo.html"><a href="todo.html#book-fixes"><i class="fa fa-check"></i><b>14.2</b> Book fixes</a></li>
 <li class="chapter" data-level="14.3" data-path="todo.html"><a href="todo.html#useful-links-for-me-mostly"><i class="fa fa-check"></i><b>14.3</b> Useful links (for me mostly)</a></li>
+<li class="chapter" data-level="14.4" data-path="todo.html"><a href="todo.html#answers-to-questions"><i class="fa fa-check"></i><b>14.4</b> Answers to questions</a>
+<ul>
+<li class="chapter" data-level="14.4.1" data-path="todo.html"><a href="todo.html#gwas-basics-1"><i class="fa fa-check"></i><b>14.4.1</b> GWAS Basics</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="15" data-path="license.html"><a href="license.html"><i class="fa fa-check"></i><b>15</b> Licenses and disclaimers</a>
 <ul>
@@ -309,16 +315,6 @@ div.csl-indent {
 <div id="gwas-testing" class="section level1 hasAnchor" number="7">
 <h1><span class="header-section-number">Chapter 7</span> Genome-Wide Association Study<a href="gwas-testing.html#gwas-testing" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p><img src="img/_gwas/interactive_plot.png" style="width:70.0%" /></p>
-<pre><code>## 
-## Packages to install for this book and its contents to automagically work.
-## 
-## * Bookdown and rmarkdown packages...
-## 
-## * General packages...
-## 
-## * GGplotting packages - for publication ready plotting...
-## 
-## * Genomic packages...</code></pre>
 <p>Now that you have learned how to perform QC, you can easily run a GWAS and execute some downstream visualization and analyses. Let’s do this with a dummy dataset.</p>
 <div id="exploring-the-data" class="section level2 hasAnchor" number="7.1">
 <h2><span class="header-section-number">7.1</span> Exploring the data<a href="gwas-testing.html#exploring-the-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -327,33 +323,33 @@ div.csl-indent {
 <pre><code>plink --bfile gwas/gwa --missing --out dummy_project/gwa</code></pre>
 <pre><code>plink --bfile gwas/gwa --hardy --out dummy_project/gwa</code></pre>
 <p>Let’s visualize the results. First we should load in all the results.</p>
-<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="gwas-testing.html#cb89-1" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;data.table&quot;</span>)</span>
-<span id="cb89-2"><a href="gwas-testing.html#cb89-2" tabindex="-1"></a></span>
-<span id="cb89-3"><a href="gwas-testing.html#cb89-3" tabindex="-1"></a>COURSE_loc <span class="ot">=</span> <span class="st">&quot;~/Desktop/practical&quot;</span> <span class="co"># getwd()</span></span>
-<span id="cb89-4"><a href="gwas-testing.html#cb89-4" tabindex="-1"></a></span>
-<span id="cb89-5"><a href="gwas-testing.html#cb89-5" tabindex="-1"></a>gwas_HWE <span class="ot">&lt;-</span> data.table<span class="sc">::</span><span class="fu">fread</span>(<span class="fu">paste0</span>(COURSE_loc, <span class="st">&quot;/dummy_project/gwa.hwe&quot;</span>))</span>
-<span id="cb89-6"><a href="gwas-testing.html#cb89-6" tabindex="-1"></a>gwas_FRQ <span class="ot">&lt;-</span> data.table<span class="sc">::</span><span class="fu">fread</span>(<span class="fu">paste0</span>(COURSE_loc, <span class="st">&quot;/dummy_project/gwa.frq&quot;</span>))</span>
-<span id="cb89-7"><a href="gwas-testing.html#cb89-7" tabindex="-1"></a>gwas_IMISS <span class="ot">&lt;-</span> data.table<span class="sc">::</span><span class="fu">fread</span>(<span class="fu">paste0</span>(COURSE_loc, <span class="st">&quot;/dummy_project/gwa.imiss&quot;</span>))</span>
-<span id="cb89-8"><a href="gwas-testing.html#cb89-8" tabindex="-1"></a>gwas_LMISS <span class="ot">&lt;-</span> data.table<span class="sc">::</span><span class="fu">fread</span>(<span class="fu">paste0</span>(COURSE_loc, <span class="st">&quot;/dummy_project/gwa.lmiss&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="gwas-testing.html#cb83-1" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;data.table&quot;</span>)</span>
+<span id="cb83-2"><a href="gwas-testing.html#cb83-2" tabindex="-1"></a></span>
+<span id="cb83-3"><a href="gwas-testing.html#cb83-3" tabindex="-1"></a>COURSE_loc <span class="ot">=</span> <span class="st">&quot;~/Desktop/practical&quot;</span> <span class="co"># getwd()</span></span>
+<span id="cb83-4"><a href="gwas-testing.html#cb83-4" tabindex="-1"></a></span>
+<span id="cb83-5"><a href="gwas-testing.html#cb83-5" tabindex="-1"></a>gwas_HWE <span class="ot">&lt;-</span> data.table<span class="sc">::</span><span class="fu">fread</span>(<span class="fu">paste0</span>(COURSE_loc, <span class="st">&quot;/dummy_project/gwa.hwe&quot;</span>))</span>
+<span id="cb83-6"><a href="gwas-testing.html#cb83-6" tabindex="-1"></a>gwas_FRQ <span class="ot">&lt;-</span> data.table<span class="sc">::</span><span class="fu">fread</span>(<span class="fu">paste0</span>(COURSE_loc, <span class="st">&quot;/dummy_project/gwa.frq&quot;</span>))</span>
+<span id="cb83-7"><a href="gwas-testing.html#cb83-7" tabindex="-1"></a>gwas_IMISS <span class="ot">&lt;-</span> data.table<span class="sc">::</span><span class="fu">fread</span>(<span class="fu">paste0</span>(COURSE_loc, <span class="st">&quot;/dummy_project/gwa.imiss&quot;</span>))</span>
+<span id="cb83-8"><a href="gwas-testing.html#cb83-8" tabindex="-1"></a>gwas_LMISS <span class="ot">&lt;-</span> data.table<span class="sc">::</span><span class="fu">fread</span>(<span class="fu">paste0</span>(COURSE_loc, <span class="st">&quot;/dummy_project/gwa.lmiss&quot;</span>))</span></code></pre></div>
 <p>We can plot the per-stratum HWE p-values.</p>
-<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="gwas-testing.html#cb90-1" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;ggpubr&quot;</span>)</span>
-<span id="cb90-2"><a href="gwas-testing.html#cb90-2" tabindex="-1"></a></span>
-<span id="cb90-3"><a href="gwas-testing.html#cb90-3" tabindex="-1"></a>gwas_HWE<span class="sc">$</span>logP <span class="ot">&lt;-</span> <span class="sc">-</span><span class="fu">log10</span>(gwas_HWE<span class="sc">$</span>P)</span>
-<span id="cb90-4"><a href="gwas-testing.html#cb90-4" tabindex="-1"></a></span>
-<span id="cb90-5"><a href="gwas-testing.html#cb90-5" tabindex="-1"></a>ggpubr<span class="sc">::</span><span class="fu">gghistogram</span>(gwas_HWE, <span class="at">x =</span> <span class="st">&quot;logP&quot;</span>,</span>
-<span id="cb90-6"><a href="gwas-testing.html#cb90-6" tabindex="-1"></a>                    <span class="at">add =</span> <span class="st">&quot;mean&quot;</span>,</span>
-<span id="cb90-7"><a href="gwas-testing.html#cb90-7" tabindex="-1"></a>                    <span class="at">add.params =</span> <span class="fu">list</span>(<span class="at">color =</span> <span class="st">&quot;#595A5C&quot;</span>, <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>, <span class="at">size =</span> <span class="dv">1</span>),</span>
-<span id="cb90-8"><a href="gwas-testing.html#cb90-8" tabindex="-1"></a>                    <span class="at">rug =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb90-9"><a href="gwas-testing.html#cb90-9" tabindex="-1"></a>                    <span class="co"># color = &quot;#1290D9&quot;, fill = &quot;#1290D9&quot;,</span></span>
-<span id="cb90-10"><a href="gwas-testing.html#cb90-10" tabindex="-1"></a>                    <span class="at">color =</span> <span class="st">&quot;TEST&quot;</span>, <span class="at">fill =</span> <span class="st">&quot;TEST&quot;</span>,</span>
-<span id="cb90-11"><a href="gwas-testing.html#cb90-11" tabindex="-1"></a>                    <span class="at">palette =</span> <span class="st">&quot;lancet&quot;</span>,</span>
-<span id="cb90-12"><a href="gwas-testing.html#cb90-12" tabindex="-1"></a>                    <span class="at">facet.by =</span> <span class="st">&quot;TEST&quot;</span>,</span>
-<span id="cb90-13"><a href="gwas-testing.html#cb90-13" tabindex="-1"></a>                    <span class="at">bins =</span> <span class="dv">50</span>,</span>
-<span id="cb90-14"><a href="gwas-testing.html#cb90-14" tabindex="-1"></a>                    <span class="at">xlab =</span> <span class="st">&quot;HWE -log10(P)&quot;</span>) <span class="sc">+</span></span>
-<span id="cb90-15"><a href="gwas-testing.html#cb90-15" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">5</span>, <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>,</span>
-<span id="cb90-16"><a href="gwas-testing.html#cb90-16" tabindex="-1"></a>                      <span class="at">color =</span> <span class="st">&quot;#E55738&quot;</span>, <span class="at">size =</span> <span class="dv">1</span>)</span>
-<span id="cb90-17"><a href="gwas-testing.html#cb90-17" tabindex="-1"></a>ggplot2<span class="sc">::</span><span class="fu">ggsave</span>(<span class="fu">paste0</span>(COURSE_loc, <span class="st">&quot;/dummy_project/gwas-hwe.png&quot;</span>),</span>
-<span id="cb90-18"><a href="gwas-testing.html#cb90-18" tabindex="-1"></a>       <span class="at">plot =</span> <span class="fu">last_plot</span>())</span></code></pre></div>
+<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="gwas-testing.html#cb84-1" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;ggpubr&quot;</span>)</span>
+<span id="cb84-2"><a href="gwas-testing.html#cb84-2" tabindex="-1"></a></span>
+<span id="cb84-3"><a href="gwas-testing.html#cb84-3" tabindex="-1"></a>gwas_HWE<span class="sc">$</span>logP <span class="ot">&lt;-</span> <span class="sc">-</span><span class="fu">log10</span>(gwas_HWE<span class="sc">$</span>P)</span>
+<span id="cb84-4"><a href="gwas-testing.html#cb84-4" tabindex="-1"></a></span>
+<span id="cb84-5"><a href="gwas-testing.html#cb84-5" tabindex="-1"></a>ggpubr<span class="sc">::</span><span class="fu">gghistogram</span>(gwas_HWE, <span class="at">x =</span> <span class="st">&quot;logP&quot;</span>,</span>
+<span id="cb84-6"><a href="gwas-testing.html#cb84-6" tabindex="-1"></a>                    <span class="at">add =</span> <span class="st">&quot;mean&quot;</span>,</span>
+<span id="cb84-7"><a href="gwas-testing.html#cb84-7" tabindex="-1"></a>                    <span class="at">add.params =</span> <span class="fu">list</span>(<span class="at">color =</span> <span class="st">&quot;#595A5C&quot;</span>, <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>, <span class="at">size =</span> <span class="dv">1</span>),</span>
+<span id="cb84-8"><a href="gwas-testing.html#cb84-8" tabindex="-1"></a>                    <span class="at">rug =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb84-9"><a href="gwas-testing.html#cb84-9" tabindex="-1"></a>                    <span class="co"># color = &quot;#1290D9&quot;, fill = &quot;#1290D9&quot;,</span></span>
+<span id="cb84-10"><a href="gwas-testing.html#cb84-10" tabindex="-1"></a>                    <span class="at">color =</span> <span class="st">&quot;TEST&quot;</span>, <span class="at">fill =</span> <span class="st">&quot;TEST&quot;</span>,</span>
+<span id="cb84-11"><a href="gwas-testing.html#cb84-11" tabindex="-1"></a>                    <span class="at">palette =</span> <span class="st">&quot;lancet&quot;</span>,</span>
+<span id="cb84-12"><a href="gwas-testing.html#cb84-12" tabindex="-1"></a>                    <span class="at">facet.by =</span> <span class="st">&quot;TEST&quot;</span>,</span>
+<span id="cb84-13"><a href="gwas-testing.html#cb84-13" tabindex="-1"></a>                    <span class="at">bins =</span> <span class="dv">50</span>,</span>
+<span id="cb84-14"><a href="gwas-testing.html#cb84-14" tabindex="-1"></a>                    <span class="at">xlab =</span> <span class="st">&quot;HWE -log10(P)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb84-15"><a href="gwas-testing.html#cb84-15" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">5</span>, <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>,</span>
+<span id="cb84-16"><a href="gwas-testing.html#cb84-16" tabindex="-1"></a>                      <span class="at">color =</span> <span class="st">&quot;#E55738&quot;</span>, <span class="at">size =</span> <span class="dv">1</span>)</span>
+<span id="cb84-17"><a href="gwas-testing.html#cb84-17" tabindex="-1"></a>ggplot2<span class="sc">::</span><span class="fu">ggsave</span>(<span class="fu">paste0</span>(COURSE_loc, <span class="st">&quot;/dummy_project/gwas-hwe.png&quot;</span>),</span>
+<span id="cb84-18"><a href="gwas-testing.html#cb84-18" tabindex="-1"></a>       <span class="at">plot =</span> <span class="fu">last_plot</span>())</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:show-hwe-gwas"></span>
 <img src="img/_gwas_dummy/show-hwe-gwas.png" alt="Per stratum HWE p-values." width="672" />
 <p class="caption">
@@ -361,15 +357,15 @@ Figure 7.1: Per stratum HWE p-values.
 </p>
 </div>
 <p>We will want to see what the distribution of allele frequencies looks like.</p>
-<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="gwas-testing.html#cb91-1" tabindex="-1"></a>ggpubr<span class="sc">::</span><span class="fu">gghistogram</span>(gwas_FRQ, <span class="at">x =</span> <span class="st">&quot;MAF&quot;</span>,</span>
-<span id="cb91-2"><a href="gwas-testing.html#cb91-2" tabindex="-1"></a>                    <span class="at">add =</span> <span class="st">&quot;mean&quot;</span>, <span class="at">add.params =</span> <span class="fu">list</span>(<span class="at">color =</span> <span class="st">&quot;#595A5C&quot;</span>, <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>, <span class="at">size =</span> <span class="dv">1</span>),</span>
-<span id="cb91-3"><a href="gwas-testing.html#cb91-3" tabindex="-1"></a>                    <span class="at">rug =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb91-4"><a href="gwas-testing.html#cb91-4" tabindex="-1"></a>                    <span class="at">color =</span> <span class="st">&quot;#1290D9&quot;</span>, <span class="at">fill =</span> <span class="st">&quot;#1290D9&quot;</span>,</span>
-<span id="cb91-5"><a href="gwas-testing.html#cb91-5" tabindex="-1"></a>                    <span class="at">xlab =</span> <span class="st">&quot;minor allele frequency&quot;</span>) <span class="sc">+</span></span>
-<span id="cb91-6"><a href="gwas-testing.html#cb91-6" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fl">0.05</span>, <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>,</span>
-<span id="cb91-7"><a href="gwas-testing.html#cb91-7" tabindex="-1"></a>                      <span class="at">color =</span> <span class="st">&quot;#E55738&quot;</span>, <span class="at">size =</span> <span class="dv">1</span>)</span>
-<span id="cb91-8"><a href="gwas-testing.html#cb91-8" tabindex="-1"></a>ggplot2<span class="sc">::</span><span class="fu">ggsave</span>(<span class="fu">paste0</span>(COURSE_loc, <span class="st">&quot;/dummy_project/gwas-freq.png&quot;</span>),</span>
-<span id="cb91-9"><a href="gwas-testing.html#cb91-9" tabindex="-1"></a>       <span class="at">plot =</span> <span class="fu">last_plot</span>())</span></code></pre></div>
+<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="gwas-testing.html#cb85-1" tabindex="-1"></a>ggpubr<span class="sc">::</span><span class="fu">gghistogram</span>(gwas_FRQ, <span class="at">x =</span> <span class="st">&quot;MAF&quot;</span>,</span>
+<span id="cb85-2"><a href="gwas-testing.html#cb85-2" tabindex="-1"></a>                    <span class="at">add =</span> <span class="st">&quot;mean&quot;</span>, <span class="at">add.params =</span> <span class="fu">list</span>(<span class="at">color =</span> <span class="st">&quot;#595A5C&quot;</span>, <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>, <span class="at">size =</span> <span class="dv">1</span>),</span>
+<span id="cb85-3"><a href="gwas-testing.html#cb85-3" tabindex="-1"></a>                    <span class="at">rug =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb85-4"><a href="gwas-testing.html#cb85-4" tabindex="-1"></a>                    <span class="at">color =</span> <span class="st">&quot;#1290D9&quot;</span>, <span class="at">fill =</span> <span class="st">&quot;#1290D9&quot;</span>,</span>
+<span id="cb85-5"><a href="gwas-testing.html#cb85-5" tabindex="-1"></a>                    <span class="at">xlab =</span> <span class="st">&quot;minor allele frequency&quot;</span>) <span class="sc">+</span></span>
+<span id="cb85-6"><a href="gwas-testing.html#cb85-6" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fl">0.05</span>, <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>,</span>
+<span id="cb85-7"><a href="gwas-testing.html#cb85-7" tabindex="-1"></a>                      <span class="at">color =</span> <span class="st">&quot;#E55738&quot;</span>, <span class="at">size =</span> <span class="dv">1</span>)</span>
+<span id="cb85-8"><a href="gwas-testing.html#cb85-8" tabindex="-1"></a>ggplot2<span class="sc">::</span><span class="fu">ggsave</span>(<span class="fu">paste0</span>(COURSE_loc, <span class="st">&quot;/dummy_project/gwas-freq.png&quot;</span>),</span>
+<span id="cb85-9"><a href="gwas-testing.html#cb85-9" tabindex="-1"></a>       <span class="at">plot =</span> <span class="fu">last_plot</span>())</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:show-freq-gwas"></span>
 <img src="img/_gwas_dummy/show-freq-gwas.png" alt="Minor allele frequencies." width="672" />
 <p class="caption">
@@ -377,17 +373,17 @@ Figure 7.2: Minor allele frequencies.
 </p>
 </div>
 <p>We will want to identify samples that have poor call rates.</p>
-<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="gwas-testing.html#cb92-1" tabindex="-1"></a>gwas_IMISS<span class="sc">$</span>callrate <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> gwas_IMISS<span class="sc">$</span>F_MISS</span>
-<span id="cb92-2"><a href="gwas-testing.html#cb92-2" tabindex="-1"></a></span>
-<span id="cb92-3"><a href="gwas-testing.html#cb92-3" tabindex="-1"></a>ggpubr<span class="sc">::</span><span class="fu">gghistogram</span>(gwas_IMISS, <span class="at">x =</span> <span class="st">&quot;callrate&quot;</span>,</span>
-<span id="cb92-4"><a href="gwas-testing.html#cb92-4" tabindex="-1"></a>                    <span class="at">add =</span> <span class="st">&quot;mean&quot;</span>, <span class="at">add.params =</span> <span class="fu">list</span>(<span class="at">color =</span> <span class="st">&quot;#595A5C&quot;</span>, <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>, <span class="at">size =</span> <span class="dv">1</span>),</span>
-<span id="cb92-5"><a href="gwas-testing.html#cb92-5" tabindex="-1"></a>                    <span class="at">rug =</span> <span class="cn">TRUE</span>, <span class="at">bins =</span> <span class="dv">50</span>,</span>
-<span id="cb92-6"><a href="gwas-testing.html#cb92-6" tabindex="-1"></a>                    <span class="at">color =</span> <span class="st">&quot;#1290D9&quot;</span>, <span class="at">fill =</span> <span class="st">&quot;#1290D9&quot;</span>,</span>
-<span id="cb92-7"><a href="gwas-testing.html#cb92-7" tabindex="-1"></a>                    <span class="at">xlab =</span> <span class="st">&quot;per sample call rate&quot;</span>) <span class="sc">+</span></span>
-<span id="cb92-8"><a href="gwas-testing.html#cb92-8" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fl">0.95</span>, <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>,</span>
-<span id="cb92-9"><a href="gwas-testing.html#cb92-9" tabindex="-1"></a>                      <span class="at">color =</span> <span class="st">&quot;#E55738&quot;</span>, <span class="at">size =</span> <span class="dv">1</span>)</span>
-<span id="cb92-10"><a href="gwas-testing.html#cb92-10" tabindex="-1"></a>ggplot2<span class="sc">::</span><span class="fu">ggsave</span>(<span class="fu">paste0</span>(COURSE_loc, <span class="st">&quot;/dummy_project/gwas-sample-call-rate.png&quot;</span>),</span>
-<span id="cb92-11"><a href="gwas-testing.html#cb92-11" tabindex="-1"></a>       <span class="at">plot =</span> <span class="fu">last_plot</span>())</span></code></pre></div>
+<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="gwas-testing.html#cb86-1" tabindex="-1"></a>gwas_IMISS<span class="sc">$</span>callrate <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> gwas_IMISS<span class="sc">$</span>F_MISS</span>
+<span id="cb86-2"><a href="gwas-testing.html#cb86-2" tabindex="-1"></a></span>
+<span id="cb86-3"><a href="gwas-testing.html#cb86-3" tabindex="-1"></a>ggpubr<span class="sc">::</span><span class="fu">gghistogram</span>(gwas_IMISS, <span class="at">x =</span> <span class="st">&quot;callrate&quot;</span>,</span>
+<span id="cb86-4"><a href="gwas-testing.html#cb86-4" tabindex="-1"></a>                    <span class="at">add =</span> <span class="st">&quot;mean&quot;</span>, <span class="at">add.params =</span> <span class="fu">list</span>(<span class="at">color =</span> <span class="st">&quot;#595A5C&quot;</span>, <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>, <span class="at">size =</span> <span class="dv">1</span>),</span>
+<span id="cb86-5"><a href="gwas-testing.html#cb86-5" tabindex="-1"></a>                    <span class="at">rug =</span> <span class="cn">TRUE</span>, <span class="at">bins =</span> <span class="dv">50</span>,</span>
+<span id="cb86-6"><a href="gwas-testing.html#cb86-6" tabindex="-1"></a>                    <span class="at">color =</span> <span class="st">&quot;#1290D9&quot;</span>, <span class="at">fill =</span> <span class="st">&quot;#1290D9&quot;</span>,</span>
+<span id="cb86-7"><a href="gwas-testing.html#cb86-7" tabindex="-1"></a>                    <span class="at">xlab =</span> <span class="st">&quot;per sample call rate&quot;</span>) <span class="sc">+</span></span>
+<span id="cb86-8"><a href="gwas-testing.html#cb86-8" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fl">0.95</span>, <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>,</span>
+<span id="cb86-9"><a href="gwas-testing.html#cb86-9" tabindex="-1"></a>                      <span class="at">color =</span> <span class="st">&quot;#E55738&quot;</span>, <span class="at">size =</span> <span class="dv">1</span>)</span>
+<span id="cb86-10"><a href="gwas-testing.html#cb86-10" tabindex="-1"></a>ggplot2<span class="sc">::</span><span class="fu">ggsave</span>(<span class="fu">paste0</span>(COURSE_loc, <span class="st">&quot;/dummy_project/gwas-sample-call-rate.png&quot;</span>),</span>
+<span id="cb86-11"><a href="gwas-testing.html#cb86-11" tabindex="-1"></a>       <span class="at">plot =</span> <span class="fu">last_plot</span>())</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:show-sample-callrate-gwas"></span>
 <img src="img/_gwas_dummy/show-sample-callrate-gwas.png" alt="Per sample call rates." width="672" />
 <p class="caption">
@@ -395,17 +391,17 @@ Figure 7.3: Per sample call rates.
 </p>
 </div>
 <p>We also need to know what the per SNP call rates are.</p>
-<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="gwas-testing.html#cb93-1" tabindex="-1"></a>gwas_LMISS<span class="sc">$</span>callrate <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> gwas_LMISS<span class="sc">$</span>F_MISS</span>
-<span id="cb93-2"><a href="gwas-testing.html#cb93-2" tabindex="-1"></a></span>
-<span id="cb93-3"><a href="gwas-testing.html#cb93-3" tabindex="-1"></a>ggpubr<span class="sc">::</span><span class="fu">gghistogram</span>(gwas_LMISS, <span class="at">x =</span> <span class="st">&quot;callrate&quot;</span>,</span>
-<span id="cb93-4"><a href="gwas-testing.html#cb93-4" tabindex="-1"></a>                    <span class="at">add =</span> <span class="st">&quot;mean&quot;</span>, <span class="at">add.params =</span> <span class="fu">list</span>(<span class="at">color =</span> <span class="st">&quot;#595A5C&quot;</span>, <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>, <span class="at">size =</span> <span class="dv">1</span>),</span>
-<span id="cb93-5"><a href="gwas-testing.html#cb93-5" tabindex="-1"></a>                    <span class="at">rug =</span> <span class="cn">TRUE</span>, <span class="at">bins =</span> <span class="dv">50</span>,</span>
-<span id="cb93-6"><a href="gwas-testing.html#cb93-6" tabindex="-1"></a>                    <span class="at">color =</span> <span class="st">&quot;#1290D9&quot;</span>, <span class="at">fill =</span> <span class="st">&quot;#1290D9&quot;</span>,</span>
-<span id="cb93-7"><a href="gwas-testing.html#cb93-7" tabindex="-1"></a>                    <span class="at">xlab =</span> <span class="st">&quot;per SNP call rate&quot;</span>) <span class="sc">+</span></span>
-<span id="cb93-8"><a href="gwas-testing.html#cb93-8" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fl">0.95</span>, <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>,</span>
-<span id="cb93-9"><a href="gwas-testing.html#cb93-9" tabindex="-1"></a>                      <span class="at">color =</span> <span class="st">&quot;#E55738&quot;</span>, <span class="at">size =</span> <span class="dv">1</span>)</span>
-<span id="cb93-10"><a href="gwas-testing.html#cb93-10" tabindex="-1"></a>ggplot2<span class="sc">::</span><span class="fu">ggsave</span>(<span class="fu">paste0</span>(COURSE_loc, <span class="st">&quot;/dummy_project/gwas-snp-call-rate.png&quot;</span>),</span>
-<span id="cb93-11"><a href="gwas-testing.html#cb93-11" tabindex="-1"></a>       <span class="at">plot =</span> <span class="fu">last_plot</span>())</span></code></pre></div>
+<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="gwas-testing.html#cb87-1" tabindex="-1"></a>gwas_LMISS<span class="sc">$</span>callrate <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> gwas_LMISS<span class="sc">$</span>F_MISS</span>
+<span id="cb87-2"><a href="gwas-testing.html#cb87-2" tabindex="-1"></a></span>
+<span id="cb87-3"><a href="gwas-testing.html#cb87-3" tabindex="-1"></a>ggpubr<span class="sc">::</span><span class="fu">gghistogram</span>(gwas_LMISS, <span class="at">x =</span> <span class="st">&quot;callrate&quot;</span>,</span>
+<span id="cb87-4"><a href="gwas-testing.html#cb87-4" tabindex="-1"></a>                    <span class="at">add =</span> <span class="st">&quot;mean&quot;</span>, <span class="at">add.params =</span> <span class="fu">list</span>(<span class="at">color =</span> <span class="st">&quot;#595A5C&quot;</span>, <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>, <span class="at">size =</span> <span class="dv">1</span>),</span>
+<span id="cb87-5"><a href="gwas-testing.html#cb87-5" tabindex="-1"></a>                    <span class="at">rug =</span> <span class="cn">TRUE</span>, <span class="at">bins =</span> <span class="dv">50</span>,</span>
+<span id="cb87-6"><a href="gwas-testing.html#cb87-6" tabindex="-1"></a>                    <span class="at">color =</span> <span class="st">&quot;#1290D9&quot;</span>, <span class="at">fill =</span> <span class="st">&quot;#1290D9&quot;</span>,</span>
+<span id="cb87-7"><a href="gwas-testing.html#cb87-7" tabindex="-1"></a>                    <span class="at">xlab =</span> <span class="st">&quot;per SNP call rate&quot;</span>) <span class="sc">+</span></span>
+<span id="cb87-8"><a href="gwas-testing.html#cb87-8" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fl">0.95</span>, <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>,</span>
+<span id="cb87-9"><a href="gwas-testing.html#cb87-9" tabindex="-1"></a>                      <span class="at">color =</span> <span class="st">&quot;#E55738&quot;</span>, <span class="at">size =</span> <span class="dv">1</span>)</span>
+<span id="cb87-10"><a href="gwas-testing.html#cb87-10" tabindex="-1"></a>ggplot2<span class="sc">::</span><span class="fu">ggsave</span>(<span class="fu">paste0</span>(COURSE_loc, <span class="st">&quot;/dummy_project/gwas-snp-call-rate.png&quot;</span>),</span>
+<span id="cb87-11"><a href="gwas-testing.html#cb87-11" tabindex="-1"></a>       <span class="at">plot =</span> <span class="fu">last_plot</span>())</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:show-snp-callrate-gwas"></span>
 <img src="img/_gwas_dummy/show-snp-callrate-gwas.png" alt="Per SNP call rates." width="672" />
 <p class="caption">
@@ -421,13 +417,13 @@ Figure 7.4: Per SNP call rates.
 <p>You can change this default behaviour by adding the flag <code>--cell</code>, <em>e.g.</em>, we could lower the threshold to 3.</p>
 <pre><code>plink --bfile gwas/gwa --model --cell 3 --out gwas/data</code></pre>
 <p>Let’s review the contents of the results.</p>
-<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="gwas-testing.html#cb96-1" tabindex="-1"></a>gwas_model <span class="ot">&lt;-</span> data.table<span class="sc">::</span><span class="fu">fread</span>(<span class="fu">paste0</span>(COURSE_loc, <span class="st">&quot;/dummy_project/data.model&quot;</span>))</span>
-<span id="cb96-2"><a href="gwas-testing.html#cb96-2" tabindex="-1"></a></span>
-<span id="cb96-3"><a href="gwas-testing.html#cb96-3" tabindex="-1"></a><span class="fu">dim</span>(gwas_model)</span>
-<span id="cb96-4"><a href="gwas-testing.html#cb96-4" tabindex="-1"></a></span>
-<span id="cb96-5"><a href="gwas-testing.html#cb96-5" tabindex="-1"></a>N_SNPS <span class="ot">=</span> <span class="fu">length</span>(gwas_model<span class="sc">$</span>SNP)</span>
-<span id="cb96-6"><a href="gwas-testing.html#cb96-6" tabindex="-1"></a></span>
-<span id="cb96-7"><a href="gwas-testing.html#cb96-7" tabindex="-1"></a>gwas_model[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="gwas-testing.html#cb90-1" tabindex="-1"></a>gwas_model <span class="ot">&lt;-</span> data.table<span class="sc">::</span><span class="fu">fread</span>(<span class="fu">paste0</span>(COURSE_loc, <span class="st">&quot;/dummy_project/data.model&quot;</span>))</span>
+<span id="cb90-2"><a href="gwas-testing.html#cb90-2" tabindex="-1"></a></span>
+<span id="cb90-3"><a href="gwas-testing.html#cb90-3" tabindex="-1"></a><span class="fu">dim</span>(gwas_model)</span>
+<span id="cb90-4"><a href="gwas-testing.html#cb90-4" tabindex="-1"></a></span>
+<span id="cb90-5"><a href="gwas-testing.html#cb90-5" tabindex="-1"></a>N_SNPS <span class="ot">=</span> <span class="fu">length</span>(gwas_model<span class="sc">$</span>SNP)</span>
+<span id="cb90-6"><a href="gwas-testing.html#cb90-6" tabindex="-1"></a></span>
+<span id="cb90-7"><a href="gwas-testing.html#cb90-7" tabindex="-1"></a>gwas_model[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>]</span></code></pre></div>
 <p>It contains 1,530,510 rows, one for each SNP, and each type of test (<em>genotypic</em>, <em>trend</em>, <em>allelic</em>, <em>dominant</em>, and <em>recessive</em>) and the following columns:</p>
 <ul>
 <li>chromosome [CHR],</li>
@@ -455,11 +451,11 @@ Figure 7.4: Per SNP call rates.
 <p>When running a regression analysis, be it linear or logistic, PLINK assumes a multiplicative model. By default, when at least one male and one female is present, sex (male = 1, female = 0) is automatically added as a covariate on X chromosome SNPs, and nowhere else. The <code>sex</code> flag causes it to be added everywhere, while <code>no-x-sex</code> excludes it.</p>
 <pre><code>plink --bfile gwas/gwa --logistic sex --covar gwas/gwa.covar --out gwas/data</code></pre>
 <p>Let’s examine the results</p>
-<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="gwas-testing.html#cb98-1" tabindex="-1"></a>gwas_assoc <span class="ot">&lt;-</span> data.table<span class="sc">::</span><span class="fu">fread</span>(<span class="fu">paste0</span>(COURSE_loc, <span class="st">&quot;/dummy_project/data.assoc.logistic&quot;</span>))</span>
-<span id="cb98-2"><a href="gwas-testing.html#cb98-2" tabindex="-1"></a></span>
-<span id="cb98-3"><a href="gwas-testing.html#cb98-3" tabindex="-1"></a><span class="fu">dim</span>(gwas_assoc)</span>
-<span id="cb98-4"><a href="gwas-testing.html#cb98-4" tabindex="-1"></a></span>
-<span id="cb98-5"><a href="gwas-testing.html#cb98-5" tabindex="-1"></a>gwas_assoc[<span class="dv">1</span><span class="sc">:</span><span class="dv">9</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">9</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="gwas-testing.html#cb92-1" tabindex="-1"></a>gwas_assoc <span class="ot">&lt;-</span> data.table<span class="sc">::</span><span class="fu">fread</span>(<span class="fu">paste0</span>(COURSE_loc, <span class="st">&quot;/dummy_project/data.assoc.logistic&quot;</span>))</span>
+<span id="cb92-2"><a href="gwas-testing.html#cb92-2" tabindex="-1"></a></span>
+<span id="cb92-3"><a href="gwas-testing.html#cb92-3" tabindex="-1"></a><span class="fu">dim</span>(gwas_assoc)</span>
+<span id="cb92-4"><a href="gwas-testing.html#cb92-4" tabindex="-1"></a></span>
+<span id="cb92-5"><a href="gwas-testing.html#cb92-5" tabindex="-1"></a>gwas_assoc[<span class="dv">1</span><span class="sc">:</span><span class="dv">9</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">9</span>]</span></code></pre></div>
 <p>If no model option is specified, the first row for each SNP corresponds to results for a multiplicative test of association. The C &gt;= 0 subsequent rows for each SNP correspond to separate tests of significance for each of the C covariates included in the regression model. We can remove the covariate-specific lines from the main report by adding the <code>hide-covar</code> flag.</p>
 <p>The columns in the association results are:
 - the chromosome [CHR],

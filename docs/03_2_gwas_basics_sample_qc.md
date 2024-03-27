@@ -1,22 +1,12 @@
 # Sample QC {#gwas-basics-sample-qc}
-![](./img/_gwas_dummy/gwas_sample_qc.png){width=70%}
+<!-- ![](./img/_gwas_dummy/gwas_sample_qc.png){width=70%} -->
 
 
 
-```
-## 
-## Packages to install for this book and its contents to automagically work.
-## 
-## * Bookdown and rmarkdown packages...
-## 
-## * General packages...
-## 
-## * GGplotting packages - for publication ready plotting...
-## 
-## * Genomic packages...
-```
 
-Let's start with the per-sample quality control. 
+
+
+Let's start with the per-sample quality control. The goal here is to identify all the samples that for some reason (mentioned in the previous section) should be excluded. 
 
 ## Sex
 We need to identify of individuals with discordant sex information comparing phenotypic and genotypic data. Let's calculate the mean homozygosity rate across X-chromosome markers for each individual in the study.
@@ -49,29 +39,26 @@ cat dummy_project/rawdata.sexprobs.txt
 ```
 
 
-```r
-library("data.table")
 
-COURSE_loc = "~/Desktop/practical" # getwd()
 
-sexissues <- data.table::fread(paste0(COURSE_loc,"/dummy_project/rawdata.sexprobs.txt"))
+
+
+```{=html}
+<div class="tabwid"><style>.cl-63fe556a{}.cl-63f6fd56{font-family:'Helvetica';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-63fa1a5e{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-63fa1a68{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-63fa2f1c{width:0.568in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-63fa2f1d{width:0.805in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-63fa2f26{width:0.932in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-63fa2f27{width:0.652in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-63fa2f28{width:0.568in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-63fa2f30{width:0.805in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-63fa2f31{width:0.932in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-63fa2f3a{width:0.652in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-63fa2f58{width:0.568in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-63fa2f59{width:0.805in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-63fa2f62{width:0.932in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-63fa2f63{width:0.652in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table data-quarto-disable-processing='true' class='cl-63fe556a'>
+
 ```
 
+<caption style="display:table-caption;">(\#tab:sexissues)<span>Sex issues.</span></caption>
 
+```{=html}
 
-
-```r
-library("knitr")
-knitr::kable(
-  sexissues, caption = 'Sex issues',
-  booktabs = TRUE
-)
+<thead><tr style="overflow-wrap:break-word;"><th class="cl-63fa2f1c"><p class="cl-63fa1a5e"><span class="cl-63f6fd56">FID</span></p></th><th class="cl-63fa2f1c"><p class="cl-63fa1a5e"><span class="cl-63f6fd56">IID</span></p></th><th class="cl-63fa2f1d"><p class="cl-63fa1a5e"><span class="cl-63f6fd56">PEDSEX</span></p></th><th class="cl-63fa2f1d"><p class="cl-63fa1a5e"><span class="cl-63f6fd56">SNPSEX</span></p></th><th class="cl-63fa2f26"><p class="cl-63fa1a68"><span class="cl-63f6fd56">STATUS</span></p></th><th class="cl-63fa2f27"><p class="cl-63fa1a5e"><span class="cl-63f6fd56">F</span></p></th></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-63fa2f28"><p class="cl-63fa1a5e"><span class="cl-63f6fd56">772</span></p></td><td class="cl-63fa2f28"><p class="cl-63fa1a5e"><span class="cl-63f6fd56">772</span></p></td><td class="cl-63fa2f30"><p class="cl-63fa1a5e"><span class="cl-63f6fd56">2</span></p></td><td class="cl-63fa2f30"><p class="cl-63fa1a5e"><span class="cl-63f6fd56">0</span></p></td><td class="cl-63fa2f31"><p class="cl-63fa1a68"><span class="cl-63f6fd56">PROBLEM</span></p></td><td class="cl-63fa2f3a"><p class="cl-63fa1a5e"><span class="cl-63f6fd56">0.3084</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-63fa2f28"><p class="cl-63fa1a5e"><span class="cl-63f6fd56">853</span></p></td><td class="cl-63fa2f28"><p class="cl-63fa1a5e"><span class="cl-63f6fd56">853</span></p></td><td class="cl-63fa2f30"><p class="cl-63fa1a5e"><span class="cl-63f6fd56">2</span></p></td><td class="cl-63fa2f30"><p class="cl-63fa1a5e"><span class="cl-63f6fd56">0</span></p></td><td class="cl-63fa2f31"><p class="cl-63fa1a68"><span class="cl-63f6fd56">PROBLEM</span></p></td><td class="cl-63fa2f3a"><p class="cl-63fa1a5e"><span class="cl-63f6fd56">0.3666</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-63fa2f58"><p class="cl-63fa1a5e"><span class="cl-63f6fd56">1,920</span></p></td><td class="cl-63fa2f58"><p class="cl-63fa1a5e"><span class="cl-63f6fd56">1,920</span></p></td><td class="cl-63fa2f59"><p class="cl-63fa1a5e"><span class="cl-63f6fd56">2</span></p></td><td class="cl-63fa2f59"><p class="cl-63fa1a5e"><span class="cl-63f6fd56">0</span></p></td><td class="cl-63fa2f62"><p class="cl-63fa1a68"><span class="cl-63f6fd56">PROBLEM</span></p></td><td class="cl-63fa2f63"><p class="cl-63fa1a5e"><span class="cl-63f6fd56">0.4066</span></p></td></tr></tbody></table></div>
 ```
 
 
 When the homozygosity rate (_F_) is more than 0.2, but less than 0.8, the genotype data are inconclusive regarding the sex of an individual and these are marked in column _SNPSEX_ with a 0, and the column _STATUS_ "PROBLEM".
 
-Report the IDs of individuals with discordant sex information (Table \@ref(tab:sex-issues)) to those who conducted sex phenotyping. In situations in which discrepancy cannot be resolved, add the family ID (FID) and individual ID (IID) of the samples to a file named `fail-sexcheck-qc.txt` (one individual per line, tab delimited).
+Report the IDs of individuals with discordant sex information (Table \@ref(tab:sexissues)) to those who conducted sex phenotyping. In situations in which discrepancy cannot be resolved, add the family ID (FID) and individual ID (IID) of the samples to a file named `fail-sexcheck-qc.txt` (one individual per line, tab delimited).
 
 ```
 grep "PROBLEM" dummy_project/rawdata.sexcheck | awk '{ print $1, $2}'  > dummy_project/fail-sexcheck-qc.txt
@@ -84,36 +71,18 @@ Let's get an overview of the missing data per sample and per SNP.
 plink --bfile dummy_project/rawdata --missing --out dummy_project/rawdata
 ```
 
-This produces two files, `rawdata/rawdata.imiss` and `rawdata/rawdata.lmiss`. In the .imiss file the _N_MISS_ column denotes the number of missing SNPs, and the _F_MISS_ column denotes the proportion of missing SNPs per individual.
+This produces two files, `rawdata/rawdata.imiss` and `rawdata/rawdata.lmiss`. In the `.imiss`-file the _N_MISS_ column denotes the number of missing SNPs, and the _F_MISS_ column denotes the proportion of missing SNPs per individual.
 
 
 
-```r
-raw_IMISS <- data.table::fread(paste0(COURSE_loc, "/dummy_project/rawdata.imiss"))
-
-raw_IMISS$callrate <- 1 - raw_IMISS$F_MISS
-```
 
 
-```r
-library("ggpubr")
 
-ggpubr::gghistogram(raw_IMISS, x = "callrate",
-                    add = "mean", add.params = list(color = "#595A5C", linetype = "dashed", size = 1),
-                    rug = TRUE, bins = 50,
-                    color = "#1290D9", fill = "#1290D9",
-                    xlab = "per sample call rate") +
-  ggplot2::geom_vline(xintercept = 0.95, linetype = "dashed",
-                color = "#E55738", size = 1)
-ggplot2::ggsave(paste0(COURSE_loc, "/dummy_project/gwas-qc-sample-call-rate.png"),
-       plot = last_plot())
-```
-
-The grey dashed line in Figure \@ref(fig:show-sample-callrate) indicates the mean call rate, while the red dashed line indicates the threshold we had determined above.
+The grey dashed line in Figure \@ref(fig:showsamplecallrate) indicates the mean call rate, while the red dashed line indicates the threshold we had determined above.
 
 <div class="figure" style="text-align: center">
-<img src="img/_gwas_dummy/gwas-qc-sample-callrate.png" alt="Per sample call rate." width="672" />
-<p class="caption">(\#fig:show-sample-callrate)Per sample call rate.</p>
+<img src="img/_gwas_dummy/gwas-qc-sample-callrate.png" alt="Per sample call rate." width="85%" />
+<p class="caption">(\#fig:showsamplecallrate)Per sample call rate.</p>
 </div>
 
 
@@ -194,44 +163,12 @@ plink --bfile dummy_project/rawdata.clean.ultraclean --het --out dummy_project/r
 
 This creates the file `dummy_project/rawdata.clean.ultraclean.het`, in which the third column denotes the observed number of homozygous genotypes, O(Hom), and the fifth column denotes the number of nonmissing genotypes, N(NM), per individual. We can now calculate the observed heterozygosity rate per individual using the formula (N(NM) - O(Hom))/N(NM).
 
-Often there is a correlation between heterozygosity rate and missing data. Thus, we should plot the observed heterozygosity rate per individual on the x-axis and the proportion of missing SNP, that is the 'SNP call rate', per individuals on the y-axis (Figure \@ref(fig:show-heterozygosity)).
-
-
-```r
-raw_HET <- data.table::fread(paste0(COURSE_loc, "/dummy_project/rawdata.clean.ultraclean.het"))
-
-raw_IMISS$logF_MISS = log10(raw_IMISS$F_MISS)
-prop_miss = -1.522879
-
-raw_HET$meanHet = (raw_HET$`N(NM)` - raw_HET$`O(HOM)`)/raw_HET$`N(NM)`
-lower_meanHet = mean(raw_HET$meanHet) - (3*sd(raw_HET$meanHet))
-upper_meanHet = mean(raw_HET$meanHet) + (3*sd(raw_HET$meanHet))
-
-raw_IMISSHET = merge(raw_IMISS, raw_HET, by = "IID")
-raw_IMISSHET$FID.y <- NULL
-colnames(raw_IMISSHET)[colnames(raw_IMISSHET)=="FID.x"] <- "FID"
-
-colors  <- densCols(raw_IMISSHET$logF_MISS, raw_IMISSHET$meanHet)
-```
+Often there is a correlation between heterozygosity rate and missing data. Thus, we should plot the observed heterozygosity rate per individual on the x-axis and the proportion of missing SNP, that is the 'SNP call rate', per individuals on the y-axis (Figure \@ref(fig:showheterozygosity)).
 
 
 
-```r
-library("geneplotter")
-png(paste0(COURSE_loc, "/dummy_project/gwas-qc-imiss-vs-het.png"))
-plot(raw_IMISSHET$logF_MISS,
-     raw_IMISSHET$meanHet, 
-     col = colors, 
-     xlim = c(-3,0), ylim = c(0,0.5),
-     pch = 20, 
-     xlab = "Proportion of missing genotypes", ylab = "Heterozygosity rate", axes = FALSE)
-axis(2, at = c(0,0.05,0.10,0.15,0.2,0.25,0.3,0.35,0.4,0.45,0.5), tick = TRUE)
-axis(1, at = c(-3,-2,-1,0), 
-     labels = c(0.001,0.01,0.1,1))
-abline(h = lower_meanHet, col = "#E55738", lty = 2)
-abline(h = upper_meanHet, col = "#E55738", lty = 2)
-abline(v = prop_miss, col = "#E55738", lty = 2)
-```
+
+
 
 <!-- I prefer to use ggpubr, but I don't understand why this code doesn't work anymore...?!?! -->
 <!-- ```{r heterozygosity, eval = FALSE} -->
@@ -249,61 +186,53 @@ abline(v = prop_miss, col = "#E55738", lty = 2)
 <!-- ``` -->
 
 <div class="figure" style="text-align: center">
-<img src="img/_gwas_dummy/show-heterozygosity.png" alt="Heterozygosity as a function of SNP call rate." width="240" />
-<p class="caption">(\#fig:show-heterozygosity)Heterozygosity as a function of SNP call rate.</p>
+<img src="img/_gwas_dummy/show-heterozygosity.png" alt="Heterozygosity as a function of SNP call rate." width="85%" />
+<p class="caption">(\#fig:showheterozygosity)Heterozygosity as a function of SNP call rate.</p>
 </div>
 
-Examine the plot (Figure \@ref(fig:show-heterozygosity)) to decide reasonable thresholds at which to exclude individuals based on elevated missing or extreme heterozygosity. We chose to exclude all individuals with a genotype failure rate >= 0.03 (vertical dashed line) and/or a heterozygosity rate ± 3 s.d. from the mean (horizontal dashed lines). Add the FID and IID of the samples failing this QC to the file named `fail-imisshet-qc.txt`.
+Examine the plot (Figure \@ref(fig:showheterozygosity)) to decide reasonable thresholds at which to exclude individuals based on elevated missing or extreme heterozygosity. We chose to exclude all individuals with a genotype failure rate >= 0.03 (vertical dashed line) and/or a heterozygosity rate ± 3 s.d. from the mean (horizontal dashed lines). Add the FID and IID of the samples failing this QC to the file named `fail-imisshet-qc.txt`.
 
 > How would you create this file?
 
 
-```r
-raw_IMISSHETsub = subset(raw_IMISSHET, logF_MISS > prop_miss | (meanHet < lower_meanHet | meanHet > upper_meanHet),
-                         select = c("FID", "IID"))
-data.table::fwrite(raw_IMISSHETsub, paste0(COURSE_loc,"/dummy_project/fail-raw_IMISSHETsub.txt"), sep =" ")
+
+If all is right, you'd have something like Table \@ref(tab:failedcallratehet).
+
+
+
+
+```{=html}
+<div class="tabwid"><style>.cl-642abcf4{}.cl-64230c5c{font-family:'Helvetica';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-6425fdfe{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-642613a2{width:0.568in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-642613ac{width:0.568in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-642613ad{width:0.568in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-642613b6{width:0.568in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-642613b7{width:0.568in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-642613c0{width:0.568in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-642613ca{width:0.568in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-642613cb{width:0.568in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-642613d4{width:0.568in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-642613d5{width:0.568in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-642613de{width:0.568in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-642613df{width:0.568in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-642613e8{width:0.568in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-642613e9{width:0.568in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-642613f2{width:0.568in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-642613f3{width:0.568in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table data-quarto-disable-processing='true' class='cl-642abcf4'>
+
 ```
 
-If all is right, you'd have something like Table \@ref(tab:failed-callrate-het).
+<caption style="display:table-caption;">(\#tab:failedcallratehet)<span>Failed samples due to sample call rates and heterozygosity rate.</span></caption>
 
+```{=html}
 
-
-
-```r
-library("knitr")
-knitr::kable(
-  raw_IMISSHETsub, caption = 'Failed samples due to sample call rates and heterozygosity rate',
-  booktabs = TRUE
-)
+<thead><tr style="overflow-wrap:break-word;"><th class="cl-642613a2"><p class="cl-6425fdfe"><span class="cl-64230c5c">FID</span></p></th><th class="cl-642613a2"><p class="cl-6425fdfe"><span class="cl-64230c5c">IID</span></p></th></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-642613ac"><p class="cl-6425fdfe"><span class="cl-64230c5c">28</span></p></td><td class="cl-642613ac"><p class="cl-6425fdfe"><span class="cl-64230c5c">28</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-642613ad"><p class="cl-6425fdfe"><span class="cl-64230c5c">50</span></p></td><td class="cl-642613ad"><p class="cl-6425fdfe"><span class="cl-64230c5c">50</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-642613b6"><p class="cl-6425fdfe"><span class="cl-64230c5c">52</span></p></td><td class="cl-642613b6"><p class="cl-6425fdfe"><span class="cl-64230c5c">52</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-642613b6"><p class="cl-6425fdfe"><span class="cl-64230c5c">53</span></p></td><td class="cl-642613b6"><p class="cl-6425fdfe"><span class="cl-64230c5c">53</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-642613b7"><p class="cl-6425fdfe"><span class="cl-64230c5c">67</span></p></td><td class="cl-642613b7"><p class="cl-6425fdfe"><span class="cl-64230c5c">67</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-642613ac"><p class="cl-6425fdfe"><span class="cl-64230c5c">96</span></p></td><td class="cl-642613ac"><p class="cl-6425fdfe"><span class="cl-64230c5c">96</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-642613c0"><p class="cl-6425fdfe"><span class="cl-64230c5c">205</span></p></td><td class="cl-642613c0"><p class="cl-6425fdfe"><span class="cl-64230c5c">205</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-642613ac"><p class="cl-6425fdfe"><span class="cl-64230c5c">298</span></p></td><td class="cl-642613ac"><p class="cl-6425fdfe"><span class="cl-64230c5c">298</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-642613b6"><p class="cl-6425fdfe"><span class="cl-64230c5c">310</span></p></td><td class="cl-642613b6"><p class="cl-6425fdfe"><span class="cl-64230c5c">310</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-642613b6"><p class="cl-6425fdfe"><span class="cl-64230c5c">351</span></p></td><td class="cl-642613b6"><p class="cl-6425fdfe"><span class="cl-64230c5c">351</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-642613b7"><p class="cl-6425fdfe"><span class="cl-64230c5c">404</span></p></td><td class="cl-642613b7"><p class="cl-6425fdfe"><span class="cl-64230c5c">404</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-642613ca"><p class="cl-6425fdfe"><span class="cl-64230c5c">418</span></p></td><td class="cl-642613ca"><p class="cl-6425fdfe"><span class="cl-64230c5c">418</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-642613c0"><p class="cl-6425fdfe"><span class="cl-64230c5c">423</span></p></td><td class="cl-642613c0"><p class="cl-6425fdfe"><span class="cl-64230c5c">423</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-642613ac"><p class="cl-6425fdfe"><span class="cl-64230c5c">428</span></p></td><td class="cl-642613ac"><p class="cl-6425fdfe"><span class="cl-64230c5c">428</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-642613cb"><p class="cl-6425fdfe"><span class="cl-64230c5c">442</span></p></td><td class="cl-642613cb"><p class="cl-6425fdfe"><span class="cl-64230c5c">442</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-642613d4"><p class="cl-6425fdfe"><span class="cl-64230c5c">444</span></p></td><td class="cl-642613d4"><p class="cl-6425fdfe"><span class="cl-64230c5c">444</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-642613ca"><p class="cl-6425fdfe"><span class="cl-64230c5c">548</span></p></td><td class="cl-642613ca"><p class="cl-6425fdfe"><span class="cl-64230c5c">548</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-642613cb"><p class="cl-6425fdfe"><span class="cl-64230c5c">772</span></p></td><td class="cl-642613cb"><p class="cl-6425fdfe"><span class="cl-64230c5c">772</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-642613ca"><p class="cl-6425fdfe"><span class="cl-64230c5c">835</span></p></td><td class="cl-642613ca"><p class="cl-6425fdfe"><span class="cl-64230c5c">835</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-642613ca"><p class="cl-6425fdfe"><span class="cl-64230c5c">850</span></p></td><td class="cl-642613ca"><p class="cl-6425fdfe"><span class="cl-64230c5c">850</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-642613ca"><p class="cl-6425fdfe"><span class="cl-64230c5c">853</span></p></td><td class="cl-642613ca"><p class="cl-6425fdfe"><span class="cl-64230c5c">853</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-642613d5"><p class="cl-6425fdfe"><span class="cl-64230c5c">910</span></p></td><td class="cl-642613d5"><p class="cl-6425fdfe"><span class="cl-64230c5c">910</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-642613d5"><p class="cl-6425fdfe"><span class="cl-64230c5c">939</span></p></td><td class="cl-642613d5"><p class="cl-6425fdfe"><span class="cl-64230c5c">939</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-642613ac"><p class="cl-6425fdfe"><span class="cl-64230c5c">966</span></p></td><td class="cl-642613ac"><p class="cl-6425fdfe"><span class="cl-64230c5c">966</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-642613de"><p class="cl-6425fdfe"><span class="cl-64230c5c">968</span></p></td><td class="cl-642613de"><p class="cl-6425fdfe"><span class="cl-64230c5c">968</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-642613df"><p class="cl-6425fdfe"><span class="cl-64230c5c">1,003</span></p></td><td class="cl-642613df"><p class="cl-6425fdfe"><span class="cl-64230c5c">1,003</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-642613e8"><p class="cl-6425fdfe"><span class="cl-64230c5c">1,006</span></p></td><td class="cl-642613e8"><p class="cl-6425fdfe"><span class="cl-64230c5c">1,006</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-642613e9"><p class="cl-6425fdfe"><span class="cl-64230c5c">1,045</span></p></td><td class="cl-642613e9"><p class="cl-6425fdfe"><span class="cl-64230c5c">1,045</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-642613e9"><p class="cl-6425fdfe"><span class="cl-64230c5c">1,058</span></p></td><td class="cl-642613e9"><p class="cl-6425fdfe"><span class="cl-64230c5c">1,058</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-642613e9"><p class="cl-6425fdfe"><span class="cl-64230c5c">1,154</span></p></td><td class="cl-642613e9"><p class="cl-6425fdfe"><span class="cl-64230c5c">1,154</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-642613e8"><p class="cl-6425fdfe"><span class="cl-64230c5c">1,236</span></p></td><td class="cl-642613e8"><p class="cl-6425fdfe"><span class="cl-64230c5c">1,236</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-642613f2"><p class="cl-6425fdfe"><span class="cl-64230c5c">1,294</span></p></td><td class="cl-642613f2"><p class="cl-6425fdfe"><span class="cl-64230c5c">1,294</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-642613df"><p class="cl-6425fdfe"><span class="cl-64230c5c">1,395</span></p></td><td class="cl-642613df"><p class="cl-6425fdfe"><span class="cl-64230c5c">1,395</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-642613df"><p class="cl-6425fdfe"><span class="cl-64230c5c">1,537</span></p></td><td class="cl-642613df"><p class="cl-6425fdfe"><span class="cl-64230c5c">1,537</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-642613e9"><p class="cl-6425fdfe"><span class="cl-64230c5c">1,554</span></p></td><td class="cl-642613e9"><p class="cl-6425fdfe"><span class="cl-64230c5c">1,554</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-642613e9"><p class="cl-6425fdfe"><span class="cl-64230c5c">1,587</span></p></td><td class="cl-642613e9"><p class="cl-6425fdfe"><span class="cl-64230c5c">1,587</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-642613e8"><p class="cl-6425fdfe"><span class="cl-64230c5c">1,694</span></p></td><td class="cl-642613e8"><p class="cl-6425fdfe"><span class="cl-64230c5c">1,694</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-642613e9"><p class="cl-6425fdfe"><span class="cl-64230c5c">1,789</span></p></td><td class="cl-642613e9"><p class="cl-6425fdfe"><span class="cl-64230c5c">1,789</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-642613f2"><p class="cl-6425fdfe"><span class="cl-64230c5c">1,832</span></p></td><td class="cl-642613f2"><p class="cl-6425fdfe"><span class="cl-64230c5c">1,832</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-642613e8"><p class="cl-6425fdfe"><span class="cl-64230c5c">1,866</span></p></td><td class="cl-642613e8"><p class="cl-6425fdfe"><span class="cl-64230c5c">1,866</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-642613e9"><p class="cl-6425fdfe"><span class="cl-64230c5c">1,904</span></p></td><td class="cl-642613e9"><p class="cl-6425fdfe"><span class="cl-64230c5c">1,904</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-642613f2"><p class="cl-6425fdfe"><span class="cl-64230c5c">1,920</span></p></td><td class="cl-642613f2"><p class="cl-6425fdfe"><span class="cl-64230c5c">1,920</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-642613df"><p class="cl-6425fdfe"><span class="cl-64230c5c">1,951</span></p></td><td class="cl-642613df"><p class="cl-6425fdfe"><span class="cl-64230c5c">1,951</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-642613f2"><p class="cl-6425fdfe"><span class="cl-64230c5c">1,952</span></p></td><td class="cl-642613f2"><p class="cl-6425fdfe"><span class="cl-64230c5c">1,952</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-642613df"><p class="cl-6425fdfe"><span class="cl-64230c5c">1,953</span></p></td><td class="cl-642613df"><p class="cl-6425fdfe"><span class="cl-64230c5c">1,953</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-642613e9"><p class="cl-6425fdfe"><span class="cl-64230c5c">1,954</span></p></td><td class="cl-642613e9"><p class="cl-6425fdfe"><span class="cl-64230c5c">1,954</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-642613df"><p class="cl-6425fdfe"><span class="cl-64230c5c">1,955</span></p></td><td class="cl-642613df"><p class="cl-6425fdfe"><span class="cl-64230c5c">1,955</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-642613e9"><p class="cl-6425fdfe"><span class="cl-64230c5c">1,981</span></p></td><td class="cl-642613e9"><p class="cl-6425fdfe"><span class="cl-64230c5c">1,981</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-642613e9"><p class="cl-6425fdfe"><span class="cl-64230c5c">1,984</span></p></td><td class="cl-642613e9"><p class="cl-6425fdfe"><span class="cl-64230c5c">1,984</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-642613e9"><p class="cl-6425fdfe"><span class="cl-64230c5c">1,985</span></p></td><td class="cl-642613e9"><p class="cl-6425fdfe"><span class="cl-64230c5c">1,985</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-642613f3"><p class="cl-6425fdfe"><span class="cl-64230c5c">1,986</span></p></td><td class="cl-642613f3"><p class="cl-6425fdfe"><span class="cl-64230c5c">1,986</span></p></td></tr></tbody></table></div>
 ```
 
 
 ## Relatedness
 <!-- https://rpubs.com/EAVWing/symbols -->
-We calculate Identity-by-Descent (IBS) to identify duplicated and related samples. In Table \@ref(tab:show-relatedness) we show how much DNA is shared between individuals depending on their relation[@staples2014]. IBS is measured by calculating pi-hat ($\widehat{\pi}$), which is in essence the proportion of the DNA that a pair of samples share. To calculate this, we needed this ultraclean dataset, without low-quality SNPs and without high-LD regions. 
+We calculate Identity-by-Descent (IBS) to identify duplicated and related samples. In Table \@ref(tab:showrelatedness) we show how much DNA is shared between individuals depending on their relation[@staples2014]. IBS is measured by calculating pi-hat ($\widehat{\pi}$), which is in essence the proportion of the DNA that a pair of samples share. To calculate this, we needed this ultraclean dataset, without low-quality SNPs and without high-LD regions. 
 
 
 
 
 
-Table: (\#tab:show-relatedness)Familial relations and % DNA shared.
+```{=html}
+<div class="tabwid"><style>.cl-6451c20e{}.cl-644ac8c8{font-family:'Helvetica';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-644d7032{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-644d703c{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-644d840a{width:4.109in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-644d8414{width:1.23in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-644d8432{width:0.737in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-644d843c{width:0.805in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-644d8446{width:0.525in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-644d8447{width:4.109in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-644d8450{width:1.23in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-644d845a{width:0.737in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-644d845b{width:0.805in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-644d8464{width:0.525in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-644d8465{width:4.109in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-644d846e{width:1.23in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-644d846f{width:0.737in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-644d8478{width:0.805in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-644d848c{width:0.525in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-644d848d{width:4.109in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-644d8496{width:1.23in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-644d8497{width:0.737in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-644d84a0{width:0.805in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-644d84a1{width:0.525in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-644d84aa{width:4.109in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-644d84ab{width:1.23in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-644d84b4{width:0.737in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-644d84b5{width:0.805in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-644d84be{width:0.525in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-644d84bf{width:4.109in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-644d84c8{width:1.23in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-644d84c9{width:0.737in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-644d84d2{width:0.805in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-644d84dc{width:0.525in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-644d84dd{width:4.109in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-644d84e6{width:1.23in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-644d84e7{width:0.737in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-644d84f0{width:0.805in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-644d84f1{width:0.525in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-644d8522{width:4.109in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-644d8523{width:1.23in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-644d852c{width:0.737in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-644d8536{width:0.805in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-644d8537{width:0.525in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-644d8540{width:4.109in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-644d8541{width:1.23in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-644d854a{width:0.737in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-644d854b{width:0.805in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-644d8554{width:0.525in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-644d8555{width:4.109in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-644d855e{width:1.23in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-644d855f{width:0.737in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-644d8568{width:0.805in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-644d8569{width:0.525in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-644d8572{width:4.109in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-644d8573{width:1.23in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-644d857c{width:0.737in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-644d857d{width:0.805in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-644d8586{width:0.525in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table data-quarto-disable-processing='true' class='cl-6451c20e'>
 
-|Relatedness                                                |%.DNA.sharing |IBD0    |IBD1     | IBD2|
-|:----------------------------------------------------------|:-------------|:-------|:--------|----:|
-|Monozygotic twins                                          |±100%         |0       |1        | 0.00|
-|Parents/child                                              |±50%          |0.25    |0.5      | 0.25|
-|Sibling                                                    |±50%          |0.25    |0.5      | 0.25|
-|Fraternal twins                                            |±50%          |0.25    |0.5      | 0.25|
-|Grandparent/grandchild                                     |±25%          |0.5     |0.5      | 0.00|
-|Aunt/Uncle/Niece/Nephew                                    |±25%          |0.5     |0.5      | 0.00|
-|Half-sibling                                               |±25%          |0.5     |0.5      | 0.00|
-|First-cousin                                               |±12.5%        |0.75    |0.25     | 0.00|
-|Half first-cousin                                          |±6.25%        |0.875   |0.125    | 0.00|
-|First-cousin once removed                                  |±6.25%        |0.875   |0.125    | 0.00|
-|Second-cousin                                              |±3.13%        |0.9375  |6.25E-2  | 0.00|
-|Second-cousin once removed                                 |±1.56%        |0.96875 |3.125E-2 | 0.00|
-|Distantly related                                          |<1.56%        |varies  |varies   | 0.00|
-|Unrelated (includes relationships beyond the third degree) |<1.56%        |1       |0        | 0.00|
+```
+
+<caption style="display:table-caption;">(\#tab:showrelatedness)<span>Familial relations and % DNA shared.</span></caption>
+
+```{=html}
+
+<thead><tr style="overflow-wrap:break-word;"><th class="cl-644d840a"><p class="cl-644d7032"><span class="cl-644ac8c8">Relatedness</span></p></th><th class="cl-644d8414"><p class="cl-644d7032"><span class="cl-644ac8c8">%.DNA.sharing</span></p></th><th class="cl-644d8432"><p class="cl-644d7032"><span class="cl-644ac8c8">IBD0</span></p></th><th class="cl-644d843c"><p class="cl-644d7032"><span class="cl-644ac8c8">IBD1</span></p></th><th class="cl-644d8446"><p class="cl-644d703c"><span class="cl-644ac8c8">IBD2</span></p></th></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-644d8447"><p class="cl-644d7032"><span class="cl-644ac8c8">Monozygotic twins          </span></p></td><td class="cl-644d8450"><p class="cl-644d7032"><span class="cl-644ac8c8"> ±100%</span></p></td><td class="cl-644d845a"><p class="cl-644d7032"><span class="cl-644ac8c8">0</span></p></td><td class="cl-644d845b"><p class="cl-644d7032"><span class="cl-644ac8c8">1</span></p></td><td class="cl-644d8464"><p class="cl-644d703c"><span class="cl-644ac8c8">0.00</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-644d8465"><p class="cl-644d7032"><span class="cl-644ac8c8">Parents/child              </span></p></td><td class="cl-644d846e"><p class="cl-644d7032"><span class="cl-644ac8c8"> ±50%</span></p></td><td class="cl-644d846f"><p class="cl-644d7032"><span class="cl-644ac8c8">0.25</span></p></td><td class="cl-644d8478"><p class="cl-644d7032"><span class="cl-644ac8c8">0.5</span></p></td><td class="cl-644d848c"><p class="cl-644d703c"><span class="cl-644ac8c8">0.25</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-644d848d"><p class="cl-644d7032"><span class="cl-644ac8c8">Sibling                    </span></p></td><td class="cl-644d8496"><p class="cl-644d7032"><span class="cl-644ac8c8"> ±50%</span></p></td><td class="cl-644d8497"><p class="cl-644d7032"><span class="cl-644ac8c8">0.25</span></p></td><td class="cl-644d84a0"><p class="cl-644d7032"><span class="cl-644ac8c8">0.5</span></p></td><td class="cl-644d84a1"><p class="cl-644d703c"><span class="cl-644ac8c8">0.25</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-644d84aa"><p class="cl-644d7032"><span class="cl-644ac8c8">Fraternal twins            </span></p></td><td class="cl-644d84ab"><p class="cl-644d7032"><span class="cl-644ac8c8"> ±50%</span></p></td><td class="cl-644d84b4"><p class="cl-644d7032"><span class="cl-644ac8c8">0.25</span></p></td><td class="cl-644d84b5"><p class="cl-644d7032"><span class="cl-644ac8c8">0.5</span></p></td><td class="cl-644d84be"><p class="cl-644d703c"><span class="cl-644ac8c8">0.25</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-644d848d"><p class="cl-644d7032"><span class="cl-644ac8c8">Grandparent/grandchild     </span></p></td><td class="cl-644d8496"><p class="cl-644d7032"><span class="cl-644ac8c8"> ±25%</span></p></td><td class="cl-644d8497"><p class="cl-644d7032"><span class="cl-644ac8c8">0.5</span></p></td><td class="cl-644d84a0"><p class="cl-644d7032"><span class="cl-644ac8c8">0.5</span></p></td><td class="cl-644d84a1"><p class="cl-644d703c"><span class="cl-644ac8c8">0.00</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-644d84bf"><p class="cl-644d7032"><span class="cl-644ac8c8">Aunt/Uncle/Niece/Nephew    </span></p></td><td class="cl-644d84c8"><p class="cl-644d7032"><span class="cl-644ac8c8"> ±25%</span></p></td><td class="cl-644d84c9"><p class="cl-644d7032"><span class="cl-644ac8c8">0.5</span></p></td><td class="cl-644d84d2"><p class="cl-644d7032"><span class="cl-644ac8c8">0.5</span></p></td><td class="cl-644d84dc"><p class="cl-644d703c"><span class="cl-644ac8c8">0.00</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-644d84dd"><p class="cl-644d7032"><span class="cl-644ac8c8">Half-sibling               </span></p></td><td class="cl-644d84e6"><p class="cl-644d7032"><span class="cl-644ac8c8"> ±25%</span></p></td><td class="cl-644d84e7"><p class="cl-644d7032"><span class="cl-644ac8c8">0.5</span></p></td><td class="cl-644d84f0"><p class="cl-644d7032"><span class="cl-644ac8c8">0.5</span></p></td><td class="cl-644d84f1"><p class="cl-644d703c"><span class="cl-644ac8c8">0.00</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-644d84aa"><p class="cl-644d7032"><span class="cl-644ac8c8">First-cousin               </span></p></td><td class="cl-644d84ab"><p class="cl-644d7032"><span class="cl-644ac8c8"> ±12.5%</span></p></td><td class="cl-644d84b4"><p class="cl-644d7032"><span class="cl-644ac8c8">0.75</span></p></td><td class="cl-644d84b5"><p class="cl-644d7032"><span class="cl-644ac8c8">0.25</span></p></td><td class="cl-644d84be"><p class="cl-644d703c"><span class="cl-644ac8c8">0.00</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-644d8522"><p class="cl-644d7032"><span class="cl-644ac8c8">Half first-cousin          </span></p></td><td class="cl-644d8523"><p class="cl-644d7032"><span class="cl-644ac8c8"> ±6.25%</span></p></td><td class="cl-644d852c"><p class="cl-644d7032"><span class="cl-644ac8c8">0.875</span></p></td><td class="cl-644d8536"><p class="cl-644d7032"><span class="cl-644ac8c8">0.125</span></p></td><td class="cl-644d8537"><p class="cl-644d703c"><span class="cl-644ac8c8">0.00</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-644d8465"><p class="cl-644d7032"><span class="cl-644ac8c8">First-cousin once removed  </span></p></td><td class="cl-644d846e"><p class="cl-644d7032"><span class="cl-644ac8c8"> ±6.25%</span></p></td><td class="cl-644d846f"><p class="cl-644d7032"><span class="cl-644ac8c8">0.875</span></p></td><td class="cl-644d8478"><p class="cl-644d7032"><span class="cl-644ac8c8">0.125</span></p></td><td class="cl-644d848c"><p class="cl-644d703c"><span class="cl-644ac8c8">0.00</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-644d8540"><p class="cl-644d7032"><span class="cl-644ac8c8">Second-cousin              </span></p></td><td class="cl-644d8541"><p class="cl-644d7032"><span class="cl-644ac8c8"> ±3.13%</span></p></td><td class="cl-644d854a"><p class="cl-644d7032"><span class="cl-644ac8c8">0.9375</span></p></td><td class="cl-644d854b"><p class="cl-644d7032"><span class="cl-644ac8c8">6.25E-2</span></p></td><td class="cl-644d8554"><p class="cl-644d703c"><span class="cl-644ac8c8">0.00</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-644d8540"><p class="cl-644d7032"><span class="cl-644ac8c8">Second-cousin once removed </span></p></td><td class="cl-644d8541"><p class="cl-644d7032"><span class="cl-644ac8c8"> ±1.56%</span></p></td><td class="cl-644d854a"><p class="cl-644d7032"><span class="cl-644ac8c8">0.96875</span></p></td><td class="cl-644d854b"><p class="cl-644d7032"><span class="cl-644ac8c8">3.125E-2</span></p></td><td class="cl-644d8554"><p class="cl-644d703c"><span class="cl-644ac8c8">0.00</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-644d8555"><p class="cl-644d7032"><span class="cl-644ac8c8">Distantly related</span></p></td><td class="cl-644d855e"><p class="cl-644d7032"><span class="cl-644ac8c8">&lt;1.56%</span></p></td><td class="cl-644d855f"><p class="cl-644d7032"><span class="cl-644ac8c8">varies</span></p></td><td class="cl-644d8568"><p class="cl-644d7032"><span class="cl-644ac8c8">varies</span></p></td><td class="cl-644d8569"><p class="cl-644d703c"><span class="cl-644ac8c8">0.00</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-644d8572"><p class="cl-644d7032"><span class="cl-644ac8c8">Unrelated (includes relationships beyond the third degree)</span></p></td><td class="cl-644d8573"><p class="cl-644d7032"><span class="cl-644ac8c8">&lt;1.56%</span></p></td><td class="cl-644d857c"><p class="cl-644d7032"><span class="cl-644ac8c8">1</span></p></td><td class="cl-644d857d"><p class="cl-644d7032"><span class="cl-644ac8c8">0</span></p></td><td class="cl-644d8586"><p class="cl-644d703c"><span class="cl-644ac8c8">0.00</span></p></td></tr></tbody></table></div>
+```
 
 `PLINK` calculates the inter-individual relatedness using the `--genome` function.
 
@@ -311,7 +240,7 @@ Table: (\#tab:show-relatedness)Familial relations and % DNA shared.
 plink --bfile dummy_project/rawdata.clean.ultraclean --genome --out dummy_project/rawdata.clean.ultraclean
 ```
 
-We can now identify all pairs of individuals with an IBD > 0.185. The code looks at the individual call rates stored in rawdata.imiss and outputs the IDs of the individual with the lowest call rate to ‘fail-IBD-QC.txt’ for subsequent removal (Table \@ref(tab:show-ibdcallissues)).
+We can now identify all pairs of individuals with an IBD > 0.185. The code looks at the individual call rates stored in `rawdata.imiss` and outputs the IDs of the individual with the lowest call rate to ‘fail-IBD-QC.txt’ for subsequent removal (Table \@ref(tab:showibdcallissues)).
 
 First, move to the `dummy_project` directory.
 
@@ -332,20 +261,20 @@ cd ..
 ```
 
 
-```r
-ibdcallissues <- data.table::fread(paste0(COURSE_loc,"/dummy_project/fail-IBD-QC.txt"))
+
+
+
+
+```{=html}
+<div class="tabwid"><style>.cl-646accd6{}.cl-6463f988{font-family:'Helvetica';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-646646a2{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-64665700{width:0.568in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-6466570a{width:0.568in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-6466570b{width:0.568in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-64665728{width:0.568in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-64665732{width:0.568in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-64665733{width:0.568in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table data-quarto-disable-processing='true' class='cl-646accd6'>
+
 ```
 
+<caption style="display:table-caption;">(\#tab:showibdcallissues)<span>Failed IBD and callrate.</span></caption>
 
+```{=html}
 
-
-```r
-knitr::kable(
-  ibdcallissues, 
-  caption = 'Failed IBD and callrate.',
-  # align = ,
-  booktabs = FALSE
-)
+<thead><tr style="overflow-wrap:break-word;"><th class="cl-64665700"><p class="cl-646646a2"><span class="cl-6463f988">FID</span></p></th><th class="cl-64665700"><p class="cl-646646a2"><span class="cl-6463f988">IID</span></p></th></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-6466570a"><p class="cl-646646a2"><span class="cl-6463f988">1,952</span></p></td><td class="cl-6466570a"><p class="cl-646646a2"><span class="cl-6463f988">1,952</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-6466570b"><p class="cl-646646a2"><span class="cl-6463f988">1,953</span></p></td><td class="cl-6466570b"><p class="cl-646646a2"><span class="cl-6463f988">1,953</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-64665728"><p class="cl-646646a2"><span class="cl-6463f988">1,954</span></p></td><td class="cl-64665728"><p class="cl-646646a2"><span class="cl-6463f988">1,954</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-6466570b"><p class="cl-646646a2"><span class="cl-6463f988">1,955</span></p></td><td class="cl-6466570b"><p class="cl-646646a2"><span class="cl-6463f988">1,955</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-6466570b"><p class="cl-646646a2"><span class="cl-6463f988">1,957</span></p></td><td class="cl-6466570b"><p class="cl-646646a2"><span class="cl-6463f988">1,957</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-6466570b"><p class="cl-646646a2"><span class="cl-6463f988">1,959</span></p></td><td class="cl-6466570b"><p class="cl-646646a2"><span class="cl-6463f988">1,959</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-64665732"><p class="cl-646646a2"><span class="cl-6463f988">1,961</span></p></td><td class="cl-64665732"><p class="cl-646646a2"><span class="cl-6463f988">1,961</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-64665732"><p class="cl-646646a2"><span class="cl-6463f988">1,963</span></p></td><td class="cl-64665732"><p class="cl-646646a2"><span class="cl-6463f988">1,963</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-64665732"><p class="cl-646646a2"><span class="cl-6463f988">1,965</span></p></td><td class="cl-64665732"><p class="cl-646646a2"><span class="cl-6463f988">1,965</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-64665732"><p class="cl-646646a2"><span class="cl-6463f988">1,967</span></p></td><td class="cl-64665732"><p class="cl-646646a2"><span class="cl-6463f988">1,967</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-64665732"><p class="cl-646646a2"><span class="cl-6463f988">1,969</span></p></td><td class="cl-64665732"><p class="cl-646646a2"><span class="cl-6463f988">1,969</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-6466570b"><p class="cl-646646a2"><span class="cl-6463f988">1,971</span></p></td><td class="cl-6466570b"><p class="cl-646646a2"><span class="cl-6463f988">1,971</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-6466570b"><p class="cl-646646a2"><span class="cl-6463f988">1,973</span></p></td><td class="cl-6466570b"><p class="cl-646646a2"><span class="cl-6463f988">1,973</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-64665733"><p class="cl-646646a2"><span class="cl-6463f988">1,975</span></p></td><td class="cl-64665733"><p class="cl-646646a2"><span class="cl-6463f988">1,975</span></p></td></tr></tbody></table></div>
 ```
 
 ## Ancestral background
@@ -457,6 +386,7 @@ After removing those pesky multi-allelic variants, we should be able to merge th
 - extract the pruned SNP-set (remember?), `--extract rawdata/raw-GWA-data.prune.i`, 
 - exclude non-autosomal variants, `--autosome`, 
 - and only keeping high-quality data, `--maf 0.10 --geno 0.10 --hwe 1e-3`, 
+<!-- THIS CHUNK COULD BE USED TO REMOVE DUPLICATES, BUT IT DOESN'T WORK IN PLINK 1.9 -->
 <!-- - remove non-founders from the 1000G data, `--keep-founders`, -->
 <!-- - remove any duplicate variants based on SNPID, `--rm-dup force-first` -->
 <!-- - and list any duplicate variants based on chromosomal base pair position, `--list-duplicate-vars` -->
@@ -470,6 +400,7 @@ plink --bfile dummy_project/rawdata_1kg_phase1_raw_no_atcg_bi \
 --make-bed --out dummy_project/rawdata.1kg_phase1.clean
 ```
 
+<!-- THIS CHUNK COULD BE USED TO REMOVE DUPLICATES, BUT IT DOESN'T WORK IN PLINK 1.9 -->
 <!-- ``` -->
 <!-- plink --bfile dummy_project/rawdata_1kg_phase1_raw_no_atcg_bi \ -->
 <!-- --bmerge ref_1kg_phase1_all/1kg_phase1_raw_no_atcg \ -->
@@ -561,130 +492,20 @@ plink --bfile dummy_project/rawdata.1kg_phase1.clean --pca --out dummy_project/r
 
 If all is peachy, you just succesfully ran PCA against 1000G phase 1. Using `--pca` we have calculated principal components (PCs), 20 in total by default, and we can now start plotting them. Let's create a scatter diagram of the first two principal components, including all individuals in the file `rawdata.1kg_phase1.clean.eigenvec` (the first and second principal components are columns 3 and 4, respectively). We need to collect some per-sample information to color the points according to sample origin. 
 
-> Note: A R script for creating this plot (`scripts/plot-pca-results.Rscript`) is also provided (although any standard graphing software can be used), but below you'll find some fancy codes too.
-
 First we collect the results from the `--pca`, the dummy data phenotype information, and the reference population information.
 
 
-```r
-PCA_eigenval <- data.table::fread(paste0(COURSE_loc,"/dummy_project/rawdata.1kg_phase1.clean.eigenval"))
-PCA_eigenvec <- data.table::fread(paste0(COURSE_loc,"/dummy_project/rawdata.1kg_phase1.clean.eigenvec"))
-ref_pop_raw <- data.table::fread(paste0(COURSE_loc,"/ref_1kg_phase1_all/1kg_phase1_all.pheno"))
-dummy_pop <- data.table::fread(paste0(COURSE_loc,"/dummy_project/rawdata.fam"))
-
-# Rename some 
-names(PCA_eigenval)[names(PCA_eigenval) == "V1"] <- "Eigenvalue"
-
-names(PCA_eigenvec)[names(PCA_eigenvec) == "V1"] <- "FID"
-names(PCA_eigenvec)[names(PCA_eigenvec) == "V2"] <- "IID"
-names(PCA_eigenvec)[names(PCA_eigenvec) == "V3"] <- "PC1"
-names(PCA_eigenvec)[names(PCA_eigenvec) == "V4"] <- "PC2"
-names(PCA_eigenvec)[names(PCA_eigenvec) == "V5"] <- "PC3"
-names(PCA_eigenvec)[names(PCA_eigenvec) == "V6"] <- "PC4"
-names(PCA_eigenvec)[names(PCA_eigenvec) == "V7"] <- "PC5"
-names(PCA_eigenvec)[names(PCA_eigenvec) == "V8"] <- "PC6"
-names(PCA_eigenvec)[names(PCA_eigenvec) == "V9"] <- "PC7"
-names(PCA_eigenvec)[names(PCA_eigenvec) == "V10"] <- "PC8"
-names(PCA_eigenvec)[names(PCA_eigenvec) == "V11"] <- "PC9"
-names(PCA_eigenvec)[names(PCA_eigenvec) == "V12"] <- "PC10"
-names(PCA_eigenvec)[names(PCA_eigenvec) == "V13"] <- "PC11"
-names(PCA_eigenvec)[names(PCA_eigenvec) == "V14"] <- "PC12"
-names(PCA_eigenvec)[names(PCA_eigenvec) == "V15"] <- "PC13"
-names(PCA_eigenvec)[names(PCA_eigenvec) == "V16"] <- "PC14"
-names(PCA_eigenvec)[names(PCA_eigenvec) == "V17"] <- "PC15"
-names(PCA_eigenvec)[names(PCA_eigenvec) == "V18"] <- "PC16"
-names(PCA_eigenvec)[names(PCA_eigenvec) == "V19"] <- "PC17"
-names(PCA_eigenvec)[names(PCA_eigenvec) == "V20"] <- "PC18"
-names(PCA_eigenvec)[names(PCA_eigenvec) == "V21"] <- "PC19"
-names(PCA_eigenvec)[names(PCA_eigenvec) == "V22"] <- "PC20"
-
-names(dummy_pop)[names(dummy_pop) == "V1"] <- "Family_ID"
-names(dummy_pop)[names(dummy_pop) == "V2"] <- "Individual_ID"
-names(dummy_pop)[names(dummy_pop) == "V5"] <- "Gender"
-names(dummy_pop)[names(dummy_pop) == "V6"] <- "Phenotype"
-dummy_pop$V3<- NULL
-dummy_pop$V4<- NULL
-
-dummy_pop$Population <- dummy_pop$Phenotype
-dummy_pop$Population[dummy_pop$Population == 2] <- "Case"
-dummy_pop$Population[dummy_pop$Population == 1] <- "Control"
-```
-
-
-```r
-# we subset the data we need
-ref_pop <- subset(ref_pop_raw, select = c("Family_ID", "Individual_ID", "Gender", "Phenotype", "Population"))
-rm(ref_pop_raw)
-
-# we combine the reference and dummy information
-ref_dummy_pop <- rbind(dummy_pop, ref_pop)
-```
 
 
 
-```r
-PCA_1kG <- merge(PCA_eigenvec,
-                 ref_dummy_pop,
-                 by.x = "IID",
-                 by.y = "Individual_ID",
-                 sort = FALSE,
-                 all.x = TRUE)
-```
 
 
 
-```r
-# Population	Description	Super population	Code	Counts
-# ASW	African Ancestry in Southwest US	                          AFR	4	  #49A01D
-# CEU	Utah residents with Northern and Western European ancestry	EUR	7	  #E55738
-# CHB	Han Chinese in Bejing, China	                              EAS	8	  #9A3480
-# CHS	Southern Han Chinese, China	                                EAS	9	  #705296
-# CLM	Colombian in Medellin, Colombia	                            MR	10	#8D5B9A
-# FIN	Finnish in Finland	                                        EUR	12	#2F8BC9
-# GBR	British in England and Scotland	                            EUR	13	#1290D9
-# IBS	Iberian populations in Spain	                              EUR	16	#1396D8
-# JPT	Japanese in Tokyo, Japan	                                  EAS	18	#D5267B
-# LWK	Luhya in Webuye, Kenya	                                    AFR	20	#78B113
-# MXL	Mexican Ancestry in Los Angeles, California	                AMR	22	#F59D10
-# PUR	Puerto Rican in Puerto Rico	                                AMR	25	#FBB820
-# TSI	Toscani in Italy	                                          EUR	27	#4C81BF
-# YRI	Yoruba in Ibadan, Nigeria	                                  AFR	28	#C5D220
-
-PCA_1kGplot <- ggpubr::ggscatter(PCA_1kG, 
-                                 x = "PC1", 
-                                 y = "PC2",
-                                 color = "Population", 
-                                 palette = c("#49A01D", # ASW 
-                                             "#595A5C", # Case 
-                                             "#E55738", # CEU 
-                                             "#9A3480", # CHB 
-                                             "#705296", # CHS 
-                                             "#8D5B9A", # CLM 
-                                             "#A2A3A4", # Control 
-                                             "#2F8BC9", # FIN 
-                                             "#1290D9", # GBR 
-                                             "#1396D8", # IBS 
-                                             "#D5267B", # JPT 
-                                             "#78B113", # LWK 
-                                             "#F59D10", # MXL 
-                                             "#FBB820", # PUR 
-                                             "#4C81BF", # TSI 
-                                             "#C5D220"), # YRI
-                                 xlab = "principal component 1", ylab = "principal component 2") +
-  ggplot2::geom_vline(xintercept = 0.0023, linetype = "dashed",
-                      color = "#E55738", size = 1)
-
-p2 <-  ggpubr::ggpar(PCA_1kGplot,
-                     title = "Principal Component Analysis",
-                     subtitle = "Reference population: 1000 G, phase 1",
-                     legend.title = "Populations", legend = "right")
-ggplot2::ggsave(paste0(COURSE_loc, "/dummy_project/gwas-qc-pca-1000g.png"), plot = p2)
-p2
-rm(p2)
-```
 
 
-Derive PC1 and PC2 thresholds so that only individuals who match the given ancestral population are included. For populations of European descent, this will be either the CEU or TSI 1000G individuals (Figure \@ref(fig:show-pca-1kg)). Here, we chose to exclude all individuals with a first principal component score less than `0.0023`. 
+
+
+Derive PC1 and PC2 thresholds so that only individuals who match the given ancestral population are included. For populations of European descent, this will be either the CEU or TSI 1000G individuals (Figure \@ref(fig:showpca1kg)). Here, we chose to exclude all individuals with a first principal component score less than `0.0023`. 
 
 Write the FID and IID of these individuals to a file called `fail-ancestry-QC.txt`.
 
@@ -696,8 +517,8 @@ awk '$3 < 0.0023' | awk '{ print $1, $2 }' > dummy_project/fail-ancestry-QC.txt
 Choosing which thresholds to apply (and thus which individuals to remove) is not a straightforward process. The key is to remove those individuals with greatly divergent ancestry, as these samples introduce the most bias to the study. Identification of more fine-scale ancestry can be conducted by using less divergent reference samples (_e.g._, within Europe, stratification could be identified using the CEU, TSI (Italian), GBR (British), FIN (Finnish) and IBS (Iberian) samples from the 1,000 Genomes Project (http://www.1000genomes.org/)). Robust identification of fine-scale population structure often requires the construction of many (2–10) principal components.
 
 <div class="figure" style="text-align: center">
-<img src="img/_gwas_dummy/gwas-qc-pca-1000g.png" alt="PCA - Your data vs. 1000g." width="1050" />
-<p class="caption">(\#fig:show-pca-1000g)PCA - Your data vs. 1000g.</p>
+<img src="img/_gwas_dummy/gwas-qc-pca-1000g.png" alt="PCA - Your data vs. 1000g." width="85%" />
+<p class="caption">(\#fig:showpca1kg)PCA - Your data vs. 1000g.</p>
 </div>
 
 
@@ -715,9 +536,13 @@ This new file should now contain a list of unique individuals failing the previo
 plink --bfile dummy_project/rawdata --remove dummy_project/fail-qc-inds.txt --make-bed --out dummy_project/clean_inds_data
 ```
 
-> How many variants and samples are left? How many cases and how many controls did you loose? 
+> Question: How many variants and samples are left? How many cases and how many controls did you loose? 
 
 ## The next step
 
 Now that you filtered samples, we should turn our attention to step 2 of the QC for GWAS: identify SNPs of poor quality in Chapter \@ref(gwas_basics_snp_qc).
 
+<!-- ```{js, echo = FALSE} -->
+<!-- title=document.getElementById('header'); -->
+<!-- title.innerHTML = '<img src="img/_headers/gwas_sample_qc.png" alt="GWAS basics: Sample QC">' + title.innerHTML -->
+<!-- ``` -->

@@ -1,5 +1,39 @@
 # Additional: regional association plots {#add_chapter_regional_plot}
+<!-- ![](./img/_headers/banner_man_standing_dna.png){width=100%} -->
+```{r load-functions-packages, message = FALSE, warning = FALSE, echo = FALSE, eval = TRUE, include = FALSE}
+# source("scripts/functions.R")
+# source("scripts/colors.R")
+# source("scripts/packages.R")
 
+library(rmarkdown)
+library(bookdown)
+library(flextable)
+library(knitr)
+library(kableExtra)
+library(webshot)
+library(webshot2)
+library(formatR)
+library(tinytex)
+```
+
+```{r include = FALSE}
+if(!knitr:::is_html_output())
+{
+  options("width"=56)
+  knitr::opts_chunk$set(tidy.opts=list(width.cutoff=56, indent = 2), tidy = TRUE)
+  knitr::opts_chunk$set(fig.pos = 'H')
+}
+```
+
+```{r getting_started, message = FALSE, warning = FALSE, echo = FALSE, eval = TRUE, include = FALSE}
+# general setting to apply to all chunks - can be overrode per chunk.
+opts_chunk$set(echo = FALSE, 
+               warning = FALSE, 
+               message = FALSE, 
+               out.width = "85%", 
+               fig.align = "center", 
+               tidy = FALSE)
+```
 First we need to find the independent hits by _clumping_ the results. We will just use the defaults, but please take a note of all the options here [https://www.cog-genomics.org/plink/1.9/postproc#clump](https://www.cog-genomics.org/plink/1.9/postproc#clump){target="_blank"}
 
 ```
@@ -12,7 +46,7 @@ cat gwas/data.assoc.logistic.clumped
 ```
 
 ```{bash CLUMPS}
-ROOTDIR="/Users/swvanderlaan/Desktop/practical" # change this to your root
+ROOTDIR="/Users/slaan3/Desktop/practical" # change this to your root
 cat $ROOTDIR/gwas/data.assoc.logistic.clumped
 ```
 
@@ -152,3 +186,7 @@ knitr::include_graphics(rep("img/rs8050136.rs8050136.regional_assoc.png"))
 
 > Please note that we are letting RACER plot the variants on genome build 37 (hg19), but we actually provide hg18-based chromosome and basepair positions. The proper thing to do is to [liftOver](https://genome.sph.umich.edu/wiki/LiftOver){target="_blank"} our coordinates to match those in hg19. Here we didn't, because I just wanted to show you the 'how it's done'. In a future edition I will make sure we will liftOver first. 
 
+<!-- ```{js, echo = FALSE} -->
+<!-- title=document.getElementById('header'); -->
+<!-- title.innerHTML = '<img src="img/_headers/banner_man_standing_dna.png" alt="Statistical finemapping">' + title.innerHTML -->
+<!-- ``` -->

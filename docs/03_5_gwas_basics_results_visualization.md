@@ -1,20 +1,9 @@
 # GWAS visualisation {#gwas-visuals}
-![](./img/_gwas/interactive_plot.png){width=70%}
+<!-- ![](./img/_headers/interactive_plot.png){width=100%} -->
 
 
 
-```
-## 
-## Packages to install for this book and its contents to automagically work.
-## 
-## * Bookdown and rmarkdown packages...
-## 
-## * General packages...
-## 
-## * GGplotting packages - for publication ready plotting...
-## 
-## * Genomic packages...
-```
+
 
 Data visualization is key, not only for presentation but also to inspect the results.
 
@@ -24,70 +13,16 @@ We should create _quantile-quantile (QQ) plots_ to compare the observed associat
 First, we will add the standard error, call rate, A2, and allele frequencies.
 
 
-```r
-library("data.table")
-
-COURSE_loc = "~/Desktop/practical" # getwd()
-
-gwas_assoc_sub <- subset(gwas_assoc, TEST == "ADD")
-gwas_assoc_sub$TEST <- NULL
-
-temp <- subset(gwas_FRQ, select = c("SNP", "A2", "MAF", "NCHROBS"))
-
-gwas_assoc_subfrq <- merge(gwas_assoc_sub, temp, by = "SNP")
-
-temp <- subset(gwas_LMISS, select = c("SNP", "callrate"))
-
-gwas_assoc_subfrqlmiss <- merge(gwas_assoc_subfrq, temp, by = "SNP")
-head(gwas_assoc_subfrqlmiss)
-# Remember:
-# - that z = beta/se
-# - beta = log(OR), because log is the natural log in r
-
-gwas_assoc_subfrqlmiss$BETA = log(gwas_assoc_subfrqlmiss$OR)
-gwas_assoc_subfrqlmiss$SE = gwas_assoc_subfrqlmiss$BETA/gwas_assoc_subfrqlmiss$STAT
-
-
-gwas_assoc_subfrqlmiss_tib <- dplyr::as_tibble(gwas_assoc_subfrqlmiss)
-
-col_order <- c("SNP", "CHR", "BP",
-               "A1", "A2", "MAF", "callrate", "NMISS", "NCHROBS",
-               "BETA", "SE", "OR", "STAT", "P")
-gwas_assoc_compl <- gwas_assoc_subfrqlmiss_tib[, col_order]
-
-dim(gwas_assoc_compl)
-
-head(gwas_assoc_compl)
-```
 
 Let's list the number of SNPs per chromosome. This gives a pretty good idea about the per-chromosome coverage. And it's a sanity check: did the whole analysis run properly (we expect 22 chromosomes)?
 
 
-```r
-library("knitr")
-
-# Number of SNPs per chromosome
-knitr::kable(table(gwas_assoc_compl$CHR))
-```
 
 Let's plot the QQ plot to diagnose our GWAS. 
 
-```r
-library("qqman")
-
-gwas_threshold = -log10(5e-8)
-
-png(paste0(COURSE_loc, "/dummy_project/gwas-qq.png"))
-qqman::qq(gwas_assoc_compl$P, main = "QQ plot of GWAS",
-          xlim = c(0, 7),
-          ylim = c(0, 12),
-          pch = 20, col = uithof_color[16], cex = 1.5, las = 1, bty = "n")
-abline(h = gwas_threshold,
-       col = uithof_color[25], lty = "dashed")
-```
 
 <div class="figure" style="text-align: center">
-<img src="img/_gwas_dummy/show-qq.png" alt="A QQ plot." width="240" />
+<img src="img/_gwas_dummy/show-qq.png" alt="A QQ plot." width="85%" />
 <p class="caption">(\#fig:show-qq)A QQ plot.</p>
 </div>
 
@@ -96,16 +31,9 @@ abline(h = gwas_threshold,
 We also need to create a _Manhattan plot_ to display the association test P-values as a function of chromosomal location and thus provide a visual summary of association test results that draw immediate attention to any regions of significance (Figure \@ref(fig:show-manhattan)).
 
 
-```r
-png(paste0(COURSE_loc, "/dummy_project/gwas-manhattan.png"))
-qqman::manhattan(gwas_assoc_compl, main = "Manhattan Plot",
-                 ylim = c(0, 12),
-                 cex = 0.6, cex.axis = 0.9,
-                 col = c("#1290D9", "#49A01D"))
-```
 
 <div class="figure" style="text-align: center">
-<img src="img/_gwas_dummy/show-manhattan.png" alt="A manhattan plot." width="240" />
+<img src="img/_gwas_dummy/show-manhattan.png" alt="A manhattan plot." width="85%" />
 <p class="caption">(\#fig:show-manhattan)A manhattan plot.</p>
 </div>
 
@@ -114,45 +42,30 @@ qqman::manhattan(gwas_assoc_compl, main = "Manhattan Plot",
 It is also informative to plot the density per chromosome. We can use the `CMplot` for that which you can find [here](https://github.com/YinLiLin/R-CMplot){target="_blank"}. For now we just make these graphs 'quick-n-dirty', you can further prettify them, but you easily loose track of time, so maybe carry on.
 
 
-```r
-gwas_assoc_complsub <- subset(gwas_assoc_compl, select = c("SNP", "CHR", "BP", "P"))
-```
 
 
 
-```r
-library("CMplot")
-
-CMplot(gwas_assoc_complsub,
-       plot.type = c("d", "c", "m", "q"), LOG10 = TRUE, ylim = NULL,
-       threshold = c(1e-6,1e-4), threshold.lty = c(1,2), threshold.lwd = c(1,1), threshold.col = c("black", "grey"),
-       amplify = TRUE,
-       bin.size = 1e6, chr.den.col = c("darkgreen", "yellow", "red"),
-       signal.col = c("red", "green"), signal.cex = c(1,1), signal.pch = c(19,19),
-       file.output = FALSE, file = "png", 
-       main = "", dpi = 300, verbose = TRUE)
-```
 
 > What do the grey spots on the density plot indicate?
 
 This would lead to the following graphs. 
 <div class="figure" style="text-align: center">
-<img src="img/_gwas_dummy/show-cmplot-all-density.png" alt="SNP density of the association results." width="1350" />
+<img src="img/_gwas_dummy/show-cmplot-all-density.png" alt="SNP density of the association results." width="85%" />
 <p class="caption">(\#fig:show-cmplot-all-density)SNP density of the association results.</p>
 </div>
 
 <div class="figure" style="text-align: center">
-<img src="img/_gwas_dummy/show-cmplot-all-qq.png" alt="A QQ plot including a 95% confidence interval (blue area) and genome-wide significant hits (red)." width="825" />
+<img src="img/_gwas_dummy/show-cmplot-all-qq.png" alt="A QQ plot including a 95% confidence interval (blue area) and genome-wide significant hits (red)." width="85%" />
 <p class="caption">(\#fig:show-cmplot-all-qq)A QQ plot including a 95% confidence interval (blue area) and genome-wide significant hits (red).</p>
 </div>
 
 <div class="figure" style="text-align: center">
-<img src="img/_gwas_dummy/show-cmplot-all-manhattan.png" alt="A regular manhattan plot. Colored by chromosome, suggestive hits are green, genome-wide hits are red. The bottom graph shows the per-chromosome SNP density." width="2100" />
+<img src="img/_gwas_dummy/show-cmplot-all-manhattan.png" alt="A regular manhattan plot. Colored by chromosome, suggestive hits are green, genome-wide hits are red. The bottom graph shows the per-chromosome SNP density." width="85%" />
 <p class="caption">(\#fig:show-cmplot-all-manhattan)A regular manhattan plot. Colored by chromosome, suggestive hits are green, genome-wide hits are red. The bottom graph shows the per-chromosome SNP density.</p>
 </div>
 
 <div class="figure" style="text-align: center">
-<img src="img/_gwas_dummy/show-cmplot-all-circular.png" alt="A circular manhattan." width="1500" />
+<img src="img/_gwas_dummy/show-cmplot-all-circular.png" alt="A circular manhattan." width="85%" />
 <p class="caption">(\#fig:show-cmplot-all-circular)A circular manhattan.</p>
 </div>
 
@@ -241,4 +154,9 @@ Alright. It's time to stop playing around and do a quick recap of what you've le
 4. You learned how to execute an association study given a dataset, covariates, and different assumptions regarding the genetic model.
 5. You learned how to visualize results and played around with different visuals. 
 
-You should be ready for the real stuff. And if not, the next chapter will help you get ready: Chapter \@ref(wtccc1-intro).
+You should be ready for the real stuff. And if not, the next chapter will help you get ready: Chapter \@ref(wtccc1_intro).
+
+<!-- ```{js, echo = FALSE} -->
+<!-- title=document.getElementById('header'); -->
+<!-- title.innerHTML = '<img src="img/_headers/interactive_plot.png" alt="GWAS basics: visualization">' + title.innerHTML -->
+<!-- ``` -->

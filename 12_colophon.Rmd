@@ -1,0 +1,75 @@
+# Colophon
+```{r load-functions-packages, message = FALSE, warning = FALSE, echo = FALSE, eval = TRUE, include = FALSE}
+# source("scripts/functions.R")
+# source("scripts/colors.R")
+# source("scripts/packages.R")
+
+library(rmarkdown)
+library(bookdown)
+library(flextable)
+library(knitr)
+library(kableExtra)
+library(webshot)
+library(webshot2)
+library(formatR)
+library(tinytex)
+```
+
+```{r include = FALSE}
+if(!knitr:::is_html_output())
+{
+  options("width"=56)
+  knitr::opts_chunk$set(tidy.opts=list(width.cutoff=56, indent = 2), tidy = TRUE)
+  knitr::opts_chunk$set(fig.pos = 'H')
+}
+```
+
+```{r getting_started, message = FALSE, warning = FALSE, echo = FALSE, eval = TRUE, include = FALSE}
+# general setting to apply to all chunks - can be overrode per chunk.
+opts_chunk$set(echo = FALSE, 
+               warning = FALSE, 
+               message = FALSE, 
+               out.width = "85%", 
+               fig.align = "center", 
+               tidy = FALSE)
+```
+The 2022 and 2024 editions of this book were produce in RStudio and with the `bookdown` package. Below a listing of installed programs and libraries, the operating system, and their specific versions.
+
+```{r, eval = TRUE}
+sessioninfo::session_info()
+```
+
+<!-- ```{js, echo = FALSE} -->
+<!-- title=document.getElementById('header'); -->
+<!-- title.innerHTML = '<img src="img/_headers/banner_man_standing_dna.png" alt="Colofon">' + title.innerHTML -->
+<!-- ``` -->
+
+<!-- example: https://yearbookdiscoveries.com/wp-content/uploads/2014/05/Writing_a_Yearbook_Colophon.pdf -->
+<!-- SPECIAL THANKS: (The staff wrote a few paragraphs about the year and mentioned a variety -->
+<!-- of people who were instrumental in the success of their yearbook.) -->
+<!-- COVER & ENDSHEETS: The 2013 Pinnacle cover is a four-color lithograph. An iridescent foil -->
+<!-- covers a portion of the theme design. The endsheets are standard stock paper. The theme -->
+<!-- concept was created and expanded by the editorial team and members of the 2013 Pinnacle -->
+<!-- staff. Cover and endsheets were designed by Pinnacle co-editors-in-chief Regan Brown and -->
+<!-- Ellena Sullivan, with inspiration provided by an early design from co-reference editor -->
+<!-- Amanda Farrer. -->
+<!-- TYPE & COLOR TREATMENT: Body copy throughout the book is set in Frutiger Light -->
+<!-- Condensed (8.5 pt.) Captions are set in Frutiger Light Condensed (7.5 pt.) Headline -->
+<!-- treatments are designed with variations of AHJ Nashville, Arno Pro and Frutiger. Photo -->
+<!-- credits and spread credits appear in Frutiger Italic (6 pt.) -->
+<!-- For consistency, a color palette was chosen. In addition to the traditional black, the -->
+<!-- following colors appear throughout the publication: Pantone 151C, Pantone 3005C, Panton -->
+<!-- 2985C, Pantone 115C, Pantone 376C, Pantone 363C, Pantone 266C, Pantone 185C and -->
+<!-- Pantone Cool Grey 7C. -->
+<!-- PUBLISHING: Volume 107 of the Pinnacle was designed and produced by the 2013 Pinnacle -->
+<!-- staff. The 456-page, all-color Pinnacle is printed on 80 lb. gloss paper by Herff Jones -->
+<!-- Publishing Co. in Kansas City, MO. Approximately 3,000 copies were pre-ordered for $52. -->
+<!-- Any extra copies were sold for $60. A 48-page supplement was included in this price. The -->
+<!-- publication was created using Adobe CS5.5 software on 42 Macintosh desktop and laptop -->
+<!-- computers. -->
+<!-- PHOTOGRAPHY: Pinnacle staff photographers shot digital photos using four Nikon D70s, -->
+<!-- two Nikon D80s and one Nikon D40. Sport group photos were shot by Prestige Portraits, -->
+<!-- and club and group photos were shot by both Prestige Portraits and Pinnacle yearbook staff -->
+<!-- photographers. Some submitted photos appear throughout the book as well. -->
+<!-- EDITORS’ NOTE: (A special note from the co-editors-in-chief was included here. The yearbook -->
+<!-- staff photo with names and staff positions was included on the spread with the colophon.) -->

@@ -1,5 +1,30 @@
 # Phenome-Wide Association Study {#phewas}
+<!-- ![](./img/_gwas/banner_man_standing_dna.png){width=70%} -->
+```{r load-functions-packages, message = FALSE, warning = FALSE, echo = FALSE, eval = TRUE, include = FALSE}
+source("scripts/functions.R")
+source("scripts/colors.R")
+source("scripts/packages.R")
+COURSE_loc = "~/Desktop/practical" # getwd()
+```
 
+```{r include = FALSE}
+if(!knitr:::is_html_output())
+{
+  options("width"=56)
+  knitr::opts_chunk$set(tidy.opts=list(width.cutoff=56, indent = 2), tidy = TRUE)
+  knitr::opts_chunk$set(fig.pos = 'H')
+}
+```
+
+```{r getting_started, message = FALSE, warning = FALSE, echo = FALSE, eval = TRUE, include = FALSE}
+# general setting to apply to all chunks - can be overrode per chunk.
+opts_chunk$set(echo = FALSE, 
+               warning = FALSE, 
+               message = FALSE, 
+               out.width = "85%", 
+               fig.align = "center", 
+               tidy = FALSE)
+```
 Given the large biobanks available nowadays that have also genotyped the participants and collected a vast-array of information on them, it is possible to perform a **Phe**nome-**W**ide **A**ssociation **S**tudy.
 
 There are several options in (Table \@ref(tab:tab-phewas)).
@@ -30,4 +55,9 @@ knitr::kable(
 
 ## What's next?
 
-You now know to what other traits, risk factors and diseases our trait of interest (coronary artery disease) is correlated. An obvious next question would be: is this a causal correlation? We will cover this aspect in the next Chapter \@ref(mendelian_randomization) or to return to the previous chapter on post-GWAS analyses \@ref(post-gwas).
+You now know to what other traits, risk factors and diseases our trait of interest (coronary artery disease) is correlated. An obvious next question would be: is this a causal correlation? We will cover this aspect in the next Chapter \@ref(mendelian_randomization) or to return to the previous chapter on post-GWAS analyses \@ref(post_gwas).
+
+<!-- ```{js, echo = FALSE} -->
+<!-- title=document.getElementById('header'); -->
+<!-- title.innerHTML = '<img src="img/_headers/banner_man_standing_dna.png" alt="Phenome-Wide Association Study">' + title.innerHTML -->
+<!-- ``` -->

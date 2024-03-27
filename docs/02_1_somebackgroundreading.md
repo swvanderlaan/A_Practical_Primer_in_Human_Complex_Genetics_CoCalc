@@ -1,20 +1,9 @@
 # Some background reading  {#somebackgroundreading}
-![](./img/_headers/papers_on_wall.png){width=100%}
+<!-- ![](./img/_headers/papers_on_wall.png){width=100%} -->
 
 
 
-```
-## 
-## Packages to install for this book and its contents to automagically work.
-## 
-## * Bookdown and rmarkdown packages...
-## 
-## * General packages...
-## 
-## * GGplotting packages - for publication ready plotting...
-## 
-## * Genomic packages...
-```
+
 
 Standing on the shoulders of giants, that's what this book and I do. I want to acknowledge some great work that has helped me tremendously and, really, this book wouldn't exist without this awesome work. So, I do want to give you some background reading. Is it a prerequisite? No, not really. For starters, the course covers most and you'll learn as you go. And if you didn't come here through the course, you'll be fine just the same. That said, it's a always good idea to get familiar with these works as you move forward on your path towards your first GWAS - in fact, I had these printed out with markings and writings all over them as I executed my first GWAS, and they've been great as a reference many times after. 
 
@@ -39,3 +28,8 @@ With respect to imputation and meta-analyses of GWAS you should also get familia
 **Are you ready?**
 
 Are you ready? Did you bring coffee and a good dose of energy? Let's start! Your first point of action is to prepare your system for this course in Chapter \@ref(getting-started).
+
+<!-- ```{js, echo = FALSE} -->
+<!-- title=document.getElementById('header'); -->
+<!-- title.innerHTML = '<img src="img/_headers/papers_on_wall.png" alt="Some background reading">' + title.innerHTML -->
+<!-- ``` -->

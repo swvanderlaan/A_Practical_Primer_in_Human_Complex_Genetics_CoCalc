@@ -1,4 +1,9 @@
 # Epilogue {#epilogue}
+<!-- ![](./img/_headers/banner_man_standing_dna.png){width=100%} -->
+
+
+
+
 
 What started as a simple 'let's write a practical on how to do a GWAS', escalated into this GitBook. My second book. My fifth child (as far as I know). I hope you found it to be useful and learned a bit. 
 
@@ -12,3 +17,7 @@ As with any proper epilogue I should not forget a heartfelt and honest thank you
 
 <!-- family -->
 
+<!-- ```{js, echo = FALSE} -->
+<!-- title=document.getElementById('header'); -->
+<!-- title.innerHTML = '<img src="img/_headers/banner_man_standing_dna.png" alt="Epilogue">' + title.innerHTML -->
+<!-- ``` -->

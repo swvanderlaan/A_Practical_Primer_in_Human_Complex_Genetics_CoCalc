@@ -8,8 +8,8 @@ This book was made possible by the kind help of Caspar J. van Lissa who wrote an
 
 #### Changes log
     
-    _Version:_      v2.0.4</br>
-    _Last update:_  2024-03-26</br>
+    _Version:_      v2.0.5</br>
+    _Last update:_  2024-03-27</br>
     _Written by:_   Sander W. van der Laan (s.w.vanderlaan-2[at]umcutrecht.nl).
     
     **MoSCoW To-Do List**
@@ -28,6 +28,7 @@ This book was made possible by the kind help of Caspar J. van Lissa who wrote an
     _W_
 
     **Changes log**
+    * v2.0.5 Added all header-images. Fixed references to tables and figures.
     * v2.0.4 Added WTCCC1 introduction; added WTCCC1 analyses and visualization. Add post-GWAs chapter.
     * v2.0.3 Added GWAS visualization.
     * v2.0.2 Added GWAS testing. Updates to saving of plots. Re-organization of data.
@@ -36,4 +37,4 @@ This book was made possible by the kind help of Caspar J. van Lissa who wrote an
 
 --------------
 ------
-<sup>Copyright 1979-2024. Sander W. van der Laan | s.w.vanderlaan [at] gmail.com | https://vanderlaanand.science.</sup>
+<sup>Copyright 1979-2024. All rights reserved. Sander W. van der Laan | s.w.vanderlaan [at] gmail.com | [https://vanderlaanand.science](https://vanderlaanand.science){target="_blank"}. Published with [`bookdown`](https://bookdown.org/yihui/bookdown/){target="_blank"}.</sup>

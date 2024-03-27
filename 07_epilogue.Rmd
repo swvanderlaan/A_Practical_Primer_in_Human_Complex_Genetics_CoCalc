@@ -1,5 +1,39 @@
 # Epilogue {#epilogue}
+<!-- ![](./img/_headers/banner_man_standing_dna.png){width=100%} -->
+```{r load-functions-packages, message = FALSE, warning = FALSE, echo = FALSE, eval = TRUE, include = FALSE}
+# source("scripts/functions.R")
+# source("scripts/colors.R")
+# source("scripts/packages.R")
 
+library(rmarkdown)
+library(bookdown)
+library(flextable)
+library(knitr)
+library(kableExtra)
+library(webshot)
+library(webshot2)
+library(formatR)
+library(tinytex)
+```
+
+```{r include = FALSE}
+if(!knitr:::is_html_output())
+{
+  options("width"=56)
+  knitr::opts_chunk$set(tidy.opts=list(width.cutoff=56, indent = 2), tidy = TRUE)
+  knitr::opts_chunk$set(fig.pos = 'H')
+}
+```
+
+```{r getting_started, message = FALSE, warning = FALSE, echo = FALSE, eval = TRUE, include = FALSE}
+# general setting to apply to all chunks - can be overrode per chunk.
+opts_chunk$set(echo = FALSE, 
+               warning = FALSE, 
+               message = FALSE, 
+               out.width = "85%", 
+               fig.align = "center", 
+               tidy = FALSE)
+```
 What started as a simple 'let's write a practical on how to do a GWAS', escalated into this GitBook. My second book. My fifth child (as far as I know). I hope you found it to be useful and learned a bit. 
 
 That said, much can be improved and so don't hesitate to contact me. 
@@ -12,3 +46,7 @@ As with any proper epilogue I should not forget a heartfelt and honest thank you
 
 <!-- family -->
 
+<!-- ```{js, echo = FALSE} -->
+<!-- title=document.getElementById('header'); -->
+<!-- title.innerHTML = '<img src="img/_headers/banner_man_standing_dna.png" alt="Epilogue">' + title.innerHTML -->
+<!-- ``` -->

@@ -1,5 +1,21 @@
 # Per-SNP QC {#gwas_basics_snp_qc}
-![](./img/_gwas_dummy/gwas_snp_qc.png){width=70%}
+<!-- ![](./img/_gwas_dummy/gwas_snp_qc.png){width=70%} -->
+```{r load-functions-packages, message = FALSE, warning = FALSE, echo = FALSE, eval = TRUE, include = FALSE}
+# source("scripts/functions.R")
+# source("scripts/colors.R")
+# source("scripts/packages.R")
+
+library(rmarkdown)
+library(bookdown)
+library(flextable)
+library(knitr)
+library(kableExtra)
+library(webshot)
+library(webshot2)
+library(formatR)
+library(tinytex)
+```
+
 ```{r include = FALSE}
 if(!knitr:::is_html_output())
 {
@@ -9,10 +25,14 @@ if(!knitr:::is_html_output())
 }
 ```
 
-```{r getting_started, message = FALSE, warning = FALSE, echo = FALSE, eval = TRUE}
-source("scripts/functions.R")
-source("scripts/colors.R")
-source("scripts/packages.R")
+```{r getting_started, message = FALSE, warning = FALSE, echo = FALSE, eval = TRUE, include = FALSE}
+# general setting to apply to all chunks - can be overrode per chunk.
+opts_chunk$set(echo = FALSE, 
+               warning = FALSE, 
+               message = FALSE, 
+               out.width = "85%", 
+               fig.align = "center", 
+               tidy = FALSE)
 ```
 
 Now that we removed samples, we can focus on low-quality variants.
@@ -25,7 +45,7 @@ We start by calculating the missing genotype rate for each SNP, in other words t
 plink --bfile dummy_project/clean_inds_data --missing --out dummy_project/clean_inds_data
 ```
 
-Let's visualize the results to identify a threshold for extreme genotype failure rate. We chose a callrate threshold of 3%, but it's arbitrary and depending on the dataset and the number of samples (Figure \@ref(fig:show-snp-callrate)).
+Let's visualize the results to identify a threshold for extreme genotype failure rate. We chose a callrate threshold of 3%, but it's arbitrary and depending on the dataset, the data (visualization), and the number of samples (Figure \@ref(fig:showsnpcallrate)).
 
 ```{r load-snp-callrate, eval = FALSE}
 library("data.table")
@@ -53,13 +73,13 @@ ggplot2::ggsave(paste0(COURSE_loc, "/dummy_project/gwas-qc-snp-call-rate.png"), 
 clean_LMISS_plot
 ```
 
-```{r show-snp-callrate, fig.align='center', fig.cap='Per SNP call rate.', fig.show = TRUE, echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE}
-knitr::include_graphics(rep("img/_gwas_dummy/show-snp-callrate.png"))
+```{r showsnpcallrate, fig.align='center', fig.cap='Per SNP call rate.', fig.show = TRUE, eval=TRUE}
+knitr::include_graphics("img/_gwas_dummy/show-snp-callrate.png")
 ```
 
 ## Differential SNP call rates
 
-There could also be differences in genotype call rates between cases and controls. It is very important to check for this because these differences could lead to spurious associations. We can test all markers for differences in call rate between cases and controls, or based on
+There could also be differences in genotype call rates between cases and controls. It is very important to check for this because these differences could lead to spurious associations. We can test all markers for differences in call rate between cases and controls, or based on other criteria.
 
 ```
 plink --bfile dummy_project/clean_inds_data --test-missing --out dummy_project/clean_inds_data
@@ -75,12 +95,11 @@ cat dummy_project/clean_inds_data.missing | awk '$5 < 0.00001' | awk '{ print $2
 
 We should also get an idea on what the allele frequencies are in our dataset. Low frequent SNPs should probably be excluded, as these are uninformative when monomorphic (allele frequency = 0), or they may lead to spurious associations.
 
-
 ```
 plink --bfile dummy_project/clean_inds_data --freq --out dummy_project/clean_inds_data
 ```
 
-Let's also plot these data. You can view the result below, and try it yourself (Figure \@ref(fig:show-freq)).
+Let's also plot these data. You can view the result below, and try it yourself (Figure \@ref(fig:showfreq)).
 
 ```{r load-freq, eval = FALSE}
 clean_FREQ <- data.table::fread(paste0(COURSE_loc, "/dummy_project/clean_inds_data.frq"))
@@ -99,10 +118,9 @@ ggplot2::ggsave(paste0(COURSE_loc, "/dummy_project/gwas-qc-snp-freq.png"), plot 
 clean_FREQ_plot
 ```
 
-```{r show-freq, fig.align='center', fig.cap='Minor allele frequency.', fig.show = TRUE, echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE}
-knitr::include_graphics(rep("img/_gwas_dummy/show-freq.png"))
+```{r showfreq, fig.align='center', fig.cap='Minor allele frequency.', fig.show = TRUE, eval=TRUE}
+knitr::include_graphics("img/_gwas_dummy/show-freq.png")
 ```
-
 
 ### A note on allele coding
 
@@ -160,13 +178,13 @@ ggplot2::ggsave(paste0(COURSE_loc, "/dummy_project/gwas-qc-snp-hwe.png"), plot =
 clean_HWE_plot
 ```
 
-```{r show-hwe, fig.align='center', fig.cap='Hardy-Weinberg Equilibrium p-values per stratum.', fig.show = TRUE, echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE}
-knitr::include_graphics(rep("img/_gwas_dummy/show-hwe.png"))
+```{r showhwe, fig.align='center', fig.cap='Hardy-Weinberg Equilibrium p-values per stratum.', fig.show = TRUE, eval=TRUE}
+knitr::include_graphics("img/_gwas_dummy/show-hwe.png")
 ```
 
 ## Final SNP QC
 
-We are ready to perform the final QC. After inspectig the graphs we will filter on a MAF < 0.01, call rate < 0.05, and HWE < 0.00001, in addition those SNPs that failed the differential call rate test will be removed.
+We are ready to perform the final QC. After inspecting the graphs we will filter on a MAF < 0.01, call rate < 0.05, and HWE < 0.00001 (Figure \@ref(fig:showhwe)), in addition those SNPs that failed the differential call rate test will be removed.
 
 ```
 plink --bfile dummy_project/clean_inds_data --exclude dummy_project/fail-diffmiss-qc.txt --maf 0.01 --geno 0.05 --hwe 0.00001 --make-bed --out dummy_project/cleandata
@@ -174,5 +192,9 @@ plink --bfile dummy_project/clean_inds_data --exclude dummy_project/fail-diffmis
 
 ## A Milestone
 
-Congratulations. You reached a very important milestone. Now that you filtered samples and SNPs, we can finally start the association analyses in Chapter \@ref(gwas-testing).
+Congratulations. You reached a very important milestone. Now that you filtered samples and SNPs, we can finally start the association analyses in Chapter \@ref(gwas_testing).
 
+<!-- ```{js, echo = FALSE} -->
+<!-- title=document.getElementById('header'); -->
+<!-- title.innerHTML = '<img src="img/_headers/gwas_snp_qc.png" alt="GWAS basics: SNP QC">' + title.innerHTML -->
+<!-- ``` -->

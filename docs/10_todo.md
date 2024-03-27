@@ -1,5 +1,9 @@
 # Things to do {#todo}
-![](./img/_headers/banner_man_standing_dna.png){width=100%}
+<!-- ![](./img/_headers/banner_man_standing_dna.png){width=100%} -->
+
+
+
+
 
 I provide a list of things to do, to improve, to alter, to edit or to add. Crazy ideas. Useful tips, tricks, or links. 
 
@@ -7,7 +11,7 @@ Obviously this list is not exhaustive nor intended for practical use for anyone 
 
 ## MoSCoW
 
-List of to-do's according to MoSCoW: _must have_, _should have_, _could have_, _would have_.
+List of to-do's according to MoSCoW: _Must have_, _Should have_, _Could have_, _Would have_.
 
 ### Contents
 
@@ -17,10 +21,14 @@ List of to-do's according to MoSCoW: _must have_, _should have_, _could have_, _
 - [] `M` statistical finemapping
 - [x] `M` regional association plotting
 - [] `M` colocalization with formal testing
+- [] `M` add proper team-page
+
 - [] `S` meta-analysis with dummy data
+    - `S` HPC version with MetaGWASToolKit
     - `S` including stratified QQ plots
-    - `M` HPC version with MetaGWASToolKit
     - `S` stand-alone version with METAL
+- [] `S` add imputation chapter
+
 - [] `C` GWASToolKit
 - [] `C` PlaqView lookups
 
@@ -28,10 +36,13 @@ List of to-do's according to MoSCoW: _must have_, _should have_, _could have_, _
 
 - [x] `M` overall rendering too slow, paste in images as figure instead of on the fly generating
 - [x] `M` PDF is too large
-- [] `M` fix images per header in EPUB
+- [] `M` fix issue with api of Two Sample MR > run the codes.
+- [] `M` fix issue with `api of Two Sample MR`cat: /Users/USERNAME/Desktop/practical/gwas/data.assoc.logistic.clumped: No such file or directory` - this was not run yet
 - [] `M` fix images per header in GitBook (not showing)
+- [] `M` Upgrade to Quatro - seems to work better in many respects; also adds interactivity https://quarto.org/docs/books/
+
+- [] `S` fix images per header in EPUB
 - [] `S` PDF is not formatted properly (text runs over)
-- [] `C` Different font type in PDF
 - [] `S` EPUB is not formatted properly (text runs over)
 - [] `S` different setup for the chapter Additional chapters (this as a Apendix)
 - [x] `S` fix the way the team is displayed
@@ -40,7 +51,9 @@ List of to-do's according to MoSCoW: _must have_, _should have_, _could have_, _
   - https://snappa.com/blog/ebook-cover-size/
   - https://kdp.amazon.com/en_US/help/topic/G200645690.
 
-## Useful links (for me mostly)
+- [] `C` Different font type in PDF
+
+## Useful links
 
 https://bookdown.org/yihui/rmarkdown-cookbook/unnumbered-sections.html
 
@@ -62,3 +75,8 @@ title.innerHTML = '<img src="img/_headers/banner_man_standing_dna.png" alt="A Pr
 \```
 ```
 
+
+<!-- ```{js, echo = FALSE} -->
+<!-- title=document.getElementById('header'); -->
+<!-- title.innerHTML = '<img src="img/_headers/banner_man_standing_dna.png" alt="To-do">' + title.innerHTML -->
+<!-- ``` -->
