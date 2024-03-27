@@ -41,7 +41,7 @@ gwas_LMISS <- data.table::fread(paste0(COURSE_loc, "/gwas/gwa.lmiss"))
 ```
 
 We can plot the per-stratum HWE p-values.
-```{r plot-hwe-gwas, eval = FALSE}
+```{r plot-hwe-gwas, eval = FALSE, message = FALSE, warning = FALSE}
 library("ggpubr")
 
 gwas_HWE$logP <- -log10(gwas_HWE$P)
@@ -56,31 +56,35 @@ ggpubr::gghistogram(gwas_HWE, x = "logP",
                     facet.by = "TEST",
                     bins = 50,
                     xlab = "HWE -log10(P)") +
-  geom_vline(xintercept = 5, linetype = "dashed",
-                color = "#E55738", size = 1)
+  ggplot2::geom_vline(xintercept = 5, linetype = "dashed",
+                      color = "#E55738", size = 1)
+ggplot2::ggsave(paste0(COURSE_loc, "/dummy_project/gwas-hwe.png"),
+       plot = last_plot())
 ```
 
 ```{r show-hwe-gwas, fig.align='center', fig.cap='Per stratum HWE p-values.', fig.show = TRUE, echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE}
-knitr::include_graphics(rep("img/show-hwe-gwas.png"))
+knitr::include_graphics(rep("img/_gwas_dummy/show-hwe-gwas.png"))
 ```
 
 We will want to see what the distribution of allele frequencies looks like. 
-```{r plot-freq-gwas, eval = FALSE}
+```{r plot-freq-gwas, eval = FALSE, message = FALSE, warning = FALSE}
 ggpubr::gghistogram(gwas_FRQ, x = "MAF",
                     add = "mean", add.params = list(color = "#595A5C", linetype = "dashed", size = 1),
                     rug = TRUE,
                     color = "#1290D9", fill = "#1290D9",
                     xlab = "minor allele frequency") +
-  geom_vline(xintercept = 0.05, linetype = "dashed",
-                color = "#E55738", size = 1)
+  ggplot2::geom_vline(xintercept = 0.05, linetype = "dashed",
+                      color = "#E55738", size = 1)
+ggplot2::ggsave(paste0(COURSE_loc, "/dummy_project/gwas-freq.png"),
+       plot = last_plot())
 ```
 
 ```{r show-freq-gwas, fig.align='center', fig.cap='Minor allele frequencies.', fig.show = TRUE, echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE}
-knitr::include_graphics(rep("img/show-freq-gwas.png"))
+knitr::include_graphics(rep("img/_gwas_dummy/show-freq-gwas.png"))
 ```
 
 We will want to identify samples that have poor call rates.
-```{r plot-sample-callrate-gwas, eval = FALSE}
+```{r plot-sample-callrate-gwas, eval = FALSE, message = FALSE, warning = FALSE}
 gwas_IMISS$callrate <- 1 - gwas_IMISS$F_MISS
 
 ggpubr::gghistogram(gwas_IMISS, x = "callrate",
@@ -88,16 +92,18 @@ ggpubr::gghistogram(gwas_IMISS, x = "callrate",
                     rug = TRUE, bins = 50,
                     color = "#1290D9", fill = "#1290D9",
                     xlab = "per sample call rate") +
-  geom_vline(xintercept = 0.95, linetype = "dashed",
-                color = "#E55738", size = 1)
+  ggplot2::geom_vline(xintercept = 0.95, linetype = "dashed",
+                      color = "#E55738", size = 1)
+ggplot2::ggsave(paste0(COURSE_loc, "/dummy_project/gwas-sample-call-rate.png"),
+       plot = last_plot())
 ```
 
 ```{r show-sample-callrate-gwas, fig.align='center', fig.cap='Per sample call rates.', fig.show = TRUE, echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE}
-knitr::include_graphics(rep("img/show-sample-callrate-gwas.png"))
+knitr::include_graphics(rep("img/_gwas_dummy/show-sample-callrate-gwas.png"))
 ```
 
 We also need to know what the per SNP call rates are.
-```{r plot-snp-callrate-gwas, eval = FALSE}
+```{r plot-snp-callrate-gwas, eval = FALSE, message = FALSE, warning = FALSE}
 gwas_LMISS$callrate <- 1 - gwas_LMISS$F_MISS
 
 ggpubr::gghistogram(gwas_LMISS, x = "callrate",
@@ -105,12 +111,14 @@ ggpubr::gghistogram(gwas_LMISS, x = "callrate",
                     rug = TRUE, bins = 50,
                     color = "#1290D9", fill = "#1290D9",
                     xlab = "per SNP call rate") +
-  geom_vline(xintercept = 0.95, linetype = "dashed",
-                color = "#E55738", size = 1)
+  ggplot2::geom_vline(xintercept = 0.95, linetype = "dashed",
+                      color = "#E55738", size = 1)
+ggplot2::ggsave(paste0(COURSE_loc, "/dummy_project/gwas-snp-call-rate.png"),
+       plot = last_plot())
 ```
 
 ```{r show-snp-callrate-gwas, fig.align='center', fig.cap='Per SNP call rates.', fig.show = TRUE, echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE}
-knitr::include_graphics(rep("img/show-snp-callrate-gwas.png"))
+knitr::include_graphics(rep("img/_gwas_dummy/show-snp-callrate-gwas.png"))
 ```
 
 
@@ -131,7 +139,7 @@ plink --bfile gwas/gwa --model --cell 3 --out gwas/data
 
 Let's review the contents of the results.
 
-```{r load-gwas-model, eval = FALSE}
+```{r load-gwas-model, eval = FALSE, message = FALSE, warning = FALSE}
 gwas_model <- data.table::fread(paste0(COURSE_loc, "/gwas/data.model"))
 
 dim(gwas_model)
@@ -143,21 +151,21 @@ gwas_model[1:10, 1:10]
 
 It contains 1,530,510 rows, one for each SNP, and each type of test (_genotypic_, _trend_, _allelic_, _dominant_, and _recessive_) and the following columns:
 
-- chromosome [CHR],</br>
-- the SNP identifier [SNP],</br>
-- the minor allele [A1] (PLINK always codes the A1-allele as the minor allele!),</br>
-- the major allele [A2],</br>
-- the test performed [TEST]:</br>
-  - GENO (genotypic association);</br>
-  - TREND (Cochran-Armitage trend);</br>
-  - ALLELIC (allelic as- sociation);</br>
-  - DOM (dominant model); and</br>
-  - REC (recessive model)],</br>
-- the cell frequency counts for cases [AFF], and</br>
-- the cell frequency counts for controls [UNAFF],</br>
-- the chi-square test statistic [CHISQ],</br>
-- the degrees of freedom for the test [DF],</br>
-- and the asymptotic P value [P] of association.</br>
+- chromosome [CHR],
+- the SNP identifier [SNP],
+- the minor allele [A1] (remember, `PLINK` always codes the A1-allele as the minor allele!),
+- the major allele [A2],
+- the test performed [TEST]:
+  - GENO (genotypic association);
+  - TREND (Cochran-Armitage trend);
+  - ALLELIC (allelic as- sociation);
+  - DOM (dominant model); and
+  - REC (recessive model)],
+- the cell frequency counts for cases [AFF], 
+- the cell frequency counts for controls [UNAFF],
+- the chi-square test statistic [CHISQ],
+- the degrees of freedom for the test [DF],
+- and the asymptotic P value [P] of association.
 
 ## Logistic regression
 We can also perform a test of association using logistic regression. In this case we might want to correct for covariates/confounding factors, for example age, sex, ancestral background, i.e. principal components, and other study specific covariates (e.g. hospital of inclusion, genotyping centre etc.). In that case each of these P values is adjusted for the effect of the covariates.
@@ -169,7 +177,7 @@ plink --bfile gwas/gwa --logistic sex --covar gwas/gwa.covar --out gwas/data
 ```
 
 Let's examine the results
-```{r load-gwas-assoc, eval = FALSE}
+```{r load-gwas-assoc, eval = FALSE, message = FALSE, warning = FALSE}
 gwas_assoc <- data.table::fread(paste0(COURSE_loc, "/gwas/data.assoc.logistic"))
 
 dim(gwas_assoc)
@@ -195,7 +203,6 @@ The columns in the association results are:
 - the asymptotic P-value [P] of association.
 
 We need to calculate the standard error and confidence interval from the z-statistic. We can modify the effect size (OR) to output the beta by adding the `beta` flag.
-
 
 ## Let's get visual
 

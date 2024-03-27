@@ -6,10 +6,10 @@ bookdown::gitbook:
         <li><a href="./">A Practical Primer in Human Complex Genetics</a></li>
       after: |
         <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown.</a></li>
-    edit: https://github.com/swvanderlaan/A_Practical_Primer_in_Human_Complex_Genetics/edit/master/%s
-    # download:
-    #   - ["A-Practical-Primer-in-Human-Complex-Genetics.pdf", "PDF"]
-    #   - ["A-Practical-Primer-in-Human-Complex-Genetics.epub", "EPUB"]
+    edit: https://github.com/swvanderlaan/A_Practical_Primer_in_Human_Complex_Genetics%s
+    download:
+      - ["A-Practical-Primer-in-Human-Complex-Genetics.pdf", "PDF"]
+      - ["A-Practical-Primer-in-Human-Complex-Genetics.epub", "EPUB"]
     sharing:
       facebook: false
       github: true
@@ -37,7 +37,7 @@ bookdown::epub_book:
   dev: "png"
   fig_caption: true
   number_sections: true
-  cover_image: "./img/_headers/banner_man_standing_dna.png"
+  cover_image: "img/_headers/banner_man_standing_dna.png"
   chapter_level: 1
   epub_version: "epub"
   template: "default"
