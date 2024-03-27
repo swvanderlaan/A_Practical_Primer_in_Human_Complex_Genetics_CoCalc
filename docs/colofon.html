@@ -48,6 +48,7 @@
 
 
 
+
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
@@ -327,6 +328,7 @@ div.csl-indent {
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -367,12 +369,14 @@ gitbook.start({
 },
 "download": [["A-Practical-Primer-in-Human-Complex-Genetics.pdf", "PDF"], ["A-Practical-Primer-in-Human-Complex-Genetics.epub", "EPUB"]],
 "search": {
-"engine": "fuse",
+"engine": "lunr",
 "options": null
 },
 "toc": {
-"collapse": "subsection"
-}
+"collapse": "subsection",
+"scroll_highlight": true
+},
+"info": true
 });
 });
 </script>

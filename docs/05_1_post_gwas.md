@@ -8,7 +8,7 @@ In the next few sections I deal with a couple of the downstream, post-GWAS analy
 
 ## Clumping
 
-The Manhattan plot immediately draws your attention to the peaks above the genome-wide significance threshold. **Clumping** is the procedure in which we identify the _independent hits_, those top variants and the variants in linkage disequilibrium (their 'LD buddies') in the same genomic region (_locus_). The basic steps are as follows. First define threshold above which to identify the top variant, usually this is the genome-wide significance threshold. Next, define the maximum p-value of association a variant may have with the trait of interest. Define the strength of the correlation that is allowed between the top variant and its LD buddies. And lastly define the size of region around the top variant to assess. 
+The Manhattan plot immediately draws your attention to the peaks above the genome-wide significance threshold. **Clumping** is the procedure in which we identify the _independent hits_, those top variants and the variants in linkage disequilibrium (their 'LD buddies') in the same genomic region (_locus_). The basic steps are as follows. First define a threshold above which to identify the top variant, usually this is the genome-wide significance threshold. Next, define the maximum p-value of association a variant may have with the trait of interest. Define the strength of the correlation that is allowed between the top variant and its LD buddies. And lastly define the size of region around the top variant to assess. 
 
 **Clumping** can easily be done in PLINK. And you can too with the dummy GWAS dataset in this additional chapter \@ref(add_chapter_regional_plot). You don't have to now, it's just for fun. 
 
