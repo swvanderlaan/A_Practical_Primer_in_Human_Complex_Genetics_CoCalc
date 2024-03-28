@@ -53,15 +53,15 @@ For now, we will skip this part. I will add a whole chapter on this at some late
 There are multiple methods and tools developed to get to this answer. I list a few and I encourage you to read up on these. 
 
 
-**FINEMAP**
+### FINEMAP
 
 This tool is very fast and versatile, and was developed by Christian Benner. It will identify the _credible sets_ for each locus and calculates the _posterior probabilities_ for each set. This is the more hands-on version of getting to _credible sets_.
 
-**LocusZoom**
+### LocusZoom
 
 You could upload - privately or publicly - your data to [my.locuszoom.org](https://my.locuszoom.org){target="_blank"} and obtain a list of causal variants with posterior probabilities. It uses a [simple procedure](https://statgen.github.io/gwas-credible-sets/method/locuszoom-credible-sets.pdf){target="_blank"} to obtain the _credible sets_ using [these scripts](https://github.com/statgen/gwas-credible-sets/){target="_blank"}. This is the more lazy version of getting a list of likely causal variants.
 
-**SuSIE**
+### SuSIE
 
 An laternate approach to _credible set_ identification is through [SuSIE](https://stephenslab.github.io/susieR/index.html){target="_blank"}. Through SuSIE you can identify _credible sets_ under the assumption of multiple causal variants, whereas **FINEMAP** assumes a single causal variant.
 
@@ -106,12 +106,12 @@ Finding the causal genes for complex disease is a primary objective of many rese
 There is an easy, quick-and-dirty way and a harder way. 
 
 
-**MRBase**
+### MRBase
 
 The quick-and-dirty way uses [MRBase](http://www.mrbase.org/){target="blank"}. It is based on the `TwoSampleMR` package and uses the `MRInstruments` package to load in all the genetic instruments. The creators of MRBase have curated hundreds of GWAS and molecular QTL studies, and prepared the data for easy use on the website and in the R packages.
 
 
-**TwoSampleMR**
+### TwoSampleMR
 
 The hard way means getting your hands dirty and using the `TwoSampleMR` package yourself in `R`. You'll learn all the steps you need to take into account to get to the answer of this question. You'll create the diagnostic graphs and calculate the statistics. 
 

@@ -48,7 +48,7 @@ Let's visualize the results. First we should load in all the results.
 
 > Question: Load the data using R. [Hint: use and adapt the examples from the previous chapters.]
 
-```{r load-data-gwas, eval = FALSE}
+```{r load-data-gwas, eval = TRUE}
 library("data.table")
 
 COURSE_loc = "~/Desktop/practical" # getwd()
@@ -57,6 +57,12 @@ gwas_HWE <- data.table::fread(paste0(COURSE_loc, "/dummy_project/gwa.hwe"))
 gwas_FRQ <- data.table::fread(paste0(COURSE_loc, "/dummy_project/gwa.frq"))
 gwas_IMISS <- data.table::fread(paste0(COURSE_loc, "/dummy_project/gwa.imiss"))
 gwas_LMISS <- data.table::fread(paste0(COURSE_loc, "/dummy_project/gwa.lmiss"))
+
+gwas_HWE$logP <- -log10(gwas_HWE$P)
+
+gwas_IMISS$callrate <- 1 - gwas_IMISS$F_MISS
+
+gwas_LMISS$callrate <- 1 - gwas_LMISS$F_MISS
 ```
 
 We can plot the per-stratum HWE p-values.
@@ -65,9 +71,6 @@ We can plot the per-stratum HWE p-values.
 
 ```{r plot-hwe-gwas, eval = FALSE, message = FALSE, warning = FALSE}
 library("ggpubr")
-
-gwas_HWE$logP <- -log10(gwas_HWE$P)
-
 ggpubr::gghistogram(gwas_HWE, x = "logP",
                     add = "mean",
                     add.params = list(color = "#595A5C", linetype = "dashed", size = 1),
@@ -113,8 +116,6 @@ We will want to identify samples that have poor call rates.
 > Question: Plot the per-sample call rates using R. [Hint: use and adapt the examples from the previous chapters.]
 
 ```{r plot-sample-callrate-gwas, eval = FALSE, message = FALSE, warning = FALSE}
-gwas_IMISS$callrate <- 1 - gwas_IMISS$F_MISS
-
 ggpubr::gghistogram(gwas_IMISS, x = "callrate",
                     add = "mean", add.params = list(color = "#595A5C", linetype = "dashed", size = 1),
                     rug = TRUE, bins = 50,
@@ -135,8 +136,6 @@ We also need to know what the per SNP call rates are.
 > Question: Plot the per-SNP call rates using R. [Hint: use and adapt the examples from the previous chapters.]
 
 ```{r plot-snp-callrate-gwas, eval = FALSE, message = FALSE, warning = FALSE}
-gwas_LMISS$callrate <- 1 - gwas_LMISS$F_MISS
-
 ggpubr::gghistogram(gwas_LMISS, x = "callrate",
                     add = "mean", add.params = list(color = "#595A5C", linetype = "dashed", size = 1),
                     rug = TRUE, bins = 50,
@@ -210,7 +209,7 @@ plink --bfile gwas/gwa --logistic sex --covar gwas/gwa.covar --out gwas/data
 ```
 
 Let's examine the results.
-```{r load-gwas-assoc}
+```{r load-gwas-assoc, eval = TRUE}
 gwas_assoc <- data.table::fread(paste0(COURSE_loc, "/dummy_project/data.assoc.logistic"))
 ```
 

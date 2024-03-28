@@ -36,10 +36,14 @@ We can plot the per-stratum HWE p-values.
 
 
 
-<div class="figure" style="text-align: center">
-<img src="img/_gwas_dummy/show-hwe-gwas.png" alt="Per stratum HWE p-values." width="85%" />
-<p class="caption">(\#fig:unnamed-chunk-2)Per stratum HWE p-values.</p>
-</div>
+\begin{figure}[H]
+
+{\centering \includegraphics[width=0.85\linewidth]{img/_gwas_dummy/show-hwe-gwas} 
+
+}
+
+\caption{Per stratum HWE p-values.}(\#fig:unnamed-chunk-2)
+\end{figure}
 
 We will want to see what the distribution of allele frequencies looks like. 
 
@@ -47,10 +51,14 @@ We will want to see what the distribution of allele frequencies looks like.
 
 
 
-<div class="figure" style="text-align: center">
-<img src="img/_gwas_dummy/show-freq-gwas.png" alt="Minor allele frequencies." width="85%" />
-<p class="caption">(\#fig:unnamed-chunk-3)Minor allele frequencies.</p>
-</div>
+\begin{figure}[H]
+
+{\centering \includegraphics[width=0.85\linewidth]{img/_gwas_dummy/show-freq-gwas} 
+
+}
+
+\caption{Minor allele frequencies.}(\#fig:unnamed-chunk-3)
+\end{figure}
 
 We will want to identify samples that have poor call rates.
 
@@ -58,10 +66,14 @@ We will want to identify samples that have poor call rates.
 
 
 
-<div class="figure" style="text-align: center">
-<img src="img/_gwas_dummy/show-sample-callrate-gwas.png" alt="Per sample call rates." width="85%" />
-<p class="caption">(\#fig:unnamed-chunk-4)Per sample call rates.</p>
-</div>
+\begin{figure}[H]
+
+{\centering \includegraphics[width=0.85\linewidth]{img/_gwas_dummy/show-sample-callrate-gwas} 
+
+}
+
+\caption{Per sample call rates.}(\#fig:unnamed-chunk-4)
+\end{figure}
 
 We also need to know what the per SNP call rates are.
 
@@ -69,10 +81,14 @@ We also need to know what the per SNP call rates are.
 
 
 
-<div class="figure" style="text-align: center">
-<img src="img/_gwas_dummy/show-snp-callrate-gwas.png" alt="Per SNP call rates." width="85%" />
-<p class="caption">(\#fig:unnamed-chunk-5)Per SNP call rates.</p>
-</div>
+\begin{figure}[H]
+
+{\centering \includegraphics[width=0.85\linewidth]{img/_gwas_dummy/show-snp-callrate-gwas} 
+
+}
+
+\caption{Per SNP call rates.}(\#fig:unnamed-chunk-5)
+\end{figure}
 
 
 ## Genetic models
@@ -133,17 +149,28 @@ Let's examine the results.
 
 
 ```
-##      CHR       SNP      BP     A1   TEST NMISS     OR     STAT      P
-##    <int>    <char>   <int> <char> <char> <int>  <num>    <num>  <num>
-## 1:     1 rs3934834  995669      T    ADD  3818 1.0290  0.38120 0.7031
-## 2:     1 rs3934834  995669      T    AGE  3818 1.0020  1.11800 0.2635
-## 3:     1 rs3934834  995669      T    SEX  3818 1.0120  0.19090 0.8486
-## 4:     1 rs3737728 1011278      A    ADD  3982 1.0190  0.38670 0.6990
-## 5:     1 rs3737728 1011278      A    AGE  3982 1.0020  1.09800 0.2721
-## 6:     1 rs3737728 1011278      A    SEX  3982 1.0060  0.09898 0.9212
-## 7:     1 rs6687776 1020428      T    ADD  3915 0.9692 -0.33330 0.7389
-## 8:     1 rs6687776 1020428      T    AGE  3915 1.0020  1.04000 0.2984
-## 9:     1 rs6687776 1020428      T    SEX  3915 1.0150  0.23690 0.8127
+##      CHR       SNP      BP     A1   TEST NMISS     OR
+##    <int>    <char>   <int> <char> <char> <int>  <num>
+## 1:     1 rs3934834  995669      T    ADD  3818 1.0290
+## 2:     1 rs3934834  995669      T    AGE  3818 1.0020
+## 3:     1 rs3934834  995669      T    SEX  3818 1.0120
+## 4:     1 rs3737728 1011278      A    ADD  3982 1.0190
+## 5:     1 rs3737728 1011278      A    AGE  3982 1.0020
+## 6:     1 rs3737728 1011278      A    SEX  3982 1.0060
+## 7:     1 rs6687776 1020428      T    ADD  3915 0.9692
+## 8:     1 rs6687776 1020428      T    AGE  3915 1.0020
+## 9:     1 rs6687776 1020428      T    SEX  3915 1.0150
+##        STAT      P
+##       <num>  <num>
+## 1:  0.38120 0.7031
+## 2:  1.11800 0.2635
+## 3:  0.19090 0.8486
+## 4:  0.38670 0.6990
+## 5:  1.09800 0.2721
+## 6:  0.09898 0.9212
+## 7: -0.33330 0.7389
+## 8:  1.04000 0.2984
+## 9:  0.23690 0.8127
 ```
 
 > Question: How come there are more lines in this file than there are variants?

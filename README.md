@@ -8,7 +8,7 @@ This book was made possible by the kind help of Caspar J. van Lissa who wrote an
 
 #### Changes log
     
-    _Version:_      v2.0.5</br>
+    _Version:_      v2.0.6</br>
     _Last update:_  2024-03-27</br>
     _Written by:_   Sander W. van der Laan (s.w.vanderlaan-2[at]umcutrecht.nl).
     
@@ -28,6 +28,7 @@ This book was made possible by the kind help of Caspar J. van Lissa who wrote an
     _W_
 
     **Changes log**
+    * v2.0.6 Fixes to the visualization chapter where data was not properly loaded. Fix to the references in the WTCCC1 chapter where they were not properly generated.
     * v2.0.5 Added all header-images. Fixed references to tables and figures.
     * v2.0.4 Added WTCCC1 introduction; added WTCCC1 analyses and visualization. Add post-GWAs chapter.
     * v2.0.3 Added GWAS visualization.

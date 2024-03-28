@@ -36,6 +36,8 @@ opts_chunk$set(echo = FALSE,
 ```
 Throughout the book you encountered questions related to some steps and output that you generated. Here you can review the answers for each of these questions - of course, for some different answers are possible.
 
+> [ANSWERS NEED TO BE WORKED OUT]
+
 ## Chapter 3.1: GWAS Basics
 > Question: Can you think off what the '11,440 heterozygous haploid genotypes present' represent? 
 
@@ -127,12 +129,20 @@ ggplot2::ggsave(paste0(COURSE_loc, "/dummy_project/gwas-snp-call-rate.png"),
        plot = last_plot())
 ```
 
-
 > Question: Do you know which model, _i.e._ `TEST` is most commonly used and reported? And why is that, do think?
 
 > Question: How come there are more lines in this file than there are variants?
  
 > Question: Can you write down the mathematical relation between _beta_ and _OR_?
+
+## Chapter 3.5: GWAS visualization
+
+> Question: Why do the number of variants per chrosome (approximately) correlate with the chromosome number?
+
+> Question: Where are the data for chromosome X, Y and MT?
+
+> Question: What do the grey spots on the density plot indicate?
+
 
 ## Chapter 5.4: FUMA
 

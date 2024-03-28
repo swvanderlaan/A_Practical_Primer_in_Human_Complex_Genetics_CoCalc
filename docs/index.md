@@ -36,7 +36,4 @@ I can imagine this seems overwhelming, but trust me, you'll be okay. Just follow
 
 <!-- Your first point of action is to prepare your system for this course in Chapter \@ref(somebackgroundreading). -->
 
-<script>
-title=document.getElementById('header');
-title.innerHTML = '<img src="img/_headers/banner_man_standing_dna.png" alt="A Practical Primer in Human Complex Genetics">' + title.innerHTML
-</script>
+

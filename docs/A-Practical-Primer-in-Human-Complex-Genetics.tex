@@ -85,17 +85,25 @@
 \setcounter{bottomnumber}{3}
 \setcounter{totalnumber}{4}
 \usepackage{float}
-\usepackage{fontspec}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
 \usepackage{multirow}
-\usepackage{multicol}
+\usepackage{wrapfig}
 \usepackage{colortbl}
+\usepackage{pdflscape}
+\usepackage{tabu}
+\usepackage{threeparttable}
+\usepackage{threeparttablex}
+\usepackage[normalem]{ulem}
+\usepackage{makecell}
+\usepackage{xcolor}
+\usepackage{fontspec}
+\usepackage{multicol}
 \usepackage{hhline}
 \newlength\Oldarrayrulewidth
 \newlength\Oldtabcolsep
-\usepackage{longtable}
-\usepackage{array}
 \usepackage{hyperref}
-\usepackage{wrapfig}
 \ifLuaTeX
   \usepackage{selnolig}  % disable illegal ligatures
 \fi
@@ -143,8 +151,6 @@ So, although originally crafted as a companion for the course, this practical gu
 I can imagine this seems overwhelming, but trust me, you'll be okay. Just follow this practical. You'll learn by doing and at the end of the day, you can execute a GWAS independently.
 
 \textbf{Ready to start?}
-
-Your first point of action is to prepare your system for this course in Chapter \ref{somebackgroundreading}.
 
 \hypertarget{somebackgroundreading}{%
 \chapter{Some background reading}\label{somebackgroundreading}}
@@ -195,31 +201,41 @@ Are you ready? Did you bring coffee and a good dose of energy? Let's start! Your
 \hypertarget{getting-started}{%
 \chapter{Getting started}\label{getting-started}}
 
-\begin{lstlisting}
-## 
-## Packages to install for this book and its contents to automagically work.
-## 
-## * Bookdown and rmarkdown packages...
-## 
-## * General packages...
-## 
-## * GGplotting packages - for publication ready plotting...
-## 
-## * Genomic packages...
-\end{lstlisting}
-
 \begin{quote}
 {[}THIS CHAPTER NEEDS WORK{]}
-- introduction
-- briefly touch on operating system
-- split CoCalc vs standalone
-- CoCalc: everything is installed
-- standalone:
-- focus on macOS
-- what to install
-- show how to navigate on macOS Terminal
-{[}Some introductory text{]}
+
+\begin{itemize}
+\tightlist
+\item
+  introduction
+\item
+  briefly touch on operating system
+\item
+  split CoCalc vs standalone
+
+  \begin{itemize}
+  \tightlist
+  \item
+    CoCalc: everything is installed
+  \item
+    standalone:
+
+    \begin{itemize}
+    \tightlist
+    \item
+      focus on macOS
+    \item
+      what to install
+    \item
+      show how to navigate on macOS Terminal
+      {[}Some introductory text{]}
+    \end{itemize}
+  \end{itemize}
+\end{itemize}
 \end{quote}
+
+\hypertarget{your-computer}{%
+\section{Your computer}\label{your-computer}}
 
 Before getting started, we need to discuss your computer. Most programs made to execute genetic epidemiology studies are developed for the Unix environment, for example Linux and macOS. So, they may not work as intended in a Windows environment. Windows does allow users to install a linux subsystem within Windows 10+ and you can find the detail \href{https://docs.microsoft.com/en-us/windows/wsl/about}{guide} here.
 
@@ -239,10 +255,12 @@ I chose the latter.
 For this practical every command is intended for Linux/macOS, in other words Unix-systems.
 \end{quote}
 
-\textbf{CoCalc vs.~Standalone}
+\hypertarget{cocalc-vs.-standalone}{%
+\section{CoCalc vs.~Standalone}\label{cocalc-vs.-standalone}}
+
 For the purpose of this practical primer there are one of two steps you need to take to get started. When you are following the course, you will want to read the section \textbf{CoCalc}. When you want to use this book as a standalone, you should check out the instructions in section \textbf{Standalone} - this is probably also the section you want to follow for real-world cases.
 
-But first, I'll briefly provide some background on the variaous programs that are commonly used.
+But first, I'll briefly provide some background on the various programs that are commonly used.
 
 \hypertarget{the-programs-we-use}{%
 \section{The programs we use}\label{the-programs-we-use}}
@@ -263,13 +281,13 @@ We'll use a few programs throughout this practical. You'll probably need these f
 
 \begin{longtable}[c]{|p{0.92in}|p{2.72in}|p{14.00in}}
 
-
+\caption{Programs\ needed\ for\ genetic\ epidemiology.}\label{tab:programs}\\
 
 \ascline{1.5pt}{666666}{1-3}
 
 \multicolumn{1}{>{\raggedright}m{\dimexpr 0.92in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{Program}}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 2.72in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{Link}}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 14in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{Description}}}} \\
 
-\ascline{1.5pt}{666666}{1-3}\endfirsthead 
+\ascline{1.5pt}{666666}{1-3}\endfirsthead \caption[]{Programs\ needed\ for\ genetic\ epidemiology.}\label{tab:programs}\\
 
 \ascline{1.5pt}{666666}{1-3}
 
@@ -315,29 +333,34 @@ We'll use a few programs throughout this practical. You'll probably need these f
 
 \renewcommand*{\arraystretch}{1}
 
-\textbf{RStudio}
+\hypertarget{rstudio}{%
+\subsection{RStudio}\label{rstudio}}
 
 \textbf{RStudio} is a very user-friendly interface around \passthrough{\lstinline!R!} that makes your \passthrough{\lstinline!R!}-scripting-life a lot easier. You should get used to that. \textbf{RStudio} comes with \passthrough{\lstinline!R!} so you don't have to worry about that.
 
-\textbf{PLINK}
+\hypertarget{plink}{%
+\subsection{PLINK}\label{plink}}
+
 Right, onto \passthrough{\lstinline!PLINK!}.
 
-All genetic analyses can be done in PLINK, even on your laptop, but with large datasets, for example \href{https://www.ukbiobank.ac.uk}{UK Biobank} size, it is better to switch to a \href{https://en.wikipedia.org/wiki/High-performance_computing}{high-performance computing cluster (HPC)} like we have available at the \href{https://wiki.bioinformatics.umcutrecht.nl/bin/view/HPC/WebHome}{Utrecht Science Park}. The original PLINK v1.07 can be found \href{https://zzz.bwh.harvard.edu/plink/index.shtml}{here}, but nowadays we are using a newer, faster version: \textbf{PLINK v1.9} which can be found \href{https://www.cog-genomics.org/plink2}{here}. It still says `PLINK 1.90 beta' (Figure \ref{fig:plink}), but you can consider this version stable and save to work with, but as you can see, some functions are not supported anymore.
+All genetic analyses can be done in PLINK, even on your laptop, but with large datasets, for example \href{https://www.ukbiobank.ac.uk}{UK Biobank} size, it is better to switch to a \href{https://en.wikipedia.org/wiki/High-performance_computing}{high-performance computing cluster (HPC)} like we have available at the \href{https://wiki.bioinformatics.umcutrecht.nl/bin/view/HPC/WebHome}{Utrecht Science Park}. The original PLINK v1.07 can be found \href{https://zzz.bwh.harvard.edu/plink/index.shtml}{here}, but nowadays we are using a newer, faster version: \textbf{PLINK v1.9} which can be found \href{https://www.cog-genomics.org/plink2}{here}. It still says `PLINK 1.90 beta' (Figure \ref{fig:plinkprogram}), but you can consider this version stable and save to work with, but as you can see, some functions are not supported anymore.
 
 \begin{figure}[H]
 
-{\centering \includegraphics[width=43.11in]{img/plink} 
+{\centering \includegraphics[width=0.85\linewidth]{img/plink} 
 
 }
 
-\caption{The PLINK v1.9 website.}\label{fig:plink}
+\caption{The PLINK v1.9 website.}\label{fig:plinkprogram}
 \end{figure}
 
-\textbf{Alternatives to \passthrough{\lstinline!PLINK!}}
+\hypertarget{alternatives-to-plink}{%
+\subsection{\texorpdfstring{Alternatives to \texttt{PLINK}}{Alternatives to PLINK}}\label{alternatives-to-plink}}
 
 Nowadays, a lot of people also use programs like \href{snptest}{SNPTEST}, \href{https://data.broadinstitute.org/alkesgroup/BOLT-LMM/}{BOLT-LMM}, \href{http://cnsgenomics.com/software/gcta/\#Overview}{GCTA}, or \href{https://rgcgithub.github.io/regenie/}{regenie} as alternatives to execute GWAS. These programs were designed with specific use-cases in mind, for instance really large biobank data including hundreds of thousands individuals, better control for population stratification, the ability to estimate trait heritability or Fst, and so on.
 
-\textbf{Other programs}
+\hypertarget{other-programs}{%
+\subsection{Other programs}\label{other-programs}}
 
 Mendelian randomization can be done either with the \href{http://cnsgenomics.com/software/smr/\#Overview}{SMR} or \href{http://cnsgenomics.com/software/gsmr/}{GSMR} function from GCTA, or with R-packages, like \href{https://mrcieu.github.io/TwoSampleMR/}{\passthrough{\lstinline!TwoSampleMR!}}.
 
@@ -359,6 +382,19 @@ For the course we set up a CoCalc Server and everything should be fine; we insta
 
 So, you plan to use this book as `Standalone' on a macOS environment. This means you'll need to install a few things first.
 
+\hypertarget{the-data-you-need}{%
+\subsection{The data you need}\label{the-data-you-need}}
+
+You'll need to start by downloading the data you need for this practical to your Desktop.
+
+Here's the link to the data.
+
+\href{https://drive.google.com/drive/folders/1iDLB1y534DfgEZNPCYBrIj5X7g_XlBba?usp=share_link}{Link to Google Drive with data}
+
+Make sure you put the data in the \passthrough{\lstinline!\~/Desktop/practical/!} folder.
+
+The data are pretty large (approx. 15Gb), so this will take a minute or two depending on your internet connection. Time to stretch your legs or grab a coffee (data scientists don't drink tea).
+
 \hypertarget{terminal}{%
 \subsection{Terminal}\label{terminal}}
 
@@ -376,39 +412,24 @@ CODE BLOCK
 CODE BLOCK # some comment here
 \end{lstlisting}
 
-\hypertarget{the-data-you-need}{%
-\subsection{The data you need}\label{the-data-you-need}}
-
-You'll need to start by downloading the data you need for this practical to your Desktop.
-
-Here's the link to the data.
-
-\href{https://drive.google.com/drive/folders/1iDLB1y534DfgEZNPCYBrIj5X7g_XlBba?usp=share_link}{Link to Google Drive with data}
-
-Make sure you put the data in the \passthrough{\lstinline!\~/Desktop/practical/!} folder.
-
-The data are pretty large (approx. 15Gb), so this will take a minute or two depending on your internet connection. Time to stretch your legs or grab a coffee (data scientists don't drink tea).
-
 \hypertarget{navigating-the-terminal}{%
 \subsection{Navigating the Terminal}\label{navigating-the-terminal}}
 
 You can navigate around the computer through the terminal by typing \passthrough{\lstinline!cd <path>!}; \passthrough{\lstinline!cd!} stands for ``change directory'' and \passthrough{\lstinline!<path>!} means ``some\_file\_directory\_you\_want\_to\_go\_to''.
 
-\textbf{For Linux/macOS Users}
-
-\emph{will bring you to your home directory}
+This command will bring you to your home directory.
 
 \begin{lstlisting}
 cd ~ 
 \end{lstlisting}
 
-\emph{will bring you to the parent directory (up one level) }
+This will bring you to the parent directory (up one level).
 
 \begin{lstlisting}
 cd ../ 
 \end{lstlisting}
 
-\emph{will bring you to the XXX directory}
+This will bring you to the XXX directory.
 
 \begin{lstlisting}
 cd XXX 
@@ -422,13 +443,13 @@ cd ~/Desktop/practical
 
 Let's check out what is inside the directory, by listing (\passthrough{\lstinline!ls!}) its contents.
 
-\emph{shows files as list}
+This command shows files as list; the \passthrough{\lstinline!-l!} makes it a vertical list and adds more information, you can also remove it and simply type \passthrough{\lstinline!ls!} - go on, and try.
 
 \begin{lstlisting}
 ls -l 
 \end{lstlisting}
 
-\emph{shows files as list with human readable format }
+This command shows files as list with human readable format.
 
 \begin{lstlisting}
 ls -lh 
@@ -436,19 +457,19 @@ ls -lh
 
 Adding the flags \passthrough{\lstinline!-lh!} will get you the contents of a directory in a list (\passthrough{\lstinline!-l!}) and make the size `human-readable' (\passthrough{\lstinline!-h!}).
 
-\emph{shows the files as list sorted by time edited}
+Adding \passthrough{\lstinline!-t!} shows the files as list sorted by time edited.
 
 \begin{lstlisting}
 ls -lt 
 \end{lstlisting}
 
-\emph{shows the files as list sorted by size}
+Adding \passthrough{\lstinline!-S!} shows the files as list sorted by size.
 
 \begin{lstlisting}
 ls -lS 
 \end{lstlisting}
 
-You can also count the number of files.
+You can also count the number of files. Just `pipe' the result from \passthrough{\lstinline!ls!} to the next program \passthrough{\lstinline!wc!} (`wordcount') and list the number of lines, \passthrough{\lstinline!-l!}. In this case \passthrough{\lstinline!-l!} is a flag used by \passthrough{\lstinline!wc!} and it has a different meaning than it does for \passthrough{\lstinline!ls!}.
 
 \begin{lstlisting}
 ls | wc -l
@@ -460,15 +481,15 @@ And if you want to know all the function of a program simply type the following.
 man ls
 \end{lstlisting}
 
-This will take you to a manual of the program with an extensive description of each flag (Figure \ref{fig:ls-manual}).
+This will take you to a manual of the program with an extensive description of each flag (Figure \ref{fig:lsmanual}).
 
 \begin{figure}[H]
 
-{\centering \includegraphics[width=22.64in]{img/ls_manual} 
+{\centering \includegraphics[width=0.85\linewidth]{img/ls_manual} 
 
 }
 
-\caption{Partial output from the ls-manual.}\label{fig:ls-manual}
+\caption{Partial output from the ls manual.}\label{fig:lsmanual}
 \end{figure}
 
 \hypertarget{installing-the-software}{%
@@ -493,8 +514,8 @@ brew doctor
 
 It shouldn't report any errors.
 
-\hypertarget{plink}{%
-\subsubsection{PLINK}\label{plink}}
+\hypertarget{plink-1}{%
+\subsubsection{PLINK}\label{plink-1}}
 
 First, we'll get \passthrough{\lstinline!PLINK!}. Navigate to the \textbf{PLINK v1.9} website, which can be found \href{https://www.cog-genomics.org/plink2}{here}. Download the macOS (64-bit) version under `Stable (beta x.x, day month year)'.
 
@@ -509,7 +530,7 @@ mv -v ~/Downloads/plink_mac_20231211/plink ~/Desktop/practical/plink
 \end{lstlisting}
 
 \hypertarget{installing-r-and-rstudio}{%
-\section{Installing R and RStudio}\label{installing-r-and-rstudio}}
+\subsubsection{Installing R and RStudio}\label{installing-r-and-rstudio}}
 
 Let's go ahead and use \passthrough{\lstinline!brew!} to install the \passthrough{\lstinline!R!} and \textbf{RStudio} software.
 
@@ -522,61 +543,68 @@ brew install --cask r
 
 Now close the terminal window - really make sure that the terminal-program has quit.
 
-Open your fresh installation of \textbf{RStudio} by double clicking the icon. You should be seeing something like figure \ref{fig:rstudio-screenshot}
+Open your fresh installation of \textbf{RStudio} by double clicking the icon. You should be seeing something like figure \ref{fig:rstudioscreenshot}
 
 \begin{figure}[H]
 
-{\centering \includegraphics[width=34.5in]{img/rstudio-screenshot} 
+{\centering \includegraphics[width=0.85\linewidth]{img/rstudio-screenshot} 
 
 }
 
-\caption{RStudio screenshot.}\label{fig:rstudio-screenshot}
+\caption{RStudio screenshot.}\label{fig:rstudioscreenshot}
 \end{figure}
 
-In the top right, you see a little green-white plus-sign, click this and select `R Notebook' (Figure \ref{fig:rstudio-screenshot-create-notebook}).
+In the top right, you see a little green-white plus-sign, click this and select `R Notebook' (Figure \ref{fig:rstudioscreenshotcreatenotebook}).
 
 \begin{figure}[H]
 
-{\centering \includegraphics[width=34.5in]{img/rstudio-screenshot-create-notebook} 
+{\centering \includegraphics[width=0.85\linewidth]{img/rstudio-screenshot-create-notebook} 
 
 }
 
-\caption{RStudio screenshot.}\label{fig:rstudio-screenshot-create-notebook}
+\caption{RStudio screenshot.}\label{fig:rstudioscreenshotcreatenotebook}
 \end{figure}
 
-You will create an untitled (\passthrough{\lstinline!Untitled1!}) \passthrough{\lstinline!R!} notebook: you can combine text descriptions, like you would in a lab-journal, with code-sections. Read what is in the notebook to get a grasp on that (Figure \ref{fig:rstudio-screenshot-notebook}).
+You will create an untitled (\passthrough{\lstinline!Untitled1!}) \passthrough{\lstinline!R!} notebook: you can combine text descriptions, like you would in a lab-journal, with code-sections. Read what is in the notebook to get a grasp on that (Figure \ref{fig:rstudioscreenshotnotebook}).
 
 \begin{figure}[H]
 
-{\centering \includegraphics[width=34.5in]{img/rstudio-screenshot-notebook} 
+{\centering \includegraphics[width=0.85\linewidth]{img/rstudio-screenshot-notebook} 
 
 }
 
-\caption{RStudio screenshot.}\label{fig:rstudio-screenshot-notebook}
+\caption{RStudio screenshot.}\label{fig:rstudioscreenshotnotebook}
 \end{figure}
 
 Right, you should be installing some packages. To do so, you can remove \passthrough{\lstinline!plot(cars)!} (or leave and create a new code-block as per instructions in the notebook), and copy paste the code below. Make sure to put in a code block like the example in which \passthrough{\lstinline!plot(cars)!} is in.
 
-\begin{lstlisting}[language=R]
+\begin{lstlisting}
 remotes::install_github(c("rstudio/rmarkdown"))
 
-install.packages(c("formatR", "remotes", "httr", "usethis",
-  "data.table", "devtools", "dplyr", "tibble", "tidyverse",
-  "openxlsx", "ggplot2", "ggsci", "ggthemes", "qqman",
-  "CMplot", "plotly", "openxlsx"))
+install.packages(c("formatR", "remotes", 
+                   "httr", "usethis", 
+                   "data.table", "devtools", 
+                   "dplyr", "tibble", "tidyverse", 
+                   "openxlsx",
+                   "ggplot2",
+                   "ggsci", "ggthemes",
+                   "qqman", "CMplot", "plotly", 
+                   "openxlsx"))
 devtools::install_github("kassambara/ggpubr")
 
 devtools::install_github("oliviasabik/RACER")
 
 remotes::install_github("MRCIEU/TwoSampleMR")
+devtools::install_github("MRCIEU/MRInstruments")
 
-if (!require("BiocManager", quietly = TRUE)) install.packages("BiocManager")
+if (!require("BiocManager", quietly = TRUE))
+  install.packages("BiocManager")
 BiocManager::install("geneplotter")
 \end{lstlisting}
 
 You should load these packages too.
 
-\begin{lstlisting}[language=R]
+\begin{lstlisting}
 library(rmarkdown)
 library(formatR)
 
@@ -601,6 +629,7 @@ library(RACER)
 
 library(remotes)
 library(TwoSampleMR)
+library(MRInstruments)
 
 library("geneplotter")
 \end{lstlisting}
@@ -766,20 +795,7 @@ All clear? Let's start the work. On to step 1 of the QC for GWAS: filter samples
 \hypertarget{gwas-basics-sample-qc}{%
 \chapter{Sample QC}\label{gwas-basics-sample-qc}}
 
-\begin{lstlisting}
-## 
-## Packages to install for this book and its contents to automagically work.
-## 
-## * Bookdown and rmarkdown packages...
-## 
-## * General packages...
-## 
-## * GGplotting packages - for publication ready plotting...
-## 
-## * Genomic packages...
-\end{lstlisting}
-
-Let's start with the per-sample quality control.
+Let's start with the per-sample quality control. The goal here is to identify all the samples that for some reason (mentioned in the previous section) should be excluded.
 
 \hypertarget{sex}{%
 \section{Sex}\label{sex}}
@@ -822,25 +838,69 @@ Let's have a look at the results.
 cat dummy_project/rawdata.sexprobs.txt
 \end{lstlisting}
 
-\begin{lstlisting}[language=R]
-library("data.table")
+\global\setlength{\Oldarrayrulewidth}{\arrayrulewidth}
 
-COURSE_loc = "~/Desktop/practical"  # getwd()
+\global\setlength{\Oldtabcolsep}{\tabcolsep}
 
-sexissues <- data.table::fread(paste0(COURSE_loc, "/dummy_project/rawdata.sexprobs.txt"))
-\end{lstlisting}
+\setlength{\tabcolsep}{2pt}
 
-\begin{lstlisting}[language=R]
-library("knitr")
-knitr::kable(
-  sexissues, caption = 'Sex issues',
-  booktabs = TRUE
-)
-\end{lstlisting}
+\renewcommand*{\arraystretch}{1.5}
+
+
+
+\providecommand{\ascline}[3]{\noalign{\global\arrayrulewidth #1}\arrayrulecolor[HTML]{#2}\cline{#3}}
+
+\begin{longtable}[c]{|p{0.57in}|p{0.57in}|p{0.81in}|p{0.81in}|p{0.93in}|p{0.65in}}
+
+\caption{Sex\ issues.}\label{tab:sexissues}\\
+
+\ascline{1.5pt}{666666}{1-6}
+
+\multicolumn{1}{>{\raggedleft}m{\dimexpr 0.57in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{FID}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.57in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{IID}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.81in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{PEDSEX}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.81in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{SNPSEX}}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.93in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{STATUS}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.65in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{F}}}} \\
+
+\ascline{1.5pt}{666666}{1-6}\endfirsthead \caption[]{Sex\ issues.}\label{tab:sexissues}\\
+
+\ascline{1.5pt}{666666}{1-6}
+
+\multicolumn{1}{>{\raggedleft}m{\dimexpr 0.57in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{FID}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.57in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{IID}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.81in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{PEDSEX}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.81in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{SNPSEX}}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.93in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{STATUS}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.65in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{F}}}} \\
+
+\ascline{1.5pt}{666666}{1-6}\endhead
+
+
+
+\multicolumn{1}{>{\raggedleft}m{\dimexpr 0.57in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{772}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.57in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{772}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.81in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{2}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.81in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{0}}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.93in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{PROBLEM}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.65in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{0.3084}}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedleft}m{\dimexpr 0.57in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{853}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.57in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{853}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.81in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{2}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.81in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{0}}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.93in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{PROBLEM}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.65in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{0.3666}}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedleft}m{\dimexpr 0.57in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{1,920}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.57in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{1,920}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.81in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{2}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.81in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{0}}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.93in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{PROBLEM}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.65in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{0.4066}}}} \\
+
+\ascline{1.5pt}{666666}{1-6}
+
+
+
+\end{longtable}
+
+
+
+\arrayrulecolor[HTML]{000000}
+
+\global\setlength{\arrayrulewidth}{\Oldarrayrulewidth}
+
+\global\setlength{\tabcolsep}{\Oldtabcolsep}
+
+\renewcommand*{\arraystretch}{1}
 
 When the homozygosity rate (\emph{F}) is more than 0.2, but less than 0.8, the genotype data are inconclusive regarding the sex of an individual and these are marked in column \emph{SNPSEX} with a 0, and the column \emph{STATUS} ``PROBLEM''.
 
-Report the IDs of individuals with discordant sex information (Table \ref{tab:sex-issues}) to those who conducted sex phenotyping. In situations in which discrepancy cannot be resolved, add the family ID (FID) and individual ID (IID) of the samples to a file named \passthrough{\lstinline!fail-sexcheck-qc.txt!} (one individual per line, tab delimited).
+Report the IDs of individuals with discordant sex information (Table \ref{tab:sexissues}) to those who conducted sex phenotyping. In situations in which discrepancy cannot be resolved, add the family ID (FID) and individual ID (IID) of the samples to a file named \passthrough{\lstinline!fail-sexcheck-qc.txt!} (one individual per line, tab delimited).
 
 \begin{lstlisting}
 grep "PROBLEM" dummy_project/rawdata.sexcheck | awk '{ print $1, $2}'  > dummy_project/fail-sexcheck-qc.txt
@@ -855,35 +915,17 @@ Let's get an overview of the missing data per sample and per SNP.
 plink --bfile dummy_project/rawdata --missing --out dummy_project/rawdata
 \end{lstlisting}
 
-This produces two files, \passthrough{\lstinline!rawdata/rawdata.imiss!} and \passthrough{\lstinline!rawdata/rawdata.lmiss!}. In the .imiss file the \emph{N\_MISS} column denotes the number of missing SNPs, and the \emph{F\_MISS} column denotes the proportion of missing SNPs per individual.
+This produces two files, \passthrough{\lstinline!rawdata/rawdata.imiss!} and \passthrough{\lstinline!rawdata/rawdata.lmiss!}. In the \passthrough{\lstinline!.imiss!}-file the \emph{N\_MISS} column denotes the number of missing SNPs, and the \emph{F\_MISS} column denotes the proportion of missing SNPs per individual.
 
-\begin{lstlisting}[language=R]
-raw_IMISS <- data.table::fread(paste0(COURSE_loc, "/dummy_project/rawdata.imiss"))
-
-raw_IMISS$callrate <- 1 - raw_IMISS$F_MISS
-\end{lstlisting}
-
-\begin{lstlisting}[language=R]
-library("ggpubr")
-
-ggpubr::gghistogram(raw_IMISS, x = "callrate", add = "mean",
-  add.params = list(color = "#595A5C", linetype = "dashed",
-    size = 1), rug = TRUE, bins = 50, color = "#1290D9",
-  fill = "#1290D9", xlab = "per sample call rate") + ggplot2::geom_vline(xintercept = 0.95,
-  linetype = "dashed", color = "#E55738", size = 1)
-ggplot2::ggsave(paste0(COURSE_loc, "/dummy_project/gwas-qc-sample-call-rate.png"),
-  plot = last_plot())
-\end{lstlisting}
-
-The grey dashed line in Figure \ref{fig:show-sample-callrate} indicates the mean call rate, while the red dashed line indicates the threshold we had determined above.
+The grey dashed line in Figure \ref{fig:showsamplecallrate} indicates the mean call rate, while the red dashed line indicates the threshold we had determined above.
 
 \begin{figure}[H]
 
-{\centering \includegraphics[width=18.67in]{img/_gwas_dummy/gwas-qc-sample-callrate} 
+{\centering \includegraphics[width=0.85\linewidth]{img/_gwas_dummy/gwas-qc-sample-callrate} 
 
 }
 
-\caption{Per sample call rate.}\label{fig:show-sample-callrate}
+\caption{Per sample call rate.}\label{fig:showsamplecallrate}
 \end{figure}
 
 \hypertarget{heterozygosity-rate}{%
@@ -985,118 +1027,503 @@ plink --bfile dummy_project/rawdata.clean.ultraclean --het --out dummy_project/r
 
 This creates the file \passthrough{\lstinline!dummy\_project/rawdata.clean.ultraclean.het!}, in which the third column denotes the observed number of homozygous genotypes, O(Hom), and the fifth column denotes the number of nonmissing genotypes, N(NM), per individual. We can now calculate the observed heterozygosity rate per individual using the formula (N(NM) - O(Hom))/N(NM).
 
-Often there is a correlation between heterozygosity rate and missing data. Thus, we should plot the observed heterozygosity rate per individual on the x-axis and the proportion of missing SNP, that is the `SNP call rate', per individuals on the y-axis (Figure \ref{fig:show-heterozygosity}).
-
-\begin{lstlisting}[language=R]
-raw_HET <- data.table::fread(paste0(COURSE_loc, "/dummy_project/rawdata.clean.ultraclean.het"))
-
-raw_IMISS$logF_MISS = log10(raw_IMISS$F_MISS)
-prop_miss = -1.522879
-
-raw_HET$meanHet = (raw_HET$`N(NM)` - raw_HET$`O(HOM)`)/raw_HET$`N(NM)`
-lower_meanHet = mean(raw_HET$meanHet) - (3 * sd(raw_HET$meanHet))
-upper_meanHet = mean(raw_HET$meanHet) + (3 * sd(raw_HET$meanHet))
-
-raw_IMISSHET = merge(raw_IMISS, raw_HET, by = "IID")
-raw_IMISSHET$FID.y <- NULL
-colnames(raw_IMISSHET)[colnames(raw_IMISSHET) == "FID.x"] <- "FID"
-
-colors <- densCols(raw_IMISSHET$logF_MISS, raw_IMISSHET$meanHet)
-\end{lstlisting}
-
-\begin{lstlisting}[language=R]
-library("geneplotter")
-png(paste0(COURSE_loc, "/dummy_project/gwas-qc-imiss-vs-het.png"))
-plot(raw_IMISSHET$logF_MISS, raw_IMISSHET$meanHet, col = colors,
-  xlim = c(-3, 0), ylim = c(0, 0.5), pch = 20, xlab = "Proportion of missing genotypes",
-  ylab = "Heterozygosity rate", axes = FALSE)
-axis(2, at = c(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35,
-  0.4, 0.45, 0.5), tick = TRUE)
-axis(1, at = c(-3, -2, -1, 0), labels = c(0.001, 0.01, 0.1,
-  1))
-abline(h = lower_meanHet, col = "#E55738", lty = 2)
-abline(h = upper_meanHet, col = "#E55738", lty = 2)
-abline(v = prop_miss, col = "#E55738", lty = 2)
-\end{lstlisting}
+Often there is a correlation between heterozygosity rate and missing data. Thus, we should plot the observed heterozygosity rate per individual on the x-axis and the proportion of missing SNP, that is the `SNP call rate', per individuals on the y-axis (Figure \ref{fig:showheterozygosity}).
 
 \begin{figure}[H]
 
-{\centering \includegraphics[width=6.67in]{img/_gwas_dummy/show-heterozygosity} 
+{\centering \includegraphics[width=0.85\linewidth]{img/_gwas_dummy/show-heterozygosity} 
 
 }
 
-\caption{Heterozygosity as a function of SNP call rate.}\label{fig:show-heterozygosity}
+\caption{Heterozygosity as a function of SNP call rate.}\label{fig:showheterozygosity}
 \end{figure}
 
-Examine the plot (Figure \ref{fig:show-heterozygosity}) to decide reasonable thresholds at which to exclude individuals based on elevated missing or extreme heterozygosity. We chose to exclude all individuals with a genotype failure rate \textgreater= 0.03 (vertical dashed line) and/or a heterozygosity rate ± 3 s.d. from the mean (horizontal dashed lines). Add the FID and IID of the samples failing this QC to the file named \passthrough{\lstinline!fail-imisshet-qc.txt!}.
+Examine the plot (Figure \ref{fig:showheterozygosity}) to decide reasonable thresholds at which to exclude individuals based on elevated missing or extreme heterozygosity. We chose to exclude all individuals with a genotype failure rate \textgreater= 0.03 (vertical dashed line) and/or a heterozygosity rate ± 3 s.d. from the mean (horizontal dashed lines). Add the FID and IID of the samples failing this QC to the file named \passthrough{\lstinline!fail-imisshet-qc.txt!}.
 
 \begin{quote}
 How would you create this file?
 \end{quote}
 
-\begin{lstlisting}[language=R]
-raw_IMISSHETsub = subset(raw_IMISSHET, logF_MISS > prop_miss |
-  (meanHet < lower_meanHet | meanHet > upper_meanHet),
-  select = c("FID", "IID"))
-data.table::fwrite(raw_IMISSHETsub, paste0(COURSE_loc, "/dummy_project/fail-raw_IMISSHETsub.txt"),
-  sep = " ")
-\end{lstlisting}
+If all is right, you'd have something like Table \ref{tab:failedcallratehet}.
 
-If all is right, you'd have something like Table \ref{tab:failed-callrate-het}.
+\global\setlength{\Oldarrayrulewidth}{\arrayrulewidth}
 
-\begin{lstlisting}[language=R]
-library("knitr")
-knitr::kable(
-  raw_IMISSHETsub, caption = 'Failed samples due to sample call rates and heterozygosity rate',
-  booktabs = TRUE
-)
-\end{lstlisting}
+\global\setlength{\Oldtabcolsep}{\tabcolsep}
+
+\setlength{\tabcolsep}{2pt}
+
+\renewcommand*{\arraystretch}{1.5}
+
+
+
+\providecommand{\ascline}[3]{\noalign{\global\arrayrulewidth #1}\arrayrulecolor[HTML]{#2}\cline{#3}}
+
+\begin{longtable}[c]{|p{0.57in}|p{0.57in}}
+
+\caption{Failed\ samples\ due\ to\ sample\ call\ rates\ and\ heterozygosity\ rate.}\label{tab:failedcallratehet}\\
+
+\ascline{1.5pt}{666666}{1-2}
+
+\multicolumn{1}{>{\raggedleft}m{\dimexpr 0.57in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{FID}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.57in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{IID}}}} \\
+
+\ascline{1.5pt}{666666}{1-2}\endfirsthead \caption[]{Failed\ samples\ due\ to\ sample\ call\ rates\ and\ heterozygosity\ rate.}\label{tab:failedcallratehet}\\
+
+\ascline{1.5pt}{666666}{1-2}
+
+\multicolumn{1}{>{\raggedleft}m{\dimexpr 0.57in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{FID}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.57in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{IID}}}} \\
+
+\ascline{1.5pt}{666666}{1-2}\endhead
+
+
+
+\multicolumn{1}{>{\raggedleft}m{\dimexpr 0.57in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{28}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.57in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{28}}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedleft}m{\dimexpr 0.57in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{50}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.57in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{50}}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedleft}m{\dimexpr 0.57in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{52}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.57in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{52}}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedleft}m{\dimexpr 0.57in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{53}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.57in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{53}}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedleft}m{\dimexpr 0.57in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{67}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.57in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{67}}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedleft}m{\dimexpr 0.57in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{96}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.57in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{96}}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedleft}m{\dimexpr 0.57in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{205}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.57in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{205}}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedleft}m{\dimexpr 0.57in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{298}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.57in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{298}}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedleft}m{\dimexpr 0.57in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{310}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.57in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{310}}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedleft}m{\dimexpr 0.57in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{351}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.57in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{351}}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedleft}m{\dimexpr 0.57in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{404}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.57in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{404}}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedleft}m{\dimexpr 0.57in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{418}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.57in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{418}}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedleft}m{\dimexpr 0.57in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{423}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.57in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{423}}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedleft}m{\dimexpr 0.57in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{428}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.57in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{428}}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedleft}m{\dimexpr 0.57in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{442}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.57in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{442}}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedleft}m{\dimexpr 0.57in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{444}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.57in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{444}}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedleft}m{\dimexpr 0.57in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{548}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.57in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{548}}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedleft}m{\dimexpr 0.57in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{772}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.57in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{772}}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedleft}m{\dimexpr 0.57in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{835}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.57in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{835}}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedleft}m{\dimexpr 0.57in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{850}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.57in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{850}}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedleft}m{\dimexpr 0.57in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{853}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.57in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{853}}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedleft}m{\dimexpr 0.57in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{910}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.57in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{910}}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedleft}m{\dimexpr 0.57in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{939}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.57in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{939}}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedleft}m{\dimexpr 0.57in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{966}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.57in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{966}}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedleft}m{\dimexpr 0.57in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{968}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.57in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{968}}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedleft}m{\dimexpr 0.57in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{1,003}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.57in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{1,003}}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedleft}m{\dimexpr 0.57in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{1,006}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.57in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{1,006}}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedleft}m{\dimexpr 0.57in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{1,045}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.57in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{1,045}}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedleft}m{\dimexpr 0.57in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{1,058}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.57in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{1,058}}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedleft}m{\dimexpr 0.57in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{1,154}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.57in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{1,154}}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedleft}m{\dimexpr 0.57in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{1,236}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.57in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{1,236}}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedleft}m{\dimexpr 0.57in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{1,294}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.57in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{1,294}}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedleft}m{\dimexpr 0.57in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{1,395}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.57in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{1,395}}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedleft}m{\dimexpr 0.57in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{1,537}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.57in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{1,537}}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedleft}m{\dimexpr 0.57in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{1,554}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.57in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{1,554}}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedleft}m{\dimexpr 0.57in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{1,587}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.57in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{1,587}}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedleft}m{\dimexpr 0.57in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{1,694}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.57in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{1,694}}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedleft}m{\dimexpr 0.57in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{1,789}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.57in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{1,789}}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedleft}m{\dimexpr 0.57in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{1,832}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.57in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{1,832}}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedleft}m{\dimexpr 0.57in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{1,866}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.57in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{1,866}}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedleft}m{\dimexpr 0.57in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{1,904}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.57in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{1,904}}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedleft}m{\dimexpr 0.57in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{1,920}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.57in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{1,920}}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedleft}m{\dimexpr 0.57in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{1,951}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.57in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{1,951}}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedleft}m{\dimexpr 0.57in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{1,952}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.57in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{1,952}}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedleft}m{\dimexpr 0.57in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{1,953}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.57in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{1,953}}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedleft}m{\dimexpr 0.57in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{1,954}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.57in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{1,954}}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedleft}m{\dimexpr 0.57in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{1,955}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.57in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{1,955}}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedleft}m{\dimexpr 0.57in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{1,981}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.57in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{1,981}}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedleft}m{\dimexpr 0.57in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{1,984}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.57in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{1,984}}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedleft}m{\dimexpr 0.57in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{1,985}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.57in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{1,985}}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedleft}m{\dimexpr 0.57in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{1,986}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.57in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{1,986}}}} \\
+
+\ascline{1.5pt}{666666}{1-2}
+
+
+
+\end{longtable}
+
+
+
+\arrayrulecolor[HTML]{000000}
+
+\global\setlength{\arrayrulewidth}{\Oldarrayrulewidth}
+
+\global\setlength{\tabcolsep}{\Oldtabcolsep}
+
+\renewcommand*{\arraystretch}{1}
 
 \hypertarget{relatedness}{%
 \section{Relatedness}\label{relatedness}}
 
-We calculate Identity-by-Descent (IBS) to identify duplicated and related samples. In Table \ref{tab:show-relatedness} we show how much DNA is shared between individuals depending on their relation\citep{staples2014}. IBS is measured by calculating pi-hat (\(\widehat{\pi}\)), which is in essence the proportion of the DNA that a pair of samples share. To calculate this, we needed this ultraclean dataset, without low-quality SNPs and without high-LD regions.
+We calculate Identity-by-Descent (IBS) to identify duplicated and related samples. In Table \ref{tab:showrelatedness} we show how much DNA is shared between individuals depending on their relation\citep{staples2014}. IBS is measured by calculating pi-hat (\(\widehat{\pi}\)), which is in essence the proportion of the DNA that a pair of samples share. To calculate this, we needed this ultraclean dataset, without low-quality SNPs and without high-LD regions.
 
-\textbackslash begin\{table\}
+\global\setlength{\Oldarrayrulewidth}{\arrayrulewidth}
 
-\textbackslash caption\{\label{tab:show-relatedness}Familial relations and \% DNA shared.\}
-\centering
+\global\setlength{\Oldtabcolsep}{\tabcolsep}
 
-\begin{tabular}[t]{l|l|l|l|r}
-\hline
-Relatedness & \%.DNA.sharing & IBD0 & IBD1 & IBD2\\
-\hline
-Monozygotic twins & ±100\% & 0 & 1 & 0.00\\
-\hline
-Parents/child & ±50\% & 0.25 & 0.5 & 0.25\\
-\hline
-Sibling & ±50\% & 0.25 & 0.5 & 0.25\\
-\hline
-Fraternal twins & ±50\% & 0.25 & 0.5 & 0.25\\
-\hline
-Grandparent/grandchild & ±25\% & 0.5 & 0.5 & 0.00\\
-\hline
-Aunt/Uncle/Niece/Nephew & ±25\% & 0.5 & 0.5 & 0.00\\
-\hline
-Half-sibling & ±25\% & 0.5 & 0.5 & 0.00\\
-\hline
-First-cousin & ±12.5\% & 0.75 & 0.25 & 0.00\\
-\hline
-Half first-cousin & ±6.25\% & 0.875 & 0.125 & 0.00\\
-\hline
-First-cousin once removed & ±6.25\% & 0.875 & 0.125 & 0.00\\
-\hline
-Second-cousin & ±3.13\% & 0.9375 & 6.25E-2 & 0.00\\
-\hline
-Second-cousin once removed & ±1.56\% & 0.96875 & 3.125E-2 & 0.00\\
-\hline
-Distantly related & <1.56\% & varies & varies & 0.00\\
-\hline
-Unrelated (includes relationships beyond the third degree) & <1.56\% & 1 & 0 & 0.00\\
-\hline
-\end{tabular}
+\setlength{\tabcolsep}{2pt}
 
-\textbackslash end\{table\}
+\renewcommand*{\arraystretch}{1.5}
+
+
+
+\providecommand{\ascline}[3]{\noalign{\global\arrayrulewidth #1}\arrayrulecolor[HTML]{#2}\cline{#3}}
+
+\begin{longtable}[c]{|p{4.11in}|p{1.23in}|p{0.74in}|p{0.81in}|p{0.52in}}
+
+\caption{Familial\ relations\ and\ \%\ DNA\ shared.}\label{tab:showrelatedness}\\
+
+\ascline{1.5pt}{666666}{1-5}
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 4.11in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{Relatedness}}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 1.23in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{\%.DNA.sharing}}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.74in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{IBD0}}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.81in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{IBD1}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.52in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{IBD2}}}} \\
+
+\ascline{1.5pt}{666666}{1-5}\endfirsthead \caption[]{Familial\ relations\ and\ \%\ DNA\ shared.}\label{tab:showrelatedness}\\
+
+\ascline{1.5pt}{666666}{1-5}
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 4.11in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{Relatedness}}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 1.23in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{\%.DNA.sharing}}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.74in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{IBD0}}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.81in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{IBD1}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.52in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{IBD2}}}} \\
+
+\ascline{1.5pt}{666666}{1-5}\endhead
+
+
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 4.11in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{Monozygotic\ twins\ \ \ \ \ \ \ \ \ \ }}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 1.23in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{\ ±100\%}}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.74in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{0}}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.81in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{1}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.52in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{0.00}}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 4.11in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{Parents/child\ \ \ \ \ \ \ \ \ \ \ \ \ \ }}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 1.23in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{\ ±50\%}}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.74in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{0.25}}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.81in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{0.5}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.52in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{0.25}}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 4.11in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{Sibling\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 1.23in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{\ ±50\%}}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.74in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{0.25}}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.81in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{0.5}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.52in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{0.25}}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 4.11in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{Fraternal\ twins\ \ \ \ \ \ \ \ \ \ \ \ }}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 1.23in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{\ ±50\%}}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.74in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{0.25}}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.81in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{0.5}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.52in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{0.25}}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 4.11in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{Grandparent/grandchild\ \ \ \ \ }}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 1.23in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{\ ±25\%}}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.74in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{0.5}}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.81in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{0.5}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.52in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{0.00}}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 4.11in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{Aunt/Uncle/Niece/Nephew\ \ \ \ }}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 1.23in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{\ ±25\%}}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.74in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{0.5}}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.81in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{0.5}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.52in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{0.00}}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 4.11in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{Half-sibling\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 1.23in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{\ ±25\%}}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.74in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{0.5}}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.81in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{0.5}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.52in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{0.00}}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 4.11in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{First-cousin\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 1.23in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{\ ±12.5\%}}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.74in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{0.75}}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.81in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{0.25}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.52in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{0.00}}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 4.11in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{Half\ first-cousin\ \ \ \ \ \ \ \ \ \ }}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 1.23in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{\ ±6.25\%}}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.74in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{0.875}}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.81in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{0.125}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.52in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{0.00}}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 4.11in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{First-cousin\ once\ removed\ \ }}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 1.23in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{\ ±6.25\%}}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.74in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{0.875}}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.81in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{0.125}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.52in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{0.00}}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 4.11in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{Second-cousin\ \ \ \ \ \ \ \ \ \ \ \ \ \ }}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 1.23in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{\ ±3.13\%}}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.74in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{0.9375}}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.81in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{6.25E-2}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.52in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{0.00}}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 4.11in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{Second-cousin\ once\ removed\ }}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 1.23in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{\ ±1.56\%}}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.74in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{0.96875}}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.81in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{3.125E-2}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.52in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{0.00}}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 4.11in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{Distantly\ related}}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 1.23in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{<1.56\%}}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.74in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{varies}}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.81in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{varies}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.52in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{0.00}}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 4.11in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{Unrelated\ (includes\ relationships\ beyond\ the\ third\ degree)}}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 1.23in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{<1.56\%}}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.74in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{1}}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.81in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{0}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.52in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{0.00}}}} \\
+
+\ascline{1.5pt}{666666}{1-5}
+
+
+
+\end{longtable}
+
+
+
+\arrayrulecolor[HTML]{000000}
+
+\global\setlength{\arrayrulewidth}{\Oldarrayrulewidth}
+
+\global\setlength{\tabcolsep}{\Oldtabcolsep}
+
+\renewcommand*{\arraystretch}{1}
 
 \passthrough{\lstinline!PLINK!} calculates the inter-individual relatedness using the \passthrough{\lstinline!--genome!} function.
 
@@ -1104,7 +1531,7 @@ Unrelated (includes relationships beyond the third degree) & <1.56\% & 1 & 0 & 0
 plink --bfile dummy_project/rawdata.clean.ultraclean --genome --out dummy_project/rawdata.clean.ultraclean
 \end{lstlisting}
 
-We can now identify all pairs of individuals with an IBD \textgreater{} 0.185. The code looks at the individual call rates stored in rawdata.imiss and outputs the IDs of the individual with the lowest call rate to `fail-IBD-QC.txt' for subsequent removal (Table \ref{tab:show-ibdcallissues}).
+We can now identify all pairs of individuals with an IBD \textgreater{} 0.185. The code looks at the individual call rates stored in \passthrough{\lstinline!rawdata.imiss!} and outputs the IDs of the individual with the lowest call rate to `fail-IBD-QC.txt' for subsequent removal (Table \ref{tab:showibdcallissues}).
 
 First, move to the \passthrough{\lstinline!dummy\_project!} directory.
 
@@ -1124,18 +1551,131 @@ Go back one directory.
 cd ..
 \end{lstlisting}
 
-\begin{lstlisting}[language=R]
-ibdcallissues <- data.table::fread(paste0(COURSE_loc, "/dummy_project/fail-IBD-QC.txt"))
-\end{lstlisting}
+\global\setlength{\Oldarrayrulewidth}{\arrayrulewidth}
 
-\begin{lstlisting}[language=R]
-knitr::kable(
-  ibdcallissues, 
-  caption = 'Failed IBD and callrate.',
-  # align = ,
-  booktabs = FALSE
-)
-\end{lstlisting}
+\global\setlength{\Oldtabcolsep}{\tabcolsep}
+
+\setlength{\tabcolsep}{2pt}
+
+\renewcommand*{\arraystretch}{1.5}
+
+
+
+\providecommand{\ascline}[3]{\noalign{\global\arrayrulewidth #1}\arrayrulecolor[HTML]{#2}\cline{#3}}
+
+\begin{longtable}[c]{|p{0.57in}|p{0.57in}}
+
+\caption{Failed\ IBD\ and\ callrate.}\label{tab:showibdcallissues}\\
+
+\ascline{1.5pt}{666666}{1-2}
+
+\multicolumn{1}{>{\raggedleft}m{\dimexpr 0.57in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{FID}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.57in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{IID}}}} \\
+
+\ascline{1.5pt}{666666}{1-2}\endfirsthead \caption[]{Failed\ IBD\ and\ callrate.}\label{tab:showibdcallissues}\\
+
+\ascline{1.5pt}{666666}{1-2}
+
+\multicolumn{1}{>{\raggedleft}m{\dimexpr 0.57in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{FID}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.57in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{IID}}}} \\
+
+\ascline{1.5pt}{666666}{1-2}\endhead
+
+
+
+\multicolumn{1}{>{\raggedleft}m{\dimexpr 0.57in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{1,952}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.57in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{1,952}}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedleft}m{\dimexpr 0.57in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{1,953}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.57in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{1,953}}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedleft}m{\dimexpr 0.57in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{1,954}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.57in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{1,954}}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedleft}m{\dimexpr 0.57in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{1,955}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.57in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{1,955}}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedleft}m{\dimexpr 0.57in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{1,957}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.57in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{1,957}}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedleft}m{\dimexpr 0.57in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{1,959}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.57in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{1,959}}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedleft}m{\dimexpr 0.57in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{1,961}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.57in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{1,961}}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedleft}m{\dimexpr 0.57in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{1,963}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.57in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{1,963}}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedleft}m{\dimexpr 0.57in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{1,965}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.57in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{1,965}}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedleft}m{\dimexpr 0.57in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{1,967}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.57in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{1,967}}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedleft}m{\dimexpr 0.57in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{1,969}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.57in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{1,969}}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedleft}m{\dimexpr 0.57in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{1,971}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.57in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{1,971}}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedleft}m{\dimexpr 0.57in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{1,973}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.57in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{1,973}}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedleft}m{\dimexpr 0.57in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{1,975}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.57in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{1,975}}}} \\
+
+\ascline{1.5pt}{666666}{1-2}
+
+
+
+\end{longtable}
+
+
+
+\arrayrulecolor[HTML]{000000}
+
+\global\setlength{\arrayrulewidth}{\Oldarrayrulewidth}
+
+\global\setlength{\tabcolsep}{\Oldtabcolsep}
+
+\renewcommand*{\arraystretch}{1}
 
 \hypertarget{ancestral-background}{%
 \section{Ancestral background}\label{ancestral-background}}
@@ -1144,7 +1684,7 @@ Using a \textbf{Principal Component Analysis (PCA)} we can reduce the dimensions
 
 Nowadays we run such PCA against a large and diverse dataset containing many different populations. Old-school GWAS (pre-2009) would compare a dataset against \href{https://www.broadinstitute.org/medical-and-population-genetics/hapmap-3}{HapMap 3}, nowadays we prefer at a minimum the \href{https://www.internationalgenome.org}{1000G phase 3 populations}. And in those ancient times the preferred software to run a PCA was \emph{Eigensoft} which is a bit tricky to install (see Chapter \ref{eigensoft}), but nowadays \passthrough{\lstinline!PLINK!} provides the \passthrough{\lstinline!--pca!}-flag.
 
-For the purpose of this practical primer we will run PCA against an earlier version of 1000G, phase 1, which is slightly smaller and just as good to use.
+For the purpose of this practical primer we will run PCA using \passthrough{\lstinline!PLINK!} and its \passthrough{\lstinline!--pca!}-flag against an earlier version of 1000G, phase 1, which is slightly smaller and just as good to use.
 
 \hypertarget{g-phase-1}{%
 \subsection{1000G phase 1}\label{g-phase-1}}
@@ -1342,108 +1882,9 @@ plink --bfile dummy_project/rawdata.1kg_phase1.clean --pca --out dummy_project/r
 
 If all is peachy, you just succesfully ran PCA against 1000G phase 1. Using \passthrough{\lstinline!--pca!} we have calculated principal components (PCs), 20 in total by default, and we can now start plotting them. Let's create a scatter diagram of the first two principal components, including all individuals in the file \passthrough{\lstinline!rawdata.1kg\_phase1.clean.eigenvec!} (the first and second principal components are columns 3 and 4, respectively). We need to collect some per-sample information to color the points according to sample origin.
 
-\begin{quote}
-Note: A R script for creating this plot (\passthrough{\lstinline!scripts/plot-pca-results.Rscript!}) is also provided (although any standard graphing software can be used), but below you'll find some fancy codes too.
-\end{quote}
-
 First we collect the results from the \passthrough{\lstinline!--pca!}, the dummy data phenotype information, and the reference population information.
 
-\begin{lstlisting}[language=R]
-PCA_eigenval <- data.table::fread(paste0(COURSE_loc, "/dummy_project/rawdata.1kg_phase1.clean.eigenval"))
-PCA_eigenvec <- data.table::fread(paste0(COURSE_loc, "/dummy_project/rawdata.1kg_phase1.clean.eigenvec"))
-ref_pop_raw <- data.table::fread(paste0(COURSE_loc, "/ref_1kg_phase1_all/1kg_phase1_all.pheno"))
-dummy_pop <- data.table::fread(paste0(COURSE_loc, "/dummy_project/rawdata.fam"))
-
-# Rename some
-names(PCA_eigenval)[names(PCA_eigenval) == "V1"] <- "Eigenvalue"
-
-names(PCA_eigenvec)[names(PCA_eigenvec) == "V1"] <- "FID"
-names(PCA_eigenvec)[names(PCA_eigenvec) == "V2"] <- "IID"
-names(PCA_eigenvec)[names(PCA_eigenvec) == "V3"] <- "PC1"
-names(PCA_eigenvec)[names(PCA_eigenvec) == "V4"] <- "PC2"
-names(PCA_eigenvec)[names(PCA_eigenvec) == "V5"] <- "PC3"
-names(PCA_eigenvec)[names(PCA_eigenvec) == "V6"] <- "PC4"
-names(PCA_eigenvec)[names(PCA_eigenvec) == "V7"] <- "PC5"
-names(PCA_eigenvec)[names(PCA_eigenvec) == "V8"] <- "PC6"
-names(PCA_eigenvec)[names(PCA_eigenvec) == "V9"] <- "PC7"
-names(PCA_eigenvec)[names(PCA_eigenvec) == "V10"] <- "PC8"
-names(PCA_eigenvec)[names(PCA_eigenvec) == "V11"] <- "PC9"
-names(PCA_eigenvec)[names(PCA_eigenvec) == "V12"] <- "PC10"
-names(PCA_eigenvec)[names(PCA_eigenvec) == "V13"] <- "PC11"
-names(PCA_eigenvec)[names(PCA_eigenvec) == "V14"] <- "PC12"
-names(PCA_eigenvec)[names(PCA_eigenvec) == "V15"] <- "PC13"
-names(PCA_eigenvec)[names(PCA_eigenvec) == "V16"] <- "PC14"
-names(PCA_eigenvec)[names(PCA_eigenvec) == "V17"] <- "PC15"
-names(PCA_eigenvec)[names(PCA_eigenvec) == "V18"] <- "PC16"
-names(PCA_eigenvec)[names(PCA_eigenvec) == "V19"] <- "PC17"
-names(PCA_eigenvec)[names(PCA_eigenvec) == "V20"] <- "PC18"
-names(PCA_eigenvec)[names(PCA_eigenvec) == "V21"] <- "PC19"
-names(PCA_eigenvec)[names(PCA_eigenvec) == "V22"] <- "PC20"
-
-names(dummy_pop)[names(dummy_pop) == "V1"] <- "Family_ID"
-names(dummy_pop)[names(dummy_pop) == "V2"] <- "Individual_ID"
-names(dummy_pop)[names(dummy_pop) == "V5"] <- "Gender"
-names(dummy_pop)[names(dummy_pop) == "V6"] <- "Phenotype"
-dummy_pop$V3 <- NULL
-dummy_pop$V4 <- NULL
-
-dummy_pop$Population <- dummy_pop$Phenotype
-dummy_pop$Population[dummy_pop$Population == 2] <- "Case"
-dummy_pop$Population[dummy_pop$Population == 1] <- "Control"
-\end{lstlisting}
-
-\begin{lstlisting}[language=R]
-# we subset the data we need
-ref_pop <- subset(ref_pop_raw, select = c("Family_ID", "Individual_ID",
-  "Gender", "Phenotype", "Population"))
-rm(ref_pop_raw)
-
-# we combine the reference and dummy information
-ref_dummy_pop <- rbind(dummy_pop, ref_pop)
-\end{lstlisting}
-
-\begin{lstlisting}[language=R]
-PCA_1kG <- merge(PCA_eigenvec, ref_dummy_pop, by.x = "IID",
-  by.y = "Individual_ID", sort = FALSE, all.x = TRUE)
-\end{lstlisting}
-
-\begin{lstlisting}[language=R]
-# Population\tDescription\tSuper
-# population\tCode\tCounts ASW\tAfrican Ancestry in
-# Southwest US\t AFR\t4\t #49A01D CEU\tUtah residents
-# with Northern and Western European ancestry\tEUR\t7\t
-# #E55738 CHB\tHan Chinese in Bejing, China\t EAS\t8\t
-# #9A3480 CHS\tSouthern Han Chinese, China\t EAS\t9\t
-# #705296 CLM\tColombian in Medellin, Colombia\t
-# MR\t10\t#8D5B9A FIN\tFinnish in Finland\t
-# EUR\t12\t#2F8BC9 GBR\tBritish in England and
-# Scotland\t EUR\t13\t#1290D9 IBS\tIberian populations
-# in Spain\t EUR\t16\t#1396D8 JPT\tJapanese in Tokyo,
-# Japan\t EAS\t18\t#D5267B LWK\tLuhya in Webuye,
-# Kenya\t AFR\t20\t#78B113 MXL\tMexican Ancestry in Los
-# Angeles, California\t AMR\t22\t#F59D10 PUR\tPuerto
-# Rican in Puerto Rico\t AMR\t25\t#FBB820 TSI\tToscani
-# in Italy\t EUR\t27\t#4C81BF YRI\tYoruba in Ibadan,
-# Nigeria\t AFR\t28\t#C5D220
-
-PCA_1kGplot <- ggpubr::ggscatter(PCA_1kG, x = "PC1", y = "PC2",
-  color = "Population", palette = c("#49A01D", "#595A5C",
-    "#E55738", "#9A3480", "#705296", "#8D5B9A", "#A2A3A4",
-    "#2F8BC9", "#1290D9", "#1396D8", "#D5267B", "#78B113",
-    "#F59D10", "#FBB820", "#4C81BF", "#C5D220"), xlab = "principal component 1",
-  ylab = "principal component 2") + ggplot2::geom_vline(xintercept = 0.0023,
-  linetype = "dashed", color = "#E55738", size = 1)
-
-p2 <- ggpubr::ggpar(PCA_1kGplot, title = "Principal Component Analysis",
-  subtitle = "Reference population: 1000 G, phase 1", legend.title = "Populations",
-  legend = "right")
-ggplot2::ggsave(paste0(COURSE_loc, "/dummy_project/gwas-qc-pca-1000g.png"),
-  plot = p2)
-p2
-rm(p2)
-\end{lstlisting}
-
-Derive PC1 and PC2 thresholds so that only individuals who match the given ancestral population are included. For populations of European descent, this will be either the CEU or TSI 1000G individuals (Figure \ref{fig:show-pca-1kg}). Here, we chose to exclude all individuals with a first principal component score less than \passthrough{\lstinline!0.0023!}.
+Derive PC1 and PC2 thresholds so that only individuals who match the given ancestral population are included. For populations of European descent, this will be either the CEU or TSI 1000G individuals (Figure \ref{fig:showpca1kg}). Here, we chose to exclude all individuals with a first principal component score less than \passthrough{\lstinline!0.0023!}.
 
 Write the FID and IID of these individuals to a file called \passthrough{\lstinline!fail-ancestry-QC.txt!}.
 
@@ -1456,11 +1897,11 @@ Choosing which thresholds to apply (and thus which individuals to remove) is not
 
 \begin{figure}[H]
 
-{\centering \includegraphics[width=29.17in]{img/_gwas_dummy/gwas-qc-pca-1000g} 
+{\centering \includegraphics[width=0.85\linewidth]{img/_gwas_dummy/gwas-qc-pca-1000g} 
 
 }
 
-\caption{PCA - Your data vs. 1000g.}\label{fig:show-pca-1000g}
+\caption{PCA - Your data vs. 1000g.}\label{fig:showpca1kg}
 \end{figure}
 
 \hypertarget{removing-samples}{%
@@ -1479,7 +1920,7 @@ plink --bfile dummy_project/rawdata --remove dummy_project/fail-qc-inds.txt --ma
 \end{lstlisting}
 
 \begin{quote}
-How many variants and samples are left? How many cases and how many controls did you loose?
+Question: How many variants and samples are left? How many cases and how many controls did you loose?
 \end{quote}
 
 \hypertarget{the-next-step}{%
@@ -1489,19 +1930,6 @@ Now that you filtered samples, we should turn our attention to step 2 of the QC 
 
 \hypertarget{gwas_basics_snp_qc}{%
 \chapter{Per-SNP QC}\label{gwas_basics_snp_qc}}
-
-\begin{lstlisting}
-## 
-## Packages to install for this book and its contents to automagically work.
-## 
-## * Bookdown and rmarkdown packages...
-## 
-## * General packages...
-## 
-## * GGplotting packages - for publication ready plotting...
-## 
-## * Genomic packages...
-\end{lstlisting}
 
 Now that we removed samples, we can focus on low-quality variants.
 
@@ -1514,45 +1942,21 @@ We start by calculating the missing genotype rate for each SNP, in other words t
 plink --bfile dummy_project/clean_inds_data --missing --out dummy_project/clean_inds_data
 \end{lstlisting}
 
-Let's visualize the results to identify a threshold for extreme genotype failure rate. We chose a callrate threshold of 3\%, but it's arbitrary and depending on the dataset and the number of samples (Figure \ref{fig:show-snp-callrate}).
-
-\begin{lstlisting}[language=R]
-library("data.table")
-
-COURSE_loc = "~/Desktop/practical"  # getwd()
-
-clean_LMISS <- data.table::fread(paste0(COURSE_loc, "/dummy_project/clean_inds_data.lmiss"))
-
-clean_LMISS$callrate <- 1 - clean_LMISS$F_MISS
-\end{lstlisting}
-
-\begin{lstlisting}[language=R]
-library("ggpubr")
-
-clean_LMISS_plot <- ggpubr::gghistogram(clean_LMISS, x = "callrate",
-  add = "mean", add.params = list(color = "#595A5C", linetype = "dashed",
-    size = 1), rug = TRUE, bins = 50, color = "#1290D9",
-  fill = "#1290D9", xlab = "per SNP call rate") + ggplot2::geom_vline(xintercept = 0.95,
-  linetype = "dashed", color = "#E55738", size = 1)
-
-ggplot2::ggsave(paste0(COURSE_loc, "/dummy_project/gwas-qc-snp-call-rate.png"),
-  plot = clean_LMISS_plot)
-clean_LMISS_plot
-\end{lstlisting}
+Let's visualize the results to identify a threshold for extreme genotype failure rate. We chose a callrate threshold of 3\%, but it's arbitrary and depending on the dataset, the data (visualization), and the number of samples (Figure \ref{fig:showsnpcallrate}).
 
 \begin{figure}[H]
 
-{\centering \includegraphics[width=29.17in]{img/_gwas_dummy/show-snp-callrate} 
+{\centering \includegraphics[width=0.85\linewidth]{img/_gwas_dummy/show-snp-callrate} 
 
 }
 
-\caption{Per SNP call rate.}\label{fig:show-snp-callrate}
+\caption{Per SNP call rate.}\label{fig:showsnpcallrate}
 \end{figure}
 
 \hypertarget{differential-snp-call-rates}{%
 \section{Differential SNP call rates}\label{differential-snp-call-rates}}
 
-There could also be differences in genotype call rates between cases and controls. It is very important to check for this because these differences could lead to spurious associations. We can test all markers for differences in call rate between cases and controls, or based on
+There could also be differences in genotype call rates between cases and controls. It is very important to check for this because these differences could lead to spurious associations. We can test all markers for differences in call rate between cases and controls, or based on other criteria.
 
 \begin{lstlisting}
 plink --bfile dummy_project/clean_inds_data --test-missing --out dummy_project/clean_inds_data
@@ -1573,31 +1977,15 @@ We should also get an idea on what the allele frequencies are in our dataset. Lo
 plink --bfile dummy_project/clean_inds_data --freq --out dummy_project/clean_inds_data
 \end{lstlisting}
 
-Let's also plot these data. You can view the result below, and try it yourself (Figure \ref{fig:show-freq}).
-
-\begin{lstlisting}[language=R]
-clean_FREQ <- data.table::fread(paste0(COURSE_loc, "/dummy_project/clean_inds_data.frq"))
-\end{lstlisting}
-
-\begin{lstlisting}[language=R]
-clean_FREQ_plot <- ggpubr::gghistogram(clean_FREQ, x = "MAF",
-  add = "mean", add.params = list(color = "#595A5C", linetype = "dashed",
-    size = 1), rug = TRUE, color = "#1290D9", fill = "#1290D9",
-  xlab = "minor allele frequency") + ggplot2::geom_vline(xintercept = 0.05,
-  linetype = "dashed", color = "#E55738", size = 1)
-
-ggplot2::ggsave(paste0(COURSE_loc, "/dummy_project/gwas-qc-snp-freq.png"),
-  plot = clean_FREQ_plot)
-clean_FREQ_plot
-\end{lstlisting}
+Let's also plot these data. You can view the result below, and try it yourself (Figure \ref{fig:showfreq}).
 
 \begin{figure}[H]
 
-{\centering \includegraphics[width=18.67in]{img/_gwas_dummy/show-freq} 
+{\centering \includegraphics[width=0.85\linewidth]{img/_gwas_dummy/show-freq} 
 
 }
 
-\caption{Minor allele frequency.}\label{fig:show-freq}
+\caption{Minor allele frequency.}\label{fig:showfreq}
 \end{figure}
 
 \hypertarget{a-note-on-allele-coding}{%
@@ -1634,42 +2022,19 @@ plink --bfile dummy_project/clean_inds_data --hardy --out dummy_project/clean_in
 
 Let's also plot these data. You can view the result below, and type over the code to do it yourself.
 
-\begin{lstlisting}[language=R]
-clean_HWE <- data.table::fread(paste0(COURSE_loc, "/dummy_project/clean_inds_data.hwe"))
-clean_HWE$logP <- -log10(clean_HWE$P)
-\end{lstlisting}
-
-\begin{lstlisting}[language=R]
-clean_HWE_plot <- ggpubr::gghistogram(clean_HWE, x = "logP",
-                                      add = "mean",
-                                      add.params = list(color = "#595A5C", linetype = "dashed", size = 1),
-                                      rug = TRUE,
-                                      # color = "#1290D9", fill = "#1290D9",
-                                      color = "TEST", fill = "TEST",
-                                      palette = "lancet",
-                                      facet.by = "TEST",
-                                      bins = 50,
-                                      xlab = "HWE -log10(P)") +
-  ggplot2::geom_vline(xintercept = 5, linetype = "dashed",
-                      color = "#E55738", size = 1)
-
-ggplot2::ggsave(paste0(COURSE_loc, "/dummy_project/gwas-qc-snp-hwe.png"), plot = clean_HWE_plot)
-clean_HWE_plot
-\end{lstlisting}
-
 \begin{figure}[H]
 
-{\centering \includegraphics[width=18.67in]{img/_gwas_dummy/show-hwe} 
+{\centering \includegraphics[width=0.85\linewidth]{img/_gwas_dummy/show-hwe} 
 
 }
 
-\caption{Hardy-Weinberg Equilibrium p-values per stratum.}\label{fig:show-hwe}
+\caption{Hardy-Weinberg Equilibrium p-values per stratum.}\label{fig:showhwe}
 \end{figure}
 
 \hypertarget{final-snp-qc}{%
 \section{Final SNP QC}\label{final-snp-qc}}
 
-We are ready to perform the final QC. After inspectig the graphs we will filter on a MAF \textless{} 0.01, call rate \textless{} 0.05, and HWE \textless{} 0.00001, in addition those SNPs that failed the differential call rate test will be removed.
+We are ready to perform the final QC. After inspecting the graphs we will filter on a MAF \textless{} 0.01, call rate \textless{} 0.05, and HWE \textless{} 0.00001 (Figure \ref{fig:showhwe}), in addition those SNPs that failed the differential call rate test will be removed.
 
 \begin{lstlisting}
 plink --bfile dummy_project/clean_inds_data --exclude dummy_project/fail-diffmiss-qc.txt --maf 0.01 --geno 0.05 --hwe 0.00001 --make-bed --out dummy_project/cleandata
@@ -1678,25 +2043,10 @@ plink --bfile dummy_project/clean_inds_data --exclude dummy_project/fail-diffmis
 \hypertarget{a-milestone}{%
 \section{A Milestone}\label{a-milestone}}
 
-Congratulations. You reached a very important milestone. Now that you filtered samples and SNPs, we can finally start the association analyses in Chapter \ref{gwas-testing}.
+Congratulations. You reached a very important milestone. Now that you filtered samples and SNPs, we can finally start the association analyses in Chapter @ref(gwas\_testing).
 
-\hypertarget{gwas-testing}{%
-\chapter{Genome-Wide Association Study}\label{gwas-testing}}
-
-\includegraphics[width=0.7\textwidth,height=\textheight]{./img/_gwas/interactive_plot.png}
-
-\begin{lstlisting}
-## 
-## Packages to install for this book and its contents to automagically work.
-## 
-## * Bookdown and rmarkdown packages...
-## 
-## * General packages...
-## 
-## * GGplotting packages - for publication ready plotting...
-## 
-## * Genomic packages...
-\end{lstlisting}
+\hypertarget{gwas_testing}{%
+\chapter{Genome-Wide Association Study}\label{gwas_testing}}
 
 Now that you have learned how to perform QC, you can easily run a GWAS and execute some downstream visualization and analyses. Let's do this with a dummy dataset.
 
@@ -1719,114 +2069,68 @@ plink --bfile gwas/gwa --hardy --out dummy_project/gwa
 
 Let's visualize the results. First we should load in all the results.
 
-\begin{lstlisting}[language=R]
-library("data.table")
-
-COURSE_loc = "~/Desktop/practical"  # getwd()
-
-gwas_HWE <- data.table::fread(paste0(COURSE_loc, "/dummy_project/gwa.hwe"))
-gwas_FRQ <- data.table::fread(paste0(COURSE_loc, "/dummy_project/gwa.frq"))
-gwas_IMISS <- data.table::fread(paste0(COURSE_loc, "/dummy_project/gwa.imiss"))
-gwas_LMISS <- data.table::fread(paste0(COURSE_loc, "/dummy_project/gwa.lmiss"))
-\end{lstlisting}
+\begin{quote}
+Question: Load the data using R. {[}Hint: use and adapt the examples from the previous chapters.{]}
+\end{quote}
 
 We can plot the per-stratum HWE p-values.
 
-\begin{lstlisting}[language=R]
-library("ggpubr")
-
-gwas_HWE$logP <- -log10(gwas_HWE$P)
-
-ggpubr::gghistogram(gwas_HWE, x = "logP",
-                    add = "mean",
-                    add.params = list(color = "#595A5C", linetype = "dashed", size = 1),
-                    rug = TRUE,
-                    # color = "#1290D9", fill = "#1290D9",
-                    color = "TEST", fill = "TEST",
-                    palette = "lancet",
-                    facet.by = "TEST",
-                    bins = 50,
-                    xlab = "HWE -log10(P)") +
-  ggplot2::geom_vline(xintercept = 5, linetype = "dashed",
-                      color = "#E55738", size = 1)
-ggplot2::ggsave(paste0(COURSE_loc, "/dummy_project/gwas-hwe.png"),
-       plot = last_plot())
-\end{lstlisting}
+\begin{quote}
+Question: Plot the per-stratum HWE p-values using R. {[}Hint: use and adapt the examples from the previous chapters.{]}
+\end{quote}
 
 \begin{figure}[H]
 
-{\centering \includegraphics[width=18.67in]{img/_gwas_dummy/show-hwe-gwas} 
+{\centering \includegraphics[width=0.85\linewidth]{img/_gwas_dummy/show-hwe-gwas} 
 
 }
 
-\caption{Per stratum HWE p-values.}\label{fig:show-hwe-gwas}
+\caption{Per stratum HWE p-values.}\label{fig:unnamed-chunk-2}
 \end{figure}
 
 We will want to see what the distribution of allele frequencies looks like.
 
-\begin{lstlisting}[language=R]
-ggpubr::gghistogram(gwas_FRQ, x = "MAF", add = "mean", add.params = list(color = "#595A5C",
-  linetype = "dashed", size = 1), rug = TRUE, color = "#1290D9",
-  fill = "#1290D9", xlab = "minor allele frequency") +
-  ggplot2::geom_vline(xintercept = 0.05, linetype = "dashed",
-    color = "#E55738", size = 1)
-ggplot2::ggsave(paste0(COURSE_loc, "/dummy_project/gwas-freq.png"),
-  plot = last_plot())
-\end{lstlisting}
+\begin{quote}
+Question: Plot the allele frequencies using R. {[}Hint: use and adapt the examples from the previous chapters.{]}
+\end{quote}
 
 \begin{figure}[H]
 
-{\centering \includegraphics[width=18.67in]{img/_gwas_dummy/show-freq-gwas} 
+{\centering \includegraphics[width=0.85\linewidth]{img/_gwas_dummy/show-freq-gwas} 
 
 }
 
-\caption{Minor allele frequencies.}\label{fig:show-freq-gwas}
+\caption{Minor allele frequencies.}\label{fig:unnamed-chunk-3}
 \end{figure}
 
 We will want to identify samples that have poor call rates.
 
-\begin{lstlisting}[language=R]
-gwas_IMISS$callrate <- 1 - gwas_IMISS$F_MISS
-
-ggpubr::gghistogram(gwas_IMISS, x = "callrate", add = "mean",
-  add.params = list(color = "#595A5C", linetype = "dashed",
-    size = 1), rug = TRUE, bins = 50, color = "#1290D9",
-  fill = "#1290D9", xlab = "per sample call rate") + ggplot2::geom_vline(xintercept = 0.95,
-  linetype = "dashed", color = "#E55738", size = 1)
-ggplot2::ggsave(paste0(COURSE_loc, "/dummy_project/gwas-sample-call-rate.png"),
-  plot = last_plot())
-\end{lstlisting}
+\begin{quote}
+Question: Plot the per-sample call rates using R. {[}Hint: use and adapt the examples from the previous chapters.{]}
+\end{quote}
 
 \begin{figure}[H]
 
-{\centering \includegraphics[width=18.67in]{img/_gwas_dummy/show-sample-callrate-gwas} 
+{\centering \includegraphics[width=0.85\linewidth]{img/_gwas_dummy/show-sample-callrate-gwas} 
 
 }
 
-\caption{Per sample call rates.}\label{fig:show-sample-callrate-gwas}
+\caption{Per sample call rates.}\label{fig:unnamed-chunk-4}
 \end{figure}
 
 We also need to know what the per SNP call rates are.
 
-\begin{lstlisting}[language=R]
-gwas_LMISS$callrate <- 1 - gwas_LMISS$F_MISS
-
-ggpubr::gghistogram(gwas_LMISS, x = "callrate", add = "mean",
-  add.params = list(color = "#595A5C", linetype = "dashed",
-    size = 1), rug = TRUE, bins = 50, color = "#1290D9",
-  fill = "#1290D9", xlab = "per SNP call rate") + ggplot2::geom_vline(xintercept = 0.95,
-  linetype = "dashed", color = "#E55738", size = 1)
-ggplot2::ggsave(paste0(COURSE_loc, "/dummy_project/gwas-snp-call-rate.png"),
-  plot = last_plot())
-\end{lstlisting}
+\begin{quote}
+Question: Plot the per-SNP call rates using R. {[}Hint: use and adapt the examples from the previous chapters.{]}
+\end{quote}
 
 \begin{figure}[H]
 
-{\centering \includegraphics[width=18.67in]{img/_gwas_dummy/show-snp-callrate-gwas} 
+{\centering \includegraphics[width=0.85\linewidth]{img/_gwas_dummy/show-snp-callrate-gwas} 
 
 }
 
-\caption{Per SNP call rates.}\label{fig:show-snp-callrate-gwas}
+\caption{Per SNP call rates.}\label{fig:unnamed-chunk-5}
 \end{figure}
 
 \hypertarget{genetic-models}{%
@@ -1848,55 +2152,49 @@ plink --bfile gwas/gwa --model --cell 3 --out gwas/data
 
 Let's review the contents of the results.
 
-\begin{lstlisting}[language=R]
-gwas_model <- data.table::fread(paste0(COURSE_loc, "/dummy_project/data.model"))
-
-dim(gwas_model)
-
-N_SNPS = length(gwas_model$SNP)
-
-gwas_model[1:10, 1:10]
-\end{lstlisting}
-
 It contains 1,530,510 rows, one for each SNP, and each type of test (\emph{genotypic}, \emph{trend}, \emph{allelic}, \emph{dominant}, and \emph{recessive}) and the following columns:
 
 \begin{itemize}
 \tightlist
 \item
-  chromosome {[}CHR{]},
+  chromosome {[}\passthrough{\lstinline!CHR!}{]},
 \item
-  the SNP identifier {[}SNP{]},
+  the SNP identifier {[}\passthrough{\lstinline!SNP!}{]},
 \item
-  the minor allele {[}A1{]} (remember, \passthrough{\lstinline!PLINK!} always codes the A1-allele as the minor allele!),
+  the minor allele {[}\passthrough{\lstinline!A1!}{]} (remember, \passthrough{\lstinline!PLINK!} always codes the A1-allele as the minor allele!),
 \item
-  the major allele {[}A2{]},
+  the major allele {[}\passthrough{\lstinline!A2!}{]},
 \item
-  the test performed {[}TEST{]}:
+  the test performed {[}\passthrough{\lstinline!TEST!}{]}:
 
   \begin{itemize}
   \tightlist
   \item
-    GENO (genotypic association);
+    \passthrough{\lstinline!GENO!} (genotypic association);
   \item
-    TREND (Cochran-Armitage trend);
+    \passthrough{\lstinline!TREND!} (Cochran-Armitage trend);
   \item
-    ALLELIC (allelic as- sociation);
+    \passthrough{\lstinline!ALLELIC!} (allelic as- sociation);
   \item
-    DOM (dominant model); and
+    \passthrough{\lstinline!DOM!} (dominant model); and
   \item
-    REC (recessive model){]},
+    \passthrough{\lstinline!REC!} (recessive model){]},
   \end{itemize}
 \item
-  the cell frequency counts for cases {[}AFF{]},
+  the cell frequency counts for cases {[}\passthrough{\lstinline!AFF!}{]},
 \item
-  the cell frequency counts for controls {[}UNAFF{]},
+  the cell frequency counts for controls {[}\passthrough{\lstinline!UNAFF!}{]},
 \item
-  the chi-square test statistic {[}CHISQ{]},
+  the chi-square test statistic {[}\passthrough{\lstinline!CHISQ!}{]},
 \item
-  the degrees of freedom for the test {[}DF{]},
+  the degrees of freedom for the test {[}\passthrough{\lstinline!DF!}{]},
 \item
-  and the asymptotic P value {[}P{]} of association.
+  and the asymptotic P value {[}\passthrough{\lstinline!P!}{]} of association.
 \end{itemize}
+
+\begin{quote}
+Question: Do you know which model, \emph{i.e.} \passthrough{\lstinline!TEST!} is most commonly used and reported? And why is that, do think?
+\end{quote}
 
 \hypertarget{logistic-regression}{%
 \section{Logistic regression}\label{logistic-regression}}
@@ -1909,34 +2207,84 @@ When running a regression analysis, be it linear or logistic, PLINK assumes a mu
 plink --bfile gwas/gwa --logistic sex --covar gwas/gwa.covar --out gwas/data
 \end{lstlisting}
 
-Let's examine the results
+Let's examine the results.
 
-\begin{lstlisting}[language=R]
-gwas_assoc <- data.table::fread(paste0(COURSE_loc, "/dummy_project/data.assoc.logistic"))
-
-dim(gwas_assoc)
-
-gwas_assoc[1:9, 1:9]
+\begin{lstlisting}
+## [1] 918306      9
 \end{lstlisting}
+
+\begin{lstlisting}
+##      CHR       SNP      BP     A1   TEST NMISS     OR
+##    <int>    <char>   <int> <char> <char> <int>  <num>
+## 1:     1 rs3934834  995669      T    ADD  3818 1.0290
+## 2:     1 rs3934834  995669      T    AGE  3818 1.0020
+## 3:     1 rs3934834  995669      T    SEX  3818 1.0120
+## 4:     1 rs3737728 1011278      A    ADD  3982 1.0190
+## 5:     1 rs3737728 1011278      A    AGE  3982 1.0020
+## 6:     1 rs3737728 1011278      A    SEX  3982 1.0060
+## 7:     1 rs6687776 1020428      T    ADD  3915 0.9692
+## 8:     1 rs6687776 1020428      T    AGE  3915 1.0020
+## 9:     1 rs6687776 1020428      T    SEX  3915 1.0150
+##        STAT      P
+##       <num>  <num>
+## 1:  0.38120 0.7031
+## 2:  1.11800 0.2635
+## 3:  0.19090 0.8486
+## 4:  0.38670 0.6990
+## 5:  1.09800 0.2721
+## 6:  0.09898 0.9212
+## 7: -0.33330 0.7389
+## 8:  1.04000 0.2984
+## 9:  0.23690 0.8127
+\end{lstlisting}
+
+\begin{quote}
+Question: How come there are more lines in this file than there are variants?
+\end{quote}
 
 If no model option is specified, the first row for each SNP corresponds to results for a multiplicative test of association. The C \textgreater= 0 subsequent rows for each SNP correspond to separate tests of significance for each of the C covariates included in the regression model. We can remove the covariate-specific lines from the main report by adding the \passthrough{\lstinline!hide-covar!} flag.
 
 The columns in the association results are:
-- the chromosome {[}CHR{]},
-- the SNP identifier {[}SNP{]},
-- the base-pair location {[}BP{]},
-- the minor allele {[}A1{]},
-- the test performed {[}TEST{]}: ADD (multiplicative model or genotypic model testing additivity),
-- GENO\_2DF (genotypic model),
-- DOMDEV (genotypic model testing deviation from additivity),
-- DOM (dominant model), or
-- REC (recessive model){]},
-- the number of missing individuals included {[}NMISS{]},
-- the OR relative to the A1, \emph{i.e.} minor allele,
-- the coefficient z-statistic {[}STAT{]}, and
-- the asymptotic P-value {[}P{]} of association.
 
-We need to calculate the standard error and confidence interval from the z-statistic. We can modify the effect size (OR) to output the beta by adding the \passthrough{\lstinline!beta!} flag.
+\begin{itemize}
+\tightlist
+\item
+  the chromosome {[}\passthrough{\lstinline!CHR!}{]},
+\item
+  the SNP identifier {[}\passthrough{\lstinline!SNP!}{]},
+\item
+  the base-pair location {[}\passthrough{\lstinline!BP!}{]},
+\item
+  the minor allele {[}\passthrough{\lstinline!A1!}{]},
+\item
+  the test performed {[}\passthrough{\lstinline!TEST!}{]}: ADD (multiplicative model or genotypic model testing additivity),
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \passthrough{\lstinline!GENO\_2DF!} (genotypic model),
+  \item
+    \passthrough{\lstinline!DOMDEV!} (genotypic model testing deviation from additivity),
+  \item
+    \passthrough{\lstinline!DOM!} (dominant model), or
+  \item
+    \passthrough{\lstinline!REC!} (recessive model){]},
+  \end{itemize}
+\item
+  the number of missing individuals included {[}\passthrough{\lstinline!NMISS!}{]},
+\item
+  the \passthrough{\lstinline!OR!} relative to the A1, \emph{i.e.} minor allele,
+\item
+  the coefficient z-statistic {[}\passthrough{\lstinline!STAT!}{]}, and
+\item
+  the asymptotic P-value {[}\passthrough{\lstinline!P!}{]} of association.
+\end{itemize}
+
+We need to calculate the standard error and confidence interval from the z-statistic. We can modify the effect size (\passthrough{\lstinline!OR!}) to output the \emph{beta} by adding the \passthrough{\lstinline!beta!} flag.
+
+\begin{quote}
+Question: Can you write down the mathematical relation between \emph{beta} and \emph{OR}?
+\end{quote}
 
 \hypertarget{lets-get-visual}{%
 \section{Let's get visual}\label{lets-get-visual}}
@@ -1945,21 +2293,6 @@ Looking at numbers is important, but it won't give you a perfect overview. We sh
 
 \hypertarget{gwas-visuals}{%
 \chapter{GWAS visualisation}\label{gwas-visuals}}
-
-\includegraphics[width=0.7\textwidth,height=\textheight]{./img/_gwas/interactive_plot.png}
-
-\begin{lstlisting}
-## 
-## Packages to install for this book and its contents to automagically work.
-## 
-## * Bookdown and rmarkdown packages...
-## 
-## * General packages...
-## 
-## * GGplotting packages - for publication ready plotting...
-## 
-## * Genomic packages...
-\end{lstlisting}
 
 Data visualization is key, not only for presentation but also to inspect the results.
 
@@ -1970,67 +2303,59 @@ We should create \emph{quantile-quantile (QQ) plots} to compare the observed ass
 
 First, we will add the standard error, call rate, A2, and allele frequencies.
 
-\begin{lstlisting}[language=R]
-library("data.table")
+\begin{lstlisting}
+## Key: <SNP>
+##           SNP   CHR        BP     A1 NMISS     OR
+##        <char> <int>     <int> <char> <int>  <num>
+## 1: rs10000010     4  21227772      C  3996 1.0420
+## 2: rs10000023     4  95952929      T  3957 0.9902
+## 3: rs10000030     4 103593179      A  3991 0.9779
+## 4:  rs1000007     2 237416793      C  4000 1.0180
+## 5: rs10000092     4  21504615      C  3963 0.9240
+## 6: rs10000121     4 157793485      G  3919 0.9665
+##       STAT       P     A2    MAF NCHROBS callrate
+##      <num>   <num> <char>  <num>   <int>    <num>
+## 1:  0.9010 0.36760      T 0.4258    7992  0.99900
+## 2: -0.2160 0.82900      G 0.4841    7914  0.98925
+## 3: -0.3696 0.71170      G 0.1616    7982  0.99775
+## 4:  0.3649 0.71520      T 0.3122    8000  1.00000
+## 5: -1.6770 0.09354      T 0.3430    7926  0.99075
+## 6: -0.7525 0.45170      A 0.4532    7838  0.97975
+\end{lstlisting}
 
-COURSE_loc = "~/Desktop/practical"  # getwd()
+\begin{lstlisting}
+## [1] 306102     14
+\end{lstlisting}
 
-gwas_assoc_sub <- subset(gwas_assoc, TEST == "ADD")
-gwas_assoc_sub$TEST <- NULL
-
-temp <- subset(gwas_FRQ, select = c("SNP", "A2", "MAF", "NCHROBS"))
-
-gwas_assoc_subfrq <- merge(gwas_assoc_sub, temp, by = "SNP")
-
-temp <- subset(gwas_LMISS, select = c("SNP", "callrate"))
-
-gwas_assoc_subfrqlmiss <- merge(gwas_assoc_subfrq, temp,
-  by = "SNP")
-head(gwas_assoc_subfrqlmiss)
-# Remember: - that z = beta/se - beta = log(OR),
-# because log is the natural log in r
-
-gwas_assoc_subfrqlmiss$BETA = log(gwas_assoc_subfrqlmiss$OR)
-gwas_assoc_subfrqlmiss$SE = gwas_assoc_subfrqlmiss$BETA/gwas_assoc_subfrqlmiss$STAT
-
-
-gwas_assoc_subfrqlmiss_tib <- dplyr::as_tibble(gwas_assoc_subfrqlmiss)
-
-col_order <- c("SNP", "CHR", "BP", "A1", "A2", "MAF", "callrate",
-  "NMISS", "NCHROBS", "BETA", "SE", "OR", "STAT", "P")
-gwas_assoc_compl <- gwas_assoc_subfrqlmiss_tib[, col_order]
-
-dim(gwas_assoc_compl)
-
-head(gwas_assoc_compl)
+\begin{lstlisting}
+## # A tibble: 6 x 14
+##   SNP        CHR     BP A1    A2      MAF callrate NMISS
+##   <chr>    <int>  <int> <chr> <chr> <dbl>    <dbl> <int>
+## 1 rs10000~     4 2.12e7 C     T     0.426    0.999  3996
+## 2 rs10000~     4 9.60e7 T     G     0.484    0.989  3957
+## 3 rs10000~     4 1.04e8 A     G     0.162    0.998  3991
+## 4 rs10000~     2 2.37e8 C     T     0.312    1      4000
+## 5 rs10000~     4 2.15e7 C     T     0.343    0.991  3963
+## 6 rs10000~     4 1.58e8 G     A     0.453    0.980  3919
+## # i 6 more variables: NCHROBS <int>, BETA <dbl>,
+## #   SE <dbl>, OR <dbl>, STAT <dbl>, P <dbl>
 \end{lstlisting}
 
 Let's list the number of SNPs per chromosome. This gives a pretty good idea about the per-chromosome coverage. And it's a sanity check: did the whole analysis run properly (we expect 22 chromosomes)?
 
-\begin{lstlisting}[language=R]
-library("knitr")
+\begin{quote}
+Question: Why do the number of variants per chrosome (approximately) correlate with the chromosome number?
+\end{quote}
 
-# Number of SNPs per chromosome
-knitr::kable(table(gwas_assoc_compl$CHR))
-\end{lstlisting}
+\begin{quote}
+Question: Where are the data for chromosome X, Y and MT?
+\end{quote}
 
 Let's plot the QQ plot to diagnose our GWAS.
 
-\begin{lstlisting}[language=R]
-library("qqman")
-
-gwas_threshold = -log10(5e-08)
-
-png(paste0(COURSE_loc, "/dummy_project/gwas-qq.png"))
-qqman::qq(gwas_assoc_compl$P, main = "QQ plot of GWAS", xlim = c(0,
-  7), ylim = c(0, 12), pch = 20, col = uithof_color[16],
-  cex = 1.5, las = 1, bty = "n")
-abline(h = gwas_threshold, col = uithof_color[25], lty = "dashed")
-\end{lstlisting}
-
 \begin{figure}[H]
 
-{\centering \includegraphics[width=6.67in]{img/_gwas_dummy/show-qq} 
+{\centering \includegraphics[width=0.85\linewidth]{img/_gwas_dummy/show-qq} 
 
 }
 
@@ -2040,22 +2365,15 @@ abline(h = gwas_threshold, col = uithof_color[25], lty = "dashed")
 \hypertarget{manhattan-plots}{%
 \section{Manhattan plots}\label{manhattan-plots}}
 
-We also need to create a \emph{Manhattan plot} to display the association test P-values as a function of chromosomal location and thus provide a visual summary of association test results that draw immediate attention to any regions of significance (Figure \ref{fig:show-manhattan}).
-
-\begin{lstlisting}[language=R]
-png(paste0(COURSE_loc, "/dummy_project/gwas-manhattan.png"))
-qqman::manhattan(gwas_assoc_compl, main = "Manhattan Plot",
-  ylim = c(0, 12), cex = 0.6, cex.axis = 0.9, col = c("#1290D9",
-    "#49A01D"))
-\end{lstlisting}
+We also need to create a \emph{Manhattan plot} to display the association test P-values as a function of chromosomal location and thus provide a visual summary of association test results that draw immediate attention to any regions of significance (Figure \ref{fig:showmanhattan}).
 
 \begin{figure}[H]
 
-{\centering \includegraphics[width=6.67in]{img/_gwas_dummy/show-manhattan} 
+{\centering \includegraphics[width=0.85\linewidth]{img/_gwas_dummy/show-manhattan} 
 
 }
 
-\caption{A manhattan plot.}\label{fig:show-manhattan}
+\caption{A manhattan plot.}\label{fig:showmanhattan}
 \end{figure}
 
 \hypertarget{other-plots}{%
@@ -2063,60 +2381,42 @@ qqman::manhattan(gwas_assoc_compl, main = "Manhattan Plot",
 
 It is also informative to plot the density per chromosome. We can use the \passthrough{\lstinline!CMplot!} for that which you can find \href{https://github.com/YinLiLin/R-CMplot}{here}. For now we just make these graphs `quick-n-dirty', you can further prettify them, but you easily loose track of time, so maybe carry on.
 
-\begin{lstlisting}[language=R]
-gwas_assoc_complsub <- subset(gwas_assoc_compl, select = c("SNP",
-  "CHR", "BP", "P"))
-\end{lstlisting}
-
-\begin{lstlisting}[language=R]
-library("CMplot")
-
-CMplot(gwas_assoc_complsub, plot.type = c("d", "c", "m",
-  "q"), LOG10 = TRUE, ylim = NULL, threshold = c(1e-06,
-  1e-04), threshold.lty = c(1, 2), threshold.lwd = c(1,
-  1), threshold.col = c("black", "grey"), amplify = TRUE,
-  bin.size = 1e+06, chr.den.col = c("darkgreen", "yellow",
-    "red"), signal.col = c("red", "green"), signal.cex = c(1,
-    1), signal.pch = c(19, 19), file.output = FALSE,
-  file = "png", main = "", dpi = 300, verbose = TRUE)
-\end{lstlisting}
-
 \begin{quote}
-What do the grey spots on the density plot indicate?
+Question: What do the grey spots on the density plot indicate?
 \end{quote}
 
 This would lead to the following graphs.
 
 \begin{figure}[H]
 
-{\centering \includegraphics[width=37.5in]{img/_gwas_dummy/show-cmplot-all-density} 
+{\centering \includegraphics[width=0.85\linewidth]{img/_gwas_dummy/show-cmplot-all-density} 
 
 }
 
-\caption{SNP density of the association results.}\label{fig:show-cmplot-all-density}
+\caption{SNP density of the association results.}\label{fig:showcmplotalldensity}
 \end{figure}
 
 \begin{figure}[H]
 
-{\centering \includegraphics[width=22.92in]{img/_gwas_dummy/show-cmplot-all-qq} 
+{\centering \includegraphics[width=0.85\linewidth]{img/_gwas_dummy/show-cmplot-all-qq} 
 
 }
 
-\caption{A QQ plot including a 95\% confidence interval (blue area) and genome-wide significant hits (red).}\label{fig:show-cmplot-all-qq}
+\caption{A QQ plot including a 95\% confidence interval (blue area) and genome-wide significant hits (red).}\label{fig:showcmplotallqq}
 \end{figure}
 
 \begin{figure}[H]
 
-{\centering \includegraphics[width=58.33in]{img/_gwas_dummy/show-cmplot-all-manhattan} 
+{\centering \includegraphics[width=0.85\linewidth]{img/_gwas_dummy/show-cmplot-all-manhattan} 
 
 }
 
-\caption{A regular manhattan plot. Colored by chromosome, suggestive hits are green, genome-wide hits are red. The bottom graph shows the per-chromosome SNP density.}\label{fig:show-cmplot-all-manhattan}
+\caption{A regular manhattan plot. Colored by chromosome, suggestive hits are green, genome-wide hits are red. The bottom graph shows the per-chromosome SNP density.}\label{fig:showcmplotallmanhattan}
 \end{figure}
 
 \begin{figure}[H]
 
-{\centering \includegraphics[width=41.67in]{img/_gwas_dummy/show-cmplot-all-circular} 
+{\centering \includegraphics[width=0.85\linewidth]{img/_gwas_dummy/show-cmplot-all-circular} 
 
 }
 
@@ -2215,25 +2515,10 @@ Alright. It's time to stop playing around and do a quick recap of what you've le
   You learned how to visualize results and played around with different visuals.
 \end{enumerate}
 
-You should be ready for the real stuff. And if not, the next chapter will help you get ready: Chapter \ref{wtccc1-intro}.
+You should be ready for the real stuff. And if not, the next chapter will help you get ready: Chapter @ref(wtccc1\_intro).
 
-\hypertarget{wtccc1-intro}{%
-\chapter{The Welcome Trust Case-Control Consortium}\label{wtccc1-intro}}
-
-\includegraphics[width=0.7\textwidth,height=\textheight]{./img/_gwas/interactive_plot.png}
-
-\begin{lstlisting}
-## 
-## Packages to install for this book and its contents to automagically work.
-## 
-## * Bookdown and rmarkdown packages...
-## 
-## * General packages...
-## 
-## * GGplotting packages - for publication ready plotting...
-## 
-## * Genomic packages...
-\end{lstlisting}
+\hypertarget{wtccc1_intro}{%
+\chapter{The Welcome Trust Case-Control Consortium}\label{wtccc1_intro}}
 
 Now that you know your way around \passthrough{\lstinline!PLINK!}, \passthrough{\lstinline!bash!} and \passthrough{\lstinline!r!} and have done some basic quality control and association testing, you are ready for the real thing. We have prepared a real dataset: the first release of the \href{https://www.wtccc.org.uk/ccc1/overview.html}{\emph{Welcome Trust Case-Control Consortium (WTCCC)}} on coronary artery disease (CAD) and a control dataset used for that project.
 
@@ -2301,44 +2586,13 @@ plink --bfile wtccc1/wtccc1 --test-missing --out wtccc1/wtccc1
 cat wtccc1/wtccc1.missing | awk '$5 < 0.00001' | awk '{ print $2 }' > wtccc1/wtccc1-fail-diffmiss-qc.txt
 \end{lstlisting}
 
-\begin{lstlisting}[language=R]
-library("data.table")
-
-COURSE_loc = "~/Desktop/practical" # getwd()
-
-wtccc1_HWE <- data.table::fread(paste0(COURSE_loc, "/wtccc1/wtccc1.hwe"))
-wtccc1_FRQ <- data.table::fread(paste0(COURSE_loc, "/wtccc1/wtccc1.frq"))
-wtccc1_IMISS <- data.table::fread(paste0(COURSE_loc, "/wtccc1/wtccc1.imiss"))
-wtccc1_LMISS <- data.table::fread(paste0(COURSE_loc, "/wtccc1/wtccc1.lmiss"))
-
-wtccc1_HWE$logP <- -log10(wtccc1_HWE$P)
-\end{lstlisting}
-
 Let's investigate the HWE p-value in the whole cohort, and per stratum (cases and controls) with the code below.
-
-\begin{lstlisting}[language=R]
-library("ggpubr")
-
-ggpubr::gghistogram(wtccc1_HWE, x = "logP",
-                    add = "mean",
-                    add.params = list(color = "#595A5C", linetype = "dashed", size = 1),
-                    rug = TRUE,
-                    # color = "#1290D9", fill = "#1290D9",
-                    color = "TEST", fill = "TEST",
-                    palette = "lancet",
-                    facet.by = "TEST",
-                    bins = 50,
-                    xlab = "HWE -log10(P)") +
-  ggplot2::geom_vline(xintercept = 5, linetype = "dashed",
-                      color = "#E55738", size = 1)
-ggplot2::ggsave(paste0(COURSE_loc, "/wtccc1/wtccc1-hwe.png"), plot = last_plot())
-\end{lstlisting}
 
 This will result in Figure \ref{fig:show-wtccc1-hwe}.
 
-\begin{figure}
+\begin{figure}[H]
 
-{\centering \includegraphics[width=18.67in]{img/_gwas_wtccc/WTCCC1-HWE} 
+{\centering \includegraphics[width=0.85\linewidth]{img/_gwas_wtccc/WTCCC1-HWE} 
 
 }
 
@@ -2347,22 +2601,11 @@ This will result in Figure \ref{fig:show-wtccc1-hwe}.
 
 We should also inspect the allele frequencies. Note that \emph{by default} PLINK (whether v0.7, v1.9, or v2.0) stores the alleles as minor (A1) and major (A2), and therefore \passthrough{\lstinline!--maf!} \emph{always} calculates the frequency of the minor allele (A1).
 
-\begin{lstlisting}[language=R]
-ggpubr::gghistogram(wtccc1_FRQ, x = "MAF",
-                    add = "mean", add.params = list(color = "#595A5C", linetype = "dashed", size = 1),
-                    rug = TRUE,
-                    color = "#1290D9", fill = "#1290D9",
-                    xlab = "minor allele frequency") +
-  ggplot2::geom_vline(xintercept = 0.05, linetype = "dashed",
-                      color = "#E55738", size = 1)
-ggplot2::ggsave(paste0(COURSE_loc, "/wtccc1/wtccc1-freq.png"), plot = last_plot())
-\end{lstlisting}
-
 This will result in Figure \ref{fig:show-wtccc1-freq}.
 
-\begin{figure}
+\begin{figure}[H]
 
-{\centering \includegraphics[width=18.67in]{img/_gwas_wtccc/WTCCC1-FREQ} 
+{\centering \includegraphics[width=0.85\linewidth]{img/_gwas_wtccc/WTCCC1-FREQ} 
 
 }
 
@@ -2371,24 +2614,11 @@ This will result in Figure \ref{fig:show-wtccc1-freq}.
 
 There could be sample with very poor overall call rate, where for many SNPs there is no data. We will want to identify these samples and exclude them.
 
-\begin{lstlisting}[language=R]
-wtccc1_IMISS$callrate <- 1 - wtccc1_IMISS$F_MISS
-
-ggpubr::gghistogram(wtccc1_IMISS, x = "callrate",
-                    add = "mean", add.params = list(color = "#595A5C", linetype = "dashed", size = 1),
-                    rug = TRUE, bins = 50,
-                    color = "#1290D9", fill = "#1290D9",
-                    xlab = "per sample call rate") +
-  ggplot2::geom_vline(xintercept = 0.95, linetype = "dashed",
-                      color = "#E55738", size = 1)
-ggplot2::ggsave(paste0(COURSE_loc, "/wtccc1/wtccc1-sample-call-rate.png"), plot = last_plot())
-\end{lstlisting}
-
 This will result in Figure \ref{fig:show-wtccc1-callratesample}.
 
-\begin{figure}
+\begin{figure}[H]
 
-{\centering \includegraphics[width=18.67in]{img/_gwas_wtccc/WTCCC1-callrate-samples} 
+{\centering \includegraphics[width=0.85\linewidth]{img/_gwas_wtccc/WTCCC1-callrate-samples} 
 
 }
 
@@ -2397,24 +2627,11 @@ This will result in Figure \ref{fig:show-wtccc1-callratesample}.
 
 Lastly, we must inspect the per SNP call rate; we need to know if there are SNPs that have no data for many samples. We will want to identify such SNPs and exclude these.
 
-\begin{lstlisting}[language=R]
-wtccc1_LMISS$callrate <- 1 - wtccc1_LMISS$F_MISS
-
-ggpubr::gghistogram(wtccc1_LMISS, x = "callrate",
-                    add = "mean", add.params = list(color = "#595A5C", linetype = "dashed", size = 1),
-                    rug = TRUE, bins = 50,
-                    color = "#1290D9", fill = "#1290D9",
-                    xlab = "per SNP call rate") +
-  ggplot2::geom_vline(xintercept = 0.95, linetype = "dashed",
-                      color = "#E55738", size = 1)
-ggplot2::ggsave(paste0(COURSE_loc, "/wtccc1/wtccc1-hwe.png"), plot = last_plot())
-\end{lstlisting}
-
 This will result in Figure \ref{fig:show-wtccc1-callratesnp}.
 
-\begin{figure}
+\begin{figure}[H]
 
-{\centering \includegraphics[width=18.67in]{img/_gwas_wtccc/WTCCC1-callrate-SNPs} 
+{\centering \includegraphics[width=0.85\linewidth]{img/_gwas_wtccc/WTCCC1-callrate-SNPs} 
 
 }
 
@@ -2525,76 +2742,21 @@ Please note! You may have been able to make \passthrough{\lstinline!EIGENSOFT!} 
 
 And we should visualize the PCA results: are these individuals really all from European (UK) ancestry?
 
-\begin{lstlisting}[language=R]
-PCA_WTCCC1_1kG <- data.table::fread(paste0(COURSE_loc,"/ref_pca_wtccc1/wtccc1_extrclean_1kg.pca.evec"), header = FALSE, skip = 1)
-\end{lstlisting}
+We expect most individuals from the WTCCC to be 100\% British, but a substantial group will have a different ancestral background as shown in the Figure \ref{fig:showwtccc1pca} you just made.
 
-\begin{lstlisting}[language=R]
-# Population    Description Super population    Code    Counts
-# ASW   African Ancestry in Southwest US                              AFR   4     #49A01D
-# CEU   Utah residents with Northern and Western European ancestry  EUR 7     #E55738
-# CHB   Han Chinese in Bejing, China                                  EAS   8     #9A3480
-# CHS   Southern Han Chinese, China                                 EAS 9     #705296
-# CLM   Colombian in Medellin, Colombia                             MR  10    #8D5B9A
-# FIN   Finnish in Finland                                          EUR 12  #2F8BC9
-# GBR   British in England and Scotland                             EUR 13  #1290D9
-# IBS   Iberian populations in Spain                                  EUR   16  #1396D8
-# JPT   Japanese in Tokyo, Japan                                      EAS   18  #D5267B
-# LWK   Luhya in Webuye, Kenya                                      AFR 20  #78B113
-# MXL   Mexican Ancestry in Los Angeles, California                 AMR 22  #F59D10
-# PUR   Puerto Rican in Puerto Rico                                 AMR 25  #FBB820
-# TSI   Toscani in Italy                                              EUR   27  #4C81BF
-# YRI   Yoruba in Ibadan, Nigeria                                     AFR   28  #C5D220
+\begin{figure}[H]
 
-PCA_WTCCC1_1kG$V12[PCA_WTCCC1_1kG$V12 == "2"] <- "CAD"
-PCA_WTCCC1_1kG$V12[PCA_WTCCC1_1kG$V12 == "1"] <- "UKBS"
-PCA_WTCCC1_1kG$V12[PCA_WTCCC1_1kG$V12 == "4"] <- "ASW"
-PCA_WTCCC1_1kG$V12[PCA_WTCCC1_1kG$V12 == "7"] <- "CEU"
-PCA_WTCCC1_1kG$V12[PCA_WTCCC1_1kG$V12 == "8"] <- "CHB"
-PCA_WTCCC1_1kG$V12[PCA_WTCCC1_1kG$V12 == "9"] <- "CHS"
-PCA_WTCCC1_1kG$V12[PCA_WTCCC1_1kG$V12 == "10"] <- "CLM"
-PCA_WTCCC1_1kG$V12[PCA_WTCCC1_1kG$V12 == "12"] <- "FIN"
-PCA_WTCCC1_1kG$V12[PCA_WTCCC1_1kG$V12 == "13"] <- "GBR"
-PCA_WTCCC1_1kG$V12[PCA_WTCCC1_1kG$V12 == "16"] <- "IBS"
-PCA_WTCCC1_1kG$V12[PCA_WTCCC1_1kG$V12 == "18"] <- "JPT"
-PCA_WTCCC1_1kG$V12[PCA_WTCCC1_1kG$V12 == "20"] <- "LWK"
-PCA_WTCCC1_1kG$V12[PCA_WTCCC1_1kG$V12 == "22"] <- "MXL"
-PCA_WTCCC1_1kG$V12[PCA_WTCCC1_1kG$V12 == "25"] <- "PUR"
-PCA_WTCCC1_1kG$V12[PCA_WTCCC1_1kG$V12 == "27"] <- "TSI"
-PCA_WTCCC1_1kG$V12[PCA_WTCCC1_1kG$V12 == "28"] <- "YRI"
-\end{lstlisting}
-
-\begin{lstlisting}[language=R]
-PCA_WTCCC1_1kGplot <- ggpubr::ggscatter(PCA_WTCCC1_1kG, x = "V2", y = "V3",
-                                        color = "V12",
-                                        palette = c("#49A01D", "#595A5C", "#E55738", "#9A3480", "#705296", 
-                                                    "#8D5B9A", "#2F8BC9", "#1290D9", "#1396D8", "#D5267B", 
-                                                    "#78B113", "#F59D10", "#FBB820", "#4C81BF", "#595A5C", "#C5D220"),
-                                        xlab = "principal component 1", ylab = "principal component 2") +
-  geom_hline(yintercept = 0.023, linetype = "dashed",
-                color = "#595A5C", size = 1)
-
-  ggpubr::ggpar(PCA_WTCCC1_1kGplot,
-            title = "Principal Component Analysis",
-            subtitle = "Reference population: 1000 G, phase 1",
-            legend.title = "Populations", legend = "right")
-\end{lstlisting}
-
-We expect most individuals from the WTCCC to be 100\% British, but a substantial group will have a different ancestral background as shown in the Figure \ref{fig:show-wtccc1-pca} you just made.
-
-\begin{figure}
-
-{\centering \includegraphics[width=18.67in]{img/_gwas_wtccc/WTCCC1-pca-1000g} 
+{\centering \includegraphics[width=0.85\linewidth]{img/_gwas_wtccc/WTCCC1-pca-1000g} 
 
 }
 
-\caption{PCA - WTCCC1 vs. 1000G}\label{fig:show-wtccc1-pca}
+\caption{PCA - WTCCC1 vs. 1000G}\label{fig:showwtccc1pca}
 \end{figure}
 
 \hypertarget{removing-samples-1}{%
 \subsection{Removing samples}\label{removing-samples-1}}
 
-In a similar fashion as in the example \emph{gwas} and \emph{rawdata} datasets, you should consider to \textbf{remove the samples below the threshold} based on this PCA (Figure \ref{fig:pca-1000g-wtccc}).
+In a similar fashion as in the example \emph{gwas} and \emph{rawdata} datasets, you should consider to \textbf{remove the samples below the threshold} based on this PCA (Figure \ref{fig:showwtccc1pca}).
 
 \begin{quote}
 Go ahead, try that.
@@ -2640,91 +2802,40 @@ plink --bfile wtccc1/wtccc1_qc --logistic sex --covar wtccc1/wtccc1_qc.covar_pca
 
 After you ran the association analysis, you're ready to process the data and take a first look at the results. First, we prepare the raw output.
 
-\begin{lstlisting}[language=R]
-wtccc1_assoc <- data.table::fread(paste0(COURSE_loc, "/wtccc1/wtccc1_qc_log_covar_pca.assoc.logistic"))
-
-dim(wtccc1_assoc)
-
-wtccc1_assoc[1:9, 1:9]
-wtccc1_assoc_sub <- subset(wtccc1_assoc, TEST == "ADD")
-wtccc1_assoc_sub$TEST <- NULL
-
-temp <- subset(wtccc1_FRQ, select = c("SNP", "A2", "MAF", "NCHROBS"))
-
-wtccc1_assoc_subfrq <- merge(wtccc1_assoc_sub, temp, by = "SNP")
-
-temp <- subset(wtccc1_LMISS, select = c("SNP", "callrate"))
-
-wtccc1_assoc_subfrqlmiss <- merge(wtccc1_assoc_subfrq, temp, by = "SNP")
-head(wtccc1_assoc_subfrqlmiss)
-# Remember:
-# - that z = beta/se
-# - beta = log(OR), because log is the natural log in r
-
-wtccc1_assoc_subfrqlmiss$BETA = log(wtccc1_assoc_subfrqlmiss$OR)
-wtccc1_assoc_subfrqlmiss$SE = wtccc1_assoc_subfrqlmiss$BETA/wtccc1_assoc_subfrqlmiss$STAT
-
-
-wtccc1_assoc_subfrqlmiss_tib <- dplyr::as_tibble(wtccc1_assoc_subfrqlmiss)
-
-col_order <- c("SNP", "CHR", "BP",
-               "A1", "A2", "MAF", "callrate", "NMISS", "NCHROBS",
-               "BETA", "SE", "OR", "STAT", "P")
-wtccc1_assoc_compl <- wtccc1_assoc_subfrqlmiss_tib[, col_order]
-
-dim(wtccc1_assoc_compl)
-
-head(wtccc1_assoc_compl)
-
-wtccc1_assoc_complsub <- subset(wtccc1_assoc_compl, select = c("SNP", "CHR", "BP", "P"))
-\end{lstlisting}
-
 You could visualize these results with the code below.
-
-\begin{lstlisting}[language=R]
-library("CMplot")
-
-CMplot(wtccc1_assoc_complsub,
-       plot.type = "b", LOG10 = TRUE, ylim = NULL,
-       threshold = c(1e-6,1e-4), threshold.lty = c(1,2), threshold.lwd = c(1,1), threshold.col = c("black", "grey"),
-       amplify = TRUE,
-       bin.size = 1e6, chr.den.col = c("darkgreen", "yellow", "red"),
-       signal.col = c("red", "green"), signal.cex = c(1,1), signal.pch = c(19,19),
-       file = "jpg", memo = "", dpi = 300, file.output = FALSE, verbose = TRUE)
-\end{lstlisting}
 
 This would lead to the following graphs.
 
-\begin{figure}
+\begin{figure}[H]
 
-{\centering \includegraphics[width=18.67in]{img/_gwas_wtccc/WTCCC1ResultsManhattan-density} 
+{\centering \includegraphics[width=0.85\linewidth]{img/_gwas_wtccc/WTCCC1ResultsManhattan-density} 
 
 }
 
 \caption{SNP density of the association results.}\label{fig:show-wtccc1-graphs-density}
 \end{figure}
 
-\begin{figure}
+\begin{figure}[H]
 
-{\centering \includegraphics[width=18.67in]{img/_gwas_wtccc/WTCCC1ResultsManhattan-qq} 
+{\centering \includegraphics[width=0.85\linewidth]{img/_gwas_wtccc/WTCCC1ResultsManhattan-qq} 
 
 }
 
 \caption{A QQ plot including a 95\% confidence interval (blue area) and genome-wide significant hits (red).}\label{fig:show-wtccc1-graphs-qq}
 \end{figure}
 
-\begin{figure}
+\begin{figure}[H]
 
-{\centering \includegraphics[width=18.67in]{img/_gwas_wtccc/WTCCC1ResultsManhattan-manhattan} 
+{\centering \includegraphics[width=0.85\linewidth]{img/_gwas_wtccc/WTCCC1ResultsManhattan-manhattan} 
 
 }
 
 \caption{A regular manhattan plot. Colored by chromosome, suggestive hits are green, genome-wide hits are red. The bottom graph shows the per-chromosome SNP density.}\label{fig:show-wtccc1-graphs-manhattan}
 \end{figure}
 
-\begin{figure}
+\begin{figure}[H]
 
-{\centering \includegraphics[width=18.67in]{img/_gwas_wtccc/WTCCC1ResultsManhattan-circular} 
+{\centering \includegraphics[width=0.85\linewidth]{img/_gwas_wtccc/WTCCC1ResultsManhattan-circular} 
 
 }
 
@@ -2740,12 +2851,10 @@ You reached an important milestone.
 
 Wow. Take a pause. And realize what you've done.
 
-Back then there wasn't much on analyses \emph{after} a GWAS, nowadays there are many post-GWAS analyses methods. We will cover them in the next Chapter \ref{post-gwas}.
+Back then there wasn't much on analyses \emph{after} a GWAS, nowadays there are many post-GWAS analyses methods. We will cover them in the next Chapter @ref(post\_gwas).
 
-\hypertarget{post-gwas}{%
-\chapter{Post-GWAS Analyses}\label{post-gwas}}
-
-\includegraphics[width=1\textwidth,height=\textheight]{./img/_headers/banner_man_standing_dna.png}
+\hypertarget{post_gwas}{%
+\chapter{Post-GWAS Analyses}\label{post_gwas}}
 
 A critical step in post-GWAS analysis is probably `mapping SNPs to genes'. It is critical, but it is also the most challenging. \emph{How do you even map SNPs to genes?} What criteria to use? Should we take into account physical position? Or is it of interest that certain SNPs might influence downstream or upstream gene expression? And what of the fact that most loci discovered in GWAS are \_inter\_genic? What is the heritability of our trait? Are there any pleiotropic effects?
 
@@ -2866,6 +2975,222 @@ Lastly, there is a great explanatory \href{http://polygenicscores.org/explained/
 
 You come to the end of this practical primer. What is left are a summary (not written yet) of what you've learned and should take home. And some musings in the Epilogue (\ref{epilogue} on this book and what the future holds.
 
+\hypertarget{conditional_analysis}{%
+\chapter{Conditional analysis}\label{conditional_analysis}}
+
+\hypertarget{section-1}{%
+\section{Section 1}\label{section-1}}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+\hypertarget{section-2}{%
+\section{Section 2}\label{section-2}}
+
+Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?
+
+\hypertarget{section-3}{%
+\section{Section 3}\label{section-3}}
+
+At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.
+
+\hypertarget{replication-1}{%
+\section{Replication!}\label{replication-1}}
+
+You reached an important milestone: you recreated the work by the whole WTCCC1 in just an afternoon. Wow. Back then there wasn't much on analyses \emph{after} a GWAS, nowadays there are many post-GWAS analyses methods. We will cover them in the next Chapter \ref{finemapping}.
+
+\hypertarget{finemapping}{%
+\chapter{Statistical finemapping}\label{finemapping}}
+
+\hypertarget{section-1-1}{%
+\section{Section 1}\label{section-1-1}}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+\hypertarget{section-2-1}{%
+\section{Section 2}\label{section-2-1}}
+
+Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?
+
+\hypertarget{section-3-1}{%
+\section{Section 3}\label{section-3-1}}
+
+At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.
+
+\hypertarget{replication-2}{%
+\section{Replication!}\label{replication-2}}
+
+You reached an important milestone: you recreated the work by the whole WTCCC1 in just an afternoon. Wow. Back then there wasn't much on analyses \emph{after} a GWAS, nowadays there are many post-GWAS analyses methods. We will cover them in the next Chapter \ref{fuma}.
+
+\hypertarget{fuma}{%
+\chapter{Functional Mapping and Annotation of GWAS}\label{fuma}}
+
+\hypertarget{assignment-1}{%
+\section{Assignment}\label{assignment-1}}
+
+\hypertarget{tutorial}{%
+\subsection{Tutorial}\label{tutorial}}
+
+Go to the \href{https://fuma.ctglab.nl}{FUMA website}, get an account, and study the \href{https://fuma.ctglab.nl/tutorial}{online-tutorial}.
+
+\hypertarget{create-the-input}{%
+\subsection{Create the input}\label{create-the-input}}
+
+You will need to use the \passthrough{\lstinline!fwrite!} function in \passthrough{\lstinline!r!} to write the concatenated results of the WTCCC1 study (remember: \passthrough{\lstinline!wtccc1\_assoc\_compl!}).
+
+\begin{quote}
+Question: can you figure out the sample size of the WTCCC1 data you used?
+\end{quote}
+
+Make sure you know what the column-names are in the file, you'll need that for FUMA. You can use \passthrough{\lstinline!cat your\_file | head!} to get the first 10 lines of the file.
+
+You will need to compress the resulting output, this will make uploading to FUMA go faster. You can use the \passthrough{\lstinline!bash!}-program \passthrough{\lstinline!gzip!} for that. If you want to know what the options are for that program, you can use \passthrough{\lstinline!gzip -h!}.
+
+\hypertarget{run-fuma---snp-to-gene}{%
+\subsection{Run FUMA - SNP to gene}\label{run-fuma---snp-to-gene}}
+
+Upload via the form on the FUMA-website. Since you've done the tutorial you are familiar with its options.
+
+Select \emph{everything} in the tabs \passthrough{\lstinline!Gene Mapping (positional mapping)!}, \passthrough{\lstinline!Gene Mapping (eQTL mapping)!} but \emph{not} \passthrough{\lstinline!GTEx v6!} and \passthrough{\lstinline!GTEx v7!}, and \passthrough{\lstinline!Gene Mapping (3D Chromatin Interaction mapping)!} and leave the settings at \passthrough{\lstinline!Gene types!} and \passthrough{\lstinline!MHC region!} as-is. At \passthrough{\lstinline!MAGMA analysis!} set the \emph{MAGMA gene expression analysis} to include all tissues, \emph{but} \passthrough{\lstinline!GTEx v6!} and \passthrough{\lstinline!GTEx v7!}.
+
+Don't forget to give your analysis a name.
+
+This will take some time and so it's a good moment to carry on with the rest of the practical or take a break, or study for the exam.
+
+\begin{quote}
+Questions
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  How many lead SNPs did we find?
+\item
+  What do the results of MAGMA (the gene-based test) look like and how many genes pass the threshold of multiple testing correction?
+\item
+  How many loci were mapped?
+\item
+  How many genes were physically located and how many were mapped to these loci?
+\item
+  Do you think all loci are `correct', \emph{i.e.} do you `believe' all the signals looking at the mapping results? Why?
+\item
+  For what tissues are the signals enriched?
+\item
+  Are there any chromatin interactions discovered?
+\end{enumerate}
+\end{quote}
+
+\hypertarget{run-fuma---gene-to-function}{%
+\subsection{Run FUMA - Gene to function}\label{run-fuma---gene-to-function}}
+
+Now that you mapped SNPs to genes, it's time to go back to `My Jobs'. Select your job and perform \passthrough{\lstinline!GENE2FUNC!}.
+
+\begin{quote}
+Questions
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  What genes show the lowest expression across tissues?
+\item
+  And what genes the highest?
+\item
+  For what pathways are the signals enriched?
+\item
+  What molecular functions are mapped to the signals?
+\end{enumerate}
+\end{quote}
+
+\hypertarget{some-closing-thoughts}{%
+\section{Some closing thoughts}\label{some-closing-thoughts}}
+
+FUMA is a great tool, but it comes with a caveat. It includes a couple of references of which it is not readily clear which variants are included - the authors do provide the codes used on Git, but still, you don't know which variants precisely are filtered. That is key: perhaps the top variant you discovered is filtered in the reference. This means FUMA will not use it to map SNPs to genes, rather next best variant. This should be in high-LD - but, again, assumptions\ldots{} And of course, the references used might not match your data well enough.
+So, my advice: use FUMA (why not be lazy rather than work hard?), but aware of such caveats as I described. All in all, I do think FUMA is very complete, intuitive, and it makes your work publication-ready because it creates just the right file-formats for you too (\passthrough{\lstinline!.png!}, \passthrough{\lstinline!.svg!}, \passthrough{\lstinline!.pdf!}, \passthrough{\lstinline!.jpeg!}).
+
+That said, time to move on to inspect other phenotypes in relation to your findings in the next Chapter \ref{phewas} or to return to the previous chapter on post-GWAS analyses @ref(post\_gwas).
+
+\hypertarget{phewas}{%
+\chapter{Phenome-Wide Association Study}\label{phewas}}
+
+Given the large biobanks available nowadays that have also genotyped the participants and collected a vast-array of information on them, it is possible to perform a \textbf{Phe}nome-\textbf{W}ide \textbf{A}ssociation \textbf{S}tudy.
+
+There are several options in (Table \ref{tab:tab-phewas}).
+
+\begin{table}
+
+\caption{\label{tab:tab-phewas}PheWAS Resources.}
+\centering
+\begin{tabular}[t]{l|l}
+\hline
+Site & Description\\
+\hline
+https://atlas.ctglab.nl & 4,155 GWAS based on UK Biobank release 2\\
+\hline
+https://biobankengine.stanford.edu & UK Biobank based\\
+\hline
+http://pheweb.sph.umich.edu & University of Michigan EHR-based PheWAS\\
+\hline
+http://pheweb.sph.umich.edu/SAIGE-UKB/ & 1,403 GWAS UK Biobank based\\
+\hline
+http://phewas.mrbase.org & UK Biobank based\\
+\hline
+\end{tabular}
+\end{table}
+
+\emph{Assignment}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Perform a PheWAS with a few of the resources and your favorite SNP from this tutorial.
+\item
+  Compare the different websites. What do you notice?
+\item
+  How is a PheWAS informative?
+\end{enumerate}
+
+\hypertarget{whats-next}{%
+\section{What's next?}\label{whats-next}}
+
+You now know to what other traits, risk factors and diseases our trait of interest (coronary artery disease) is correlated. An obvious next question would be: is this a causal correlation? We will cover this aspect in the next Chapter @ref(mendelian\_randomization) or to return to the previous chapter on post-GWAS analyses @ref(post\_gwas).
+
+\hypertarget{mr_mrbase}{%
+\chapter{MRBase}\label{mr_mrbase}}
+
+You took the easy way out. No shame in that. Your choice. Right, so as I wrote, \emph{\href{http://www.mrbase.org/}{MRBase}} is very easy to handle. It is based on the \passthrough{\lstinline!TwoSampleMR!} package and uses the \passthrough{\lstinline!MRInstruments!} package to load in all the genetic instruments. The creators of MRBase have curated hundreds of GWAS and molecular QTL studies, and prepared the data for easy use on the website and in the R packages.
+
+Using \textbf{\href{http://www.mrbase.org/}{MRBase}} we intend to find out whether Type 2 Diabetes (T2D) causes coronary artery disease and ischemic stroke.
+
+\hypertarget{the-end}{%
+\section{The end?}\label{the-end}}
+
+You are almost at the end. Time to return to the previous chapter on post-GWAS analyses @ref(post\_gwas).
+
+\hypertarget{summary}{%
+\chapter*{Summary}\label{summary}}
+\addcontentsline{toc}{chapter}{Summary}
+
+\hypertarget{section-1-2}{%
+\section{Section 1}\label{section-1-2}}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+\hypertarget{section-2-2}{%
+\section{Section 2}\label{section-2-2}}
+
+Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?
+
+\hypertarget{section-3-2}{%
+\section{Section 3}\label{section-3-2}}
+
+At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.
+
+\hypertarget{replication-3}{%
+\section{Replication!}\label{replication-3}}
+
+You reached an important milestone: you recreated the work by the whole WTCCC1 in just an afternoon. Wow. Back then there wasn't much on analyses \emph{after} a GWAS, nowadays there are many post-GWAS analyses methods. We will cover them in the next (Chapter \ref{epilogue}).
+
 \hypertarget{epilogue}{%
 \chapter{Epilogue}\label{epilogue}}
 
@@ -2931,6 +3256,196 @@ make
 make install
 \end{lstlisting}
 
+\hypertarget{answers}{%
+\chapter{Answers to the questions}\label{answers}}
+
+Throughout the book you encountered questions related to some steps and output that you generated. Here you can review the answers for each of these questions - of course, for some different answers are possible.
+
+\begin{quote}
+{[}ANSWERS NEED TO BE WORKED OUT{]}
+\end{quote}
+
+\hypertarget{chapter-3.1-gwas-basics}{%
+\section{Chapter 3.1: GWAS Basics}\label{chapter-3.1-gwas-basics}}
+
+\begin{quote}
+Question: Can you think off what the `11,440 heterozygous haploid genotypes present' represent?
+\end{quote}
+
+\begin{quote}
+Question: Can you think of other scenarios in which you may want to extend the check on differential missingness beyond a check between cases and controls?
+* For instance `genotyping platform', or `hospital of inclusion', if you think this might influence the genotyping experiment technically.
+\end{quote}
+
+\hypertarget{chapter-3.4-gwas-basics---association-testing}{%
+\section{Chapter 3.4: GWAS Basics - Association testing}\label{chapter-3.4-gwas-basics---association-testing}}
+
+\begin{quote}
+Question: Load the data using R. {[}Hint: use and adapt the examples from the previous chapters.{]}
+\end{quote}
+
+\begin{lstlisting}
+library("data.table")
+
+COURSE_loc = "~/Desktop/practical" # getwd()
+
+gwas_HWE <- data.table::fread(paste0(COURSE_loc, "/dummy_project/gwa.hwe"))
+gwas_FRQ <- data.table::fread(paste0(COURSE_loc, "/dummy_project/gwa.frq"))
+gwas_IMISS <- data.table::fread(paste0(COURSE_loc, "/dummy_project/gwa.imiss"))
+gwas_LMISS <- data.table::fread(paste0(COURSE_loc, "/dummy_project/gwa.lmiss"))
+\end{lstlisting}
+
+\begin{quote}
+Question: Plot the per-stratum HWE p-values using R. {[}Hint: use and adapt the examples from the previous chapters.{]}
+\end{quote}
+
+\begin{lstlisting}
+library("ggpubr")
+
+gwas_HWE$logP <- -log10(gwas_HWE$P)
+
+ggpubr::gghistogram(gwas_HWE, x = "logP",
+                    add = "mean",
+                    add.params = list(color = "#595A5C", linetype = "dashed", size = 1),
+                    rug = TRUE,
+                    # color = "#1290D9", fill = "#1290D9",
+                    color = "TEST", fill = "TEST",
+                    palette = "lancet",
+                    facet.by = "TEST",
+                    bins = 50,
+                    xlab = "HWE -log10(P)") +
+  ggplot2::geom_vline(xintercept = 5, linetype = "dashed",
+                      color = "#E55738", size = 1)
+ggplot2::ggsave(paste0(COURSE_loc, "/dummy_project/gwas-hwe.png"),
+       plot = last_plot())
+\end{lstlisting}
+
+\begin{quote}
+Question: Plot the allele frequencies using R. {[}Hint: use and adapt the examples from the previous chapters.{]}
+\end{quote}
+
+\begin{lstlisting}
+ggpubr::gghistogram(gwas_FRQ, x = "MAF",
+                    add = "mean", add.params = list(color = "#595A5C", linetype = "dashed", size = 1),
+                    rug = TRUE,
+                    color = "#1290D9", fill = "#1290D9",
+                    xlab = "minor allele frequency") +
+  ggplot2::geom_vline(xintercept = 0.05, linetype = "dashed",
+                      color = "#E55738", size = 1)
+ggplot2::ggsave(paste0(COURSE_loc, "/dummy_project/gwas-freq.png"),
+       plot = last_plot())
+\end{lstlisting}
+
+\begin{quote}
+Question: Plot the per-sample call rates using R. {[}Hint: use and adapt the examples from the previous chapters.{]}
+\end{quote}
+
+\begin{lstlisting}
+gwas_IMISS$callrate <- 1 - gwas_IMISS$F_MISS
+
+ggpubr::gghistogram(gwas_IMISS, x = "callrate",
+                    add = "mean", add.params = list(color = "#595A5C", linetype = "dashed", size = 1),
+                    rug = TRUE, bins = 50,
+                    color = "#1290D9", fill = "#1290D9",
+                    xlab = "per sample call rate") +
+  ggplot2::geom_vline(xintercept = 0.95, linetype = "dashed",
+                      color = "#E55738", size = 1)
+ggplot2::ggsave(paste0(COURSE_loc, "/dummy_project/gwas-sample-call-rate.png"),
+       plot = last_plot())
+\end{lstlisting}
+
+\begin{quote}
+Question: Plot the per-SNP call rates using R. {[}Hint: use and adapt the examples from the previous chapters.{]}
+\end{quote}
+
+\begin{lstlisting}
+gwas_LMISS$callrate <- 1 - gwas_LMISS$F_MISS
+
+ggpubr::gghistogram(gwas_LMISS, x = "callrate",
+                    add = "mean", add.params = list(color = "#595A5C", linetype = "dashed", size = 1),
+                    rug = TRUE, bins = 50,
+                    color = "#1290D9", fill = "#1290D9",
+                    xlab = "per SNP call rate") +
+  ggplot2::geom_vline(xintercept = 0.95, linetype = "dashed",
+                      color = "#E55738", size = 1)
+ggplot2::ggsave(paste0(COURSE_loc, "/dummy_project/gwas-snp-call-rate.png"),
+       plot = last_plot())
+\end{lstlisting}
+
+\begin{quote}
+Question: Do you know which model, \emph{i.e.} \passthrough{\lstinline!TEST!} is most commonly used and reported? And why is that, do think?
+\end{quote}
+
+\begin{quote}
+Question: How come there are more lines in this file than there are variants?
+\end{quote}
+
+\begin{quote}
+Question: Can you write down the mathematical relation between \emph{beta} and \emph{OR}?
+\end{quote}
+
+\hypertarget{chapter-3.5-gwas-visualization}{%
+\section{Chapter 3.5: GWAS visualization}\label{chapter-3.5-gwas-visualization}}
+
+\begin{quote}
+Question: Why do the number of variants per chrosome (approximately) correlate with the chromosome number?
+\end{quote}
+
+\begin{quote}
+Question: Where are the data for chromosome X, Y and MT?
+\end{quote}
+
+\begin{quote}
+Question: What do the grey spots on the density plot indicate?
+\end{quote}
+
+\hypertarget{chapter-5.4-fuma}{%
+\section{Chapter 5.4: FUMA}\label{chapter-5.4-fuma}}
+
+\begin{quote}
+Question: can you figure out the sample size of the WTCCC1 data you used?
+\end{quote}
+
+\begin{quote}
+Questions
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  How many lead SNPs did we find?
+\item
+  What do the results of MAGMA (the gene-based test) look like and how many genes pass the threshold of multiple testing correction?
+\item
+  How many loci were mapped?
+\item
+  How many genes were physically located and how many were mapped to these loci?
+\item
+  Do you think all loci are `correct', \emph{i.e.} do you `believe' all the signals looking at the mapping results? Why?
+\item
+  For what tissues are the signals enriched?
+\item
+  Are there any chromatin interactions discovered?
+\end{enumerate}
+\end{quote}
+
+\begin{quote}
+Questions
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  What genes show the lowest expression across tissues?
+\item
+  And what genes the highest?
+\item
+  For what pathways are the signals enriched?
+\item
+  What molecular functions are mapped to the signals?
+\end{enumerate}
+\end{quote}
+
 \hypertarget{todo}{%
 \chapter{Things to do}\label{todo}}
 
@@ -2941,13 +3456,12 @@ Obviously this list is not exhaustive nor intended for practical use for anyone 
 \hypertarget{moscow}{%
 \section{MoSCoW}\label{moscow}}
 
-List of to-do's according to MoSCoW: \emph{must have}, \emph{should have}, \emph{could have}, \emph{would have}.
+List of to-do's according to MoSCoW: \emph{Must have}, \emph{Should have}, \emph{Could have}, \emph{Would have}.
 
 \hypertarget{contents}{%
 \subsection{Contents}\label{contents}}
 
 \begin{itemize}
-\tightlist
 \item[$\boxtimes$]
   \passthrough{\lstinline!M!} add in full installation instructions for UBUNTU \textgreater{} DROPPED
 \item
@@ -2961,17 +3475,21 @@ List of to-do's according to MoSCoW: \emph{must have}, \emph{should have}, \emph
 \item
   {[}{]} \passthrough{\lstinline!M!} colocalization with formal testing
 \item
+  {[}{]} \passthrough{\lstinline!M!} add proper team-page
+\item
   {[}{]} \passthrough{\lstinline!S!} meta-analysis with dummy data
 
   \begin{itemize}
   \tightlist
   \item
-    \passthrough{\lstinline!S!} including stratified QQ plots
+    \passthrough{\lstinline!S!} HPC version with MetaGWASToolKit
   \item
-    \passthrough{\lstinline!M!} HPC version with MetaGWASToolKit
+    \passthrough{\lstinline!S!} including stratified QQ plots
   \item
     \passthrough{\lstinline!S!} stand-alone version with METAL
   \end{itemize}
+\item
+  {[}{]} \passthrough{\lstinline!S!} add imputation chapter
 \item
   {[}{]} \passthrough{\lstinline!C!} GWASToolKit
 \item
@@ -2982,19 +3500,22 @@ List of to-do's according to MoSCoW: \emph{must have}, \emph{should have}, \emph
 \section{Book fixes}\label{book-fixes}}
 
 \begin{itemize}
-\tightlist
 \item[$\boxtimes$]
   \passthrough{\lstinline!M!} overall rendering too slow, paste in images as figure instead of on the fly generating
 \item[$\boxtimes$]
   \passthrough{\lstinline!M!} PDF is too large
 \item
-  {[}{]} \passthrough{\lstinline!M!} fix images per header in EPUB
+  {[}{]} \passthrough{\lstinline!M!} fix issue with api of Two Sample MR \textgreater{} run the codes.
+\item
+  {[}{]} \passthrough{\lstinline!M!} fix issue with \passthrough{\lstinline!api of Two Sample MR!}cat: /Users/USERNAME/Desktop/practical/gwas/data.assoc.logistic.clumped: No such file or directory` - this was not run yet
 \item
   {[}{]} \passthrough{\lstinline!M!} fix images per header in GitBook (not showing)
 \item
-  {[}{]} \passthrough{\lstinline!S!} PDF is not formatted properly (text runs over)
+  {[}{]} \passthrough{\lstinline!M!} Upgrade to Quatro - seems to work better in many respects; also adds interactivity \url{https://quarto.org/docs/books/}
 \item
-  {[}{]} \passthrough{\lstinline!C!} Different font type in PDF
+  {[}{]} \passthrough{\lstinline!S!} fix images per header in EPUB
+\item
+  {[}{]} \passthrough{\lstinline!S!} PDF is not formatted properly (text runs over)
 \item
   {[}{]} \passthrough{\lstinline!S!} EPUB is not formatted properly (text runs over)
 \item
@@ -3013,10 +3534,12 @@ List of to-do's according to MoSCoW: \emph{must have}, \emph{should have}, \emph
   \item
     \url{https://kdp.amazon.com/en_US/help/topic/G200645690}.
   \end{itemize}
+\item
+  {[}{]} \passthrough{\lstinline!C!} Different font type in PDF
 \end{itemize}
 
-\hypertarget{useful-links-for-me-mostly}{%
-\section{Useful links (for me mostly)}\label{useful-links-for-me-mostly}}
+\hypertarget{useful-links}{%
+\section{Useful links}\label{useful-links}}
 
 \url{https://bookdown.org/yihui/rmarkdown-cookbook/unnumbered-sections.html}
 
@@ -3041,25 +3564,8 @@ title.innerHTML = '<img src="img/_headers/banner_man_standing_dna.png" alt="A Pr
 \```
 \end{lstlisting}
 
-\hypertarget{answers-to-questions}{%
-\section{Answers to questions}\label{answers-to-questions}}
-
-\hypertarget{gwas-basics-1}{%
-\subsection{GWAS Basics}\label{gwas-basics-1}}
-
-\begin{quote}
-Question: Can you think off what the `11,440 heterozygous haploid genotypes present' represent?
-\end{quote}
-
-\begin{quote}
-Question: Can you think of other scenarios in which you may want to extend the check on differential missingness beyond a check between cases and controls?
-* For instance `genotyping platform', or `hospital of inclusion', if you think this might influence the genotyping experiment technically.
-\end{quote}
-
 \hypertarget{license}{%
 \chapter{Licenses and disclaimers}\label{license}}
-
-\includegraphics[width=1\textwidth,height=\textheight]{img/_headers/licenses.png}
 
 \hypertarget{copyright}{%
 \section{Copyright}\label{copyright}}
@@ -3071,10 +3577,12 @@ This book and all its material (``content'') is protected by copyright under Dut
 
 The content contained herein is provided only for educational and informational purposes or as required by Dutch law. The author attempted to ensure that content is accurate and obtained from reliable sources, but does not represent it to be error-free. The author may add, amend or repeal any text, procedure or regulation, and failure to timely post such changes to this book shall not be construed as a waiver of enforcement. The author does not warrant that any functions on this website or the contents and references herein will be uninterrupted, that defects will be corrected, or that this website or the contents and references will be free from viruses or other harmful components. Any links to third party information on the author's website are provided as a courtesy and do not constitute an endorsement of those materials or the third party providing them.
 
-\hypertarget{images-used}{%
-\section{Images used}\label{images-used}}
+\hypertarget{images-and-data-used}{%
+\section{Images and data used}\label{images-and-data-used}}
 
-I used images from \href{https://unsplash.com/s/photos/legal}{Unsplash} to brighten up the book. These are listed here in no particular order.
+I took the at-most care to use refer to the original works and data sources where needed. Likewise, all the images c.q. figures are either produced specifically for this book, or I took them from \href{https://unsplash.com/s/photos/legal}{\textbf{Unsplash}} to brighten up the book. If you feel I made a mistake and your work should be properly referenced, please don't hesitate to contact me.
+
+These are the images from \textbf{Unsplash} listed here in no particular order.
 
 \begin{itemize}
 \tightlist
@@ -3088,10 +3596,100 @@ I used images from \href{https://unsplash.com/s/photos/legal}{Unsplash} to brigh
   licenses - \url{https://unsplash.com/photos/book-lot-on-black-wooden-shelf-zeH-ljawHtg}
 \end{itemize}
 
-\hypertarget{colofon}{%
-\chapter{Colofon}\label{colofon}}
+\hypertarget{copyright-1}{%
+\section{Copyright}\label{copyright-1}}
 
-{[}Add in text on colofon{]}
+Copyright 1979-2024. All rights reserved. Sander W. van der Laan \textbar{} \href{mailto:s.w.vanderlaan@gmail.com}{s.w.vanderlaan {[}at{]} gmail.com} \textbar{} \url{https://vanderlaanand.science}. Published with \href{https://bookdown.org/yihui/bookdown/}{\passthrough{\lstinline!bookdown!}}.
+
+\hypertarget{colophon}{%
+\chapter{Colophon}\label{colophon}}
+
+The 2022 and 2024 editions of this book were produce in RStudio and with the \passthrough{\lstinline!bookdown!} package. Below a listing of installed programs and libraries, the operating system, and their specific versions.
+
+\begin{lstlisting}
+## - Session info ---------------------------------------
+##  setting  value
+##  version  R version 4.3.3 (2024-02-29)
+##  os       macOS Sonoma 14.4.1
+##  system   x86_64, darwin20
+##  ui       X11
+##  language (EN)
+##  collate  en_US.UTF-8
+##  ctype    en_US.UTF-8
+##  tz       America/New_York
+##  date     2024-03-27
+##  pandoc   3.1.1 @ /Applications/RStudio.app/Contents/Resources/app/quarto/bin/tools/ (via rmarkdown)
+## 
+## - Packages -------------------------------------------
+##  package           * version date (UTC) lib source
+##  askpass             1.2.0   2023-09-03 [2] CRAN (R 4.3.0)
+##  bookdown          * 0.38.1  2024-03-26 [2] Github (rstudio/bookdown@50a1c1e)
+##  chromote            0.2.0   2024-02-12 [1] CRAN (R 4.3.2)
+##  cli                 3.6.2   2023-12-11 [2] CRAN (R 4.3.0)
+##  colorspace          2.1-0   2023-01-23 [2] CRAN (R 4.3.0)
+##  crayon              1.5.2   2022-09-29 [2] CRAN (R 4.3.0)
+##  crul                1.4.0   2023-05-17 [2] CRAN (R 4.3.0)
+##  curl                5.2.1   2024-03-01 [2] CRAN (R 4.3.2)
+##  data.table          1.15.2  2024-02-29 [2] CRAN (R 4.3.2)
+##  digest              0.6.35  2024-03-11 [2] CRAN (R 4.3.2)
+##  evaluate            0.23    2023-11-01 [2] CRAN (R 4.3.0)
+##  fastmap             1.1.1   2023-02-24 [2] CRAN (R 4.3.0)
+##  flextable         * 0.9.5   2024-03-06 [1] CRAN (R 4.3.2)
+##  fontBitstreamVera   0.1.1   2017-02-01 [2] CRAN (R 4.3.0)
+##  fontLiberation      0.1.0   2016-10-15 [2] CRAN (R 4.3.0)
+##  fontquiver          0.2.1   2017-02-01 [2] CRAN (R 4.3.0)
+##  formatR           * 1.14    2023-01-17 [2] CRAN (R 4.3.0)
+##  gdtools             0.3.7   2024-03-05 [2] CRAN (R 4.3.2)
+##  gfonts              0.2.0   2023-01-08 [2] CRAN (R 4.3.0)
+##  glue                1.7.0   2024-01-09 [2] CRAN (R 4.3.0)
+##  htmltools           0.5.8   2024-03-25 [2] CRAN (R 4.3.2)
+##  httpcode            0.3.0   2020-04-10 [2] CRAN (R 4.3.0)
+##  httpuv              1.6.15  2024-03-26 [2] CRAN (R 4.3.2)
+##  jsonlite            1.8.8   2023-12-04 [2] CRAN (R 4.3.0)
+##  kableExtra        * 1.4.0   2024-01-24 [1] CRAN (R 4.3.2)
+##  knitr             * 1.45    2023-10-30 [1] CRAN (R 4.3.0)
+##  later               1.3.2   2023-12-06 [2] CRAN (R 4.3.0)
+##  lifecycle           1.0.4   2023-11-07 [2] CRAN (R 4.3.0)
+##  magrittr            2.0.3   2022-03-30 [2] CRAN (R 4.3.0)
+##  mime                0.12    2021-09-28 [2] CRAN (R 4.3.0)
+##  munsell             0.5.0   2018-06-12 [2] CRAN (R 4.3.0)
+##  officer             0.6.5   2024-02-24 [2] CRAN (R 4.3.2)
+##  openssl             2.1.1   2023-09-25 [2] CRAN (R 4.3.0)
+##  processx            3.8.4   2024-03-16 [2] CRAN (R 4.3.2)
+##  promises            1.2.1   2023-08-10 [2] CRAN (R 4.3.0)
+##  ps                  1.7.6   2024-01-18 [2] CRAN (R 4.3.0)
+##  R6                  2.5.1   2021-08-19 [2] CRAN (R 4.3.0)
+##  ragg                1.3.0   2024-03-13 [2] CRAN (R 4.3.2)
+##  Rcpp                1.0.12  2024-01-09 [2] CRAN (R 4.3.0)
+##  rlang               1.1.3   2024-01-10 [2] CRAN (R 4.3.0)
+##  rmarkdown         * 2.26.1  2024-03-26 [2] Github (rstudio/rmarkdown@ee69d59)
+##  rstudioapi          0.16.0  2024-03-24 [2] CRAN (R 4.3.2)
+##  scales              1.3.0   2023-11-28 [2] CRAN (R 4.3.0)
+##  sessioninfo         1.2.2   2021-12-06 [2] CRAN (R 4.3.0)
+##  shiny               1.8.1   2024-03-26 [2] CRAN (R 4.3.2)
+##  stringi             1.8.3   2023-12-11 [2] CRAN (R 4.3.0)
+##  stringr             1.5.1   2023-11-14 [2] CRAN (R 4.3.0)
+##  svglite             2.1.3   2023-12-08 [1] CRAN (R 4.3.0)
+##  systemfonts         1.0.6   2024-03-07 [2] CRAN (R 4.3.2)
+##  textshaping         0.3.7   2023-10-09 [2] CRAN (R 4.3.0)
+##  tinytex           * 0.50    2024-03-16 [2] CRAN (R 4.3.2)
+##  uuid                1.2-0   2024-01-14 [2] CRAN (R 4.3.0)
+##  viridisLite         0.4.2   2023-05-02 [2] CRAN (R 4.3.0)
+##  webshot           * 0.5.5   2023-06-26 [1] CRAN (R 4.3.0)
+##  webshot2          * 0.1.1   2023-08-11 [1] CRAN (R 4.3.0)
+##  websocket           1.4.1   2021-08-18 [1] CRAN (R 4.3.0)
+##  xfun                0.43    2024-03-25 [2] CRAN (R 4.3.2)
+##  xml2                1.3.6   2023-12-04 [2] CRAN (R 4.3.0)
+##  xtable              1.8-4   2019-04-21 [2] CRAN (R 4.3.0)
+##  yaml                2.3.8   2023-12-11 [2] CRAN (R 4.3.0)
+##  zip                 2.3.1   2024-01-27 [2] CRAN (R 4.3.2)
+## 
+##  [1] /Users/slaan3/Library/R/x86_64/4.3/library
+##  [2] /Library/Frameworks/R.framework/Versions/4.3-x86_64/Resources/library
+## 
+## ------------------------------------------------------
+\end{lstlisting}
+
 
   \bibliography{bibliography/book.bib,bibliography/packages.bib}
 

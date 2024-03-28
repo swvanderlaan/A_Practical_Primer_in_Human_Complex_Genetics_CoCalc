@@ -45,16 +45,72 @@ We'll use a few programs throughout this practical. You'll probably need these f
 
 
 
-```{=html}
-<div class="tabwid"><style>.cl-62243b06{}.cl-621c0698{font-family:'Helvetica';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-621f6c7a{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-621f84b2{width:0.924in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-621f84b3{width:2.716in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-621f84bc{width:14.002in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-621f84bd{width:0.924in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-621f84c6{width:2.716in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-621f84c7{width:14.002in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-621f84d0{width:0.924in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-621f84d1{width:2.716in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-621f84da{width:14.002in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table data-quarto-disable-processing='true' class='cl-62243b06'>
+```{=latex}
+\global\setlength{\Oldarrayrulewidth}{\arrayrulewidth}
 
-```
+\global\setlength{\Oldtabcolsep}{\tabcolsep}
 
-<caption style="display:table-caption;">(\#tab:programs)<span>Programs needed for genetic epidemiology.</span></caption>
+\setlength{\tabcolsep}{2pt}
 
-```{=html}
+\renewcommand*{\arraystretch}{1.5}
 
-<thead><tr style="overflow-wrap:break-word;"><th class="cl-621f84b2"><p class="cl-621f6c7a"><span class="cl-621c0698">Program</span></p></th><th class="cl-621f84b3"><p class="cl-621f6c7a"><span class="cl-621c0698">Link</span></p></th><th class="cl-621f84bc"><p class="cl-621f6c7a"><span class="cl-621c0698">Description</span></p></th></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-621f84bd"><p class="cl-621f6c7a"><span class="cl-621c0698">PLINK</span></p></td><td class="cl-621f84c6"><p class="cl-621f6c7a"><span class="cl-621c0698">https://www.cog-genomics.org/plink2/</span></p></td><td class="cl-621f84c7"><p class="cl-621f6c7a"><span class="cl-621c0698">PLINK is a free, open-source genetic analysis tool set, designed to perform a range of basic data parsing and quality control, as well as basic and large-scale analyses in a computationally efficient manner.</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-621f84bd"><p class="cl-621f6c7a"><span class="cl-621c0698">R</span></p></td><td class="cl-621f84c6"><p class="cl-621f6c7a"><span class="cl-621c0698">https://cran.r-project.org/</span></p></td><td class="cl-621f84c7"><p class="cl-621f6c7a"><span class="cl-621c0698">A program to perform statistical analysis and visualizations.</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-621f84bd"><p class="cl-621f6c7a"><span class="cl-621c0698">RStudio</span></p></td><td class="cl-621f84c6"><p class="cl-621f6c7a"><span class="cl-621c0698">https://www.rstudio.com</span></p></td><td class="cl-621f84c7"><p class="cl-621f6c7a"><span class="cl-621c0698">A user-friendly R-wrap-around for code editing, debugging, analyses, and visualization.</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-621f84d0"><p class="cl-621f6c7a"><span class="cl-621c0698">Homebrew</span></p></td><td class="cl-621f84d1"><p class="cl-621f6c7a"><span class="cl-621c0698">https://brew.sh</span></p></td><td class="cl-621f84da"><p class="cl-621f6c7a"><span class="cl-621c0698">A great extension for Mac-users to install really useful programs that Apple didn't.</span></p></td></tr></tbody></table></div>
+
+
+\providecommand{\ascline}[3]{\noalign{\global\arrayrulewidth #1}\arrayrulecolor[HTML]{#2}\cline{#3}}
+
+\begin{longtable}[c]{|p{0.92in}|p{2.72in}|p{14.00in}}
+
+\caption{Programs\ needed\ for\ genetic\ epidemiology.}(\#tab:programs)\\
+
+\ascline{1.5pt}{666666}{1-3}
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 0.92in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{Program}}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 2.72in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{Link}}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 14in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{Description}}}} \\
+
+\ascline{1.5pt}{666666}{1-3}\endfirsthead \caption[]{Programs\ needed\ for\ genetic\ epidemiology.}(\#tab:programs)\\
+
+\ascline{1.5pt}{666666}{1-3}
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 0.92in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{Program}}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 2.72in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{Link}}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 14in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{Description}}}} \\
+
+\ascline{1.5pt}{666666}{1-3}\endhead
+
+
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 0.92in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{PLINK}}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 2.72in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{https://www.cog-genomics.org/plink2/}}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 14in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{PLINK\ is\ a\ free,\ open-source\ genetic\ analysis\ tool\ set,\ designed\ to\ perform\ a\ range\ of\ basic\ data\ parsing\ and\ quality\ control,\ as\ well\ as\ basic\ and\ large-scale\ analyses\ in\ a\ computationally\ efficient\ manner.}}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 0.92in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{R}}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 2.72in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{https://cran.r-project.org/}}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 14in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{A\ program\ to\ perform\ statistical\ analysis\ and\ visualizations.}}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 0.92in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{RStudio}}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 2.72in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{https://www.rstudio.com}}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 14in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{A\ user-friendly\ R-wrap-around\ for\ code\ editing,\ debugging,\ analyses,\ and\ visualization.}}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 0.92in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{Homebrew}}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 2.72in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{https://brew.sh}}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 14in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{\global\setmainfont{Helvetica}{A\ great\ extension\ for\ Mac-users\ to\ install\ really\ useful\ programs\ that\ Apple\ didn't.}}}} \\
+
+\ascline{1.5pt}{666666}{1-3}
+
+
+
+\end{longtable}
+
+
+
+\arrayrulecolor[HTML]{000000}
+
+\global\setlength{\arrayrulewidth}{\Oldarrayrulewidth}
+
+\global\setlength{\tabcolsep}{\Oldtabcolsep}
+
+\renewcommand*{\arraystretch}{1}
 ```
 
 ### RStudio
@@ -65,10 +121,14 @@ Right, onto `PLINK`.
 
 All genetic analyses can be done in PLINK, even on your laptop, but with large datasets, for example [UK Biobank](https://www.ukbiobank.ac.uk){target="_blank"} size, it is better to switch to a [high-performance computing cluster (HPC)](https://en.wikipedia.org/wiki/High-performance_computing){target="_blank"} like we have available at the [Utrecht Science Park](https://wiki.bioinformatics.umcutrecht.nl/bin/view/HPC/WebHome){target="_blank"}. The original PLINK v1.07 can be found [here](https://zzz.bwh.harvard.edu/plink/index.shtml){target="_blank"}, but nowadays we are using a newer, faster version: **PLINK v1.9** which can be found [here](https://www.cog-genomics.org/plink2){target="_blank"}. It still says 'PLINK 1.90 beta' (Figure \@ref(fig:plinkprogram)), but you can consider this version stable and save to work with, but as you can see, some functions are not supported anymore.
 
-<div class="figure" style="text-align: center">
-<img src="img/plink.png" alt="The PLINK v1.9 website." width="85%" />
-<p class="caption">(\#fig:plinkprogram)The PLINK v1.9 website.</p>
-</div>
+\begin{figure}[H]
+
+{\centering \includegraphics[width=0.85\linewidth]{img/plink} 
+
+}
+
+\caption{The PLINK v1.9 website.}(\#fig:plinkprogram)
+\end{figure}
 
 
 ### Alternatives to `PLINK`
@@ -191,10 +251,14 @@ man ls
 
 This will take you to a manual of the program with an extensive description of each flag (Figure \@ref(fig:lsmanual)).
 
-<div class="figure" style="text-align: center">
-<img src="img/ls_manual.png" alt="Partial output from the ls manual." width="85%" />
-<p class="caption">(\#fig:lsmanual)Partial output from the ls manual.</p>
-</div>
+\begin{figure}[H]
+
+{\centering \includegraphics[width=0.85\linewidth]{img/ls_manual} 
+
+}
+
+\caption{Partial output from the ls manual.}(\#fig:lsmanual)
+\end{figure}
 
 ### Installing the software
 
@@ -243,25 +307,37 @@ Now close the terminal window - really make sure that the terminal-program has q
 
 Open your fresh installation of **RStudio** by double clicking the icon. You should be seeing something like figure \@ref(fig:rstudioscreenshot)
 
-<div class="figure" style="text-align: center">
-<img src="img/rstudio-screenshot.png" alt="RStudio screenshot." width="85%" />
-<p class="caption">(\#fig:rstudioscreenshot)RStudio screenshot.</p>
-</div>
+\begin{figure}[H]
+
+{\centering \includegraphics[width=0.85\linewidth]{img/rstudio-screenshot} 
+
+}
+
+\caption{RStudio screenshot.}(\#fig:rstudioscreenshot)
+\end{figure}
 
 
 In the top right, you see a little green-white plus-sign, click this and select 'R Notebook' (Figure \@ref(fig:rstudioscreenshotcreatenotebook)). 
 
-<div class="figure" style="text-align: center">
-<img src="img/rstudio-screenshot-create-notebook.png" alt="RStudio screenshot." width="85%" />
-<p class="caption">(\#fig:rstudioscreenshotcreatenotebook)RStudio screenshot.</p>
-</div>
+\begin{figure}[H]
+
+{\centering \includegraphics[width=0.85\linewidth]{img/rstudio-screenshot-create-notebook} 
+
+}
+
+\caption{RStudio screenshot.}(\#fig:rstudioscreenshotcreatenotebook)
+\end{figure}
 
 You will create an untitled (`Untitled1`) `R` notebook: you can combine text descriptions, like you would in a lab-journal, with code-sections. Read what is in the notebook to get a grasp on that (Figure \@ref(fig:rstudioscreenshotnotebook)). 
 
-<div class="figure" style="text-align: center">
-<img src="img/rstudio-screenshot-notebook.png" alt="RStudio screenshot." width="85%" />
-<p class="caption">(\#fig:rstudioscreenshotnotebook)RStudio screenshot.</p>
-</div>
+\begin{figure}[H]
+
+{\centering \includegraphics[width=0.85\linewidth]{img/rstudio-screenshot-notebook} 
+
+}
+
+\caption{RStudio screenshot.}(\#fig:rstudioscreenshotnotebook)
+\end{figure}
 
 Right, you should be installing some packages. To do so, you can remove `plot(cars)` (or leave and create a new code-block as per instructions in the notebook), and copy paste the code below. Make sure to put in a code block like the example in which `plot(cars)` is in.
 

@@ -26,7 +26,7 @@ rmd_files: ["index.Rmd", # introduction
             "07_epilogue.Rmd", #7
             # "08_1_add_chapter_regional_plot.Rmd", #8.1
             "08_2_add_chapter_eigensoft.Rmd", #8.2
-            "08_3_add_chapter_other_things.Rmd", #8.3
+            # "08_3_add_chapter_other_things.Rmd", #8.3
             "09_Answers_to_questions.Rmd", #9
             "10_todo.Rmd", #10
             "11_licenses.Rmd", #11

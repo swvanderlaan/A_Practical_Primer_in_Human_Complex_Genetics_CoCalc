@@ -32,10 +32,21 @@ We should create _quantile-quantile (QQ) plots_ to compare the observed associat
 
 First, we will add the standard error, call rate, A2, and allele frequencies.
 
-```{r prep-qq, eval = FALSE}
+```{r prep-qq, eval = TRUE}
 library("data.table")
 
 COURSE_loc = "~/Desktop/practical" # getwd()
+
+# gwas_HWE <- data.table::fread(paste0(COURSE_loc, "/dummy_project/gwa.hwe"))
+gwas_FRQ <- data.table::fread(paste0(COURSE_loc, "/dummy_project/gwa.frq"))
+# gwas_IMISS <- data.table::fread(paste0(COURSE_loc, "/dummy_project/gwa.imiss"))
+gwas_LMISS <- data.table::fread(paste0(COURSE_loc, "/dummy_project/gwa.lmiss"))
+
+gwas_assoc <- data.table::fread(paste0(COURSE_loc, "/dummy_project/data.assoc.logistic"))
+
+# gwas_HWE$logP <- -log10(gwas_HWE$P)
+# gwas_IMISS$callrate <- 1 - gwas_IMISS$F_MISS
+gwas_LMISS$callrate <- 1 - gwas_LMISS$F_MISS
 
 gwas_assoc_sub <- subset(gwas_assoc, TEST == "ADD")
 gwas_assoc_sub$TEST <- NULL
@@ -66,17 +77,36 @@ gwas_assoc_compl <- gwas_assoc_subfrqlmiss_tib[, col_order]
 dim(gwas_assoc_compl)
 
 head(gwas_assoc_compl)
-
 ```
 
 Let's list the number of SNPs per chromosome. This gives a pretty good idea about the per-chromosome coverage. And it's a sanity check: did the whole analysis run properly (we expect 22 chromosomes)?
 
-```{r list-chr-qq, eval = FALSE}
-library("knitr")
-
-# Number of SNPs per chromosome
-knitr::kable(table(gwas_assoc_compl$CHR))
+```{r calculatesnpsperchr, eval = TRUE}
+df <- as.data.frame(table(gwas_assoc_compl$CHR))
+names(df)[names(df) == "Var1"] <- "Chr"
 ```
+
+```{r, tab.id='listsnpsperchr', tab.cap='Number of SNPs per chromosome.', eval = FALSE}
+library("flextable")
+ft <- flextable(
+  df,
+  # col_keys = names(data),
+  # cwidth = 0.75,
+  # cheight = 0.25,
+  # defaults = list(),
+  theme_fun = theme_booktabs
+)
+# 
+# set_table_properties(ft, width = 1, layout = "autofit")
+# 
+# fit_to_width(ft, max_width = 50)
+# 
+autofit(ft, add_w = 0, add_h = 0)
+```
+
+> Question: Why do the number of variants per chrosome (approximately) correlate with the chromosome number?
+
+> Question: Where are the data for chromosome X, Y and MT?
 
 Let's plot the QQ plot to diagnose our GWAS. 
 ```{r plot-qq, eval = FALSE}
@@ -93,13 +123,13 @@ abline(h = gwas_threshold,
        col = uithof_color[25], lty = "dashed")
 ```
 
-```{r show-qq, fig.align='center', fig.cap='A QQ plot.', fig.show = TRUE, echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE}
+```{r show-qq, fig.align='center', fig.cap='A QQ plot.', fig.show = TRUE, eval=TRUE}
 knitr::include_graphics(rep("img/_gwas_dummy/show-qq.png"))
 ```
 
 ## Manhattan plots
 
-We also need to create a _Manhattan plot_ to display the association test P-values as a function of chromosomal location and thus provide a visual summary of association test results that draw immediate attention to any regions of significance (Figure \@ref(fig:show-manhattan)).
+We also need to create a _Manhattan plot_ to display the association test P-values as a function of chromosomal location and thus provide a visual summary of association test results that draw immediate attention to any regions of significance (Figure \@ref(fig:showmanhattan)).
 
 ```{r plot-manhattan, eval = FALSE}
 png(paste0(COURSE_loc, "/dummy_project/gwas-manhattan.png"))
@@ -110,7 +140,7 @@ qqman::manhattan(gwas_assoc_compl, main = "Manhattan Plot",
 
 ```
 
-```{r show-manhattan, fig.align='center', fig.cap='A manhattan plot.', fig.show = TRUE, echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE}
+```{r showmanhattan, fig.align='center', fig.cap='A manhattan plot.', fig.show = TRUE, eval=TRUE}
 knitr::include_graphics(rep("img/_gwas_dummy/show-manhattan.png"))
 ```
 
@@ -136,22 +166,22 @@ CMplot(gwas_assoc_complsub,
        main = "", dpi = 300, verbose = TRUE)
 ```
 
-> What do the grey spots on the density plot indicate?
+> Question: What do the grey spots on the density plot indicate?
 
 This would lead to the following graphs. 
-```{r show-cmplot-all-density, fig.align='center', fig.cap='SNP density of the association results.', fig.show = TRUE, echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE}
+```{r showcmplotalldensity, fig.align='center', fig.cap='SNP density of the association results.', fig.show = TRUE, eval=TRUE}
 knitr::include_graphics(rep("img/_gwas_dummy/show-cmplot-all-density.png"))
 ```
 
-```{r show-cmplot-all-qq, fig.align='center', fig.cap='A QQ plot including a 95% confidence interval (blue area) and genome-wide significant hits (red).', fig.show = TRUE, echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE}
+```{r showcmplotallqq, fig.align='center', fig.cap='A QQ plot including a 95% confidence interval (blue area) and genome-wide significant hits (red).', fig.show = TRUE, eval=TRUE}
 knitr::include_graphics(rep("img/_gwas_dummy/show-cmplot-all-qq.png"))
 ```
 
-```{r show-cmplot-all-manhattan, fig.align='center', fig.cap='A regular manhattan plot. Colored by chromosome, suggestive hits are green, genome-wide hits are red. The bottom graph shows the per-chromosome SNP density.', fig.show = TRUE, echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE}
+```{r showcmplotallmanhattan, fig.align='center', fig.cap='A regular manhattan plot. Colored by chromosome, suggestive hits are green, genome-wide hits are red. The bottom graph shows the per-chromosome SNP density.', fig.show = TRUE, eval=TRUE}
 knitr::include_graphics(rep("img/_gwas_dummy/show-cmplot-all-manhattan.png"))
 ```
 
-```{r show-cmplot-all-circular, fig.align='center', fig.cap='A circular manhattan.', fig.show = TRUE, echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE}
+```{r show-cmplot-all-circular, fig.align='center', fig.cap='A circular manhattan.', fig.show = TRUE, eval=TRUE}
 knitr::include_graphics(rep("img/_gwas_dummy/show-cmplot-all-circular.png"))
 ```
 

@@ -59,5 +59,7 @@ bookdown::gitbook:
 #   number_sections: yes
 #   toc: yes
 #   theme: paper
+#   fig_width: 5
+#   fig_height: 4
 #   fig_caption: yes
 

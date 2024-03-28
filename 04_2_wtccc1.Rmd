@@ -288,15 +288,15 @@ PCA_WTCCC1_1kGplot <- ggpubr::ggscatter(PCA_WTCCC1_1kG, x = "V2", y = "V3",
 
 ```
 
-We expect most individuals from the WTCCC to be 100% British, but a substantial group will have a different ancestral background as shown in the Figure \@ref(fig:show-wtccc1-pca) you just made.
+We expect most individuals from the WTCCC to be 100% British, but a substantial group will have a different ancestral background as shown in the Figure \@ref(fig:showwtccc1pca) you just made.
 
-```{r show-wtccc1-pca, fig.align='center', fig.cap='PCA - WTCCC1 vs. 1000G', fig.show = TRUE, echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE}
+```{r showwtccc1pca, fig.align='center', fig.cap='PCA - WTCCC1 vs. 1000G', fig.show = TRUE, echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE}
 knitr::include_graphics(rep("img/_gwas_wtccc/WTCCC1-pca-1000g.png"))
 ```
 
 ### Removing samples
 
-In a similar fashion as in the example _gwas_ and _rawdata_ datasets, you should consider to **remove the samples below the threshold** based on this PCA (Figure \@ref(fig:pca-1000g-wtccc)). 
+In a similar fashion as in the example _gwas_ and _rawdata_ datasets, you should consider to **remove the samples below the threshold** based on this PCA (Figure \@ref(fig:showwtccc1pca)). 
 
 > Go ahead, try that. 
 

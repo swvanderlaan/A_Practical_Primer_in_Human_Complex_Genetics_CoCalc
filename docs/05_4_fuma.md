@@ -18,7 +18,7 @@ You will need to use the `fwrite` function in `r` to write the concatenated resu
 
 <!-- fwrite(na.omit(wtccc1_assoc_compl), paste0(COURSE_loc,"/wtccc1/wtccc1_assoc_compl.txt"), sep = " ", showProgress = TRUE, verbose = TRUE, na = "NA", row.names = FALSE, quote = FALSE) -->
 
-*Question: can you figure out the sample size of the WTCCC1 data you used?*
+> Question: can you figure out the sample size of the WTCCC1 data you used?
 
 Make sure you know what the column-names are in the file, you'll need that for FUMA. You can use `cat your_file | head` to get the first 10 lines of the file.
 
@@ -34,26 +34,26 @@ Don't forget to give your analysis a name.
 
 This will take some time and so it's a good moment to carry on with the rest of the practical or take a break, or study for the exam.
 
-*Questions*
-
-1. How many lead SNPs did we find?
-2. What do the results of MAGMA (the gene-based test) look like and how many genes pass the threshold of multiple testing correction?
-3. How many loci were mapped?
-4. How many genes were physically located and how many were mapped to these loci?
-5. Do you think all loci are 'correct', _i.e._ do you 'believe' all the signals looking at the mapping results? Why?
-6. For what tissues are the signals enriched?
-7. Are there any chromatin interactions discovered?
+> Questions
+> 
+> 1. How many lead SNPs did we find?
+> 2. What do the results of MAGMA (the gene-based test) look like and how many genes pass the threshold of multiple testing correction?
+> 3. How many loci were mapped?
+> 4. How many genes were physically located and how many were mapped to these loci?
+> 5. Do you think all loci are 'correct', _i.e._ do you 'believe' all the signals looking at the mapping results? Why?
+> 6. For what tissues are the signals enriched?
+> 7. Are there any chromatin interactions discovered?
 
 ### Run FUMA - Gene to function
 
 Now that you mapped SNPs to genes, it's time to go back to 'My Jobs'. Select your job and perform `GENE2FUNC`.
 
-*Questions*
-
-1. What genes show the lowest expression across tissues?
-2. And what genes the highest?
-3. For what pathways are the signals enriched?
-4. What molecular functions are mapped to the signals?
+> Questions
+> 
+> 1. What genes show the lowest expression across tissues?
+> 2. And what genes the highest?
+> 3. For what pathways are the signals enriched?
+> 4. What molecular functions are mapped to the signals?
 
 
 ## Some closing thoughts
