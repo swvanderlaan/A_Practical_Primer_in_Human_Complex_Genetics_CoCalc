@@ -12,26 +12,16 @@ There are several options in (Table \@ref(tab:tab-phewas)).
 
 
 
-\begin{table}
 
-\caption{(\#tab:tab-phewas)PheWAS Resources.}
-\centering
-\begin{tabular}[t]{l|l}
-\hline
-Site & Description\\
-\hline
-https://atlas.ctglab.nl & 4,155 GWAS based on UK Biobank release 2\\
-\hline
-https://biobankengine.stanford.edu & UK Biobank based\\
-\hline
-http://pheweb.sph.umich.edu & University of Michigan EHR-based PheWAS\\
-\hline
-http://pheweb.sph.umich.edu/SAIGE-UKB/ & 1,403 GWAS UK Biobank based\\
-\hline
-http://phewas.mrbase.org & UK Biobank based\\
-\hline
-\end{tabular}
-\end{table}
+Table: (\#tab:tab-phewas)PheWAS Resources.
+
+|Site                                   |Description                              |
+|:--------------------------------------|:----------------------------------------|
+|https://atlas.ctglab.nl                |4,155 GWAS based on UK Biobank release 2 |
+|https://biobankengine.stanford.edu     |UK Biobank based                         |
+|http://pheweb.sph.umich.edu            |University of Michigan EHR-based PheWAS  |
+|http://pheweb.sph.umich.edu/SAIGE-UKB/ |1,403 GWAS UK Biobank based              |
+|http://phewas.mrbase.org               |UK Biobank based                         |
 
 
 *Assignment*

@@ -23,14 +23,10 @@ Let's visualize the results to identify a threshold for extreme genotype failure
 
 
 
-\begin{figure}[H]
-
-{\centering \includegraphics[width=0.85\linewidth]{img/_gwas_dummy/show-snp-callrate} 
-
-}
-
-\caption{Per SNP call rate.}(\#fig:showsnpcallrate)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="img/_gwas_dummy/show-snp-callrate.png" alt="Per SNP call rate." width="85%" />
+<p class="caption">(\#fig:showsnpcallrate)Per SNP call rate.</p>
+</div>
 
 ## Differential SNP call rates
 
@@ -60,14 +56,10 @@ Let's also plot these data. You can view the result below, and try it yourself (
 
 
 
-\begin{figure}[H]
-
-{\centering \includegraphics[width=0.85\linewidth]{img/_gwas_dummy/show-freq} 
-
-}
-
-\caption{Minor allele frequency.}(\#fig:showfreq)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="img/_gwas_dummy/show-freq.png" alt="Minor allele frequency." width="85%" />
+<p class="caption">(\#fig:showfreq)Minor allele frequency.</p>
+</div>
 
 ### A note on allele coding
 
@@ -106,14 +98,10 @@ Let's also plot these data. You can view the result below, and type over the cod
 
 
 
-\begin{figure}[H]
-
-{\centering \includegraphics[width=0.85\linewidth]{img/_gwas_dummy/show-hwe} 
-
-}
-
-\caption{Hardy-Weinberg Equilibrium p-values per stratum.}(\#fig:showhwe)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="img/_gwas_dummy/show-hwe.png" alt="Hardy-Weinberg Equilibrium p-values per stratum." width="85%" />
+<p class="caption">(\#fig:showhwe)Hardy-Weinberg Equilibrium p-values per stratum.</p>
+</div>
 
 ## Final SNP QC
 

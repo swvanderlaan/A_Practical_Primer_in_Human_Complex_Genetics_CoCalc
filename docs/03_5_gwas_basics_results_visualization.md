@@ -15,22 +15,22 @@ First, we will add the standard error, call rate, A2, and allele frequencies.
 
 ```
 ## Key: <SNP>
-##           SNP   CHR        BP     A1 NMISS     OR
-##        <char> <int>     <int> <char> <int>  <num>
-## 1: rs10000010     4  21227772      C  3996 1.0420
-## 2: rs10000023     4  95952929      T  3957 0.9902
-## 3: rs10000030     4 103593179      A  3991 0.9779
-## 4:  rs1000007     2 237416793      C  4000 1.0180
-## 5: rs10000092     4  21504615      C  3963 0.9240
-## 6: rs10000121     4 157793485      G  3919 0.9665
-##       STAT       P     A2    MAF NCHROBS callrate
-##      <num>   <num> <char>  <num>   <int>    <num>
-## 1:  0.9010 0.36760      T 0.4258    7992  0.99900
-## 2: -0.2160 0.82900      G 0.4841    7914  0.98925
-## 3: -0.3696 0.71170      G 0.1616    7982  0.99775
-## 4:  0.3649 0.71520      T 0.3122    8000  1.00000
-## 5: -1.6770 0.09354      T 0.3430    7926  0.99075
-## 6: -0.7525 0.45170      A 0.4532    7838  0.97975
+##           SNP   CHR        BP     A1 NMISS     OR    STAT       P     A2    MAF
+##        <char> <int>     <int> <char> <int>  <num>   <num>   <num> <char>  <num>
+## 1: rs10000010     4  21227772      C  3996 1.0420  0.9010 0.36760      T 0.4258
+## 2: rs10000023     4  95952929      T  3957 0.9902 -0.2160 0.82900      G 0.4841
+## 3: rs10000030     4 103593179      A  3991 0.9779 -0.3696 0.71170      G 0.1616
+## 4:  rs1000007     2 237416793      C  4000 1.0180  0.3649 0.71520      T 0.3122
+## 5: rs10000092     4  21504615      C  3963 0.9240 -1.6770 0.09354      T 0.3430
+## 6: rs10000121     4 157793485      G  3919 0.9665 -0.7525 0.45170      A 0.4532
+##    NCHROBS callrate
+##      <int>    <num>
+## 1:    7992  0.99900
+## 2:    7914  0.98925
+## 3:    7982  0.99775
+## 4:    8000  1.00000
+## 5:    7926  0.99075
+## 6:    7838  0.97975
 ```
 
 ```
@@ -38,17 +38,16 @@ First, we will add the standard error, call rate, A2, and allele frequencies.
 ```
 
 ```
-## # A tibble: 6 x 14
-##   SNP        CHR     BP A1    A2      MAF callrate NMISS
-##   <chr>    <int>  <int> <chr> <chr> <dbl>    <dbl> <int>
-## 1 rs10000~     4 2.12e7 C     T     0.426    0.999  3996
-## 2 rs10000~     4 9.60e7 T     G     0.484    0.989  3957
-## 3 rs10000~     4 1.04e8 A     G     0.162    0.998  3991
-## 4 rs10000~     2 2.37e8 C     T     0.312    1      4000
-## 5 rs10000~     4 2.15e7 C     T     0.343    0.991  3963
-## 6 rs10000~     4 1.58e8 G     A     0.453    0.980  3919
-## # i 6 more variables: NCHROBS <int>, BETA <dbl>,
-## #   SE <dbl>, OR <dbl>, STAT <dbl>, P <dbl>
+## # A tibble: 6 × 14
+##   SNP        CHR     BP A1    A2      MAF callrate NMISS NCHROBS     BETA     SE
+##   <chr>    <int>  <int> <chr> <chr> <dbl>    <dbl> <int>   <int>    <dbl>  <dbl>
+## 1 rs10000…     4 2.12e7 C     T     0.426    0.999  3996    7992  0.0411  0.0457
+## 2 rs10000…     4 9.60e7 T     G     0.484    0.989  3957    7914 -0.00985 0.0456
+## 3 rs10000…     4 1.04e8 A     G     0.162    0.998  3991    7982 -0.0223  0.0605
+## 4 rs10000…     2 2.37e8 C     T     0.312    1      4000    8000  0.0178  0.0489
+## 5 rs10000…     4 2.15e7 C     T     0.343    0.991  3963    7926 -0.0790  0.0471
+## 6 rs10000…     4 1.58e8 G     A     0.453    0.980  3919    7838 -0.0341  0.0453
+## # ℹ 3 more variables: OR <dbl>, STAT <dbl>, P <dbl>
 ```
 
 Let's list the number of SNPs per chromosome. This gives a pretty good idea about the per-chromosome coverage. And it's a sanity check: did the whole analysis run properly (we expect 22 chromosomes)?
@@ -64,14 +63,10 @@ Let's list the number of SNPs per chromosome. This gives a pretty good idea abou
 Let's plot the QQ plot to diagnose our GWAS. 
 
 
-\begin{figure}[H]
-
-{\centering \includegraphics[width=0.85\linewidth]{img/_gwas_dummy/show-qq} 
-
-}
-
-\caption{A QQ plot.}(\#fig:show-qq)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="img/_gwas_dummy/show-qq.png" alt="A QQ plot." width="85%" />
+<p class="caption">(\#fig:show-qq)A QQ plot.</p>
+</div>
 
 ## Manhattan plots
 
@@ -79,14 +74,10 @@ We also need to create a _Manhattan plot_ to display the association test P-valu
 
 
 
-\begin{figure}[H]
-
-{\centering \includegraphics[width=0.85\linewidth]{img/_gwas_dummy/show-manhattan} 
-
-}
-
-\caption{A manhattan plot.}(\#fig:showmanhattan)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="img/_gwas_dummy/show-manhattan.png" alt="A manhattan plot." width="85%" />
+<p class="caption">(\#fig:showmanhattan)A manhattan plot.</p>
+</div>
 
 ## Other plots
 
@@ -100,41 +91,25 @@ It is also informative to plot the density per chromosome. We can use the `CMplo
 > Question: What do the grey spots on the density plot indicate?
 
 This would lead to the following graphs. 
-\begin{figure}[H]
+<div class="figure" style="text-align: center">
+<img src="img/_gwas_dummy/show-cmplot-all-density.png" alt="SNP density of the association results." width="85%" />
+<p class="caption">(\#fig:showcmplotalldensity)SNP density of the association results.</p>
+</div>
 
-{\centering \includegraphics[width=0.85\linewidth]{img/_gwas_dummy/show-cmplot-all-density} 
+<div class="figure" style="text-align: center">
+<img src="img/_gwas_dummy/show-cmplot-all-qq.png" alt="A QQ plot including a 95% confidence interval (blue area) and genome-wide significant hits (red)." width="85%" />
+<p class="caption">(\#fig:showcmplotallqq)A QQ plot including a 95% confidence interval (blue area) and genome-wide significant hits (red).</p>
+</div>
 
-}
+<div class="figure" style="text-align: center">
+<img src="img/_gwas_dummy/show-cmplot-all-manhattan.png" alt="A regular manhattan plot. Colored by chromosome, suggestive hits are green, genome-wide hits are red. The bottom graph shows the per-chromosome SNP density." width="85%" />
+<p class="caption">(\#fig:showcmplotallmanhattan)A regular manhattan plot. Colored by chromosome, suggestive hits are green, genome-wide hits are red. The bottom graph shows the per-chromosome SNP density.</p>
+</div>
 
-\caption{SNP density of the association results.}(\#fig:showcmplotalldensity)
-\end{figure}
-
-\begin{figure}[H]
-
-{\centering \includegraphics[width=0.85\linewidth]{img/_gwas_dummy/show-cmplot-all-qq} 
-
-}
-
-\caption{A QQ plot including a 95\% confidence interval (blue area) and genome-wide significant hits (red).}(\#fig:showcmplotallqq)
-\end{figure}
-
-\begin{figure}[H]
-
-{\centering \includegraphics[width=0.85\linewidth]{img/_gwas_dummy/show-cmplot-all-manhattan} 
-
-}
-
-\caption{A regular manhattan plot. Colored by chromosome, suggestive hits are green, genome-wide hits are red. The bottom graph shows the per-chromosome SNP density.}(\#fig:showcmplotallmanhattan)
-\end{figure}
-
-\begin{figure}[H]
-
-{\centering \includegraphics[width=0.85\linewidth]{img/_gwas_dummy/show-cmplot-all-circular} 
-
-}
-
-\caption{A circular manhattan.}(\#fig:show-cmplot-all-circular)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="img/_gwas_dummy/show-cmplot-all-circular.png" alt="A circular manhattan." width="85%" />
+<p class="caption">(\#fig:show-cmplot-all-circular)A circular manhattan.</p>
+</div>
 
 ## Interactive plots
 

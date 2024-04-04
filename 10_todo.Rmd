@@ -61,6 +61,8 @@ List of to-do's according to MoSCoW: _Must have_, _Should have_, _Could have_, _
 - [] `C` GWASToolKit
 - [] `C` PlaqView lookups
 
+- [] `W` add in full installation instructions for Windows
+
 ## Book fixes
 
 - [x] `M` overall rendering too slow, paste in images as figure instead of on the fly generating

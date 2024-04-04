@@ -2,7 +2,7 @@
 title: "A Practical Primer in Human Complex Genetics"
 subtitle: "with a use-case in cardiovascular disease"
 author: "[dr. Sander W. van der Laan](https://vanderlaanand.science) [![](./img/_logo/twitter_circle_blue.png){width=2%}](https://www.twitter.com/swvanderlaan) [![](./img/_logo/email_circle_blue.png){width=2%}](mailto:s.w.vanderlaan@gmail.com)"
-date: "Version 2.0.2 (2024-03-27)"
+date: "Version 2.0.2 (2024-04-04)"
 description: "This is a practical primer in human complex genetics with a use-case in cardiovascular disease. The output format for this primer is bookdown::gitbook."
 documentclass: book
 github-repo: swvanderlaan/A_Practical_Primer_in_Human_Complex_Genetics
@@ -36,4 +36,7 @@ I can imagine this seems overwhelming, but trust me, you'll be okay. Just follow
 
 <!-- Your first point of action is to prepare your system for this course in Chapter \@ref(somebackgroundreading). -->
 
-
+<script>
+title=document.getElementById('header');
+title.innerHTML = '<img src="img/_headers/banner_man_standing_dna.png" alt="A Practical Primer in Human Complex Genetics">' + title.innerHTML
+</script>

@@ -8,8 +8,8 @@ bookdown::gitbook:
         <li><a href="./">A Practical Primer in Human Complex Genetics</a></li>
       after: |
         <li><a href="https://vanderlaanand.science" target="blank">&copy; 1979-2024. Sander W. van der Laan.</a></li>
-    # toolbar:
-    #   position: fixed
+    toolbar:
+      position: fixed
     # edit: https://github.com/swvanderlaan/A_Practical_Primer_in_Human_Complex_Genetics/tree/master%s
     download:
       - ["A-Practical-Primer-in-Human-Complex-Genetics.pdf", "PDF"]
@@ -55,11 +55,62 @@ bookdown::gitbook:
 #   chapter_level: 1
 #   epub_version: "epub"
 #   template: "default"
-# bookdown::html_document:
-#   number_sections: yes
-#   toc: yes
-#   theme: paper
-#   fig_width: 5
-#   fig_height: 4
-#   fig_caption: yes
-
+bookdown::html_document2:
+  css: style.css
+  toc: yes
+  toc_float:
+    collapsed: yes
+    smooth_scroll: yes
+    position: right
+    right: 0
+    left: auto
+    margin_top: 20px
+    margin_bottom: 20px
+    margin_right: 20px
+    margin_left: auto
+    z_index: 1001
+    width: auto
+    height: auto
+    background: "#f8f9fa"
+    border: "1px solid #e9ecef"
+    border_radius: 5px
+    opacity: 0.9
+    transition: "0.2s"
+    scroll_highlight: yes
+    before: |
+      <li><a href="./">A Practical Primer in Human Complex Genetics</a></li>
+    after: |
+      <li><a href="https://vanderlaanand.science" target="blank">&copy; 1979-2024. Sander W. van der Laan.</a></li>
+  number_sections: yes
+  theme: paper
+  fig_width: 5
+  fig_height: 4
+  fig_caption: yes
+  code_folding: hide
+  code_download: yes
+  code_copy: yes
+  toolbar:
+    position: fixed
+  download:
+    - ["A-Practical-Primer-in-Human-Complex-Genetics.pdf", "PDF"]
+    - ["A-Practical-Primer-in-Human-Complex-Genetics.epub", "EPUB"]
+  search:
+    engine: lunr # or fuse
+    # options to control/tune search engine behavior (for
+    # fuse.js, refer to https://fusejs.io/api/options.html)
+    options: null
+  # fontsettings:
+  #   theme: white
+  #   family: sans-serif
+  #   size: 2
+  sharing:
+    facebook: false
+    github: true
+    twitter: true
+    linkedin: true
+    weibo: false
+    instapaper: false
+    vk: false
+    whatsapp: true
+    all: false #['facebook', 'twitter', 'linkedin', 'whatsapp']
+  info: true

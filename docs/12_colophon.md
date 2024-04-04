@@ -8,30 +8,32 @@ The 2022 and 2024 editions of this book were produce in RStudio and with the `bo
 
 
 ```
-## - Session info ---------------------------------------
+## ─ Session info ───────────────────────────────────────────────────────────────
 ##  setting  value
 ##  version  R version 4.3.3 (2024-02-29)
-##  os       macOS Sonoma 14.4.1
+##  os       macOS Sonoma 14.5
 ##  system   x86_64, darwin20
 ##  ui       X11
 ##  language (EN)
 ##  collate  en_US.UTF-8
 ##  ctype    en_US.UTF-8
 ##  tz       America/New_York
-##  date     2024-03-27
+##  date     2024-04-04
 ##  pandoc   3.1.1 @ /Applications/RStudio.app/Contents/Resources/app/quarto/bin/tools/ (via rmarkdown)
 ## 
-## - Packages -------------------------------------------
+## ─ Packages ───────────────────────────────────────────────────────────────────
 ##  package           * version date (UTC) lib source
 ##  askpass             1.2.0   2023-09-03 [2] CRAN (R 4.3.0)
 ##  bookdown          * 0.38.1  2024-03-26 [2] Github (rstudio/bookdown@50a1c1e)
+##  bslib               0.6.2   2024-03-22 [2] CRAN (R 4.3.2)
+##  cachem              1.0.8   2023-05-01 [2] CRAN (R 4.3.0)
 ##  chromote            0.2.0   2024-02-12 [1] CRAN (R 4.3.2)
 ##  cli                 3.6.2   2023-12-11 [2] CRAN (R 4.3.0)
 ##  colorspace          2.1-0   2023-01-23 [2] CRAN (R 4.3.0)
 ##  crayon              1.5.2   2022-09-29 [2] CRAN (R 4.3.0)
 ##  crul                1.4.0   2023-05-17 [2] CRAN (R 4.3.0)
 ##  curl                5.2.1   2024-03-01 [2] CRAN (R 4.3.2)
-##  data.table          1.15.2  2024-02-29 [2] CRAN (R 4.3.2)
+##  data.table          1.15.4  2024-03-30 [1] CRAN (R 4.3.2)
 ##  digest              0.6.35  2024-03-11 [2] CRAN (R 4.3.2)
 ##  evaluate            0.23    2023-11-01 [2] CRAN (R 4.3.0)
 ##  fastmap             1.1.1   2023-02-24 [2] CRAN (R 4.3.0)
@@ -46,6 +48,7 @@ The 2022 and 2024 editions of this book were produce in RStudio and with the `bo
 ##  htmltools           0.5.8   2024-03-25 [2] CRAN (R 4.3.2)
 ##  httpcode            0.3.0   2020-04-10 [2] CRAN (R 4.3.0)
 ##  httpuv              1.6.15  2024-03-26 [2] CRAN (R 4.3.2)
+##  jquerylib           0.1.4   2021-04-26 [2] CRAN (R 4.3.0)
 ##  jsonlite            1.8.8   2023-12-04 [2] CRAN (R 4.3.0)
 ##  kableExtra        * 1.4.0   2024-01-24 [1] CRAN (R 4.3.2)
 ##  knitr             * 1.45    2023-10-30 [1] CRAN (R 4.3.0)
@@ -53,7 +56,7 @@ The 2022 and 2024 editions of this book were produce in RStudio and with the `bo
 ##  lifecycle           1.0.4   2023-11-07 [2] CRAN (R 4.3.0)
 ##  magrittr            2.0.3   2022-03-30 [2] CRAN (R 4.3.0)
 ##  mime                0.12    2021-09-28 [2] CRAN (R 4.3.0)
-##  munsell             0.5.0   2018-06-12 [2] CRAN (R 4.3.0)
+##  munsell             0.5.1   2024-04-01 [1] CRAN (R 4.3.2)
 ##  officer             0.6.5   2024-02-24 [2] CRAN (R 4.3.2)
 ##  openssl             2.1.1   2023-09-25 [2] CRAN (R 4.3.0)
 ##  processx            3.8.4   2024-03-16 [2] CRAN (R 4.3.2)
@@ -65,6 +68,7 @@ The 2022 and 2024 editions of this book were produce in RStudio and with the `bo
 ##  rlang               1.1.3   2024-01-10 [2] CRAN (R 4.3.0)
 ##  rmarkdown         * 2.26.1  2024-03-26 [2] Github (rstudio/rmarkdown@ee69d59)
 ##  rstudioapi          0.16.0  2024-03-24 [2] CRAN (R 4.3.2)
+##  sass                0.4.9   2024-03-15 [2] CRAN (R 4.3.2)
 ##  scales              1.3.0   2023-11-28 [2] CRAN (R 4.3.0)
 ##  sessioninfo         1.2.2   2021-12-06 [2] CRAN (R 4.3.0)
 ##  shiny               1.8.1   2024-03-26 [2] CRAN (R 4.3.2)
@@ -88,7 +92,7 @@ The 2022 and 2024 editions of this book were produce in RStudio and with the `bo
 ##  [1] /Users/slaan3/Library/R/x86_64/4.3/library
 ##  [2] /Library/Frameworks/R.framework/Versions/4.3-x86_64/Resources/library
 ## 
-## ------------------------------------------------------
+## ──────────────────────────────────────────────────────────────────────────────
 ```
 
 <!-- ```{js, echo = FALSE} -->

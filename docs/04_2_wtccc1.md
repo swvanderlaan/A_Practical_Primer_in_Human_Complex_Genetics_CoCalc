@@ -24,42 +24,30 @@ Let's investigate the HWE p-value in the whole cohort, and per stratum (cases an
 
 This will result in Figure \@ref(fig:show-wtccc1-hwe).
 
-\begin{figure}[H]
-
-{\centering \includegraphics[width=0.85\linewidth]{img/_gwas_wtccc/WTCCC1-HWE} 
-
-}
-
-\caption{Stratified HWE p-values.}(\#fig:show-wtccc1-hwe)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="img/_gwas_wtccc/WTCCC1-HWE.png" alt="Stratified HWE p-values." width="85%" />
+<p class="caption">(\#fig:show-wtccc1-hwe)Stratified HWE p-values.</p>
+</div>
 
 We should also inspect the allele frequencies. Note that _by default_ PLINK (whether v0.7, v1.9, or v2.0) stores the alleles as minor (A1) and major (A2), and therefore `--maf` _always_ calculates the frequency of the minor allele (A1).
 
 
 This will result in Figure \@ref(fig:show-wtccc1-freq).
 
-\begin{figure}[H]
-
-{\centering \includegraphics[width=0.85\linewidth]{img/_gwas_wtccc/WTCCC1-FREQ} 
-
-}
-
-\caption{Minor allele frequencies.}(\#fig:show-wtccc1-freq)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="img/_gwas_wtccc/WTCCC1-FREQ.png" alt="Minor allele frequencies." width="85%" />
+<p class="caption">(\#fig:show-wtccc1-freq)Minor allele frequencies.</p>
+</div>
 
 There could be sample with very poor overall call rate, where for many SNPs there is no data. We will want to identify these samples and exclude them. 
 
 
 This will result in Figure \@ref(fig:show-wtccc1-callratesample).
 
-\begin{figure}[H]
-
-{\centering \includegraphics[width=0.85\linewidth]{img/_gwas_wtccc/WTCCC1-callrate-samples} 
-
-}
-
-\caption{Per sample call rate.}(\#fig:show-wtccc1-callratesample)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="img/_gwas_wtccc/WTCCC1-callrate-samples.png" alt="Per sample call rate." width="85%" />
+<p class="caption">(\#fig:show-wtccc1-callratesample)Per sample call rate.</p>
+</div>
 
 Lastly, we must inspect the per SNP call rate; we need to know if there are SNPs that have no data for many samples. We will want to identify such SNPs and exclude these.
 
@@ -67,14 +55,10 @@ Lastly, we must inspect the per SNP call rate; we need to know if there are SNPs
 
 This will result in Figure \@ref(fig:show-wtccc1-callratesnp).
 
-\begin{figure}[H]
-
-{\centering \includegraphics[width=0.85\linewidth]{img/_gwas_wtccc/WTCCC1-callrate-SNPs} 
-
-}
-
-\caption{Per SNP call rate.}(\#fig:show-wtccc1-callratesnp)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="img/_gwas_wtccc/WTCCC1-callrate-SNPs.png" alt="Per SNP call rate." width="85%" />
+<p class="caption">(\#fig:show-wtccc1-callratesnp)Per SNP call rate.</p>
+</div>
 
 ## Quality control
 
@@ -182,14 +166,10 @@ And we should visualize the PCA results: are these individuals really all from E
 
 We expect most individuals from the WTCCC to be 100% British, but a substantial group will have a different ancestral background as shown in the Figure \@ref(fig:showwtccc1pca) you just made.
 
-\begin{figure}[H]
-
-{\centering \includegraphics[width=0.85\linewidth]{img/_gwas_wtccc/WTCCC1-pca-1000g} 
-
-}
-
-\caption{PCA - WTCCC1 vs. 1000G}(\#fig:showwtccc1pca)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="img/_gwas_wtccc/WTCCC1-pca-1000g.png" alt="PCA - WTCCC1 vs. 1000G" width="85%" />
+<p class="caption">(\#fig:showwtccc1pca)PCA - WTCCC1 vs. 1000G</p>
+</div>
 
 ### Removing samples
 
@@ -244,41 +224,25 @@ You could visualize these results with the code below.
 
 
 This would lead to the following graphs. 
-\begin{figure}[H]
+<div class="figure" style="text-align: center">
+<img src="img/_gwas_wtccc/WTCCC1ResultsManhattan-density.png" alt="SNP density of the association results." width="85%" />
+<p class="caption">(\#fig:show-wtccc1-graphs-density)SNP density of the association results.</p>
+</div>
 
-{\centering \includegraphics[width=0.85\linewidth]{img/_gwas_wtccc/WTCCC1ResultsManhattan-density} 
+<div class="figure" style="text-align: center">
+<img src="img/_gwas_wtccc/WTCCC1ResultsManhattan-qq.png" alt="A QQ plot including a 95% confidence interval (blue area) and genome-wide significant hits (red)." width="85%" />
+<p class="caption">(\#fig:show-wtccc1-graphs-qq)A QQ plot including a 95% confidence interval (blue area) and genome-wide significant hits (red).</p>
+</div>
 
-}
+<div class="figure" style="text-align: center">
+<img src="img/_gwas_wtccc/WTCCC1ResultsManhattan-manhattan.png" alt="A regular manhattan plot. Colored by chromosome, suggestive hits are green, genome-wide hits are red. The bottom graph shows the per-chromosome SNP density." width="85%" />
+<p class="caption">(\#fig:show-wtccc1-graphs-manhattan)A regular manhattan plot. Colored by chromosome, suggestive hits are green, genome-wide hits are red. The bottom graph shows the per-chromosome SNP density.</p>
+</div>
 
-\caption{SNP density of the association results.}(\#fig:show-wtccc1-graphs-density)
-\end{figure}
-
-\begin{figure}[H]
-
-{\centering \includegraphics[width=0.85\linewidth]{img/_gwas_wtccc/WTCCC1ResultsManhattan-qq} 
-
-}
-
-\caption{A QQ plot including a 95\% confidence interval (blue area) and genome-wide significant hits (red).}(\#fig:show-wtccc1-graphs-qq)
-\end{figure}
-
-\begin{figure}[H]
-
-{\centering \includegraphics[width=0.85\linewidth]{img/_gwas_wtccc/WTCCC1ResultsManhattan-manhattan} 
-
-}
-
-\caption{A regular manhattan plot. Colored by chromosome, suggestive hits are green, genome-wide hits are red. The bottom graph shows the per-chromosome SNP density.}(\#fig:show-wtccc1-graphs-manhattan)
-\end{figure}
-
-\begin{figure}[H]
-
-{\centering \includegraphics[width=0.85\linewidth]{img/_gwas_wtccc/WTCCC1ResultsManhattan-circular} 
-
-}
-
-\caption{A circular manhattan.}(\#fig:show-wtccc1-graphs-circular)
-\end{figure}
+<div class="figure" style="text-align: center">
+<img src="img/_gwas_wtccc/WTCCC1ResultsManhattan-circular.png" alt="A circular manhattan." width="85%" />
+<p class="caption">(\#fig:show-wtccc1-graphs-circular)A circular manhattan.</p>
+</div>
 
 ## Replication! 
 
