@@ -19,17 +19,17 @@ rmd_files: ["index.Rmd", # introduction
             "04_1_wtccc1_intro.Rmd", #4.1
             "04_2_wtccc1.Rmd", #4.2
             "05_1_post_gwas.Rmd", #5.1
-            # "05_2_conditional_analysis.Rmd", #5.2
-            # "05_3_finemapping.Rmd", #5.3
+            # # "05_2_conditional_analysis.Rmd", #5.2
+            # # "05_3_finemapping.Rmd", #5.3
             "05_4_fuma.Rmd", #5.4
             "05_5_phewas.Rmd", #5.5
             "05_6_mendelian_randomization_mr_base.Rmd", #5.6
-            # "05_7_mendelian_randomization_twosamplemr.Rmd", #5.7
-            # "06_summary.Rmd", #6
+            # # "05_7_mendelian_randomization_twosamplemr.Rmd", #5.7
+            # # "06_summary.Rmd", #6
             "07_epilogue.Rmd", #7
-            # "08_1_add_chapter_regional_plot.Rmd", #8.1
+            # # "08_1_add_chapter_regional_plot.Rmd", #8.1
             "08_2_add_chapter_eigensoft.Rmd", #8.2
-            # "08_3_add_chapter_other_things.Rmd", #8.3
+            # # "08_3_add_chapter_other_things.Rmd", #8.3
             "09_Answers_to_questions.Rmd", #9
             # "10_todo.Rmd", #10
             "11_licenses.Rmd", #11
