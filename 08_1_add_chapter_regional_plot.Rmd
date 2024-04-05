@@ -154,9 +154,9 @@ for(VARIANT in variants_of_interest){
   
   print(p1)
   cat(paste0("Saving image for ", VARIANT,".\n"))
-  ggsave(filename = paste0(COURSE_loc, "/gwas/", tempVARIANTnr, ".",VARIANT,".regional_assoc.png"), plot = p1)
-  # ggsave(filename = paste0(COURSE_loc, "/gwas/", tempVARIANTnr, ".",VARIANT,".regional_assoc.pdf"), plot = p1)
-  # ggsave(filename = paste0(COURSE_loc, "/gwas/", tempVARIANTnr, ".",VARIANT,".regional_assoc.eps"), plot = p1)
+  ggsave(filename = paste0(COURSE_loc, "/dummy_project/", tempVARIANTnr, ".",VARIANT,".regional_assoc.png"), plot = p1)
+  # ggsave(filename = paste0(COURSE_loc, "/dummy_project/", tempVARIANTnr, ".",VARIANT,".regional_assoc.pdf"), plot = p1)
+  # ggsave(filename = paste0(COURSE_loc, "/dummy_project/", tempVARIANTnr, ".",VARIANT,".regional_assoc.eps"), plot = p1)
   
   rm(temp, p1,
      temp_f, temp_f_ld,
