@@ -43,17 +43,18 @@ Briefly, the workflow of a Two-Sample MR is as follows (see also diagram below):
 `TwoSampleMR` is free use. It used to require server-authentication using a gmail-account, now it doesn't anymore. Should run into an issue, please refer to [this page](https://mrcieu.github.io/TwoSampleMR/articles/introduction.html){target="_blank"}.
 
 First we load the package.
-```{r load TwoSampleMR}
+```{r load TwoSampleMR, echo = TRUE, eval = TRUE}
 library("TwoSampleMR")
 library("MRInstruments")
+library("ieugwasr")
 ```
+
 
 ## Available outcome
 
 We are ready to load in the available outcomes. 
-```{r listGWAS}
-ao_mr <- available_outcomes()
-
+```{r listGWAS, echo = TRUE, eval = TRUE}
+ao_twosamplemr <- available_outcomes()
 ```
 
 ## Instruments
@@ -69,18 +70,17 @@ The `MRInstruments`-package, which comes with `TwoSampleMR`, includes several ty
 
 Let's select T2D associated instruments.
 
-```{r MR_instruments_exposure}
+```{r MR_instruments_exposure, echo = TRUE, eval = TRUE}
 data("gwas_catalog")
 t2d_gwas <- subset(gwas_catalog, grepl("Mahajan", Author) & PubmedID == "24509480" & Phenotype == "Type 2 diabetes")
 t2d_exp_dat <- format_data(t2d_gwas)
-
 ```
 
 ## Clumping
 
 Like with identifying independent GWAS hits, it is important for TwoSampleMR to ensure that the instruments for the exposure are independent. We can use MR Base to perform clumping. The European samples from the 1000 genomes project are used to estimate LD between SNPs. You can provide a list of SNP IDs, the SNPs will be extracted from 1000 genomes data, LD calculated between them, and amongst those SNPs that have LD R-square above the specified threshold only the SNP with the lowest P-value will be retained. To do this, use the following command.
 
-```{r MR_clump}
+```{r MR_clump, echo = TRUE, eval = TRUE}
 t2d_exp_dat <- clump_data(t2d_exp_dat)
 ```
 
@@ -88,14 +88,30 @@ t2d_exp_dat <- clump_data(t2d_exp_dat)
 
 Right, so now we are ready to select the proper outcome, CAD. There are multiple datasets available in MRBase, the database used by `TwoSampleMR`. Let's review them all and select one with the largest overlap with our exposure SNPs.
 
-```{r MR_outcomes}
-ao_twosamplemr <- available_outcomes()
-
+```{r MR_outcomes_grep_chd, echo = TRUE, eval = TRUE}
 ao_twosamplemr[grepl("heart disease", ao_twosamplemr$trait), ]
+```
 
+It turns out there are several options listed below. 
+
+| Code        | Year        | Author      | Description | Ncases      | Ncontrols |
+|-------------|-------------|-------------|-----------|-------------|-------------|
+| ukb-d-I9_IHD | 2018 | Neale Labe | Ischaemic heart disease, wide definition | 20857 | 340337 |
+| ukb-d-I9_CHD_NOREV | 2018 | Neale Labe | Major coronary heart disease event excluding revascularizations 10157 351037 |
+| ieu-a-7 | 2015 | Nikpay _et al._  | Coronary artery disease | 60801 123504 |
+| ieu-a-9 | 2013 | Deloukas _et al. _ | Coronary artery disease | 63746 130681 |
+| ieu-a-8 | 2011 | Schunkert _et al._ | Coronary artery disease | 22233 | 64762 |
+
+We will use the `ieu-a-7` dataset as this provides the latest and the greatest, but at the same time (when you go into the literature and dig up the publication) you need a good and sharp definition of the outcome you are interested in.
+
+
+```{r MR_outcomes, echo = TRUE, eval = TRUE}
 chd_out_dat <- extract_outcome_data(
     snps = t2d_exp_dat$SNP,
-    outcomes = "UKB-a:534"
+    # outcomes = "UKB-a:534" # - this one is deprecated, use the one below
+    # Deprecated IDs being used? Detected numeric IDs. Trying to fix, but please note the changes below for future.
+    # UKB-a:534  ->  ukb-a-534
+    outcomes = "ieu-a-7"
 )
 ```
 
@@ -103,7 +119,7 @@ chd_out_dat <- extract_outcome_data(
 
 It is important to make sure that the effect allele associated to T2D of any given SNP is the same as the effect allele associated CAD. In other words, we need to harmonise the data.
 
-```{r MR_harmonise}
+```{r MR_harmonise, echo = TRUE, eval = TRUE}
 dat <- harmonise_data(
     exposure_dat = t2d_exp_dat,
     outcome_dat = chd_out_dat
@@ -126,18 +142,19 @@ dat <- harmonise_data(
 ### Mendelian randomisation
 
 Now that the data is harmonised, we are ready to perform a MR and test for a causal relation of T2D with CAD.
-```{r MR_analysis}
+```{r MR_analysis, echo = TRUE, eval = TRUE}
 res <- mr(dat)
 
 DT::datatable(res, caption = "MR of type 2 diabetes and coronary artery disease", rownames = FALSE)
 ```
 
+> Question: What is the causal effect of T2D on CAD? Can you describe this using the knowledge from the lecture and the results in the table.
+
 Several tests are applied. You can change the method(s) applied by using the `method_list` flag. Below a list of available methods.
 
-```{r MR_methods}
+```{r MR_methods, echo = TRUE, eval = TRUE}
 knitr::kable(mr_method_list(), caption = "Available MR methods", row.names
  = FALSE)
-
 ```
 
 ### Heterogeneity & Pleiotropy
@@ -148,17 +165,18 @@ _Horizontal pleiotropy_ arises due to SNPs influencing two traits through indepe
 
 Further, we should test for study heterogeneity.
 
-```{r MR_sensitivity}
+```{r MR_sensitivity, echo = TRUE, eval = TRUE}
 mr_heterogeneity(dat)
 
 mr_pleiotropy_test(dat)
 ```
+> Question: What do the results of the heterogeneity and pleiotropy tests tell you?
 
 ### Leave-one-out
 
 It is also key to inspect the causal effects per SNP and perform a leave-one-out analysis.
 
-```{r MR_SNP_LOO}
+```{r MR_SNP_LOO, echo = TRUE, eval = TRUE}
 res_single <- mr_singlesnp(dat)
 DT::datatable(res_single, caption = "Single SNP MR analysis", rownames = FALSE)
 
@@ -166,41 +184,55 @@ res_loo <- mr_leaveoneout(dat)
 DT::datatable(res_loo, caption = "Leave-one-out MR analysis", rownames = FALSE)
 ```
 
+> Question: What do the results of the single SNP and leave-one-out analyses tell you?
+
 ### Visualisation
 
 It is important to present the causal inference graphically.
 
 **Scatter plot**
 
-```{r MR_visualisation_Scatter}
+```{r MR_visualisation_Scatter, echo = TRUE, eval = TRUE}
 res <- mr(dat)
 p1 <- mr_scatter_plot(res, dat)
 p1
 ```
 
+> Question: What do you see in the scatter plot? And what can you conclude from this?
+
 **Single SNP plot**
 
-```{r MR_visualisation_Single}
+```{r MR_visualisation_Single, echo = TRUE, eval = TRUE}
 res_single <- mr_singlesnp(dat)
 p2 <- mr_forest_plot(res_single)
 p2
 ```
 
+> Question: What do you see in the forest plot? And what can you conclude from this?
+
 **Leave-One-Out plot**
-```{r MR_visualisation_LOO}
+```{r MR_visualisation_LOO, echo = TRUE, eval = TRUE}
 res_loo <- mr_leaveoneout(dat)
 p3 <- mr_leaveoneout_plot(res_loo)
 p3
 ```
 
+> Question: what does a leave-one-out ploy tell you? And what can you conclude from this?
+
 **Funnel plot**
-```{r MR_visualisation_Funnel}
+```{r MR_visualisation_Funnel, echo = TRUE, eval = TRUE}
 res_single <- mr_singlesnp(dat)
 p4 <- mr_funnel_plot(res_single)
 p4
 ```
 
-<!-- ```{r MR_editing} -->
+> Question: Why would yoy use a funnel plot? And what can it tell you? 
+
+<!-- ### Editing the results -->
+
+<!-- You can edit the results to summarize them in a nice table.  -->
+
+<!-- ```{r MR_editing, echo = TRUE, eval = TRUE} -->
 <!-- generate_odds_ratios(res) -->
 
 <!-- res <- mr(dat) -->
@@ -219,6 +251,8 @@ p4
 
 <!-- DT::datatable(all_res) -->
 <!-- ``` -->
+
+> Question: What are your main conclusions from the MR analysis?
 
 ## The end?
 

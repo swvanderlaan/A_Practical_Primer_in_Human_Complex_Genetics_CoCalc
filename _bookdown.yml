@@ -24,10 +24,10 @@ rmd_files: ["index.Rmd", # introduction
             "05_4_fuma.Rmd", #5.4
             "05_5_phewas.Rmd", #5.5
             "05_6_mendelian_randomization_mr_base.Rmd", #5.6
-            # # "05_7_mendelian_randomization_twosamplemr.Rmd", #5.7
+            "05_7_mendelian_randomization_twosamplemr.Rmd", #5.7
             # # "06_summary.Rmd", #6
             "07_epilogue.Rmd", #7
-            # # "08_1_add_chapter_regional_plot.Rmd", #8.1
+            "08_1_add_chapter_regional_plot.Rmd", #8.1
             "08_2_add_chapter_eigensoft.Rmd", #8.2
             # # "08_3_add_chapter_other_things.Rmd", #8.3
             "09_Answers_to_questions.Rmd", #9

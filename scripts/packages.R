@@ -97,6 +97,10 @@ library(remotes)
 library(TwoSampleMR)
 # devtools::install_github("MRCIEU/MRInstruments")
 library(MRInstruments)
+# install.packages("ieugwasr")
+# develop version - potentially solves authentication issue
+# remotes::install_github('MRCIEU/ieugwasr')
+library(ieugwasr)
 
 # install geneplotter for pretty plotting of genetic data
 # if (!require("BiocManager", quietly = TRUE))

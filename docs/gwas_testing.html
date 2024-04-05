@@ -30,7 +30,7 @@
   
   
 <link rel="prev" href="gwas_basics_snp_qc.html"/>
-<link rel="next" href="gwas-visuals.html"/>
+<link rel="next" href="gwas_visuals.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -54,8 +54,81 @@
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 <link href="libs/tabwid-1.1.3/tabwid.css" rel="stylesheet" />
 <script src="libs/tabwid-1.1.3/tabwid.js"></script>
+<link href="libs/htmltools-fill-0.5.8/fill.css" rel="stylesheet" />
+<script src="libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+<link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
+<script src="libs/datatables-binding-0.33/datatables.js"></script>
+<link href="libs/dt-core-1.13.6/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="libs/dt-core-1.13.6/css/jquery.dataTables.extra.css" rel="stylesheet" />
+<script src="libs/dt-core-1.13.6/js/jquery.dataTables.min.js"></script>
+<link href="libs/crosstalk-1.2.1/css/crosstalk.min.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.2.1/js/crosstalk.min.js"></script>
 
 
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
 
 <style type="text/css">
   
@@ -132,14 +205,27 @@ div.csl-indent {
 <li class="chapter" data-level="6" data-path="getting-started-cocalc.html"><a href="getting-started-cocalc.html"><i class="fa fa-check"></i><b>6</b> Getting started - CoCalc</a>
 <ul>
 <li class="chapter" data-level="6.1" data-path="getting-started-cocalc.html"><a href="getting-started-cocalc.html#starting-the-course-on-cocalc"><i class="fa fa-check"></i><b>6.1</b> Starting the course on CoCalc</a></li>
-<li class="chapter" data-level="6.2" data-path="getting-started-cocalc.html"><a href="getting-started-cocalc.html#beginning-your-own-notebook"><i class="fa fa-check"></i><b>6.2</b> Beginning your own notebook</a></li>
-<li class="chapter" data-level="6.3" data-path="getting-started-cocalc.html"><a href="getting-started-cocalc.html#are-you-ready-1"><i class="fa fa-check"></i><b>6.3</b> Are you ready?</a></li>
+<li class="chapter" data-level="6.2" data-path="getting-started-cocalc.html"><a href="getting-started-cocalc.html#but-wait-what-is-cocalc-anyway"><i class="fa fa-check"></i><b>6.2</b> But wait, what is CoCalc anyway?</a></li>
+<li class="chapter" data-level="6.3" data-path="getting-started-cocalc.html"><a href="getting-started-cocalc.html#okay-and-whats-a-jupyter-notebook"><i class="fa fa-check"></i><b>6.3</b> Okay, and what’s a Jupyter Notebook?</a></li>
+<li class="chapter" data-level="6.4" data-path="getting-started-cocalc.html"><a href="getting-started-cocalc.html#how-does-a-jupyter-notebook-work"><i class="fa fa-check"></i><b>6.4</b> How does a Jupyter Notebook work?</a></li>
+<li class="chapter" data-level="6.5" data-path="getting-started-cocalc.html"><a href="getting-started-cocalc.html#and-what-is-the-force-behind-a-jupyter-notebook"><i class="fa fa-check"></i><b>6.5</b> And what is the Force behind a Jupyter Notebook?</a></li>
+<li class="chapter" data-level="6.6" data-path="getting-started-cocalc.html"><a href="getting-started-cocalc.html#how-to-use-a-jupyter-notebook"><i class="fa fa-check"></i><b>6.6</b> How to use a Jupyter Notebook</a></li>
+<li class="chapter" data-level="6.7" data-path="getting-started-cocalc.html"><a href="getting-started-cocalc.html#trouble-shooting-juptyer-notebook"><i class="fa fa-check"></i><b>6.7</b> Trouble shooting Juptyer Notebook</a></li>
+<li class="chapter" data-level="6.8" data-path="getting-started-cocalc.html"><a href="getting-started-cocalc.html#cocalc-and-this-practical-primer"><i class="fa fa-check"></i><b>6.8</b> CoCalc and this Practical Primer</a></li>
+<li class="chapter" data-level="6.9" data-path="getting-started-cocalc.html"><a href="getting-started-cocalc.html#beginning-your-own-jupyter-notebook-with-a-r-kernel"><i class="fa fa-check"></i><b>6.9</b> Beginning your own Jupyter Notebook with a <code>R</code> kernel</a></li>
+<li class="chapter" data-level="6.10" data-path="getting-started-cocalc.html"><a href="getting-started-cocalc.html#beginning-your-own-terminal-for-bash-code"><i class="fa fa-check"></i><b>6.10</b> Beginning your own Terminal for <code>bash</code> code</a></li>
+<li class="chapter" data-level="6.11" data-path="getting-started-cocalc.html"><a href="getting-started-cocalc.html#this-book-and-cocalc"><i class="fa fa-check"></i><b>6.11</b> This book and CoCalc</a></li>
+<li class="chapter" data-level="6.12" data-path="getting-started-cocalc.html"><a href="getting-started-cocalc.html#are-you-ready-1"><i class="fa fa-check"></i><b>6.12</b> Are you ready?</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="gwas-basics.html"><a href="gwas-basics.html"><i class="fa fa-check"></i><b>7</b> Steps in a Genome-Wide Association Study</a>
 <ul>
-<li class="chapter" data-level="7.1" data-path="gwas-basics.html"><a href="gwas-basics.html#converting-datasets"><i class="fa fa-check"></i><b>7.1</b> Converting datasets</a></li>
-<li class="chapter" data-level="7.2" data-path="gwas-basics.html"><a href="gwas-basics.html#quality-control"><i class="fa fa-check"></i><b>7.2</b> Quality control</a></li>
-<li class="chapter" data-level="7.3" data-path="gwas-basics.html"><a href="gwas-basics.html#lets-get-our-hands-dirty"><i class="fa fa-check"></i><b>7.3</b> Let’s get our hands dirty</a></li>
+<li class="chapter" data-level="7.1" data-path="gwas-basics.html"><a href="gwas-basics.html#introduction"><i class="fa fa-check"></i><b>7.1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="gwas-basics.html"><a href="gwas-basics.html#setting-the-stage"><i class="fa fa-check"></i><b>7.1.1</b> Setting the stage</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="gwas-basics.html"><a href="gwas-basics.html#converting-the-data"><i class="fa fa-check"></i><b>7.2</b> Converting the data</a></li>
+<li class="chapter" data-level="7.3" data-path="gwas-basics.html"><a href="gwas-basics.html#quality-control"><i class="fa fa-check"></i><b>7.3</b> Quality control</a></li>
+<li class="chapter" data-level="7.4" data-path="gwas-basics.html"><a href="gwas-basics.html#lets-get-our-hands-dirty"><i class="fa fa-check"></i><b>7.4</b> Let’s get our hands dirty</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="gwas-basics-sample-qc.html"><a href="gwas-basics-sample-qc.html"><i class="fa fa-check"></i><b>8</b> Sample QC</a>
 <ul>
@@ -175,13 +261,13 @@ div.csl-indent {
 <li class="chapter" data-level="10.3" data-path="gwas_testing.html"><a href="gwas_testing.html#logistic-regression"><i class="fa fa-check"></i><b>10.3</b> Logistic regression</a></li>
 <li class="chapter" data-level="10.4" data-path="gwas_testing.html"><a href="gwas_testing.html#lets-get-visual"><i class="fa fa-check"></i><b>10.4</b> Let’s get visual</a></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="gwas-visuals.html"><a href="gwas-visuals.html"><i class="fa fa-check"></i><b>11</b> GWAS visualisation</a>
+<li class="chapter" data-level="11" data-path="gwas_visuals.html"><a href="gwas_visuals.html"><i class="fa fa-check"></i><b>11</b> GWAS visualisation</a>
 <ul>
-<li class="chapter" data-level="11.0.1" data-path="gwas-visuals.html"><a href="gwas-visuals.html#qq-plots"><i class="fa fa-check"></i><b>11.0.1</b> QQ plots</a></li>
-<li class="chapter" data-level="11.1" data-path="gwas-visuals.html"><a href="gwas-visuals.html#manhattan-plots"><i class="fa fa-check"></i><b>11.1</b> Manhattan plots</a></li>
-<li class="chapter" data-level="11.2" data-path="gwas-visuals.html"><a href="gwas-visuals.html#other-plots"><i class="fa fa-check"></i><b>11.2</b> Other plots</a></li>
-<li class="chapter" data-level="11.3" data-path="gwas-visuals.html"><a href="gwas-visuals.html#interactive-plots"><i class="fa fa-check"></i><b>11.3</b> Interactive plots</a></li>
-<li class="chapter" data-level="11.4" data-path="gwas-visuals.html"><a href="gwas-visuals.html#stop-playing-around"><i class="fa fa-check"></i><b>11.4</b> Stop playing around</a></li>
+<li class="chapter" data-level="11.0.1" data-path="gwas_visuals.html"><a href="gwas_visuals.html#qq-plots"><i class="fa fa-check"></i><b>11.0.1</b> QQ plots</a></li>
+<li class="chapter" data-level="11.1" data-path="gwas_visuals.html"><a href="gwas_visuals.html#manhattan-plots"><i class="fa fa-check"></i><b>11.1</b> Manhattan plots</a></li>
+<li class="chapter" data-level="11.2" data-path="gwas_visuals.html"><a href="gwas_visuals.html#other-plots"><i class="fa fa-check"></i><b>11.2</b> Other plots</a></li>
+<li class="chapter" data-level="11.3" data-path="gwas_visuals.html"><a href="gwas_visuals.html#interactive-plots"><i class="fa fa-check"></i><b>11.3</b> Interactive plots</a></li>
+<li class="chapter" data-level="11.4" data-path="gwas_visuals.html"><a href="gwas_visuals.html#stop-playing-around"><i class="fa fa-check"></i><b>11.4</b> Stop playing around</a></li>
 </ul></li>
 <li class="chapter" data-level="12" data-path="wtccc1_intro.html"><a href="wtccc1_intro.html"><i class="fa fa-check"></i><b>12</b> The Welcome Trust Case-Control Consortium</a>
 <ul>
@@ -245,28 +331,54 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="17.1" data-path="mr_mrbase.html"><a href="mr_mrbase.html#the-end"><i class="fa fa-check"></i><b>17.1</b> The end?</a></li>
 </ul></li>
-<li class="chapter" data-level="18" data-path="epilogue.html"><a href="epilogue.html"><i class="fa fa-check"></i><b>18</b> Epilogue</a></li>
-<li class="chapter" data-level="19" data-path="eigensoft.html"><a href="eigensoft.html"><i class="fa fa-check"></i><b>19</b> Additional: EIGENSOFT</a>
+<li class="chapter" data-level="18" data-path="mr_twosamplemr.html"><a href="mr_twosamplemr.html"><i class="fa fa-check"></i><b>18</b> Two Sample Mendelian Randomisation</a>
 <ul>
-<li class="chapter" data-level="19.1" data-path="eigensoft.html"><a href="eigensoft.html#install-homebrew"><i class="fa fa-check"></i><b>19.1</b> Install homebrew</a></li>
-<li class="chapter" data-level="19.2" data-path="eigensoft.html"><a href="eigensoft.html#install-missing-packages"><i class="fa fa-check"></i><b>19.2</b> Install missing packages</a></li>
-<li class="chapter" data-level="19.3" data-path="eigensoft.html"><a href="eigensoft.html#installing-eigensoft"><i class="fa fa-check"></i><b>19.3</b> Installing EIGENSOFT</a></li>
-</ul></li>
-<li class="chapter" data-level="20" data-path="answers.html"><a href="answers.html"><i class="fa fa-check"></i><b>20</b> Answers to the questions</a>
+<li class="chapter" data-level="18.1" data-path="mr_twosamplemr.html"><a href="mr_twosamplemr.html#loading-the-package"><i class="fa fa-check"></i><b>18.1</b> Loading the package</a></li>
+<li class="chapter" data-level="18.2" data-path="mr_twosamplemr.html"><a href="mr_twosamplemr.html#available-outcome"><i class="fa fa-check"></i><b>18.2</b> Available outcome</a></li>
+<li class="chapter" data-level="18.3" data-path="mr_twosamplemr.html"><a href="mr_twosamplemr.html#instruments"><i class="fa fa-check"></i><b>18.3</b> Instruments</a></li>
+<li class="chapter" data-level="18.4" data-path="mr_twosamplemr.html"><a href="mr_twosamplemr.html#clumping-1"><i class="fa fa-check"></i><b>18.4</b> Clumping</a></li>
+<li class="chapter" data-level="18.5" data-path="mr_twosamplemr.html"><a href="mr_twosamplemr.html#outcomes"><i class="fa fa-check"></i><b>18.5</b> Outcomes</a>
 <ul>
-<li class="chapter" data-level="20.1" data-path="answers.html"><a href="answers.html#chapter-3.1-gwas-basics"><i class="fa fa-check"></i><b>20.1</b> Chapter 3.1: GWAS Basics</a></li>
-<li class="chapter" data-level="20.2" data-path="answers.html"><a href="answers.html#chapter-3.4-gwas-basics---association-testing"><i class="fa fa-check"></i><b>20.2</b> Chapter 3.4: GWAS Basics - Association testing</a></li>
-<li class="chapter" data-level="20.3" data-path="answers.html"><a href="answers.html#chapter-3.5-gwas-visualization"><i class="fa fa-check"></i><b>20.3</b> Chapter 3.5: GWAS visualization</a></li>
-<li class="chapter" data-level="20.4" data-path="answers.html"><a href="answers.html#chapter-5.4-fuma"><i class="fa fa-check"></i><b>20.4</b> Chapter 5.4: FUMA</a></li>
+<li class="chapter" data-level="18.5.1" data-path="mr_twosamplemr.html"><a href="mr_twosamplemr.html#harmonisation"><i class="fa fa-check"></i><b>18.5.1</b> Harmonisation</a></li>
+<li class="chapter" data-level="18.5.2" data-path="mr_twosamplemr.html"><a href="mr_twosamplemr.html#mendelian-randomisation"><i class="fa fa-check"></i><b>18.5.2</b> Mendelian randomisation</a></li>
+<li class="chapter" data-level="18.5.3" data-path="mr_twosamplemr.html"><a href="mr_twosamplemr.html#heterogeneity-pleiotropy"><i class="fa fa-check"></i><b>18.5.3</b> Heterogeneity &amp; Pleiotropy</a></li>
+<li class="chapter" data-level="18.5.4" data-path="mr_twosamplemr.html"><a href="mr_twosamplemr.html#leave-one-out"><i class="fa fa-check"></i><b>18.5.4</b> Leave-one-out</a></li>
+<li class="chapter" data-level="18.5.5" data-path="mr_twosamplemr.html"><a href="mr_twosamplemr.html#visualisation"><i class="fa fa-check"></i><b>18.5.5</b> Visualisation</a></li>
 </ul></li>
-<li class="chapter" data-level="21" data-path="license.html"><a href="license.html"><i class="fa fa-check"></i><b>21</b> Licenses and disclaimers</a>
+<li class="chapter" data-level="18.6" data-path="mr_twosamplemr.html"><a href="mr_twosamplemr.html#the-end-1"><i class="fa fa-check"></i><b>18.6</b> The end?</a></li>
+</ul></li>
+<li class="chapter" data-level="19" data-path="epilogue.html"><a href="epilogue.html"><i class="fa fa-check"></i><b>19</b> Epilogue</a>
 <ul>
-<li class="chapter" data-level="21.1" data-path="license.html"><a href="license.html#copyright"><i class="fa fa-check"></i><b>21.1</b> Copyright</a></li>
-<li class="chapter" data-level="21.2" data-path="license.html"><a href="license.html#disclaimer"><i class="fa fa-check"></i><b>21.2</b> Disclaimer</a></li>
-<li class="chapter" data-level="21.3" data-path="license.html"><a href="license.html#images-and-data-used"><i class="fa fa-check"></i><b>21.3</b> Images and data used</a></li>
-<li class="chapter" data-level="21.4" data-path="license.html"><a href="license.html#copyright-1"><i class="fa fa-check"></i><b>21.4</b> Copyright</a></li>
+<li class="chapter" data-level="19.1" data-path="epilogue.html"><a href="epilogue.html#course-lecturers"><i class="fa fa-check"></i><b>19.1</b> 2024 Course Lecturers</a></li>
 </ul></li>
-<li class="chapter" data-level="22" data-path="colophon.html"><a href="colophon.html"><i class="fa fa-check"></i><b>22</b> Colophon</a></li>
+<li class="chapter" data-level="20" data-path="regional_plot.html"><a href="regional_plot.html"><i class="fa fa-check"></i><b>20</b> Regional association plots</a>
+<ul>
+<li class="chapter" data-level="20.1" data-path="regional_plot.html"><a href="regional_plot.html#locuszoom-1"><i class="fa fa-check"></i><b>20.1</b> LocusZoom</a></li>
+<li class="chapter" data-level="20.2" data-path="regional_plot.html"><a href="regional_plot.html#racer"><i class="fa fa-check"></i><b>20.2</b> RACER</a></li>
+</ul></li>
+<li class="chapter" data-level="21" data-path="eigensoft.html"><a href="eigensoft.html"><i class="fa fa-check"></i><b>21</b> EIGENSOFT</a>
+<ul>
+<li class="chapter" data-level="21.1" data-path="eigensoft.html"><a href="eigensoft.html#install-homebrew"><i class="fa fa-check"></i><b>21.1</b> Install homebrew</a></li>
+<li class="chapter" data-level="21.2" data-path="eigensoft.html"><a href="eigensoft.html#install-missing-packages"><i class="fa fa-check"></i><b>21.2</b> Install missing packages</a></li>
+<li class="chapter" data-level="21.3" data-path="eigensoft.html"><a href="eigensoft.html#installing-eigensoft"><i class="fa fa-check"></i><b>21.3</b> Installing EIGENSOFT</a></li>
+</ul></li>
+<li class="chapter" data-level="22" data-path="answers.html"><a href="answers.html"><i class="fa fa-check"></i><b>22</b> Answers to the questions</a>
+<ul>
+<li class="chapter" data-level="22.1" data-path="answers.html"><a href="answers.html#chapter-3.1-gwas-basics"><i class="fa fa-check"></i><b>22.1</b> Chapter 3.1: GWAS Basics</a></li>
+<li class="chapter" data-level="22.2" data-path="answers.html"><a href="answers.html#chapter-3.4-gwas-basics---association-testing"><i class="fa fa-check"></i><b>22.2</b> Chapter 3.4: GWAS Basics - Association testing</a></li>
+<li class="chapter" data-level="22.3" data-path="answers.html"><a href="answers.html#chapter-3.5-gwas-visualization"><i class="fa fa-check"></i><b>22.3</b> Chapter 3.5: GWAS visualization</a></li>
+<li class="chapter" data-level="22.4" data-path="answers.html"><a href="answers.html#chapter-5.4-fuma"><i class="fa fa-check"></i><b>22.4</b> Chapter 5.4: FUMA</a></li>
+<li class="chapter" data-level="22.5" data-path="answers.html"><a href="answers.html#chapter-5.7-twosample-mr"><i class="fa fa-check"></i><b>22.5</b> Chapter 5.7: TwoSample MR</a></li>
+<li class="chapter" data-level="22.6" data-path="answers.html"><a href="answers.html#chapter-8.1-regional-association-plots"><i class="fa fa-check"></i><b>22.6</b> Chapter 8.1: Regional association plots</a></li>
+</ul></li>
+<li class="chapter" data-level="23" data-path="license.html"><a href="license.html"><i class="fa fa-check"></i><b>23</b> Licenses and disclaimers</a>
+<ul>
+<li class="chapter" data-level="23.1" data-path="license.html"><a href="license.html#copyright"><i class="fa fa-check"></i><b>23.1</b> Copyright</a></li>
+<li class="chapter" data-level="23.2" data-path="license.html"><a href="license.html#disclaimer"><i class="fa fa-check"></i><b>23.2</b> Disclaimer</a></li>
+<li class="chapter" data-level="23.3" data-path="license.html"><a href="license.html#images-and-data-used"><i class="fa fa-check"></i><b>23.3</b> Images and data used</a></li>
+<li class="chapter" data-level="23.4" data-path="license.html"><a href="license.html#copyright-1"><i class="fa fa-check"></i><b>23.4</b> Copyright</a></li>
+</ul></li>
+<li class="chapter" data-level="24" data-path="colophon.html"><a href="colophon.html"><i class="fa fa-check"></i><b>24</b> Colophon</a></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
 <li><a href="https://vanderlaanand.science" target="blank">&copy; 1979-2024. Sander W. van der Laan.</a></li>
@@ -422,7 +534,7 @@ Figure 10.4: Per SNP call rates.
 </div>
 <div id="lets-get-visual" class="section level2 hasAnchor" number="10.4">
 <h2><span class="header-section-number">10.4</span> Let’s get visual<a href="gwas_testing.html#lets-get-visual" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Looking at numbers is important, but it won’t give you a perfect overview. We should turn to visualizing our results in Chapter <a href="gwas-visuals.html#gwas-visuals">11</a>.</p>
+<p>Looking at numbers is important, but it won’t give you a perfect overview. We should turn to visualizing our results in Chapter @ref(gwas_visuals).</p>
 <!-- ```{js, echo = FALSE} -->
 <!-- title=document.getElementById('header'); -->
 <!-- title.innerHTML = '<img src="img/_headers/interactive_plot.png" alt="GWAS basics: association testing">' + title.innerHTML -->
@@ -436,7 +548,7 @@ Figure 10.4: Per SNP call rates.
         </div>
       </div>
 <a href="gwas_basics_snp_qc.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="gwas-visuals.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="gwas_visuals.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

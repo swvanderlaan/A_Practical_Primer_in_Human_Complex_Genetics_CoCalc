@@ -7,7 +7,7 @@
 
 Throughout the book you encountered questions related to some steps and output that you generated. Here you can review the answers for each of these questions - of course, for some different answers are possible.
 
-> [ANSWERS NEED TO BE WORKED OUT]
+> Note: Answers to all the questions will come at a later stage during the course.
 
 ## Chapter 3.1: GWAS Basics
 > Question: Can you think off what the '11,440 heterozygous haploid genotypes present' represent? 
@@ -136,7 +136,20 @@ ggplot2::ggsave(paste0(COURSE_loc, "/dummy_project/gwas-snp-call-rate.png"),
 > 3. For what pathways are the signals enriched?
 > 4. What molecular functions are mapped to the signals?
 
+## Chapter 5.7: TwoSample MR
 
+> Question: What is the causal effect of T2D on CAD? Can you describe this using the knowledge from the lecture and the results in the table.
+> Question: What do the results of the heterogeneity and pleiotropy tests tell you?
+> Question: What do the results of the single SNP and leave-one-out analyses tell you?
+> Question: What do you see in the scatter plot? And what can you conclude from this?
+> Question: What do you see in the forest plot? And what can you conclude from this?
+> Question: What does a leave-one-out ploy tell you? And what can you conclude from this?
+> Question: Why would yoy use a funnel plot? And what can it tell you?
+> Question: What are your main conclusions from the MR analysis?
+
+## Chapter 8.1: Regional association plots
+
+> Question: How many independent hits did you find?
 
 <!-- ```{js, echo = FALSE} -->
 <!-- title=document.getElementById('header'); -->

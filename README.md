@@ -8,8 +8,8 @@ This book was made possible by the kind help of Caspar J. van Lissa who wrote an
 
 #### Changes log
     
-    _Version:_      v2.1</br>
-    _Last update:_  2024-04-04</br>
+    _Version:_      v2.1.1</br>
+    _Last update:_  2024-04-05</br>
     _Written by:_   Sander W. van der Laan (s.w.vanderlaan-2[at]umcutrecht.nl).
     
     **MoSCoW To-Do List**
@@ -17,18 +17,23 @@ This book was made possible by the kind help of Caspar J. van Lissa who wrote an
     _M_
     
     - [x] `M` add in full installation instructions for UBUNTU > DROPPED
-    - [] `M` add in full installation instructions for macOS
+    - [x] `M` add in full installation instructions for macOS
+    - [x] `M` create chapter on CoCalc
+    - [x] `M` redesign 'Getting Started' chapter
+    - [x] `M` add proper team-page
+    - [x] `M` fix regional association plotting
+    - [x] `M` fix issue with api of Two Sample MR > run the codes.
+    - [x] `M` fix issue with `api of Two Sample MR`cat: /Users/USERNAME/Desktop/practical/gwas/data.assoc.logistic.clumped: No such file or     directory` - this was not run yet
+    - [] `M` fix images per header in GitBook (not showing)
     - [] `M` conditional analysis
     - [] `M` statistical finemapping
-    - [x] `M` regional association plotting
     - [] `M` colocalization with formal testing
-    - [] `M` add proper team-page
     - [x] `M` overall rendering too slow, paste in images as figure instead of on the fly generating
-    - [x] `M` PDF is too large
-    - [] `M` fix issue with api of Two Sample MR > run the codes.
-    - [] `M` fix issue with `api of Two Sample MR`cat: /Users/USERNAME/Desktop/practical/gwas/data.assoc.logistic.clumped: No such file or     directory` - this was not run yet
-    - [] `M` fix images per header in GitBook (not showing)
-    - [] `M` Upgrade to Quatro - seems to work better in many respects; also adds interactivity https://quarto.org/docs/books/
+    - [] `M` fix issue with PDF creation
+    - [] `M` fix issue with EPUB creation
+    - [] `M` fix issue with EPUB creation and images
+    - [] `M` Add partial recreation of the Cystatin C MR study
+    - [] `M` Upgrade to Quatro - seems to work better in many respects; also adds interactivity https://quarto.org/docs/books/. This will probably fix the PDF and EPUB creation issues, as well as the image display issues.
      
     _S_
     - [] `S` meta-analysis with dummy data
@@ -45,7 +50,8 @@ This book was made possible by the kind help of Caspar J. van Lissa who wrote an
       - https://www.designhill.com/design-blog/the-perfect-ebook-cover-size-guide-and-publishing-tips/
       - https://snappa.com/blog/ebook-cover-size/
       - https://kdp.amazon.com/en_US/help/topic/G200645690.
-      
+    - [] `S` add in chapter on liftOver
+    
     _C_
     - [] `C` GWASToolKit
     - [] `C` PlaqView lookups
@@ -55,6 +61,7 @@ This book was made possible by the kind help of Caspar J. van Lissa who wrote an
     - [] `W` add in full installation instructions for Windows
 
     **Changes log**
+    * v2.1.1 Finalized CoCalc instructions. Added Team chapter. Fixed issue with Two-Sample MR. Fixed issue with regional association plotting. Checked Questions and Answers. Edited the To-Do list
     * v2.1.0 Added CoCalc instructions. Added Standalone instructions. Added chapter on used-programs. Re-organized 'Getting Started' chapter. Updated To-Do list in readme.
     * v2.0.6 Fixes to the visualization chapter where data was not properly loaded. Fix to the references in the WTCCC1 chapter where they were not properly generated.
     * v2.0.5 Added all header-images. Fixed references to tables and figures.

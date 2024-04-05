@@ -43,9 +43,7 @@ Now that you understand a bit of the navigation in Unix-systems, you're ready to
 4. perform association testing
 5. visualize association results
 
-
-## Converting datasets
-
+## Introduction
 The format in which genotype data are returned to investigators varies among genome-wide SNP platforms and genotyping centers. Usually genotypes have been called by a genotyping center and returned in the standard `PED` and `MAP` file formats designed for `PLINK`.
 
 A `PED` file is a white space (space or tab)-delimited file in which each line represents one individual and the first six columns are mandatory and in the following order:
@@ -62,13 +60,23 @@ The order of SNPs in the PED file is given in the MAP file, in which each line d
 
 Let's start by using `PLINK` to converting the datasets to a lighter, binary form (a `.bed`-file). This file saves data in a more memory- and time-efficient manner (in a 'binary'-format) to facilitate the analysis of large-scale data sets [@purcell2007]. The marker-information is stored in the `.bim`-file and the family information in the `.fam`-file. `PLINK` creates a `.log` file (named `raw-GWA-data.log`) that details (among other information) the implemented commands, the number of cases and controls in the input files, any excluded data and the genotyping rate in the remaining data. This file is very useful for checking whether the software is successfully completing commands.
 
+### Setting the stage
+
 Make sure you are in the right directory. Do you remember how to get there?
+
+**Standalone**</br>
+When you are using the **Standalone** version of this book and followed the instructions to download the data, you can use the following command to get to the right directory:
 
 ```
 cd ~/Desktop/practical
 ```
 
-Next, we'll make a project directory.
+**CoCalc**</br>
+When you are using the **CoCalc** for the course, you don't need to go to a directory, you simply create a new `dummy_project` directory in your current directory.
+
+## Converting the data
+
+Next, we'll make a project directory and convert the data.
 
 ```
 mkdir -v ~/Desktop/practical/dummy_project
@@ -79,6 +87,14 @@ Now, we'll convert the `.ped`/`.map` files to the binary-format.
 ```
 plink --file rawdata/raw-GWA-data --make-bed --out dummy_project/rawdata
 ```
+
+The **CoCalc** version would be something like this:
+
+```
+plink --file data/shared/rawdata/raw-GWA-data --make-bed --out dummy_project/rawdata
+```
+
+> This was the last time I pointed to the difference in paths between the standalone and the CoCalc version. From now on, I will only show the standalone version. If you are using the CoCalc version, please remember to adjust the paths accordingly.
 
 Let's review the `.log`-file for a bit. It should look something like this:
 

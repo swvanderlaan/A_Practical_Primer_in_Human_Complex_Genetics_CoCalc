@@ -54,8 +54,81 @@
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 <link href="libs/tabwid-1.1.3/tabwid.css" rel="stylesheet" />
 <script src="libs/tabwid-1.1.3/tabwid.js"></script>
+<link href="libs/htmltools-fill-0.5.8/fill.css" rel="stylesheet" />
+<script src="libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+<link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
+<script src="libs/datatables-binding-0.33/datatables.js"></script>
+<link href="libs/dt-core-1.13.6/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="libs/dt-core-1.13.6/css/jquery.dataTables.extra.css" rel="stylesheet" />
+<script src="libs/dt-core-1.13.6/js/jquery.dataTables.min.js"></script>
+<link href="libs/crosstalk-1.2.1/css/crosstalk.min.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.2.1/js/crosstalk.min.js"></script>
 
 
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
 
 <style type="text/css">
   
@@ -132,14 +205,27 @@ div.csl-indent {
 <li class="chapter" data-level="6" data-path="getting-started-cocalc.html"><a href="getting-started-cocalc.html"><i class="fa fa-check"></i><b>6</b> Getting started - CoCalc</a>
 <ul>
 <li class="chapter" data-level="6.1" data-path="getting-started-cocalc.html"><a href="getting-started-cocalc.html#starting-the-course-on-cocalc"><i class="fa fa-check"></i><b>6.1</b> Starting the course on CoCalc</a></li>
-<li class="chapter" data-level="6.2" data-path="getting-started-cocalc.html"><a href="getting-started-cocalc.html#beginning-your-own-notebook"><i class="fa fa-check"></i><b>6.2</b> Beginning your own notebook</a></li>
-<li class="chapter" data-level="6.3" data-path="getting-started-cocalc.html"><a href="getting-started-cocalc.html#are-you-ready-1"><i class="fa fa-check"></i><b>6.3</b> Are you ready?</a></li>
+<li class="chapter" data-level="6.2" data-path="getting-started-cocalc.html"><a href="getting-started-cocalc.html#but-wait-what-is-cocalc-anyway"><i class="fa fa-check"></i><b>6.2</b> But wait, what is CoCalc anyway?</a></li>
+<li class="chapter" data-level="6.3" data-path="getting-started-cocalc.html"><a href="getting-started-cocalc.html#okay-and-whats-a-jupyter-notebook"><i class="fa fa-check"></i><b>6.3</b> Okay, and what’s a Jupyter Notebook?</a></li>
+<li class="chapter" data-level="6.4" data-path="getting-started-cocalc.html"><a href="getting-started-cocalc.html#how-does-a-jupyter-notebook-work"><i class="fa fa-check"></i><b>6.4</b> How does a Jupyter Notebook work?</a></li>
+<li class="chapter" data-level="6.5" data-path="getting-started-cocalc.html"><a href="getting-started-cocalc.html#and-what-is-the-force-behind-a-jupyter-notebook"><i class="fa fa-check"></i><b>6.5</b> And what is the Force behind a Jupyter Notebook?</a></li>
+<li class="chapter" data-level="6.6" data-path="getting-started-cocalc.html"><a href="getting-started-cocalc.html#how-to-use-a-jupyter-notebook"><i class="fa fa-check"></i><b>6.6</b> How to use a Jupyter Notebook</a></li>
+<li class="chapter" data-level="6.7" data-path="getting-started-cocalc.html"><a href="getting-started-cocalc.html#trouble-shooting-juptyer-notebook"><i class="fa fa-check"></i><b>6.7</b> Trouble shooting Juptyer Notebook</a></li>
+<li class="chapter" data-level="6.8" data-path="getting-started-cocalc.html"><a href="getting-started-cocalc.html#cocalc-and-this-practical-primer"><i class="fa fa-check"></i><b>6.8</b> CoCalc and this Practical Primer</a></li>
+<li class="chapter" data-level="6.9" data-path="getting-started-cocalc.html"><a href="getting-started-cocalc.html#beginning-your-own-jupyter-notebook-with-a-r-kernel"><i class="fa fa-check"></i><b>6.9</b> Beginning your own Jupyter Notebook with a <code>R</code> kernel</a></li>
+<li class="chapter" data-level="6.10" data-path="getting-started-cocalc.html"><a href="getting-started-cocalc.html#beginning-your-own-terminal-for-bash-code"><i class="fa fa-check"></i><b>6.10</b> Beginning your own Terminal for <code>bash</code> code</a></li>
+<li class="chapter" data-level="6.11" data-path="getting-started-cocalc.html"><a href="getting-started-cocalc.html#this-book-and-cocalc"><i class="fa fa-check"></i><b>6.11</b> This book and CoCalc</a></li>
+<li class="chapter" data-level="6.12" data-path="getting-started-cocalc.html"><a href="getting-started-cocalc.html#are-you-ready-1"><i class="fa fa-check"></i><b>6.12</b> Are you ready?</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="gwas-basics.html"><a href="gwas-basics.html"><i class="fa fa-check"></i><b>7</b> Steps in a Genome-Wide Association Study</a>
 <ul>
-<li class="chapter" data-level="7.1" data-path="gwas-basics.html"><a href="gwas-basics.html#converting-datasets"><i class="fa fa-check"></i><b>7.1</b> Converting datasets</a></li>
-<li class="chapter" data-level="7.2" data-path="gwas-basics.html"><a href="gwas-basics.html#quality-control"><i class="fa fa-check"></i><b>7.2</b> Quality control</a></li>
-<li class="chapter" data-level="7.3" data-path="gwas-basics.html"><a href="gwas-basics.html#lets-get-our-hands-dirty"><i class="fa fa-check"></i><b>7.3</b> Let’s get our hands dirty</a></li>
+<li class="chapter" data-level="7.1" data-path="gwas-basics.html"><a href="gwas-basics.html#introduction"><i class="fa fa-check"></i><b>7.1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="gwas-basics.html"><a href="gwas-basics.html#setting-the-stage"><i class="fa fa-check"></i><b>7.1.1</b> Setting the stage</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="gwas-basics.html"><a href="gwas-basics.html#converting-the-data"><i class="fa fa-check"></i><b>7.2</b> Converting the data</a></li>
+<li class="chapter" data-level="7.3" data-path="gwas-basics.html"><a href="gwas-basics.html#quality-control"><i class="fa fa-check"></i><b>7.3</b> Quality control</a></li>
+<li class="chapter" data-level="7.4" data-path="gwas-basics.html"><a href="gwas-basics.html#lets-get-our-hands-dirty"><i class="fa fa-check"></i><b>7.4</b> Let’s get our hands dirty</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="gwas-basics-sample-qc.html"><a href="gwas-basics-sample-qc.html"><i class="fa fa-check"></i><b>8</b> Sample QC</a>
 <ul>
@@ -175,13 +261,13 @@ div.csl-indent {
 <li class="chapter" data-level="10.3" data-path="gwas_testing.html"><a href="gwas_testing.html#logistic-regression"><i class="fa fa-check"></i><b>10.3</b> Logistic regression</a></li>
 <li class="chapter" data-level="10.4" data-path="gwas_testing.html"><a href="gwas_testing.html#lets-get-visual"><i class="fa fa-check"></i><b>10.4</b> Let’s get visual</a></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="gwas-visuals.html"><a href="gwas-visuals.html"><i class="fa fa-check"></i><b>11</b> GWAS visualisation</a>
+<li class="chapter" data-level="11" data-path="gwas_visuals.html"><a href="gwas_visuals.html"><i class="fa fa-check"></i><b>11</b> GWAS visualisation</a>
 <ul>
-<li class="chapter" data-level="11.0.1" data-path="gwas-visuals.html"><a href="gwas-visuals.html#qq-plots"><i class="fa fa-check"></i><b>11.0.1</b> QQ plots</a></li>
-<li class="chapter" data-level="11.1" data-path="gwas-visuals.html"><a href="gwas-visuals.html#manhattan-plots"><i class="fa fa-check"></i><b>11.1</b> Manhattan plots</a></li>
-<li class="chapter" data-level="11.2" data-path="gwas-visuals.html"><a href="gwas-visuals.html#other-plots"><i class="fa fa-check"></i><b>11.2</b> Other plots</a></li>
-<li class="chapter" data-level="11.3" data-path="gwas-visuals.html"><a href="gwas-visuals.html#interactive-plots"><i class="fa fa-check"></i><b>11.3</b> Interactive plots</a></li>
-<li class="chapter" data-level="11.4" data-path="gwas-visuals.html"><a href="gwas-visuals.html#stop-playing-around"><i class="fa fa-check"></i><b>11.4</b> Stop playing around</a></li>
+<li class="chapter" data-level="11.0.1" data-path="gwas_visuals.html"><a href="gwas_visuals.html#qq-plots"><i class="fa fa-check"></i><b>11.0.1</b> QQ plots</a></li>
+<li class="chapter" data-level="11.1" data-path="gwas_visuals.html"><a href="gwas_visuals.html#manhattan-plots"><i class="fa fa-check"></i><b>11.1</b> Manhattan plots</a></li>
+<li class="chapter" data-level="11.2" data-path="gwas_visuals.html"><a href="gwas_visuals.html#other-plots"><i class="fa fa-check"></i><b>11.2</b> Other plots</a></li>
+<li class="chapter" data-level="11.3" data-path="gwas_visuals.html"><a href="gwas_visuals.html#interactive-plots"><i class="fa fa-check"></i><b>11.3</b> Interactive plots</a></li>
+<li class="chapter" data-level="11.4" data-path="gwas_visuals.html"><a href="gwas_visuals.html#stop-playing-around"><i class="fa fa-check"></i><b>11.4</b> Stop playing around</a></li>
 </ul></li>
 <li class="chapter" data-level="12" data-path="wtccc1_intro.html"><a href="wtccc1_intro.html"><i class="fa fa-check"></i><b>12</b> The Welcome Trust Case-Control Consortium</a>
 <ul>
@@ -245,28 +331,54 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="17.1" data-path="mr_mrbase.html"><a href="mr_mrbase.html#the-end"><i class="fa fa-check"></i><b>17.1</b> The end?</a></li>
 </ul></li>
-<li class="chapter" data-level="18" data-path="epilogue.html"><a href="epilogue.html"><i class="fa fa-check"></i><b>18</b> Epilogue</a></li>
-<li class="chapter" data-level="19" data-path="eigensoft.html"><a href="eigensoft.html"><i class="fa fa-check"></i><b>19</b> Additional: EIGENSOFT</a>
+<li class="chapter" data-level="18" data-path="mr_twosamplemr.html"><a href="mr_twosamplemr.html"><i class="fa fa-check"></i><b>18</b> Two Sample Mendelian Randomisation</a>
 <ul>
-<li class="chapter" data-level="19.1" data-path="eigensoft.html"><a href="eigensoft.html#install-homebrew"><i class="fa fa-check"></i><b>19.1</b> Install homebrew</a></li>
-<li class="chapter" data-level="19.2" data-path="eigensoft.html"><a href="eigensoft.html#install-missing-packages"><i class="fa fa-check"></i><b>19.2</b> Install missing packages</a></li>
-<li class="chapter" data-level="19.3" data-path="eigensoft.html"><a href="eigensoft.html#installing-eigensoft"><i class="fa fa-check"></i><b>19.3</b> Installing EIGENSOFT</a></li>
-</ul></li>
-<li class="chapter" data-level="20" data-path="answers.html"><a href="answers.html"><i class="fa fa-check"></i><b>20</b> Answers to the questions</a>
+<li class="chapter" data-level="18.1" data-path="mr_twosamplemr.html"><a href="mr_twosamplemr.html#loading-the-package"><i class="fa fa-check"></i><b>18.1</b> Loading the package</a></li>
+<li class="chapter" data-level="18.2" data-path="mr_twosamplemr.html"><a href="mr_twosamplemr.html#available-outcome"><i class="fa fa-check"></i><b>18.2</b> Available outcome</a></li>
+<li class="chapter" data-level="18.3" data-path="mr_twosamplemr.html"><a href="mr_twosamplemr.html#instruments"><i class="fa fa-check"></i><b>18.3</b> Instruments</a></li>
+<li class="chapter" data-level="18.4" data-path="mr_twosamplemr.html"><a href="mr_twosamplemr.html#clumping-1"><i class="fa fa-check"></i><b>18.4</b> Clumping</a></li>
+<li class="chapter" data-level="18.5" data-path="mr_twosamplemr.html"><a href="mr_twosamplemr.html#outcomes"><i class="fa fa-check"></i><b>18.5</b> Outcomes</a>
 <ul>
-<li class="chapter" data-level="20.1" data-path="answers.html"><a href="answers.html#chapter-3.1-gwas-basics"><i class="fa fa-check"></i><b>20.1</b> Chapter 3.1: GWAS Basics</a></li>
-<li class="chapter" data-level="20.2" data-path="answers.html"><a href="answers.html#chapter-3.4-gwas-basics---association-testing"><i class="fa fa-check"></i><b>20.2</b> Chapter 3.4: GWAS Basics - Association testing</a></li>
-<li class="chapter" data-level="20.3" data-path="answers.html"><a href="answers.html#chapter-3.5-gwas-visualization"><i class="fa fa-check"></i><b>20.3</b> Chapter 3.5: GWAS visualization</a></li>
-<li class="chapter" data-level="20.4" data-path="answers.html"><a href="answers.html#chapter-5.4-fuma"><i class="fa fa-check"></i><b>20.4</b> Chapter 5.4: FUMA</a></li>
+<li class="chapter" data-level="18.5.1" data-path="mr_twosamplemr.html"><a href="mr_twosamplemr.html#harmonisation"><i class="fa fa-check"></i><b>18.5.1</b> Harmonisation</a></li>
+<li class="chapter" data-level="18.5.2" data-path="mr_twosamplemr.html"><a href="mr_twosamplemr.html#mendelian-randomisation"><i class="fa fa-check"></i><b>18.5.2</b> Mendelian randomisation</a></li>
+<li class="chapter" data-level="18.5.3" data-path="mr_twosamplemr.html"><a href="mr_twosamplemr.html#heterogeneity-pleiotropy"><i class="fa fa-check"></i><b>18.5.3</b> Heterogeneity &amp; Pleiotropy</a></li>
+<li class="chapter" data-level="18.5.4" data-path="mr_twosamplemr.html"><a href="mr_twosamplemr.html#leave-one-out"><i class="fa fa-check"></i><b>18.5.4</b> Leave-one-out</a></li>
+<li class="chapter" data-level="18.5.5" data-path="mr_twosamplemr.html"><a href="mr_twosamplemr.html#visualisation"><i class="fa fa-check"></i><b>18.5.5</b> Visualisation</a></li>
 </ul></li>
-<li class="chapter" data-level="21" data-path="license.html"><a href="license.html"><i class="fa fa-check"></i><b>21</b> Licenses and disclaimers</a>
+<li class="chapter" data-level="18.6" data-path="mr_twosamplemr.html"><a href="mr_twosamplemr.html#the-end-1"><i class="fa fa-check"></i><b>18.6</b> The end?</a></li>
+</ul></li>
+<li class="chapter" data-level="19" data-path="epilogue.html"><a href="epilogue.html"><i class="fa fa-check"></i><b>19</b> Epilogue</a>
 <ul>
-<li class="chapter" data-level="21.1" data-path="license.html"><a href="license.html#copyright"><i class="fa fa-check"></i><b>21.1</b> Copyright</a></li>
-<li class="chapter" data-level="21.2" data-path="license.html"><a href="license.html#disclaimer"><i class="fa fa-check"></i><b>21.2</b> Disclaimer</a></li>
-<li class="chapter" data-level="21.3" data-path="license.html"><a href="license.html#images-and-data-used"><i class="fa fa-check"></i><b>21.3</b> Images and data used</a></li>
-<li class="chapter" data-level="21.4" data-path="license.html"><a href="license.html#copyright-1"><i class="fa fa-check"></i><b>21.4</b> Copyright</a></li>
+<li class="chapter" data-level="19.1" data-path="epilogue.html"><a href="epilogue.html#course-lecturers"><i class="fa fa-check"></i><b>19.1</b> 2024 Course Lecturers</a></li>
 </ul></li>
-<li class="chapter" data-level="22" data-path="colophon.html"><a href="colophon.html"><i class="fa fa-check"></i><b>22</b> Colophon</a></li>
+<li class="chapter" data-level="20" data-path="regional_plot.html"><a href="regional_plot.html"><i class="fa fa-check"></i><b>20</b> Regional association plots</a>
+<ul>
+<li class="chapter" data-level="20.1" data-path="regional_plot.html"><a href="regional_plot.html#locuszoom-1"><i class="fa fa-check"></i><b>20.1</b> LocusZoom</a></li>
+<li class="chapter" data-level="20.2" data-path="regional_plot.html"><a href="regional_plot.html#racer"><i class="fa fa-check"></i><b>20.2</b> RACER</a></li>
+</ul></li>
+<li class="chapter" data-level="21" data-path="eigensoft.html"><a href="eigensoft.html"><i class="fa fa-check"></i><b>21</b> EIGENSOFT</a>
+<ul>
+<li class="chapter" data-level="21.1" data-path="eigensoft.html"><a href="eigensoft.html#install-homebrew"><i class="fa fa-check"></i><b>21.1</b> Install homebrew</a></li>
+<li class="chapter" data-level="21.2" data-path="eigensoft.html"><a href="eigensoft.html#install-missing-packages"><i class="fa fa-check"></i><b>21.2</b> Install missing packages</a></li>
+<li class="chapter" data-level="21.3" data-path="eigensoft.html"><a href="eigensoft.html#installing-eigensoft"><i class="fa fa-check"></i><b>21.3</b> Installing EIGENSOFT</a></li>
+</ul></li>
+<li class="chapter" data-level="22" data-path="answers.html"><a href="answers.html"><i class="fa fa-check"></i><b>22</b> Answers to the questions</a>
+<ul>
+<li class="chapter" data-level="22.1" data-path="answers.html"><a href="answers.html#chapter-3.1-gwas-basics"><i class="fa fa-check"></i><b>22.1</b> Chapter 3.1: GWAS Basics</a></li>
+<li class="chapter" data-level="22.2" data-path="answers.html"><a href="answers.html#chapter-3.4-gwas-basics---association-testing"><i class="fa fa-check"></i><b>22.2</b> Chapter 3.4: GWAS Basics - Association testing</a></li>
+<li class="chapter" data-level="22.3" data-path="answers.html"><a href="answers.html#chapter-3.5-gwas-visualization"><i class="fa fa-check"></i><b>22.3</b> Chapter 3.5: GWAS visualization</a></li>
+<li class="chapter" data-level="22.4" data-path="answers.html"><a href="answers.html#chapter-5.4-fuma"><i class="fa fa-check"></i><b>22.4</b> Chapter 5.4: FUMA</a></li>
+<li class="chapter" data-level="22.5" data-path="answers.html"><a href="answers.html#chapter-5.7-twosample-mr"><i class="fa fa-check"></i><b>22.5</b> Chapter 5.7: TwoSample MR</a></li>
+<li class="chapter" data-level="22.6" data-path="answers.html"><a href="answers.html#chapter-8.1-regional-association-plots"><i class="fa fa-check"></i><b>22.6</b> Chapter 8.1: Regional association plots</a></li>
+</ul></li>
+<li class="chapter" data-level="23" data-path="license.html"><a href="license.html"><i class="fa fa-check"></i><b>23</b> Licenses and disclaimers</a>
+<ul>
+<li class="chapter" data-level="23.1" data-path="license.html"><a href="license.html#copyright"><i class="fa fa-check"></i><b>23.1</b> Copyright</a></li>
+<li class="chapter" data-level="23.2" data-path="license.html"><a href="license.html#disclaimer"><i class="fa fa-check"></i><b>23.2</b> Disclaimer</a></li>
+<li class="chapter" data-level="23.3" data-path="license.html"><a href="license.html#images-and-data-used"><i class="fa fa-check"></i><b>23.3</b> Images and data used</a></li>
+<li class="chapter" data-level="23.4" data-path="license.html"><a href="license.html#copyright-1"><i class="fa fa-check"></i><b>23.4</b> Copyright</a></li>
+</ul></li>
+<li class="chapter" data-level="24" data-path="colophon.html"><a href="colophon.html"><i class="fa fa-check"></i><b>24</b> Colophon</a></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
 <li><a href="https://vanderlaanand.science" target="blank">&copy; 1979-2024. Sander W. van der Laan.</a></li>
@@ -318,34 +430,194 @@ Figure 6.3: CoCalc student page.
 </div>
 <p>In the <em>Course Book</em> you’ll find the handouts you need. In the share <em>data</em> folder you will find the data you’ll need.</p>
 </div>
-<div id="beginning-your-own-notebook" class="section level2 hasAnchor" number="6.2">
-<h2><span class="header-section-number">6.2</span> Beginning your own notebook<a href="getting-started-cocalc.html#beginning-your-own-notebook" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>If you want to start your own notebook, you can do so by clicking on the <em>New</em> button and selecting <em>Jupyter Notebook</em>.</p>
+<div id="but-wait-what-is-cocalc-anyway" class="section level2 hasAnchor" number="6.2">
+<h2><span class="header-section-number">6.2</span> But wait, what is CoCalc anyway?<a href="getting-started-cocalc.html#but-wait-what-is-cocalc-anyway" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><a href="https://cocalc.com" target="_blank"><strong>CoCalc</strong></a> is an online platform that allows you to work with <a href="https://jupyter.org/" target="_blank"><strong>Jupyter Notebook</strong></a>, <code>LaTeX</code>, and other tools. It is a great tool for working with data and code, and it is especially useful for collaborative work.</p>
+</div>
+<div id="okay-and-whats-a-jupyter-notebook" class="section level2 hasAnchor" number="6.3">
+<h2><span class="header-section-number">6.3</span> Okay, and what’s a Jupyter Notebook?<a href="getting-started-cocalc.html#okay-and-whats-a-jupyter-notebook" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Jupyter Notebook is an interactive environment for writing and running code, and at the same time, it allows you to add text, images, and other content to your document. This makes it a great tool for creating reports, tutorials, and presentations. Jupyter Notebook has support for over 40 programming languages, including those popular in Bioinformatics such as <code>Python</code> and <code>R</code>.</p>
+</div>
+<div id="how-does-a-jupyter-notebook-work" class="section level2 hasAnchor" number="6.4">
+<h2><span class="header-section-number">6.4</span> How does a Jupyter Notebook work?<a href="getting-started-cocalc.html#how-does-a-jupyter-notebook-work" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>A Jupyter Notebook is made up of cells. Some contain instructions, others contain lines of code, while others combine both (like this one). You can run each cell by selecting it and pressing <code>Shift+Enter</code>. The code in the cell will be executed, and the output will be displayed below the cell. A cell can be a ‘code’ cell, a <code>markdown</code> cell, or a raw ‘text’ cell.</p>
+<ul>
+<li>‘code’ is for code from a given programming code, for instance <code>R</code> or <code>Python</code>;</li>
+<li>‘text’ is for plain text;</li>
+<li><code>markdown</code> is for <code>markdown</code> text; you can learn more about markdown <a href="https://www.markdownguide.org/cheat-sheet/" target="_blank">here</a>.</li>
+</ul>
+</div>
+<div id="and-what-is-the-force-behind-a-jupyter-notebook" class="section level2 hasAnchor" number="6.5">
+<h2><span class="header-section-number">6.5</span> And what is the Force behind a Jupyter Notebook?<a href="getting-started-cocalc.html#and-what-is-the-force-behind-a-jupyter-notebook" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Each notebook is associated with a single operating system called a <em>kernel</em>. A kernel is a program that runs and interprets the code you write in a notebook. It is responsible for executing the code and returning the results. Each kernel has its own environment and programming language, as well as its own set of libraries and packages. Luckily, for the purpose of this practical everything you need is installed.</p>
+</div>
+<div id="how-to-use-a-jupyter-notebook" class="section level2 hasAnchor" number="6.6">
+<h2><span class="header-section-number">6.6</span> How to use a Jupyter Notebook<a href="getting-started-cocalc.html#how-to-use-a-jupyter-notebook" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Working with a Jupyter Notebook is easy. Here are a few tips to get you started:</p>
+<ul>
+<li>Some commands take a few seconds to run (indicated by a green dot left of the command), please wait for it as the next command usually won’t run when the previous has not been executed.</li>
+<li>To restart from a fresh notebook, select <strong>Restart and Clear Output</strong> of the <strong>Kernel</strong>menu.</li>
+<li>To execute the current chunck of code, <strong>click on the arrow (play button)</strong> in the top bar or use <strong>Shift+ENTER</strong> (<strong>CTRL+ENTER</strong> also works).</li>
+<li>To add text (an answer to question for example), double-click or hit the return/enter key.</li>
+<li>To add a new cell, select <strong>Insert Cell Below</strong> from the <strong>Insert</strong> menu.</li>
+<li>To delete a cell, select <strong>Delete Cell</strong> from the <strong>Edit</strong> menu.</li>
+<li>To save your work, select <strong>Save and Checkpoint</strong> from the <strong>File</strong> menu.</li>
+<li>To download your work, select <strong>Download as</strong> from the <strong>File</strong> menu.</li>
+</ul>
+</div>
+<div id="trouble-shooting-juptyer-notebook" class="section level2 hasAnchor" number="6.7">
+<h2><span class="header-section-number">6.7</span> Trouble shooting Juptyer Notebook<a href="getting-started-cocalc.html#trouble-shooting-juptyer-notebook" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Sometimes somethings go awry for not apparent reason. Here are a few tips to get you back on track:</p>
+<ul>
+<li>When the command seems to freeze, you can interrupt the command by in the <strong>Toolbar</strong> going to <strong>Kernel &gt; Interrupt kernel</strong>.</li>
+<li>If that doesn’t help or CoCalc seems to crash, you can restart the kernel by selecting <strong>Restart Kernel</strong> from the <strong>Kernel</strong>-menu.</li>
+</ul>
+<p>The great thing is, that after a freeze and restart, you can continue from where you were. But <em>always first</em> go to the right directory again since the kernel doesn’t remember your previously executed commands.</p>
+</div>
+<div id="cocalc-and-this-practical-primer" class="section level2 hasAnchor" number="6.8">
+<h2><span class="header-section-number">6.8</span> CoCalc and this Practical Primer<a href="getting-started-cocalc.html#cocalc-and-this-practical-primer" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In the course we use CoCalc as we can precisely control what is installed and what is not. And you don’t have to worry about installing software or libraries. Another advantage is that you can work on the practical from anywhere, as long as you have an internet connection. And lastly, all the data you need is already there, so you don’t have to worry about downloading it and we save a lot of space since you will all be working from the same source data.</p>
+<p>This practical is associated with both the <code>R</code> and <code>bash</code> programming language. We use <code>plink</code>, which is a Linux-program in the Terminal (see <a href="getting-started-programs.html#getting-started-programs">4</a>) and uses <code>bash</code>, so <code>plink</code> needs a <code>Bash</code> kernel. The data from the <code>plink</code> analyses are parsed and plotted using <code>R</code> code, and so we also need a <code>R</code> kernel.</p>
+<p>CoCalc has both kernels installed, so you could run both <code>bash</code> and <code>R</code> code in the same notebook. But the command to make this work is a bit complicated, so we decided to split the <code>bash</code> and <code>R</code> code into a virtual Terminal for the <code>bash</code> codes and a Jupyter Notebook with a <code>R</code> kernel for the <code>R</code> code.</p>
+<blockquote>
+<p>This means you have to create a new notebook for the <code>R</code> code. And a new Terminal for the <code>bash</code> code. In the next section we explain how you can do this.</p>
+</blockquote>
+</div>
+<div id="beginning-your-own-jupyter-notebook-with-a-r-kernel" class="section level2 hasAnchor" number="6.9">
+<h2><span class="header-section-number">6.9</span> Beginning your own Jupyter Notebook with a <code>R</code> kernel<a href="getting-started-cocalc.html#beginning-your-own-jupyter-notebook-with-a-r-kernel" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>For the course we need to create a Jupyter Notebook with a <code>R</code> kernel to create all the plots. To start your own notebook, you can do so by clicking on the <em>New</em> button and selecting <em>Jupyter Notebook</em>.</p>
 <div class="figure" style="text-align: center">
 <img src="img/_cocalc/cocalc_notebook.png" alt="CoCalc new notebook." width="85%" />
 <p class="caption">
 (#fig:cocalc_notebook)CoCalc new notebook.
 </p>
 </div>
-<p>You will probably get a screen asking you to select a kernel. You can choose <em>R</em>.</p>
+<p>You will probably get a screen asking you to select a kernel. You should choose <em>R</em>.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:cocalcnotbookkernel"></span>
 <img src="img/_cocalc/cocalc_notebook_kernel.png" alt="CoCalc kernel selection." width="85%" />
 <p class="caption">
 Figure 6.4: CoCalc kernel selection.
 </p>
 </div>
-<p>Now you are ready to start your own notebook - like below. You can create a new ‘cell’ with format ‘code’ or ‘text’ or ‘markdown’ and start typing.</p>
+<p>Now you are ready to start your own <code>R</code> Notebook - like below. You can create a new ‘cell’ with format ‘code’ or ‘text’ or ‘markdown’ and start typing.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:cocalcnotebookrmarkdown"></span>
 <img src="img/_cocalc/cocalc_notebook_r_markdown.png" alt="CoCalc starting your notebook." width="85%" />
 <p class="caption">
 Figure 6.5: CoCalc starting your notebook.
 </p>
 </div>
+<p>You could get your working directory by typing <code>getwd()</code> in a cell and pressing <code>Shift+Enter</code>.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:cocalcnotebookgetwd"></span>
+<img src="img/_cocalc/cocalc_notebook_getwd.png" alt="CoCalc get working directory." width="85%" />
+<p class="caption">
+Figure 6.6: CoCalc get working directory.
+</p>
 </div>
-<div id="are-you-ready-1" class="section level2 hasAnchor" number="6.3">
-<h2><span class="header-section-number">6.3</span> Are you ready?<a href="getting-started-cocalc.html#are-you-ready-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Or you could list the contents of the working directory by typing <code>list.files()</code> or <code>dir()</code> in a cell and pressing <code>Shift+Enter</code>.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:cocalcnotebooklistfiles"></span>
+<img src="img/_cocalc/cocalc_notebook_listfiles.png" alt="CoCalc list files." width="85%" />
+<p class="caption">
+Figure 6.7: CoCalc list files.
+</p>
+</div>
+<p>You could also create a dummy plot with <code>R</code> in this notebook.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:cocalcnotebookplot"></span>
+<img src="img/_cocalc/cocalc_notebook_plot.png" alt="CoCalc plot." width="85%" />
+<p class="caption">
+Figure 6.8: CoCalc plot.
+</p>
+</div>
+</div>
+<div id="beginning-your-own-terminal-for-bash-code" class="section level2 hasAnchor" number="6.10">
+<h2><span class="header-section-number">6.10</span> Beginning your own Terminal for <code>bash</code> code<a href="getting-started-cocalc.html#beginning-your-own-terminal-for-bash-code" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>For the course we need to create a Terminal to run <code>bash</code> code. To start your own Terminal, you can do so by clicking on the <em>New</em> button and selecting <em>Terminal</em>.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:cocalcterminalselect"></span>
+<img src="img/_cocalc/cocalc_terminal_select.png" alt="CoCalc new terminal." width="85%" />
+<p class="caption">
+Figure 6.9: CoCalc new terminal.
+</p>
+</div>
+<p>Type in ‘My Terminal’ and hit the <em>Create</em> button.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:cocalcterminalcreate"></span>
+<img src="img/_cocalc/cocalc_terminal.png" alt="CoCalc new terminal creation." width="85%" />
+<p class="caption">
+Figure 6.10: CoCalc new terminal creation.
+</p>
+</div>
+<p>A new tab will open with a Terminal.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:cocalcterminalkernel"></span>
+<img src="img/_cocalc/cocalc_terminal_window.png" alt="CoCalc terminal window." width="85%" />
+<p class="caption">
+Figure 6.11: CoCalc terminal window.
+</p>
+</div>
+<p>Now you can start typing your <code>bash</code> commands. Let’s see what we have in the directory you’re at by typing <code>ls</code>. Check Chapter <a href="getting-started-standalone.html#getting-started-standalone">5</a> for more background on some common Terminal commands.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:cocalcterminalwindowls"></span>
+<img src="img/_cocalc/cocalc_terminal_window_ls.png" alt="CoCalc listing the contents of the directory." width="85%" />
+<p class="caption">
+Figure 6.12: CoCalc listing the contents of the directory.
+</p>
+</div>
+<p>Let’s review what we see here. First of all there are two colors, blue and black The blue ones are directories, the black ones are files. The directories are:</p>
+<ul>
+<li><code>Course Book</code>, contains the handouts;</li>
+<li><code>data</code>, contains the data you need for the course;</li>
+<li><code>dummy_project</code>, contains the data for the dummy project.</li>
+</ul>
+<p>The files are:</p>
+<ul>
+<li><code>My Notebook.ipynb</code>, the Jupyter Notebook with a <code>R</code> kernel you just created;</li>
+<li><code>My Terminal</code>, the terminal you just created which can handle the <code>bash</code> language and where you can run <code>plink</code>.</li>
+</ul>
+<p>We can also list the contents of the data directory by typing <code>ls data/shared/</code> in the Terminal.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:cocalcterminalwindowdata"></span>
+<img src="img/_cocalc/cocalc_terminal_window_data.png" alt="CoCalc terminal window." width="85%" />
+<p class="caption">
+Figure 6.13: CoCalc terminal window.
+</p>
+</div>
+<p>Let’s check out the contents of the <code>readme.txt</code> file.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:cocalcterminalwindowreadme"></span>
+<img src="img/_cocalc/cocalc_terminal_window_readme.png" alt="CoCalc readme file." width="85%" />
+<p class="caption">
+Figure 6.14: CoCalc readme file.
+</p>
+</div>
+<p>As I wrote, we installed <code>plink</code> for you, but just to be sure, let’s check if it is installed. Type <code>plink</code> in the Terminal and press <strong>ENTER</strong>.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:cocalcterminalwindowplink"></span>
+<img src="img/_cocalc/cocalc_terminal_window_plink.png" alt="CoCalc plink." width="85%" />
+<p class="caption">
+Figure 6.15: CoCalc plink.
+</p>
+</div>
+</div>
+<div id="this-book-and-cocalc" class="section level2 hasAnchor" number="6.11">
+<h2><span class="header-section-number">6.11</span> This book and CoCalc<a href="getting-started-cocalc.html#this-book-and-cocalc" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>This book is designed to be used in conjunction with <code>bash</code> and <code>R</code> and it was tested on macOS and Linux. That said, the reference to some paths - that is the location of a file or directory - in the book might not be the same as in CoCalc. That’s why I just showed you how to list the directories in your CoCalc Terminal. With the command <code>pwd</code> you can get the exact path where you are, and <code>./</code> represents ‘the current directory’.</p>
+<blockquote>
+<p>You need to be aware of the paths in the book and the paths in CoCalc.</p>
+</blockquote>
+<p>For instance, in the book we refer to the path <code>~/Desktop/practical</code> as the location of the course data. In CoCalc this is <code>data/shared/</code>. So, for instance, in the book you would read <code>~/Desktop/practical/dummy_project</code>, but in CoCalc this is <code>data/shared/dummy_project</code>.</p>
+<p>And so, the <code>R</code> code below:</p>
+<pre><code>COURSE_loc = &quot;~/Desktop/practical&quot; # getwd()
+
+sexissues &lt;- data.table::fread(paste0(COURSE_loc,&quot;/dummy_project/rawdata.sexprobs.txt&quot;))</code></pre>
+<p>Becomes this in CoCalc:</p>
+<pre><code>COURSE_loc = &quot;data/shared/&quot; # getwd()
+
+sexissues &lt;- data.table::fread(paste0(COURSE_loc,&quot;/dummy_project/rawdata.sexprobs.txt&quot;))</code></pre>
+<blockquote>
+<p>You need to be aware of this and adapt when necessary the paths before executing the <code>R</code> codes in your Jupyter Notebook.</p>
+</blockquote>
+<p>Throughout the book you will find <code>plink</code> commands that you can run in the Terminal. You can copy these commands and paste them in the Terminal you just created.</p>
+<blockquote>
+<p>But again, be aware of the paths and edit them accordingly. And remember, the <code>plink</code> commands are for the Terminal, not for the Jupyter Notebook.</p>
+</blockquote>
+</div>
+<div id="are-you-ready-1" class="section level2 hasAnchor" number="6.12">
+<h2><span class="header-section-number">6.12</span> Are you ready?<a href="getting-started-cocalc.html#are-you-ready-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Are you ready? Did you bring coffee and a good dose of energy? Let’s start!</p>
-<p>Oh, one more thing: you can save your notebook, the one you just created, to keep all the <code>R</code> codes you are applying in the next chapters and add descriptions and notes. If you save this notebook you’ll notice that a <code>html</code>-file is created. This file is a legible webbrowser-friendly version of your work and contains the codes and the output (code messages, tables, and figures). And the nice thing is, that you can easily share it with others over email.</p>
+<p>Oh, one more thing: you don’t worry about saving your notebook or the Terminal, the ones you just created, CoCalc will automatically save these.</p>
 <p>Ok. ’Nough said, let’s move on to cover some basics in Chapter <a href="gwas-basics.html#gwas-basics">7</a>.</p>
 <!-- ```{js, echo = FALSE} -->
 <!-- title=document.getElementById('header'); -->

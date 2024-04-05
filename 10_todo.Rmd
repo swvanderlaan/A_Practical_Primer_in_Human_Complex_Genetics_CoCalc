@@ -42,47 +42,51 @@ Obviously this list is not exhaustive nor intended for practical use for anyone 
 
 List of to-do's according to MoSCoW: _Must have_, _Should have_, _Could have_, _Would have_.
 
-### Contents
-
-- [x] `M` add in full installation instructions for UBUNTU > DROPPED
-- [] `M` add in full installation instructions for macOS
-- [] `M` conditional analysis
-- [] `M` statistical finemapping
-- [x] `M` regional association plotting
-- [] `M` colocalization with formal testing
-- [] `M` add proper team-page
-
-- [] `S` meta-analysis with dummy data
-    - `S` HPC version with MetaGWASToolKit
-    - `S` including stratified QQ plots
-    - `S` stand-alone version with METAL
-- [] `S` add imputation chapter
-
-- [] `C` GWASToolKit
-- [] `C` PlaqView lookups
-
-- [] `W` add in full installation instructions for Windows
-
-## Book fixes
-
-- [x] `M` overall rendering too slow, paste in images as figure instead of on the fly generating
-- [x] `M` PDF is too large
-- [] `M` fix issue with api of Two Sample MR > run the codes.
-- [] `M` fix issue with `api of Two Sample MR`cat: /Users/USERNAME/Desktop/practical/gwas/data.assoc.logistic.clumped: No such file or directory` - this was not run yet
-- [] `M` fix images per header in GitBook (not showing)
-- [] `M` Upgrade to Quatro - seems to work better in many respects; also adds interactivity https://quarto.org/docs/books/
-
-- [] `S` fix images per header in EPUB
-- [] `S` PDF is not formatted properly (text runs over)
-- [] `S` EPUB is not formatted properly (text runs over)
-- [] `S` different setup for the chapter Additional chapters (this as a Apendix)
-- [x] `S` fix the way the team is displayed
-- [] `S` fix book cover
-  - https://www.designhill.com/design-blog/the-perfect-ebook-cover-size-guide-and-publishing-tips/
-  - https://snappa.com/blog/ebook-cover-size/
-  - https://kdp.amazon.com/en_US/help/topic/G200645690.
-
-- [] `C` Different font type in PDF
+    _M_
+    
+    - [x] `M` add in full installation instructions for UBUNTU > DROPPED
+    - [x] `M` add in full installation instructions for macOS
+    - [x] `M` create chapter on CoCalc
+    - [x] `M` redesign 'Getting Started' chapter
+    - [x] `M` add proper team-page
+    - [x] `M` fix regional association plotting
+    - [x] `M` fix issue with api of Two Sample MR > run the codes.
+    - [x] `M` fix issue with `api of Two Sample MR`cat: /Users/USERNAME/Desktop/practical/gwas/data.assoc.logistic.clumped: No such file or     directory` - this was not run yet
+    - [] `M` fix images per header in GitBook (not showing)
+    - [] `M` conditional analysis
+    - [] `M` statistical finemapping
+    - [] `M` colocalization with formal testing
+    - [x] `M` overall rendering too slow, paste in images as figure instead of on the fly generating
+    - [] `M` fix issue with PDF creation
+    - [] `M` fix issue with EPUB creation
+    - [] `M` fix issue with EPUB creation and images
+    - [] `M` Add partial recreation of the Cystatin C MR study
+    - [] `M` Upgrade to Quatro - seems to work better in many respects; also adds interactivity https://quarto.org/docs/books/. This will probably fix the PDF and EPUB creation issues, as well as the image display issues.
+     
+    _S_
+    - [] `S` meta-analysis with dummy data
+        - `S` HPC version with MetaGWASToolKit
+        - `S` including stratified QQ plots
+        - `S` stand-alone version with METAL
+    - [] `S` add online imputation chapter
+        - [] `S` fix images per header in EPUB
+    - [] `S` PDF is not formatted properly (text runs over)
+    - [] `S` EPUB is not formatted properly (text runs over)
+    - [] `S` different setup for the chapter Additional chapters (this as a Apendix)
+    - [x] `S` fix the way the team is displayed
+    - [] `S` fix book cover
+      - https://www.designhill.com/design-blog/the-perfect-ebook-cover-size-guide-and-publishing-tips/
+      - https://snappa.com/blog/ebook-cover-size/
+      - https://kdp.amazon.com/en_US/help/topic/G200645690.
+    - [] `S` add in chapter on liftOver
+      
+    _C_
+    - [] `C` GWASToolKit
+    - [] `C` PlaqView lookups
+    - [] `C` Different font type in PDF
+    
+    _W_
+    - [] `W` add in full installation instructions for Windows
 
 ## Useful links
 

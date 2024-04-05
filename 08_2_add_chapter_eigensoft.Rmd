@@ -1,4 +1,4 @@
-# Additional: EIGENSOFT {#eigensoft}
+# EIGENSOFT {#eigensoft}
 <!-- ![](./img/_gwas_dummy/banner_man_standing_dna.png){width=70%} -->
 ```{r load-functions-packages, message = FALSE, warning = FALSE, echo = FALSE, eval = TRUE, include = FALSE}
 # source("scripts/functions.R")

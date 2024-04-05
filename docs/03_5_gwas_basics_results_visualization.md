@@ -1,4 +1,4 @@
-# GWAS visualisation {#gwas-visuals}
+# GWAS visualisation {#gwas_visuals}
 <!-- ![](./img/_headers/interactive_plot.png){width=100%} -->
 
 

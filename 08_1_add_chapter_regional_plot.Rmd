@@ -1,19 +1,10 @@
-# Additional: regional association plots {#add_chapter_regional_plot}
+# Regional association plots {#regional_plot}
 <!-- ![](./img/_headers/banner_man_standing_dna.png){width=100%} -->
 ```{r load-functions-packages, message = FALSE, warning = FALSE, echo = FALSE, eval = TRUE, include = FALSE}
-# source("scripts/functions.R")
-# source("scripts/colors.R")
-# source("scripts/packages.R")
-
-library(rmarkdown)
-library(bookdown)
-library(flextable)
-library(knitr)
-library(kableExtra)
-library(webshot)
-library(webshot2)
-library(formatR)
-library(tinytex)
+source("scripts/functions.R")
+source("scripts/colors.R")
+source("scripts/packages.R")
+COURSE_loc = "~/Desktop/practical"
 ```
 
 ```{r include = FALSE}
@@ -37,20 +28,22 @@ opts_chunk$set(echo = FALSE,
 First we need to find the independent hits by _clumping_ the results. We will just use the defaults, but please take a note of all the options here [https://www.cog-genomics.org/plink/1.9/postproc#clump](https://www.cog-genomics.org/plink/1.9/postproc#clump){target="_blank"}
 
 ```
-plink --bfile gwas/gwa --clump gwas/data.assoc.logistic --clump-p1 5e-8 --clump-p2 0.05 --clump-kb 500 --clump-r2 0.05 --clump-verbose --out gwas/data.assoc.logistic
+plink --bfile gwas/gwa --clump dummy_project/data.assoc.logistic --clump-p1 5e-8 --clump-p2 0.05 --clump-kb 500 --clump-r2 0.05 --clump-verbose --out dummy_project/data.assoc.logistic
 ```
 Now you will have a list of all the _independent_ SNPs, _i.e._ the genetic loci, that are associated to the trait.
 
 ```
-cat gwas/data.assoc.logistic.clumped
+cat dummy_project/data.assoc.logistic.clumped
 ```
 
 ```{bash CLUMPS}
 ROOTDIR="/Users/slaan3/Desktop/practical" # change this to your root
-cat $ROOTDIR/gwas/data.assoc.logistic.clumped
+cat $ROOTDIR/dummy_project/data.assoc.logistic.clumped
 ```
 
-In summary, clumping identifies three loci and now that you know them.
+> Question: How many independent hits did you find?
+
+In summary, clumping identifies three loci and now that you know them you can create regional association plots.
 
 ## LocusZoom
 Now you are ready to visualize regions of interest using a package like [LocusZoom](http://locuszoom.org). Locuszoom is a great and easy tool, you'll soon discover. It's the fast and lazy way to get regional association plots.
@@ -58,9 +51,9 @@ Now you are ready to visualize regions of interest using a package like [LocusZo
 First, let's get what we need (`SNP` and `P`) and gzip the results.
 
 ```
-echo "SNP P" > gwas/data.assoc.logistic.locuszoom
-cat gwas/data.assoc.logistic | awk '$5=="ADD"' | awk '{ print $2, $9 }' >> gwas/data.assoc.logistic.locuszoom
-gzip -v gwas/data.assoc.logistic.locuszoom
+echo "SNP P" > dummy_project/data.assoc.logistic.locuszoom
+cat dummy_project/data.assoc.logistic | awk '$5=="ADD"' | awk '{ print $2, $9 }' >> dummy_project/data.assoc.logistic.locuszoom
+gzip -v dummy_project/data.assoc.logistic.locuszoom
 ```
 
 You can to upload this `data.assoc.logistic.locuszoom.gz` Try to visualize each locus using the information above and by following the instructions. Choose HapMap 2, hg18, CEU as the LD-reference.
@@ -77,7 +70,7 @@ You should get something like below.
 
 An alternative to create regional association plots for each of these loci is using [**RACER**](https://github.com/oliviasabik/RACER){target="_blank"}. This packages offers substantial flexibility, and quite frankly, code-wise is easier to edit - think colorscheme, background etc.  - as it is based on [`ggplot2`](https://ggplot2.tidyverse.org){target="_blank"}. The creator, Olivia Sabik, also wrote a nice [vignette](https://oliviasabik.github.io/RACERweb/index.html){target="_blank"} with excellent instructions.
 
-Using **RACER** is also a step-up to **colocalization** about which you read a bit more in chapter \@ref(post-gwas).
+Using **RACER** is also a step-up to **colocalization** about which you read a bit more in chapter \@ref(post_gwas).
 
 Right, so from the above we identified three independent hits: rs6802898, rs7901695, rs8050136. Let's put them in a dataset with their chromosome and basepair position and create a list.
 
@@ -102,7 +95,7 @@ variants_of_interest <- c(variant_list$rsID)
 variants_of_interest
 ```
 
-We can now take the filtered and prepared GWAS summary statistics, _i.e._ `gwas_assoc_compl` you created earlier in chapter \@ref(gwas-visuals), to draw three nice regional association plots around these variants. 
+We can now take the filtered and prepared GWAS summary statistics, _i.e._ `gwas_assoc_compl` you created earlier in chapter \@ref(gwas_visuals), to draw three nice regional association plots around these variants. 
 
 This file should contain the following:
 
@@ -177,14 +170,12 @@ for(VARIANT in variants_of_interest){
 
 This should produce the figure similar to these below. 
 ```{r show-racer, fig.align='center', fig.cap='Regional association plots.', fig.show = TRUE, echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE}
-knitr::include_graphics(rep("img/rs6802898.rs6802898.regional_assoc.png"))
-knitr::include_graphics(rep("img/rs7901695.rs7901695.regional_assoc.png"))
-knitr::include_graphics(rep("img/rs8050136.rs8050136.regional_assoc.png"))
-
-
+knitr::include_graphics(rep("img/_gwas_dummy/rs6802898.rs6802898.regional_assoc.png"))
+knitr::include_graphics(rep("img/_gwas_dummy/rs7901695.rs7901695.regional_assoc.png"))
+knitr::include_graphics(rep("img/_gwas_dummy/rs8050136.rs8050136.regional_assoc.png"))
 ```
 
-> Please note that we are letting RACER plot the variants on genome build 37 (hg19), but we actually provide hg18-based chromosome and basepair positions. The proper thing to do is to [liftOver](https://genome.sph.umich.edu/wiki/LiftOver){target="_blank"} our coordinates to match those in hg19. Here we didn't, because I just wanted to show you the 'how it's done'. In a future edition I will make sure we will liftOver first. 
+> Please note that we are letting RACER plot the variants on genome build 37 (hg19), but we actually provide hg18-based chromosome and basepair positions. The proper thing to do is to [liftOver](https://genome.sph.umich.edu/wiki/LiftOver){target="_blank"} our coordinates to match those in hg19. Here we didn't, because I just wanted to show you the 'how it's done'. 
 
 <!-- ```{js, echo = FALSE} -->
 <!-- title=document.getElementById('header'); -->
