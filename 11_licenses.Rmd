@@ -57,7 +57,7 @@ These are the images from **Unsplash** listed here in no particular order.
 
 Copyright 1979-2024. All rights reserved. Sander W. van der Laan | [s.w.vanderlaan [at] gmail.com](mailto:s.w.vanderlaan@gmail.com) | [https://vanderlaanand.science](https://vanderlaanand.science){target="_blank"}. Published with [`bookdown`](https://bookdown.org/yihui/bookdown/){target="_blank"}.
 
-<!-- ```{js, echo = FALSE} -->
-<!-- title=document.getElementById('header'); -->
-<!-- title.innerHTML = '<img src="img/_headers/banner_man_standing_dna.png" alt="Licenses">' + title.innerHTML -->
-<!-- ``` -->
+```{js, echo = FALSE}
+title=document.getElementById('header');
+title.innerHTML = '<img src="./img/headers/banner_man_standing_dna.png" alt="Licenses">' + title.innerHTML
+```

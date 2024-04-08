@@ -8,7 +8,7 @@ language:
     chapter_name: ""
 rmd_files: ["index.Rmd", # introduction
             "02_1_somebackgroundreading.Rmd", # 2.1
-            # "02_2_gettingstarted.Rmd", # 2.2
+            "02_2_gettingstarted.Rmd", # 2.2
             # "02_3_gettingstarted_programs.Rmd", # 2.3
             # "02_4_gettingstarted_standalone.Rmd", # 2.4
             # "02_5_gettingstarted_cocalc.Rmd", # 2.5

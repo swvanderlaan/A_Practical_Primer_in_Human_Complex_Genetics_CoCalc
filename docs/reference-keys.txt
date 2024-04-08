@@ -1,5 +1,7 @@
 about-this-primer
 somebackgroundreading
+getting-started
+cocalc-vs.-standalone
 epilogue
 course-lecturers
 license

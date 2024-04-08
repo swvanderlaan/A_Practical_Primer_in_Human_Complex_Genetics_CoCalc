@@ -111,7 +111,7 @@ title.innerHTML = '<img src="img/_headers/banner_man_standing_dna.png" alt="A Pr
 ```
 
 
-<!-- ```{js, echo = FALSE} -->
-<!-- title=document.getElementById('header'); -->
-<!-- title.innerHTML = '<img src="img/_headers/banner_man_standing_dna.png" alt="To-do">' + title.innerHTML -->
-<!-- ``` -->
+```{js, echo = FALSE}
+title=document.getElementById('header');
+title.innerHTML = '<img src="./img/headers/banner_man_standing_dna.png" alt="To-do">' + title.innerHTML
+```

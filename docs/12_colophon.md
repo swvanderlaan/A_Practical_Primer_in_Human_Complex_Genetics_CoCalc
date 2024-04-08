@@ -95,10 +95,10 @@ The 2022 and 2024 editions of this book were produce in RStudio and with the `bo
 ## ──────────────────────────────────────────────────────────────────────────────
 ```
 
-<!-- ```{js, echo = FALSE} -->
-<!-- title=document.getElementById('header'); -->
-<!-- title.innerHTML = '<img src="img/_headers/banner_man_standing_dna.png" alt="Colofon">' + title.innerHTML -->
-<!-- ``` -->
+<script>
+title=document.getElementById('header');
+title.innerHTML = '<img src="./img/headers/banner_man_standing_dna.png" alt="Colofon">' + title.innerHTML
+</script>
 
 <!-- example: https://yearbookdiscoveries.com/wp-content/uploads/2014/05/Writing_a_Yearbook_Colophon.pdf -->
 <!-- SPECIAL THANKS: (The staff wrote a few paragraphs about the year and mentioned a variety -->

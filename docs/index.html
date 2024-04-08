@@ -20,7 +20,7 @@
   <meta name="twitter:description" content="This is a practical primer in human complex genetics with a use-case in cardiovascular disease. The output format for this primer is bookdown::gitbook." />
   
 
-<meta name="author" content="dr. Sander W. van der Laan    " />
+<meta name="author" content="dr. Sander W. van der Laan  " />
 
 
 
@@ -78,18 +78,22 @@
 <li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> About this primer</a></li>
 <li class="chapter" data-level="2" data-path="somebackgroundreading.html"><a href="somebackgroundreading.html"><i class="fa fa-check"></i><b>2</b> Some background reading</a></li>
-<li class="chapter" data-level="3" data-path="epilogue.html"><a href="epilogue.html"><i class="fa fa-check"></i><b>3</b> Epilogue</a>
+<li class="chapter" data-level="3" data-path="getting-started.html"><a href="getting-started.html"><i class="fa fa-check"></i><b>3</b> Getting started</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="epilogue.html"><a href="epilogue.html#course-lecturers"><i class="fa fa-check"></i><b>3.1</b> 2024 Course Lecturers</a></li>
+<li class="chapter" data-level="3.1" data-path="getting-started.html"><a href="getting-started.html#cocalc-vs.-standalone"><i class="fa fa-check"></i><b>3.1</b> CoCalc vs. Standalone</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="license.html"><a href="license.html"><i class="fa fa-check"></i><b>4</b> Licenses and disclaimers</a>
+<li class="chapter" data-level="4" data-path="epilogue.html"><a href="epilogue.html"><i class="fa fa-check"></i><b>4</b> Epilogue</a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="license.html"><a href="license.html#copyright"><i class="fa fa-check"></i><b>4.1</b> Copyright</a></li>
-<li class="chapter" data-level="4.2" data-path="license.html"><a href="license.html#disclaimer"><i class="fa fa-check"></i><b>4.2</b> Disclaimer</a></li>
-<li class="chapter" data-level="4.3" data-path="license.html"><a href="license.html#images-and-data-used"><i class="fa fa-check"></i><b>4.3</b> Images and data used</a></li>
-<li class="chapter" data-level="4.4" data-path="license.html"><a href="license.html#copyright-1"><i class="fa fa-check"></i><b>4.4</b> Copyright</a></li>
+<li class="chapter" data-level="4.1" data-path="epilogue.html"><a href="epilogue.html#course-lecturers"><i class="fa fa-check"></i><b>4.1</b> 2024 Course Lecturers</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="colophon.html"><a href="colophon.html"><i class="fa fa-check"></i><b>5</b> Colophon</a></li>
+<li class="chapter" data-level="5" data-path="license.html"><a href="license.html"><i class="fa fa-check"></i><b>5</b> Licenses and disclaimers</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="license.html"><a href="license.html#copyright"><i class="fa fa-check"></i><b>5.1</b> Copyright</a></li>
+<li class="chapter" data-level="5.2" data-path="license.html"><a href="license.html#disclaimer"><i class="fa fa-check"></i><b>5.2</b> Disclaimer</a></li>
+<li class="chapter" data-level="5.3" data-path="license.html"><a href="license.html#images-and-data-used"><i class="fa fa-check"></i><b>5.3</b> Images and data used</a></li>
+<li class="chapter" data-level="5.4" data-path="license.html"><a href="license.html#copyright-1"><i class="fa fa-check"></i><b>5.4</b> Copyright</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="colophon.html"><a href="colophon.html"><i class="fa fa-check"></i><b>6</b> Colophon</a></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
 <li><a href="https://vanderlaanand.science" target="blank">&copy; 1979-2024. Sander W. van der Laan.</a></li>
@@ -114,7 +118,7 @@
 <div id="header">
 <h1 class="title">A Practical Primer in Human Complex Genetics</h1>
 <h2 class="subtitle"><em>with a use-case in cardiovascular disease</em></h2>
-<p class="author"><em><a href="https://vanderlaanand.science">dr. Sander W. van der Laan</a> <a href="https://www.twitter.com/swvanderlaan"><img src="logo/twitter_circle_blue.png" style="width:2.0%" /></a> <a href="mailto:s.w.vanderlaan@gmail.com"><img src="./logo/email_circle_blue.png" style="width:2.0%" /></a> <a href="mailto:s.w.vanderlaan@gmail.com"><img src="img/logo/email_circle_blue.png" style="width:2.0%" /></a> <a href="mailto:s.w.vanderlaan@gmail.com"><img src="img/email_circle_blue.png" style="width:2.0%" /></a></em></p>
+<p class="author"><em><a href="https://vanderlaanand.science">dr. Sander W. van der Laan</a> <a href="https://www.twitter.com/swvanderlaan"><img src="img/logo/twitter_circle_blue.png" style="width:2.0%" /></a> <a href="mailto:s.w.vanderlaan@gmail.com"><img src="img/logo/email_circle_blue.png" style="width:2.0%" /></a></em></p>
 <p class="date"><em>Version 2.1.2 (2024-04-08)</em></p>
 </div>
 <div id="about-this-primer" class="section level1 hasAnchor" number="1">
@@ -129,7 +133,7 @@ I should also point out that emphasis of this book is on it being a <em>practica
 <!-- Your first point of action is to prepare your system for this course in Chapter \@ref(somebackgroundreading). -->
 <script>
 title=document.getElementById('header');
-title.innerHTML = '<img src="img/_headers/banner_man_standing_dna.png" alt="A Practical Primer in Human Complex Genetics">' + title.innerHTML
+title.innerHTML = '<img src="img/headers/banner_man_standing_dna.png" alt="A Practical Primer in Human Complex Genetics">' + title.innerHTML
 </script>
 
 </div>

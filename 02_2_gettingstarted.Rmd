@@ -55,7 +55,7 @@ For the purpose of this practical primer there are one of two steps you can to t
 
 But first, I'll briefly provide some background on the various programs that are commonly used Chapter \@ref(getting-started-programs).
 
-<!-- ```{js, echo = FALSE} -->
-<!-- title=document.getElementById('header'); -->
-<!-- title.innerHTML = '<img src="img/_headers/women_behind_macbook.png" alt="Getting started">' + title.innerHTML -->
-<!-- ``` -->
+```{js, echo = FALSE}
+title=document.getElementById('header');
+title.innerHTML = '<img src="./img/headers/women_behind_macbook.png" alt="Getting started">' + title.innerHTML
+```
