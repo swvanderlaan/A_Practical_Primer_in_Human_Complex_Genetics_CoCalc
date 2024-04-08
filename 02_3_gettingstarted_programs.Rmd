@@ -93,7 +93,7 @@ Go to Chapter \@ref(getting-started-standalone) for the **Standalone**-instructi
 
 Go to Chapter \@ref(getting-started-cocalc) for the **CoCalc**-instructions.
 
-<!-- ```{js, echo = FALSE} -->
-<!-- title=document.getElementById('header'); -->
-<!-- title.innerHTML = '<img src="img/_headers/women_behind_macbook.png" alt="Getting started">' + title.innerHTML -->
-<!-- ``` -->
+```{js, echo = FALSE}
+title=document.getElementById('header');
+title.innerHTML = '<img src="./img/headers/women_behind_macbook.png" alt="Getting started">' + title.innerHTML
+```
