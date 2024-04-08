@@ -7,30 +7,30 @@ language:
     chapter_name: ""
 rmd_files: ["index.Rmd", # introduction
             "02_1_somebackgroundreading.Rmd", # 2.1
-            "02_2_gettingstarted.Rmd", # 2.2
-            "02_3_gettingstarted_programs.Rmd", # 2.3
-            "02_4_gettingstarted_standalone.Rmd", # 2.4
-            "02_5_gettingstarted_cocalc.Rmd", # 2.5
-            "03_1_gwas_basics.Rmd", # 3.1
-            "03_2_gwas_basics_sample_qc.Rmd", #3.2
-            "03_3_gwas_basics_snp_qc.Rmd", #3.3
-            "03_4_gwas_basics_association_testing.Rmd", #3.4
-            "03_5_gwas_basics_results_visualization.Rmd", #3.5
-            "04_1_wtccc1_intro.Rmd", #4.1
-            "04_2_wtccc1.Rmd", #4.2
-            "05_1_post_gwas.Rmd", #5.1
+            # "02_2_gettingstarted.Rmd", # 2.2
+            # "02_3_gettingstarted_programs.Rmd", # 2.3
+            # "02_4_gettingstarted_standalone.Rmd", # 2.4
+            # "02_5_gettingstarted_cocalc.Rmd", # 2.5
+            # "03_1_gwas_basics.Rmd", # 3.1
+            # "03_2_gwas_basics_sample_qc.Rmd", #3.2
+            # "03_3_gwas_basics_snp_qc.Rmd", #3.3
+            # "03_4_gwas_basics_association_testing.Rmd", #3.4
+            # "03_5_gwas_basics_results_visualization.Rmd", #3.5
+            # "04_1_wtccc1_intro.Rmd", #4.1
+            # "04_2_wtccc1.Rmd", #4.2
+            # "05_1_post_gwas.Rmd", #5.1
             # # "05_2_conditional_analysis.Rmd", #5.2
             # # "05_3_finemapping.Rmd", #5.3
-            "05_4_fuma.Rmd", #5.4
-            "05_5_phewas.Rmd", #5.5
-            "05_6_mendelian_randomization_mr_base.Rmd", #5.6
-            "05_7_mendelian_randomization_twosamplemr.Rmd", #5.7
+            # "05_4_fuma.Rmd", #5.4
+            # "05_5_phewas.Rmd", #5.5
+            # "05_6_mendelian_randomization_mr_base.Rmd", #5.6
+            # "05_7_mendelian_randomization_twosamplemr.Rmd", #5.7
             # # "06_summary.Rmd", #6
             "07_epilogue.Rmd", #7
-            "08_1_add_chapter_regional_plot.Rmd", #8.1
-            "08_2_add_chapter_eigensoft.Rmd", #8.2
+            # "08_1_add_chapter_regional_plot.Rmd", #8.1
+            # "08_2_add_chapter_eigensoft.Rmd", #8.2
             # # "08_3_add_chapter_other_things.Rmd", #8.3
-            "09_Answers_to_questions.Rmd", #9
+            # "09_Answers_to_questions.Rmd", #9
             # "10_todo.Rmd", #10
             "11_licenses.Rmd", #11
             "12_colophon.Rmd", #12

@@ -74,6 +74,20 @@ cd ~/Desktop/practical
 **CoCalc**</br>
 When you are using the **CoCalc** for the course, you don't need to go to a directory, you simply create a new `dummy_project` directory in your current directory.
 
+> Note: In **CoCalc** all the data is stored in the `data/shared` directory. So, if you do the following:
+> 
+> ```
+> ls data/shared
+> ```
+> 
+> You will see this:
+> 
+> ```
+> dummy_project  gwas  rawdata  readme.txt  readme.wtccc1.txt  ref_1kg_phase1_all  scripts  support  wtccc1
+> ```
+> 
+> (in blue the directories, in black the files)
+
 ## Converting the data
 
 Next, we'll make a project directory and convert the data.
