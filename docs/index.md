@@ -1,7 +1,9 @@
 --- 
 title: "A Practical Primer in Human Complex Genetics"
 subtitle: "with a use-case in cardiovascular disease"
-author: "[dr. Sander W. van der Laan](https://vanderlaanand.science) [![](img/logo/twitter_circle_blue.png){width=2%}](https://www.twitter.com/swvanderlaan) [![](img/logo/email_circle_blue.png){width=2%}](mailto:s.w.vanderlaan@gmail.com)"
+author: "[dr. Sander W. van der Laan](https://vanderlaanand.science) [![](logo/twitter_circle_blue.png){width=2%}](https://www.twitter.com/swvanderlaan) [![](./logo/email_circle_blue.png){width=2%}](mailto:s.w.vanderlaan@gmail.com)
+[![](./img/logo/email_circle_blue.png){width=2%}](mailto:s.w.vanderlaan@gmail.com)
+[![](./img/email_circle_blue.png){width=2%}](mailto:s.w.vanderlaan@gmail.com)"
 date: "Version 2.1.2 (2024-04-08)"
 description: "This is a practical primer in human complex genetics with a use-case in cardiovascular disease. The output format for this primer is bookdown::gitbook."
 documentclass: book
