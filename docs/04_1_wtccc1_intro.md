@@ -25,7 +25,7 @@ Your assignment in the next chapter is to do the following:
 
 1. Explore the individual datasets by calculating some statistics and visualising these.
 2. Merge the datasets in the folder `wtccc1`.
-3. Calculate PCs using smartPCA.
+3. Calculate PCs using `--pca` in `PLINK`.
 4. Perform an association test using available covariates. 
 5. Visualize the results.
 6. Identify independent SNPs.
@@ -34,7 +34,7 @@ Your assignment in the next chapter is to do the following:
 
 ## There you go
 
-As I wrote, you are ready for the real stuff in Chapter \@ref(wtccc1-cocalc). 
+As I wrote, you are ready for the real stuff in Chapter \@ref(wtccc1-qc-cocalc). 
 
 <script>
 title=document.getElementById('header');

@@ -18,27 +18,19 @@ You will need to use the `fwrite` function in `r` to write the concatenated resu
 
 > Task: You have gotten so much experience now in handling files with R. You should be able to do this without any problems.
 
-<!--
+<!-- we are not showing this code block -->
 
-```r
-data.table::fwrite(na.omit(wtccc1_assoc_compl), "wtccc1/wtccc1_assoc_compl.txt", 
-                   sep = " ", 
-                   na = "NA", row.names = FALSE, quote = FALSE, 
-                   compress = "gzip",
-                   showProgress = TRUE, verbose = TRUE)
-```
--->
 
 > Question: can you figure out the sample size of the WTCCC1 data you used?
 
 
 ### Run FUMA - SNP to gene
 
-Upload via the form on the FUMA-website. Since you've done the tutorial you are familiar with its options. 
+For you convenience, I have already created this file `wtccc1/wtccc1_assoc_compl.txt.gz` which you should download and upload to [FUMA](https://fuma.ctglab.nl/jobs){target="_blank"}. Since you've studied the tutorial you are familiar with its options. 
 
 Select _everything_ in the tabs `Gene Mapping (positional mapping)`, `Gene Mapping (eQTL mapping)` but *not* `GTEx v6` and `GTEx v7`, and `Gene Mapping (3D Chromatin Interaction mapping)` and leave the settings at `Gene types` and `MHC region` as-is. At `MAGMA analysis` set the _MAGMA gene expression analysis_ to include all tissues, *but* `GTEx v6` and `GTEx v7`. 
 
-Don't forget to give your analysis a name. 
+Don't forget to give your analysis a name. The whole analysis will take about 5-10 minutes depending on the traffic on the server. 
 
 This will take some time and so it's a good moment to carry on with the rest of the practical or take a break, or study for the exam.
 
@@ -69,7 +61,7 @@ Now that you mapped SNPs to genes, it's time to go back to 'My Jobs'. Select you
 FUMA is a great tool, but it comes with a caveat. It includes a couple of references of which it is not readily clear which variants are included - the authors do provide the codes used on Git, but still, you don't know which variants precisely are filtered. That is key: perhaps the top variant you discovered is filtered in the reference. This means FUMA will not use it to map SNPs to genes, rather next best variant. This should be in high-LD - but, again, assumptions... And of course, the references used might not match your data well enough. 
 So, my advice: use FUMA (why not be lazy rather than work hard?), but aware of such caveats as I described. All in all, I do think FUMA is very complete, intuitive, and it makes your work publication-ready because it creates just the right file-formats for you too (`.png`, `.svg`, `.pdf`, `.jpeg`).
 
-That said, time to move on to inspect other phenotypes in relation to your findings in the next Chapter \@ref(phewas) or to return to the previous chapter on post-GWAS analyses \@ref(post_gwas).
+That said, time to move on to inspect other phenotypes in relation to your findings in the next Chapter \@ref(phewas) or to return to the previous chapter on post-GWAS analyses \@ref(post-gwas).
 
 <script>
 title=document.getElementById('header');

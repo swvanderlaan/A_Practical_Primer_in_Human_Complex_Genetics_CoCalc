@@ -7,7 +7,7 @@
 
 ## Images and data used
 
-I took the at-most care to use refer to the original works and data sources where needed. Likewise, all the images c.q. figures are either produced specifically for this book, or I took them from [**Unsplash**](https://unsplash.com/s/photos/legal) to brighten up the book. If you feel I made a mistake and your work should be properly referenced, please don't hesitate to contact me. 
+I took the at-most care to refer to the original works and data sources where needed. Likewise, all the images c.q. figures are either produced specifically for this book, or I took them from [**Unsplash**](https://unsplash.com/s/photos/legal) to brighten up the book. If you feel I made a mistake and your work should be properly referenced, please don't hesitate to contact me. 
 
 These are the images from **Unsplash** listed here in no particular order.
 

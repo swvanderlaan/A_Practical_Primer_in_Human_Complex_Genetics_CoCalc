@@ -1,4 +1,4 @@
-# WTCCC1: a GWAS on coronary artery disease (CAD) {#wtccc1-cocalc}
+# WTCCC1: quality control {#wtccc1-qc-cocalc}
 <!-- ![](./img/_headers/interactive_plot.png){width=100%} -->
 
 
@@ -360,123 +360,11 @@ Next we filter these samples and get a final fully QC'd dataset.
 plink --bfile wtccc1/wtccc1_clean --exclude wtccc1/fail-ancestry-QC.txt --make-bed --out wtccc1/wtccc1_qc
 ```
 
-## Association testing
+## Summary
 
-Now that we have explored the data, we are ready for some simple association testing. However, it would be great to have some PCs to correct for. We can use PLINK for that too.
+You have now explored the WTCCC1 genotype data by inspecting call rates, the HWE p-values and frequencies. You have also projected the WTCCC1 data on the 1000G phase 1 reference panel and removed samples that did not match the expected ancestry. This resulted in a fully quality controlled dataset (`wtccc1/wtccc1_qc`).
 
-```
-plink --bfile wtccc1/wtccc1_extrclean --exclude wtccc1/fail-ancestry-QC.txt --pca --out wtccc1/wtccc1_extrclean
-```
-
-Let's add those PCs to the covariates-file.
-
-```
-echo "IID PC1 PC2 PC3 PC4 PC5 PC6 PC7 PC8 PC9 PC10 PC11 PC12 PC13 PC14 PC15 PC16 PC17 PC18 PC19 PC20" > wtccc1/wtccc1_qc.pca
-
-cat wtccc1/wtccc1_extrclean.eigenvec | awk '{ print $2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17,$18,$19,$20,$21,$22}' >> wtccc1/wtccc1_qc.pca
-
-perl ~/data/shared/scripts/mergeTables.pl --file1 wtccc1/wtccc1_qc.pca --file2 ~/data/shared/wtccc1/wtccc1.covar --index IID --format NORM > wtccc1/wtccc1_qc.covar_pca
-```
-
-Exciting, now we are ready to perform a GWAS on CAD in WTCCC1. This may take some time (when I tested it, it took at least 5 minutes), so it's a perfect moment to take a break, stretch your legs and get a coffee.
-
-```
-plink --bfile wtccc1/wtccc1_qc --logistic sex --covar wtccc1/wtccc1_qc.covar_pca --out wtccc1/wtccc1_qc_log_covar_pca
-```
-
-After you ran the association analysis, you're ready to process the data and take a first look at the results. First, we prepare the raw output. 
-
-
-```r
-wtccc1_assoc <- data.table::fread("wtccc1/wtccc1_qc_log_covar_pca.assoc.logistic")
-```
-
-
-
-
-```r
-dim(wtccc1_assoc)
-
-wtccc1_assoc[1:9, 1:9]
-wtccc1_assoc_sub <- subset(wtccc1_assoc, TEST == "ADD")
-wtccc1_assoc_sub$TEST <- NULL
-
-temp <- subset(wtccc1_FRQ, select = c("SNP", "A2", "MAF", "NCHROBS"))
-
-wtccc1_assoc_subfrq <- merge(wtccc1_assoc_sub, temp, by = "SNP")
-
-temp <- subset(wtccc1_LMISS, select = c("SNP", "callrate"))
-
-wtccc1_assoc_subfrqlmiss <- merge(wtccc1_assoc_subfrq, temp, by = "SNP")
-head(wtccc1_assoc_subfrqlmiss)
-# Remember:
-# - that z = beta/se
-# - beta = log(OR), because log is the natural log in r
-
-wtccc1_assoc_subfrqlmiss$BETA = log(wtccc1_assoc_subfrqlmiss$OR)
-wtccc1_assoc_subfrqlmiss$SE = wtccc1_assoc_subfrqlmiss$BETA/wtccc1_assoc_subfrqlmiss$STAT
-
-
-wtccc1_assoc_subfrqlmiss_tib <- dplyr::as_tibble(wtccc1_assoc_subfrqlmiss)
-
-col_order <- c("SNP", "CHR", "BP",
-               "A1", "A2", "MAF", "callrate", "NMISS", "NCHROBS",
-               "BETA", "SE", "OR", "STAT", "P")
-wtccc1_assoc_compl <- wtccc1_assoc_subfrqlmiss_tib[, col_order]
-
-dim(wtccc1_assoc_compl)
-
-head(wtccc1_assoc_compl)
-
-wtccc1_assoc_complsub <- subset(wtccc1_assoc_compl, select = c("SNP", "CHR", "BP", "P"))
-```
-
-You could visualize these results with the code below. 
-
-
-```r
-library("CMplot")
-
-CMplot(wtccc1_assoc_complsub,
-       plot.type = c("d", "c", "m", "q"), LOG10 = TRUE, ylim = NULL,
-       threshold = c(1e-6,1e-4), threshold.lty = c(1,2), threshold.lwd = c(1,1), threshold.col = c("black", "grey"),
-       amplify = TRUE,
-       bin.size = 1e6, chr.den.col = c("darkgreen", "yellow", "red"),
-       signal.col = c("red", "green"), signal.cex = c(1,1), signal.pch = c(19,19),
-       file.output = FALSE, file = "png", 
-       main = "", dpi = 300, verbose = TRUE)
-```
-
-This would lead to the following graphs. 
-<div class="figure" style="text-align: center">
-<img src="img/gwas_wtccc/WTCCC1ResultsManhattan-density.png" alt="SNP density of the association results." width="85%" />
-<p class="caption">(\#fig:show-wtccc1-graphs-density)SNP density of the association results.</p>
-</div>
-
-<div class="figure" style="text-align: center">
-<img src="img/gwas_wtccc/WTCCC1ResultsManhattan-qq.png" alt="A QQ plot including a 95% confidence interval (blue area) and genome-wide significant hits (red)." width="85%" />
-<p class="caption">(\#fig:show-wtccc1-graphs-qq)A QQ plot including a 95% confidence interval (blue area) and genome-wide significant hits (red).</p>
-</div>
-
-<div class="figure" style="text-align: center">
-<img src="img/gwas_wtccc/WTCCC1ResultsManhattan-manhattan.png" alt="A regular manhattan plot. Colored by chromosome, suggestive hits are green, genome-wide hits are red. The bottom graph shows the per-chromosome SNP density." width="85%" />
-<p class="caption">(\#fig:show-wtccc1-graphs-manhattan)A regular manhattan plot. Colored by chromosome, suggestive hits are green, genome-wide hits are red. The bottom graph shows the per-chromosome SNP density.</p>
-</div>
-
-<div class="figure" style="text-align: center">
-<img src="img/gwas_wtccc/WTCCC1ResultsManhattan-circular.png" alt="A circular manhattan." width="85%" />
-<p class="caption">(\#fig:show-wtccc1-graphs-circular)A circular manhattan.</p>
-</div>
-
-## Replication! 
-
-You reached an important milestone. 
-
-**You recreated the work by the whole WTCCC1-team that took them years in just one afternoon!** 
-
-Wow. Take a pause. And realize what you've done. 
-
-Back then there wasn't much on analyses _after_ a GWAS, nowadays there are many post-GWAS analyses methods. We will cover them in the next Chapter \@ref(post-gwas).
+Now you're ready for the actual GWAS on coronary artery disease that led to [this seminal publication](https://doi.org/10.1038/nature05911){target="_blank"}. On to Chapter \@ref(wtccc1-assoc-cocalc).
 
 <script>
 title=document.getElementById('header');

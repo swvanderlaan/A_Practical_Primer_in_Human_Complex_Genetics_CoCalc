@@ -24,16 +24,14 @@ opts_chunk$set(echo = TRUE,
                fig.align = "center", 
                tidy = FALSE)
 ```
-So you took the hard way. You want to get your hands dirty yourself. Your choice. 
-
-As I wrote, we will use the `TwoSampleMR` package to assess the causal effect of type 2 diabetes on coronary artery disease and ischemic stroke.
+We will use the `TwoSampleMR` package to assess the causal effect of type 2 diabetes on coronary artery disease.
 
 Briefly, the workflow of a Two-Sample MR is as follows (see also diagram below):
 
-1. Select instruments for the exposure (perform LD clumping if necessary)
-2. Extract the instruments from the MR Base GWAS database for the outcomes of interest
-3. Harmonise the effect sizes for the instruments on the exposures and the outcomes to be each for the same reference allele
-4. Perform MR analysis, sensitivity analyses, create plots, compile reports
+1. _Select instruments_ for the exposure (perform LD clumping if necessary);
+2. _Extract the instruments_ from the MR Base GWAS database for the outcomes of interest;
+3. _Harmonise the effect sizes_ for the instruments on the exposures and the outcomes to be each for the same reference allele;
+4. _Perform MR analysis_, sensitivity analyses, create plots, compile reports.
 
 ![](img/twosamplemr.png)
 
@@ -42,7 +40,7 @@ Briefly, the workflow of a Two-Sample MR is as follows (see also diagram below):
 `TwoSampleMR` is free use. It used to require server-authentication using a gmail-account, now it doesn't anymore. Should run into an issue, please refer to [this page](https://mrcieu.github.io/TwoSampleMR/articles/introduction.html){target="_blank"}.
 
 First we load the package.
-```{r load TwoSampleMR, echo = TRUE, eval = TRUE}
+```{r load TwoSampleMR, echo = TRUE, eval = FALSE}
 library("TwoSampleMR")
 library("MRInstruments")
 library("ieugwasr")
@@ -52,8 +50,12 @@ library("ieugwasr")
 ## Available outcome
 
 We are ready to load in the available outcomes. 
-```{r listGWAS, echo = TRUE, eval = TRUE}
+```{r listGWAS, eval = FALSE,echo = TRUE}
 ao_twosamplemr <- available_outcomes()
+```
+
+```{r 'twosamplemravout', fig.align='center', fig.cap='Available data.', fig.show = TRUE, eval=TRUE, echo = FALSE}
+knitr::include_graphics("./img/twosamplemr/twosamplemr_avout.png")
 ```
 
 ## Instruments
@@ -69,26 +71,38 @@ The `MRInstruments`-package, which comes with `TwoSampleMR`, includes several ty
 
 Let's select T2D associated instruments.
 
-```{r MR_instruments_exposure, echo = TRUE, eval = TRUE}
+```{r MR_instruments_exposure, eval = FALSE,echo = TRUE}
 data("gwas_catalog")
 t2d_gwas <- subset(gwas_catalog, grepl("Mahajan", Author) & PubmedID == "24509480" & Phenotype == "Type 2 diabetes")
 t2d_exp_dat <- format_data(t2d_gwas)
+```
+
+```{r 'twosamplemrinstruments', fig.align='center', fig.cap='Available data.', fig.show = TRUE, eval=TRUE, echo = FALSE}
+knitr::include_graphics("./img/twosamplemr/twosamplemr_instruments.png")
 ```
 
 ## Clumping
 
 Like with identifying independent GWAS hits, it is important for TwoSampleMR to ensure that the instruments for the exposure are independent. We can use MR Base to perform clumping. The European samples from the 1000 genomes project are used to estimate LD between SNPs. You can provide a list of SNP IDs, the SNPs will be extracted from 1000 genomes data, LD calculated between them, and amongst those SNPs that have LD R-square above the specified threshold only the SNP with the lowest P-value will be retained. To do this, use the following command.
 
-```{r MR_clump, echo = TRUE, eval = TRUE}
+```{r MR_clump, eval = FALSE,echo = TRUE}
 t2d_exp_dat <- clump_data(t2d_exp_dat)
+```
+
+```{r 'twosamplemrclump', fig.align='center', fig.cap='All available data.', fig.show = TRUE, eval=TRUE, echo = FALSE}
+knitr::include_graphics("./img/twosamplemr/twosamplemr_clump.png")
 ```
 
 ## Outcomes
 
 Right, so now we are ready to select the proper outcome, CAD. There are multiple datasets available in MRBase, the database used by `TwoSampleMR`. Let's review them all and select one with the largest overlap with our exposure SNPs.
 
-```{r MR_outcomes_grep_chd, echo = TRUE, eval = TRUE}
+```{r MR_outcomes_grep_chd, eval = FALSE,echo = TRUE}
 ao_twosamplemr[grepl("heart disease", ao_twosamplemr$trait), ]
+```
+
+```{r 'twosamplemrchd', fig.align='center', fig.cap='Available CHD data.', fig.show = TRUE, eval=TRUE, echo = FALSE}
+knitr::include_graphics("./img/twosamplemr/twosamplemr_chd.png")
 ```
 
 It turns out there are several options listed below. 
@@ -104,7 +118,7 @@ It turns out there are several options listed below.
 We will use the `ieu-a-7` dataset as this provides the latest and the greatest, but at the same time (when you go into the literature and dig up the publication) you need a good and sharp definition of the outcome you are interested in.
 
 
-```{r MR_outcomes, echo = TRUE, eval = TRUE}
+```{r MR_outcomes, eval = FALSE,echo = TRUE}
 chd_out_dat <- extract_outcome_data(
     snps = t2d_exp_dat$SNP,
     # outcomes = "UKB-a:534" # - this one is deprecated, use the one below
@@ -114,15 +128,23 @@ chd_out_dat <- extract_outcome_data(
 )
 ```
 
+```{r 'twosamplemrchdout', fig.align='center', fig.cap='Extracting available top SNPs.', fig.show = TRUE, eval=TRUE, echo = FALSE}
+knitr::include_graphics("./img/twosamplemr/twosamplemr_chdout.png")
+```
+
 ### Harmonisation
 
 It is important to make sure that the effect allele associated to T2D of any given SNP is the same as the effect allele associated CAD. In other words, we need to harmonise the data.
 
-```{r MR_harmonise, echo = TRUE, eval = TRUE}
+```{r MR_harmonise, eval = FALSE,echo = TRUE}
 dat <- harmonise_data(
     exposure_dat = t2d_exp_dat,
     outcome_dat = chd_out_dat
 )
+```
+
+```{r 'twosamplemrharmonise', fig.align='center', fig.cap='Harmonising the instruments.', fig.show = TRUE, eval=TRUE, echo = FALSE}
+knitr::include_graphics("./img/twosamplemr/twosamplemr_harmonise.png")
 ```
 
 <!-- ### Drop duplicate datasets -->
@@ -141,17 +163,21 @@ dat <- harmonise_data(
 ### Mendelian randomisation
 
 Now that the data is harmonised, we are ready to perform a MR and test for a causal relation of T2D with CAD.
-```{r MR_analysis, echo = TRUE, eval = TRUE}
+```{r MR_analysis, eval = FALSE,echo = TRUE}
 res <- mr(dat)
 
 DT::datatable(res, caption = "MR of type 2 diabetes and coronary artery disease", rownames = FALSE)
+```
+
+```{r 'twosamplemranalysis', fig.align='center', fig.cap='Primary MR analysis.', fig.show = TRUE, eval=TRUE, echo = FALSE}
+knitr::include_graphics("./img/twosamplemr/twosamplemr_analysis.png")
 ```
 
 > Question: What is the causal effect of T2D on CAD? Can you describe this using the knowledge from the lecture and the results in the table.
 
 Several tests are applied. You can change the method(s) applied by using the `method_list` flag. Below a list of available methods.
 
-```{r MR_methods, echo = FALSE, eval = TRUE}
+```{r MR_methods, echo = FALSE, eval = TRUE, echo = FALSE, message = FALSE, warning = FALSE}
 knitr::kable(mr_method_list(), caption = "Available MR methods", row.names
  = FALSE)
 ```
@@ -164,23 +190,44 @@ _Horizontal pleiotropy_ arises due to SNPs influencing two traits through indepe
 
 Further, we should test for study heterogeneity.
 
-```{r MR_sensitivity, echo = TRUE, eval = TRUE}
+```{r MR_heterogeneity, eval = FALSE,echo = TRUE}
 mr_heterogeneity(dat)
+```
 
+```{r 'twosamplemrheterogeneity', fig.align='center', fig.cap='MR heterogeneity.', fig.show = TRUE, eval=TRUE, echo = FALSE}
+knitr::include_graphics("./img/twosamplemr/twosamplemr_heterogeneity.png")
+```
+
+```{r MR_pleiotropy, eval = FALSE,echo = TRUE}
 mr_pleiotropy_test(dat)
 ```
+
+```{r 'twosamplemrpleiotropy', fig.align='center', fig.cap='MR pleiotropy.', fig.show = TRUE, eval=TRUE, echo = FALSE}
+knitr::include_graphics("./img/twosamplemr/twosamplemr_pleiotropy.png")
+```
+
 > Question: What do the results of the heterogeneity and pleiotropy tests tell you?
 
 ### Leave-one-out
 
 It is also key to inspect the causal effects per SNP and perform a leave-one-out analysis.
 
-```{r MR_SNP_LOO, echo = TRUE, eval = TRUE}
+```{r MR_SNP_LOO_SINGLE, eval = FALSE,echo = TRUE}
 res_single <- mr_singlesnp(dat)
 DT::datatable(res_single, caption = "Single SNP MR analysis", rownames = FALSE)
+```
 
+```{r 'twosamplemrsingle', fig.align='center', fig.cap='Single SNP analysis results.', fig.show = TRUE, eval=TRUE, echo = FALSE}
+knitr::include_graphics("./img/twosamplemr/twosamplemr_singlesnp.png")
+```
+
+```{r MR_SNP_LOO, eval = FALSE,echo = TRUE}
 res_loo <- mr_leaveoneout(dat)
 DT::datatable(res_loo, caption = "Leave-one-out MR analysis", rownames = FALSE)
+```
+
+```{r 'twosamplemrloo', fig.align='center', fig.cap='Leave-One-Out analysis results.', fig.show = TRUE, eval=TRUE, echo = FALSE}
+knitr::include_graphics("./img/twosamplemr/twosamplemr_loo.png")
 ```
 
 > Question: What do the results of the single SNP and leave-one-out analyses tell you?
@@ -191,38 +238,54 @@ It is important to present the causal inference graphically.
 
 **Scatter plot**
 
-```{r MR_visualisation_Scatter, echo = TRUE, eval = TRUE}
+```{r MR_visualisation_Scatter, eval = FALSE,echo = TRUE}
 res <- mr(dat)
 p1 <- mr_scatter_plot(res, dat)
 p1
+```
+
+```{r 'twosamplemrscatter', fig.align='center', fig.cap='Scatter plot.', fig.show = TRUE, eval=TRUE, echo = FALSE}
+knitr::include_graphics("./img/twosamplemr/twosamplemr_scatter.png")
 ```
 
 > Question: What do you see in the scatter plot? And what can you conclude from this?
 
 **Single SNP plot**
 
-```{r MR_visualisation_Single, echo = TRUE, eval = TRUE}
+```{r MR_visualisation_Single, eval = FALSE,echo = TRUE}
 res_single <- mr_singlesnp(dat)
 p2 <- mr_forest_plot(res_single)
 p2
 ```
 
+```{r 'twosamplemrforest', fig.align='center', fig.cap='Single SNP plot.', fig.show = TRUE, eval=TRUE, echo = FALSE}
+knitr::include_graphics("./img/twosamplemr/twosamplemr_forest.png")
+```
+
 > Question: What do you see in the forest plot? And what can you conclude from this?
 
 **Leave-One-Out plot**
-```{r MR_visualisation_LOO, echo = TRUE, eval = TRUE}
+```{r MR_visualisation_LOO, eval = FALSE,echo = TRUE}
 res_loo <- mr_leaveoneout(dat)
 p3 <- mr_leaveoneout_plot(res_loo)
 p3
 ```
 
+```{r 'twosamplemrlooplot', fig.align='center', fig.cap='Leave-One-Out plot.', fig.show = TRUE, eval=TRUE, echo = FALSE}
+knitr::include_graphics("./img/twosamplemr/twosamplemr_looplot.png")
+```
+
 > Question: what does a leave-one-out ploy tell you? And what can you conclude from this?
 
 **Funnel plot**
-```{r MR_visualisation_Funnel, echo = TRUE, eval = TRUE}
+```{r MR_visualisation_Funnel, eval = FALSE,echo = TRUE}
 res_single <- mr_singlesnp(dat)
 p4 <- mr_funnel_plot(res_single)
 p4
+```
+
+```{r 'twosamplemrfunnelplot', fig.align='center', fig.cap='Funnel plot.', fig.show = TRUE, eval=TRUE, echo = FALSE}
+knitr::include_graphics("./img/twosamplemr/twosamplemr_funnelplot.png")
 ```
 
 > Question: Why would yoy use a funnel plot? And what can it tell you? 

@@ -312,17 +312,11 @@ Again, this is an example with dummy data - you can try to do it for our GWAS, b
 You will encounter the above types of visualizations in any high-quality GWAS paper, because each is so critically informative. Usually, analysts of large-scale meta-analyses of GWAS will also stratify the QQ-plots based on the imputation quality (if your GWAS was imputed), call rate, and allele frequency (although that is rarely shared in publications, not even in supplemental material).
 
 
-## Stop playing around
+## Getting up close
 
-Alright. It's time to stop playing around and do a quick recap of what you've learned.
+Now that you created a Manhattan and diagnostic QQ plot, it would be nice to see the loci we found a bit more up and close. 
 
-1. You learned how to convert datasets.
-2. You learned how to execute sample QC and create diagnostic graphics
-3. You learned how to do the same for SNP QC
-4. You learned how to execute an association study given a dataset, covariates, and different assumptions regarding the genetic model.
-5. You learned how to visualize results and played around with different visuals. 
-
-You should be ready for the real stuff. And if not, the next chapter will help you get ready: Chapter \@ref(wtccc1-intro).
+In the next Chapter \@ref(regional_plot_cocalc) we will show you how to create regional plots. 
 
 ```{js, echo = FALSE}
 title=document.getElementById('header');

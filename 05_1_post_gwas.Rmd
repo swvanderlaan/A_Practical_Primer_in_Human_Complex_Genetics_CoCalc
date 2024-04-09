@@ -107,16 +107,12 @@ There is an easy, quick-and-dirty way and a harder way.
 
 ### MRBase
 
-The quick-and-dirty way uses [MRBase](http://www.mrbase.org/){target="blank"}. It is based on the `TwoSampleMR` package and uses the `MRInstruments` package to load in all the genetic instruments. The creators of MRBase have curated hundreds of GWAS and molecular QTL studies, and prepared the data for easy use on the website and in the R packages.
+The quick-and-dirty way uses [MRBase](http://www.mrbase.org/){target="blank"}. It is based on the `TwoSampleMR` package and uses the `MRInstruments` package to load in all the genetic instruments. The creators of MRBase have curated hundreds of GWAS and molecular QTL studies, and prepared the data for easy use on the website and in the R packages. In Chapter \@ref(mr_mrbase) you can read more about this.
 
 
 ### TwoSampleMR
 
-The hard way means getting your hands dirty and using the `TwoSampleMR` package yourself in `R`. You'll learn all the steps you need to take into account to get to the answer of this question. You'll create the diagnostic graphs and calculate the statistics. 
-
-### Your choice
-
-Your choice. In both cases you'll learn how to do execute a MR, what to look out for in the statistics and diagnostic graphs, and how interpret the results. Your choice: Chapter \@ref(mr_mrbase) or Chapter \@ref(mr_twosamplemr).
+The hard way means getting your hands dirty and using the `TwoSampleMR` package yourself in `R`. You'll learn all the steps you need to take into account to get to the answer of this question. You'll create the diagnostic graphs and calculate the statistics. Proceed to Chapter \@ref(mr_twosamplemr) to execute a causal analysis using public data.
 
 > In a future version I will aim to include a partial replication of the Cystatin C paper[@vanderlaan2016]
 

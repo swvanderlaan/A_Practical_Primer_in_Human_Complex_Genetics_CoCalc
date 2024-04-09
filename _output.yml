@@ -1,6 +1,7 @@
 bookdown::gitbook:
   css: style.css
   config:
+    always_allow_html: yes
     toc:
       collapse: subsection
       scroll_highlight: true
@@ -8,96 +9,108 @@ bookdown::gitbook:
         <li><a href="./">A Practical Primer in Human Complex Genetics</a></li>
       after: |
         <li><a href="https://vanderlaanand.science" target="blank">&copy; 1979-2024. Sander W. van der Laan.</a></li>
+    split_by: chapter
     toolbar:
       position: fixed
     # edit: https://github.com/swvanderlaan/A_Practical_Primer_in_Human_Complex_Genetics/tree/master%s
-    download:
-      - ["A-Practical-Primer-in-Human-Complex-Genetics.pdf", "PDF"]
-      - ["A-Practical-Primer-in-Human-Complex-Genetics.epub", "EPUB"]
+    download: false
+    # download:
+    #   - ["A-Practical-Primer-in-Human-Complex-Genetics-with-CoCalc.pdf", "PDF"]
+    #   - ["A-Practical-Primer-in-Human-Complex-Genetics-with-CoCalc.epub", "EPUB"]
     search:
       engine: lunr # or fuse
       # options to control/tune search engine behavior (for
       # fuse.js, refer to https://fusejs.io/api/options.html)
-      options: null
-    # fontsettings:
-    #   theme: white
-    #   family: sans-serif
-    #   size: 2
+      # options: null
+    fontsettings:
+      theme: white
+      family: sans-serif
+      size: 2
     sharing:
-      facebook: false
-      github: true
       twitter: true
+      facebook: false
       linkedin: true
-      weibo: false
       instapaper: false
+      weibo: false
       vk: false
+      github: true
       whatsapp: true
       all: false #['facebook', 'twitter', 'linkedin', 'whatsapp']
     info: true
-bookdown::pdf_book:
-  includes:
-    in_header: preamble.tex
-  # latex_engine: lualatex
-  latex_engine: xelatex # enables rendering of emoticons https://www.reddit.com/r/Rlanguage/comments/1266wbh/rmarkdown_fails_to_knit_unicode_character_u001b/
-  citation_package: natbib
-  pandoc_args: --listings
-  keep_tex: yes
-  extra_dependencies: ["float"]
-  number_sections: true
-  theme: paper
-bookdown::epub_book:
-  fig_width: 5
-  fig_height: 4
-  dev: "png"
-  fig_caption: true
-  number_sections: true
-  cover_image: "img/cover/cover_2024.png"
-  chapter_level: 1
-  epub_version: "epub"
-  template: "default"
-bookdown::html_document2:
-  css: style.css
-  toc: yes
-  toc_float:
-    collapsed: yes
-    smooth_scroll: yes
-    position: right
-    right: 0
-    left: auto
-    margin_top: 20px
-    margin_bottom: 20px
-    margin_right: 20px
-    margin_left: auto
-    z_index: 1001
-    width: auto
-    height: auto
-    background: "#f8f9fa"
-    border: "1px solid #e9ecef"
-    border_radius: 5px
-    opacity: 0.9
-    transition: "0.2s"
-    scroll_highlight: yes
-    before: |
-      <li><a href="./">A Practical Primer in Human Complex Genetics</a></li>
-    after: |
-      <li><a href="https://vanderlaanand.science" target="blank">&copy; 1979-2024. Sander W. van der Laan.</a></li>
-  number_sections: yes
-  theme: paper
-  fig_width: 5
-  fig_height: 4
-  fig_caption: yes
-  code_folding: show
-  code_download: yes
-  code_copy: yes
-  toolbar:
-    position: fixed
-  search:
-    engine: lunr # or fuse
-    # options to control/tune search engine behavior (for
-    # fuse.js, refer to https://fusejs.io/api/options.html)
-    options: null
-  # fontsettings:
-  #   theme: white
-  #   family: sans-serif
-  #   size: 2
-  info: true
+    code_folding: show
+# PDF
+# bookdown::pdf_book:
+#   includes:
+#     in_header: preamble.tex
+#   # latex_engine: lualatex
+#   latex_engine: xelatex # enables rendering of emoticons https://www.reddit.com/r/Rlanguage/comments/1266wbh/rmarkdown_fails_to_knit_unicode_character_u001b/
+#   citation_package: natbib
+#   pandoc_args: --listings
+#   keep_tex: no
+#   extra_dependencies: ["float"]
+#   number_sections: true
+#   theme: paper
+# EPUB
+# Issue with knitr and showing PNGs in the EPUB, as well as flextable.
+# bookdown::epub_book:
+#   fig_width: 5
+#   fig_height: 4
+#   dev: "png"
+#   fig_caption: true
+#   number_sections: true
+#   toc: false
+#   toc_depth: 3
+#   cover_image: "img/cover/cover_2024.png"
+#   chapter_level: 1
+#   epub_version: "epub"
+#   template: "default"
+# HTML document
+# Book building
+# no issius with the bookdown::gitbook
+# bookdown::html_document2:
+#   always_allow_html: yes
+#   css: style.css
+#   toc: yes
+#   toc_float:
+#     collapsed: yes
+#     smooth_scroll: yes
+#     position: right
+#     right: 0
+#     left: auto
+#     margin_top: 20px
+#     margin_bottom: 20px
+#     margin_right: 20px
+#     margin_left: auto
+#     z_index: 1001
+#     width: auto
+#     height: auto
+#     background: "#f8f9fa"
+#     border: "1px solid #e9ecef"
+#     border_radius: 5px
+#     opacity: 0.9
+#     transition: "0.2s"
+#     scroll_highlight: yes
+#     before: |
+#       <li><a href="./">A Practical Primer in Human Complex Genetics</a></li>
+#     after: |
+#       <li><a href="https://vanderlaanand.science" target="blank">&copy; 1979-2024. Sander W. van der Laan.</a></li>
+#   number_sections: yes
+#   theme: paper
+#   fig_width: 5
+#   fig_height: 4
+#   fig_caption: yes
+#   code_folding: show
+#   code_download: yes
+#   code_copy: yes
+#   toolbar:
+#     position: fixed
+#   search:
+#     engine: lunr # or fuse
+#     # options to control/tune search engine behavior (for
+#     # fuse.js, refer to https://fusejs.io/api/options.html)
+#     # options: null
+#   fontsettings:
+#     theme: white
+#     family: sans-serif
+#     size: 2
+#   info: true

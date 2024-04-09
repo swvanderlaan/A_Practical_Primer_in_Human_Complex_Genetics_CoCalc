@@ -17,7 +17,7 @@ This book was made possible by the kind help of Caspar J. van Lissa who wrote an
     _M_
     
     - [x] `M` create a separate CoCalc version
-    - [x] `M` add in full installation instructions for UBUNTU > DROPPED
+    ~- [] `M` add in full installation instructions for UBUNTU > DROPPED~
     - [x] `M` add in full installation instructions for macOS
     - [x] `M` create chapter on CoCalc
     - [x] `M` redesign 'Getting Started' chapter
@@ -29,7 +29,7 @@ This book was made possible by the kind help of Caspar J. van Lissa who wrote an
     - [] `M` conditional analysis
     - [] `M` statistical finemapping
     - [] `M` colocalization with formal testing
-    - [] `M` MRbase tutorial
+    ~- [] `M` MRbase tutorial > dropped in favor of Two Sample MR~
     - [] `M` Add partial recreation of the Cystatin C MR study
     - [x] `M` overall rendering too slow, paste in images as figure instead of on the fly generating
     - [] `M` fix issue with PDF creation
@@ -61,12 +61,12 @@ This book was made possible by the kind help of Caspar J. van Lissa who wrote an
     - [] `C` Different font type in PDF
     
     _W_
-    - [] `W` add in full installation instructions for Windows
+    ~- [] `W` add in full installation instructions for Windows > DROPPED~
     - [x] `W` add favicon and Apple-touch-icon
       - https://iconifier.net
 
     **Changes log**
-    * v2.2.3 Fixes to the rendering of the book. Fixes to the references. 
+    * v2.2.3 Fixes to the rendering of the book. Fixes to the references. Fixed issue with FUMA input file. Splitted the WTCCC1 analyses in 3 parts, first introduction, then quality control, finally association testing.
     * v2.2.2 Small fix to remove `knitr` codes. Fixed errors in `opts$chunks` for `knitr` and `rmarkdown` regarding 'echo'.
     * v2.2.1 Small fixes to references. Added book cover. Added favicon and Apple-touch-icon.
     * v2.2.0 Created a full CoCalc version, and a separate Standalone version.

@@ -33,7 +33,7 @@ Table: (\#tab:tab-phewas)PheWAS Resources.
 
 ## What's next?
 
-You now know to what other traits, risk factors and diseases our trait of interest (coronary artery disease) is correlated. An obvious next question would be: is this a causal correlation? We will cover this aspect in the next Chapter \@ref(mendelian_randomization) or to return to the previous chapter on post-GWAS analyses \@ref(post_gwas).
+You now know to what other traits, risk factors and diseases our trait of interest (coronary artery disease) is correlated. An obvious next question would be: is this a causal correlation? We will cover this aspect in the next Chapters with MRBase (\@ref(mr_mrbase)) and TwoSampleMR (\@ref(mr_twosamplemr)). To return to the previous Chapter on post-GWAS analyses click [here](\@ref(post-gwas)).
 
 <script>
 title=document.getElementById('header');

@@ -37,26 +37,27 @@ You will need to use the `fwrite` function in `r` to write the concatenated resu
 
 > Task: You have gotten so much experience now in handling files with R. You should be able to do this without any problems.
 
-<!--
-```{r wtccc1_assoc_compl-write, eval = FALSE}
-data.table::fwrite(na.omit(wtccc1_assoc_compl), "wtccc1/wtccc1_assoc_compl.txt", 
-                   sep = " ", 
-                   na = "NA", row.names = FALSE, quote = FALSE, 
-                   compress = "gzip",
+<!-- we are not showing this code block -->
+```{r wtccc1_assoc_compl-write, eval = FALSE, include = FALSE}
+data.table::fwrite(wtccc1_assoc_compl,
+                   file = "data/wtccc1/wtccc1_assoc_compl.txt.gz",
+                   sep = " ",
+                   na = "NA",
+                   row.names = FALSE, col.names = TRUE,
+                   quote = FALSE,
                    showProgress = TRUE, verbose = TRUE)
 ```
--->
 
 > Question: can you figure out the sample size of the WTCCC1 data you used?
 
 
 ### Run FUMA - SNP to gene
 
-Upload via the form on the FUMA-website. Since you've done the tutorial you are familiar with its options. 
+For you convenience, I have already created this file `wtccc1/wtccc1_assoc_compl.txt.gz` which you should download and upload to [FUMA](https://fuma.ctglab.nl/jobs){target="_blank"}. Since you've studied the tutorial you are familiar with its options. 
 
 Select _everything_ in the tabs `Gene Mapping (positional mapping)`, `Gene Mapping (eQTL mapping)` but *not* `GTEx v6` and `GTEx v7`, and `Gene Mapping (3D Chromatin Interaction mapping)` and leave the settings at `Gene types` and `MHC region` as-is. At `MAGMA analysis` set the _MAGMA gene expression analysis_ to include all tissues, *but* `GTEx v6` and `GTEx v7`. 
 
-Don't forget to give your analysis a name. 
+Don't forget to give your analysis a name. The whole analysis will take about 5-10 minutes depending on the traffic on the server. 
 
 This will take some time and so it's a good moment to carry on with the rest of the practical or take a break, or study for the exam.
 

@@ -119,7 +119,22 @@ ggplot2::ggsave("data/dummy_project/gwas-snp-call-rate.png",
 
 > Question: Do you have any thoughts on that? Do you agree with the filters I set below? How would you do it differently and why?
 
+## Chapter 4.3: WTCCC1 - Association testing
+
+> Question: How many independent hits did you find?
+
+
 ## Chapter 5.4: FUMA
+
+```
+data.table::fwrite(wtccc1_assoc_compl, 
+                   file = "wtccc1/wtccc1_assoc_compl.txt.gz", 
+                   sep = " ", 
+                   na = "NA", 
+                   row.names = FALSE, col.names = TRUE,
+                   quote = FALSE, 
+                   showProgress = TRUE, verbose = TRUE)
+```
 
 > Question: can you figure out the sample size of the WTCCC1 data you used?
 
@@ -140,6 +155,8 @@ ggplot2::ggsave("data/dummy_project/gwas-snp-call-rate.png",
 > 3. For what pathways are the signals enriched?
 > 4. What molecular functions are mapped to the signals?
 
+The results from the analysis are published publically under ID `471422` on the [FUMA](http://fuma.ctglab.nl){target="_blank"} website.
+
 ## Chapter 5.5: PheWAS
 
 > *Assignment*
@@ -158,6 +175,7 @@ ggplot2::ggsave("data/dummy_project/gwas-snp-call-rate.png",
 > Question: What does a leave-one-out ploy tell you? And what can you conclude from this?
 > Question: Why would yoy use a funnel plot? And what can it tell you?
 > Question: What are your main conclusions from the MR analysis?
+
 
 ## Chapter 8.1: Regional association plots
 
