@@ -27,12 +27,12 @@ opts_chunk$set(echo = TRUE,
 
 We'll use a few programs throughout this practical. You'll probably need these for your (future) genetic epidemiology work too (Table \@ref(tab:programs)).
 
-```{r load-programs, eval = TRUE}
+```{r load-programs, eval = TRUE, echo = FALSE, include = FALSE}
 programs <- openxlsx::read.xlsx("information.xlsx", sheet = "Programs")
 ```
 
 
-```{r, tab.id = "programs", tab.cap = "Programs needed for genetic epidemiology.", eval = TRUE}
+```{r, tab.id = "programs", tab.cap = "Programs needed for genetic epidemiology.", eval = TRUE, echo = FALSE, include = FALSE}
 # knitr::kable(
 #   programs,
 #   caption = 'Programs needed for genetic epidemiology.',
@@ -64,7 +64,7 @@ Right, onto `PLINK`.
 
 All genetic analyses can be done in PLINK, even on your laptop, but with large datasets, for example [UK Biobank](https://www.ukbiobank.ac.uk){target="_blank"} size, it is better to switch to a [high-performance computing cluster (HPC)](https://en.wikipedia.org/wiki/High-performance_computing){target="_blank"} like we have available at the [Utrecht Science Park](https://wiki.bioinformatics.umcutrecht.nl/bin/view/HPC/WebHome){target="_blank"}. The original PLINK v1.07 can be found [here](https://zzz.bwh.harvard.edu/plink/index.shtml){target="_blank"}, but nowadays we are using a newer, faster version: **PLINK v1.9** which can be found [here](https://www.cog-genomics.org/plink2){target="_blank"}. It still says 'PLINK 1.90 beta' (Figure \@ref(fig:plinkprogram)), but you can consider this version stable and save to work with, but as you can see, some functions are not supported anymore.
 
-```{r 'plinkprogram', fig.align='center', fig.cap='The PLINK v1.9 website.', fig.show = TRUE, eval=TRUE}
+```{r 'plinkprogram', fig.align='center', fig.cap='The PLINK v1.9 website.', fig.show = TRUE, eval=TRUE, echo = FALSE, include = FALSE}
 knitr::include_graphics("./img/plink.png")
 ```
 

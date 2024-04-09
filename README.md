@@ -8,8 +8,8 @@ This book was made possible by the kind help of Caspar J. van Lissa who wrote an
 
 #### Changes log
     
-    _Version:_      v2.2.2</br>
-    _Last update:_  2024-04-08</br>
+    _Version:_      v2.2.3</br>
+    _Last update:_  2024-04-09</br>
     _Written by:_   Sander W. van der Laan (s.w.vanderlaan-2[at]umcutrecht.nl).
     
     **MoSCoW To-Do List**
@@ -66,6 +66,7 @@ This book was made possible by the kind help of Caspar J. van Lissa who wrote an
       - https://iconifier.net
 
     **Changes log**
+    * v2.2.3 Fixes to the rendering of the book. Fixes to the references. 
     * v2.2.2 Small fix to remove `knitr` codes. Fixed errors in `opts$chunks` for `knitr` and `rmarkdown` regarding 'echo'.
     * v2.2.1 Small fixes to references. Added book cover. Added favicon and Apple-touch-icon.
     * v2.2.0 Created a full CoCalc version, and a separate Standalone version.

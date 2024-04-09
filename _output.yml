@@ -34,27 +34,27 @@ bookdown::gitbook:
       whatsapp: true
       all: false #['facebook', 'twitter', 'linkedin', 'whatsapp']
     info: true
-# bookdown::pdf_book:
-#   includes:
-#     in_header: preamble.tex
-#   # latex_engine: lualatex
-#   latex_engine: xelatex # enables rendering of emoticons https://www.reddit.com/r/Rlanguage/comments/1266wbh/rmarkdown_fails_to_knit_unicode_character_u001b/
-#   citation_package: natbib
-#   pandoc_args: --listings
-#   keep_tex: yes
-#   extra_dependencies: ["float"]
-#   number_sections: true
-#   theme: paper
-# bookdown::epub_book:
-#   fig_width: 5
-#   fig_height: 4
-#   dev: "png"
-#   fig_caption: true
-#   number_sections: true
-#   cover_image: "img/_headers/banner_man_standing_dna.png"
-#   chapter_level: 1
-#   epub_version: "epub"
-#   template: "default"
+bookdown::pdf_book:
+  includes:
+    in_header: preamble.tex
+  # latex_engine: lualatex
+  latex_engine: xelatex # enables rendering of emoticons https://www.reddit.com/r/Rlanguage/comments/1266wbh/rmarkdown_fails_to_knit_unicode_character_u001b/
+  citation_package: natbib
+  pandoc_args: --listings
+  keep_tex: yes
+  extra_dependencies: ["float"]
+  number_sections: true
+  theme: paper
+bookdown::epub_book:
+  fig_width: 5
+  fig_height: 4
+  dev: "png"
+  fig_caption: true
+  number_sections: true
+  cover_image: "img/cover/cover_2024.png"
+  chapter_level: 1
+  epub_version: "epub"
+  template: "default"
 bookdown::html_document2:
   css: style.css
   toc: yes
@@ -91,9 +91,6 @@ bookdown::html_document2:
   code_copy: yes
   toolbar:
     position: fixed
-  download:
-    - ["A-Practical-Primer-in-Human-Complex-Genetics.pdf", "PDF"]
-    - ["A-Practical-Primer-in-Human-Complex-Genetics.epub", "EPUB"]
   search:
     engine: lunr # or fuse
     # options to control/tune search engine behavior (for
@@ -103,14 +100,4 @@ bookdown::html_document2:
   #   theme: white
   #   family: sans-serif
   #   size: 2
-  sharing:
-    facebook: false
-    github: true
-    twitter: true
-    linkedin: true
-    weibo: false
-    instapaper: false
-    vk: false
-    whatsapp: true
-    all: false #['facebook', 'twitter', 'linkedin', 'whatsapp']
   info: true

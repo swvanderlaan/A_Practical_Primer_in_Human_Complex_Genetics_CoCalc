@@ -255,7 +255,7 @@ p4
 
 ## The end?
 
-You are almost at the end. Time to return to the previous chapter on post-GWAS analyses \@ref(post_gwas).
+You are almost at the end. Time to return to the previous chapter on post-GWAS analyses \@ref(post-gwas).
 
 ```{js, echo = FALSE}
 title=document.getElementById('header');

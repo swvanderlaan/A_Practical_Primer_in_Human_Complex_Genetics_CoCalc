@@ -87,7 +87,7 @@ Now that you mapped SNPs to genes, it's time to go back to 'My Jobs'. Select you
 FUMA is a great tool, but it comes with a caveat. It includes a couple of references of which it is not readily clear which variants are included - the authors do provide the codes used on Git, but still, you don't know which variants precisely are filtered. That is key: perhaps the top variant you discovered is filtered in the reference. This means FUMA will not use it to map SNPs to genes, rather next best variant. This should be in high-LD - but, again, assumptions... And of course, the references used might not match your data well enough. 
 So, my advice: use FUMA (why not be lazy rather than work hard?), but aware of such caveats as I described. All in all, I do think FUMA is very complete, intuitive, and it makes your work publication-ready because it creates just the right file-formats for you too (`.png`, `.svg`, `.pdf`, `.jpeg`).
 
-That said, time to move on to inspect other phenotypes in relation to your findings in the next Chapter \@ref(phewas) or to return to the previous chapter on post-GWAS analyses \@ref(post_gwas).
+That said, time to move on to inspect other phenotypes in relation to your findings in the next Chapter \@ref(phewas) or to return to the previous chapter on post-GWAS analyses \@ref(post-gwas).
 
 ```{js, echo = FALSE}
 title=document.getElementById('header');
