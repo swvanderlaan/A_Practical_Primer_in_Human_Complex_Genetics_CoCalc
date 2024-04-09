@@ -1,4 +1,4 @@
-# The Welcome Trust Case-Control Consortium {#wtccc1_intro}
+# The Welcome Trust Case-Control Consortium {#wtccc1-intro}
 <!-- ![](./img/_headers/interactive_plot.png){width=100%} -->
 
 
@@ -35,7 +35,6 @@ Your assignment in the next chapter is to do the following:
 ## There you go
 
 As I wrote, you are ready for the real stuff in Chapter \@ref(wtccc1-cocalc). 
-<!-- As I wrote, you are ready for the real stuff in Chapter \@ref(wtccc1).  -->
 
 <script>
 title=document.getElementById('header');

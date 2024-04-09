@@ -107,7 +107,7 @@ manhattan-plots
 other-plots
 interactive-plots
 stop-playing-around
-wtccc1_intro
+wtccc1-intro
 genotyping
 the-data
 assignment

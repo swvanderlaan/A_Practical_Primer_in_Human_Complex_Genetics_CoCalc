@@ -1,19 +1,9 @@
 # Summary {-}
 <!-- ![](./img/_headers/banner_man_standing_dna.png){width=100%} -->
 ```{r load-functions-packages, message = FALSE, warning = FALSE, echo = FALSE, eval = TRUE, include = FALSE}
-# source("scripts/functions.R")
-# source("scripts/colors.R")
-# source("scripts/packages.R")
-
-library(rmarkdown)
-library(bookdown)
-library(flextable)
-library(knitr)
-library(kableExtra)
-library(webshot)
-library(webshot2)
-library(formatR)
-library(tinytex)
+source("scripts/functions.R")
+source("scripts/colors.R")
+source("scripts/packages.R")
 ```
 
 ```{r include = FALSE}
@@ -50,7 +40,7 @@ At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praese
 
 You reached an important milestone: you recreated the work by the whole WTCCC1 in just an afternoon. Wow. Back then there wasn't much on analyses _after_ a GWAS, nowadays there are many post-GWAS  analyses methods. We will cover them in the next (Chapter \@ref(epilogue)).
 
-<!-- ```{js, echo = FALSE} -->
-<!-- title=document.getElementById('header'); -->
-<!-- title.innerHTML = '<img src="img/_headers/banner_man_standing_dna.png" alt="Statistical finemapping">' + title.innerHTML -->
-<!-- ``` -->
+```{js, echo = FALSE}
+title=document.getElementById('header');
+title.innerHTML = '<img src="./img/headers/banner_man_standing_dna.png" alt="Conditional analysis">' + title.innerHTML
+```

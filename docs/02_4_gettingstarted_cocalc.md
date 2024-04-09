@@ -82,7 +82,7 @@ The great thing is, that after a freeze and restart, you can continue from where
 
 In the course we use CoCalc as we can precisely control what is installed and what is not. And you don't have to worry about installing software or libraries. Another advantage is that you can work on the practical from anywhere, as long as you have an internet connection. And lastly, all the data you need is already there, so you don't have to worry about downloading it and we save a lot of space since you will all be working from the same source data.
 
-This practical is associated with both the `R` and `bash` programming language. We use `plink`, which is a Linux-program in the Terminal (see \@ref(getting-started-programs)) and uses `bash`, so `plink` needs a `Bash` kernel. The data from the `plink` analyses are parsed and plotted using `R` code, and so we also need a `R` kernel. 
+This practical is associated with both the `R` and `bash` programming language. We use `plink`, which is a Linux-program in the Terminal (see \@ref(getting-started-programs-cocalc)) and uses `bash`, so `plink` needs a `Bash` kernel. The data from the `plink` analyses are parsed and plotted using `R` code, and so we also need a `R` kernel. 
 
 CoCalc has both kernels installed, so you could run both `bash` and `R` code in the same notebook. But the command to make this work is a bit complicated, so we decided to split the `bash` and `R` code into a virtual Terminal for the `bash` codes and a Jupyter Notebook with a `R` kernel for the `R` code. 
 
@@ -158,7 +158,7 @@ A new tab will open with a Terminal.
 <p class="caption">(\#fig:cocalcterminalkernel)CoCalc terminal window.</p>
 </div>
 
-Now you can start typing your `bash` commands. Let's see what we have in the directory you're at by typing `ls`. Check  Chapter \@ref(getting-started-standalone) for more background on some common Terminal commands.
+Now you can start typing your `bash` commands. Let's see what we have in the directory you're at by typing `ls`. Just check Google to find some [great cheatsheets](https://phoenixnap.com/kb/bash-commands){target="_blank"} on common `bash` commands for Terminal.
 
 <div class="figure" style="text-align: center">
 <img src="img/cocalc/cocalc_terminal_window_ls.png" alt="CoCalc listing the contents of the directory." width="85%" />

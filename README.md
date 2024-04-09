@@ -8,7 +8,7 @@ This book was made possible by the kind help of Caspar J. van Lissa who wrote an
 
 #### Changes log
     
-    _Version:_      v2.2.0</br>
+    _Version:_      v2.2.1</br>
     _Last update:_  2024-04-08</br>
     _Written by:_   Sander W. van der Laan (s.w.vanderlaan-2[at]umcutrecht.nl).
     
@@ -16,6 +16,7 @@ This book was made possible by the kind help of Caspar J. van Lissa who wrote an
     The things we Must, Should, Could, and Would have given the time we have.
     _M_
     
+    - [x] `M` create a separate CoCalc version
     - [x] `M` add in full installation instructions for UBUNTU > DROPPED
     - [x] `M` add in full installation instructions for macOS
     - [x] `M` create chapter on CoCalc
@@ -24,15 +25,17 @@ This book was made possible by the kind help of Caspar J. van Lissa who wrote an
     - [x] `M` fix regional association plotting
     - [x] `M` fix issue with api of Two Sample MR > run the codes.
     - [x] `M` fix issue with `api of Two Sample MR`cat: /Users/USERNAME/Desktop/practical/gwas/data.assoc.logistic.clumped: No such file or     directory` - this was not run yet
-    - [] `M` fix images per header in GitBook (not showing)
+    - [x] `M` fix images per header in GitBook (not showing)
     - [] `M` conditional analysis
     - [] `M` statistical finemapping
     - [] `M` colocalization with formal testing
+    - [] `M` MRbase tutorial
+    - [] `M` Add partial recreation of the Cystatin C MR study
     - [x] `M` overall rendering too slow, paste in images as figure instead of on the fly generating
     - [] `M` fix issue with PDF creation
     - [] `M` fix issue with EPUB creation
     - [] `M` fix issue with EPUB creation and images
-    - [] `M` Add partial recreation of the Cystatin C MR study
+    - [] `M` get ISBN number
     - [] `M` Upgrade to Quatro - seems to work better in many respects; also adds interactivity https://quarto.org/docs/books/. This will probably fix the PDF and EPUB creation issues, as well as the image display issues.
      
     _S_
@@ -46,7 +49,7 @@ This book was made possible by the kind help of Caspar J. van Lissa who wrote an
     - [] `S` EPUB is not formatted properly (text runs over)
     - [] `S` different setup for the chapter Additional chapters (this as a Apendix)
     - [x] `S` fix the way the team is displayed
-    - [] `S` fix book cover
+    - [] `S` fix book cover > version 2024 'quick and dirty'
       - https://www.designhill.com/design-blog/the-perfect-ebook-cover-size-guide-and-publishing-tips/
       - https://snappa.com/blog/ebook-cover-size/
       - https://kdp.amazon.com/en_US/help/topic/G200645690.
@@ -59,8 +62,11 @@ This book was made possible by the kind help of Caspar J. van Lissa who wrote an
     
     _W_
     - [] `W` add in full installation instructions for Windows
+    - [x] `W` add favicon and Apple-touch-icon
+      - https://iconifier.net
 
     **Changes log**
+    * v2.2.1 Small fixes to references. Added book cover. Added favicon and Apple-touch-icon.
     * v2.2.0 Created a full CoCalc version, and a separate Standalone version.
     * v2.1.2 Small fix to directory reference.
     * v2.1.1 Finalized CoCalc instructions. Added Team chapter. Fixed issue with Two-Sample MR. Fixed issue with regional association plotting. Checked Questions and Answers. Edited the To-Do list

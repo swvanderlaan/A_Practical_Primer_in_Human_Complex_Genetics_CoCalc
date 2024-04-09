@@ -6,6 +6,7 @@ image_dir: "img" # is this needed?
 language:
   ui:
     chapter_name: ""
+# CoCalc version
 rmd_files: ["index.Rmd", # introduction
             "02_1_somebackgroundreading.Rmd", # 2.1
             "02_2_gettingstarted.Rmd", # 2.2

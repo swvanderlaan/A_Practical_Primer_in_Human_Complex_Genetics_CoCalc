@@ -257,7 +257,7 @@ You reached an important milestone.
 
 Wow. Take a pause. And realize what you've done. 
 
-Back then there wasn't much on analyses _after_ a GWAS, nowadays there are many post-GWAS analyses methods. We will cover them in the next Chapter \@ref(post_gwas).
+Back then there wasn't much on analyses _after_ a GWAS, nowadays there are many post-GWAS analyses methods. We will cover them in the next Chapter \@ref(post-gwas).
 
 <script>
 title=document.getElementById('header');

@@ -322,7 +322,7 @@ Alright. It's time to stop playing around and do a quick recap of what you've le
 4. You learned how to execute an association study given a dataset, covariates, and different assumptions regarding the genetic model.
 5. You learned how to visualize results and played around with different visuals. 
 
-You should be ready for the real stuff. And if not, the next chapter will help you get ready: Chapter \@ref(wtccc1_intro).
+You should be ready for the real stuff. And if not, the next chapter will help you get ready: Chapter \@ref(wtccc1-intro).
 
 ```{js, echo = FALSE}
 title=document.getElementById('header');

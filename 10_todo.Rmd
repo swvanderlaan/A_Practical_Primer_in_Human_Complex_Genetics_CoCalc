@@ -1,19 +1,9 @@
 # Things to do {#todo}
 <!-- ![](./img/_headers/banner_man_standing_dna.png){width=100%} -->
 ```{r load-functions-packages, message = FALSE, warning = FALSE, echo = FALSE, eval = TRUE, include = FALSE}
-# source("scripts/functions.R")
-# source("scripts/colors.R")
-# source("scripts/packages.R")
-
-library(rmarkdown)
-library(bookdown)
-library(flextable)
-library(knitr)
-library(kableExtra)
-library(webshot)
-library(webshot2)
-library(formatR)
-library(tinytex)
+source("scripts/functions.R")
+source("scripts/colors.R")
+source("scripts/packages.R")
 ```
 
 ```{r include = FALSE}
@@ -44,6 +34,7 @@ List of to-do's according to MoSCoW: _Must have_, _Should have_, _Could have_, _
 
     _M_
     
+    - [x] `M` create a separate CoCalc version
     - [x] `M` add in full installation instructions for UBUNTU > DROPPED
     - [x] `M` add in full installation instructions for macOS
     - [x] `M` create chapter on CoCalc

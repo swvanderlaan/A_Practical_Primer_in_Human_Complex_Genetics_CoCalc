@@ -10,7 +10,7 @@
 
   <meta property="og:title" content="5 Getting started - CoCalc | A Practical Primer in Human Complex Genetics for CoCalc" />
   <meta property="og:type" content="book" />
-  
+  <meta property="og:image" content="/img/cover/cover_2024.png" />
   <meta property="og:description" content="This is a practical primer in human complex genetics for CoCalc with a use-case in cardiovascular disease. The output format for this primer is a GitBook." />
   <meta name="github-repo" content="swvanderlaan/A_Practical_Primer_in_Human_Complex_Genetics" />
 
@@ -18,7 +18,7 @@
   <meta name="twitter:title" content="5 Getting started - CoCalc | A Practical Primer in Human Complex Genetics for CoCalc" />
   
   <meta name="twitter:description" content="This is a practical primer in human complex genetics for CoCalc with a use-case in cardiovascular disease. The output format for this primer is a GitBook." />
-  
+  <meta name="twitter:image" content="/img/cover/cover_2024.png" />
 
 <meta name="author" content="dr. Sander W. van der Laan  " />
 
@@ -27,8 +27,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-  
-  
+  <link rel="apple-touch-icon-precomposed" sizes="180x180" href="img/cover/iconified/apple-touch-icon-180x180.png" />
+  <link rel="shortcut icon" href="img/cover/iconified/favicon.ico" type="image/x-icon" />
 <link rel="prev" href="getting-started-programs-cocalc.html"/>
 <link rel="next" href="gwas-basics-cocalc.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -252,12 +252,12 @@ div.csl-indent {
 <li class="chapter" data-level="10.3" data-path="gwas-visuals-cocalc.html"><a href="gwas-visuals-cocalc.html#interactive-plots"><i class="fa fa-check"></i><b>10.3</b> Interactive plots</a></li>
 <li class="chapter" data-level="10.4" data-path="gwas-visuals-cocalc.html"><a href="gwas-visuals-cocalc.html#stop-playing-around"><i class="fa fa-check"></i><b>10.4</b> Stop playing around</a></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="wtccc1_intro.html"><a href="wtccc1_intro.html"><i class="fa fa-check"></i><b>11</b> The Welcome Trust Case-Control Consortium</a>
+<li class="chapter" data-level="11" data-path="wtccc1-intro.html"><a href="wtccc1-intro.html"><i class="fa fa-check"></i><b>11</b> The Welcome Trust Case-Control Consortium</a>
 <ul>
-<li class="chapter" data-level="11.1" data-path="wtccc1_intro.html"><a href="wtccc1_intro.html#genotyping"><i class="fa fa-check"></i><b>11.1</b> Genotyping</a></li>
-<li class="chapter" data-level="11.2" data-path="wtccc1_intro.html"><a href="wtccc1_intro.html#the-data"><i class="fa fa-check"></i><b>11.2</b> The data</a></li>
-<li class="chapter" data-level="11.3" data-path="wtccc1_intro.html"><a href="wtccc1_intro.html#assignment"><i class="fa fa-check"></i><b>11.3</b> Assignment</a></li>
-<li class="chapter" data-level="11.4" data-path="wtccc1_intro.html"><a href="wtccc1_intro.html#there-you-go"><i class="fa fa-check"></i><b>11.4</b> There you go</a></li>
+<li class="chapter" data-level="11.1" data-path="wtccc1-intro.html"><a href="wtccc1-intro.html#genotyping"><i class="fa fa-check"></i><b>11.1</b> Genotyping</a></li>
+<li class="chapter" data-level="11.2" data-path="wtccc1-intro.html"><a href="wtccc1-intro.html#the-data"><i class="fa fa-check"></i><b>11.2</b> The data</a></li>
+<li class="chapter" data-level="11.3" data-path="wtccc1-intro.html"><a href="wtccc1-intro.html#assignment"><i class="fa fa-check"></i><b>11.3</b> Assignment</a></li>
+<li class="chapter" data-level="11.4" data-path="wtccc1-intro.html"><a href="wtccc1-intro.html#there-you-go"><i class="fa fa-check"></i><b>11.4</b> There you go</a></li>
 </ul></li>
 <li class="chapter" data-level="12" data-path="wtccc1-cocalc.html"><a href="wtccc1-cocalc.html"><i class="fa fa-check"></i><b>12</b> WTCCC1: a GWAS on coronary artery disease (CAD)</a>
 <ul>
@@ -460,7 +460,7 @@ Figure 5.3: CoCalc student page.
 <div id="cocalc-and-this-practical-primer" class="section level2 hasAnchor" number="5.8">
 <h2><span class="header-section-number">5.8</span> CoCalc and this Practical Primer<a href="getting-started-cocalc.html#cocalc-and-this-practical-primer" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>In the course we use CoCalc as we can precisely control what is installed and what is not. And you don’t have to worry about installing software or libraries. Another advantage is that you can work on the practical from anywhere, as long as you have an internet connection. And lastly, all the data you need is already there, so you don’t have to worry about downloading it and we save a lot of space since you will all be working from the same source data.</p>
-<p>This practical is associated with both the <code>R</code> and <code>bash</code> programming language. We use <code>plink</code>, which is a Linux-program in the Terminal (see <a href="#getting-started-programs"><strong>??</strong></a>) and uses <code>bash</code>, so <code>plink</code> needs a <code>Bash</code> kernel. The data from the <code>plink</code> analyses are parsed and plotted using <code>R</code> code, and so we also need a <code>R</code> kernel.</p>
+<p>This practical is associated with both the <code>R</code> and <code>bash</code> programming language. We use <code>plink</code>, which is a Linux-program in the Terminal (see <a href="getting-started-programs-cocalc.html#getting-started-programs-cocalc">4</a>) and uses <code>bash</code>, so <code>plink</code> needs a <code>Bash</code> kernel. The data from the <code>plink</code> analyses are parsed and plotted using <code>R</code> code, and so we also need a <code>R</code> kernel.</p>
 <p>CoCalc has both kernels installed, so you could run both <code>bash</code> and <code>R</code> code in the same notebook. But the command to make this work is a bit complicated, so we decided to split the <code>bash</code> and <code>R</code> code into a virtual Terminal for the <code>bash</code> codes and a Jupyter Notebook with a <code>R</code> kernel for the <code>R</code> code.</p>
 <blockquote>
 <p>This means you have to create a new notebook for the <code>R</code> code. And a new Terminal for the <code>bash</code> code. In the next section we explain how you can do this.</p>
@@ -534,7 +534,7 @@ Figure 5.10: CoCalc new terminal creation.
 Figure 5.11: CoCalc terminal window.
 </p>
 </div>
-<p>Now you can start typing your <code>bash</code> commands. Let’s see what we have in the directory you’re at by typing <code>ls</code>. Check Chapter <a href="#getting-started-standalone"><strong>??</strong></a> for more background on some common Terminal commands.</p>
+<p>Now you can start typing your <code>bash</code> commands. Let’s see what we have in the directory you’re at by typing <code>ls</code>. Just check Google to find some <a href="https://phoenixnap.com/kb/bash-commands" target="_blank">great cheatsheets</a> on common <code>bash</code> commands for Terminal.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:cocalcterminalwindowls"></span>
 <img src="img/cocalc/cocalc_terminal_window_ls.png" alt="CoCalc listing the contents of the directory." width="85%" />
 <p class="caption">

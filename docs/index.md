@@ -3,7 +3,7 @@ title: "A Practical Primer in Human Complex Genetics for CoCalc"
 subtitle: "with a use-case in cardiovascular disease"
 author: "[dr. Sander W. van der Laan](https://vanderlaanand.science) [![](./img/logo/twitter_circle_blue.png){width=2%}](https://www.twitter.com/swvanderlaan) 
 [![](./img/logo/email_circle_blue.png){width=2%}](mailto:s.w.vanderlaan@gmail.com)"
-date: "Version 2.2.0 (2024-04-08)"
+date: "Version 2.2.1 (2024-04-08)"
 description: "This is a practical primer in human complex genetics for CoCalc with a use-case in cardiovascular disease. The output format for this primer is a GitBook."
 documentclass: book
 github-repo: swvanderlaan/A_Practical_Primer_in_Human_Complex_Genetics
@@ -14,10 +14,10 @@ bibliography:
 biblio-style: apalike
 site: bookdown::bookdown_site
 always_allow_html: yes
-# cover-image: "images/cover.png"
-#apple-touch-icon: "touch-icon.png"
-#apple-touch-icon-size: 120
-#favicon: "favicon.ico"
+cover-image: "img/cover/cover_2024.png"
+apple-touch-icon: "img/cover/iconified/apple-touch-icon-180x180.png"
+apple-touch-icon-size: 180
+favicon: "img/cover/iconified/favicon.ico"
 ---
 
 # About this primer
