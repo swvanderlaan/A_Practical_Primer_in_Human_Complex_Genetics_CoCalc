@@ -8,7 +8,7 @@
 First we need to find the independent hits by _clumping_ the results. We will just use the defaults, but please take a note of all the options here [https://www.cog-genomics.org/plink/1.9/postproc#clump](https://www.cog-genomics.org/plink/1.9/postproc#clump){target="_blank"}
 
 ```
-plink --bfile gwas/gwa --clump dummy_project/data.assoc.logistic --clump-p1 5e-8 --clump-p2 0.05 --clump-kb 500 --clump-r2 0.05 --clump-verbose --out dummy_project/data.assoc.logistic
+plink --bfile ~/data/shared/gwas/gwa --clump dummy_project/data.assoc.logistic --clump-p1 5e-8 --clump-p2 0.05 --clump-kb 500 --clump-r2 0.05 --clump-verbose --out dummy_project/data.assoc.logistic
 ```
 Now you will have a list of all the _independent_ SNPs, _i.e._ the genetic loci, that are associated to the trait.
 
@@ -107,11 +107,11 @@ You can to upload this `data.assoc.logistic.locuszoom.gz` Try to visualize each 
 
 You should get something like below.
 
-![](./img/_gwas/CEU.rs6802898.400kb.png){width=50%}
+![](./img/gwas/CEU.rs6802898.400kb.png){width=50%}
 
-![](./img/_gwas/CEU.rs7901695.400kb.png){width=50%}
+![](./img/gwas/CEU.rs7901695.400kb.png){width=50%}
 
-![](./img/_gwas/CEU.rs8050136.400kb.png){width=50%}
+![](./img/gwas/CEU.rs8050136.400kb.png){width=50%}
 
 ## RACER
 
@@ -168,13 +168,13 @@ We could limit ourselves by limiting the region to plot by the clump-size (see a
 
 This should produce the figure similar to these below. 
 <div class="figure" style="text-align: center">
-<img src="img/_gwas_dummy/rs6802898.rs6802898.regional_assoc.png" alt="Regional association plots." width="85%" /><img src="img/_gwas_dummy/rs7901695.rs7901695.regional_assoc.png" alt="Regional association plots." width="85%" /><img src="img/_gwas_dummy/rs8050136.rs8050136.regional_assoc.png" alt="Regional association plots." width="85%" />
+<img src="img/gwas_dummy/rs6802898.rs6802898.regional_assoc.png" alt="Regional association plots." width="85%" /><img src="img/gwas_dummy/rs7901695.rs7901695.regional_assoc.png" alt="Regional association plots." width="85%" /><img src="img/gwas_dummy/rs8050136.rs8050136.regional_assoc.png" alt="Regional association plots." width="85%" />
 <p class="caption">(\#fig:show-racer)Regional association plots.</p>
 </div>
 
 > Please note that we are letting RACER plot the variants on genome build 37 (hg19), but we actually provide hg18-based chromosome and basepair positions. The proper thing to do is to [liftOver](https://genome.sph.umich.edu/wiki/LiftOver){target="_blank"} our coordinates to match those in hg19. Here we didn't, because I just wanted to show you the 'how it's done'. 
 
-<!-- ```{js, echo = FALSE} -->
-<!-- title=document.getElementById('header'); -->
-<!-- title.innerHTML = '<img src="img/_headers/banner_man_standing_dna.png" alt="Statistical finemapping">' + title.innerHTML -->
-<!-- ``` -->
+<script>
+title=document.getElementById('header');
+title.innerHTML = '<img src="./img/headers/banner_man_standing_dna.png" alt="Statistical finemapping">' + title.innerHTML
+</script>

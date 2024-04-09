@@ -13,7 +13,7 @@ Using **[MRBase](http://www.mrbase.org/){target="blank"}** we intend to find out
 
 You are almost at the end. Time to return to the previous chapter on post-GWAS analyses \@ref(post_gwas).
 
-<!-- ```{js, echo = FALSE} -->
-<!-- title=document.getElementById('header'); -->
-<!-- title.innerHTML = '<img src="img/_headers/banner_man_standing_dna.png" alt="MRBase">' + title.innerHTML -->
-<!-- ``` -->
+<script>
+title=document.getElementById('header');
+title.innerHTML = '<img src="./img/headers/banner_man_standing_dna.png" alt="MRBase">' + title.innerHTML
+</script>

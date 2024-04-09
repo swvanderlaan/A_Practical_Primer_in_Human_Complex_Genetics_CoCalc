@@ -4,7 +4,6 @@
 source("scripts/functions.R")
 source("scripts/colors.R")
 source("scripts/packages.R")
-COURSE_loc = "~/Desktop/practical"
 ```
 
 ```{r include = FALSE}
@@ -34,15 +33,22 @@ Go to the [FUMA website](https://fuma.ctglab.nl){target="_blank"}, get an accoun
 
 ### Create the input
 
-You will need to use the `fwrite` function in `r` to write the concatenated results of the WTCCC1 study (remember: `wtccc1_assoc_compl`).  
+You will need to use the `fwrite` function in `r` to write the concatenated results of the WTCCC1 study (remember: `wtccc1_assoc_compl`). Make sure you know what the column-names are in the file, you'll need that for FUMA. You will also need to compress the resulting output, this will make uploading to FUMA go faster. Next, you can download this file and upload it to FUMA.
 
-<!-- fwrite(na.omit(wtccc1_assoc_compl), paste0(COURSE_loc,"/wtccc1/wtccc1_assoc_compl.txt"), sep = " ", showProgress = TRUE, verbose = TRUE, na = "NA", row.names = FALSE, quote = FALSE) -->
+> Task: You have gotten so much experience now in handling files with R. You should be able to do this without any problems.
+
+<!--
+```{r wtccc1_assoc_compl-write, eval = FALSE}
+data.table::fwrite(na.omit(wtccc1_assoc_compl), "wtccc1/wtccc1_assoc_compl.txt", 
+                   sep = " ", 
+                   na = "NA", row.names = FALSE, quote = FALSE, 
+                   compress = "gzip",
+                   showProgress = TRUE, verbose = TRUE)
+```
+-->
 
 > Question: can you figure out the sample size of the WTCCC1 data you used?
 
-Make sure you know what the column-names are in the file, you'll need that for FUMA. You can use `cat your_file | head` to get the first 10 lines of the file.
-
-You will need to compress the resulting output, this will make uploading to FUMA go faster. You can use the `bash`-program `gzip` for that. If you want to know what the options are for that program, you can use `gzip -h`.
 
 ### Run FUMA - SNP to gene
 
@@ -83,7 +89,7 @@ So, my advice: use FUMA (why not be lazy rather than work hard?), but aware of s
 
 That said, time to move on to inspect other phenotypes in relation to your findings in the next Chapter \@ref(phewas) or to return to the previous chapter on post-GWAS analyses \@ref(post_gwas).
 
-<!-- ```{js, echo = FALSE} -->
-<!-- title=document.getElementById('header'); -->
-<!-- title.innerHTML = '<img src="img/_headers/banner_man_standing_dna.png" alt="FUMA">' + title.innerHTML -->
-<!-- ``` -->
+```{js, echo = FALSE}
+title=document.getElementById('header');
+title.innerHTML = '<img src="./img/headers/banner_man_standing_dna.png" alt="FUMA">' + title.innerHTML
+```

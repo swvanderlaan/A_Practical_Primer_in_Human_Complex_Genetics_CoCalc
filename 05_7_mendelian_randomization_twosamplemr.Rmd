@@ -4,7 +4,6 @@
 source("scripts/functions.R")
 source("scripts/colors.R")
 source("scripts/packages.R")
-COURSE_loc = "~/Desktop/practical"
 ```
 
 ```{r include = FALSE}
@@ -258,7 +257,7 @@ p4
 
 You are almost at the end. Time to return to the previous chapter on post-GWAS analyses \@ref(post_gwas).
 
-<!-- ```{js, echo = FALSE} -->
-<!-- title=document.getElementById('header'); -->
-<!-- title.innerHTML = '<img src="img/_headers/banner_man_standing_dna.png" alt="TwoSample Mendelian Randomization">' + title.innerHTML -->
-<!-- ``` -->
+```{js, echo = FALSE}
+title=document.getElementById('header');
+title.innerHTML = '<img src="./img/headers/banner_man_standing_dna.png" alt="TwoSample Mendelian Randomization">' + title.innerHTML
+```

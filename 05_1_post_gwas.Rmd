@@ -4,7 +4,6 @@
 source("scripts/functions.R")
 source("scripts/colors.R")
 source("scripts/packages.R")
-COURSE_loc = "~/Desktop/practical"
 ```
 
 ```{r include = FALSE}
@@ -33,7 +32,7 @@ In the next few sections I deal with a couple of the downstream, post-GWAS analy
 
 The Manhattan plot immediately draws your attention to the peaks above the genome-wide significance threshold. **Clumping** is the procedure in which we identify the _independent hits_, those top variants and the variants in linkage disequilibrium (their 'LD buddies') in the same genomic region (_locus_). The basic steps are as follows. First define a threshold above which to identify the top variant, usually this is the genome-wide significance threshold. Next, define the maximum p-value of association a variant may have with the trait of interest. Define the strength of the correlation that is allowed between the top variant and its LD buddies. And lastly define the size of region around the top variant to assess. 
 
-**Clumping** can easily be done in PLINK. And you can too with the dummy GWAS dataset in this additional chapter \@ref(regional_plot). You don't have to do it now. You can choose to do it when you have time. 
+**Clumping** can easily be done in PLINK. And you can too with the dummy GWAS dataset in this additional chapter \@ref(regional_plot_cocalc). You don't have to do it now. You can choose to do it when you have time. 
 
 ## Conditional analyses
 
@@ -85,7 +84,7 @@ Again, we'll get a bit hands-on and more _Do It Yourself_ in the chapter that de
 
 From all of the above follows another intuitive question. Suppose a signal in your trait also shows association - to some extent - with other traits. Do these two signals than significantly overlap, more so than you would think based on chance? **Colocalization** deals with exactly this question. 
 
-We are not going to deal with **colocalization**, but a nice starting point is [RACER](https://github.com/oliviasabik/RACER){target="_blank"} about which you can read more in chapter \@ref(add_chapter_regional_plot). I will add a whole chapter on this at some later stage.  
+We are not going to deal with **colocalization**, but a nice starting point is [RACER](https://github.com/oliviasabik/RACER){target="_blank"} about which you can read more in chapter \@ref(regional_plot_cocalc). I will add a whole chapter on this at some later stage.  
 
 ## Genetic correlation
 
@@ -137,7 +136,7 @@ Lastly, there is a great explanatory [website](http://polygenicscores.org/explai
 
 You come to the end of this practical primer. What is left are a summary (not written yet) of what you've learned and should take home. And some musings in the Epilogue (\@ref(epilogue) on this book and what the future holds.
 
-<!-- ```{js, echo = FALSE} -->
-<!-- title=document.getElementById('header'); -->
-<!-- title.innerHTML = '<img src="img/_headers/banner_man_standing_dna.png" alt="post-GWAS">' + title.innerHTML -->
-<!-- ``` -->
+```{js, echo = FALSE}
+title=document.getElementById('header');
+title.innerHTML = '<img src="./img/headers/banner_man_standing_dna.png" alt="post-GWAS">' + title.innerHTML
+```

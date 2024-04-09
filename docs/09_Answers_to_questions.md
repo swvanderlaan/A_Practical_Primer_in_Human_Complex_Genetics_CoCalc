@@ -21,22 +21,25 @@ Throughout the book you encountered questions related to some steps and output t
 
 ```
 library("data.table")
+gwas_HWE <- data.table::fread("dummy_project/gwa.hwe")
+gwas_FRQ <- data.table::fread("dummy_project/gwa.frq")
+gwas_IMISS <- data.table::fread("dummy_project/gwa.imiss")
+gwas_LMISS <- data.table::fread("dummy_project/gwa.lmiss")
 
-COURSE_loc = "~/Desktop/practical" # getwd()
+# you'll need to calculate the -log10(P) for the HWE p-values
+gwas_HWE$logP <- -log10(gwas_HWE$P)
 
-gwas_HWE <- data.table::fread(paste0(COURSE_loc, "/dummy_project/gwa.hwe"))
-gwas_FRQ <- data.table::fread(paste0(COURSE_loc, "/dummy_project/gwa.frq"))
-gwas_IMISS <- data.table::fread(paste0(COURSE_loc, "/dummy_project/gwa.imiss"))
-gwas_LMISS <- data.table::fread(paste0(COURSE_loc, "/dummy_project/gwa.lmiss"))
+# you'll need to calculate the sample call rate
+gwas_IMISS$callrate <- 1 - gwas_IMISS$F_MISS
+
+# you'll need to calculate the SNP call rate
+gwas_LMISS$callrate <- 1 - gwas_LMISS$F_MISS
 ```
 
 > Question: Plot the per-stratum HWE p-values using R. [Hint: use and adapt the examples from the previous chapters.]
 
 ```
 library("ggpubr")
-
-gwas_HWE$logP <- -log10(gwas_HWE$P)
-
 ggpubr::gghistogram(gwas_HWE, x = "logP",
                     add = "mean",
                     add.params = list(color = "#595A5C", linetype = "dashed", size = 1),
@@ -49,7 +52,7 @@ ggpubr::gghistogram(gwas_HWE, x = "logP",
                     xlab = "HWE -log10(P)") +
   ggplot2::geom_vline(xintercept = 5, linetype = "dashed",
                       color = "#E55738", size = 1)
-ggplot2::ggsave(paste0(COURSE_loc, "/dummy_project/gwas-hwe.png"),
+ggplot2::ggsave("dummy_project/gwas-hwe.png",
        plot = last_plot())
 ```
 
@@ -63,7 +66,7 @@ ggpubr::gghistogram(gwas_FRQ, x = "MAF",
                     xlab = "minor allele frequency") +
   ggplot2::geom_vline(xintercept = 0.05, linetype = "dashed",
                       color = "#E55738", size = 1)
-ggplot2::ggsave(paste0(COURSE_loc, "/dummy_project/gwas-freq.png"),
+ggplot2::ggsave("dummy_project/gwas-freq.png",
        plot = last_plot())
 ```
 
@@ -71,8 +74,6 @@ ggplot2::ggsave(paste0(COURSE_loc, "/dummy_project/gwas-freq.png"),
 > Question: Plot the per-sample call rates using R. [Hint: use and adapt the examples from the previous chapters.]
 
 ```
-gwas_IMISS$callrate <- 1 - gwas_IMISS$F_MISS
-
 ggpubr::gghistogram(gwas_IMISS, x = "callrate",
                     add = "mean", add.params = list(color = "#595A5C", linetype = "dashed", size = 1),
                     rug = TRUE, bins = 50,
@@ -80,15 +81,13 @@ ggpubr::gghistogram(gwas_IMISS, x = "callrate",
                     xlab = "per sample call rate") +
   ggplot2::geom_vline(xintercept = 0.95, linetype = "dashed",
                       color = "#E55738", size = 1)
-ggplot2::ggsave(paste0(COURSE_loc, "/dummy_project/gwas-sample-call-rate.png"),
+ggplot2::ggsave("data/dummy_project/gwas-sample-call-rate.png",
        plot = last_plot())
 ```
 
 > Question: Plot the per-SNP call rates using R. [Hint: use and adapt the examples from the previous chapters.]
 
 ```
-gwas_LMISS$callrate <- 1 - gwas_LMISS$F_MISS
-
 ggpubr::gghistogram(gwas_LMISS, x = "callrate",
                     add = "mean", add.params = list(color = "#595A5C", linetype = "dashed", size = 1),
                     rug = TRUE, bins = 50,
@@ -96,7 +95,7 @@ ggpubr::gghistogram(gwas_LMISS, x = "callrate",
                     xlab = "per SNP call rate") +
   ggplot2::geom_vline(xintercept = 0.95, linetype = "dashed",
                       color = "#E55738", size = 1)
-ggplot2::ggsave(paste0(COURSE_loc, "/dummy_project/gwas-snp-call-rate.png"),
+ggplot2::ggsave("data/dummy_project/gwas-snp-call-rate.png",
        plot = last_plot())
 ```
 
@@ -108,12 +107,17 @@ ggplot2::ggsave(paste0(COURSE_loc, "/dummy_project/gwas-snp-call-rate.png"),
 
 ## Chapter 3.5: GWAS visualization
 
-> Question: Why do the number of variants per chrosome (approximately) correlate with the chromosome number?
+> Question: Try to figure out how to get the number of variants per chromosomes. Why do the number of variants per chrosome (approximately) correlate with the chromosome number?
 
 > Question: Where are the data for chromosome X, Y and MT?
 
 > Question: What do the grey spots on the density plot indicate?
 
+## Chapter 4.2: WTCCC1
+
+> Question: What do you notice in the 'per sample call rate' graph? Can you think of a reason why this is? And how would you deal with this?
+
+> Question: Do you have any thoughts on that? Do you agree with the filters I set below? How would you do it differently and why?
 
 ## Chapter 5.4: FUMA
 
@@ -151,7 +155,7 @@ ggplot2::ggsave(paste0(COURSE_loc, "/dummy_project/gwas-snp-call-rate.png"),
 
 > Question: How many independent hits did you find?
 
-<!-- ```{js, echo = FALSE} -->
-<!-- title=document.getElementById('header'); -->
-<!-- title.innerHTML = '<img src="img/_headers/banner_man_standing_dna.png" alt="Answers to questions">' + title.innerHTML -->
-<!-- ``` -->
+<script>
+title=document.getElementById('header');
+title.innerHTML = '<img src="./img/headers/banner_man_standing_dna.png" alt="Answers to questions">' + title.innerHTML
+</script>

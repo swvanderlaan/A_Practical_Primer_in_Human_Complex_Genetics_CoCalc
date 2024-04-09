@@ -1,19 +1,9 @@
 # EIGENSOFT {#eigensoft}
 <!-- ![](./img/_gwas_dummy/banner_man_standing_dna.png){width=70%} -->
 ```{r load-functions-packages, message = FALSE, warning = FALSE, echo = FALSE, eval = TRUE, include = FALSE}
-# source("scripts/functions.R")
-# source("scripts/colors.R")
-# source("scripts/packages.R")
-
-library(rmarkdown)
-library(bookdown)
-library(flextable)
-library(knitr)
-library(kableExtra)
-library(webshot)
-library(webshot2)
-library(formatR)
-library(tinytex)
+source("scripts/functions.R")
+source("scripts/colors.R")
+source("scripts/packages.R")
 ```
 
 ```{r include = FALSE}
@@ -40,7 +30,7 @@ So, here's the deal.
 
 I will share the how-to for a macOS environment below in [EIGENSOFT] - this should work in a Linux environment too as macOS is UNIX-based. You can choose to try and make it work on your system (be it UNIX or macOS based) at home (or in the office).
 
-However, I recommend that you use the `--pca` function which is present in `PLINK` v1.9 and up. This means you should probably simply skip this section and jump straight to Chapter \@ref(gwas-basics-sample-qc).
+However, I recommend that you use the `--pca` function which is present in `PLINK` v1.9 and up (I describe this in the Chapter 'Sample QC'.
 
 ## Install homebrew
 
@@ -85,7 +75,7 @@ make
 make install
 ```
 
-<!-- ```{js, echo = FALSE} -->
-<!-- title=document.getElementById('header'); -->
-<!-- title.innerHTML = '<img src="img/_headers/banner_man_standing_dna.png" alt="Eigensoft">' + title.innerHTML -->
-<!-- ``` -->
+```{js, echo = FALSE}
+title=document.getElementById('header');
+title.innerHTML = '<img src="./img/headers/banner_man_standing_dna.png" alt="Eigensoft">' + title.innerHTML
+```

@@ -75,7 +75,7 @@ Right, onto `PLINK`.
 All genetic analyses can be done in PLINK, even on your laptop, but with large datasets, for example [UK Biobank](https://www.ukbiobank.ac.uk){target="_blank"} size, it is better to switch to a [high-performance computing cluster (HPC)](https://en.wikipedia.org/wiki/High-performance_computing){target="_blank"} like we have available at the [Utrecht Science Park](https://wiki.bioinformatics.umcutrecht.nl/bin/view/HPC/WebHome){target="_blank"}. The original PLINK v1.07 can be found [here](https://zzz.bwh.harvard.edu/plink/index.shtml){target="_blank"}, but nowadays we are using a newer, faster version: **PLINK v1.9** which can be found [here](https://www.cog-genomics.org/plink2){target="_blank"}. It still says 'PLINK 1.90 beta' (Figure \@ref(fig:plinkprogram)), but you can consider this version stable and save to work with, but as you can see, some functions are not supported anymore.
 
 ```{r 'plinkprogram', fig.align='center', fig.cap='The PLINK v1.9 website.', fig.show = TRUE, eval=TRUE}
-knitr::include_graphics("img/plink.png")
+knitr::include_graphics("./img/plink.png")
 ```
 
 ### Alternatives to `PLINK`
@@ -85,13 +85,7 @@ Nowadays, a lot of people also use programs like [SNPTEST](snptest){target="_bla
 Mendelian randomization can be done either with the [SMR](http://cnsgenomics.com/software/smr/#Overview){target="_blank"} or [GSMR](http://cnsgenomics.com/software/gsmr/){target="_blank"} function from GCTA, or with R-packages, like [`TwoSampleMR`](https://mrcieu.github.io/TwoSampleMR/){target="_blank"}.
 
 
-## Did you choose?
-
-Now is the moment of decision. You should opt for the **CoCalc**-instructions when you following the course. In all other cases, your best bet are the **Standalone**-instructions. 
-
-Go to Chapter \@ref(getting-started-standalone) for the **Standalone**-instructions.
-
-Go to Chapter \@ref(getting-started-cocalc) for the **CoCalc**-instructions.
+The next thing we'll cover are the instructions to setup your macOS system in Chapter \@ref(getting-started-standalone).
 
 ```{js, echo = FALSE}
 title=document.getElementById('header');

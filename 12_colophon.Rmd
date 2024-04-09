@@ -1,18 +1,8 @@
 # Colophon
 ```{r load-functions-packages, message = FALSE, warning = FALSE, echo = FALSE, eval = TRUE, include = FALSE}
-# source("scripts/functions.R")
-# source("scripts/colors.R")
-# source("scripts/packages.R")
-
-library(rmarkdown)
-library(bookdown)
-library(flextable)
-library(knitr)
-library(kableExtra)
-library(webshot)
-library(webshot2)
-library(formatR)
-library(tinytex)
+source("scripts/functions.R")
+source("scripts/colors.R")
+source("scripts/packages.R")
 ```
 
 ```{r include = FALSE}

@@ -35,7 +35,7 @@ Table: (\#tab:tab-phewas)PheWAS Resources.
 
 You now know to what other traits, risk factors and diseases our trait of interest (coronary artery disease) is correlated. An obvious next question would be: is this a causal correlation? We will cover this aspect in the next Chapter \@ref(mendelian_randomization) or to return to the previous chapter on post-GWAS analyses \@ref(post_gwas).
 
-<!-- ```{js, echo = FALSE} -->
-<!-- title=document.getElementById('header'); -->
-<!-- title.innerHTML = '<img src="img/_headers/banner_man_standing_dna.png" alt="Phenome-Wide Association Study">' + title.innerHTML -->
-<!-- ``` -->
+<script>
+title=document.getElementById('header');
+title.innerHTML = '<img src="./img/headers/banner_man_standing_dna.png" alt="Phenome-Wide Association Study">' + title.innerHTML
+</script>

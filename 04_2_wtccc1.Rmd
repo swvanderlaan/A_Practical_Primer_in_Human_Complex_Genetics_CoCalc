@@ -27,8 +27,16 @@ opts_chunk$set(echo = FALSE,
 ```
 As usual, we start by exploring the data in hand.
 
+First, we create a working directory for the WTCCC1 data.
+
 ```
-plink --bfile wtccc1/CADn1871_500Kb37fwd --bmerge wtccc1/UKBSn1397_500Kb37fwd --make-bed --out wtccc1/wtccc1 && \
+mkdir -v ~/wtccc1
+```
+
+Next, we'll run a few `plink` commands
+
+```
+plink --bfile ~/data/shared/wtccc1/CADn1871_500Kb37fwd --bmerge wtccc1/UKBSn1397_500Kb37fwd --make-bed --out wtccc1/wtccc1 && \
 plink --bfile wtccc1/wtccc1 --freq --out wtccc1/wtccc1 && \
 plink --bfile wtccc1/wtccc1 --hardy --out wtccc1/wtccc1 && \
 plink --bfile wtccc1/wtccc1 --missing --out wtccc1/wtccc1 && \
@@ -40,12 +48,10 @@ cat wtccc1/wtccc1.missing | awk '$5 < 0.00001' | awk '{ print $2 }' > wtccc1/wtc
 ```{r WTCCC1raw, eval = FALSE, message = FALSE, warning = FALSE}
 library("data.table")
 
-COURSE_loc = "~/Desktop/practical" # getwd()
-
-wtccc1_HWE <- data.table::fread(paste0(COURSE_loc, "/wtccc1/wtccc1.hwe"))
-wtccc1_FRQ <- data.table::fread(paste0(COURSE_loc, "/wtccc1/wtccc1.frq"))
-wtccc1_IMISS <- data.table::fread(paste0(COURSE_loc, "/wtccc1/wtccc1.imiss"))
-wtccc1_LMISS <- data.table::fread(paste0(COURSE_loc, "/wtccc1/wtccc1.lmiss"))
+wtccc1_HWE <- data.table::fread("wtccc1/wtccc1.hwe")
+wtccc1_FRQ <- data.table::fread("wtccc1/wtccc1.frq")
+wtccc1_IMISS <- data.table::fread("wtccc1/wtccc1.imiss")
+wtccc1_LMISS <- data.table::fread("wtccc1/wtccc1.lmiss")
 
 wtccc1_HWE$logP <- -log10(wtccc1_HWE$P)
 ```
@@ -66,13 +72,13 @@ ggpubr::gghistogram(wtccc1_HWE, x = "logP",
                     xlab = "HWE -log10(P)") +
   ggplot2::geom_vline(xintercept = 5, linetype = "dashed",
                       color = "#E55738", size = 1)
-ggplot2::ggsave(paste0(COURSE_loc, "/wtccc1/wtccc1-hwe.png"), plot = last_plot())
+ggplot2::ggsave("wtccc1/wtccc1-hwe.png"), plot = last_plot())
 ```
 
 This will result in Figure \@ref(fig:show-wtccc1-hwe).
 
 ```{r show-wtccc1-hwe, fig.align='center', fig.cap='Stratified HWE p-values.', fig.show = TRUE, echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE}
-knitr::include_graphics("img/_gwas_wtccc/WTCCC1-HWE.png")
+knitr::include_graphics("img/gwas_wtccc/WTCCC1-HWE.png")
 ```
 
 We should also inspect the allele frequencies. Note that _by default_ PLINK (whether v0.7, v1.9, or v2.0) stores the alleles as minor (A1) and major (A2), and therefore `--maf` _always_ calculates the frequency of the minor allele (A1).
@@ -90,7 +96,7 @@ ggplot2::ggsave(paste0(COURSE_loc, "/wtccc1/wtccc1-freq.png"), plot = last_plot(
 This will result in Figure \@ref(fig:show-wtccc1-freq).
 
 ```{r show-wtccc1-freq, fig.align='center', fig.cap='Minor allele frequencies.', fig.show = TRUE, echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE}
-knitr::include_graphics(rep("img/_gwas_wtccc/WTCCC1-FREQ.png"))
+knitr::include_graphics(rep("img/gwas_wtccc/WTCCC1-FREQ.png"))
 ```
 
 There could be sample with very poor overall call rate, where for many SNPs there is no data. We will want to identify these samples and exclude them. 
@@ -110,7 +116,7 @@ ggplot2::ggsave(paste0(COURSE_loc, "/wtccc1/wtccc1-sample-call-rate.png"), plot 
 This will result in Figure \@ref(fig:show-wtccc1-callratesample).
 
 ```{r show-wtccc1-callratesample, fig.align='center', fig.cap='Per sample call rate.', fig.show = TRUE, echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE}
-knitr::include_graphics(rep("img/_gwas_wtccc/WTCCC1-callrate-samples.png"))
+knitr::include_graphics(rep("img/gwas_wtccc/WTCCC1-callrate-samples.png"))
 ```
 
 Lastly, we must inspect the per SNP call rate; we need to know if there are SNPs that have no data for many samples. We will want to identify such SNPs and exclude these.
@@ -131,7 +137,7 @@ ggplot2::ggsave(paste0(COURSE_loc, "/wtccc1/wtccc1-hwe.png"), plot = last_plot()
 This will result in Figure \@ref(fig:show-wtccc1-callratesnp).
 
 ```{r show-wtccc1-callratesnp, fig.align='center', fig.cap='Per SNP call rate.', fig.show = TRUE, echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE}
-knitr::include_graphics(rep("img/_gwas_wtccc/WTCCC1-callrate-SNPs.png"))
+knitr::include_graphics(rep("img/gwas_wtccc/WTCCC1-callrate-SNPs.png"))
 ```
 
 ## Quality control
@@ -303,7 +309,7 @@ In a similar fashion as in the example _gwas_ and _rawdata_ datasets, you should
 You're code would be something like below:
 
 ```
-cat wtccc1/wtccc1_extrclean_1kg.pca.evec | tail -n +2 | \
+cat ~/data/shared/wtccc1/wtccc1_extrclean_1kg.pca.evec | tail -n +2 | \
 awk '$3 < 0.023' | awk '{ print $1 }' | awk -F":" '{ print $1, $2 }' > wtccc1/fail-ancestry-QC.txt
 ```
 
@@ -420,7 +426,7 @@ Wow. Take a pause. And realize what you've done.
 
 Back then there wasn't much on analyses _after_ a GWAS, nowadays there are many post-GWAS analyses methods. We will cover them in the next Chapter \@ref(post_gwas).
 
-<!-- ```{js, echo = FALSE} -->
-<!-- title=document.getElementById('header'); -->
-<!-- title.innerHTML = '<img src="img/_headers/interactive_plot.png" alt="WTCCC1: coronary artery disease">' + title.innerHTML -->
-<!-- ``` -->
+```{js, echo = FALSE}
+title=document.getElementById('header');
+title.innerHTML = '<img src="./img/headers/interactive_plot.png" alt="WTCCC1: coronary artery disease">' + title.innerHTML
+```

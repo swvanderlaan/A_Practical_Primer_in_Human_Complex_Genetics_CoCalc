@@ -27,9 +27,9 @@ With respect to imputation and meta-analyses of GWAS you should also get familia
 
 **Are you ready?**
 
-Are you ready? Did you bring coffee and a good dose of energy? Let's start! Your first point of action is to prepare your system for this course in Chapter \@ref(getting-started).
+Are you ready? Did you bring coffee and a good dose of energy? Let's start in Chapter \@ref(getting-started).
 
-<!-- ```{js, echo = FALSE} -->
-<!-- title=document.getElementById('header'); -->
-<!-- title.innerHTML = '<img src="img/_headers/papers_on_wall.png" alt="Some background reading">' + title.innerHTML -->
-<!-- ``` -->
+<script>
+title=document.getElementById('header');
+title.innerHTML = '<img src="./img/headers/papers_on_wall.png" alt="Some background reading">' + title.innerHTML
+</script>

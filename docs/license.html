@@ -4,20 +4,20 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>5 Licenses and disclaimers | A Practical Primer in Human Complex Genetics</title>
-  <meta name="description" content="This is a practical primer in human complex genetics with a use-case in cardiovascular disease. The output format for this primer is bookdown::gitbook." />
+  <title>22 Licenses and disclaimers | A Practical Primer in Human Complex Genetics for CoCalc</title>
+  <meta name="description" content="This is a practical primer in human complex genetics for CoCalc with a use-case in cardiovascular disease. The output format for this primer is a GitBook." />
   <meta name="generator" content="bookdown 0.38.1 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="5 Licenses and disclaimers | A Practical Primer in Human Complex Genetics" />
+  <meta property="og:title" content="22 Licenses and disclaimers | A Practical Primer in Human Complex Genetics for CoCalc" />
   <meta property="og:type" content="book" />
   
-  <meta property="og:description" content="This is a practical primer in human complex genetics with a use-case in cardiovascular disease. The output format for this primer is bookdown::gitbook." />
+  <meta property="og:description" content="This is a practical primer in human complex genetics for CoCalc with a use-case in cardiovascular disease. The output format for this primer is a GitBook." />
   <meta name="github-repo" content="swvanderlaan/A_Practical_Primer_in_Human_Complex_Genetics" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="5 Licenses and disclaimers | A Practical Primer in Human Complex Genetics" />
+  <meta name="twitter:title" content="22 Licenses and disclaimers | A Practical Primer in Human Complex Genetics for CoCalc" />
   
-  <meta name="twitter:description" content="This is a practical primer in human complex genetics with a use-case in cardiovascular disease. The output format for this primer is bookdown::gitbook." />
+  <meta name="twitter:description" content="This is a practical primer in human complex genetics for CoCalc with a use-case in cardiovascular disease. The output format for this primer is a GitBook." />
   
 
 <meta name="author" content="dr. Sander W. van der Laan  " />
@@ -29,7 +29,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="epilogue.html"/>
+<link rel="prev" href="answers.html"/>
 <link rel="next" href="colophon.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -52,12 +52,109 @@
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<link href="libs/tabwid-1.1.3/tabwid.css" rel="stylesheet" />
+<script src="libs/tabwid-1.1.3/tabwid.js"></script>
+<link href="libs/htmltools-fill-0.5.8/fill.css" rel="stylesheet" />
+<script src="libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+<link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
+<script src="libs/datatables-binding-0.33/datatables.js"></script>
+<link href="libs/dt-core-1.13.6/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="libs/dt-core-1.13.6/css/jquery.dataTables.extra.css" rel="stylesheet" />
+<script src="libs/dt-core-1.13.6/js/jquery.dataTables.min.js"></script>
+<link href="libs/crosstalk-1.2.1/css/crosstalk.min.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.2.1/js/crosstalk.min.js"></script>
 
 
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
 
 <style type="text/css">
   
   div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
 </style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
@@ -78,22 +175,193 @@
 <li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> About this primer</a></li>
 <li class="chapter" data-level="2" data-path="somebackgroundreading.html"><a href="somebackgroundreading.html"><i class="fa fa-check"></i><b>2</b> Some background reading</a></li>
-<li class="chapter" data-level="3" data-path="getting-started.html"><a href="getting-started.html"><i class="fa fa-check"></i><b>3</b> Getting started</a>
+<li class="chapter" data-level="3" data-path="getting-started.html"><a href="getting-started.html"><i class="fa fa-check"></i><b>3</b> Getting started</a></li>
+<li class="chapter" data-level="4" data-path="getting-started-programs-cocalc.html"><a href="getting-started-programs-cocalc.html"><i class="fa fa-check"></i><b>4</b> Getting started - programs</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="getting-started.html"><a href="getting-started.html#cocalc-vs.-standalone"><i class="fa fa-check"></i><b>3.1</b> CoCalc vs. Standalone</a></li>
-</ul></li>
-<li class="chapter" data-level="4" data-path="epilogue.html"><a href="epilogue.html"><i class="fa fa-check"></i><b>4</b> Epilogue</a>
+<li class="chapter" data-level="4.1" data-path="getting-started-programs-cocalc.html"><a href="getting-started-programs-cocalc.html#rstudio"><i class="fa fa-check"></i><b>4.1</b> RStudio</a></li>
+<li class="chapter" data-level="4.2" data-path="getting-started-programs-cocalc.html"><a href="getting-started-programs-cocalc.html#plink"><i class="fa fa-check"></i><b>4.2</b> PLINK</a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="epilogue.html"><a href="epilogue.html#course-lecturers"><i class="fa fa-check"></i><b>4.1</b> 2024 Course Lecturers</a></li>
+<li class="chapter" data-level="4.2.1" data-path="getting-started-programs-cocalc.html"><a href="getting-started-programs-cocalc.html#alternatives-to-plink"><i class="fa fa-check"></i><b>4.2.1</b> Alternatives to <code>PLINK</code></a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="license.html"><a href="license.html"><i class="fa fa-check"></i><b>5</b> Licenses and disclaimers</a>
+<li class="chapter" data-level="4.3" data-path="getting-started-programs-cocalc.html"><a href="getting-started-programs-cocalc.html#other-programs"><i class="fa fa-check"></i><b>4.3</b> Other programs</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="getting-started-cocalc.html"><a href="getting-started-cocalc.html"><i class="fa fa-check"></i><b>5</b> Getting started - CoCalc</a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="license.html"><a href="license.html#copyright"><i class="fa fa-check"></i><b>5.1</b> Copyright</a></li>
-<li class="chapter" data-level="5.2" data-path="license.html"><a href="license.html#disclaimer"><i class="fa fa-check"></i><b>5.2</b> Disclaimer</a></li>
-<li class="chapter" data-level="5.3" data-path="license.html"><a href="license.html#images-and-data-used"><i class="fa fa-check"></i><b>5.3</b> Images and data used</a></li>
-<li class="chapter" data-level="5.4" data-path="license.html"><a href="license.html#copyright-1"><i class="fa fa-check"></i><b>5.4</b> Copyright</a></li>
+<li class="chapter" data-level="5.1" data-path="getting-started-cocalc.html"><a href="getting-started-cocalc.html#starting-the-course-on-cocalc"><i class="fa fa-check"></i><b>5.1</b> Starting the course on CoCalc</a></li>
+<li class="chapter" data-level="5.2" data-path="getting-started-cocalc.html"><a href="getting-started-cocalc.html#but-wait-what-is-cocalc-anyway"><i class="fa fa-check"></i><b>5.2</b> But wait, what is CoCalc anyway?</a></li>
+<li class="chapter" data-level="5.3" data-path="getting-started-cocalc.html"><a href="getting-started-cocalc.html#okay-and-whats-a-jupyter-notebook"><i class="fa fa-check"></i><b>5.3</b> Okay, and what’s a Jupyter Notebook?</a></li>
+<li class="chapter" data-level="5.4" data-path="getting-started-cocalc.html"><a href="getting-started-cocalc.html#how-does-a-jupyter-notebook-work"><i class="fa fa-check"></i><b>5.4</b> How does a Jupyter Notebook work?</a></li>
+<li class="chapter" data-level="5.5" data-path="getting-started-cocalc.html"><a href="getting-started-cocalc.html#and-what-is-the-force-behind-a-jupyter-notebook"><i class="fa fa-check"></i><b>5.5</b> And what is the Force behind a Jupyter Notebook?</a></li>
+<li class="chapter" data-level="5.6" data-path="getting-started-cocalc.html"><a href="getting-started-cocalc.html#how-to-use-a-jupyter-notebook"><i class="fa fa-check"></i><b>5.6</b> How to use a Jupyter Notebook</a></li>
+<li class="chapter" data-level="5.7" data-path="getting-started-cocalc.html"><a href="getting-started-cocalc.html#trouble-shooting-juptyer-notebook"><i class="fa fa-check"></i><b>5.7</b> Trouble shooting Juptyer Notebook</a></li>
+<li class="chapter" data-level="5.8" data-path="getting-started-cocalc.html"><a href="getting-started-cocalc.html#cocalc-and-this-practical-primer"><i class="fa fa-check"></i><b>5.8</b> CoCalc and this Practical Primer</a></li>
+<li class="chapter" data-level="5.9" data-path="getting-started-cocalc.html"><a href="getting-started-cocalc.html#beginning-your-own-jupyter-notebook-with-a-r-kernel"><i class="fa fa-check"></i><b>5.9</b> Beginning your own Jupyter Notebook with a <code>R</code> kernel</a></li>
+<li class="chapter" data-level="5.10" data-path="getting-started-cocalc.html"><a href="getting-started-cocalc.html#beginning-your-own-terminal-for-bash-code"><i class="fa fa-check"></i><b>5.10</b> Beginning your own Terminal for <code>bash</code> code</a></li>
+<li class="chapter" data-level="5.11" data-path="getting-started-cocalc.html"><a href="getting-started-cocalc.html#this-book-and-cocalc"><i class="fa fa-check"></i><b>5.11</b> This book and CoCalc</a></li>
+<li class="chapter" data-level="5.12" data-path="getting-started-cocalc.html"><a href="getting-started-cocalc.html#are-you-ready"><i class="fa fa-check"></i><b>5.12</b> Are you ready?</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="colophon.html"><a href="colophon.html"><i class="fa fa-check"></i><b>6</b> Colophon</a></li>
+<li class="chapter" data-level="6" data-path="gwas-basics-cocalc.html"><a href="gwas-basics-cocalc.html"><i class="fa fa-check"></i><b>6</b> Steps in a Genome-Wide Association Study</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="gwas-basics-cocalc.html"><a href="gwas-basics-cocalc.html#introduction"><i class="fa fa-check"></i><b>6.1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="gwas-basics-cocalc.html"><a href="gwas-basics-cocalc.html#setting-the-stage"><i class="fa fa-check"></i><b>6.1.1</b> Setting the stage</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="gwas-basics-cocalc.html"><a href="gwas-basics-cocalc.html#converting-the-data"><i class="fa fa-check"></i><b>6.2</b> Converting the data</a></li>
+<li class="chapter" data-level="6.3" data-path="gwas-basics-cocalc.html"><a href="gwas-basics-cocalc.html#quality-control"><i class="fa fa-check"></i><b>6.3</b> Quality control</a></li>
+<li class="chapter" data-level="6.4" data-path="gwas-basics-cocalc.html"><a href="gwas-basics-cocalc.html#lets-get-our-hands-dirty"><i class="fa fa-check"></i><b>6.4</b> Let’s get our hands dirty</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="gwas-basics-sample-qc-cocalc.html"><a href="gwas-basics-sample-qc-cocalc.html"><i class="fa fa-check"></i><b>7</b> Sample QC</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="gwas-basics-sample-qc-cocalc.html"><a href="gwas-basics-sample-qc-cocalc.html#sex"><i class="fa fa-check"></i><b>7.1</b> Sex</a></li>
+<li class="chapter" data-level="7.2" data-path="gwas-basics-sample-qc-cocalc.html"><a href="gwas-basics-sample-qc-cocalc.html#sample-call-rates"><i class="fa fa-check"></i><b>7.2</b> Sample call rates</a></li>
+<li class="chapter" data-level="7.3" data-path="gwas-basics-sample-qc-cocalc.html"><a href="gwas-basics-sample-qc-cocalc.html#heterozygosity-rate"><i class="fa fa-check"></i><b>7.3</b> Heterozygosity rate</a></li>
+<li class="chapter" data-level="7.4" data-path="gwas-basics-sample-qc-cocalc.html"><a href="gwas-basics-sample-qc-cocalc.html#relatedness"><i class="fa fa-check"></i><b>7.4</b> Relatedness</a></li>
+<li class="chapter" data-level="7.5" data-path="gwas-basics-sample-qc-cocalc.html"><a href="gwas-basics-sample-qc-cocalc.html#ancestral-background"><i class="fa fa-check"></i><b>7.5</b> Ancestral background</a>
+<ul>
+<li class="chapter" data-level="7.5.1" data-path="gwas-basics-sample-qc-cocalc.html"><a href="gwas-basics-sample-qc-cocalc.html#g-phase-1"><i class="fa fa-check"></i><b>7.5.1</b> 1000G phase 1</a></li>
+<li class="chapter" data-level="7.5.2" data-path="gwas-basics-sample-qc-cocalc.html"><a href="gwas-basics-sample-qc-cocalc.html#principal-component-analysis"><i class="fa fa-check"></i><b>7.5.2</b> Principal component analysis</a></li>
+<li class="chapter" data-level="7.5.3" data-path="gwas-basics-sample-qc-cocalc.html"><a href="gwas-basics-sample-qc-cocalc.html#plotting-the-pca-results"><i class="fa fa-check"></i><b>7.5.3</b> Plotting the PCA results</a></li>
+</ul></li>
+<li class="chapter" data-level="7.6" data-path="gwas-basics-sample-qc-cocalc.html"><a href="gwas-basics-sample-qc-cocalc.html#removing-samples"><i class="fa fa-check"></i><b>7.6</b> Removing samples</a></li>
+<li class="chapter" data-level="7.7" data-path="gwas-basics-sample-qc-cocalc.html"><a href="gwas-basics-sample-qc-cocalc.html#the-next-step"><i class="fa fa-check"></i><b>7.7</b> The next step</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="gwas-basics-snp-qc-cocalc.html"><a href="gwas-basics-snp-qc-cocalc.html"><i class="fa fa-check"></i><b>8</b> Per-SNP QC</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="gwas-basics-snp-qc-cocalc.html"><a href="gwas-basics-snp-qc-cocalc.html#snp-call-rates"><i class="fa fa-check"></i><b>8.1</b> SNP call rates</a></li>
+<li class="chapter" data-level="8.2" data-path="gwas-basics-snp-qc-cocalc.html"><a href="gwas-basics-snp-qc-cocalc.html#differential-snp-call-rates"><i class="fa fa-check"></i><b>8.2</b> Differential SNP call rates</a></li>
+<li class="chapter" data-level="8.3" data-path="gwas-basics-snp-qc-cocalc.html"><a href="gwas-basics-snp-qc-cocalc.html#allele-frequencies"><i class="fa fa-check"></i><b>8.3</b> Allele frequencies</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="gwas-basics-snp-qc-cocalc.html"><a href="gwas-basics-snp-qc-cocalc.html#a-note-on-allele-coding"><i class="fa fa-check"></i><b>8.3.1</b> A note on allele coding</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="gwas-basics-snp-qc-cocalc.html"><a href="gwas-basics-snp-qc-cocalc.html#hardy-weinberg-equilibrium"><i class="fa fa-check"></i><b>8.4</b> Hardy-Weinberg Equilibrium</a></li>
+<li class="chapter" data-level="8.5" data-path="gwas-basics-snp-qc-cocalc.html"><a href="gwas-basics-snp-qc-cocalc.html#final-snp-qc"><i class="fa fa-check"></i><b>8.5</b> Final SNP QC</a></li>
+<li class="chapter" data-level="8.6" data-path="gwas-basics-snp-qc-cocalc.html"><a href="gwas-basics-snp-qc-cocalc.html#a-milestone"><i class="fa fa-check"></i><b>8.6</b> A Milestone</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="gwas-testing-cocalc.html"><a href="gwas-testing-cocalc.html"><i class="fa fa-check"></i><b>9</b> Genome-Wide Association Study</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="gwas-testing-cocalc.html"><a href="gwas-testing-cocalc.html#exploring-the-data"><i class="fa fa-check"></i><b>9.1</b> Exploring the data</a></li>
+<li class="chapter" data-level="9.2" data-path="gwas-testing-cocalc.html"><a href="gwas-testing-cocalc.html#genetic-models"><i class="fa fa-check"></i><b>9.2</b> Genetic models</a></li>
+<li class="chapter" data-level="9.3" data-path="gwas-testing-cocalc.html"><a href="gwas-testing-cocalc.html#logistic-regression"><i class="fa fa-check"></i><b>9.3</b> Logistic regression</a></li>
+<li class="chapter" data-level="9.4" data-path="gwas-testing-cocalc.html"><a href="gwas-testing-cocalc.html#lets-get-visual"><i class="fa fa-check"></i><b>9.4</b> Let’s get visual</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="gwas-visuals-cocalc.html"><a href="gwas-visuals-cocalc.html"><i class="fa fa-check"></i><b>10</b> GWAS visualisation</a>
+<ul>
+<li class="chapter" data-level="10.0.1" data-path="gwas-visuals-cocalc.html"><a href="gwas-visuals-cocalc.html#qq-plots"><i class="fa fa-check"></i><b>10.0.1</b> QQ plots</a></li>
+<li class="chapter" data-level="10.1" data-path="gwas-visuals-cocalc.html"><a href="gwas-visuals-cocalc.html#manhattan-plots"><i class="fa fa-check"></i><b>10.1</b> Manhattan plots</a></li>
+<li class="chapter" data-level="10.2" data-path="gwas-visuals-cocalc.html"><a href="gwas-visuals-cocalc.html#other-plots"><i class="fa fa-check"></i><b>10.2</b> Other plots</a></li>
+<li class="chapter" data-level="10.3" data-path="gwas-visuals-cocalc.html"><a href="gwas-visuals-cocalc.html#interactive-plots"><i class="fa fa-check"></i><b>10.3</b> Interactive plots</a></li>
+<li class="chapter" data-level="10.4" data-path="gwas-visuals-cocalc.html"><a href="gwas-visuals-cocalc.html#stop-playing-around"><i class="fa fa-check"></i><b>10.4</b> Stop playing around</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="wtccc1_intro.html"><a href="wtccc1_intro.html"><i class="fa fa-check"></i><b>11</b> The Welcome Trust Case-Control Consortium</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="wtccc1_intro.html"><a href="wtccc1_intro.html#genotyping"><i class="fa fa-check"></i><b>11.1</b> Genotyping</a></li>
+<li class="chapter" data-level="11.2" data-path="wtccc1_intro.html"><a href="wtccc1_intro.html#the-data"><i class="fa fa-check"></i><b>11.2</b> The data</a></li>
+<li class="chapter" data-level="11.3" data-path="wtccc1_intro.html"><a href="wtccc1_intro.html#assignment"><i class="fa fa-check"></i><b>11.3</b> Assignment</a></li>
+<li class="chapter" data-level="11.4" data-path="wtccc1_intro.html"><a href="wtccc1_intro.html#there-you-go"><i class="fa fa-check"></i><b>11.4</b> There you go</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="wtccc1-cocalc.html"><a href="wtccc1-cocalc.html"><i class="fa fa-check"></i><b>12</b> WTCCC1: a GWAS on coronary artery disease (CAD)</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="wtccc1-cocalc.html"><a href="wtccc1-cocalc.html#quality-control-1"><i class="fa fa-check"></i><b>12.1</b> Quality control</a></li>
+<li class="chapter" data-level="12.2" data-path="wtccc1-cocalc.html"><a href="wtccc1-cocalc.html#ancestral-background-1"><i class="fa fa-check"></i><b>12.2</b> Ancestral background</a>
+<ul>
+<li class="chapter" data-level="12.2.1" data-path="wtccc1-cocalc.html"><a href="wtccc1-cocalc.html#preparing-pca"><i class="fa fa-check"></i><b>12.2.1</b> Preparing PCA</a></li>
+<li class="chapter" data-level="12.2.2" data-path="wtccc1-cocalc.html"><a href="wtccc1-cocalc.html#running-pca"><i class="fa fa-check"></i><b>12.2.2</b> Running PCA</a></li>
+<li class="chapter" data-level="12.2.3" data-path="wtccc1-cocalc.html"><a href="wtccc1-cocalc.html#plotting-pca"><i class="fa fa-check"></i><b>12.2.3</b> Plotting PCA</a></li>
+<li class="chapter" data-level="12.2.4" data-path="wtccc1-cocalc.html"><a href="wtccc1-cocalc.html#removing-samples-1"><i class="fa fa-check"></i><b>12.2.4</b> Removing samples</a></li>
+</ul></li>
+<li class="chapter" data-level="12.3" data-path="wtccc1-cocalc.html"><a href="wtccc1-cocalc.html#association-testing"><i class="fa fa-check"></i><b>12.3</b> Association testing</a></li>
+<li class="chapter" data-level="12.4" data-path="wtccc1-cocalc.html"><a href="wtccc1-cocalc.html#replication"><i class="fa fa-check"></i><b>12.4</b> Replication!</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="post_gwas.html"><a href="post_gwas.html"><i class="fa fa-check"></i><b>13</b> Post-GWAS Analyses</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="post_gwas.html"><a href="post_gwas.html#clumping"><i class="fa fa-check"></i><b>13.1</b> Clumping</a></li>
+<li class="chapter" data-level="13.2" data-path="post_gwas.html"><a href="post_gwas.html#conditional-analyses"><i class="fa fa-check"></i><b>13.2</b> Conditional analyses</a></li>
+<li class="chapter" data-level="13.3" data-path="post_gwas.html"><a href="post_gwas.html#statistical-finemapping"><i class="fa fa-check"></i><b>13.3</b> Statistical finemapping</a>
+<ul>
+<li class="chapter" data-level="13.3.1" data-path="post_gwas.html"><a href="post_gwas.html#finemap"><i class="fa fa-check"></i><b>13.3.1</b> FINEMAP</a></li>
+<li class="chapter" data-level="13.3.2" data-path="post_gwas.html"><a href="post_gwas.html#locuszoom"><i class="fa fa-check"></i><b>13.3.2</b> LocusZoom</a></li>
+<li class="chapter" data-level="13.3.3" data-path="post_gwas.html"><a href="post_gwas.html#susie"><i class="fa fa-check"></i><b>13.3.3</b> SuSIE</a></li>
+</ul></li>
+<li class="chapter" data-level="13.4" data-path="post_gwas.html"><a href="post_gwas.html#fuma-functional-mapping-and-annotation-of-gwas"><i class="fa fa-check"></i><b>13.4</b> FUMA: FUnctional Mapping and Annotation of GWAS</a></li>
+<li class="chapter" data-level="13.5" data-path="post_gwas.html"><a href="post_gwas.html#phenome-wide-association-study"><i class="fa fa-check"></i><b>13.5</b> Phenome-wide association study</a></li>
+<li class="chapter" data-level="13.6" data-path="post_gwas.html"><a href="post_gwas.html#colocalization"><i class="fa fa-check"></i><b>13.6</b> Colocalization</a></li>
+<li class="chapter" data-level="13.7" data-path="post_gwas.html"><a href="post_gwas.html#genetic-correlation"><i class="fa fa-check"></i><b>13.7</b> Genetic correlation</a></li>
+<li class="chapter" data-level="13.8" data-path="post_gwas.html"><a href="post_gwas.html#causal-inference-mendelian-randomization"><i class="fa fa-check"></i><b>13.8</b> Causal inference: Mendelian Randomization</a>
+<ul>
+<li class="chapter" data-level="13.8.1" data-path="post_gwas.html"><a href="post_gwas.html#mrbase"><i class="fa fa-check"></i><b>13.8.1</b> MRBase</a></li>
+<li class="chapter" data-level="13.8.2" data-path="post_gwas.html"><a href="post_gwas.html#twosamplemr"><i class="fa fa-check"></i><b>13.8.2</b> TwoSampleMR</a></li>
+<li class="chapter" data-level="13.8.3" data-path="post_gwas.html"><a href="post_gwas.html#your-choice"><i class="fa fa-check"></i><b>13.8.3</b> Your choice</a></li>
+</ul></li>
+<li class="chapter" data-level="13.9" data-path="post_gwas.html"><a href="post_gwas.html#polygenic-scores"><i class="fa fa-check"></i><b>13.9</b> Polygenic scores</a></li>
+<li class="chapter" data-level="13.10" data-path="post_gwas.html"><a href="post_gwas.html#what-comes-next"><i class="fa fa-check"></i><b>13.10</b> What comes next</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="fuma.html"><a href="fuma.html"><i class="fa fa-check"></i><b>14</b> Functional Mapping and Annotation of GWAS</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="fuma.html"><a href="fuma.html#assignment-1"><i class="fa fa-check"></i><b>14.1</b> Assignment</a>
+<ul>
+<li class="chapter" data-level="14.1.1" data-path="fuma.html"><a href="fuma.html#tutorial"><i class="fa fa-check"></i><b>14.1.1</b> Tutorial</a></li>
+<li class="chapter" data-level="14.1.2" data-path="fuma.html"><a href="fuma.html#create-the-input"><i class="fa fa-check"></i><b>14.1.2</b> Create the input</a></li>
+<li class="chapter" data-level="14.1.3" data-path="fuma.html"><a href="fuma.html#run-fuma---snp-to-gene"><i class="fa fa-check"></i><b>14.1.3</b> Run FUMA - SNP to gene</a></li>
+<li class="chapter" data-level="14.1.4" data-path="fuma.html"><a href="fuma.html#run-fuma---gene-to-function"><i class="fa fa-check"></i><b>14.1.4</b> Run FUMA - Gene to function</a></li>
+</ul></li>
+<li class="chapter" data-level="14.2" data-path="fuma.html"><a href="fuma.html#some-closing-thoughts"><i class="fa fa-check"></i><b>14.2</b> Some closing thoughts</a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="phewas.html"><a href="phewas.html"><i class="fa fa-check"></i><b>15</b> Phenome-Wide Association Study</a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="phewas.html"><a href="phewas.html#whats-next"><i class="fa fa-check"></i><b>15.1</b> What’s next?</a></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="mr_mrbase.html"><a href="mr_mrbase.html"><i class="fa fa-check"></i><b>16</b> MRBase</a>
+<ul>
+<li class="chapter" data-level="16.1" data-path="mr_mrbase.html"><a href="mr_mrbase.html#the-end"><i class="fa fa-check"></i><b>16.1</b> The end?</a></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="mr_twosamplemr.html"><a href="mr_twosamplemr.html"><i class="fa fa-check"></i><b>17</b> Two Sample Mendelian Randomisation</a>
+<ul>
+<li class="chapter" data-level="17.1" data-path="mr_twosamplemr.html"><a href="mr_twosamplemr.html#loading-the-package"><i class="fa fa-check"></i><b>17.1</b> Loading the package</a></li>
+<li class="chapter" data-level="17.2" data-path="mr_twosamplemr.html"><a href="mr_twosamplemr.html#available-outcome"><i class="fa fa-check"></i><b>17.2</b> Available outcome</a></li>
+<li class="chapter" data-level="17.3" data-path="mr_twosamplemr.html"><a href="mr_twosamplemr.html#instruments"><i class="fa fa-check"></i><b>17.3</b> Instruments</a></li>
+<li class="chapter" data-level="17.4" data-path="mr_twosamplemr.html"><a href="mr_twosamplemr.html#clumping-1"><i class="fa fa-check"></i><b>17.4</b> Clumping</a></li>
+<li class="chapter" data-level="17.5" data-path="mr_twosamplemr.html"><a href="mr_twosamplemr.html#outcomes"><i class="fa fa-check"></i><b>17.5</b> Outcomes</a>
+<ul>
+<li class="chapter" data-level="17.5.1" data-path="mr_twosamplemr.html"><a href="mr_twosamplemr.html#harmonisation"><i class="fa fa-check"></i><b>17.5.1</b> Harmonisation</a></li>
+<li class="chapter" data-level="17.5.2" data-path="mr_twosamplemr.html"><a href="mr_twosamplemr.html#mendelian-randomisation"><i class="fa fa-check"></i><b>17.5.2</b> Mendelian randomisation</a></li>
+<li class="chapter" data-level="17.5.3" data-path="mr_twosamplemr.html"><a href="mr_twosamplemr.html#heterogeneity-pleiotropy"><i class="fa fa-check"></i><b>17.5.3</b> Heterogeneity &amp; Pleiotropy</a></li>
+<li class="chapter" data-level="17.5.4" data-path="mr_twosamplemr.html"><a href="mr_twosamplemr.html#leave-one-out"><i class="fa fa-check"></i><b>17.5.4</b> Leave-one-out</a></li>
+<li class="chapter" data-level="17.5.5" data-path="mr_twosamplemr.html"><a href="mr_twosamplemr.html#visualisation"><i class="fa fa-check"></i><b>17.5.5</b> Visualisation</a></li>
+</ul></li>
+<li class="chapter" data-level="17.6" data-path="mr_twosamplemr.html"><a href="mr_twosamplemr.html#the-end-1"><i class="fa fa-check"></i><b>17.6</b> The end?</a></li>
+</ul></li>
+<li class="chapter" data-level="18" data-path="epilogue.html"><a href="epilogue.html"><i class="fa fa-check"></i><b>18</b> Epilogue</a>
+<ul>
+<li class="chapter" data-level="18.1" data-path="epilogue.html"><a href="epilogue.html#course-lecturers"><i class="fa fa-check"></i><b>18.1</b> 2024 Course Lecturers</a></li>
+</ul></li>
+<li class="chapter" data-level="19" data-path="regional_plot_cocalc.html"><a href="regional_plot_cocalc.html"><i class="fa fa-check"></i><b>19</b> Regional association plots</a>
+<ul>
+<li class="chapter" data-level="19.1" data-path="regional_plot_cocalc.html"><a href="regional_plot_cocalc.html#locuszoom-1"><i class="fa fa-check"></i><b>19.1</b> LocusZoom</a></li>
+<li class="chapter" data-level="19.2" data-path="regional_plot_cocalc.html"><a href="regional_plot_cocalc.html#racer"><i class="fa fa-check"></i><b>19.2</b> RACER</a></li>
+</ul></li>
+<li class="chapter" data-level="20" data-path="eigensoft.html"><a href="eigensoft.html"><i class="fa fa-check"></i><b>20</b> EIGENSOFT</a>
+<ul>
+<li class="chapter" data-level="20.1" data-path="eigensoft.html"><a href="eigensoft.html#install-homebrew"><i class="fa fa-check"></i><b>20.1</b> Install homebrew</a></li>
+<li class="chapter" data-level="20.2" data-path="eigensoft.html"><a href="eigensoft.html#install-missing-packages"><i class="fa fa-check"></i><b>20.2</b> Install missing packages</a></li>
+<li class="chapter" data-level="20.3" data-path="eigensoft.html"><a href="eigensoft.html#installing-eigensoft"><i class="fa fa-check"></i><b>20.3</b> Installing EIGENSOFT</a></li>
+</ul></li>
+<li class="chapter" data-level="21" data-path="answers.html"><a href="answers.html"><i class="fa fa-check"></i><b>21</b> Answers to the questions</a>
+<ul>
+<li class="chapter" data-level="21.1" data-path="answers.html"><a href="answers.html#chapter-3.1-gwas-basics"><i class="fa fa-check"></i><b>21.1</b> Chapter 3.1: GWAS Basics</a></li>
+<li class="chapter" data-level="21.2" data-path="answers.html"><a href="answers.html#chapter-3.4-gwas-basics---association-testing"><i class="fa fa-check"></i><b>21.2</b> Chapter 3.4: GWAS Basics - Association testing</a></li>
+<li class="chapter" data-level="21.3" data-path="answers.html"><a href="answers.html#chapter-3.5-gwas-visualization"><i class="fa fa-check"></i><b>21.3</b> Chapter 3.5: GWAS visualization</a></li>
+<li class="chapter" data-level="21.4" data-path="answers.html"><a href="answers.html#chapter-4.2-wtccc1"><i class="fa fa-check"></i><b>21.4</b> Chapter 4.2: WTCCC1</a></li>
+<li class="chapter" data-level="21.5" data-path="answers.html"><a href="answers.html#chapter-5.4-fuma"><i class="fa fa-check"></i><b>21.5</b> Chapter 5.4: FUMA</a></li>
+<li class="chapter" data-level="21.6" data-path="answers.html"><a href="answers.html#chapter-5.7-twosample-mr"><i class="fa fa-check"></i><b>21.6</b> Chapter 5.7: TwoSample MR</a></li>
+<li class="chapter" data-level="21.7" data-path="answers.html"><a href="answers.html#chapter-8.1-regional-association-plots"><i class="fa fa-check"></i><b>21.7</b> Chapter 8.1: Regional association plots</a></li>
+</ul></li>
+<li class="chapter" data-level="22" data-path="license.html"><a href="license.html"><i class="fa fa-check"></i><b>22</b> Licenses and disclaimers</a>
+<ul>
+<li class="chapter" data-level="22.1" data-path="license.html"><a href="license.html#images-and-data-used"><i class="fa fa-check"></i><b>22.1</b> Images and data used</a></li>
+<li class="chapter" data-level="22.2" data-path="license.html"><a href="license.html#disclaimer"><i class="fa fa-check"></i><b>22.2</b> Disclaimer</a></li>
+<li class="chapter" data-level="22.3" data-path="license.html"><a href="license.html#copyright"><i class="fa fa-check"></i><b>22.3</b> Copyright</a></li>
+</ul></li>
+<li class="chapter" data-level="23" data-path="colophon.html"><a href="colophon.html"><i class="fa fa-check"></i><b>23</b> Colophon</a></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
 <li><a href="https://vanderlaanand.science" target="blank">&copy; 1979-2024. Sander W. van der Laan.</a></li>
@@ -107,7 +375,7 @@
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">A Practical Primer in Human Complex Genetics</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">A Practical Primer in Human Complex Genetics for CoCalc</a>
           </h1>
         </div>
 
@@ -115,19 +383,11 @@
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="license" class="section level1 hasAnchor" number="5">
-<h1><span class="header-section-number">5</span> Licenses and disclaimers<a href="license.html#license" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="license" class="section level1 hasAnchor" number="22">
+<h1><span class="header-section-number">22</span> Licenses and disclaimers<a href="license.html#license" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <!-- ![](img/_headers/licenses.png){width=100%} -->
-<div id="copyright" class="section level2 hasAnchor" number="5.1">
-<h2><span class="header-section-number">5.1</span> Copyright<a href="license.html#copyright" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>This book and all its material (“content”) is protected by copyright under Dutch Copyright laws and is the property of the author or the party credited as the provider of the content. You may not copy, reproduce, distribute, publish, display, perform, modify, create derivative works, transmit, or in any way exploit any such content, nor may you distribute any part of this content over any network, including a local area network, sell or offer it for sale, or use such content to construct any kind of database. You may not alter or remove any copyright or other notice from copies of the content on this website. Copying or storing any content except as provided above is expressly prohibited without prior written permission of the author or the copyright holder identified in the individual content’s copyright notice. For permission to use this content, please contact the author.</p>
-</div>
-<div id="disclaimer" class="section level2 hasAnchor" number="5.2">
-<h2><span class="header-section-number">5.2</span> Disclaimer<a href="license.html#disclaimer" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>The content contained herein is provided only for educational and informational purposes or as required by Dutch law. The author attempted to ensure that content is accurate and obtained from reliable sources, but does not represent it to be error-free. The author may add, amend or repeal any text, procedure or regulation, and failure to timely post such changes to this book shall not be construed as a waiver of enforcement. The author does not warrant that any functions on this website or the contents and references herein will be uninterrupted, that defects will be corrected, or that this website or the contents and references will be free from viruses or other harmful components. Any links to third party information on the author’s website are provided as a courtesy and do not constitute an endorsement of those materials or the third party providing them.</p>
-</div>
-<div id="images-and-data-used" class="section level2 hasAnchor" number="5.3">
-<h2><span class="header-section-number">5.3</span> Images and data used<a href="license.html#images-and-data-used" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="images-and-data-used" class="section level2 hasAnchor" number="22.1">
+<h2><span class="header-section-number">22.1</span> Images and data used<a href="license.html#images-and-data-used" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>I took the at-most care to use refer to the original works and data sources where needed. Likewise, all the images c.q. figures are either produced specifically for this book, or I took them from <a href="https://unsplash.com/s/photos/legal"><strong>Unsplash</strong></a> to brighten up the book. If you feel I made a mistake and your work should be properly referenced, please don’t hesitate to contact me.</p>
 <p>These are the images from <strong>Unsplash</strong> listed here in no particular order.</p>
 <ul>
@@ -137,8 +397,13 @@
 <li>licenses - <a href="https://unsplash.com/photos/book-lot-on-black-wooden-shelf-zeH-ljawHtg" class="uri">https://unsplash.com/photos/book-lot-on-black-wooden-shelf-zeH-ljawHtg</a></li>
 </ul>
 </div>
-<div id="copyright-1" class="section level2 hasAnchor" number="5.4">
-<h2><span class="header-section-number">5.4</span> Copyright<a href="license.html#copyright-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="disclaimer" class="section level2 hasAnchor" number="22.2">
+<h2><span class="header-section-number">22.2</span> Disclaimer<a href="license.html#disclaimer" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The content contained herein is provided only for educational and informational purposes or as required by Dutch law. The author attempted to ensure that content is accurate and obtained from reliable sources, but does not represent it to be error-free. The author may add, amend or repeal any text, procedure or regulation, and failure to timely post such changes to this book shall not be construed as a waiver of enforcement. The author does not warrant that any functions on this website or the contents and references herein will be uninterrupted, that defects will be corrected, or that this website or the contents and references will be free from viruses or other harmful components. Any links to third party information on the author’s website are provided as a courtesy and do not constitute an endorsement of those materials or the third party providing them.</p>
+</div>
+<div id="copyright" class="section level2 hasAnchor" number="22.3">
+<h2><span class="header-section-number">22.3</span> Copyright<a href="license.html#copyright" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>This book and all its material (“content”) is protected by copyright under Dutch Copyright laws and is the property of the author or the party credited as the provider of the content. You may not copy, reproduce, distribute, publish, display, perform, modify, create derivative works, transmit, or in any way exploit any such content, nor may you distribute any part of this content over any network, including a local area network, sell or offer it for sale, or use such content to construct any kind of database. You may not alter or remove any copyright or other notice from copies of the content on this website. Copying or storing any content except as provided above is expressly prohibited without prior written permission of the author or the copyright holder identified in the individual content’s copyright notice. For permission to use this content, please contact the author.</p>
 <p>Copyright 1979-2024. All rights reserved. Sander W. van der Laan | <a href="mailto:s.w.vanderlaan@gmail.com">s.w.vanderlaan [at] gmail.com</a> | <a href="https://vanderlaanand.science" target="_blank">https://vanderlaanand.science</a>. Published with <a href="https://bookdown.org/yihui/bookdown/" target="_blank"><code>bookdown</code></a>.</p>
 <script>
 title=document.getElementById('header');
@@ -152,7 +417,7 @@ title.innerHTML = '<img src="img/headers/banner_man_standing_dna.png" alt="Licen
           </div>
         </div>
       </div>
-<a href="epilogue.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="answers.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 <a href="colophon.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
@@ -213,6 +478,20 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>

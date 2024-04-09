@@ -86,7 +86,7 @@ bookdown::html_document2:
   fig_width: 5
   fig_height: 4
   fig_caption: yes
-  code_folding: hide
+  code_folding: show
   code_download: yes
   code_copy: yes
   toolbar:

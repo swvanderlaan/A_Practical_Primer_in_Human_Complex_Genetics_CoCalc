@@ -1,10 +1,9 @@
-# GWAS visualisation {#gwas_visuals}
+# GWAS visualisation {#gwas-visuals-cocalc}
 <!-- ![](./img/_headers/interactive_plot.png){width=100%} -->
 ```{r load-functions-packages, message = FALSE, warning = FALSE, echo = FALSE, eval = TRUE, include = FALSE}
 source("scripts/functions.R")
 source("scripts/colors.R")
 source("scripts/packages.R")
-COURSE_loc = "~/Desktop/practical"
 ```
 
 ```{r include = FALSE}
@@ -32,20 +31,14 @@ We should create _quantile-quantile (QQ) plots_ to compare the observed associat
 
 First, we will add the standard error, call rate, A2, and allele frequencies.
 
-```{r prep-qq, eval = TRUE}
+```{r prep-qq, eval = FALSE}
 library("data.table")
+gwas_FRQ <- data.table::fread("dummy_project/gwa.frq")
 
-COURSE_loc = "~/Desktop/practical" # getwd()
+gwas_LMISS <- data.table::fread("dummy_project/gwa.lmiss")
 
-# gwas_HWE <- data.table::fread(paste0(COURSE_loc, "/dummy_project/gwa.hwe"))
-gwas_FRQ <- data.table::fread(paste0(COURSE_loc, "/dummy_project/gwa.frq"))
-# gwas_IMISS <- data.table::fread(paste0(COURSE_loc, "/dummy_project/gwa.imiss"))
-gwas_LMISS <- data.table::fread(paste0(COURSE_loc, "/dummy_project/gwa.lmiss"))
+gwas_assoc <- data.table::fread("dummy_project/data.assoc.logistic")
 
-gwas_assoc <- data.table::fread(paste0(COURSE_loc, "/dummy_project/data.assoc.logistic"))
-
-# gwas_HWE$logP <- -log10(gwas_HWE$P)
-# gwas_IMISS$callrate <- 1 - gwas_IMISS$F_MISS
 gwas_LMISS$callrate <- 1 - gwas_LMISS$F_MISS
 
 gwas_assoc_sub <- subset(gwas_assoc, TEST == "ADD")
@@ -78,7 +71,51 @@ dim(gwas_assoc_compl)
 
 head(gwas_assoc_compl)
 
-data.table::fwrite(gwas_assoc_compl, paste0(COURSE_loc, "/dummy_project/gwas_assoc_compl.txt"),
+data.table::fwrite(gwas_assoc_compl, "dummy_project/gwas_assoc_compl.txt",
+                   sep = "\t", quote = FALSE, row.names = FALSE)
+```
+
+```{r prep-qq-book, eval = TRUE, echo = FALSE, include = FALSE}
+library("data.table")
+gwas_FRQ <- data.table::fread("data/dummy_project/gwa.frq")
+
+gwas_LMISS <- data.table::fread("data/dummy_project/gwa.lmiss")
+
+gwas_assoc <- data.table::fread("data/dummy_project/data.assoc.logistic")
+
+gwas_LMISS$callrate <- 1 - gwas_LMISS$F_MISS
+
+gwas_assoc_sub <- subset(gwas_assoc, TEST == "ADD")
+gwas_assoc_sub$TEST <- NULL
+
+temp <- subset(gwas_FRQ, select = c("SNP", "A2", "MAF", "NCHROBS"))
+
+gwas_assoc_subfrq <- merge(gwas_assoc_sub, temp, by = "SNP")
+
+temp <- subset(gwas_LMISS, select = c("SNP", "callrate"))
+
+gwas_assoc_subfrqlmiss <- merge(gwas_assoc_subfrq, temp, by = "SNP")
+head(gwas_assoc_subfrqlmiss)
+# Remember:
+# - that z = beta/se
+# - beta = log(OR), because log is the natural log in r
+
+gwas_assoc_subfrqlmiss$BETA = log(gwas_assoc_subfrqlmiss$OR)
+gwas_assoc_subfrqlmiss$SE = gwas_assoc_subfrqlmiss$BETA/gwas_assoc_subfrqlmiss$STAT
+
+
+gwas_assoc_subfrqlmiss_tib <- dplyr::as_tibble(gwas_assoc_subfrqlmiss)
+
+col_order <- c("SNP", "CHR", "BP",
+               "A1", "A2", "MAF", "callrate", "NMISS", "NCHROBS",
+               "BETA", "SE", "OR", "STAT", "P")
+gwas_assoc_compl <- gwas_assoc_subfrqlmiss_tib[, col_order]
+
+dim(gwas_assoc_compl)
+
+head(gwas_assoc_compl)
+
+data.table::fwrite(gwas_assoc_compl, "data/dummy_project/gwas_assoc_compl.txt",
                    sep = "\t", quote = FALSE, row.names = FALSE)
 ```
 
@@ -89,7 +126,7 @@ df <- as.data.frame(table(gwas_assoc_compl$CHR))
 names(df)[names(df) == "Var1"] <- "Chr"
 ```
 
-```{r, tab.id='listsnpsperchr', tab.cap='Number of SNPs per chromosome.', eval = FALSE}
+```{r, tab.id='listsnpsperchr', tab.cap='Number of SNPs per chromosome.', eval = TRUE, echo = FALSE}
 library("flextable")
 ft <- flextable(
   df,
@@ -107,17 +144,29 @@ ft <- flextable(
 autofit(ft, add_w = 0, add_h = 0)
 ```
 
-> Question: Why do the number of variants per chrosome (approximately) correlate with the chromosome number?
+> Question: Try to figure out how to get the number of variants per chromosomes. Why do the number of variants per chrosome (approximately) correlate with the chromosome number?
 
 > Question: Where are the data for chromosome X, Y and MT?
 
-Let's plot the QQ plot to diagnose our GWAS. 
+Let's plot the QQ plot to diagnose our GWAS.
+
+Since we're working in Utrecht on the Utrecht Science Park, let's get the color scheme in `R`. 
+
+```{r uithof-color, eval = FALSE}
+uithof_color = c("#FBB820","#F59D10","#E55738","#DB003F","#E35493","#D5267B",
+                 "#CC0071","#A8448A","#9A3480","#8D5B9A","#705296","#686AA9",
+                 "#6173AD","#4C81BF","#2F8BC9","#1290D9","#1396D8","#15A6C1",
+                 "#5EB17F","#86B833","#C5D220","#9FC228","#78B113","#49A01D",
+                 "#595A5C","#A2A3A4", "#D7D8D7", "#ECECEC", "#FFFFFF", "#000000")
+```
+
 ```{r plot-qq, eval = FALSE}
 library("qqman")
 
 gwas_threshold = -log10(5e-8)
 
-png(paste0(COURSE_loc, "/dummy_project/gwas-qq.png"))
+# you could save the image, or just display it
+# png("dummy_project/gwas-qq.png")
 qqman::qq(gwas_assoc_compl$P, main = "QQ plot of GWAS",
           xlim = c(0, 7),
           ylim = c(0, 12),
@@ -127,7 +176,7 @@ abline(h = gwas_threshold,
 ```
 
 ```{r show-qq, fig.align='center', fig.cap='A QQ plot.', fig.show = TRUE, eval=TRUE}
-knitr::include_graphics(rep("img/_gwas_dummy/show-qq.png"))
+knitr::include_graphics(rep("img/gwas_dummy/show-qq.png"))
 ```
 
 ## Manhattan plots
@@ -135,23 +184,23 @@ knitr::include_graphics(rep("img/_gwas_dummy/show-qq.png"))
 We also need to create a _Manhattan plot_ to display the association test P-values as a function of chromosomal location and thus provide a visual summary of association test results that draw immediate attention to any regions of significance (Figure \@ref(fig:showmanhattan)).
 
 ```{r plot-manhattan, eval = FALSE}
-png(paste0(COURSE_loc, "/dummy_project/gwas-manhattan.png"))
+# you could save the image, or just display it
+# png(paste0(COURSE_loc, "/dummy_project/gwas-manhattan.png"))
 qqman::manhattan(gwas_assoc_compl, main = "Manhattan Plot",
                  ylim = c(0, 12),
                  cex = 0.6, cex.axis = 0.9,
-                 col = c("#1290D9", "#49A01D"))
-
+                 col = c(uithof_color[16], uithof_color[24]))
 ```
 
 ```{r showmanhattan, fig.align='center', fig.cap='A manhattan plot.', fig.show = TRUE, eval=TRUE}
-knitr::include_graphics(rep("img/_gwas_dummy/show-manhattan.png"))
+knitr::include_graphics(rep("img/gwas_dummy/show-manhattan.png"))
 ```
 
 ## Other plots
 
 It is also informative to plot the density per chromosome. We can use the `CMplot` for that which you can find [here](https://github.com/YinLiLin/R-CMplot){target="_blank"}. For now we just make these graphs 'quick-n-dirty', you can further prettify them, but you easily loose track of time, so maybe carry on.
 
-```{r prep-cmplot, eval = FALSE}
+```{r prep-cmplot, eval = TRUE}
 gwas_assoc_complsub <- subset(gwas_assoc_compl, select = c("SNP", "CHR", "BP", "P"))
 ```
 
@@ -173,19 +222,19 @@ CMplot(gwas_assoc_complsub,
 
 This would lead to the following graphs. 
 ```{r showcmplotalldensity, fig.align='center', fig.cap='SNP density of the association results.', fig.show = TRUE, eval=TRUE}
-knitr::include_graphics(rep("img/_gwas_dummy/show-cmplot-all-density.png"))
+knitr::include_graphics(rep("img/gwas_dummy/show-cmplot-all-density.png"))
 ```
 
 ```{r showcmplotallqq, fig.align='center', fig.cap='A QQ plot including a 95% confidence interval (blue area) and genome-wide significant hits (red).', fig.show = TRUE, eval=TRUE}
-knitr::include_graphics(rep("img/_gwas_dummy/show-cmplot-all-qq.png"))
+knitr::include_graphics(rep("img/gwas_dummy/show-cmplot-all-qq.png"))
 ```
 
 ```{r showcmplotallmanhattan, fig.align='center', fig.cap='A regular manhattan plot. Colored by chromosome, suggestive hits are green, genome-wide hits are red. The bottom graph shows the per-chromosome SNP density.', fig.show = TRUE, eval=TRUE}
-knitr::include_graphics(rep("img/_gwas_dummy/show-cmplot-all-manhattan.png"))
+knitr::include_graphics(rep("img/gwas_dummy/show-cmplot-all-manhattan.png"))
 ```
 
 ```{r show-cmplot-all-circular, fig.align='center', fig.cap='A circular manhattan.', fig.show = TRUE, eval=TRUE}
-knitr::include_graphics(rep("img/_gwas_dummy/show-cmplot-all-circular.png"))
+knitr::include_graphics(rep("img/gwas_dummy/show-cmplot-all-circular.png"))
 ```
 
 ## Interactive plots
@@ -253,9 +302,9 @@ ggplotly(p, tooltip="text")
 ```
 
 
-It will produce something like this.
+It will produce something like below. In the CoCalc Notebook-window it isn't smooth, but this way you have an idea how to do it in a real-case scenario.
 
-![](img/_gwas/interactive_plot.png)
+![](img/gwas/interactive_plot.png)
 
 
 Again, this is an example with dummy data - you can try to do it for our GWAS, but careful with the time. You can also choose to carry on.
@@ -275,7 +324,7 @@ Alright. It's time to stop playing around and do a quick recap of what you've le
 
 You should be ready for the real stuff. And if not, the next chapter will help you get ready: Chapter \@ref(wtccc1_intro).
 
-<!-- ```{js, echo = FALSE} -->
-<!-- title=document.getElementById('header'); -->
-<!-- title.innerHTML = '<img src="img/_headers/interactive_plot.png" alt="GWAS basics: visualization">' + title.innerHTML -->
-<!-- ``` -->
+```{js, echo = FALSE}
+title=document.getElementById('header');
+title.innerHTML = '<img src="img/headers/interactive_plot.png" alt="GWAS basics: visualization">' + title.innerHTML
+```

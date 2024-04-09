@@ -1,19 +1,10 @@
 # Steps in a Genome-Wide Association Study {#gwas-basics}
 <!-- ![](./img/_headers/woman_working_on_code.png){width=100%} -->
 ```{r load-functions-packages, message = FALSE, warning = FALSE, echo = FALSE, eval = TRUE, include = FALSE}
-# source("scripts/functions.R")
-# source("scripts/colors.R")
-# source("scripts/packages.R")
+source("scripts/functions.R")
+source("scripts/colors.R")
+source("scripts/packages.R")
 
-library(rmarkdown)
-library(bookdown)
-library(flextable)
-library(knitr)
-library(kableExtra)
-library(webshot)
-library(webshot2)
-library(formatR)
-library(tinytex)
 ```
 
 ```{r include = FALSE}
@@ -71,32 +62,45 @@ When you are using the **Standalone** version of this book and followed the inst
 cd ~/Desktop/practical
 ```
 
-**CoCalc**</br>
-When you are using the **CoCalc** for the course, you don't need to go to a directory, you simply create a new `dummy_project` directory in your current directory.
-
-> Note: In **CoCalc** all the data is stored in the `data/shared` directory. So, if you do the following:
-> 
-> ```
-> ls data/shared
-> ```
-> 
-> You will see this:
-> 
-> ```
-> dummy_project  gwas  rawdata  readme.txt  readme.wtccc1.txt  ref_1kg_phase1_all  scripts  support  wtccc1
-> ```
-> 
-> (in blue the directories, in black the files)
-
-## Converting the data
-
-Next, we'll make a project directory and convert the data.
+Next, we'll make a project directory.
 
 ```
 mkdir -v ~/Desktop/practical/dummy_project
 ```
 
-Now, we'll convert the `.ped`/`.map` files to the binary-format.
+**CoCalc**</br>
+When you are using the **CoCalc** for the course, you don't need to go to a directory, you simply create a new `dummy_project` directory in your current directory, which is `$HOME` (also known as `~`).
+
+```
+mkdir -v dummy_project
+```
+
+In **CoCalc** all the data is stored in the `data/shared` directory. So, if you do the following:
+
+```
+ls ~/data/shared
+```
+
+You will see this:
+
+```
+dummy_project  gwas  rawdata  readme.txt  readme.wtccc1.txt  ref_1kg_phase1_all  scripts  support  wtccc1
+```
+
+(in blue the directories, in black the files)
+
+- The `dummy_project` in `~/data/shared` contains all the results from this practical primer. You're not going to use that, if all is well, because you're going to do it yourself in the following Chapters. 
+- The `gwas` directory contains the data from the dummy GWAS we will perform. 
+- The `rawdata` directory contains the dummy data we will use. 
+- The `ref_1kg_phase1_all` directory contains the reference data from the 1000 Genomes Project. 
+- The `wtccc1` directory contains the WTCCC1 data. 
+- The `support` directory contains some additional files that are used in the practical primer. 
+- The `scripts` directory contains the scripts we will use. 
+- The `readme.txt` and `readme.wtccc1.txt` files contain some additional information.
+
+## Converting the data
+
+Let's convert the `.ped`/`.map` files to the binary-format.
 
 ```
 plink --file rawdata/raw-GWA-data --make-bed --out dummy_project/rawdata
@@ -105,7 +109,7 @@ plink --file rawdata/raw-GWA-data --make-bed --out dummy_project/rawdata
 The **CoCalc** version would be something like this:
 
 ```
-plink --file data/shared/rawdata/raw-GWA-data --make-bed --out dummy_project/rawdata
+plink --file ~/data/shared/rawdata/raw-GWA-data --make-bed --out dummy_project/rawdata
 ```
 
 > This was the last time I pointed to the difference in paths between the standalone and the CoCalc version. From now on, I will only show the standalone version. If you are using the CoCalc version, please remember to adjust the paths accordingly.
@@ -171,7 +175,7 @@ So, we will investigate the following:
 
 All clear? Let's start the work. On to step 1 of the QC for GWAS: filter samples of poor quality in Chapter \@ref(gwas-basics-sample-qc).
 
-<!-- ```{js, echo = FALSE} -->
-<!-- title=document.getElementById('header'); -->
-<!-- title.innerHTML = '<img src="img/_headers/woman_working_on_code.png" alt="GWAS basics">' + title.innerHTML -->
-<!-- ``` -->
+```{js, echo = FALSE}
+title=document.getElementById('header');
+title.innerHTML = '<img src="./img/headers/woman_working_on_code.png" alt="GWAS basics">' + title.innerHTML
+```

@@ -35,6 +35,13 @@ opts_chunk$set(echo = FALSE,
                tidy = FALSE)
 ```
 
+
+- Two, switch to macOS in combination with [homebrew](https://brew.sh){target="_blank"} (this is also known as `brew`). This will give you all the flexibility to use Unix-based programs for your genetic epidemiology work and at the same time you'll keep the advantage of a powerful computer with a user-friendly interface.
+
+I chose the latter. 
+
+
+
 So, you plan to use this book as 'Standalone' on a macOS environment. This means you'll need to install a few things first.
 
 ## The data you need
@@ -275,7 +282,7 @@ Oh, one more thing: you can save your notebook, the one you just created, to kee
 
 Ok. 'Nough said, let's move on to cover some basics in Chapter \@ref(gwas-basics).
 
-<!-- ```{js, echo = FALSE} -->
-<!-- title=document.getElementById('header'); -->
-<!-- title.innerHTML = '<img src="img/_headers/women_behind_macbook.png" alt="Getting started">' + title.innerHTML -->
-<!-- ``` -->
+```{js, echo = FALSE}
+title=document.getElementById('header');
+title.innerHTML = '<img src="./img/headers/women_behind_macbook.png" alt="Getting started">' + title.innerHTML
+```

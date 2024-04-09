@@ -8,8 +8,8 @@ This book was made possible by the kind help of Caspar J. van Lissa who wrote an
 
 #### Changes log
     
-    _Version:_      v2.1.2</br>
-    _Last update:_  2024-04-05</br>
+    _Version:_      v2.2.0</br>
+    _Last update:_  2024-04-08</br>
     _Written by:_   Sander W. van der Laan (s.w.vanderlaan-2[at]umcutrecht.nl).
     
     **MoSCoW To-Do List**
@@ -61,6 +61,7 @@ This book was made possible by the kind help of Caspar J. van Lissa who wrote an
     - [] `W` add in full installation instructions for Windows
 
     **Changes log**
+    * v2.2.0 Created a full CoCalc version, and a separate Standalone version.
     * v2.1.2 Small fix to directory reference.
     * v2.1.1 Finalized CoCalc instructions. Added Team chapter. Fixed issue with Two-Sample MR. Fixed issue with regional association plotting. Checked Questions and Answers. Edited the To-Do list
     * v2.1.0 Added CoCalc instructions. Added Standalone instructions. Added chapter on used-programs. Re-organized 'Getting Started' chapter. Updated To-Do list in readme.

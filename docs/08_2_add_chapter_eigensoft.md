@@ -11,7 +11,7 @@ So, here's the deal.
 
 I will share the how-to for a macOS environment below in [EIGENSOFT] - this should work in a Linux environment too as macOS is UNIX-based. You can choose to try and make it work on your system (be it UNIX or macOS based) at home (or in the office).
 
-However, I recommend that you use the `--pca` function which is present in `PLINK` v1.9 and up. This means you should probably simply skip this section and jump straight to Chapter \@ref(gwas-basics-sample-qc).
+However, I recommend that you use the `--pca` function which is present in `PLINK` v1.9 and up (I describe this in the Chapter 'Sample QC'.
 
 ## Install homebrew
 
@@ -56,7 +56,7 @@ make
 make install
 ```
 
-<!-- ```{js, echo = FALSE} -->
-<!-- title=document.getElementById('header'); -->
-<!-- title.innerHTML = '<img src="img/_headers/banner_man_standing_dna.png" alt="Eigensoft">' + title.innerHTML -->
-<!-- ``` -->
+<script>
+title=document.getElementById('header');
+title.innerHTML = '<img src="./img/headers/banner_man_standing_dna.png" alt="Eigensoft">' + title.innerHTML
+</script>
