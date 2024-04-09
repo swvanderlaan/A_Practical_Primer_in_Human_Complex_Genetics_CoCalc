@@ -1,4 +1,4 @@
-# Post-GWAS Analyses {#post_gwas}
+# Post-GWAS Analyses {#post-gwas}
 <!-- ![](./img/_headers/banner_man_standing_dna.png){width=100%} -->
 
 

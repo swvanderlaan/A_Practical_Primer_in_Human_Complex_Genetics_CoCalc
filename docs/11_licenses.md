@@ -23,6 +23,9 @@ The content contained herein is provided only for educational and informational 
 ## Copyright
 This book and all its material ("content") is protected by copyright under Dutch Copyright laws and is the property of the author or the party credited as the provider of the content. You may not copy, reproduce, distribute, publish, display, perform, modify, create derivative works, transmit, or in any way exploit any such content, nor may you distribute any part of this content over any network, including a local area network, sell or offer it for sale, or use such content to construct any kind of database. You may not alter or remove any copyright or other notice from copies of the content on this website. Copying or storing any content except as provided above is expressly prohibited without prior written permission of the author or the copyright holder identified in the individual content's copyright notice. For permission to use this content, please contact the author.
 
+
+---
+
 Copyright 1979-2024. All rights reserved. Sander W. van der Laan | [s.w.vanderlaan [at] gmail.com](mailto:s.w.vanderlaan@gmail.com) | [https://vanderlaanand.science](https://vanderlaanand.science){target="_blank"}. Published with [`bookdown`](https://bookdown.org/yihui/bookdown/){target="_blank"}.
 
 <script>

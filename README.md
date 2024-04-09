@@ -8,7 +8,7 @@ This book was made possible by the kind help of Caspar J. van Lissa who wrote an
 
 #### Changes log
     
-    _Version:_      v2.2.1</br>
+    _Version:_      v2.2.2</br>
     _Last update:_  2024-04-08</br>
     _Written by:_   Sander W. van der Laan (s.w.vanderlaan-2[at]umcutrecht.nl).
     
@@ -66,6 +66,7 @@ This book was made possible by the kind help of Caspar J. van Lissa who wrote an
       - https://iconifier.net
 
     **Changes log**
+    * v2.2.2 Small fix to remove `knitr` codes. Fixed errors in `opts$chunks` for `knitr` and `rmarkdown` regarding 'echo'.
     * v2.2.1 Small fixes to references. Added book cover. Added favicon and Apple-touch-icon.
     * v2.2.0 Created a full CoCalc version, and a separate Standalone version.
     * v2.1.2 Small fix to directory reference.

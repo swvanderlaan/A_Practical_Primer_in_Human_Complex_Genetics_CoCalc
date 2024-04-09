@@ -20,6 +20,13 @@ You will need to use the `fwrite` function in `r` to write the concatenated resu
 
 <!--
 
+```r
+data.table::fwrite(na.omit(wtccc1_assoc_compl), "wtccc1/wtccc1_assoc_compl.txt", 
+                   sep = " ", 
+                   na = "NA", row.names = FALSE, quote = FALSE, 
+                   compress = "gzip",
+                   showProgress = TRUE, verbose = TRUE)
+```
 -->
 
 > Question: can you figure out the sample size of the WTCCC1 data you used?

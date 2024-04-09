@@ -17,7 +17,7 @@ if(!knitr:::is_html_output())
 
 ```{r getting_started, message = FALSE, warning = FALSE, echo = FALSE, eval = TRUE, include = FALSE}
 # general setting to apply to all chunks - can be overrode per chunk.
-opts_chunk$set(echo = FALSE, 
+opts_chunk$set(echo = TRUE, 
                warning = FALSE, 
                message = FALSE, 
                out.width = "85%", 
@@ -67,7 +67,7 @@ ggplot2::ggsave("dummy_project/gwas-qc-snp-call-rate.png", plot = clean_LMISS_pl
 clean_LMISS_plot
 ```
 
-```{r showsnpcallrate, fig.align='center', fig.cap='Per SNP call rate.', fig.show = TRUE, eval=TRUE}
+```{r showsnpcallrate, fig.align='center', fig.cap='Per SNP call rate.', fig.show = TRUE, eval=TRUE, echo=FALSE, message=FALSE, warning=FALSE}
 knitr::include_graphics("img/gwas_dummy/show-snp-callrate.png")
 ```
 
@@ -117,7 +117,7 @@ ggplot2::ggsave("dummy_project/gwas-qc-snp-freq.png", plot = clean_FREQ_plot)
 clean_FREQ_plot
 ```
 
-```{r showfreq, fig.align='center', fig.cap='Minor allele frequency.', fig.show = TRUE, eval=TRUE}
+```{r showfreq, fig.align='center', fig.cap='Minor allele frequency.', fig.show = TRUE, eval=TRUE, echo=FALSE, message=FALSE, warning=FALSE}
 knitr::include_graphics("img/gwas_dummy/show-freq.png")
 ```
 
@@ -181,7 +181,7 @@ ggplot2::ggsave("dummy_project/gwas-qc-snp-hwe.png", plot = clean_HWE_plot)
 clean_HWE_plot
 ```
 
-```{r showhwe, fig.align='center', fig.cap='Hardy-Weinberg Equilibrium p-values per stratum.', fig.show = TRUE, eval=TRUE}
+```{r showhwe, fig.align='center', fig.cap='Hardy-Weinberg Equilibrium p-values per stratum.', fig.show = TRUE, eval=TRUE, echo=FALSE, message=FALSE, warning=FALSE}
 knitr::include_graphics("img/gwas_dummy/show-hwe.png")
 ```
 

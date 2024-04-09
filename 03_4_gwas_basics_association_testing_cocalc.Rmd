@@ -17,7 +17,7 @@ if(!knitr:::is_html_output())
 
 ```{r getting_started, message = FALSE, warning = FALSE, echo = FALSE, eval = TRUE, include = FALSE}
 # general setting to apply to all chunks - can be overrode per chunk.
-opts_chunk$set(echo = FALSE, 
+opts_chunk$set(echo = TRUE, 
                warning = FALSE, 
                message = FALSE, 
                out.width = "85%", 
@@ -109,7 +109,7 @@ ggplot2::ggsave("data/dummy_project/gwas-hwe.png",
        plot = last_plot())
 ```
 
-```{r, fig.id='showhwegwas', fig.align='center', fig.cap='Per stratum HWE p-values.', fig.show = TRUE, eval=TRUE}
+```{r, fig.id='showhwegwas', fig.align='center', fig.cap='Per stratum HWE p-values.', fig.show = TRUE, eval=TRUE, echo=FALSE, message=FALSE, warning=FALSE}
 knitr::include_graphics("img/gwas_dummy/show-hwe-gwas.png")
 ```
 
@@ -129,7 +129,7 @@ ggplot2::ggsave("data/dummy_project/gwas-freq.png",
        plot = last_plot())
 ```
 
-```{r, fig.id='showfreqgwas', fig.align='center', fig.cap='Minor allele frequencies.', fig.show = TRUE, eval=TRUE}
+```{r, fig.id='showfreqgwas', fig.align='center', fig.cap='Minor allele frequencies.', fig.show = TRUE, eval=TRUE, echo=FALSE, message=FALSE, warning=FALSE}
 knitr::include_graphics("img/gwas_dummy/show-freq-gwas.png")
 ```
 
@@ -149,7 +149,7 @@ ggplot2::ggsave("data/dummy_project/gwas-sample-call-rate.png",
        plot = last_plot())
 ```
 
-```{r, fig.id='showsamplecallrategwas', fig.align='center', fig.cap='Per sample call rates.', fig.show = TRUE, eval=TRUE}
+```{r, fig.id='showsamplecallrategwas', fig.align='center', fig.cap='Per sample call rates.', fig.show = TRUE, eval=TRUE, echo=FALSE, message=FALSE, warning=FALSE}
 knitr::include_graphics("img/gwas_dummy/show-sample-callrate-gwas.png")
 ```
 
@@ -169,7 +169,7 @@ ggplot2::ggsave("data/dummy_project/gwas-snp-call-rate.png",
        plot = last_plot())
 ```
 
-```{r, fig.id='showsnpcallrategwas', fig.align='center', fig.cap='Per SNP call rates.', fig.show = TRUE, eval=TRUE}
+```{r, fig.id='showsnpcallrategwas', fig.align='center', fig.cap='Per SNP call rates.', fig.show = TRUE, eval=TRUE, echo=FALSE, message=FALSE, warning=FALSE}
 knitr::include_graphics("img/gwas_dummy/show-snp-callrate-gwas.png")
 ```
 

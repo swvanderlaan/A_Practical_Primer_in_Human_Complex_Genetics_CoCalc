@@ -140,6 +140,14 @@ ggplot2::ggsave("data/dummy_project/gwas-snp-call-rate.png",
 > 3. For what pathways are the signals enriched?
 > 4. What molecular functions are mapped to the signals?
 
+## Chapter 5.5: PheWAS
+
+> *Assignment*
+> 
+> 1. Perform a PheWAS with a few of the resources and your favorite SNP from this tutorial. 
+> 2. Compare the different websites. What do you notice?
+> 3. How is a PheWAS informative?
+
 ## Chapter 5.7: TwoSample MR
 
 > Question: What is the causal effect of T2D on CAD? Can you describe this using the knowledge from the lecture and the results in the table.

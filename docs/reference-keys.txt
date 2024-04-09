@@ -121,7 +121,7 @@ plotting-pca
 removing-samples-1
 association-testing
 replication
-post_gwas
+post-gwas
 clumping
 conditional-analyses
 statistical-finemapping
@@ -176,6 +176,7 @@ chapter-3.4-gwas-basics---association-testing
 chapter-3.5-gwas-visualization
 chapter-4.2-wtccc1
 chapter-5.4-fuma
+chapter-5.5-phewas
 chapter-5.7-twosample-mr
 chapter-8.1-regional-association-plots
 license

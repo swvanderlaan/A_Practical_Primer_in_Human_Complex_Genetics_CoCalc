@@ -7,6 +7,10 @@
 The 2022 and 2024 editions of this book were produce in RStudio and with the `bookdown` package. Below a listing of installed programs and libraries, the operating system, and their specific versions.
 
 
+```r
+sessioninfo::session_info()
+```
+
 ```
 ## ─ Session info ───────────────────────────────────────────────────────────────
 ##  setting  value

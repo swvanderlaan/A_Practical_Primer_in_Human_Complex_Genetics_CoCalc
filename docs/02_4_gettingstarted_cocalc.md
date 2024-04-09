@@ -15,6 +15,11 @@ Here we provide a few short instructions to navigate **CoCalc**.
 
 Once logged in you should see a screen similar to the one below.
 
+
+```r
+knitr::include_graphics("img/cocalc/cocalc_start.png")
+```
+
 <div class="figure" style="text-align: center">
 <img src="img/cocalc/cocalc_start.png" alt="CoCalc after logging in." width="85%" />
 <p class="caption">(\#fig:cocalcstart)CoCalc after logging in.</p>
@@ -22,12 +27,22 @@ Once logged in you should see a screen similar to the one below.
 
 Navigate to the Course by clicking on the blue _Your UBC CoCalc 1 projects..._-button and selecting the course **Genetic Epidemiology** you are following. 
 
+
+```r
+knitr::include_graphics("img/cocalc/cocalc_projects.png")
+```
+
 <div class="figure" style="text-align: center">
 <img src="img/cocalc/cocalc_projects.png" alt="CoCalc projects." width="85%" />
 <p class="caption">(\#fig:cocalcprojects)CoCalc projects.</p>
 </div>
 
 Once you are in the course, you will see a screen like this one below.
+
+
+```r
+knitr::include_graphics("img/cocalc/cocalc_student_main.png")
+```
 
 <div class="figure" style="text-align: center">
 <img src="img/cocalc/cocalc_student_main.png" alt="CoCalc student page." width="85%" />
@@ -92,12 +107,22 @@ CoCalc has both kernels installed, so you could run both `bash` and `R` code in 
 
 For the course we need to create a Jupyter Notebook with a `R` kernel to create all the plots. To start your own notebook, you can do so by clicking on the _New_ button and selecting _Jupyter Notebook_.
 
+
+```r
+knitr::include_graphics("img/cocalc/cocalc_notebook.png")
+```
+
 <div class="figure" style="text-align: center">
 <img src="img/cocalc/cocalc_notebook.png" alt="CoCalc new notebook." width="85%" />
 <p class="caption">(\#fig:cocalc_notebook)CoCalc new notebook.</p>
 </div>
 
 You will probably get a screen asking you to select a kernel. You should choose _R_.
+
+
+```r
+knitr::include_graphics("img/cocalc/cocalc_notebook_kernel.png")
+```
 
 <div class="figure" style="text-align: center">
 <img src="img/cocalc/cocalc_notebook_kernel.png" alt="CoCalc kernel selection." width="85%" />
@@ -106,6 +131,11 @@ You will probably get a screen asking you to select a kernel. You should choose 
 
 Now you are ready to start your own `R` Notebook - like below. You can create a new 'cell' with format 'code' or 'text' or 'markdown' and start typing. 
 
+
+```r
+knitr::include_graphics("img/cocalc/cocalc_notebook_r_markdown.png")
+```
+
 <div class="figure" style="text-align: center">
 <img src="img/cocalc/cocalc_notebook_r_markdown.png" alt="CoCalc starting your notebook." width="85%" />
 <p class="caption">(\#fig:cocalcnotebookrmarkdown)CoCalc starting your notebook.</p>
@@ -113,12 +143,22 @@ Now you are ready to start your own `R` Notebook - like below. You can create a 
 
 You could get your working directory by typing `getwd()` in a cell and pressing `Shift+Enter`. 
 
+
+```r
+knitr::include_graphics("img/cocalc/cocalc_notebook_getwd.png")
+```
+
 <div class="figure" style="text-align: center">
 <img src="img/cocalc/cocalc_notebook_getwd.png" alt="CoCalc get working directory." width="85%" />
 <p class="caption">(\#fig:cocalcnotebookgetwd)CoCalc get working directory.</p>
 </div>
 
 Or you could list the contents of the working directory by typing `list.files()` or `dir()` in a cell and pressing `Shift+Enter`.
+
+
+```r
+knitr::include_graphics("img/cocalc/cocalc_notebook_listfiles.png")
+```
 
 <div class="figure" style="text-align: center">
 <img src="img/cocalc/cocalc_notebook_listfiles.png" alt="CoCalc list files." width="85%" />
@@ -129,6 +169,25 @@ Or you could list the contents of the working directory by typing `list.files()`
 You could also create a dummy plot with `R` in this notebook. 
 
 
+```r
+# Define 2 vectors
+cars <- sample(1:250,250, replace=F)
+trucks <- sample(1:250,250, replace=F)
+
+# Graph cars using a y axis that ranges from 0 to 250
+plot(cars, type="o", col="blue", ylim=c(0,250))
+
+# Graph trucks with red dashed line and square points
+lines(trucks, type="o", pch=22, lty=2, col="red")
+
+# Create a title with a red, bold/italic font
+title(main="Autos", col.main="red", font.main=4)
+```
+
+
+```r
+knitr::include_graphics("img/cocalc/cocalc_notebook_plot.png")
+```
 
 <div class="figure" style="text-align: center">
 <img src="img/cocalc/cocalc_notebook_plot.png" alt="CoCalc plot." width="85%" />
@@ -139,12 +198,22 @@ You could also create a dummy plot with `R` in this notebook.
 
 For the course we need to create a Terminal to run `bash` code. To start your own Terminal, you can do so by clicking on the _New_ button and selecting _Terminal_.
 
+
+```r
+knitr::include_graphics("img/cocalc/cocalc_terminal_select.png")
+```
+
 <div class="figure" style="text-align: center">
 <img src="img/cocalc/cocalc_terminal_select.png" alt="CoCalc new terminal." width="85%" />
 <p class="caption">(\#fig:cocalcterminalselect)CoCalc new terminal.</p>
 </div>
 
 Type in 'My Terminal' and hit the _Create_ button.
+
+
+```r
+knitr::include_graphics("img/cocalc/cocalc_terminal.png")
+```
 
 <div class="figure" style="text-align: center">
 <img src="img/cocalc/cocalc_terminal.png" alt="CoCalc new terminal creation." width="85%" />
@@ -153,12 +222,22 @@ Type in 'My Terminal' and hit the _Create_ button.
 
 A new tab will open with a Terminal. 
 
+
+```r
+knitr::include_graphics("img/cocalc/cocalc_terminal_window.png")
+```
+
 <div class="figure" style="text-align: center">
 <img src="img/cocalc/cocalc_terminal_window.png" alt="CoCalc terminal window." width="85%" />
 <p class="caption">(\#fig:cocalcterminalkernel)CoCalc terminal window.</p>
 </div>
 
 Now you can start typing your `bash` commands. Let's see what we have in the directory you're at by typing `ls`. Just check Google to find some [great cheatsheets](https://phoenixnap.com/kb/bash-commands){target="_blank"} on common `bash` commands for Terminal.
+
+
+```r
+knitr::include_graphics("img/cocalc/cocalc_terminal_window_ls.png")
+```
 
 <div class="figure" style="text-align: center">
 <img src="img/cocalc/cocalc_terminal_window_ls.png" alt="CoCalc listing the contents of the directory." width="85%" />
@@ -176,6 +255,11 @@ The files are:
 
 We can also list the contents of the data directory by typing `ls ~/data/shared/` in the Terminal. The `~` meanse 'home', or which could also be written as `$HOME`. 
 
+
+```r
+knitr::include_graphics("img/cocalc/cocalc_terminal_window_data.png")
+```
+
 <div class="figure" style="text-align: center">
 <img src="img/cocalc/cocalc_terminal_window_data.png" alt="CoCalc terminal window." width="85%" />
 <p class="caption">(\#fig:cocalcterminalwindowdata)CoCalc terminal window.</p>
@@ -187,12 +271,22 @@ Let's check out the contents of the `readme.txt` file.
 cat ~/data/shared/readme.txt
 ```
 
+
+```r
+knitr::include_graphics("img/cocalc/cocalc_terminal_window_readme.png")
+```
+
 <div class="figure" style="text-align: center">
 <img src="img/cocalc/cocalc_terminal_window_readme.png" alt="CoCalc readme file." width="85%" />
 <p class="caption">(\#fig:cocalcterminalwindowreadme)CoCalc readme file.</p>
 </div>
 
 As I wrote, we installed `plink` for you, but just to be sure, let's check if it is installed. Type `plink` in the Terminal and press **ENTER**.
+
+
+```r
+knitr::include_graphics("img/cocalc/cocalc_terminal_window_plink.png")
+```
 
 <div class="figure" style="text-align: center">
 <img src="img/cocalc/cocalc_terminal_window_plink.png" alt="CoCalc plink." width="85%" />

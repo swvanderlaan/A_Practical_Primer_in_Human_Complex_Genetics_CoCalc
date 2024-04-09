@@ -27,11 +27,40 @@ cat wtccc1/wtccc1.missing | awk '$5 < 0.00001' | awk '{ print $2 }' > wtccc1/wtc
 ```
 
 
+```r
+library("data.table")
+
+wtccc1_HWE <- data.table::fread("wtccc1/wtccc1.hwe")
+wtccc1_FRQ <- data.table::fread("wtccc1/wtccc1.frq")
+wtccc1_IMISS <- data.table::fread("wtccc1/wtccc1.imiss")
+wtccc1_LMISS <- data.table::fread("wtccc1/wtccc1.lmiss")
+
+wtccc1_HWE$logP <- -log10(wtccc1_HWE$P)
+wtccc1_LMISS$callrate <- 1 - wtccc1_LMISS$F_MISS
+wtccc1_IMISS$callrate <- 1 - wtccc1_IMISS$F_MISS
+```
 
 
 
 Let's investigate the HWE p-value in the whole cohort, and per stratum (cases and controls) with the code below.
 
+```r
+library("ggpubr")
+
+ggpubr::gghistogram(wtccc1_HWE, x = "logP",
+                    add = "mean",
+                    add.params = list(color = "#595A5C", linetype = "dashed", size = 1),
+                    rug = TRUE,
+                    # color = "#1290D9", fill = "#1290D9",
+                    color = "TEST", fill = "TEST",
+                    palette = "lancet",
+                    facet.by = "TEST",
+                    bins = 50,
+                    xlab = "HWE -log10(P)") +
+  ggplot2::geom_vline(xintercept = 5, linetype = "dashed",
+                      color = "#E55738", size = 1)
+ggplot2::ggsave("wtccc1/wtccc1-hwe.png", plot = last_plot())
+```
 
 This will result in Figure \@ref(fig:show-wtccc1-hwe).
 
@@ -42,6 +71,16 @@ This will result in Figure \@ref(fig:show-wtccc1-hwe).
 
 We should also inspect the allele frequencies. Note that _by default_ PLINK (whether v0.7, v1.9, or v2.0) stores the alleles as minor (A1) and major (A2), and therefore `--maf` _always_ calculates the frequency of the minor allele (A1).
 
+```r
+ggpubr::gghistogram(wtccc1_FRQ, x = "MAF",
+                    add = "mean", add.params = list(color = "#595A5C", linetype = "dashed", size = 1),
+                    rug = TRUE,
+                    color = "#1290D9", fill = "#1290D9",
+                    xlab = "minor allele frequency") +
+  ggplot2::geom_vline(xintercept = 0.05, linetype = "dashed",
+                      color = "#E55738", size = 1)
+ggplot2::ggsave("wtccc1/wtccc1-freq.png", plot = last_plot())
+```
 
 This will result in Figure \@ref(fig:show-wtccc1-freq).
 
@@ -52,6 +91,16 @@ This will result in Figure \@ref(fig:show-wtccc1-freq).
 
 There could be sample with very poor overall call rate, where for many SNPs there is no data. We will want to identify these samples and exclude them. 
 
+```r
+ggpubr::gghistogram(wtccc1_IMISS, x = "callrate",
+                    add = "mean", add.params = list(color = "#595A5C", linetype = "dashed", size = 1),
+                    rug = TRUE, bins = 50,
+                    color = "#1290D9", fill = "#1290D9",
+                    xlab = "per sample call rate") +
+  ggplot2::geom_vline(xintercept = 0.95, linetype = "dashed",
+                      color = "#E55738", size = 1)
+ggplot2::ggsave("wtccc1/wtccc1-sample-call-rate.png", plot = last_plot())
+```
 
 This will result in Figure \@ref(fig:show-wtccc1-callratesample).
 
@@ -65,6 +114,16 @@ This will result in Figure \@ref(fig:show-wtccc1-callratesample).
 Lastly, we must inspect the per SNP call rate; we need to know if there are SNPs that have no data for many samples. We will want to identify such SNPs and exclude these.
 
 
+```r
+ggpubr::gghistogram(wtccc1_LMISS, x = "callrate",
+                    add = "mean", add.params = list(color = "#595A5C", linetype = "dashed", size = 1),
+                    rug = TRUE, bins = 50,
+                    color = "#1290D9", fill = "#1290D9",
+                    xlab = "per SNP call rate") +
+  ggplot2::geom_vline(xintercept = 0.95, linetype = "dashed",
+                      color = "#E55738", size = 1)
+ggplot2::ggsave("wtccc1/wtccc1-hwe.png", plot = last_plot())
+```
 
 This will result in Figure \@ref(fig:show-wtccc1-callratesnp).
 
@@ -153,18 +212,127 @@ If all is peachy, you were able to run the PCA for the WTCCC1 data against 1000G
 And we should visualize the PCA results: are these individuals really all from European (UK) ancestry? 
 
 
+```r
+PCA_eigenval <- data.table::fread("wtccc1/wtccc1_extrclean_1kg.eigenval")
+PCA_eigenvec <- data.table::fread("wtccc1/wtccc1_extrclean_1kg.eigenvec")
+ref_pop_raw <- data.table::fread("~/data/shared/ref_1kg_phase1_all/1kg_phase1_all.pheno")
+wtccc1_pop <- data.table::fread("wtccc1/wtccc1.fam")
+```
 
 
 
 
+```r
+# Rename some 
+names(PCA_eigenval)[names(PCA_eigenval) == "V1"] <- "Eigenvalue"
+
+names(PCA_eigenvec)[names(PCA_eigenvec) == "V1"] <- "FID"
+names(PCA_eigenvec)[names(PCA_eigenvec) == "V2"] <- "IID"
+names(PCA_eigenvec)[names(PCA_eigenvec) == "V3"] <- "PC1"
+names(PCA_eigenvec)[names(PCA_eigenvec) == "V4"] <- "PC2"
+names(PCA_eigenvec)[names(PCA_eigenvec) == "V5"] <- "PC3"
+names(PCA_eigenvec)[names(PCA_eigenvec) == "V6"] <- "PC4"
+names(PCA_eigenvec)[names(PCA_eigenvec) == "V7"] <- "PC5"
+names(PCA_eigenvec)[names(PCA_eigenvec) == "V8"] <- "PC6"
+names(PCA_eigenvec)[names(PCA_eigenvec) == "V9"] <- "PC7"
+names(PCA_eigenvec)[names(PCA_eigenvec) == "V10"] <- "PC8"
+names(PCA_eigenvec)[names(PCA_eigenvec) == "V11"] <- "PC9"
+names(PCA_eigenvec)[names(PCA_eigenvec) == "V12"] <- "PC10"
+names(PCA_eigenvec)[names(PCA_eigenvec) == "V13"] <- "PC11"
+names(PCA_eigenvec)[names(PCA_eigenvec) == "V14"] <- "PC12"
+names(PCA_eigenvec)[names(PCA_eigenvec) == "V15"] <- "PC13"
+names(PCA_eigenvec)[names(PCA_eigenvec) == "V16"] <- "PC14"
+names(PCA_eigenvec)[names(PCA_eigenvec) == "V17"] <- "PC15"
+names(PCA_eigenvec)[names(PCA_eigenvec) == "V18"] <- "PC16"
+names(PCA_eigenvec)[names(PCA_eigenvec) == "V19"] <- "PC17"
+names(PCA_eigenvec)[names(PCA_eigenvec) == "V20"] <- "PC18"
+names(PCA_eigenvec)[names(PCA_eigenvec) == "V21"] <- "PC19"
+names(PCA_eigenvec)[names(PCA_eigenvec) == "V22"] <- "PC20"
+
+names(wtccc1_pop)[names(wtccc1_pop) == "V1"] <- "Family_ID"
+names(wtccc1_pop)[names(wtccc1_pop) == "V2"] <- "Individual_ID"
+names(wtccc1_pop)[names(wtccc1_pop) == "V5"] <- "Gender"
+names(wtccc1_pop)[names(wtccc1_pop) == "V6"] <- "Phenotype"
+wtccc1_pop$V3<- NULL
+wtccc1_pop$V4<- NULL
+
+wtccc1_pop$Population <- wtccc1_pop$Phenotype
+wtccc1_pop$Population[wtccc1_pop$Population == 2] <- "Case"
+wtccc1_pop$Population[wtccc1_pop$Population == 1] <- "Control"
+```
+
+
+```r
+# we subset the data we need
+ref_pop <- subset(ref_pop_raw, select = c("Family_ID", "Individual_ID", "Gender", "Phenotype", "Population"))
+rm(ref_pop_raw)
+
+# we combine the reference and dummy information
+ref_wtccc1_pop <- rbind(wtccc1_pop, ref_pop)
+```
 
 
 
+```r
+PCA_1kG <- merge(PCA_eigenvec,
+                 ref_wtccc1_pop,
+                 by.x = "IID",
+                 by.y = "Individual_ID",
+                 sort = FALSE,
+                 all.x = TRUE)
+```
 
 
 
+```r
+# Population	Description	Super population	Code	Counts
+# ASW	African Ancestry in Southwest US	                          AFR	4	  #49A01D
+# CEU	Utah residents with Northern and Western European ancestry	EUR	7	  #E55738
+# CHB	Han Chinese in Bejing, China	                              EAS	8	  #9A3480
+# CHS	Southern Han Chinese, China	                                EAS	9	  #705296
+# CLM	Colombian in Medellin, Colombia	                            MR	10	#8D5B9A
+# FIN	Finnish in Finland	                                        EUR	12	#2F8BC9
+# GBR	British in England and Scotland	                            EUR	13	#1290D9
+# IBS	Iberian populations in Spain	                              EUR	16	#1396D8
+# JPT	Japanese in Tokyo, Japan	                                  EAS	18	#D5267B
+# LWK	Luhya in Webuye, Kenya	                                    AFR	20	#78B113
+# MXL	Mexican Ancestry in Los Angeles, California	                AMR	22	#F59D10
+# PUR	Puerto Rican in Puerto Rico	                                AMR	25	#FBB820
+# TSI	Toscani in Italy	                                          EUR	27	#4C81BF
+# YRI	Yoruba in Ibadan, Nigeria	                                  AFR	28	#C5D220
 
+PCA_1kGplot <- ggpubr::ggscatter(PCA_1kG, 
+                                 x = "PC1", 
+                                 y = "PC2",
+                                 color = "Population", 
+                                 palette = c("#49A01D", 
+                                             "#595A5C", 
+                                             "#E55738", 
+                                             "#9A3480", 
+                                             "#705296", 
+                                             "#8D5B9A", 
+                                             "#A2A3A4", 
+                                             "#2F8BC9", 
+                                             "#1290D9", 
+                                             "#1396D8", 
+                                             "#D5267B", 
+                                             "#78B113", 
+                                             "#F59D10", 
+                                             "#FBB820", 
+                                             "#4C81BF", 
+                                             "#C5D220"),
+                                 xlab = "principal component 1", ylab = "principal component 2") +
+  ggplot2::geom_vline(xintercept = 0.0023, linetype = "dashed",
+                      color = "#E55738", size = 1)
 
+p2 <-  ggpubr::ggpar(PCA_1kGplot,
+                     title = "Principal Component Analysis",
+                     subtitle = "Reference population: 1000 G, phase 1",
+                     legend.title = "Populations", legend = "right")
+ggplot2::ggsave("wtccc1/wtccc1-qc-pca-1000g.png", plot = p2)
+p2
+rm(p2)
+```
 
 We expect most individuals from the WTCCC to be 100% British, but a substantial group will have a different ancestral background as shown in the Figure \@ref(fig:showwtccc1pca) you just made.
 
@@ -219,14 +387,65 @@ plink --bfile wtccc1/wtccc1_qc --logistic sex --covar wtccc1/wtccc1_qc.covar_pca
 After you ran the association analysis, you're ready to process the data and take a first look at the results. First, we prepare the raw output. 
 
 
+```r
+wtccc1_assoc <- data.table::fread("wtccc1/wtccc1_qc_log_covar_pca.assoc.logistic")
+```
 
 
 
 
+```r
+dim(wtccc1_assoc)
+
+wtccc1_assoc[1:9, 1:9]
+wtccc1_assoc_sub <- subset(wtccc1_assoc, TEST == "ADD")
+wtccc1_assoc_sub$TEST <- NULL
+
+temp <- subset(wtccc1_FRQ, select = c("SNP", "A2", "MAF", "NCHROBS"))
+
+wtccc1_assoc_subfrq <- merge(wtccc1_assoc_sub, temp, by = "SNP")
+
+temp <- subset(wtccc1_LMISS, select = c("SNP", "callrate"))
+
+wtccc1_assoc_subfrqlmiss <- merge(wtccc1_assoc_subfrq, temp, by = "SNP")
+head(wtccc1_assoc_subfrqlmiss)
+# Remember:
+# - that z = beta/se
+# - beta = log(OR), because log is the natural log in r
+
+wtccc1_assoc_subfrqlmiss$BETA = log(wtccc1_assoc_subfrqlmiss$OR)
+wtccc1_assoc_subfrqlmiss$SE = wtccc1_assoc_subfrqlmiss$BETA/wtccc1_assoc_subfrqlmiss$STAT
+
+
+wtccc1_assoc_subfrqlmiss_tib <- dplyr::as_tibble(wtccc1_assoc_subfrqlmiss)
+
+col_order <- c("SNP", "CHR", "BP",
+               "A1", "A2", "MAF", "callrate", "NMISS", "NCHROBS",
+               "BETA", "SE", "OR", "STAT", "P")
+wtccc1_assoc_compl <- wtccc1_assoc_subfrqlmiss_tib[, col_order]
+
+dim(wtccc1_assoc_compl)
+
+head(wtccc1_assoc_compl)
+
+wtccc1_assoc_complsub <- subset(wtccc1_assoc_compl, select = c("SNP", "CHR", "BP", "P"))
+```
 
 You could visualize these results with the code below. 
 
 
+```r
+library("CMplot")
+
+CMplot(wtccc1_assoc_complsub,
+       plot.type = c("d", "c", "m", "q"), LOG10 = TRUE, ylim = NULL,
+       threshold = c(1e-6,1e-4), threshold.lty = c(1,2), threshold.lwd = c(1,1), threshold.col = c("black", "grey"),
+       amplify = TRUE,
+       bin.size = 1e6, chr.den.col = c("darkgreen", "yellow", "red"),
+       signal.col = c("red", "green"), signal.cex = c(1,1), signal.pch = c(19,19),
+       file.output = FALSE, file = "png", 
+       main = "", dpi = 300, verbose = TRUE)
+```
 
 This would lead to the following graphs. 
 <div class="figure" style="text-align: center">

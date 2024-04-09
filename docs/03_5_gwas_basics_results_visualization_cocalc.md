@@ -13,16 +13,63 @@ We should create _quantile-quantile (QQ) plots_ to compare the observed associat
 First, we will add the standard error, call rate, A2, and allele frequencies.
 
 
+```r
+library("data.table")
+gwas_FRQ <- data.table::fread("dummy_project/gwa.frq")
+
+gwas_LMISS <- data.table::fread("dummy_project/gwa.lmiss")
+
+gwas_assoc <- data.table::fread("dummy_project/data.assoc.logistic")
+
+gwas_LMISS$callrate <- 1 - gwas_LMISS$F_MISS
+
+gwas_assoc_sub <- subset(gwas_assoc, TEST == "ADD")
+gwas_assoc_sub$TEST <- NULL
+
+temp <- subset(gwas_FRQ, select = c("SNP", "A2", "MAF", "NCHROBS"))
+
+gwas_assoc_subfrq <- merge(gwas_assoc_sub, temp, by = "SNP")
+
+temp <- subset(gwas_LMISS, select = c("SNP", "callrate"))
+
+gwas_assoc_subfrqlmiss <- merge(gwas_assoc_subfrq, temp, by = "SNP")
+head(gwas_assoc_subfrqlmiss)
+# Remember:
+# - that z = beta/se
+# - beta = log(OR), because log is the natural log in r
+
+gwas_assoc_subfrqlmiss$BETA = log(gwas_assoc_subfrqlmiss$OR)
+gwas_assoc_subfrqlmiss$SE = gwas_assoc_subfrqlmiss$BETA/gwas_assoc_subfrqlmiss$STAT
+
+
+gwas_assoc_subfrqlmiss_tib <- dplyr::as_tibble(gwas_assoc_subfrqlmiss)
+
+col_order <- c("SNP", "CHR", "BP",
+               "A1", "A2", "MAF", "callrate", "NMISS", "NCHROBS",
+               "BETA", "SE", "OR", "STAT", "P")
+gwas_assoc_compl <- gwas_assoc_subfrqlmiss_tib[, col_order]
+
+dim(gwas_assoc_compl)
+
+head(gwas_assoc_compl)
+
+data.table::fwrite(gwas_assoc_compl, "dummy_project/gwas_assoc_compl.txt",
+                   sep = "\t", quote = FALSE, row.names = FALSE)
+```
 
 
 
 Let's list the number of SNPs per chromosome. This gives a pretty good idea about the per-chromosome coverage. And it's a sanity check: did the whole analysis run properly (we expect 22 chromosomes)?
 
 
+```r
+df <- as.data.frame(table(gwas_assoc_compl$CHR))
+names(df)[names(df) == "Var1"] <- "Chr"
+```
 
 
 ```{=html}
-<div class="tabwid"><style>.cl-910ef8b4{}.cl-91095eb8{font-family:'Helvetica';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-910b948a{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-910b9494{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-910ba66e{width:0.431in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-910ba678{width:0.652in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-910ba679{width:0.431in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-910ba682{width:0.652in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-910ba683{width:0.431in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-910ba68c{width:0.652in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-910ba68d{width:0.431in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-910ba696{width:0.652in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-910ba697{width:0.431in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-910ba698{width:0.652in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-910ba6a0{width:0.431in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-910ba6a1{width:0.652in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table data-quarto-disable-processing='true' class='cl-910ef8b4'>
+<div class="tabwid"><style>.cl-a699f066{}.cl-a6946362{font-family:'Helvetica';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-a69693b2{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-a69693bc{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-a696a564{width:0.431in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-a696a565{width:0.652in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-a696a56e{width:0.431in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-a696a56f{width:0.652in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-a696a582{width:0.431in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-a696a583{width:0.652in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-a696a584{width:0.431in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-a696a58c{width:0.652in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-a696a596{width:0.431in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-a696a5a0{width:0.652in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-a696a5a1{width:0.431in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-a696a5aa{width:0.652in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table data-quarto-disable-processing='true' class='cl-a699f066'>
 
 ```
 
@@ -30,7 +77,7 @@ Let's list the number of SNPs per chromosome. This gives a pretty good idea abou
 
 ```{=html}
 
-<thead><tr style="overflow-wrap:break-word;"><th class="cl-910ba66e"><p class="cl-910b948a"><span class="cl-91095eb8">Chr</span></p></th><th class="cl-910ba678"><p class="cl-910b9494"><span class="cl-91095eb8">Freq</span></p></th></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-910ba679"><p class="cl-910b948a"><span class="cl-91095eb8">1</span></p></td><td class="cl-910ba682"><p class="cl-910b9494"><span class="cl-91095eb8">23,173</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-910ba683"><p class="cl-910b948a"><span class="cl-91095eb8">2</span></p></td><td class="cl-910ba68c"><p class="cl-910b9494"><span class="cl-91095eb8">25,206</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-910ba679"><p class="cl-910b948a"><span class="cl-91095eb8">3</span></p></td><td class="cl-910ba682"><p class="cl-910b9494"><span class="cl-91095eb8">21,402</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-910ba68d"><p class="cl-910b948a"><span class="cl-91095eb8">4</span></p></td><td class="cl-910ba696"><p class="cl-910b9494"><span class="cl-91095eb8">19,008</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-910ba697"><p class="cl-910b948a"><span class="cl-91095eb8">5</span></p></td><td class="cl-910ba698"><p class="cl-910b9494"><span class="cl-91095eb8">19,157</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-910ba683"><p class="cl-910b948a"><span class="cl-91095eb8">6</span></p></td><td class="cl-910ba68c"><p class="cl-910b9494"><span class="cl-91095eb8">20,672</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-910ba683"><p class="cl-910b948a"><span class="cl-91095eb8">7</span></p></td><td class="cl-910ba68c"><p class="cl-910b9494"><span class="cl-91095eb8">16,581</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-910ba68d"><p class="cl-910b948a"><span class="cl-91095eb8">8</span></p></td><td class="cl-910ba696"><p class="cl-910b9494"><span class="cl-91095eb8">18,089</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-910ba697"><p class="cl-910b948a"><span class="cl-91095eb8">9</span></p></td><td class="cl-910ba698"><p class="cl-910b9494"><span class="cl-91095eb8">15,709</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-910ba683"><p class="cl-910b948a"><span class="cl-91095eb8">10</span></p></td><td class="cl-910ba68c"><p class="cl-910b9494"><span class="cl-91095eb8">15,536</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-910ba683"><p class="cl-910b948a"><span class="cl-91095eb8">11</span></p></td><td class="cl-910ba68c"><p class="cl-910b9494"><span class="cl-91095eb8">14,564</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-910ba68d"><p class="cl-910b948a"><span class="cl-91095eb8">12</span></p></td><td class="cl-910ba696"><p class="cl-910b9494"><span class="cl-91095eb8">14,889</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-910ba679"><p class="cl-910b948a"><span class="cl-91095eb8">13</span></p></td><td class="cl-910ba682"><p class="cl-910b9494"><span class="cl-91095eb8">11,524</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-910ba679"><p class="cl-910b948a"><span class="cl-91095eb8">14</span></p></td><td class="cl-910ba682"><p class="cl-910b9494"><span class="cl-91095eb8">9,822</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-910ba68d"><p class="cl-910b948a"><span class="cl-91095eb8">15</span></p></td><td class="cl-910ba696"><p class="cl-910b9494"><span class="cl-91095eb8">8,838</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-910ba679"><p class="cl-910b948a"><span class="cl-91095eb8">16</span></p></td><td class="cl-910ba682"><p class="cl-910b9494"><span class="cl-91095eb8">8,920</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-910ba683"><p class="cl-910b948a"><span class="cl-91095eb8">17</span></p></td><td class="cl-910ba68c"><p class="cl-910b9494"><span class="cl-91095eb8">8,262</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-910ba683"><p class="cl-910b948a"><span class="cl-91095eb8">18</span></p></td><td class="cl-910ba68c"><p class="cl-910b9494"><span class="cl-91095eb8">10,356</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-910ba679"><p class="cl-910b948a"><span class="cl-91095eb8">19</span></p></td><td class="cl-910ba682"><p class="cl-910b9494"><span class="cl-91095eb8">5,820</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-910ba679"><p class="cl-910b948a"><span class="cl-91095eb8">20</span></p></td><td class="cl-910ba682"><p class="cl-910b9494"><span class="cl-91095eb8">7,792</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-910ba679"><p class="cl-910b948a"><span class="cl-91095eb8">21</span></p></td><td class="cl-910ba682"><p class="cl-910b9494"><span class="cl-91095eb8">5,412</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-910ba6a0"><p class="cl-910b948a"><span class="cl-91095eb8">22</span></p></td><td class="cl-910ba6a1"><p class="cl-910b9494"><span class="cl-91095eb8">5,370</span></p></td></tr></tbody></table></div>
+<thead><tr style="overflow-wrap:break-word;"><th class="cl-a696a564"><p class="cl-a69693b2"><span class="cl-a6946362">Chr</span></p></th><th class="cl-a696a565"><p class="cl-a69693bc"><span class="cl-a6946362">Freq</span></p></th></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-a696a56e"><p class="cl-a69693b2"><span class="cl-a6946362">1</span></p></td><td class="cl-a696a56f"><p class="cl-a69693bc"><span class="cl-a6946362">23,173</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-a696a582"><p class="cl-a69693b2"><span class="cl-a6946362">2</span></p></td><td class="cl-a696a583"><p class="cl-a69693bc"><span class="cl-a6946362">25,206</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-a696a56e"><p class="cl-a69693b2"><span class="cl-a6946362">3</span></p></td><td class="cl-a696a56f"><p class="cl-a69693bc"><span class="cl-a6946362">21,402</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-a696a584"><p class="cl-a69693b2"><span class="cl-a6946362">4</span></p></td><td class="cl-a696a58c"><p class="cl-a69693bc"><span class="cl-a6946362">19,008</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-a696a596"><p class="cl-a69693b2"><span class="cl-a6946362">5</span></p></td><td class="cl-a696a5a0"><p class="cl-a69693bc"><span class="cl-a6946362">19,157</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-a696a582"><p class="cl-a69693b2"><span class="cl-a6946362">6</span></p></td><td class="cl-a696a583"><p class="cl-a69693bc"><span class="cl-a6946362">20,672</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-a696a582"><p class="cl-a69693b2"><span class="cl-a6946362">7</span></p></td><td class="cl-a696a583"><p class="cl-a69693bc"><span class="cl-a6946362">16,581</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-a696a584"><p class="cl-a69693b2"><span class="cl-a6946362">8</span></p></td><td class="cl-a696a58c"><p class="cl-a69693bc"><span class="cl-a6946362">18,089</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-a696a596"><p class="cl-a69693b2"><span class="cl-a6946362">9</span></p></td><td class="cl-a696a5a0"><p class="cl-a69693bc"><span class="cl-a6946362">15,709</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-a696a582"><p class="cl-a69693b2"><span class="cl-a6946362">10</span></p></td><td class="cl-a696a583"><p class="cl-a69693bc"><span class="cl-a6946362">15,536</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-a696a582"><p class="cl-a69693b2"><span class="cl-a6946362">11</span></p></td><td class="cl-a696a583"><p class="cl-a69693bc"><span class="cl-a6946362">14,564</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-a696a584"><p class="cl-a69693b2"><span class="cl-a6946362">12</span></p></td><td class="cl-a696a58c"><p class="cl-a69693bc"><span class="cl-a6946362">14,889</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-a696a56e"><p class="cl-a69693b2"><span class="cl-a6946362">13</span></p></td><td class="cl-a696a56f"><p class="cl-a69693bc"><span class="cl-a6946362">11,524</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-a696a56e"><p class="cl-a69693b2"><span class="cl-a6946362">14</span></p></td><td class="cl-a696a56f"><p class="cl-a69693bc"><span class="cl-a6946362">9,822</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-a696a584"><p class="cl-a69693b2"><span class="cl-a6946362">15</span></p></td><td class="cl-a696a58c"><p class="cl-a69693bc"><span class="cl-a6946362">8,838</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-a696a56e"><p class="cl-a69693b2"><span class="cl-a6946362">16</span></p></td><td class="cl-a696a56f"><p class="cl-a69693bc"><span class="cl-a6946362">8,920</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-a696a582"><p class="cl-a69693b2"><span class="cl-a6946362">17</span></p></td><td class="cl-a696a583"><p class="cl-a69693bc"><span class="cl-a6946362">8,262</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-a696a582"><p class="cl-a69693b2"><span class="cl-a6946362">18</span></p></td><td class="cl-a696a583"><p class="cl-a69693bc"><span class="cl-a6946362">10,356</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-a696a56e"><p class="cl-a69693b2"><span class="cl-a6946362">19</span></p></td><td class="cl-a696a56f"><p class="cl-a69693bc"><span class="cl-a6946362">5,820</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-a696a56e"><p class="cl-a69693b2"><span class="cl-a6946362">20</span></p></td><td class="cl-a696a56f"><p class="cl-a69693bc"><span class="cl-a6946362">7,792</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-a696a56e"><p class="cl-a69693b2"><span class="cl-a6946362">21</span></p></td><td class="cl-a696a56f"><p class="cl-a69693bc"><span class="cl-a6946362">5,412</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-a696a5a1"><p class="cl-a69693b2"><span class="cl-a6946362">22</span></p></td><td class="cl-a696a5aa"><p class="cl-a69693bc"><span class="cl-a6946362">5,370</span></p></td></tr></tbody></table></div>
 ```
 
 > Question: Try to figure out how to get the number of variants per chromosomes. Why do the number of variants per chrosome (approximately) correlate with the chromosome number?
@@ -42,8 +89,29 @@ Let's plot the QQ plot to diagnose our GWAS.
 Since we're working in Utrecht on the Utrecht Science Park, let's get the color scheme in `R`. 
 
 
+```r
+uithof_color = c("#FBB820","#F59D10","#E55738","#DB003F","#E35493","#D5267B",
+                 "#CC0071","#A8448A","#9A3480","#8D5B9A","#705296","#686AA9",
+                 "#6173AD","#4C81BF","#2F8BC9","#1290D9","#1396D8","#15A6C1",
+                 "#5EB17F","#86B833","#C5D220","#9FC228","#78B113","#49A01D",
+                 "#595A5C","#A2A3A4", "#D7D8D7", "#ECECEC", "#FFFFFF", "#000000")
+```
 
 
+```r
+library("qqman")
+
+gwas_threshold = -log10(5e-8)
+
+# you could save the image, or just display it
+# png("dummy_project/gwas-qq.png")
+qqman::qq(gwas_assoc_compl$P, main = "QQ plot of GWAS",
+          xlim = c(0, 7),
+          ylim = c(0, 12),
+          pch = 20, col = uithof_color[16], cex = 1.5, las = 1, bty = "n")
+abline(h = gwas_threshold,
+       col = uithof_color[25], lty = "dashed")
+```
 
 <div class="figure" style="text-align: center">
 <img src="img/gwas_dummy/show-qq.png" alt="A QQ plot." width="85%" />
@@ -55,6 +123,14 @@ Since we're working in Utrecht on the Utrecht Science Park, let's get the color 
 We also need to create a _Manhattan plot_ to display the association test P-values as a function of chromosomal location and thus provide a visual summary of association test results that draw immediate attention to any regions of significance (Figure \@ref(fig:showmanhattan)).
 
 
+```r
+# you could save the image, or just display it
+# png(paste0(COURSE_loc, "/dummy_project/gwas-manhattan.png"))
+qqman::manhattan(gwas_assoc_compl, main = "Manhattan Plot",
+                 ylim = c(0, 12),
+                 cex = 0.6, cex.axis = 0.9,
+                 col = c(uithof_color[16], uithof_color[24]))
+```
 
 <div class="figure" style="text-align: center">
 <img src="img/gwas_dummy/show-manhattan.png" alt="A manhattan plot." width="85%" />
@@ -66,9 +142,24 @@ We also need to create a _Manhattan plot_ to display the association test P-valu
 It is also informative to plot the density per chromosome. We can use the `CMplot` for that which you can find [here](https://github.com/YinLiLin/R-CMplot){target="_blank"}. For now we just make these graphs 'quick-n-dirty', you can further prettify them, but you easily loose track of time, so maybe carry on.
 
 
+```r
+gwas_assoc_complsub <- subset(gwas_assoc_compl, select = c("SNP", "CHR", "BP", "P"))
+```
 
 
 
+```r
+library("CMplot")
+
+CMplot(gwas_assoc_complsub,
+       plot.type = c("d", "c", "m", "q"), LOG10 = TRUE, ylim = NULL,
+       threshold = c(1e-6,1e-4), threshold.lty = c(1,2), threshold.lwd = c(1,1), threshold.col = c("black", "grey"),
+       amplify = TRUE,
+       bin.size = 1e6, chr.den.col = c("darkgreen", "yellow", "red"),
+       signal.col = c("red", "green"), signal.cex = c(1,1), signal.pch = c(19,19),
+       file.output = FALSE, file = "png", 
+       main = "", dpi = 300, verbose = TRUE)
+```
 
 > Question: What do the grey spots on the density plot indicate?
 

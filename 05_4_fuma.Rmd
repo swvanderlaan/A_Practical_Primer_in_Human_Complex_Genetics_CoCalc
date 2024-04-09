@@ -17,7 +17,7 @@ if(!knitr:::is_html_output())
 
 ```{r getting_started, message = FALSE, warning = FALSE, echo = FALSE, eval = TRUE, include = FALSE}
 # general setting to apply to all chunks - can be overrode per chunk.
-opts_chunk$set(echo = FALSE, 
+opts_chunk$set(echo = TRUE, 
                warning = FALSE, 
                message = FALSE, 
                out.width = "85%", 

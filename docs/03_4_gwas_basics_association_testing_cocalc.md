@@ -46,6 +46,23 @@ We can plot the per-stratum HWE p-values.
 > Question: Plot the per-stratum HWE p-values using R. [Hint: use and adapt the examples from the previous chapters.]
 
 
+```r
+library("ggpubr")
+ggpubr::gghistogram(gwas_HWE, x = "logP",
+                    add = "mean",
+                    add.params = list(color = "#595A5C", linetype = "dashed", size = 1),
+                    rug = TRUE,
+                    # color = "#1290D9", fill = "#1290D9",
+                    color = "TEST", fill = "TEST",
+                    palette = "lancet",
+                    facet.by = "TEST",
+                    bins = 50,
+                    xlab = "HWE -log10(P)") +
+  ggplot2::geom_vline(xintercept = 5, linetype = "dashed",
+                      color = "#E55738", size = 1)
+ggplot2::ggsave("data/dummy_project/gwas-hwe.png",
+       plot = last_plot())
+```
 
 <div class="figure" style="text-align: center">
 <img src="img/gwas_dummy/show-hwe-gwas.png" alt="Per stratum HWE p-values." width="85%" />
@@ -57,6 +74,17 @@ We will want to see what the distribution of allele frequencies looks like.
 > Question: Plot the allele frequencies using R. [Hint: use and adapt the examples from the previous chapters.]
 
 
+```r
+ggpubr::gghistogram(gwas_FRQ, x = "MAF",
+                    add = "mean", add.params = list(color = "#595A5C", linetype = "dashed", size = 1),
+                    rug = TRUE,
+                    color = "#1290D9", fill = "#1290D9",
+                    xlab = "minor allele frequency") +
+  ggplot2::geom_vline(xintercept = 0.05, linetype = "dashed",
+                      color = "#E55738", size = 1)
+ggplot2::ggsave("data/dummy_project/gwas-freq.png",
+       plot = last_plot())
+```
 
 <div class="figure" style="text-align: center">
 <img src="img/gwas_dummy/show-freq-gwas.png" alt="Minor allele frequencies." width="85%" />
@@ -68,6 +96,17 @@ We will want to identify samples that have poor call rates.
 > Question: Plot the per-sample call rates using R. [Hint: use and adapt the examples from the previous chapters.]
 
 
+```r
+ggpubr::gghistogram(gwas_IMISS, x = "callrate",
+                    add = "mean", add.params = list(color = "#595A5C", linetype = "dashed", size = 1),
+                    rug = TRUE, bins = 50,
+                    color = "#1290D9", fill = "#1290D9",
+                    xlab = "per sample call rate") +
+  ggplot2::geom_vline(xintercept = 0.95, linetype = "dashed",
+                      color = "#E55738", size = 1)
+ggplot2::ggsave("data/dummy_project/gwas-sample-call-rate.png",
+       plot = last_plot())
+```
 
 <div class="figure" style="text-align: center">
 <img src="img/gwas_dummy/show-sample-callrate-gwas.png" alt="Per sample call rates." width="85%" />
@@ -79,6 +118,17 @@ We also need to know what the per SNP call rates are.
 > Question: Plot the per-SNP call rates using R. [Hint: use and adapt the examples from the previous chapters.]
 
 
+```r
+ggpubr::gghistogram(gwas_LMISS, x = "callrate",
+                    add = "mean", add.params = list(color = "#595A5C", linetype = "dashed", size = 1),
+                    rug = TRUE, bins = 50,
+                    color = "#1290D9", fill = "#1290D9",
+                    xlab = "per SNP call rate") +
+  ggplot2::geom_vline(xintercept = 0.95, linetype = "dashed",
+                      color = "#E55738", size = 1)
+ggplot2::ggsave("data/dummy_project/gwas-snp-call-rate.png",
+       plot = last_plot())
+```
 
 <div class="figure" style="text-align: center">
 <img src="img/gwas_dummy/show-snp-callrate-gwas.png" alt="Per SNP call rates." width="85%" />
@@ -104,6 +154,15 @@ plink --bfile ~/data/shared/gwas/gwa --model --cell 3 --out dummy_project/data
 Let's review the contents of the results.
 
 
+```r
+gwas_model <- data.table::fread("dummy_project/data.model")
+
+dim(gwas_model)
+
+N_SNPS = length(gwas_model$SNP)
+
+gwas_model[1:10, 1:10]
+```
 
 
 
@@ -138,14 +197,25 @@ plink --bfile ~/data/shared/gwas/gwa --logistic sex --covar ~/data/shared/gwas/g
 
 Let's examine the results.
 
+```r
+gwas_assoc <- data.table::fread("dummy_project/data.assoc.logistic")
+```
 
 
 
+
+```r
+dim(gwas_assoc)
+```
 
 ```
 ## [1] 918306      9
 ```
 
+
+```r
+gwas_assoc[1:9, 1:9]
+```
 
 ```
 ##      CHR       SNP      BP     A1   TEST NMISS     OR     STAT      P

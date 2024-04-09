@@ -132,7 +132,7 @@ ggplot2::ggsave("dummy_project/gwas-qc-sample-call-rate.png",
 
 The grey dashed line in Figure \@ref(fig:showsamplecallrate) indicates the mean call rate, while the red dashed line indicates the threshold we had determined above.
 
-```{r showsamplecallrate, fig.align='center', fig.cap='Per sample call rate.', fig.show = TRUE, eval=TRUE}
+```{r showsamplecallrate, fig.align='center', fig.cap='Per sample call rate.', fig.show = TRUE, eval=TRUE, echo=FALSE}
 knitr::include_graphics("img/gwas_dummy/gwas-qc-sample-callrate.png")
 ```
 
@@ -274,7 +274,7 @@ abline(v = prop_miss, col = "#E55738", lty = 2)
 <!--                 color = "#E55738", size = 1) -->
 <!-- ``` -->
 
-```{r showheterozygosity, fig.align='center', fig.cap='Heterozygosity as a function of SNP call rate.', fig.show = TRUE, eval=TRUE}
+```{r showheterozygosity, fig.align='center', fig.cap='Heterozygosity as a function of SNP call rate.', fig.show = TRUE, eval=TRUE, echo=FALSE}
 knitr::include_graphics("img/gwas_dummy/show-heterozygosity.png")
 ```
 
@@ -299,7 +299,7 @@ If all is right, you'd have something like Table \@ref(tab:failedcallratehet).
 raw_IMISSHETsub <- data.table::fread("data/dummy_project/fail-raw_IMISSHETsub.txt")
 ```
 
-```{r tab.id = "failedcallratehet", tab.cap = "Failed samples due to sample call rates and heterozygosity rate.", eval = TRUE}
+```{r tab.id = "failedcallratehet", tab.cap = "Failed samples due to sample call rates and heterozygosity rate.", eval = TRUE, echo=FALSE}
 library("flextable")
 ft <- flextable(
   raw_IMISSHETsub,
@@ -327,7 +327,7 @@ relatedness <- openxlsx::read.xlsx("information.xlsx", sheet = "Relatedness")
 ```
 
 
-```{r, tab.id='showrelatedness', tab.cap='Familial relations and % DNA shared.', eval = TRUE}
+```{r, tab.id='showrelatedness', tab.cap='Familial relations and % DNA shared.', eval = TRUE, echo=FALSE}
 library("flextable")
 ft <- flextable(
   relatedness,
@@ -387,7 +387,7 @@ names(ibdcallissues)[names(ibdcallissues) == "V1"] <- "FID"
 names(ibdcallissues)[names(ibdcallissues) == "V2"] <- "IID"
 ```
 
-```{r tab.id='showibdcallissuesbook', tab.cap='Failed IBD and callrate.', eval = TRUE}
+```{r tab.id='showibdcallissuesbook', tab.cap='Failed IBD and callrate.', eval = TRUE, echo=FALSE}
 library("flextable")
 ft <- flextable(
   ibdcallissues,
@@ -758,7 +758,7 @@ awk '$3 < 0.0023' | awk '{ print $1, $2 }' > dummy_project/fail-ancestry-QC.txt
 
 Choosing which thresholds to apply (and thus which individuals to remove) is not a straightforward process. The key is to remove those individuals with greatly divergent ancestry, as these samples introduce the most bias to the study. Identification of more fine-scale ancestry can be conducted by using less divergent reference samples (_e.g._, within Europe, stratification could be identified using the CEU, TSI (Italian), GBR (British), FIN (Finnish) and IBS (Iberian) samples from the 1,000 Genomes Project (http://www.1000genomes.org/)). Robust identification of fine-scale population structure often requires the construction of many (2–10) principal components.
 
-```{r showpca1kg, fig.align='center', fig.cap='PCA - Your data vs. 1000g.', fig.show = TRUE, eval=TRUE}
+```{r showpca1kg, fig.align='center', fig.cap='PCA - Your data vs. 1000g.', fig.show = TRUE, eval=TRUE, echo=FALSE}
 knitr::include_graphics("img/gwas_dummy/gwas-qc-pca-1000g.png")
 ```
 

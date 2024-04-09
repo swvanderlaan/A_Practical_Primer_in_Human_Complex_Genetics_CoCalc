@@ -16,8 +16,8 @@ The WTCCC1 data were genotyped using a chip from [Affymetrix](https://www.thermo
 Before quality control the original data included: 
 
 - CAD cohort, n ± 2,000
-- Healthy controls, from the UK 1958 birth control cohort, n ± 1,500 (we won't use this)
-- Healthy controls, from the UK National Blood Service, n ± 1,500.
+- Healthy controls, from the UK 1958 birth control cohort (UKB58), n ± 1,500 (we won't use this)
+- Healthy controls, from the UK National Blood Service (NBS), n ± 1,500.
 
 ## Assignment
 

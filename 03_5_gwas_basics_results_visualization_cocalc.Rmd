@@ -17,7 +17,7 @@ if(!knitr:::is_html_output())
 
 ```{r getting_started, message = FALSE, warning = FALSE, echo = FALSE, eval = TRUE, include = FALSE}
 # general setting to apply to all chunks - can be overrode per chunk.
-opts_chunk$set(echo = FALSE, 
+opts_chunk$set(echo = TRUE, 
                warning = FALSE, 
                message = FALSE, 
                out.width = "85%", 
@@ -126,7 +126,7 @@ df <- as.data.frame(table(gwas_assoc_compl$CHR))
 names(df)[names(df) == "Var1"] <- "Chr"
 ```
 
-```{r, tab.id='listsnpsperchr', tab.cap='Number of SNPs per chromosome.', eval = TRUE, echo = FALSE}
+```{r, tab.id='listsnpsperchr', tab.cap='Number of SNPs per chromosome.', eval = TRUE, echo=FALSE, message=FALSE, warning=FALSE}
 library("flextable")
 ft <- flextable(
   df,
@@ -175,7 +175,7 @@ abline(h = gwas_threshold,
        col = uithof_color[25], lty = "dashed")
 ```
 
-```{r show-qq, fig.align='center', fig.cap='A QQ plot.', fig.show = TRUE, eval=TRUE}
+```{r show-qq, fig.align='center', fig.cap='A QQ plot.', fig.show = TRUE, eval=TRUE, echo=FALSE, message=FALSE, warning=FALSE}
 knitr::include_graphics(rep("img/gwas_dummy/show-qq.png"))
 ```
 
@@ -192,7 +192,7 @@ qqman::manhattan(gwas_assoc_compl, main = "Manhattan Plot",
                  col = c(uithof_color[16], uithof_color[24]))
 ```
 
-```{r showmanhattan, fig.align='center', fig.cap='A manhattan plot.', fig.show = TRUE, eval=TRUE}
+```{r showmanhattan, fig.align='center', fig.cap='A manhattan plot.', fig.show = TRUE, eval=TRUE, echo=FALSE, message=FALSE, warning=FALSE}
 knitr::include_graphics(rep("img/gwas_dummy/show-manhattan.png"))
 ```
 
@@ -221,19 +221,19 @@ CMplot(gwas_assoc_complsub,
 > Question: What do the grey spots on the density plot indicate?
 
 This would lead to the following graphs. 
-```{r showcmplotalldensity, fig.align='center', fig.cap='SNP density of the association results.', fig.show = TRUE, eval=TRUE}
+```{r showcmplotalldensity, fig.align='center', fig.cap='SNP density of the association results.', fig.show = TRUE, eval=TRUE, echo=FALSE, message=FALSE, warning=FALSE}
 knitr::include_graphics(rep("img/gwas_dummy/show-cmplot-all-density.png"))
 ```
 
-```{r showcmplotallqq, fig.align='center', fig.cap='A QQ plot including a 95% confidence interval (blue area) and genome-wide significant hits (red).', fig.show = TRUE, eval=TRUE}
+```{r showcmplotallqq, fig.align='center', fig.cap='A QQ plot including a 95% confidence interval (blue area) and genome-wide significant hits (red).', fig.show = TRUE, eval=TRUE, echo=FALSE, message=FALSE, warning=FALSE}
 knitr::include_graphics(rep("img/gwas_dummy/show-cmplot-all-qq.png"))
 ```
 
-```{r showcmplotallmanhattan, fig.align='center', fig.cap='A regular manhattan plot. Colored by chromosome, suggestive hits are green, genome-wide hits are red. The bottom graph shows the per-chromosome SNP density.', fig.show = TRUE, eval=TRUE}
+```{r showcmplotallmanhattan, fig.align='center', fig.cap='A regular manhattan plot. Colored by chromosome, suggestive hits are green, genome-wide hits are red. The bottom graph shows the per-chromosome SNP density.', fig.show = TRUE, eval=TRUE, echo=FALSE, message=FALSE, warning=FALSE}
 knitr::include_graphics(rep("img/gwas_dummy/show-cmplot-all-manhattan.png"))
 ```
 
-```{r show-cmplot-all-circular, fig.align='center', fig.cap='A circular manhattan.', fig.show = TRUE, eval=TRUE}
+```{r show-cmplot-all-circular, fig.align='center', fig.cap='A circular manhattan.', fig.show = TRUE, eval=TRUE, echo=FALSE, message=FALSE, warning=FALSE}
 knitr::include_graphics(rep("img/gwas_dummy/show-cmplot-all-circular.png"))
 ```
 

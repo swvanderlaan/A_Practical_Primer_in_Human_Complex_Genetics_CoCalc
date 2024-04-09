@@ -122,8 +122,20 @@ Using **RACER** is also a step-up to **colocalization** about which you read a b
 Right, so from the above we identified three independent hits: rs6802898, rs7901695, rs8050136. Let's put them in a dataset with their chromosome and basepair position and create a list.
 
 
+```r
+rsID <- c("rs6802898", "rs7901695", "rs8050136")
+CHR <- as.integer(c(3, 10, 16))
+BP <- as.integer(c(12366207, 114744078, 52373776))
+# BPend <- c(12366207 + 500000, 114744078 + 500000, 52373776 + 500000)
+
+variant_list <- data.frame(rsID, CHR, BP)
+```
 
 
+
+```r
+variant_list
+```
 
 ```
 ##        rsID CHR        BP
@@ -133,6 +145,12 @@ Right, so from the above we identified three independent hits: rs6802898, rs7901
 ```
 
 
+
+```r
+variants_of_interest <- c(variant_list$rsID)
+
+variants_of_interest
+```
 
 ```
 ## [1] "rs6802898" "rs7901695" "rs8050136"
@@ -165,6 +183,49 @@ tibble [306,102 × 14] (S3: tbl_df/tbl/data.frame)
 We could limit ourselves by limiting the region to plot by the clump-size (see above), but generally it's fine to just 'take the top variant ± 500kb'.
 
 
+```r
+library(RACER)
+
+RANGE=500000
+
+for(VARIANT in variants_of_interest){
+  cat(paste0("Getting data for ", VARIANT,".\n"))
+
+  tempCHR <- subset(variant_list, rsID == VARIANT)[,2]
+  tempSTART <- subset(variant_list, rsID == VARIANT)[,3] - RANGE
+  tempEND <- subset(variant_list, rsID == VARIANT)[,3] + RANGE
+  tempVARIANTnr <- subset(variant_list, rsID == VARIANT)[,1]
+
+  cat("\nSubset required data.\n")
+  temp <- subset(gwas_assoc_compl, 
+                 CHR == tempCHR & (BP >= tempSTART & BP <= tempEND))
+
+  cat("\nFormatting association data.\n")
+  # make sure you have the right column numbers here!
+  temp_f = RACER::formatRACER(assoc_data = temp, chr_col = 2, pos_col = 3, p_col = 14)
+
+  cat("\nGetting LD data.\n")
+  temp_f_ld = RACER::ldRACER(assoc_data = temp_f, rs_col = 1, pops = "EUR", lead_snp = VARIANT)
+  
+  cat(paste0("\nPlotting region surrounding ", VARIANT," on ",tempCHR,":",tempSTART,"-",tempEND,".\n"))
+  # source(paste0(PROJECT_loc, "/scripts/functions.R"))
+  p1 <- singlePlotRACER(assoc_data = temp_f_ld, 
+                               chr = tempCHR, build = "hg19", 
+                               plotby = "snp", snp_plot = VARIANT,
+                               label_lead = TRUE)
+  
+  print(p1)
+  cat(paste0("Saving image for ", VARIANT,".\n"))
+  ggsave(filename = paste0(COURSE_loc, "/dummy_project/", tempVARIANTnr, ".",VARIANT,".regional_assoc.png"), plot = p1)
+  # ggsave(filename = paste0(COURSE_loc, "/dummy_project/", tempVARIANTnr, ".",VARIANT,".regional_assoc.pdf"), plot = p1)
+  # ggsave(filename = paste0(COURSE_loc, "/dummy_project/", tempVARIANTnr, ".",VARIANT,".regional_assoc.eps"), plot = p1)
+  
+  rm(temp, p1,
+     temp_f, temp_f_ld,
+     tempCHR, tempSTART, tempEND,
+     VARIANT, tempVARIANTnr)
+}
+```
 
 This should produce the figure similar to these below. 
 <div class="figure" style="text-align: center">

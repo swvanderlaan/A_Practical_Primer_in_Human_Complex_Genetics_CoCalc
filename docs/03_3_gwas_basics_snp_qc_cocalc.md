@@ -19,10 +19,30 @@ plink --bfile dummy_project/clean_inds_data --missing --out dummy_project/clean_
 Let's visualize the results to identify a threshold for extreme genotype failure rate. We chose a callrate threshold of 3%, but it's arbitrary and depending on the dataset, the data (visualization), and the number of samples (Figure \@ref(fig:showsnpcallrate)).
 
 
+```r
+library("data.table")
+clean_LMISS <- data.table::fread("dummy_project/clean_inds_data.lmiss")
+
+clean_LMISS$callrate <- 1 - clean_LMISS$F_MISS
+```
 
 
 
 
+```r
+library("ggpubr")
+
+clean_LMISS_plot <- ggpubr::gghistogram(clean_LMISS, x = "callrate",
+                                        add = "mean", add.params = list(color = "#595A5C", linetype = "dashed", size = 1),
+                                        rug = TRUE, bins = 50,
+                                        color = "#1290D9", fill = "#1290D9",
+                                        xlab = "per SNP call rate") +
+  ggplot2::geom_vline(xintercept = 0.95, linetype = "dashed",
+                      color = "#E55738", size = 1)
+
+ggplot2::ggsave("dummy_project/gwas-qc-snp-call-rate.png", plot = clean_LMISS_plot)
+clean_LMISS_plot
+```
 
 <div class="figure" style="text-align: center">
 <img src="img/gwas_dummy/show-snp-callrate.png" alt="Per SNP call rate." width="85%" />
@@ -54,10 +74,25 @@ plink --bfile dummy_project/clean_inds_data --freq --out dummy_project/clean_ind
 Let's also plot these data. You can view the result below, and try it yourself (Figure \@ref(fig:showfreq)).
 
 
+```r
+clean_FREQ <- data.table::fread("dummy_project/clean_inds_data.frq")
+```
 
 
 
 
+```r
+clean_FREQ_plot <- ggpubr::gghistogram(clean_FREQ, x = "MAF",
+                                       add = "mean", add.params = list(color = "#595A5C", linetype = "dashed", size = 1),
+                                       rug = TRUE,
+                                       color = "#1290D9", fill = "#1290D9",
+                                       xlab = "minor allele frequency") +
+  ggplot2::geom_vline(xintercept = 0.05, linetype = "dashed",
+                      color = "#E55738", size = 1)
+
+ggplot2::ggsave("dummy_project/gwas-qc-snp-freq.png", plot = clean_FREQ_plot)
+clean_FREQ_plot
+```
 
 <div class="figure" style="text-align: center">
 <img src="img/gwas_dummy/show-freq.png" alt="Minor allele frequency." width="85%" />
@@ -97,10 +132,31 @@ plink --bfile dummy_project/clean_inds_data --hardy --out dummy_project/clean_in
 Let's also plot these data. You can view the result below, and type over the code to do it yourself.
 
 
+```r
+clean_HWE <- data.table::fread("dummy_project/clean_inds_data.hwe")
+clean_HWE$logP <- -log10(clean_HWE$P)
+```
 
 
 
 
+```r
+clean_HWE_plot <- ggpubr::gghistogram(clean_HWE, x = "logP",
+                                      add = "mean",
+                                      add.params = list(color = "#595A5C", linetype = "dashed", size = 1),
+                                      rug = TRUE,
+                                      # color = "#1290D9", fill = "#1290D9",
+                                      color = "TEST", fill = "TEST",
+                                      palette = "lancet",
+                                      facet.by = "TEST",
+                                      bins = 50,
+                                      xlab = "HWE -log10(P)") +
+  ggplot2::geom_vline(xintercept = 5, linetype = "dashed",
+                      color = "#E55738", size = 1)
+
+ggplot2::ggsave("dummy_project/gwas-qc-snp-hwe.png", plot = clean_HWE_plot)
+clean_HWE_plot
+```
 
 <div class="figure" style="text-align: center">
 <img src="img/gwas_dummy/show-hwe.png" alt="Hardy-Weinberg Equilibrium p-values per stratum." width="85%" />

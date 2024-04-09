@@ -24,11 +24,11 @@ Table: (\#tab:tab-phewas)PheWAS Resources.
 |http://phewas.mrbase.org               |UK Biobank based                         |
 
 
-*Assignment*
-
-1. Perform a PheWAS with a few of the resources and your favorite SNP from this tutorial. 
-2. Compare the different websites. What do you notice?
-3. How is a PheWAS informative?
+> *Assignment*
+> 
+> 1. Perform a PheWAS with a few of the resources and your favorite SNP from this tutorial. 
+> 2. Compare the different websites. What do you notice?
+> 3. How is a PheWAS informative?
 
 
 ## What's next?
