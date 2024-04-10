@@ -136,11 +136,11 @@ This will result in Figure \@ref(fig:show-wtccc1-callratesnp).
 
 Now that we have handle on the data, we can filter it. 
 
-> Question: Do you have any thoughts on that? Do you agree with the filters I set below? How would you do it differently and why?
-
 ```
 plink --bfile wtccc1/wtccc1 --exclude wtccc1/wtccc1-fail-diffmiss-qc.txt --maf 0.01 --geno 0.05 --hwe 0.00001 --make-bed --out wtccc1/wtccc1_clean
 ```
+
+> Question: Do you have any thoughts on that? Do you agree with the filters I set below? How would you do it differently and why?
 
 ## Ancestral background
 

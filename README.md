@@ -8,8 +8,8 @@ This book was made possible by the kind help of Caspar J. van Lissa who wrote an
 
 #### Changes log
     
-    _Version:_      v2.2.3</br>
-    _Last update:_  2024-04-09</br>
+    _Version:_      v2.2.4</br>
+    _Last update:_  2024-04-10</br>
     _Written by:_   Sander W. van der Laan (s.w.vanderlaan-2[at]umcutrecht.nl).
     
     **MoSCoW To-Do List**
@@ -29,7 +29,7 @@ This book was made possible by the kind help of Caspar J. van Lissa who wrote an
     - [] `M` conditional analysis
     - [] `M` statistical finemapping
     - [] `M` colocalization with formal testing
-    ~- [] `M` MRbase tutorial > dropped in favor of Two Sample MR~
+    - [x] `M` MRbase tutorial > dropped in favor of Two Sample MR > added a quick-and-dirty fix for now
     - [] `M` Add partial recreation of the Cystatin C MR study
     - [x] `M` overall rendering too slow, paste in images as figure instead of on the fly generating
     - [] `M` fix issue with PDF creation
@@ -66,6 +66,7 @@ This book was made possible by the kind help of Caspar J. van Lissa who wrote an
       - https://iconifier.net
 
     **Changes log**
+    * v2.2.4 Removed code block in FUMA-chapter. Added quick-and-dirty fix for MRBase. Added Answers to questions.
     * v2.2.3 Fixes to the rendering of the book. Fixes to the references. Fixed issue with FUMA input file. Splitted the WTCCC1 analyses in 3 parts, first introduction, then quality control, finally association testing.
     * v2.2.2 Small fix to remove `knitr` codes. Fixed errors in `opts$chunks` for `knitr` and `rmarkdown` regarding 'echo'.
     * v2.2.1 Small fixes to references. Added book cover. Added favicon and Apple-touch-icon.

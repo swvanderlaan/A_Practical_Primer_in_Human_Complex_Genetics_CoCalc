@@ -130,9 +130,22 @@ knitr::include_graphics(rep("img/gwas_wtccc/WTCCC1ResultsManhattan-circular.png"
 
 How many peaks do you see in the Manhattan? As you learned earlier, an important step after a GWAS is to identify the independent hits by _"clumping"_ the results. We will just use the defaults, but please take a note of all the options here [https://www.cog-genomics.org/plink/1.9/postproc#clump](https://www.cog-genomics.org/plink/1.9/postproc#clump){target="_blank"}.
 
+First, you want to save this new concatenated and filtered resulst file.
+
+```{r WTCCC1ResultsPrep-save, eval = FALSE}
+data.table::fwrite(wtccc1_assoc_compl,
+                   file = "data/wtccc1/wtccc1_assoc_compl.txt.gz",
+                   sep = " ",
+                   na = "NA",
+                   row.names = FALSE, col.names = TRUE,
+                   quote = FALSE,
+                   showProgress = TRUE, verbose = TRUE)
+```
+
+Next, you can run this command to _clump_ the results. Note that `PLINK` can handle `.gz` files. 
 
 ```
-plink --bfile wtccc1/1kg_phase1_wtccc1 --allow-extra-chr --clump wtccc1/wtccc1_qc_log_covar_pca.assoc.logistic --clump-snp-field SNP --clump-field P --clump-p1 5.0e-8 --clump-p2 0.05 --clump-r2 0.05 --clump-kb 1000 --out wtccc1/wtccc1_qc_log_covar_pca.assoc.logistic.clumped --clump-verbose --clump-annotate CHR,BP,A1,A2,MAF,callrate,NMISS,NCHROBS,BETA,SE,OR,STAT
+plink --bfile wtccc1/1kg_phase1_wtccc1 --allow-extra-chr --clump wtccc1/wtccc1_assoc_compl.txt.gz --clump-snp-field SNP --clump-field P --clump-p1 5.0e-8 --clump-p2 0.05 --clump-r2 0.05 --clump-kb 1000 --out wtccc1/wtccc1_qc_log_covar_pca.assoc.logistic.clumped --clump-verbose --clump-annotate CHR,BP,A1,A2,MAF,callrate,NMISS,NCHROBS,BETA,SE,OR,STAT
 ```
 
 Now you will have a list of all the _independent_ SNPs, _i.e._ the genetic loci, that are associated to the trait.

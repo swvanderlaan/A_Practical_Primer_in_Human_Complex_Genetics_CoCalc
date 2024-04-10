@@ -340,12 +340,12 @@ div.csl-indent {
 <li class="chapter" data-level="21.1" data-path="answers.html"><a href="answers.html#chapter-3.1-gwas-basics"><i class="fa fa-check"></i><b>21.1</b> Chapter 3.1: GWAS Basics</a></li>
 <li class="chapter" data-level="21.2" data-path="answers.html"><a href="answers.html#chapter-3.4-gwas-basics---association-testing"><i class="fa fa-check"></i><b>21.2</b> Chapter 3.4: GWAS Basics - Association testing</a></li>
 <li class="chapter" data-level="21.3" data-path="answers.html"><a href="answers.html#chapter-3.5-gwas-visualization"><i class="fa fa-check"></i><b>21.3</b> Chapter 3.5: GWAS visualization</a></li>
-<li class="chapter" data-level="21.4" data-path="answers.html"><a href="answers.html#chapter-4.2-wtccc1"><i class="fa fa-check"></i><b>21.4</b> Chapter 4.2: WTCCC1</a></li>
-<li class="chapter" data-level="21.5" data-path="answers.html"><a href="answers.html#chapter-4.3-wtccc1---association-testing"><i class="fa fa-check"></i><b>21.5</b> Chapter 4.3: WTCCC1 - Association testing</a></li>
-<li class="chapter" data-level="21.6" data-path="answers.html"><a href="answers.html#chapter-5.4-fuma"><i class="fa fa-check"></i><b>21.6</b> Chapter 5.4: FUMA</a></li>
-<li class="chapter" data-level="21.7" data-path="answers.html"><a href="answers.html#chapter-5.5-phewas"><i class="fa fa-check"></i><b>21.7</b> Chapter 5.5: PheWAS</a></li>
-<li class="chapter" data-level="21.8" data-path="answers.html"><a href="answers.html#chapter-5.7-twosample-mr"><i class="fa fa-check"></i><b>21.8</b> Chapter 5.7: TwoSample MR</a></li>
-<li class="chapter" data-level="21.9" data-path="answers.html"><a href="answers.html#chapter-8.1-regional-association-plots"><i class="fa fa-check"></i><b>21.9</b> Chapter 8.1: Regional association plots</a></li>
+<li class="chapter" data-level="21.4" data-path="answers.html"><a href="answers.html#chapter-3.6-regional-association-plots"><i class="fa fa-check"></i><b>21.4</b> Chapter 3.6: Regional association plots</a></li>
+<li class="chapter" data-level="21.5" data-path="answers.html"><a href="answers.html#chapter-4.2-wtccc1"><i class="fa fa-check"></i><b>21.5</b> Chapter 4.2: WTCCC1</a></li>
+<li class="chapter" data-level="21.6" data-path="answers.html"><a href="answers.html#chapter-4.3-wtccc1---association-testing"><i class="fa fa-check"></i><b>21.6</b> Chapter 4.3: WTCCC1 - Association testing</a></li>
+<li class="chapter" data-level="21.7" data-path="answers.html"><a href="answers.html#chapter-5.4-fuma"><i class="fa fa-check"></i><b>21.7</b> Chapter 5.4: FUMA</a></li>
+<li class="chapter" data-level="21.8" data-path="answers.html"><a href="answers.html#chapter-5.5-phewas"><i class="fa fa-check"></i><b>21.8</b> Chapter 5.5: PheWAS</a></li>
+<li class="chapter" data-level="21.9" data-path="answers.html"><a href="answers.html#chapter-5.7-twosample-mr"><i class="fa fa-check"></i><b>21.9</b> Chapter 5.7: TwoSample MR</a></li>
 </ul></li>
 <li class="chapter" data-level="22" data-path="license.html"><a href="license.html"><i class="fa fa-check"></i><b>22</b> Licenses and disclaimers</a>
 <ul>
@@ -466,7 +466,16 @@ Figure 14.4: A circular manhattan.
 <div id="independent-hits" class="section level2 hasAnchor" number="14.2">
 <h2><span class="header-section-number">14.2</span> Independent hits<a href="wtccc1-assoc-cocalc.html#independent-hits" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>How many peaks do you see in the Manhattan? As you learned earlier, an important step after a GWAS is to identify the independent hits by <em>“clumping”</em> the results. We will just use the defaults, but please take a note of all the options here <a href="https://www.cog-genomics.org/plink/1.9/postproc#clump" target="_blank">https://www.cog-genomics.org/plink/1.9/postproc#clump</a>.</p>
-<pre><code>plink --bfile wtccc1/1kg_phase1_wtccc1 --allow-extra-chr --clump wtccc1/wtccc1_qc_log_covar_pca.assoc.logistic --clump-snp-field SNP --clump-field P --clump-p1 5.0e-8 --clump-p2 0.05 --clump-r2 0.05 --clump-kb 1000 --out wtccc1/wtccc1_qc_log_covar_pca.assoc.logistic.clumped --clump-verbose --clump-annotate CHR,BP,A1,A2,MAF,callrate,NMISS,NCHROBS,BETA,SE,OR,STAT</code></pre>
+<p>First, you want to save this new concatenated and filtered resulst file.</p>
+<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="wtccc1-assoc-cocalc.html#cb147-1" tabindex="-1"></a>data.table<span class="sc">::</span><span class="fu">fwrite</span>(wtccc1_assoc_compl,</span>
+<span id="cb147-2"><a href="wtccc1-assoc-cocalc.html#cb147-2" tabindex="-1"></a>                   <span class="at">file =</span> <span class="st">&quot;data/wtccc1/wtccc1_assoc_compl.txt.gz&quot;</span>,</span>
+<span id="cb147-3"><a href="wtccc1-assoc-cocalc.html#cb147-3" tabindex="-1"></a>                   <span class="at">sep =</span> <span class="st">&quot; &quot;</span>,</span>
+<span id="cb147-4"><a href="wtccc1-assoc-cocalc.html#cb147-4" tabindex="-1"></a>                   <span class="at">na =</span> <span class="st">&quot;NA&quot;</span>,</span>
+<span id="cb147-5"><a href="wtccc1-assoc-cocalc.html#cb147-5" tabindex="-1"></a>                   <span class="at">row.names =</span> <span class="cn">FALSE</span>, <span class="at">col.names =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb147-6"><a href="wtccc1-assoc-cocalc.html#cb147-6" tabindex="-1"></a>                   <span class="at">quote =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb147-7"><a href="wtccc1-assoc-cocalc.html#cb147-7" tabindex="-1"></a>                   <span class="at">showProgress =</span> <span class="cn">TRUE</span>, <span class="at">verbose =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<p>Next, you can run this command to <em>clump</em> the results. Note that <code>PLINK</code> can handle <code>.gz</code> files.</p>
+<pre><code>plink --bfile wtccc1/1kg_phase1_wtccc1 --allow-extra-chr --clump wtccc1/wtccc1_assoc_compl.txt.gz --clump-snp-field SNP --clump-field P --clump-p1 5.0e-8 --clump-p2 0.05 --clump-r2 0.05 --clump-kb 1000 --out wtccc1/wtccc1_qc_log_covar_pca.assoc.logistic.clumped --clump-verbose --clump-annotate CHR,BP,A1,A2,MAF,callrate,NMISS,NCHROBS,BETA,SE,OR,STAT</code></pre>
 <p>Now you will have a list of all the <em>independent</em> SNPs, <em>i.e.</em> the genetic loci, that are associated to the trait.</p>
 <pre><code>cat wtccc1/wtccc1_qc_log_covar_pca.assoc.logistic.clumped</code></pre>
 <blockquote>

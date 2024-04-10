@@ -340,12 +340,12 @@ div.csl-indent {
 <li class="chapter" data-level="21.1" data-path="answers.html"><a href="answers.html#chapter-3.1-gwas-basics"><i class="fa fa-check"></i><b>21.1</b> Chapter 3.1: GWAS Basics</a></li>
 <li class="chapter" data-level="21.2" data-path="answers.html"><a href="answers.html#chapter-3.4-gwas-basics---association-testing"><i class="fa fa-check"></i><b>21.2</b> Chapter 3.4: GWAS Basics - Association testing</a></li>
 <li class="chapter" data-level="21.3" data-path="answers.html"><a href="answers.html#chapter-3.5-gwas-visualization"><i class="fa fa-check"></i><b>21.3</b> Chapter 3.5: GWAS visualization</a></li>
-<li class="chapter" data-level="21.4" data-path="answers.html"><a href="answers.html#chapter-4.2-wtccc1"><i class="fa fa-check"></i><b>21.4</b> Chapter 4.2: WTCCC1</a></li>
-<li class="chapter" data-level="21.5" data-path="answers.html"><a href="answers.html#chapter-4.3-wtccc1---association-testing"><i class="fa fa-check"></i><b>21.5</b> Chapter 4.3: WTCCC1 - Association testing</a></li>
-<li class="chapter" data-level="21.6" data-path="answers.html"><a href="answers.html#chapter-5.4-fuma"><i class="fa fa-check"></i><b>21.6</b> Chapter 5.4: FUMA</a></li>
-<li class="chapter" data-level="21.7" data-path="answers.html"><a href="answers.html#chapter-5.5-phewas"><i class="fa fa-check"></i><b>21.7</b> Chapter 5.5: PheWAS</a></li>
-<li class="chapter" data-level="21.8" data-path="answers.html"><a href="answers.html#chapter-5.7-twosample-mr"><i class="fa fa-check"></i><b>21.8</b> Chapter 5.7: TwoSample MR</a></li>
-<li class="chapter" data-level="21.9" data-path="answers.html"><a href="answers.html#chapter-8.1-regional-association-plots"><i class="fa fa-check"></i><b>21.9</b> Chapter 8.1: Regional association plots</a></li>
+<li class="chapter" data-level="21.4" data-path="answers.html"><a href="answers.html#chapter-3.6-regional-association-plots"><i class="fa fa-check"></i><b>21.4</b> Chapter 3.6: Regional association plots</a></li>
+<li class="chapter" data-level="21.5" data-path="answers.html"><a href="answers.html#chapter-4.2-wtccc1"><i class="fa fa-check"></i><b>21.5</b> Chapter 4.2: WTCCC1</a></li>
+<li class="chapter" data-level="21.6" data-path="answers.html"><a href="answers.html#chapter-4.3-wtccc1---association-testing"><i class="fa fa-check"></i><b>21.6</b> Chapter 4.3: WTCCC1 - Association testing</a></li>
+<li class="chapter" data-level="21.7" data-path="answers.html"><a href="answers.html#chapter-5.4-fuma"><i class="fa fa-check"></i><b>21.7</b> Chapter 5.4: FUMA</a></li>
+<li class="chapter" data-level="21.8" data-path="answers.html"><a href="answers.html#chapter-5.5-phewas"><i class="fa fa-check"></i><b>21.8</b> Chapter 5.5: PheWAS</a></li>
+<li class="chapter" data-level="21.9" data-path="answers.html"><a href="answers.html#chapter-5.7-twosample-mr"><i class="fa fa-check"></i><b>21.9</b> Chapter 5.7: TwoSample MR</a></li>
 </ul></li>
 <li class="chapter" data-level="22" data-path="license.html"><a href="license.html"><i class="fa fa-check"></i><b>22</b> Licenses and disclaimers</a>
 <ul>
@@ -391,14 +391,14 @@ div.csl-indent {
 <h2><span class="header-section-number">19.1</span> Loading the package<a href="mr_twosamplemr.html#loading-the-package" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><code>TwoSampleMR</code> is free use. It used to require server-authentication using a gmail-account, now it doesn’t anymore. Should run into an issue, please refer to <a href="https://mrcieu.github.io/TwoSampleMR/articles/introduction.html" target="_blank">this page</a>.</p>
 <p>First we load the package.</p>
-<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="mr_twosamplemr.html#cb149-1" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;TwoSampleMR&quot;</span>)</span>
-<span id="cb149-2"><a href="mr_twosamplemr.html#cb149-2" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;MRInstruments&quot;</span>)</span>
-<span id="cb149-3"><a href="mr_twosamplemr.html#cb149-3" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;ieugwasr&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="mr_twosamplemr.html#cb150-1" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;TwoSampleMR&quot;</span>)</span>
+<span id="cb150-2"><a href="mr_twosamplemr.html#cb150-2" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;MRInstruments&quot;</span>)</span>
+<span id="cb150-3"><a href="mr_twosamplemr.html#cb150-3" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;ieugwasr&quot;</span>)</span></code></pre></div>
 </div>
 <div id="available-outcome" class="section level2 hasAnchor" number="19.2">
 <h2><span class="header-section-number">19.2</span> Available outcome<a href="mr_twosamplemr.html#available-outcome" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>We are ready to load in the available outcomes.</p>
-<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="mr_twosamplemr.html#cb150-1" tabindex="-1"></a>ao_twosamplemr <span class="ot">&lt;-</span> <span class="fu">available_outcomes</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb151-1"><a href="mr_twosamplemr.html#cb151-1" tabindex="-1"></a>ao_twosamplemr <span class="ot">&lt;-</span> <span class="fu">available_outcomes</span>()</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:twosamplemravout"></span>
 <img src="img/twosamplemr/twosamplemr_avout.png" alt="Available data." width="85%" />
 <p class="caption">
@@ -417,9 +417,9 @@ Figure 19.1: Available data.
 <li><em>aries_mqtl</em>, all known methylation QTLs (mQTLs) associated to DNA methylation in blood from ARIES</li>
 </ul>
 <p>Let’s select T2D associated instruments.</p>
-<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb151-1"><a href="mr_twosamplemr.html#cb151-1" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;gwas_catalog&quot;</span>)</span>
-<span id="cb151-2"><a href="mr_twosamplemr.html#cb151-2" tabindex="-1"></a>t2d_gwas <span class="ot">&lt;-</span> <span class="fu">subset</span>(gwas_catalog, <span class="fu">grepl</span>(<span class="st">&quot;Mahajan&quot;</span>, Author) <span class="sc">&amp;</span> PubmedID <span class="sc">==</span> <span class="st">&quot;24509480&quot;</span> <span class="sc">&amp;</span> Phenotype <span class="sc">==</span> <span class="st">&quot;Type 2 diabetes&quot;</span>)</span>
-<span id="cb151-3"><a href="mr_twosamplemr.html#cb151-3" tabindex="-1"></a>t2d_exp_dat <span class="ot">&lt;-</span> <span class="fu">format_data</span>(t2d_gwas)</span></code></pre></div>
+<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="mr_twosamplemr.html#cb152-1" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;gwas_catalog&quot;</span>)</span>
+<span id="cb152-2"><a href="mr_twosamplemr.html#cb152-2" tabindex="-1"></a>t2d_gwas <span class="ot">&lt;-</span> <span class="fu">subset</span>(gwas_catalog, <span class="fu">grepl</span>(<span class="st">&quot;Mahajan&quot;</span>, Author) <span class="sc">&amp;</span> PubmedID <span class="sc">==</span> <span class="st">&quot;24509480&quot;</span> <span class="sc">&amp;</span> Phenotype <span class="sc">==</span> <span class="st">&quot;Type 2 diabetes&quot;</span>)</span>
+<span id="cb152-3"><a href="mr_twosamplemr.html#cb152-3" tabindex="-1"></a>t2d_exp_dat <span class="ot">&lt;-</span> <span class="fu">format_data</span>(t2d_gwas)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:twosamplemrinstruments"></span>
 <img src="img/twosamplemr/twosamplemr_instruments.png" alt="Available data." width="85%" />
 <p class="caption">
@@ -430,7 +430,7 @@ Figure 19.2: Available data.
 <div id="clumping-1" class="section level2 hasAnchor" number="19.4">
 <h2><span class="header-section-number">19.4</span> Clumping<a href="mr_twosamplemr.html#clumping-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Like with identifying independent GWAS hits, it is important for TwoSampleMR to ensure that the instruments for the exposure are independent. We can use MR Base to perform clumping. The European samples from the 1000 genomes project are used to estimate LD between SNPs. You can provide a list of SNP IDs, the SNPs will be extracted from 1000 genomes data, LD calculated between them, and amongst those SNPs that have LD R-square above the specified threshold only the SNP with the lowest P-value will be retained. To do this, use the following command.</p>
-<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="mr_twosamplemr.html#cb152-1" tabindex="-1"></a>t2d_exp_dat <span class="ot">&lt;-</span> <span class="fu">clump_data</span>(t2d_exp_dat)</span></code></pre></div>
+<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="mr_twosamplemr.html#cb153-1" tabindex="-1"></a>t2d_exp_dat <span class="ot">&lt;-</span> <span class="fu">clump_data</span>(t2d_exp_dat)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:twosamplemrclump"></span>
 <img src="img/twosamplemr/twosamplemr_clump.png" alt="All available data." width="85%" />
 <p class="caption">
@@ -441,7 +441,7 @@ Figure 19.3: All available data.
 <div id="outcomes" class="section level2 hasAnchor" number="19.5">
 <h2><span class="header-section-number">19.5</span> Outcomes<a href="mr_twosamplemr.html#outcomes" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Right, so now we are ready to select the proper outcome, CAD. There are multiple datasets available in MRBase, the database used by <code>TwoSampleMR</code>. Let’s review them all and select one with the largest overlap with our exposure SNPs.</p>
-<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="mr_twosamplemr.html#cb153-1" tabindex="-1"></a>ao_twosamplemr[<span class="fu">grepl</span>(<span class="st">&quot;heart disease&quot;</span>, ao_twosamplemr<span class="sc">$</span>trait), ]</span></code></pre></div>
+<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="mr_twosamplemr.html#cb154-1" tabindex="-1"></a>ao_twosamplemr[<span class="fu">grepl</span>(<span class="st">&quot;heart disease&quot;</span>, ao_twosamplemr<span class="sc">$</span>trait), ]</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:twosamplemrchd"></span>
 <img src="img/twosamplemr/twosamplemr_chd.png" alt="Available CHD data." width="85%" />
 <p class="caption">
@@ -512,13 +512,13 @@ Figure 19.4: Available CHD data.
 </tbody>
 </table>
 <p>We will use the <code>ieu-a-7</code> dataset as this provides the latest and the greatest, but at the same time (when you go into the literature and dig up the publication) you need a good and sharp definition of the outcome you are interested in.</p>
-<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="mr_twosamplemr.html#cb154-1" tabindex="-1"></a>chd_out_dat <span class="ot">&lt;-</span> <span class="fu">extract_outcome_data</span>(</span>
-<span id="cb154-2"><a href="mr_twosamplemr.html#cb154-2" tabindex="-1"></a>    <span class="at">snps =</span> t2d_exp_dat<span class="sc">$</span>SNP,</span>
-<span id="cb154-3"><a href="mr_twosamplemr.html#cb154-3" tabindex="-1"></a>    <span class="co"># outcomes = &quot;UKB-a:534&quot; # - this one is deprecated, use the one below</span></span>
-<span id="cb154-4"><a href="mr_twosamplemr.html#cb154-4" tabindex="-1"></a>    <span class="co"># Deprecated IDs being used? Detected numeric IDs. Trying to fix, but please note the changes below for future.</span></span>
-<span id="cb154-5"><a href="mr_twosamplemr.html#cb154-5" tabindex="-1"></a>    <span class="co"># UKB-a:534  -&gt;  ukb-a-534</span></span>
-<span id="cb154-6"><a href="mr_twosamplemr.html#cb154-6" tabindex="-1"></a>    <span class="at">outcomes =</span> <span class="st">&quot;ieu-a-7&quot;</span></span>
-<span id="cb154-7"><a href="mr_twosamplemr.html#cb154-7" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="mr_twosamplemr.html#cb155-1" tabindex="-1"></a>chd_out_dat <span class="ot">&lt;-</span> <span class="fu">extract_outcome_data</span>(</span>
+<span id="cb155-2"><a href="mr_twosamplemr.html#cb155-2" tabindex="-1"></a>    <span class="at">snps =</span> t2d_exp_dat<span class="sc">$</span>SNP,</span>
+<span id="cb155-3"><a href="mr_twosamplemr.html#cb155-3" tabindex="-1"></a>    <span class="co"># outcomes = &quot;UKB-a:534&quot; # - this one is deprecated, use the one below</span></span>
+<span id="cb155-4"><a href="mr_twosamplemr.html#cb155-4" tabindex="-1"></a>    <span class="co"># Deprecated IDs being used? Detected numeric IDs. Trying to fix, but please note the changes below for future.</span></span>
+<span id="cb155-5"><a href="mr_twosamplemr.html#cb155-5" tabindex="-1"></a>    <span class="co"># UKB-a:534  -&gt;  ukb-a-534</span></span>
+<span id="cb155-6"><a href="mr_twosamplemr.html#cb155-6" tabindex="-1"></a>    <span class="at">outcomes =</span> <span class="st">&quot;ieu-a-7&quot;</span></span>
+<span id="cb155-7"><a href="mr_twosamplemr.html#cb155-7" tabindex="-1"></a>)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:twosamplemrchdout"></span>
 <img src="img/twosamplemr/twosamplemr_chdout.png" alt="Extracting available top SNPs." width="85%" />
 <p class="caption">
@@ -528,10 +528,10 @@ Figure 19.5: Extracting available top SNPs.
 <div id="harmonisation" class="section level3 hasAnchor" number="19.5.1">
 <h3><span class="header-section-number">19.5.1</span> Harmonisation<a href="mr_twosamplemr.html#harmonisation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>It is important to make sure that the effect allele associated to T2D of any given SNP is the same as the effect allele associated CAD. In other words, we need to harmonise the data.</p>
-<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="mr_twosamplemr.html#cb155-1" tabindex="-1"></a>dat <span class="ot">&lt;-</span> <span class="fu">harmonise_data</span>(</span>
-<span id="cb155-2"><a href="mr_twosamplemr.html#cb155-2" tabindex="-1"></a>    <span class="at">exposure_dat =</span> t2d_exp_dat,</span>
-<span id="cb155-3"><a href="mr_twosamplemr.html#cb155-3" tabindex="-1"></a>    <span class="at">outcome_dat =</span> chd_out_dat</span>
-<span id="cb155-4"><a href="mr_twosamplemr.html#cb155-4" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="mr_twosamplemr.html#cb156-1" tabindex="-1"></a>dat <span class="ot">&lt;-</span> <span class="fu">harmonise_data</span>(</span>
+<span id="cb156-2"><a href="mr_twosamplemr.html#cb156-2" tabindex="-1"></a>    <span class="at">exposure_dat =</span> t2d_exp_dat,</span>
+<span id="cb156-3"><a href="mr_twosamplemr.html#cb156-3" tabindex="-1"></a>    <span class="at">outcome_dat =</span> chd_out_dat</span>
+<span id="cb156-4"><a href="mr_twosamplemr.html#cb156-4" tabindex="-1"></a>)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:twosamplemrharmonise"></span>
 <img src="img/twosamplemr/twosamplemr_harmonise.png" alt="Harmonising the instruments." width="85%" />
 <p class="caption">
@@ -551,9 +551,9 @@ Figure 19.6: Harmonising the instruments.
 <div id="mendelian-randomisation" class="section level3 hasAnchor" number="19.5.2">
 <h3><span class="header-section-number">19.5.2</span> Mendelian randomisation<a href="mr_twosamplemr.html#mendelian-randomisation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Now that the data is harmonised, we are ready to perform a MR and test for a causal relation of T2D with CAD.</p>
-<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="mr_twosamplemr.html#cb156-1" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">mr</span>(dat)</span>
-<span id="cb156-2"><a href="mr_twosamplemr.html#cb156-2" tabindex="-1"></a></span>
-<span id="cb156-3"><a href="mr_twosamplemr.html#cb156-3" tabindex="-1"></a>DT<span class="sc">::</span><span class="fu">datatable</span>(res, <span class="at">caption =</span> <span class="st">&quot;MR of type 2 diabetes and coronary artery disease&quot;</span>, <span class="at">rownames =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb157-1"><a href="mr_twosamplemr.html#cb157-1" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">mr</span>(dat)</span>
+<span id="cb157-2"><a href="mr_twosamplemr.html#cb157-2" tabindex="-1"></a></span>
+<span id="cb157-3"><a href="mr_twosamplemr.html#cb157-3" tabindex="-1"></a>DT<span class="sc">::</span><span class="fu">datatable</span>(res, <span class="at">caption =</span> <span class="st">&quot;MR of type 2 diabetes and coronary artery disease&quot;</span>, <span class="at">rownames =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:twosamplemranalysis"></span>
 <img src="img/twosamplemr/twosamplemr_analysis.png" alt="Primary MR analysis." width="85%" />
 <p class="caption">
@@ -738,14 +738,14 @@ Figure 19.7: Primary MR analysis.
 <em>Vertical pleiotropy</em> arises because a SNP influences one trait, which in turn influences another. We can use MR to estimate the causal influence between the traits.
 <em>Horizontal pleiotropy</em> arises due to SNPs influencing two traits through independent pathways<span class="citation">(<a href="#ref-hemani2018">Hemani G. 2018</a>)</span>.</p>
 <p>Further, we should test for study heterogeneity.</p>
-<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb157-1"><a href="mr_twosamplemr.html#cb157-1" tabindex="-1"></a><span class="fu">mr_heterogeneity</span>(dat)</span></code></pre></div>
+<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="mr_twosamplemr.html#cb158-1" tabindex="-1"></a><span class="fu">mr_heterogeneity</span>(dat)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:twosamplemrheterogeneity"></span>
 <img src="img/twosamplemr/twosamplemr_heterogeneity.png" alt="MR heterogeneity." width="85%" />
 <p class="caption">
 Figure 19.8: MR heterogeneity.
 </p>
 </div>
-<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="mr_twosamplemr.html#cb158-1" tabindex="-1"></a><span class="fu">mr_pleiotropy_test</span>(dat)</span></code></pre></div>
+<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb159-1"><a href="mr_twosamplemr.html#cb159-1" tabindex="-1"></a><span class="fu">mr_pleiotropy_test</span>(dat)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:twosamplemrpleiotropy"></span>
 <img src="img/twosamplemr/twosamplemr_pleiotropy.png" alt="MR pleiotropy." width="85%" />
 <p class="caption">
@@ -759,16 +759,16 @@ Figure 19.9: MR pleiotropy.
 <div id="leave-one-out" class="section level3 hasAnchor" number="19.5.4">
 <h3><span class="header-section-number">19.5.4</span> Leave-one-out<a href="mr_twosamplemr.html#leave-one-out" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>It is also key to inspect the causal effects per SNP and perform a leave-one-out analysis.</p>
-<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb159-1"><a href="mr_twosamplemr.html#cb159-1" tabindex="-1"></a>res_single <span class="ot">&lt;-</span> <span class="fu">mr_singlesnp</span>(dat)</span>
-<span id="cb159-2"><a href="mr_twosamplemr.html#cb159-2" tabindex="-1"></a>DT<span class="sc">::</span><span class="fu">datatable</span>(res_single, <span class="at">caption =</span> <span class="st">&quot;Single SNP MR analysis&quot;</span>, <span class="at">rownames =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="mr_twosamplemr.html#cb160-1" tabindex="-1"></a>res_single <span class="ot">&lt;-</span> <span class="fu">mr_singlesnp</span>(dat)</span>
+<span id="cb160-2"><a href="mr_twosamplemr.html#cb160-2" tabindex="-1"></a>DT<span class="sc">::</span><span class="fu">datatable</span>(res_single, <span class="at">caption =</span> <span class="st">&quot;Single SNP MR analysis&quot;</span>, <span class="at">rownames =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:twosamplemrsingle"></span>
 <img src="img/twosamplemr/twosamplemr_singlesnp.png" alt="Single SNP analysis results." width="85%" />
 <p class="caption">
 Figure 19.10: Single SNP analysis results.
 </p>
 </div>
-<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="mr_twosamplemr.html#cb160-1" tabindex="-1"></a>res_loo <span class="ot">&lt;-</span> <span class="fu">mr_leaveoneout</span>(dat)</span>
-<span id="cb160-2"><a href="mr_twosamplemr.html#cb160-2" tabindex="-1"></a>DT<span class="sc">::</span><span class="fu">datatable</span>(res_loo, <span class="at">caption =</span> <span class="st">&quot;Leave-one-out MR analysis&quot;</span>, <span class="at">rownames =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="mr_twosamplemr.html#cb161-1" tabindex="-1"></a>res_loo <span class="ot">&lt;-</span> <span class="fu">mr_leaveoneout</span>(dat)</span>
+<span id="cb161-2"><a href="mr_twosamplemr.html#cb161-2" tabindex="-1"></a>DT<span class="sc">::</span><span class="fu">datatable</span>(res_loo, <span class="at">caption =</span> <span class="st">&quot;Leave-one-out MR analysis&quot;</span>, <span class="at">rownames =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:twosamplemrloo"></span>
 <img src="img/twosamplemr/twosamplemr_loo.png" alt="Leave-One-Out analysis results." width="85%" />
 <p class="caption">
@@ -783,9 +783,9 @@ Figure 19.11: Leave-One-Out analysis results.
 <h3><span class="header-section-number">19.5.5</span> Visualisation<a href="mr_twosamplemr.html#visualisation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>It is important to present the causal inference graphically.</p>
 <p><strong>Scatter plot</strong></p>
-<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="mr_twosamplemr.html#cb161-1" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">mr</span>(dat)</span>
-<span id="cb161-2"><a href="mr_twosamplemr.html#cb161-2" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">mr_scatter_plot</span>(res, dat)</span>
-<span id="cb161-3"><a href="mr_twosamplemr.html#cb161-3" tabindex="-1"></a>p1</span></code></pre></div>
+<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="mr_twosamplemr.html#cb162-1" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">mr</span>(dat)</span>
+<span id="cb162-2"><a href="mr_twosamplemr.html#cb162-2" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">mr_scatter_plot</span>(res, dat)</span>
+<span id="cb162-3"><a href="mr_twosamplemr.html#cb162-3" tabindex="-1"></a>p1</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:twosamplemrscatter"></span>
 <img src="img/twosamplemr/twosamplemr_scatter.png" alt="Scatter plot." width="85%" />
 <p class="caption">
@@ -796,9 +796,9 @@ Figure 19.12: Scatter plot.
 <p>Question: What do you see in the scatter plot? And what can you conclude from this?</p>
 </blockquote>
 <p><strong>Single SNP plot</strong></p>
-<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="mr_twosamplemr.html#cb162-1" tabindex="-1"></a>res_single <span class="ot">&lt;-</span> <span class="fu">mr_singlesnp</span>(dat)</span>
-<span id="cb162-2"><a href="mr_twosamplemr.html#cb162-2" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">mr_forest_plot</span>(res_single)</span>
-<span id="cb162-3"><a href="mr_twosamplemr.html#cb162-3" tabindex="-1"></a>p2</span></code></pre></div>
+<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="mr_twosamplemr.html#cb163-1" tabindex="-1"></a>res_single <span class="ot">&lt;-</span> <span class="fu">mr_singlesnp</span>(dat)</span>
+<span id="cb163-2"><a href="mr_twosamplemr.html#cb163-2" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">mr_forest_plot</span>(res_single)</span>
+<span id="cb163-3"><a href="mr_twosamplemr.html#cb163-3" tabindex="-1"></a>p2</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:twosamplemrforest"></span>
 <img src="img/twosamplemr/twosamplemr_forest.png" alt="Single SNP plot." width="85%" />
 <p class="caption">
@@ -809,9 +809,9 @@ Figure 19.13: Single SNP plot.
 <p>Question: What do you see in the forest plot? And what can you conclude from this?</p>
 </blockquote>
 <p><strong>Leave-One-Out plot</strong></p>
-<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="mr_twosamplemr.html#cb163-1" tabindex="-1"></a>res_loo <span class="ot">&lt;-</span> <span class="fu">mr_leaveoneout</span>(dat)</span>
-<span id="cb163-2"><a href="mr_twosamplemr.html#cb163-2" tabindex="-1"></a>p3 <span class="ot">&lt;-</span> <span class="fu">mr_leaveoneout_plot</span>(res_loo)</span>
-<span id="cb163-3"><a href="mr_twosamplemr.html#cb163-3" tabindex="-1"></a>p3</span></code></pre></div>
+<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="mr_twosamplemr.html#cb164-1" tabindex="-1"></a>res_loo <span class="ot">&lt;-</span> <span class="fu">mr_leaveoneout</span>(dat)</span>
+<span id="cb164-2"><a href="mr_twosamplemr.html#cb164-2" tabindex="-1"></a>p3 <span class="ot">&lt;-</span> <span class="fu">mr_leaveoneout_plot</span>(res_loo)</span>
+<span id="cb164-3"><a href="mr_twosamplemr.html#cb164-3" tabindex="-1"></a>p3</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:twosamplemrlooplot"></span>
 <img src="img/twosamplemr/twosamplemr_looplot.png" alt="Leave-One-Out plot." width="85%" />
 <p class="caption">
@@ -822,9 +822,9 @@ Figure 19.14: Leave-One-Out plot.
 <p>Question: what does a leave-one-out ploy tell you? And what can you conclude from this?</p>
 </blockquote>
 <p><strong>Funnel plot</strong></p>
-<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="mr_twosamplemr.html#cb164-1" tabindex="-1"></a>res_single <span class="ot">&lt;-</span> <span class="fu">mr_singlesnp</span>(dat)</span>
-<span id="cb164-2"><a href="mr_twosamplemr.html#cb164-2" tabindex="-1"></a>p4 <span class="ot">&lt;-</span> <span class="fu">mr_funnel_plot</span>(res_single)</span>
-<span id="cb164-3"><a href="mr_twosamplemr.html#cb164-3" tabindex="-1"></a>p4</span></code></pre></div>
+<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb165-1"><a href="mr_twosamplemr.html#cb165-1" tabindex="-1"></a>res_single <span class="ot">&lt;-</span> <span class="fu">mr_singlesnp</span>(dat)</span>
+<span id="cb165-2"><a href="mr_twosamplemr.html#cb165-2" tabindex="-1"></a>p4 <span class="ot">&lt;-</span> <span class="fu">mr_funnel_plot</span>(res_single)</span>
+<span id="cb165-3"><a href="mr_twosamplemr.html#cb165-3" tabindex="-1"></a>p4</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:twosamplemrfunnelplot"></span>
 <img src="img/twosamplemr/twosamplemr_funnelplot.png" alt="Funnel plot." width="85%" />
 <p class="caption">

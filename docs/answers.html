@@ -340,12 +340,12 @@ div.csl-indent {
 <li class="chapter" data-level="21.1" data-path="answers.html"><a href="answers.html#chapter-3.1-gwas-basics"><i class="fa fa-check"></i><b>21.1</b> Chapter 3.1: GWAS Basics</a></li>
 <li class="chapter" data-level="21.2" data-path="answers.html"><a href="answers.html#chapter-3.4-gwas-basics---association-testing"><i class="fa fa-check"></i><b>21.2</b> Chapter 3.4: GWAS Basics - Association testing</a></li>
 <li class="chapter" data-level="21.3" data-path="answers.html"><a href="answers.html#chapter-3.5-gwas-visualization"><i class="fa fa-check"></i><b>21.3</b> Chapter 3.5: GWAS visualization</a></li>
-<li class="chapter" data-level="21.4" data-path="answers.html"><a href="answers.html#chapter-4.2-wtccc1"><i class="fa fa-check"></i><b>21.4</b> Chapter 4.2: WTCCC1</a></li>
-<li class="chapter" data-level="21.5" data-path="answers.html"><a href="answers.html#chapter-4.3-wtccc1---association-testing"><i class="fa fa-check"></i><b>21.5</b> Chapter 4.3: WTCCC1 - Association testing</a></li>
-<li class="chapter" data-level="21.6" data-path="answers.html"><a href="answers.html#chapter-5.4-fuma"><i class="fa fa-check"></i><b>21.6</b> Chapter 5.4: FUMA</a></li>
-<li class="chapter" data-level="21.7" data-path="answers.html"><a href="answers.html#chapter-5.5-phewas"><i class="fa fa-check"></i><b>21.7</b> Chapter 5.5: PheWAS</a></li>
-<li class="chapter" data-level="21.8" data-path="answers.html"><a href="answers.html#chapter-5.7-twosample-mr"><i class="fa fa-check"></i><b>21.8</b> Chapter 5.7: TwoSample MR</a></li>
-<li class="chapter" data-level="21.9" data-path="answers.html"><a href="answers.html#chapter-8.1-regional-association-plots"><i class="fa fa-check"></i><b>21.9</b> Chapter 8.1: Regional association plots</a></li>
+<li class="chapter" data-level="21.4" data-path="answers.html"><a href="answers.html#chapter-3.6-regional-association-plots"><i class="fa fa-check"></i><b>21.4</b> Chapter 3.6: Regional association plots</a></li>
+<li class="chapter" data-level="21.5" data-path="answers.html"><a href="answers.html#chapter-4.2-wtccc1"><i class="fa fa-check"></i><b>21.5</b> Chapter 4.2: WTCCC1</a></li>
+<li class="chapter" data-level="21.6" data-path="answers.html"><a href="answers.html#chapter-4.3-wtccc1---association-testing"><i class="fa fa-check"></i><b>21.6</b> Chapter 4.3: WTCCC1 - Association testing</a></li>
+<li class="chapter" data-level="21.7" data-path="answers.html"><a href="answers.html#chapter-5.4-fuma"><i class="fa fa-check"></i><b>21.7</b> Chapter 5.4: FUMA</a></li>
+<li class="chapter" data-level="21.8" data-path="answers.html"><a href="answers.html#chapter-5.5-phewas"><i class="fa fa-check"></i><b>21.8</b> Chapter 5.5: PheWAS</a></li>
+<li class="chapter" data-level="21.9" data-path="answers.html"><a href="answers.html#chapter-5.7-twosample-mr"><i class="fa fa-check"></i><b>21.9</b> Chapter 5.7: TwoSample MR</a></li>
 </ul></li>
 <li class="chapter" data-level="22" data-path="license.html"><a href="license.html"><i class="fa fa-check"></i><b>22</b> Licenses and disclaimers</a>
 <ul>
@@ -379,18 +379,16 @@ div.csl-indent {
 <h1><span class="header-section-number">21</span> Answers to the questions<a href="answers.html#answers" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <!-- ![](./img/_headers/banner_man_standing_dna.png){width=100%} -->
 <p>Throughout the book you encountered questions related to some steps and output that you generated. Here you can review the answers for each of these questions - of course, for some different answers are possible.</p>
-<blockquote>
-<p>Note: Answers to all the questions will come at a later stage during the course.</p>
-</blockquote>
 <div id="chapter-3.1-gwas-basics" class="section level2 hasAnchor" number="21.1">
 <h2><span class="header-section-number">21.1</span> Chapter 3.1: GWAS Basics<a href="answers.html#chapter-3.1-gwas-basics" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <blockquote>
 <p>Question: Can you think off what the ‘11,440 heterozygous haploid genotypes present’ represent?</p>
 </blockquote>
+<p>These are the variants on the X-chromosome. Males only have 1 copy.</p>
 <blockquote>
-<p>Question: Can you think of other scenarios in which you may want to extend the check on differential missingness beyond a check between cases and controls?
-* For instance ‘genotyping platform’, or ‘hospital of inclusion’, if you think this might influence the genotyping experiment technically.</p>
+<p>Question: Can you think of other scenarios in which you may want to extend the check on differential missingness beyond a check between cases and controls?</p>
 </blockquote>
+<p>For instance ‘genotyping platform’, or ‘hospital of inclusion’, if you think this might influence the genotyping experiment technically.</p>
 </div>
 <div id="chapter-3.4-gwas-basics---association-testing" class="section level2 hasAnchor" number="21.2">
 <h2><span class="header-section-number">21.2</span> Chapter 3.4: GWAS Basics - Association testing<a href="answers.html#chapter-3.4-gwas-basics---association-testing" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -468,88 +466,193 @@ ggplot2::ggsave(&quot;data/dummy_project/gwas-snp-call-rate.png&quot;,
 <blockquote>
 <p>Question: Do you know which model, <em>i.e.</em> <code>TEST</code> is most commonly used and reported? And why is that, do think?</p>
 </blockquote>
+<p>The additive model. It is the most powerful and robust model. It is also the most commonly used model in GWAS, because most variants are ‘behaving’ according an additive effect.
+<!-- in the future version add a reference to this --></p>
 <blockquote>
 <p>Question: How come there are more lines in this file than there are variants?</p>
 </blockquote>
+<p>Because the results for different models are reported, so there are 3x more lines than there are variants.</p>
 <blockquote>
 <p>Question: Can you write down the mathematical relation between <em>beta</em> and <em>OR</em>?</p>
 </blockquote>
+<p>The odds ratio is the exponentiated beta. So, <code>OR = exp(beta)</code>.</p>
 </div>
 <div id="chapter-3.5-gwas-visualization" class="section level2 hasAnchor" number="21.3">
 <h2><span class="header-section-number">21.3</span> Chapter 3.5: GWAS visualization<a href="answers.html#chapter-3.5-gwas-visualization" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <blockquote>
 <p>Question: Try to figure out how to get the number of variants per chromosomes. Why do the number of variants per chrosome (approximately) correlate with the chromosome number?</p>
 </blockquote>
+<pre><code>df &lt;- as.data.frame(table(gwas_assoc_compl$CHR))
+names(df)[names(df) == &quot;Var1&quot;] &lt;- &quot;Chr&quot;
+View(df)</code></pre>
 <blockquote>
 <p>Question: Where are the data for chromosome X, Y and MT?</p>
 </blockquote>
+<p>The data for chromosome X, Y and MT are not present in the dataset. In this case it is a dummy dataset, so it wasn’t even generated. In real-life, a lot of the older generation genotyping platforms didn’t have chromosome Y or MT, and only few variants on chromosome X. Nowadays, with the newer platforms, chromosome X and Y are included, as well as MT. A downside still remains: the reference datasets for imputation do not include the Y and the MT chromosome.</p>
 <blockquote>
 <p>Question: What do the grey spots on the density plot indicate?</p>
 </blockquote>
+<p>These are the chromosomal regions without any (or with very low) variant coverage, as they are notoriously hard to sequence. Therefore companies cannot design probes against these regions and they are not included in the genotyping arrays. But what are these regions: usually the ends of chromosomes and the centromeres.</p>
 </div>
-<div id="chapter-4.2-wtccc1" class="section level2 hasAnchor" number="21.4">
-<h2><span class="header-section-number">21.4</span> Chapter 4.2: WTCCC1<a href="answers.html#chapter-4.2-wtccc1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<blockquote>
-<p>Question: What do you notice in the ‘per sample call rate’ graph? Can you think of a reason why this is? And how would you deal with this?</p>
-</blockquote>
-<blockquote>
-<p>Question: Do you have any thoughts on that? Do you agree with the filters I set below? How would you do it differently and why?</p>
-</blockquote>
-</div>
-<div id="chapter-4.3-wtccc1---association-testing" class="section level2 hasAnchor" number="21.5">
-<h2><span class="header-section-number">21.5</span> Chapter 4.3: WTCCC1 - Association testing<a href="answers.html#chapter-4.3-wtccc1---association-testing" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="chapter-3.6-regional-association-plots" class="section level2 hasAnchor" number="21.4">
+<h2><span class="header-section-number">21.4</span> Chapter 3.6: Regional association plots<a href="answers.html#chapter-3.6-regional-association-plots" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <blockquote>
 <p>Question: How many independent hits did you find?</p>
 </blockquote>
+<p>Two.</p>
 </div>
-<div id="chapter-5.4-fuma" class="section level2 hasAnchor" number="21.6">
-<h2><span class="header-section-number">21.6</span> Chapter 5.4: FUMA<a href="answers.html#chapter-5.4-fuma" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<pre><code>data.table::fwrite(wtccc1_assoc_compl, 
-                   file = &quot;wtccc1/wtccc1_assoc_compl.txt.gz&quot;, 
-                   sep = &quot; &quot;, 
-                   na = &quot;NA&quot;, 
-                   row.names = FALSE, col.names = TRUE,
-                   quote = FALSE, 
-                   showProgress = TRUE, verbose = TRUE)</code></pre>
+<div id="chapter-4.2-wtccc1" class="section level2 hasAnchor" number="21.5">
+<h2><span class="header-section-number">21.5</span> Chapter 4.2: WTCCC1<a href="answers.html#chapter-4.2-wtccc1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<blockquote>
+<p>Question: What do you notice in the ‘per sample call rate’ graph? Can you think of a reason why this is? And how would you deal with this?</p>
+</blockquote>
+<p>There are two bumps in the histogram. This could be due to the genotyping platform used, or due to the case/control status. The two bumps could represent two different genotyping platforms. If this is the case, you could split the data and analyze them separately or correct for this somehow. If it is due to the case/control status, you could remove the samples with a low call rate. It could also be that the cases and the controls were genotype separately, this causes a batch effect which is evident in a slightly different per sample call rate.</p>
+<blockquote>
+<p>Question: Do you have any thoughts on that? Do you agree with the filters I set below? How would you do it differently and why?</p>
+</blockquote>
+<p>These were my settings <code>--maf 0.01 --geno 0.05 --hwe 0.00001</code>.</p>
+<p>You could have set the call rate filter to 0.97 or even 0.98; it’s a bit arbitrary, but anything between 0.95 and 0.97 is a common threshold.
+The HWE filter is set to 0.00001, which is relatively strict. Some would set it to 0.0001 or even 0.000001. Again, it’s a bit arbitrary, of course you don’t want to kill any signals - if all is well there should be slight differences between cases and controls. So an alternative could also be to only filter the HWE in the cases.
+The MAF filter is set to 0.01, which is strict. You could have set it to 0.05. It’s also dependent on the size of your GWAS. Suppose you have 1000 samples, then 1% of a 1000 is only 10 cases. This maybe to few cases for a GWAS, so you might want the threshold to be at 5%. If you are dealing with the UK Biobank dataset, which has 500,000 samples, then 1% is 5000 cases, which is a lot. So you could set the threshold to 1% or even go lower.</p>
+</div>
+<div id="chapter-4.3-wtccc1---association-testing" class="section level2 hasAnchor" number="21.6">
+<h2><span class="header-section-number">21.6</span> Chapter 4.3: WTCCC1 - Association testing<a href="answers.html#chapter-4.3-wtccc1---association-testing" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<blockquote>
+<p>Question: How many independent hits did you find?</p>
+</blockquote>
+<p>There are two hits. But, the one on chromosome 22 is probably a false positive because <code>PLINK</code> couldn’t find any correlated variants to the top hit (rs9617611).</p>
+</div>
+<div id="chapter-5.4-fuma" class="section level2 hasAnchor" number="21.7">
+<h2><span class="header-section-number">21.7</span> Chapter 5.4: FUMA<a href="answers.html#chapter-5.4-fuma" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The results from this practical primer using the WTCCC1 data are published publicly under ID <code>471422</code> on the <a href="http://fuma.ctglab.nl" target="_blank">FUMA</a> website.</p>
 <blockquote>
 <p>Question: can you figure out the sample size of the WTCCC1 data you used?</p>
 </blockquote>
+<p>According to the <code>PLINK</code> log there are 3,268 individuals.</p>
+<pre><code>PLINK v1.90b7.2 64-bit (11 Dec 2023)
+Options in effect:
+  --bfile wtccc1/wtccc1_clean
+  --exclude wtccc1/fail-ancestry-QC.txt
+  --make-bed
+  --out wtccc1/wtccc1_qc
+
+Start time: Mon Apr  8 17:35:51 2024
+
+Random number seed: 1712612151
+16384 MB RAM detected; reserving 8192 MB for main workspace.
+379407 variants loaded from .bim file.
+3268 people (2160 males, 1108 females) loaded from .fam.
+3268 phenotype values loaded from .fam.
+--exclude: 379407 variants remaining.
+Using 1 thread (no multithreaded calculations invoked).
+Before main variant filters, 3268 founders and 0 nonfounders present.
+Calculating allele frequencies... done.
+Total genotyping rate is 0.997173.
+379407 variants and 3268 people pass filters and QC.
+Among remaining phenotypes, 1871 are cases and 1397 are controls.
+--make-bed to wtccc1/wtccc1_qc.bed + wtccc1/wtccc1_qc.bim +
+wtccc1/wtccc1_qc.fam ... done.
+
+End time: Mon Apr  8 17:35:52 2024</code></pre>
 <blockquote>
-<p>Questions</p>
-<ol style="list-style-type: decimal">
-<li>How many lead SNPs did we find?</li>
+<p>Questions
+1. How many lead SNPs did we find?</p>
+</blockquote>
+<p>The same two we found through <code>PLINK</code>.</p>
+<p>You can find the Manhatton plot that <code>FUMA</code> generated under ‘Genome-wide plots’ on the <code>FUMA</code>-website (below).</p>
+<p><img src="img/gwas_wtccc/manhattan_FUMA_jobs471422.png" /></p>
+<p>You can find more about the two loci under ’Summary of results.</p>
+<p><img src="img/gwas_wtccc/lociPlot_FUMA_jobs471422.png" /></p>
+<p>Under the ‘Results’ heading on the <code>FUMA</code> website you can find much more, such as the main ‘Genomic risk loci’, but also the ‘lead SNPs’ and the ‘Ind. Sig. SNPs’ (the independent significant SNPs. The ‘lead SNPs’ are the same as we found through <em>clumping</em> with <code>PLINK</code>. The ‘Ind. Sig. SNPs’ are the SNPs that are independent (from the other) and significant.</p>
+<p><img src="img/gwas_wtccc/FUMA_genomic_risk_loci.png" /></p>
+<p><img src="img/gwas_wtccc/FUMA_Ind_Sig_SNPs.png" /></p>
+<p><img src="img/gwas_wtccc/FUMA_lead_SNPs.png" /></p>
+<blockquote>
+<ol start="2" style="list-style-type: decimal">
 <li>What do the results of MAGMA (the gene-based test) look like and how many genes pass the threshold of multiple testing correction?</li>
+</ol>
+</blockquote>
+<p>You can find the results of the gene-based test under ‘Genome-wide plots’.</p>
+<p>The region at chromosome 9 is significant, and you can see that a few genes reach the significance threshold. The latter is determined by the Bonferroni correction based on the number of genes tested.</p>
+<p><img src="img/gwas_wtccc/geneManhattan_FUMA_jobs471422.png" /></p>
+<blockquote>
+<ol start="3" style="list-style-type: decimal">
 <li>How many loci were mapped?</li>
+</ol>
+</blockquote>
+<p>Two.</p>
+<blockquote>
+<ol start="4" style="list-style-type: decimal">
 <li>How many genes were physically located and how many were mapped to these loci?</li>
+</ol>
+</blockquote>
+<p>There are 12 genes mapped to the loci.</p>
+<blockquote>
+<ol start="5" style="list-style-type: decimal">
 <li>Do you think all loci are ‘correct’, <em>i.e.</em> do you ‘believe’ all the signals looking at the mapping results? Why?</li>
+</ol>
+</blockquote>
+<p>The results from chromosome may be a bit dubious, as there is only 1 variant reaching genome-wide significance. The results from chromosome 9 are more convincing, as there are multiple variants reaching genome-wide significance.
+All the genes are in physical proximity and they are protein coding. Some have an expression quantitative trait locus (eQTL), but other than that there is no additional information.</p>
+<blockquote>
+<ol start="6" style="list-style-type: decimal">
 <li>For what tissues are the signals enriched?</li>
+</ol>
+</blockquote>
+<p>There is no enrichment in any tissue. However, most enrichment is found in the ovaries - which is strange in the context of coronary artery disease; unless it is related to a specific process. For instance, the ovaries may be very well perfused and the genes may be involved in angiogenesis. The next ‘best’ tissue are the blood vessels, which is more plausible in the context of CAD.</p>
+<p><img src="img/gwas_wtccc/magma_exp_gtex_v8_ts_general_avg_log2TPM_FUMA_jobs471422.png" /></p>
+<blockquote>
+<ol start="7" style="list-style-type: decimal">
 <li>Are there any chromatin interactions discovered?</li>
 </ol>
 </blockquote>
+<p>Yes, for both chromosome 9 and 22. The ‘circos’ plots only show genes mapped as eQTL and/or by chromatin interactions. If the gene is mapped only by chromatin interactions or only by eQTLs, it is colored orange or green, respectively. When the gene is mapped by both, it is colored red.</p>
+<p><img src="img/gwas_wtccc/circos_chr9.png" /></p>
+<p><img src="img/gwas_wtccc/circos_chr22.png" /></p>
 <blockquote>
 <p>Questions</p>
 <ol style="list-style-type: decimal">
 <li>What genes show the lowest expression across tissues?</li>
 <li>And what genes the highest?</li>
+</ol>
+</blockquote>
+<p>You can answer these questions when you run <code>GENE2FUNCTION</code>. You can then review which of the mapped genes is expressed most in which tissue, and look at their role in relation to pathways. This may be informative for overall conclusions.</p>
+<p><em>ATP6V1E1</em> is most expressed across all included tissues. <em>CECR6</em> is among the least expressed genes.</p>
+<p><img src="img/gwas_wtccc/expHeat_FUMA_jobs.png" /></p>
+<blockquote>
+<ol start="3" style="list-style-type: decimal">
 <li>For what pathways are the signals enriched?</li>
+</ol>
+</blockquote>
+<p><em>CDKN2A</em> and <em>CDKN2B</em> are most enriched in the ‘Cell cycle’ pathway.</p>
+<p><img src="img/gwas_wtccc/BioCarta_FUMA_jobs471422.png" /></p>
+<blockquote>
+<ol start="4" style="list-style-type: decimal">
 <li>What molecular functions are mapped to the signals?</li>
 </ol>
 </blockquote>
-<p>The results from the analysis are published publically under ID <code>471422</code> on the <a href="http://fuma.ctglab.nl" target="_blank">FUMA</a> website.</p>
+<p><img src="img/gwas_wtccc/GO_mf_FUMA_jobs471422.png" /></p>
+<p>Again <em>CDKN2A</em> and <em>CDKN2B</em> are most enriched and involved in a cyclin dependent protein serine-threonine kinase inhibitor activity.</p>
 </div>
-<div id="chapter-5.5-phewas" class="section level2 hasAnchor" number="21.7">
-<h2><span class="header-section-number">21.7</span> Chapter 5.5: PheWAS<a href="answers.html#chapter-5.5-phewas" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="chapter-5.5-phewas" class="section level2 hasAnchor" number="21.8">
+<h2><span class="header-section-number">21.8</span> Chapter 5.5: PheWAS<a href="answers.html#chapter-5.5-phewas" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <blockquote>
 <p><em>Assignment</em></p>
 <ol style="list-style-type: decimal">
 <li>Perform a PheWAS with a few of the resources and your favorite SNP from this tutorial.</li>
 <li>Compare the different websites. What do you notice?</li>
+</ol>
+</blockquote>
+<p>Some websites report different phenotypes, but most of them report the same. Some website use the subsets of the same datasets, or they use different datasets altogether. The results are similar across different websites and datasets. Usually these datasets are FinnGen, UKBiobank and likewise large biobanks..</p>
+<blockquote>
+<ol start="3" style="list-style-type: decimal">
 <li>How is a PheWAS informative?</li>
 </ol>
 </blockquote>
+<p>It can tell you something about the pleiotropic effects of a variant or gene. It can also tell you something about the underlying biology of a variant. A variant associated to CAD could also be associated to T2D, which could be due to the fact that the variant is involved in glucose metabolism.</p>
 </div>
-<div id="chapter-5.7-twosample-mr" class="section level2 hasAnchor" number="21.8">
-<h2><span class="header-section-number">21.8</span> Chapter 5.7: TwoSample MR<a href="answers.html#chapter-5.7-twosample-mr" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="chapter-5.7-twosample-mr" class="section level2 hasAnchor" number="21.9">
+<h2><span class="header-section-number">21.9</span> Chapter 5.7: TwoSample MR<a href="answers.html#chapter-5.7-twosample-mr" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <blockquote>
 <p>Question: What is the causal effect of T2D on CAD? Can you describe this using the knowledge from the lecture and the results in the table.
 Question: What do the results of the heterogeneity and pleiotropy tests tell you?
@@ -559,12 +662,6 @@ Question: What do you see in the forest plot? And what can you conclude from thi
 Question: What does a leave-one-out ploy tell you? And what can you conclude from this?
 Question: Why would yoy use a funnel plot? And what can it tell you?
 Question: What are your main conclusions from the MR analysis?</p>
-</blockquote>
-</div>
-<div id="chapter-8.1-regional-association-plots" class="section level2 hasAnchor" number="21.9">
-<h2><span class="header-section-number">21.9</span> Chapter 8.1: Regional association plots<a href="answers.html#chapter-8.1-regional-association-plots" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<blockquote>
-<p>Question: How many independent hits did you find?</p>
 </blockquote>
 <script>
 title=document.getElementById('header');

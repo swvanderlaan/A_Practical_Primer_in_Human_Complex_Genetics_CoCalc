@@ -188,12 +188,12 @@ answers
 chapter-3.1-gwas-basics
 chapter-3.4-gwas-basics---association-testing
 chapter-3.5-gwas-visualization
+chapter-3.6-regional-association-plots
 chapter-4.2-wtccc1
 chapter-4.3-wtccc1---association-testing
 chapter-5.4-fuma
 chapter-5.5-phewas
 chapter-5.7-twosample-mr
-chapter-8.1-regional-association-plots
 license
 images-and-data-used
 disclaimer

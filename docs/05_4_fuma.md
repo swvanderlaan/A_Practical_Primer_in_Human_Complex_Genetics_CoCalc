@@ -16,11 +16,6 @@ Go to the [FUMA website](https://fuma.ctglab.nl){target="_blank"}, get an accoun
 
 You will need to use the `fwrite` function in `r` to write the concatenated results of the WTCCC1 study (remember: `wtccc1_assoc_compl`). Make sure you know what the column-names are in the file, you'll need that for FUMA. You will also need to compress the resulting output, this will make uploading to FUMA go faster. Next, you can download this file and upload it to FUMA.
 
-> Task: You have gotten so much experience now in handling files with R. You should be able to do this without any problems.
-
-<!-- we are not showing this code block -->
-
-
 > Question: can you figure out the sample size of the WTCCC1 data you used?
 
 
