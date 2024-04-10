@@ -121,7 +121,7 @@ First, you want to save this new concatenated and filtered resulst file.
 
 ```r
 data.table::fwrite(wtccc1_assoc_compl,
-                   file = "data/wtccc1/wtccc1_assoc_compl.txt.gz",
+                   file = "wtccc1/wtccc1_assoc_compl.txt.gz",
                    sep = " ",
                    na = "NA",
                    row.names = FALSE, col.names = TRUE,

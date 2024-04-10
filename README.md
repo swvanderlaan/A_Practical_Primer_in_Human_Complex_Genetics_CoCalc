@@ -8,7 +8,7 @@ This book was made possible by the kind help of Caspar J. van Lissa who wrote an
 
 #### Changes log
     
-    _Version:_      v2.2.4</br>
+    _Version:_      v2.2.5</br>
     _Last update:_  2024-04-10</br>
     _Written by:_   Sander W. van der Laan (s.w.vanderlaan-2[at]umcutrecht.nl).
     
@@ -66,6 +66,7 @@ This book was made possible by the kind help of Caspar J. van Lissa who wrote an
       - https://iconifier.net
 
     **Changes log**
+    * v2.2.4 Version fix on the main page. Fixed error on display of questions for TwoSample MR in Answer-chapter. Fixed command in WTCCC1 association chapter.
     * v2.2.4 Removed code block in FUMA-chapter. Added quick-and-dirty fix for MRBase. Added Answers to questions.
     * v2.2.3 Fixes to the rendering of the book. Fixes to the references. Fixed issue with FUMA input file. Splitted the WTCCC1 analyses in 3 parts, first introduction, then quality control, finally association testing.
     * v2.2.2 Small fix to remove `knitr` codes. Fixed errors in `opts$chunks` for `knitr` and `rmarkdown` regarding 'echo'.
